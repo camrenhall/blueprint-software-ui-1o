@@ -111,11 +111,11 @@ export default function WelcomeLoader({ userName }: WelcomeLoaderProps) {
           }}
         >
           <div className="text-center">
-            <h2 className="text-4xl font-light tracking-wide">
+            <h1 className="text-5xl md:text-7xl font-light tracking-wide">
               <span className="bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent opacity-50">
                 Welcome back
               </span>
-            </h2>
+            </h1>
           </div>
         </div>
       )}
