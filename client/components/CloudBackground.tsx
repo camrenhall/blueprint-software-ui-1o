@@ -1,15 +1,17 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 export default function CloudBackground() {
   // Generate stable particle positions that won't change on re-renders
-  const particles = useMemo(() =>
-    Array.from({ length: 20 }).map((_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      animationDelay: Math.random() * 5,
-      animationDuration: 3 + Math.random() * 4,
-    })), []
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 20 }).map((_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        animationDelay: Math.random() * 5,
+        animationDuration: 3 + Math.random() * 4,
+      })),
+    [],
   );
 
   return (

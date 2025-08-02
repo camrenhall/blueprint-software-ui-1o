@@ -34,7 +34,6 @@ export default function Login() {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
-
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center">
         {/* Hero section - Left side */}

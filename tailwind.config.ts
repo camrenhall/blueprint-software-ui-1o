@@ -96,7 +96,7 @@ export default {
             transform: "translateY(-15px) translateX(-5px)",
           },
         },
-        "fadeIn": {
+        fadeIn: {
           "0%": {
             opacity: "0",
             transform: "translateY(20px) scale(0.95)",
@@ -106,7 +106,7 @@ export default {
             transform: "translateY(0px) scale(1)",
           },
         },
-        "fadeOut": {
+        fadeOut: {
           "0%": {
             opacity: "1",
             transform: "translateY(0px) scale(1)",
