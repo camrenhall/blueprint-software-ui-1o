@@ -790,7 +790,11 @@ export default function Dashboard({
               <div className="relative" data-dropdown>
                 <button
                   className="relative hover:bg-gray-100/50 p-2 transition-colors duration-200"
-                  onClick={() => setShowNotifications(!showNotifications)}
+                  onClick={() => {
+                    setShowNotifications(!showNotifications);
+                    setShowSettings(false);
+                    setShowProfile(false);
+                  }}
                 >
                   <svg
                     className="w-5 h-5 text-gray-500"
@@ -865,7 +869,11 @@ export default function Dashboard({
               <div className="relative" data-dropdown>
                 <button
                   className="hover:bg-gray-100/50 p-2 transition-colors duration-200"
-                  onClick={() => setShowSettings(!showSettings)}
+                  onClick={() => {
+                    setShowSettings(!showSettings);
+                    setShowNotifications(false);
+                    setShowProfile(false);
+                  }}
                 >
                   <svg
                     className="w-5 h-5 text-gray-500"
@@ -1024,7 +1032,11 @@ export default function Dashboard({
                   </div>
                   <button
                     className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-200"
-                    onClick={() => setShowProfile(!showProfile)}
+                    onClick={() => {
+                      setShowProfile(!showProfile);
+                      setShowNotifications(false);
+                      setShowSettings(false);
+                    }}
                   >
                     <span className="text-white text-sm font-medium">AC</span>
                   </button>
