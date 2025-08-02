@@ -255,66 +255,72 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
         )}
       >
         {/* Navigation Bar */}
-        <div className="bg-gradient-to-r from-gray-50/80 to-white/60 backdrop-blur-sm border-b border-gray-200/40">
-          <div className="flex items-center justify-between px-8 py-5">
-            <div className="flex items-center space-x-8">
+        <div className="border-b border-gray-200/50 bg-white/95">
+          <div className="flex items-center justify-between px-8 py-6">
+            <div className="flex items-center space-x-12">
               <h2 className="text-2xl font-light text-gray-800 tracking-wide">
                 {title}
               </h2>
 
               {/* Navigation Tabs */}
-              <nav className="hidden md:flex items-center bg-white/60 rounded-full p-1 shadow-sm border border-gray-200/50">
+              <nav className="hidden md:flex items-center space-x-8">
                 {[
-                  { id: 'overview', label: 'Overview', icon: '📊' },
-                  { id: 'analytics', label: 'Analytics', icon: '📈' },
-                  { id: 'reports', label: 'Reports', icon: '📋' }
+                  { id: 'overview', label: 'Overview' },
+                  { id: 'analytics', label: 'Analytics' },
+                  { id: 'reports', label: 'Reports' }
                 ].map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id as NavigationTab)}
                     className={cn(
-                      "flex items-center space-x-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+                      "text-sm font-medium transition-all duration-200 pb-1 border-b-2",
                       activeTab === tab.id
-                        ? "bg-white text-gray-800 shadow-sm border border-gray-200/50"
-                        : "text-gray-600 hover:text-gray-800 hover:bg-white/40"
+                        ? "text-gray-800 border-blue-400"
+                        : "text-gray-500 hover:text-gray-700 border-transparent"
                     )}
                   >
-                    <span className="text-xs">{tab.icon}</span>
-                    <span>{tab.label}</span>
+                    {tab.label}
                   </button>
                 ))}
               </nav>
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               {/* Notification Icon */}
-              <button className="relative p-2 rounded-full hover:bg-gray-100/50 transition-colors duration-200">
-                <span className="text-gray-500 text-lg">🔔</span>
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full border-2 border-white"></div>
+              <button className="relative hover:bg-gray-100/50 p-2 transition-colors duration-200">
+                <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <div className="absolute top-1 right-1 w-2 h-2 bg-red-400 rounded-full"></div>
               </button>
 
               {/* Settings Icon */}
-              <button className="p-2 rounded-full hover:bg-gray-100/50 transition-colors duration-200">
-                <span className="text-gray-500 text-lg">⚙️</span>
+              <button className="hover:bg-gray-100/50 p-2 transition-colors duration-200">
+                <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
               </button>
 
               {/* User Profile */}
-              <div className="flex items-center space-x-3 bg-white/60 rounded-full pl-1 pr-4 py-1 border border-gray-200/50">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-sm">
-                  <span className="text-white text-sm font-medium">A</span>
-                </div>
-                <div className="hidden sm:block">
+              <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
+                <div className="text-right hidden sm:block">
                   <div className="text-sm font-medium text-gray-700">Alex Chen</div>
                   <div className="text-xs text-gray-500">Premium Tier</div>
+                </div>
+                <div className="w-8 h-8 bg-gray-200 flex items-center justify-center">
+                  <span className="text-gray-600 text-sm font-medium">AC</span>
                 </div>
               </div>
 
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-gray-200/60 hover:bg-gray-300/60 transition-colors duration-200 flex items-center justify-center text-gray-600 hover:text-gray-800 shadow-sm"
+                className="hover:bg-gray-100/50 p-2 transition-colors duration-200 text-gray-500 hover:text-gray-700"
               >
-                ✕
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
               </button>
             </div>
           </div>

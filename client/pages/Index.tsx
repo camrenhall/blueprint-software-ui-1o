@@ -51,9 +51,9 @@ export default function Index() {
         },
         {
           id: 'create-design',
-          title: 'Design Studio',
+          title: 'Dashboard',
           action: () => {
-            setDashboardTitle('Design Studio');
+            setDashboardTitle('Dashboard');
             setDashboardOpen(true);
           },
         },
