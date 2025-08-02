@@ -10,6 +10,13 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
+// Extend HTMLElement to include our custom property
+declare global {
+  interface HTMLElement {
+    _reactRootContainer?: ReturnType<typeof createRoot>;
+  }
+}
+
 const queryClient = new QueryClient();
 
 const App = () => (
