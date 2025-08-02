@@ -1,28 +1,28 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import CloudBackground from '@/components/CloudBackground';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import CloudBackground from "@/components/CloudBackground";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     // Demo: Allow any login to work
     setTimeout(() => {
       setIsLoading(false);
-      navigate('/menu');
+      navigate("/menu");
     }, 800);
   };
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
       <CloudBackground />
-      
+
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center">
         {/* Hero section - Left side */}
@@ -34,24 +34,55 @@ export default function Login() {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-white/70 mb-8 leading-relaxed">
-              Step into a world of infinite possibilities. Your journey through space and time continues here.
+              Step into a world of infinite possibilities. Your journey through
+              space and time continues here.
             </p>
             <div className="space-y-4 text-white/60">
               <div className="flex items-center space-x-3">
-                <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                <svg
+                  className="w-5 h-5 text-blue-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M5 13l4 4L19 7"
+                  />
                 </svg>
                 <span>Seamless cloud synchronization</span>
               </div>
               <div className="flex items-center space-x-3">
-                <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <svg
+                  className="w-5 h-5 text-purple-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  />
                 </svg>
                 <span>Enterprise-grade security</span>
               </div>
               <div className="flex items-center space-x-3">
-                <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg
+                  className="w-5 h-5 text-emerald-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
                 </svg>
                 <span>Lightning-fast performance</span>
               </div>
@@ -70,7 +101,10 @@ export default function Login() {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Email field */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-white/80 mb-2"
+                >
                   Email
                 </label>
                 <div className="relative">
@@ -83,15 +117,28 @@ export default function Login() {
                     placeholder="Enter your email"
                     required
                   />
-                  <svg className="absolute right-3 top-3.5 w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                  <svg
+                    className="absolute right-3 top-3.5 w-5 h-5 text-white/40"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                    />
                   </svg>
                 </div>
               </div>
 
               {/* Password field */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-white/80 mb-2">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-white/80 mb-2"
+                >
                   Password
                 </label>
                 <div className="relative">
@@ -104,8 +151,18 @@ export default function Login() {
                     placeholder="Enter your password"
                     required
                   />
-                  <svg className="absolute right-3 top-3.5 w-5 h-5 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  <svg
+                    className="absolute right-3 top-3.5 w-5 h-5 text-white/40"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
                   </svg>
                 </div>
               </div>
@@ -128,18 +185,26 @@ export default function Login() {
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center space-x-2">
-                    <svg className="animate-spin w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    <svg
+                      className="animate-spin w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                      />
                     </svg>
                     <span>Signing in...</span>
                   </div>
                 ) : (
-                  'Sign In'
+                  "Sign In"
                 )}
               </button>
             </form>
-
-
           </div>
         </div>
       </div>
