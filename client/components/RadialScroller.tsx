@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
+interface SubMenuItem {
+  id: string;
+  title: string;
+  action: () => void;
+}
+
 interface MenuItem {
   id: string;
   title: string;
-  subtitle?: string;
-  action: () => void;
+  subItems?: SubMenuItem[];
 }
 
 interface RadialScrollerProps {
@@ -16,28 +21,58 @@ interface RadialScrollerProps {
 export default function RadialScroller({ items, className }: RadialScrollerProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [currentLevel, setCurrentLevel] = useState<'main' | 'sub'>('main');
+  const [currentSubItems, setCurrentSubItems] = useState<SubMenuItem[]>([]);
+  const [parentTitle, setParentTitle] = useState('');
 
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const currentItems = currentLevel === 'main' ? items : currentSubItems;
+
       if (e.key === 'ArrowUp') {
         e.preventDefault();
-        setSelectedIndex(prev => (prev - 1 + items.length) % items.length);
+        setSelectedIndex(prev => (prev - 1 + currentItems.length) % currentItems.length);
       } else if (e.key === 'ArrowDown') {
         e.preventDefault();
-        setSelectedIndex(prev => (prev + 1) % items.length);
+        setSelectedIndex(prev => (prev + 1) % currentItems.length);
       } else if (e.key === 'Enter') {
         e.preventDefault();
-        items[selectedIndex]?.action();
+        handleItemAction();
+      } else if (e.key === 'Escape' && currentLevel === 'sub') {
+        e.preventDefault();
+        goBackToMain();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedIndex, items]);
+  }, [selectedIndex, currentLevel, currentSubItems, items]);
+
+  const handleItemAction = () => {
+    if (currentLevel === 'main') {
+      const selectedItem = items[selectedIndex];
+      if (selectedItem?.subItems) {
+        setCurrentSubItems(selectedItem.subItems);
+        setParentTitle(selectedItem.title);
+        setCurrentLevel('sub');
+        setSelectedIndex(0);
+      }
+    } else {
+      const selectedSubItem = currentSubItems[selectedIndex];
+      selectedSubItem?.action();
+    }
+  };
+
+  const goBackToMain = () => {
+    setCurrentLevel('main');
+    setCurrentSubItems([]);
+    setParentTitle('');
+    setSelectedIndex(0);
+  };
 
   const getItemPosition = (index: number) => {
-    const spacing = 80; // Vertical spacing between items
+    const spacing = 100; // Increased vertical spacing between items
     const y = (index - selectedIndex) * spacing;
     return { x: 0, y };
   };
@@ -58,11 +93,26 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
     return 0.15;
   };
 
+  const currentItems = currentLevel === 'main' ? items : currentSubItems;
+
   return (
     <div className={cn("relative flex items-center justify-start h-full", className)}>
+      {/* Back indicator when in sub-menu */}
+      {currentLevel === 'sub' && (
+        <div className="absolute -top-16 left-0">
+          <button
+            onClick={goBackToMain}
+            className="text-white/50 hover:text-white/80 transition-colors duration-300 text-sm flex items-center gap-2"
+          >
+            <span>←</span>
+            <span>Back to {parentTitle}</span>
+          </button>
+        </div>
+      )}
+
       {/* Vertical container */}
       <div className="relative flex flex-col items-start justify-center h-full py-20">
-        {items.map((item, index) => {
+        {currentItems.map((item, index) => {
           const { x, y } = getItemPosition(index);
           const scale = getItemScale(index);
           const opacity = getItemOpacity(index);
@@ -87,15 +137,19 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
                 }
               }}
               onMouseLeave={() => setHoveredIndex(null)}
-              onClick={item.action}
+              onClick={handleItemAction}
             >
               <h3 className={cn(
-                "text-3xl md:text-4xl font-light tracking-wide transition-all duration-300 whitespace-nowrap",
+                "text-4xl md:text-5xl font-light tracking-wide transition-all duration-300 whitespace-nowrap",
                 isSelected
                   ? "text-white drop-shadow-lg"
-                  : "text-white/60 hover:text-white/80"
+                  : "text-white/60 hover:text-white/80",
+                currentLevel === 'sub' && "text-3xl md:text-4xl"
               )}>
                 {item.title}
+                {currentLevel === 'main' && 'subItems' in item && item.subItems && (
+                  <span className="text-white/30 ml-2">→</span>
+                )}
               </h3>
 
               {/* Subtle glow effect for selected item */}

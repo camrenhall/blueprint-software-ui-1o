@@ -6,47 +6,107 @@ export default function Index() {
     {
       id: 'explore',
       title: 'Explore',
-      subtitle: 'Discover new worlds',
-      action: () => {
-        console.log('Navigate to Explore');
-        // Navigation logic here
-      },
+      subItems: [
+        {
+          id: 'explore-worlds',
+          title: 'New Worlds',
+          action: () => console.log('Navigate to New Worlds'),
+        },
+        {
+          id: 'explore-galaxies',
+          title: 'Distant Galaxies',
+          action: () => console.log('Navigate to Distant Galaxies'),
+        },
+        {
+          id: 'explore-dimensions',
+          title: 'Other Dimensions',
+          action: () => console.log('Navigate to Other Dimensions'),
+        },
+      ],
     },
     {
       id: 'create',
       title: 'Create',
-      subtitle: 'Build something amazing',
-      action: () => {
-        console.log('Navigate to Create');
-        // Navigation logic here
-      },
+      subItems: [
+        {
+          id: 'create-project',
+          title: 'New Project',
+          action: () => console.log('Navigate to New Project'),
+        },
+        {
+          id: 'create-design',
+          title: 'Design Studio',
+          action: () => console.log('Navigate to Design Studio'),
+        },
+        {
+          id: 'create-experiment',
+          title: 'Experiment Lab',
+          action: () => console.log('Navigate to Experiment Lab'),
+        },
+      ],
     },
     {
       id: 'connect',
       title: 'Connect',
-      subtitle: 'Join the community',
-      action: () => {
-        console.log('Navigate to Connect');
-        // Navigation logic here
-      },
+      subItems: [
+        {
+          id: 'connect-community',
+          title: 'Community Hub',
+          action: () => console.log('Navigate to Community Hub'),
+        },
+        {
+          id: 'connect-collaborate',
+          title: 'Collaborate',
+          action: () => console.log('Navigate to Collaborate'),
+        },
+        {
+          id: 'connect-network',
+          title: 'Network',
+          action: () => console.log('Navigate to Network'),
+        },
+      ],
     },
     {
       id: 'learn',
       title: 'Learn',
-      subtitle: 'Expand your knowledge',
-      action: () => {
-        console.log('Navigate to Learn');
-        // Navigation logic here
-      },
+      subItems: [
+        {
+          id: 'learn-tutorials',
+          title: 'Tutorials',
+          action: () => console.log('Navigate to Tutorials'),
+        },
+        {
+          id: 'learn-courses',
+          title: 'Courses',
+          action: () => console.log('Navigate to Courses'),
+        },
+        {
+          id: 'learn-documentation',
+          title: 'Documentation',
+          action: () => console.log('Navigate to Documentation'),
+        },
+      ],
     },
     {
       id: 'settings',
       title: 'Settings',
-      subtitle: 'Customize experience',
-      action: () => {
-        console.log('Navigate to Settings');
-        // Navigation logic here
-      },
+      subItems: [
+        {
+          id: 'settings-profile',
+          title: 'Profile',
+          action: () => console.log('Navigate to Profile'),
+        },
+        {
+          id: 'settings-preferences',
+          title: 'Preferences',
+          action: () => console.log('Navigate to Preferences'),
+        },
+        {
+          id: 'settings-security',
+          title: 'Security',
+          action: () => console.log('Navigate to Security'),
+        },
+      ],
     },
   ];
 
@@ -55,8 +115,8 @@ export default function Index() {
       <CloudBackground />
 
       {/* Main content */}
-      <div className="relative z-10 min-h-screen flex items-center pl-12 md:pl-20">
-        {/* Radial Scroller anchored to left */}
+      <div className="relative z-10 min-h-screen flex items-center pl-20 md:pl-32 lg:pl-40">
+        {/* Radial Scroller anchored to left but more centered */}
         <RadialScroller items={menuItems} className="h-full" />
       </div>
 
