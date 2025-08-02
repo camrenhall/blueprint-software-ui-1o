@@ -122,6 +122,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 6s ease-in-out infinite",
         "float-slow": "float-slow 8s ease-in-out infinite",
+        fadeIn: "fadeIn 0.8s ease-out",
+        fadeOut: "fadeOut 1s ease-out",
       },
     },
   },

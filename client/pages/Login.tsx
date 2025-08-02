@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CloudBackground from "@/components/CloudBackground";
+import WelcomeLoader from "@/components/WelcomeLoader";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,8 +17,15 @@ export default function Login() {
     // Demo: Allow any login to work
     setTimeout(() => {
       setIsLoading(false);
-      navigate("/menu");
+      setShowWelcome(true);
     }, 800);
+  };
+
+  // Extract user name from email (take part before @, capitalize first letter)
+  const getUserName = () => {
+    if (!email) return "User";
+    const namePart = email.split("@")[0];
+    return namePart.charAt(0).toUpperCase() + namePart.slice(1);
   };
 
   // Show welcome screen after successful login
