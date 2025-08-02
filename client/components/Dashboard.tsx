@@ -76,6 +76,10 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
                   { action: 'Performance metrics updated', time: '1 hour ago', type: 'success' },
                   { action: 'Database backup completed', time: '2 hours ago', type: 'success' },
                   { action: 'New feature deployed', time: '3 hours ago', type: 'info' },
+                  { action: 'Security scan completed', time: '4 hours ago', type: 'success' },
+                  { action: 'Cache optimization running', time: '5 hours ago', type: 'warning' },
+                  { action: 'User feedback received', time: '6 hours ago', type: 'info' },
+                  { action: 'API response time improved', time: '7 hours ago', type: 'success' },
                 ].map((item, index) => (
                   <div key={index} className="flex items-center justify-between py-3 px-4 bg-white/60 rounded-lg">
                     <div className="flex items-center space-x-3">
@@ -90,6 +94,42 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
                     <span className="text-sm text-gray-500">{item.time}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Additional Overview Sections */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-br from-rose-50 to-pink-100 p-6 rounded-xl border border-rose-200/50">
+                <h3 className="text-lg font-medium text-gray-700 mb-4">System Health</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">CPU Usage</span>
+                    <span className="text-green-600 font-medium">23%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Memory Usage</span>
+                    <span className="text-blue-600 font-medium">67%</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Disk Usage</span>
+                    <span className="text-amber-600 font-medium">45%</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-cyan-50 to-blue-100 p-6 rounded-xl border border-cyan-200/50">
+                <h3 className="text-lg font-medium text-gray-700 mb-4">Quick Actions</h3>
+                <div className="space-y-2">
+                  <button className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                    Generate Monthly Report
+                  </button>
+                  <button className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                    Export User Data
+                  </button>
+                  <button className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                    Schedule Maintenance
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -162,6 +202,53 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
                 </div>
               ))}
             </div>
+
+            {/* Additional Analytics Content */}
+            <div className="space-y-6">
+              <div className="bg-gradient-to-br from-indigo-50 to-blue-100 p-6 rounded-xl border border-indigo-200/50">
+                <h3 className="text-lg font-medium text-gray-700 mb-4">Traffic Sources</h3>
+                <div className="space-y-4">
+                  {[
+                    { source: 'Direct Traffic', percentage: 45, color: 'bg-blue-400' },
+                    { source: 'Search Engines', percentage: 32, color: 'bg-green-400' },
+                    { source: 'Social Media', percentage: 15, color: 'bg-purple-400' },
+                    { source: 'Referrals', percentage: 8, color: 'bg-orange-400' }
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-gray-700">{item.source}</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-24 h-2 bg-gray-200 rounded-full">
+                          <div className={`h-2 ${item.color} rounded-full`} style={{ width: `${item.percentage}%` }}></div>
+                        </div>
+                        <span className="text-sm text-gray-600 w-8">{item.percentage}%</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-xl border border-emerald-200/50">
+                <h3 className="text-lg font-medium text-gray-700 mb-4">Geographic Distribution</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    { country: 'United States', users: '4,247', percentage: 34 },
+                    { country: 'United Kingdom', users: '2,156', percentage: 17 },
+                    { country: 'Canada', users: '1,834', percentage: 15 },
+                    { country: 'Germany', users: '1,542', percentage: 12 },
+                    { country: 'France', users: '1,098', percentage: 9 },
+                    { country: 'Others', users: '1,970', percentage: 13 }
+                  ].map((item, index) => (
+                    <div key={index} className="flex justify-between items-center p-3 bg-white/60 rounded-lg">
+                      <div>
+                        <div className="font-medium text-gray-700">{item.country}</div>
+                        <div className="text-sm text-gray-500">{item.users} users</div>
+                      </div>
+                      <div className="text-lg font-medium text-emerald-600">{item.percentage}%</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         );
 
@@ -201,7 +288,10 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
                   { name: 'Q4 Performance Summary', date: 'Dec 31, 2023', status: 'completed' },
                   { name: 'User Engagement Analysis', date: 'Dec 28, 2023', status: 'completed' },
                   { name: 'Revenue Breakdown Report', date: 'Dec 25, 2023', status: 'processing' },
-                  { name: 'Security Audit Report', date: 'Dec 20, 2023', status: 'completed' }
+                  { name: 'Security Audit Report', date: 'Dec 20, 2023', status: 'completed' },
+                  { name: 'Monthly Traffic Analysis', date: 'Dec 15, 2023', status: 'completed' },
+                  { name: 'Customer Satisfaction Survey', date: 'Dec 10, 2023', status: 'completed' },
+                  { name: 'Performance Optimization Report', date: 'Dec 5, 2023', status: 'completed' }
                 ].map((report, index) => (
                   <div key={index} className="flex items-center justify-between py-3 px-4 bg-white/60 rounded-lg">
                     <div>
@@ -217,6 +307,44 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* Additional Reports Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-gradient-to-br from-orange-50 to-red-100 p-6 rounded-xl border border-orange-200/50">
+                <h3 className="text-lg font-medium text-gray-700 mb-4">Scheduled Reports</h3>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Weekly Performance Report', frequency: 'Every Monday', nextRun: 'Jan 8, 2024' },
+                    { name: 'Monthly Analytics Summary', frequency: 'First of month', nextRun: 'Feb 1, 2024' },
+                    { name: 'Quarterly Business Review', frequency: 'Every quarter', nextRun: 'Apr 1, 2024' }
+                  ].map((item, index) => (
+                    <div key={index} className="p-3 bg-white/60 rounded-lg">
+                      <div className="font-medium text-gray-700">{item.name}</div>
+                      <div className="text-sm text-gray-500">{item.frequency}</div>
+                      <div className="text-xs text-gray-400">Next: {item.nextRun}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-teal-50 to-cyan-100 p-6 rounded-xl border border-teal-200/50">
+                <h3 className="text-lg font-medium text-gray-700 mb-4">Report Templates</h3>
+                <div className="space-y-2">
+                  {[
+                    'Executive Dashboard',
+                    'Technical Performance',
+                    'User Behavior Analysis',
+                    'Financial Summary',
+                    'Security Assessment',
+                    'Custom Report Builder'
+                  ].map((template, index) => (
+                    <button key={index} className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors text-gray-700">
+                      {template}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -255,7 +383,7 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
         )}
       >
         {/* Navigation Bar */}
-        <div className="border-b border-gray-200/50 bg-white/95">
+        <div className="bg-white border-b border-gray-100">
           <div className="flex items-center justify-between px-8 py-6">
             <div className="flex items-center space-x-12">
               <h2 className="text-2xl font-light text-gray-800 tracking-wide">
@@ -308,8 +436,8 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
                   <div className="text-sm font-medium text-gray-700">Alex Chen</div>
                   <div className="text-xs text-gray-500">Premium Tier</div>
                 </div>
-                <div className="w-8 h-8 bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-600 text-sm font-medium">AC</span>
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-sm">
+                  <span className="text-white text-sm font-medium">AC</span>
                 </div>
               </div>
 
@@ -327,9 +455,11 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden bg-white">
           <div className="h-full p-8 overflow-y-auto">
-            {renderContent()}
+            <div className="transition-all duration-300 ease-in-out">
+              {renderContent()}
+            </div>
           </div>
         </div>
       </div>
