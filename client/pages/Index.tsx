@@ -1,157 +1,157 @@
-import { useState } from 'react';
-import CloudBackground from '@/components/CloudBackground';
-import RadialScroller from '@/components/RadialScroller';
-import Dashboard from '@/components/Dashboard';
+import { useState } from "react";
+import CloudBackground from "@/components/CloudBackground";
+import RadialScroller from "@/components/RadialScroller";
+import Dashboard from "@/components/Dashboard";
 
 export default function Index() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
-  const [dashboardTitle, setDashboardTitle] = useState('');
+  const [dashboardTitle, setDashboardTitle] = useState("");
   const menuItems = [
     {
-      id: 'explore',
-      title: 'Explore',
+      id: "explore",
+      title: "Explore",
       subItems: [
         {
-          id: 'explore-worlds',
-          title: 'New Worlds',
+          id: "explore-worlds",
+          title: "New Worlds",
           action: () => {
-            setDashboardTitle('New Worlds');
+            setDashboardTitle("New Worlds");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'explore-galaxies',
-          title: 'Distant Galaxies',
+          id: "explore-galaxies",
+          title: "Distant Galaxies",
           action: () => {
-            setDashboardTitle('Distant Galaxies');
+            setDashboardTitle("Distant Galaxies");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'explore-dimensions',
-          title: 'Other Dimensions',
+          id: "explore-dimensions",
+          title: "Other Dimensions",
           action: () => {
-            setDashboardTitle('Other Dimensions');
+            setDashboardTitle("Other Dimensions");
             setDashboardOpen(true);
           },
         },
       ],
     },
     {
-      id: 'create',
-      title: 'Create',
+      id: "create",
+      title: "Create",
       subItems: [
         {
-          id: 'create-project',
-          title: 'New Project',
+          id: "create-project",
+          title: "New Project",
           action: () => {
-            setDashboardTitle('New Project');
+            setDashboardTitle("New Project");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'create-design',
-          title: 'Dashboard',
+          id: "create-design",
+          title: "Dashboard",
           action: () => {
-            setDashboardTitle('Dashboard');
+            setDashboardTitle("Dashboard");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'create-experiment',
-          title: 'Experiment Lab',
+          id: "create-experiment",
+          title: "Experiment Lab",
           action: () => {
-            setDashboardTitle('Experiment Lab');
+            setDashboardTitle("Experiment Lab");
             setDashboardOpen(true);
           },
         },
       ],
     },
     {
-      id: 'connect',
-      title: 'Connect',
+      id: "connect",
+      title: "Connect",
       subItems: [
         {
-          id: 'connect-community',
-          title: 'Community Hub',
+          id: "connect-community",
+          title: "Community Hub",
           action: () => {
-            setDashboardTitle('Community Hub');
+            setDashboardTitle("Community Hub");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'connect-collaborate',
-          title: 'Collaborate',
+          id: "connect-collaborate",
+          title: "Collaborate",
           action: () => {
-            setDashboardTitle('Collaborate');
+            setDashboardTitle("Collaborate");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'connect-network',
-          title: 'Network',
+          id: "connect-network",
+          title: "Network",
           action: () => {
-            setDashboardTitle('Network');
+            setDashboardTitle("Network");
             setDashboardOpen(true);
           },
         },
       ],
     },
     {
-      id: 'learn',
-      title: 'Learn',
+      id: "learn",
+      title: "Learn",
       subItems: [
         {
-          id: 'learn-tutorials',
-          title: 'Tutorials',
+          id: "learn-tutorials",
+          title: "Tutorials",
           action: () => {
-            setDashboardTitle('Tutorials');
+            setDashboardTitle("Tutorials");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'learn-courses',
-          title: 'Courses',
+          id: "learn-courses",
+          title: "Courses",
           action: () => {
-            setDashboardTitle('Courses');
+            setDashboardTitle("Courses");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'learn-documentation',
-          title: 'Documentation',
+          id: "learn-documentation",
+          title: "Documentation",
           action: () => {
-            setDashboardTitle('Documentation');
+            setDashboardTitle("Documentation");
             setDashboardOpen(true);
           },
         },
       ],
     },
     {
-      id: 'settings',
-      title: 'Settings',
+      id: "settings",
+      title: "Settings",
       subItems: [
         {
-          id: 'settings-profile',
-          title: 'Profile',
+          id: "settings-profile",
+          title: "Profile",
           action: () => {
-            setDashboardTitle('Profile');
+            setDashboardTitle("Profile");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'settings-preferences',
-          title: 'Preferences',
+          id: "settings-preferences",
+          title: "Preferences",
           action: () => {
-            setDashboardTitle('Preferences');
+            setDashboardTitle("Preferences");
             setDashboardOpen(true);
           },
         },
         {
-          id: 'settings-security',
-          title: 'Security',
+          id: "settings-security",
+          title: "Security",
           action: () => {
-            setDashboardTitle('Security');
+            setDashboardTitle("Security");
             setDashboardOpen(true);
           },
         },

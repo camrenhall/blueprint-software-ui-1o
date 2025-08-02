@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 interface SubMenuItem {
   id: string;
@@ -18,60 +18,65 @@ interface RadialScrollerProps {
   className?: string;
 }
 
-export default function RadialScroller({ items, className }: RadialScrollerProps) {
+export default function RadialScroller({
+  items,
+  className,
+}: RadialScrollerProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [currentLevel, setCurrentLevel] = useState<'main' | 'sub'>('main');
+  const [currentLevel, setCurrentLevel] = useState<"main" | "sub">("main");
   const [currentSubItems, setCurrentSubItems] = useState<SubMenuItem[]>([]);
-  const [parentTitle, setParentTitle] = useState('');
+  const [parentTitle, setParentTitle] = useState("");
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const currentItems = currentLevel === 'main' ? items : currentSubItems;
+      const currentItems = currentLevel === "main" ? items : currentSubItems;
 
-      if (e.key === 'ArrowUp') {
+      if (e.key === "ArrowUp") {
         e.preventDefault();
-        setSelectedIndex(prev => (prev - 1 + currentItems.length) % currentItems.length);
-      } else if (e.key === 'ArrowDown') {
+        setSelectedIndex(
+          (prev) => (prev - 1 + currentItems.length) % currentItems.length,
+        );
+      } else if (e.key === "ArrowDown") {
         e.preventDefault();
-        setSelectedIndex(prev => (prev + 1) % currentItems.length);
-      } else if (e.key === 'Enter') {
+        setSelectedIndex((prev) => (prev + 1) % currentItems.length);
+      } else if (e.key === "Enter") {
         e.preventDefault();
         handleItemAction();
-      } else if (e.key === 'Escape' && currentLevel === 'sub') {
+      } else if (e.key === "Escape" && currentLevel === "sub") {
         e.preventDefault();
         goBackToMain();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedIndex, currentLevel, currentSubItems, items]);
 
   const handleItemAction = () => {
-    if (currentLevel === 'main') {
+    if (currentLevel === "main") {
       const selectedItem = items[selectedIndex];
       if (selectedItem?.subItems) {
         setIsTransitioning(true);
         // Add "Back" item to sub items
         const subItemsWithBack = [
-          { id: 'back', title: 'Back', action: goBackToMain },
-          ...selectedItem.subItems
+          { id: "back", title: "Back", action: goBackToMain },
+          ...selectedItem.subItems,
         ];
 
         setTimeout(() => {
           setCurrentSubItems(subItemsWithBack);
           setParentTitle(selectedItem.title);
-          setCurrentLevel('sub');
+          setCurrentLevel("sub");
           setSelectedIndex(0);
           setIsTransitioning(false);
         }, 300);
       }
     } else {
       const selectedSubItem = currentSubItems[selectedIndex];
-      if (selectedSubItem?.id !== 'back') {
+      if (selectedSubItem?.id !== "back") {
         // Open dashboard for sub-menu items (except back)
         selectedSubItem?.action();
       } else {
@@ -84,9 +89,9 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
   const goBackToMain = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      setCurrentLevel('main');
+      setCurrentLevel("main");
       setCurrentSubItems([]);
-      setParentTitle('');
+      setParentTitle("");
       setSelectedIndex(0);
       setIsTransitioning(false);
     }, 300);
@@ -114,16 +119,25 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
     return 0.15;
   };
 
-  const currentItems = currentLevel === 'main' ? items : currentSubItems;
+  const currentItems = currentLevel === "main" ? items : currentSubItems;
 
   return (
-    <div className={cn("relative flex items-center justify-start h-full", className)}>
+    <div
+      className={cn(
+        "relative flex items-center justify-start h-full",
+        className,
+      )}
+    >
       {/* Vertical container */}
       <div
         className={cn(
           "relative flex flex-col items-start justify-center h-full py-20 transition-all duration-300 ease-out",
-          isTransitioning && currentLevel === 'main' && "transform translate-x-[-100px] opacity-0",
-          isTransitioning && currentLevel === 'sub' && "transform translate-x-[100px] opacity-0"
+          isTransitioning &&
+            currentLevel === "main" &&
+            "transform translate-x-[-100px] opacity-0",
+          isTransitioning &&
+            currentLevel === "sub" &&
+            "transform translate-x-[100px] opacity-0",
         )}
       >
         {currentItems.map((item, index) => {
@@ -132,14 +146,14 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
           const opacity = getItemOpacity(index);
           const isSelected = index === selectedIndex;
           const isHovered = hoveredIndex === index;
-          const isBackItem = item.id === 'back';
+          const isBackItem = item.id === "back";
 
           return (
             <div
               key={item.id}
               className={cn(
                 "absolute transition-all duration-500 ease-out cursor-pointer",
-                "transform-gpu will-change-transform text-left"
+                "transform-gpu will-change-transform text-left",
               )}
               style={{
                 transform: `translate(${x}px, ${y}px) scale(${scale})`,
@@ -154,16 +168,18 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
               onMouseLeave={() => setHoveredIndex(null)}
               onClick={handleItemAction}
             >
-              <h3 className={cn(
-                "font-light tracking-wide transition-all duration-300 whitespace-nowrap",
-                isSelected
-                  ? "text-white drop-shadow-lg"
-                  : "text-white/60 hover:text-white/80",
-                currentLevel === 'main'
-                  ? "text-4xl md:text-5xl"
-                  : "text-3xl md:text-4xl",
-                isBackItem && "text-white/50"
-              )}>
+              <h3
+                className={cn(
+                  "font-light tracking-wide transition-all duration-300 whitespace-nowrap",
+                  isSelected
+                    ? "text-white drop-shadow-lg"
+                    : "text-white/60 hover:text-white/80",
+                  currentLevel === "main"
+                    ? "text-4xl md:text-5xl"
+                    : "text-3xl md:text-4xl",
+                  isBackItem && "text-white/50",
+                )}
+              >
                 {item.title}
               </h3>
 
