@@ -374,16 +374,16 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
       />
       
       {/* Dashboard Panel */}
-      <div 
+      <div
         className={cn(
-          "relative w-full max-w-4xl h-[85vh] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl transition-all duration-500 ease-out",
-          isVisible 
-            ? "transform translate-x-0 opacity-100 scale-100" 
+          "relative w-full max-w-4xl h-[85vh] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl transition-all duration-500 ease-out flex flex-col",
+          isVisible
+            ? "transform translate-x-0 opacity-100 scale-100"
             : "transform translate-x-full opacity-0 scale-95"
         )}
       >
         {/* Navigation Bar */}
-        <div className="bg-white border-b border-gray-100">
+        <div className="bg-white border-b border-gray-100 rounded-t-2xl">
           <div className="flex items-center justify-between px-8 py-6">
             <div className="flex items-center space-x-12">
               <h2 className="text-2xl font-light text-gray-800 tracking-wide">
@@ -455,7 +455,7 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-hidden bg-white">
+        <div className="flex-1 overflow-hidden bg-white rounded-b-2xl">
           <div className="h-full p-8 overflow-y-auto">
             <div className="transition-all duration-300 ease-in-out">
               {renderContent()}
