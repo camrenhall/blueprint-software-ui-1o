@@ -24,6 +24,7 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
   const [currentLevel, setCurrentLevel] = useState<'main' | 'sub'>('main');
   const [currentSubItems, setCurrentSubItems] = useState<SubMenuItem[]>([]);
   const [parentTitle, setParentTitle] = useState('');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -53,10 +54,20 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
     if (currentLevel === 'main') {
       const selectedItem = items[selectedIndex];
       if (selectedItem?.subItems) {
-        setCurrentSubItems(selectedItem.subItems);
-        setParentTitle(selectedItem.title);
-        setCurrentLevel('sub');
-        setSelectedIndex(0);
+        setIsTransitioning(true);
+        // Add "Back" item to sub items
+        const subItemsWithBack = [
+          { id: 'back', title: 'Back', action: goBackToMain },
+          ...selectedItem.subItems
+        ];
+
+        setTimeout(() => {
+          setCurrentSubItems(subItemsWithBack);
+          setParentTitle(selectedItem.title);
+          setCurrentLevel('sub');
+          setSelectedIndex(0);
+          setIsTransitioning(false);
+        }, 200);
       }
     } else {
       const selectedSubItem = currentSubItems[selectedIndex];
@@ -65,10 +76,14 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
   };
 
   const goBackToMain = () => {
-    setCurrentLevel('main');
-    setCurrentSubItems([]);
-    setParentTitle('');
-    setSelectedIndex(0);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentLevel('main');
+      setCurrentSubItems([]);
+      setParentTitle('');
+      setSelectedIndex(0);
+      setIsTransitioning(false);
+    }, 200);
   };
 
   const getItemPosition = (index: number) => {
@@ -97,27 +112,20 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
 
   return (
     <div className={cn("relative flex items-center justify-start h-full", className)}>
-      {/* Back indicator when in sub-menu */}
-      {currentLevel === 'sub' && (
-        <div className="absolute -top-16 left-0">
-          <button
-            onClick={goBackToMain}
-            className="text-white/50 hover:text-white/80 transition-colors duration-300 text-sm flex items-center gap-2"
-          >
-            <span>←</span>
-            <span>Back to {parentTitle}</span>
-          </button>
-        </div>
-      )}
-
       {/* Vertical container */}
-      <div className="relative flex flex-col items-start justify-center h-full py-20">
+      <div
+        className={cn(
+          "relative flex flex-col items-start justify-center h-full py-20 transition-all duration-300",
+          isTransitioning && "opacity-50 scale-95"
+        )}
+      >
         {currentItems.map((item, index) => {
           const { x, y } = getItemPosition(index);
           const scale = getItemScale(index);
           const opacity = getItemOpacity(index);
           const isSelected = index === selectedIndex;
           const isHovered = hoveredIndex === index;
+          const isBackItem = item.id === 'back';
 
           return (
             <div
@@ -140,20 +148,21 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
               onClick={handleItemAction}
             >
               <h3 className={cn(
-                "text-4xl md:text-5xl font-light tracking-wide transition-all duration-300 whitespace-nowrap",
+                "font-light tracking-wide transition-all duration-300 whitespace-nowrap",
                 isSelected
                   ? "text-white drop-shadow-lg"
                   : "text-white/60 hover:text-white/80",
-                currentLevel === 'sub' && "text-3xl md:text-4xl"
+                currentLevel === 'main'
+                  ? "text-4xl md:text-5xl"
+                  : "text-3xl md:text-4xl",
+                isBackItem && "text-white/50"
               )}>
+                {isBackItem && "← "}
                 {item.title}
-                {currentLevel === 'main' && 'subItems' in item && item.subItems && (
-                  <span className="text-white/30 ml-2">→</span>
-                )}
               </h3>
 
               {/* Subtle glow effect for selected item */}
-              {isSelected && (
+              {isSelected && !isBackItem && (
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 blur-xl -z-10 scale-110" />
               )}
             </div>
