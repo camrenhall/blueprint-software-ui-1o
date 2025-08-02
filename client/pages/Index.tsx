@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CloudBackground from "@/components/CloudBackground";
 import RadialScroller from "@/components/RadialScroller";
 import Dashboard from "@/components/Dashboard";
@@ -6,6 +6,12 @@ import Dashboard from "@/components/Dashboard";
 export default function Index() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [dashboardTitle, setDashboardTitle] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Fade in the menu after a short delay
+    setTimeout(() => setIsVisible(true), 200);
+  }, []);
   const menuItems = [
     {
       id: "explore",
