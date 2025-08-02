@@ -1,11 +1,16 @@
-import { useState } from "react";
-import CloudBackground from "@/components/CloudBackground";
+import { useState, useEffect } from "react";
 import RadialScroller from "@/components/RadialScroller";
 import Dashboard from "@/components/Dashboard";
 
 export default function Index() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [dashboardTitle, setDashboardTitle] = useState("");
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Fade in the menu after a short delay
+    setTimeout(() => setIsVisible(true), 200);
+  }, []);
   const menuItems = [
     {
       id: "explore",
@@ -161,10 +166,14 @@ export default function Index() {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
-      <CloudBackground />
-
       {/* Main content */}
-      <div className="relative z-10 min-h-screen flex items-center pl-20 md:pl-32 lg:pl-40">
+      <div
+        className={`relative z-10 min-h-screen flex items-center pl-20 md:pl-32 lg:pl-40 transition-all duration-1000 ease-out ${
+          isVisible
+            ? "opacity-100 transform translate-y-0"
+            : "opacity-0 transform translate-y-8"
+        }`}
+      >
         {/* Radial Scroller anchored to left but more centered */}
         <RadialScroller items={menuItems} className="h-full" />
       </div>
