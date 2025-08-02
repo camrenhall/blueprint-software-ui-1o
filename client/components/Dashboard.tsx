@@ -13,6 +13,10 @@ type NavigationTab = 'overview' | 'analytics' | 'reports';
 export default function Dashboard({ isOpen, title, onClose, className }: DashboardProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState<NavigationTab>('overview');
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -23,6 +27,31 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
       setIsVisible(false);
     }
   }, [isOpen]);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as Element;
+      if (!target.closest('[data-dropdown]')) {
+        setShowNotifications(false);
+        setShowSettings(false);
+        setShowProfile(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleTabChange = (newTab: NavigationTab) => {
+    if (newTab === activeTab) return;
+
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveTab(newTab);
+      setIsTransitioning(false);
+    }, 150);
+  };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -399,7 +428,7 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
                 ].map((tab) => (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id as NavigationTab)}
+                    onClick={() => handleTabChange(tab.id as NavigationTab)}
                     className={cn(
                       "text-sm font-medium transition-all duration-200 pb-1 border-b-2",
                       activeTab === tab.id
@@ -415,30 +444,127 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
 
             <div className="flex items-center space-x-6">
               {/* Notification Icon */}
-              <button className="relative hover:bg-gray-100/50 p-2 transition-colors duration-200">
-                <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-                <div className="absolute top-1 right-1 w-2 h-2 bg-red-400 rounded-full"></div>
-              </button>
+              <div className="relative" data-dropdown>
+                <button
+                  className="relative hover:bg-gray-100/50 p-2 transition-colors duration-200"
+                  onClick={() => setShowNotifications(!showNotifications)}
+                >
+                  <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                  <div className="absolute top-1 right-1 w-2 h-2 bg-red-400 rounded-full"></div>
+                </button>
+
+                {/* Notifications Dropdown */}
+                {showNotifications && (
+                  <div className="absolute top-12 right-0 w-80 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
+                    <div className="p-4 border-b border-gray-100">
+                      <h3 className="font-medium text-gray-800">Notifications</h3>
+                    </div>
+                    <div className="max-h-64 overflow-y-auto">
+                      {[
+                        { text: 'New user registered', time: '2 min ago', type: 'user' },
+                        { text: 'System backup completed', time: '1 hour ago', type: 'system' },
+                        { text: 'Security scan finished', time: '3 hours ago', type: 'security' },
+                        { text: 'Monthly report generated', time: '1 day ago', type: 'report' }
+                      ].map((notification, index) => (
+                        <div key={index} className="p-3 hover:bg-gray-50 border-b border-gray-50 last:border-0">
+                          <div className="text-sm text-gray-700">{notification.text}</div>
+                          <div className="text-xs text-gray-500 mt-1">{notification.time}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="p-3 border-t border-gray-100">
+                      <button className="text-sm text-blue-600 hover:text-blue-700">View all notifications</button>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* Settings Icon */}
-              <button className="hover:bg-gray-100/50 p-2 transition-colors duration-200">
-                <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              </button>
+              <div className="relative" data-dropdown>
+                <button
+                  className="hover:bg-gray-100/50 p-2 transition-colors duration-200"
+                  onClick={() => setShowSettings(!showSettings)}
+                >
+                  <svg className="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </button>
+
+                {/* Settings Dropdown */}
+                {showSettings && (
+                  <div className="absolute top-12 right-0 w-64 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
+                    <div className="p-4 border-b border-gray-100">
+                      <h3 className="font-medium text-gray-800">Settings</h3>
+                    </div>
+                    <div className="p-2">
+                      {[
+                        { label: 'Account Settings', icon: '👤' },
+                        { label: 'Preferences', icon: '⚙️' },
+                        { label: 'Privacy & Security', icon: '🔐' },
+                        { label: 'Notifications', icon: '🔔' },
+                        { label: 'Theme', icon: '🎨' },
+                        { label: 'Help & Support', icon: '❓' }
+                      ].map((item, index) => (
+                        <button key={index} className="w-full text-left p-3 hover:bg-gray-50 rounded-lg flex items-center space-x-3">
+                          <span>{item.icon}</span>
+                          <span className="text-sm text-gray-700">{item.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
 
               {/* User Profile */}
-              <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
-                <div className="text-right hidden sm:block">
-                  <div className="text-sm font-medium text-gray-700">Alex Chen</div>
-                  <div className="text-xs text-gray-500">Premium Tier</div>
+              <div className="relative" data-dropdown>
+                <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
+                  <div className="text-right hidden sm:block">
+                    <div className="text-sm font-medium text-gray-700">Alex Chen</div>
+                    <div className="text-xs text-gray-500">Premium Tier</div>
+                  </div>
+                  <button
+                    className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-200"
+                    onClick={() => setShowProfile(!showProfile)}
+                  >
+                    <span className="text-white text-sm font-medium">AC</span>
+                  </button>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-sm">
-                  <span className="text-white text-sm font-medium">AC</span>
-                </div>
+
+                {/* Profile Dropdown */}
+                {showProfile && (
+                  <div className="absolute top-12 right-0 w-72 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
+                    <div className="p-4 border-b border-gray-100">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                          <span className="text-white font-medium">AC</span>
+                        </div>
+                        <div>
+                          <div className="font-medium text-gray-800">Alex Chen</div>
+                          <div className="text-sm text-gray-500">alex.chen@email.com</div>
+                          <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full inline-block mt-1">Premium Tier</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-2">
+                      {[
+                        { label: 'View Profile', icon: '👤' },
+                        { label: 'Account Settings', icon: '⚙️' },
+                        { label: 'Billing & Plans', icon: '💳' },
+                        { label: 'Activity Log', icon: '📊' },
+                        { label: 'Switch Account', icon: '🔄' },
+                        { label: 'Sign Out', icon: '🚪' }
+                      ].map((item, index) => (
+                        <button key={index} className="w-full text-left p-3 hover:bg-gray-50 rounded-lg flex items-center space-x-3">
+                          <span>{item.icon}</span>
+                          <span className="text-sm text-gray-700">{item.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Close Button */}
@@ -457,7 +583,14 @@ export default function Dashboard({ isOpen, title, onClose, className }: Dashboa
         {/* Content */}
         <div className="flex-1 overflow-hidden bg-white rounded-b-2xl">
           <div className="h-full p-8 overflow-y-auto">
-            <div className="transition-all duration-300 ease-in-out">
+            <div
+              className={cn(
+                "transition-all duration-500 ease-in-out",
+                isTransitioning
+                  ? "opacity-0 transform translate-x-4"
+                  : "opacity-100 transform translate-x-0"
+              )}
+            >
               {renderContent()}
             </div>
           </div>
