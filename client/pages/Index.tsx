@@ -166,7 +166,6 @@ export default function Index() {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
-      <CloudBackground />
 
       {/* Main content */}
       <div
