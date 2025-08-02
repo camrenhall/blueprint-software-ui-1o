@@ -15,7 +15,7 @@ export default function Login() {
     // Demo: Allow any login to work
     setTimeout(() => {
       setIsLoading(false);
-      navigate('/');
+      navigate('/menu');
     }, 800);
   };
 
