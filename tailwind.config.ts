@@ -96,6 +96,26 @@ export default {
             transform: "translateY(-15px) translateX(-5px)",
           },
         },
+        "fadeIn": {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px) scale(0.95)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px) scale(1)",
+          },
+        },
+        "fadeOut": {
+          "0%": {
+            opacity: "1",
+            transform: "translateY(0px) scale(1)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translateY(-20px) scale(1.05)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

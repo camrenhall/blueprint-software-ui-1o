@@ -19,6 +19,11 @@ export default function Login() {
     }, 800);
   };
 
+  // Show welcome screen after successful login
+  if (showWelcome) {
+    return <WelcomeLoader userName={getUserName()} />;
+  }
+
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
       <CloudBackground />
