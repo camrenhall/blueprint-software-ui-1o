@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import CloudBackground from '@/components/CloudBackground';
 import RadialScroller from '@/components/RadialScroller';
+import Dashboard from '@/components/Dashboard';
 
 export default function Index() {
+  const [dashboardOpen, setDashboardOpen] = useState(false);
+  const [dashboardTitle, setDashboardTitle] = useState('');
   const menuItems = [
     {
       id: 'explore',
@@ -10,17 +14,26 @@ export default function Index() {
         {
           id: 'explore-worlds',
           title: 'New Worlds',
-          action: () => console.log('Navigate to New Worlds'),
+          action: () => {
+            setDashboardTitle('New Worlds');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'explore-galaxies',
           title: 'Distant Galaxies',
-          action: () => console.log('Navigate to Distant Galaxies'),
+          action: () => {
+            setDashboardTitle('Distant Galaxies');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'explore-dimensions',
           title: 'Other Dimensions',
-          action: () => console.log('Navigate to Other Dimensions'),
+          action: () => {
+            setDashboardTitle('Other Dimensions');
+            setDashboardOpen(true);
+          },
         },
       ],
     },
@@ -31,17 +44,26 @@ export default function Index() {
         {
           id: 'create-project',
           title: 'New Project',
-          action: () => console.log('Navigate to New Project'),
+          action: () => {
+            setDashboardTitle('New Project');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'create-design',
           title: 'Design Studio',
-          action: () => console.log('Navigate to Design Studio'),
+          action: () => {
+            setDashboardTitle('Design Studio');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'create-experiment',
           title: 'Experiment Lab',
-          action: () => console.log('Navigate to Experiment Lab'),
+          action: () => {
+            setDashboardTitle('Experiment Lab');
+            setDashboardOpen(true);
+          },
         },
       ],
     },
@@ -52,17 +74,26 @@ export default function Index() {
         {
           id: 'connect-community',
           title: 'Community Hub',
-          action: () => console.log('Navigate to Community Hub'),
+          action: () => {
+            setDashboardTitle('Community Hub');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'connect-collaborate',
           title: 'Collaborate',
-          action: () => console.log('Navigate to Collaborate'),
+          action: () => {
+            setDashboardTitle('Collaborate');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'connect-network',
           title: 'Network',
-          action: () => console.log('Navigate to Network'),
+          action: () => {
+            setDashboardTitle('Network');
+            setDashboardOpen(true);
+          },
         },
       ],
     },
@@ -73,17 +104,26 @@ export default function Index() {
         {
           id: 'learn-tutorials',
           title: 'Tutorials',
-          action: () => console.log('Navigate to Tutorials'),
+          action: () => {
+            setDashboardTitle('Tutorials');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'learn-courses',
           title: 'Courses',
-          action: () => console.log('Navigate to Courses'),
+          action: () => {
+            setDashboardTitle('Courses');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'learn-documentation',
           title: 'Documentation',
-          action: () => console.log('Navigate to Documentation'),
+          action: () => {
+            setDashboardTitle('Documentation');
+            setDashboardOpen(true);
+          },
         },
       ],
     },
@@ -94,17 +134,26 @@ export default function Index() {
         {
           id: 'settings-profile',
           title: 'Profile',
-          action: () => console.log('Navigate to Profile'),
+          action: () => {
+            setDashboardTitle('Profile');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'settings-preferences',
           title: 'Preferences',
-          action: () => console.log('Navigate to Preferences'),
+          action: () => {
+            setDashboardTitle('Preferences');
+            setDashboardOpen(true);
+          },
         },
         {
           id: 'settings-security',
           title: 'Security',
-          action: () => console.log('Navigate to Security'),
+          action: () => {
+            setDashboardTitle('Security');
+            setDashboardOpen(true);
+          },
         },
       ],
     },
@@ -123,6 +172,13 @@ export default function Index() {
       {/* Subtle corner accents */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-br-full" />
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-400/10 to-transparent rounded-tl-full" />
+
+      {/* Dashboard Component */}
+      <Dashboard
+        isOpen={dashboardOpen}
+        title={dashboardTitle}
+        onClose={() => setDashboardOpen(false)}
+      />
     </div>
   );
 }

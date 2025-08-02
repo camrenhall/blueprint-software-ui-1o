@@ -67,11 +67,17 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
           setCurrentLevel('sub');
           setSelectedIndex(0);
           setIsTransitioning(false);
-        }, 200);
+        }, 300);
       }
     } else {
       const selectedSubItem = currentSubItems[selectedIndex];
-      selectedSubItem?.action();
+      if (selectedSubItem?.id !== 'back') {
+        // Open dashboard for sub-menu items (except back)
+        selectedSubItem?.action();
+      } else {
+        // Handle back action
+        selectedSubItem?.action();
+      }
     }
   };
 
@@ -83,7 +89,7 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
       setParentTitle('');
       setSelectedIndex(0);
       setIsTransitioning(false);
-    }, 200);
+    }, 300);
   };
 
   const getItemPosition = (index: number) => {
@@ -115,8 +121,9 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
       {/* Vertical container */}
       <div
         className={cn(
-          "relative flex flex-col items-start justify-center h-full py-20 transition-all duration-300",
-          isTransitioning && "opacity-50 scale-95"
+          "relative flex flex-col items-start justify-center h-full py-20 transition-all duration-300 ease-out",
+          isTransitioning && currentLevel === 'main' && "transform translate-x-[-100px] opacity-0",
+          isTransitioning && currentLevel === 'sub' && "transform translate-x-[100px] opacity-0"
         )}
       >
         {currentItems.map((item, index) => {
@@ -157,7 +164,6 @@ export default function RadialScroller({ items, className }: RadialScrollerProps
                   : "text-3xl md:text-4xl",
                 isBackItem && "text-white/50"
               )}>
-                {isBackItem && "← "}
                 {item.title}
               </h3>
 
