@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import CloudBackground from "./components/CloudBackground";
 
 // Extend HTMLElement to include our custom property
 declare global {
@@ -22,6 +23,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <CloudBackground />
       <Toaster />
       <Sonner />
       <BrowserRouter>

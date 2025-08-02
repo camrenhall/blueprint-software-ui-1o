@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CloudBackground from "@/components/CloudBackground";
 import WelcomeLoader from "@/components/WelcomeLoader";
 
 export default function Login() {
@@ -35,7 +34,6 @@ export default function Login() {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
-      <CloudBackground />
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center">

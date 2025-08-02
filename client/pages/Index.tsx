@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import CloudBackground from "@/components/CloudBackground";
 import RadialScroller from "@/components/RadialScroller";
 import Dashboard from "@/components/Dashboard";
 

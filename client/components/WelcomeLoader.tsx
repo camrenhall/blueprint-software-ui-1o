@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CloudBackground from './CloudBackground';
 
 interface WelcomeLoaderProps {
   userName: string;
@@ -35,7 +34,6 @@ export default function WelcomeLoader({ userName }: WelcomeLoaderProps) {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden">
-      <CloudBackground />
       
       {/* Loading stage */}
       {stage === 'loading' && (
