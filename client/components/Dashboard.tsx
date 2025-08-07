@@ -234,20 +234,20 @@ export default function Dashboard({
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="bg-gradient-to-br from-purple-50/80 to-violet-50/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
                 <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  System Health
+                  Case Status Overview
                 </h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-600">CPU Usage</span>
-                    <span className="text-blue-600 font-medium">23%</span>
+                    <span className="text-slate-600">Pending Cases</span>
+                    <span className="text-blue-600 font-medium">23</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-600">Memory Usage</span>
-                    <span className="text-indigo-600 font-medium">67%</span>
+                    <span className="text-slate-600">In Progress</span>
+                    <span className="text-indigo-600 font-medium">67</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-600">Disk Usage</span>
-                    <span className="text-purple-600 font-medium">45%</span>
+                    <span className="text-slate-600">Awaiting Review</span>
+                    <span className="text-purple-600 font-medium">45</span>
                   </div>
                 </div>
               </div>
