@@ -109,31 +109,25 @@ const FuturisticCaseScroller = ({
       {/* Scrollable container */}
       <div
         ref={scrollContainerRef}
-        className="h-full overflow-y-auto px-4 py-6"
+        className="h-full overflow-y-auto px-4"
         style={{
           scrollBehavior: 'smooth',
-          paddingTop: '1rem',
-          paddingBottom: '1rem',
-          marginTop: '64px' // Account for header
+          marginTop: '64px', // Account for header
+          paddingBottom: '1rem'
         }}
       >
-        <div className="space-y-4">
+        <div className="space-y-4 pt-2">
           {cases.map((caseItem, index) => {
-            const { opacity, scale, blur } = getCaseEffects(index);
-            const isFocused = index === focusIndex;
+            const { opacity } = getCaseEffects(index);
+            const isTopFocused = index <= 2; // Top 3 items get enhanced styling
 
             return (
               <div
                 key={caseItem.caseId + index}
                 data-case-index={index}
-                className="group cursor-pointer transition-all duration-500 ease-out transform-gpu"
-                style={{
-                  opacity,
-                  transform: `scale(${scale})`,
-                  filter: `blur(${blur}px)`,
-                }}
+                className="group cursor-pointer transition-opacity duration-300 ease-out"
+                style={{ opacity }}
                 onClick={() => onCaseSelect(caseItem)}
-                onMouseEnter={() => setFocusIndex(index)}
               >
                 <div className={cn(
                   "bg-gradient-to-r rounded-xl p-4 border backdrop-blur-sm transition-all duration-500 relative",
