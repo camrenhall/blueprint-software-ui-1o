@@ -423,26 +423,7 @@ export default function Dashboard({
                   <div className="text-4xl font-bold text-slate-800 mb-2">34</div>
                   <div className="flex items-center space-x-2">
                     <div className="text-sm text-blue-600 font-medium">Frame</div>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative bg-gradient-to-br from-amber-50/80 via-white to-orange-50/60 border border-amber-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Needs Review</h3>
-                    <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                      </svg>
-                    </div>
-                  </div>
-                  <div className="text-4xl font-bold text-slate-800 mb-2">2</div>
-                  <div className="flex items-center space-x-2">
-                    <div className="text-sm text-amber-600 font-medium">Priority</div>
-                    <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                   </div>
                 </div>
               </div>
@@ -451,8 +432,27 @@ export default function Dashboard({
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Idle Clients</h3>
+                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Needs Review</h3>
                     <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-4xl font-bold text-slate-800 mb-2">2</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="text-sm text-purple-600 font-medium">Priority</div>
+                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 border border-sky-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Idle Clients</h3>
+                    <div className="w-10 h-10 bg-gradient-to-br from-sky-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -460,18 +460,18 @@ export default function Dashboard({
                   </div>
                   <div className="text-4xl font-bold text-slate-800 mb-2">5</div>
                   <div className="flex items-center space-x-2">
-                    <div className="text-sm text-purple-600 font-medium">Waiting</div>
-                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                    <div className="text-sm text-sky-600 font-medium">Waiting</div>
+                    <div className="w-2 h-2 bg-sky-400 rounded-full"></div>
                   </div>
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="relative">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Validation Rate</h3>
-                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-2xl flex items-center justify-center shadow-lg">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -479,8 +479,8 @@ export default function Dashboard({
                   </div>
                   <div className="text-4xl font-bold text-slate-800 mb-2">93.8%</div>
                   <div className="flex items-center space-x-2">
-                    <div className="text-sm text-emerald-600 font-medium">Excellent</div>
-                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                    <div className="text-sm text-indigo-600 font-medium">Excellent</div>
+                    <div className="w-2 h-2 bg-indigo-400 rounded-full"></div>
                   </div>
                 </div>
               </div>
