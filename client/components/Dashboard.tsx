@@ -857,7 +857,7 @@ export default function Dashboard({
                       ))}
                     </div>
                     <div className="p-3 border-t border-slate-100">
-                      <button className="text-sm text-blue-600 hover:text-blue-700">
+                      <button className="text-sm text-indigo-600 hover:text-indigo-700">
                         View all notifications
                       </button>
                     </div>
