@@ -10,6 +10,251 @@ interface DashboardProps {
   className?: string;
 }
 
+// Futuristic Case Scroller Component
+const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseSelect: (caseItem: any) => void }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [focusIndex, setFocusIndex] = useState(0);
+
+  // Calculate visual effects for each case based on distance from focus
+  const getCaseEffects = (index: number) => {
+    const distance = Math.abs(index - focusIndex);
+
+    let opacity, scale, blur;
+
+    if (distance === 0) {
+      opacity = 1;
+      scale = 1;
+      blur = 0;
+    } else if (distance === 1) {
+      opacity = 0.7;
+      scale = 0.95;
+      blur = 1;
+    } else if (distance === 2) {
+      opacity = 0.4;
+      scale = 0.9;
+      blur = 2;
+    } else if (distance === 3) {
+      opacity = 0.25;
+      scale = 0.85;
+      blur = 3;
+    } else {
+      opacity = 0.15;
+      scale = 0.8;
+      blur = 4;
+    }
+
+    return { opacity, scale, blur };
+  };
+
+  // Handle scroll events to update focus
+  const handleScroll = useCallback(() => {
+    if (!scrollContainerRef.current) return;
+
+    const container = scrollContainerRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const centerY = containerRect.top + containerRect.height / 2;
+
+    const caseElements = container.querySelectorAll('[data-case-index]');
+    let closestIndex = 0;
+    let closestDistance = Infinity;
+
+    caseElements.forEach((element, index) => {
+      const rect = element.getBoundingClientRect();
+      const elementCenterY = rect.top + rect.height / 2;
+      const distance = Math.abs(elementCenterY - centerY);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    setFocusIndex(closestIndex);
+  }, []);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScrollEvent = () => handleScroll();
+    container.addEventListener('scroll', handleScrollEvent);
+    handleScroll(); // Initial calculation
+
+    return () => container.removeEventListener('scroll', handleScrollEvent);
+  }, [handleScroll]);
+
+  return (
+    <div className="relative h-[600px] overflow-hidden bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md">
+      {/* Gradient overlays for depth effect */}
+      <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10" />
+
+      {/* Scrollable container */}
+      <div
+        ref={scrollContainerRef}
+        className="h-full overflow-y-auto px-6 py-20"
+        style={{ scrollBehavior: 'smooth' }}
+      >
+        <div className="space-y-8">
+          {cases.map((caseItem, index) => {
+            const { opacity, scale, blur } = getCaseEffects(index);
+            const isFocused = index === focusIndex;
+
+            return (
+              <div
+                key={caseItem.caseId + index}
+                data-case-index={index}
+                className="group cursor-pointer transition-all duration-700 ease-out transform-gpu"
+                style={{
+                  opacity,
+                  transform: `scale(${scale})`,
+                  filter: `blur(${blur}px)`,
+                }}
+                onClick={() => onCaseSelect(caseItem)}
+                onMouseEnter={() => setFocusIndex(index)}
+              >
+                <div className={cn(
+                  "bg-gradient-to-r rounded-2xl p-6 border backdrop-blur-sm transition-all duration-700 relative",
+                  isFocused
+                    ? "from-white/90 via-white/95 to-white/90 border-indigo-200/60 shadow-2xl"
+                    : "from-white/60 via-white/70 to-white/60 border-slate-200/40 shadow-lg"
+                )}>
+                  {/* Case Header */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-4 flex-1">
+                      <div className={cn(
+                        "rounded-xl flex items-center justify-center shadow-lg transition-all duration-500",
+                        isFocused
+                          ? "w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-600"
+                          : "w-10 h-10 bg-gradient-to-br from-indigo-400 to-blue-500"
+                      )}>
+                        <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <h3 className={cn(
+                          "font-semibold transition-all duration-500",
+                          isFocused
+                            ? "text-slate-800 text-lg"
+                            : "text-slate-700 text-base"
+                        )}>
+                          {caseItem.name}
+                        </h3>
+                        <span className="text-slate-500 text-sm font-mono italic">{caseItem.caseId}</span>
+                      </div>
+                    </div>
+
+                    {/* Hover indicator */}
+                    <div className={cn(
+                      "transition-all duration-300",
+                      isFocused ? "opacity-100" : "opacity-0 group-hover:opacity-70"
+                    )}>
+                      <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Progress Bar */}
+                  <div className="mb-4">
+                    <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                      <div
+                        className={cn(
+                          "h-full rounded-full transition-all duration-700",
+                          caseItem.status === 'Needs Review'
+                            ? 'bg-gradient-to-r from-purple-500 to-violet-600'
+                            : 'bg-gradient-to-r from-sky-500 to-blue-600'
+                        )}
+                        style={{ width: `${caseItem.progressPercent}%` }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Statistics Grid */}
+                  <div className="grid grid-cols-5 gap-4 items-center">
+                    {/* Status */}
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-2 h-2 rounded-full ${caseItem.status === 'Needs Review' ? 'bg-purple-500' : 'bg-sky-500'}`} />
+                      <span className={`text-xs font-semibold whitespace-nowrap ${caseItem.status === 'Needs Review' ? 'text-purple-700' : 'text-sky-700'}`}>
+                        {caseItem.status}
+                      </span>
+                    </div>
+
+                    {/* Review Info */}
+                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>
+                        <span className="text-slate-800 font-semibold">{caseItem.reviewInfo.split(' ')[0]}</span>
+                        <span className="text-slate-500 ml-1">{caseItem.reviewInfo.split(' ').slice(1).join(' ')}</span>
+                      </span>
+                    </div>
+
+                    {/* Progress */}
+                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                      <span>
+                        <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[0].trim()}</span>
+                        <span className="text-slate-500 mx-1">/</span>
+                        <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[1].split(' ')[0].trim()}</span>
+                        <span className="text-slate-500 ml-1">{caseItem.progress.split(' ').slice(-2).join(' ')}</span>
+                      </span>
+                    </div>
+
+                    {/* Last Activity */}
+                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span>
+                        <span className="text-slate-800 font-semibold">{caseItem.lastActivity.split(' ')[0]}</span>
+                        <span className="text-slate-500 ml-1">{caseItem.lastActivity.split(' ').slice(1).join(' ')}</span>
+                      </span>
+                    </div>
+
+                    {/* Queue Time */}
+                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
+                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                      <span>
+                        <span className="text-slate-800 font-semibold">{caseItem.queueTime.split(' ')[0]}</span>
+                        <span className="text-slate-500 ml-1">{caseItem.queueTime.split(' ').slice(1).join(' ')}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Subtle glow effect for focused item */}
+                  {isFocused && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-300/10 to-purple-300/10 blur-xl -z-10 scale-110 rounded-2xl" />
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400">
+        <div className="flex flex-col items-center space-y-2">
+          <div className="w-1 h-16 bg-slate-200 rounded-full relative overflow-hidden">
+            <div
+              className="w-full bg-indigo-400 rounded-full transition-all duration-300"
+              style={{
+                height: `${Math.min(100, (focusIndex / Math.max(1, cases.length - 1)) * 100)}%`
+              }}
+            />
+          </div>
+          <span className="text-xs font-medium">{focusIndex + 1}/{cases.length}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 type NavigationTab =
   | "overview"
   | "review"
