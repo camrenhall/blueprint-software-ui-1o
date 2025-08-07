@@ -242,10 +242,6 @@ const FuturisticCaseScroller = ({
                     </div>
                   </div>
 
-                  {/* Subtle glow effect for focused item */}
-                  {isFocused && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-300/8 to-purple-300/8 blur-xl -z-10 scale-105 rounded-xl" />
-                  )}
                 </div>
               </div>
             );
