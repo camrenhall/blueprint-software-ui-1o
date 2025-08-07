@@ -92,7 +92,7 @@ export default function Dashboard({
                   </svg>
                 </div>
                 <p className="text-sm text-slate-600 mt-2">
-                  +2.4% from last week
+                  +12 new this week
                 </p>
               </div>
 
