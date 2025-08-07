@@ -28,8 +28,8 @@ export default function Login() {
     <div
       className={`min-h-screen w-full relative overflow-hidden transition-all duration-500 ease-out ${
         isTransitioning
-          ? 'opacity-0 transform scale-105'
-          : 'opacity-100 transform scale-100'
+          ? "opacity-0 transform scale-105"
+          : "opacity-100 transform scale-100"
       }`}
     >
       {/* Main content */}
