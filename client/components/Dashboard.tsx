@@ -697,7 +697,7 @@ export default function Dashboard({
             </div>
 
             {/* Enhanced Cases List */}
-            <div className="bg-gradient-to-b from-white via-slate-50/30 to-white border border-slate-200/60 rounded-3xl shadow-lg overflow-hidden backdrop-blur-sm">
+            <div className="bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl overflow-hidden backdrop-blur-md">
 
               <div className="space-y-6 p-6">
                 {currentCases.map((caseItem, index) => (
