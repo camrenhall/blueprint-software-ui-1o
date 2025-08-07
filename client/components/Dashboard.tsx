@@ -34,20 +34,21 @@ export default function Dashboard({
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Create page state
+  const [createStep, setCreateStep] = useState(1);
   const [createMethod, setCreateMethod] = useState<"ai" | "manual" | "questionnaire" | null>(null);
   const [aiDescription, setAiDescription] = useState("");
-  const [selectedDocuments, setSelectedDocuments] = useState<Array<{name: string, optional: boolean}>>([
-    { name: "W2 Tax Form", optional: false },
-    { name: "Bank Statements", optional: true },
-    { name: "Employment Records", optional: false },
-    { name: "Medical Records", optional: false },
-    { name: "Insurance Documents", optional: true },
-    { name: "Driver's License", optional: false },
-    { name: "Tax Returns (2023)", optional: false }
-  ]);
+  const [caseInfo, setCaseInfo] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    matterId: "",
+    state: "",
+    language: "en"
+  });
+  const [selectedDocuments, setSelectedDocuments] = useState<Array<{name: string, optional: boolean}>>([]);
   const [documentSearch, setDocumentSearch] = useState("");
   const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
-  const [showReviewCase, setShowReviewCase] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
