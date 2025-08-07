@@ -699,7 +699,7 @@ export default function Dashboard({
             {/* Enhanced Cases List */}
             <div className="bg-gradient-to-b from-white via-slate-50/30 to-white border border-slate-200/60 rounded-3xl shadow-lg overflow-hidden backdrop-blur-sm">
 
-              <div className="space-y-4 p-4">
+              <div className="space-y-6 p-6">
                 {currentCases.map((caseItem, index) => (
                   <div key={index} className="group bg-white/50 rounded-2xl p-4 hover:bg-white/70 transition-all duration-300 cursor-pointer border border-slate-100/60">
                     {/* Row 1: Name and Case ID ONLY */}
