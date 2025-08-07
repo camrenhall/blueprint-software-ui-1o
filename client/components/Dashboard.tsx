@@ -772,18 +772,18 @@ export default function Dashboard({
                       </div>
                     </div>
 
-                    {/* Row 3: ALL other information with equal spacing */}
-                    <div className="grid grid-cols-8 gap-6 items-center">
-                      {/* Status Flag - col 1 */}
-                      <div className="col-span-2 flex items-center space-x-2">
+                    {/* Row 3: Statistics with 5 equal anchor points */}
+                    <div className="grid grid-cols-5 gap-4 items-center">
+                      {/* 1st Anchor: Status */}
+                      <div className="flex items-center space-x-2">
                         <div className={`w-2 h-2 rounded-full ${caseItem.status === 'Needs Review' ? 'bg-purple-500' : 'bg-sky-500'}`}></div>
                         <span className={`text-xs font-semibold whitespace-nowrap ${caseItem.status === 'Needs Review' ? 'text-purple-700' : 'text-sky-700'}`}>
                           {caseItem.status}
                         </span>
                       </div>
 
-                      {/* Review Info - col 2 */}
-                      <div className="col-span-1 flex items-center space-x-2 text-sm whitespace-nowrap">
+                      {/* 2nd Anchor: Review Info */}
+                      <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
                         <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -793,8 +793,8 @@ export default function Dashboard({
                         </span>
                       </div>
 
-                      {/* Progress Text - col 3 */}
-                      <div className="col-span-2 flex items-center space-x-2 text-sm whitespace-nowrap">
+                      {/* 3rd Anchor: Progress */}
+                      <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
                         <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                         </svg>
@@ -806,8 +806,8 @@ export default function Dashboard({
                         </span>
                       </div>
 
-                      {/* Last Activity - col 4 */}
-                      <div className="col-span-1 flex items-center space-x-2 text-sm whitespace-nowrap">
+                      {/* 4th Anchor: Last Activity */}
+                      <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
                         <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -817,8 +817,8 @@ export default function Dashboard({
                         </span>
                       </div>
 
-                      {/* Queue Time - col 5 */}
-                      <div className="col-span-2 flex items-center space-x-2 text-sm whitespace-nowrap">
+                      {/* 5th Anchor: Queue Time */}
+                      <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
                         <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
