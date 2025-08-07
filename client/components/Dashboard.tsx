@@ -76,7 +76,7 @@ export default function Dashboard({
                     </div>
                   </div>
                   <svg
-                    className="w-8 h-8 text-gray-400"
+                    className="w-8 h-8 text-slate-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -89,7 +89,7 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">
+                <p className="text-sm text-slate-600 mt-2">
                   +2.4% from last week
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function Dashboard({
                     </div>
                   </div>
                   <svg
-                    className="w-8 h-8 text-gray-400"
+                    className="w-8 h-8 text-slate-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">Currently online</p>
+                <p className="text-sm text-slate-600 mt-2">Currently online</p>
               </div>
 
               <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
@@ -132,7 +132,7 @@ export default function Dashboard({
                     </div>
                   </div>
                   <svg
-                    className="w-8 h-8 text-gray-400"
+                    className="w-8 h-8 text-slate-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -145,7 +145,7 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">+15.3% this month</p>
+                <p className="text-sm text-slate-600 mt-2">+15.3% this month</p>
               </div>
             </div>
 
@@ -535,7 +535,7 @@ export default function Dashboard({
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="bg-gradient-to-br from-indigo-50 to-blue-100 p-6 rounded-xl border border-indigo-200/50">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-gray-700">
+                  <h3 className="text-lg font-medium text-slate-700">
                     Monthly Report
                   </h3>
                   <svg
@@ -552,17 +552,17 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-slate-600 text-sm mb-4">
                   Comprehensive analysis of this month's performance
                 </p>
-                <button className="bg-white/80 hover:bg-white transition-colors px-4 py-2 rounded-lg text-sm font-medium text-gray-700">
+                <button className="bg-white/80 hover:bg-white transition-colors px-4 py-2 rounded-lg text-sm font-medium text-slate-700">
                   Generate Report
                 </button>
               </div>
 
               <div className="bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-xl border border-emerald-200/50">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-gray-700">
+                  <h3 className="text-lg font-medium text-slate-700">
                     User Analytics
                   </h3>
                   <svg
@@ -579,10 +579,10 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-slate-600 text-sm mb-4">
                   Detailed breakdown of user behavior and engagement
                 </p>
-                <button className="bg-white/80 hover:bg-white transition-colors px-4 py-2 rounded-lg text-sm font-medium text-gray-700">
+                <button className="bg-white/80 hover:bg-white transition-colors px-4 py-2 rounded-lg text-sm font-medium text-slate-700">
                   View Analytics
                 </button>
               </div>
@@ -590,7 +590,7 @@ export default function Dashboard({
 
             {/* Recent Reports */}
             <div className="bg-gradient-to-br from-violet-50 to-purple-100 p-6 rounded-xl border border-violet-200/50">
-              <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <h3 className="text-lg font-medium text-slate-700 mb-4">
                 Recent Reports
               </h3>
               <div className="space-y-3">
@@ -636,10 +636,10 @@ export default function Dashboard({
                     className="flex items-center justify-between py-3 px-4 bg-white/60 rounded-lg"
                   >
                     <div>
-                      <div className="font-medium text-gray-700">
+                      <div className="font-medium text-slate-700">
                         {report.name}
                       </div>
-                      <div className="text-sm text-gray-500">{report.date}</div>
+                      <div className="text-sm text-slate-500">{report.date}</div>
                     </div>
                     <div
                       className={cn(
@@ -660,7 +660,7 @@ export default function Dashboard({
             {/* Additional Reports Content */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="bg-gradient-to-br from-orange-50 to-red-100 p-6 rounded-xl border border-orange-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   Scheduled Reports
                 </h3>
                 <div className="space-y-3">
@@ -682,13 +682,13 @@ export default function Dashboard({
                     },
                   ].map((item, index) => (
                     <div key={index} className="p-3 bg-white/60 rounded-lg">
-                      <div className="font-medium text-gray-700">
+                      <div className="font-medium text-slate-700">
                         {item.name}
                       </div>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-slate-500">
                         {item.frequency}
                       </div>
-                      <div className="text-xs text-gray-400">
+                      <div className="text-xs text-slate-400">
                         Next: {item.nextRun}
                       </div>
                     </div>
@@ -697,7 +697,7 @@ export default function Dashboard({
               </div>
 
               <div className="bg-gradient-to-br from-teal-50 to-cyan-100 p-6 rounded-xl border border-teal-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   Report Templates
                 </h3>
                 <div className="space-y-2">
@@ -711,7 +711,7 @@ export default function Dashboard({
                   ].map((template, index) => (
                     <button
                       key={index}
-                      className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors text-gray-700"
+                      className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors text-slate-700"
                     >
                       {template}
                     </button>
@@ -758,7 +758,7 @@ export default function Dashboard({
         <div className="bg-white border-b border-gray-100 rounded-t-2xl">
           <div className="flex items-center justify-between px-8 py-6">
             <div className="flex items-center space-x-12">
-              <h2 className="text-2xl font-light text-gray-800 tracking-wide">
+              <h2 className="text-2xl font-light text-slate-800 tracking-wide">
                 {title}
               </h2>
 
@@ -775,8 +775,8 @@ export default function Dashboard({
                     className={cn(
                       "text-sm font-medium transition-all duration-200 pb-1 border-b-2",
                       activeTab === tab.id
-                        ? "text-gray-800 border-blue-400"
-                        : "text-gray-500 hover:text-gray-700 border-transparent",
+                        ? "text-slate-800 border-blue-400"
+                        : "text-slate-500 hover:text-slate-700 border-transparent",
                     )}
                   >
                     {tab.label}
@@ -797,7 +797,7 @@ export default function Dashboard({
                   }}
                 >
                   <svg
-                    className="w-5 h-5 text-gray-500"
+                    className="w-5 h-5 text-slate-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -816,7 +816,7 @@ export default function Dashboard({
                 {showNotifications && (
                   <div className="absolute top-12 right-0 w-80 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
                     <div className="p-4 border-b border-gray-100">
-                      <h3 className="font-medium text-gray-800">
+                      <h3 className="font-medium text-slate-800">
                         Notifications
                       </h3>
                     </div>
@@ -847,10 +847,10 @@ export default function Dashboard({
                           key={index}
                           className="p-3 hover:bg-gray-50 border-b border-gray-50 last:border-0"
                         >
-                          <div className="text-sm text-gray-700">
+                          <div className="text-sm text-slate-700">
                             {notification.text}
                           </div>
-                          <div className="text-xs text-gray-500 mt-1">
+                          <div className="text-xs text-slate-500 mt-1">
                             {notification.time}
                           </div>
                         </div>
@@ -876,7 +876,7 @@ export default function Dashboard({
                   }}
                 >
                   <svg
-                    className="w-5 h-5 text-gray-500"
+                    className="w-5 h-5 text-slate-500"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -900,7 +900,7 @@ export default function Dashboard({
                 {showSettings && (
                   <div className="absolute top-12 right-0 w-64 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
                     <div className="p-4 border-b border-gray-100">
-                      <h3 className="font-medium text-gray-800">Settings</h3>
+                      <h3 className="font-medium text-slate-800">Settings</h3>
                     </div>
                     <div className="p-2">
                       {[
@@ -917,7 +917,7 @@ export default function Dashboard({
                         >
                           {item.icon === "user" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -932,7 +932,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "settings" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -953,7 +953,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "shield" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -968,7 +968,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "bell" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -983,7 +983,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "palette" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -998,7 +998,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "help" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -1011,7 +1011,7 @@ export default function Dashboard({
                               />
                             </svg>
                           )}
-                          <span className="text-sm text-gray-700">
+                          <span className="text-sm text-slate-700">
                             {item.label}
                           </span>
                         </button>
@@ -1025,10 +1025,10 @@ export default function Dashboard({
               <div className="relative" data-dropdown>
                 <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
                   <div className="text-right hidden sm:block">
-                    <div className="text-sm font-medium text-gray-700">
+                    <div className="text-sm font-medium text-slate-700">
                       Alex Chen
                     </div>
-                    <div className="text-xs text-gray-500">Premium Tier</div>
+                    <div className="text-xs text-slate-500">Premium Tier</div>
                   </div>
                   <button
                     className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-sm hover:shadow-md transition-shadow duration-200"
@@ -1051,10 +1051,10 @@ export default function Dashboard({
                           <span className="text-white font-medium">AC</span>
                         </div>
                         <div>
-                          <div className="font-medium text-gray-800">
+                          <div className="font-medium text-slate-800">
                             Alex Chen
                           </div>
-                          <div className="text-sm text-gray-500">
+                          <div className="text-sm text-slate-500">
                             alex.chen@email.com
                           </div>
                           <div className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full inline-block mt-1">
@@ -1078,7 +1078,7 @@ export default function Dashboard({
                         >
                           {item.icon === "user" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -1093,7 +1093,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "settings" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -1114,7 +1114,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "credit-card" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -1129,7 +1129,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "chart" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -1144,7 +1144,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "switch" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -1159,7 +1159,7 @@ export default function Dashboard({
                           )}
                           {item.icon === "logout" && (
                             <svg
-                              className="w-4 h-4 text-gray-500"
+                              className="w-4 h-4 text-slate-500"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -1172,7 +1172,7 @@ export default function Dashboard({
                               />
                             </svg>
                           )}
-                          <span className="text-sm text-gray-700">
+                          <span className="text-sm text-slate-700">
                             {item.label}
                           </span>
                         </button>
@@ -1185,7 +1185,7 @@ export default function Dashboard({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="hover:bg-gray-100/50 p-2 transition-colors duration-200 text-gray-500 hover:text-gray-700"
+                className="hover:bg-gray-100/50 p-2 transition-colors duration-200 text-slate-500 hover:text-slate-700"
               >
                 <svg
                   className="w-5 h-5"
