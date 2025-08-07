@@ -73,37 +73,45 @@ export default function CloudBackground() {
         {/* Cirrus cloud streaks */}
         <div className="absolute inset-0">
           {/* Horizontal cirrus streaks */}
-          <div className="absolute top-1/4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-200/40 to-transparent animate-float-slow opacity-60"
-               style={{ animationDelay: '0s', animationDuration: '12s' }} />
-          <div className="absolute top-1/3 right-0 w-2/3 h-0.5 bg-gradient-to-l from-transparent via-purple-200/30 to-transparent animate-float"
-               style={{ animationDelay: '2s', animationDuration: '15s' }} />
-          <div className="absolute top-2/3 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-indigo-200/35 to-transparent animate-float-slow"
-               style={{ animationDelay: '4s', animationDuration: '18s' }} />
+          <div className="absolute top-1/4 left-0 w-full h-2 bg-gradient-to-r from-transparent via-blue-300/60 to-transparent animate-drift opacity-80"
+               style={{ animationDelay: '0s', animationDuration: '8s' }} />
+          <div className="absolute top-1/3 right-0 w-2/3 h-1.5 bg-gradient-to-l from-transparent via-purple-300/50 to-transparent animate-float"
+               style={{ animationDelay: '2s', animationDuration: '10s' }} />
+          <div className="absolute top-2/3 left-1/4 w-1/2 h-2 bg-gradient-to-r from-transparent via-indigo-300/55 to-transparent animate-drift"
+               style={{ animationDelay: '4s', animationDuration: '12s' }} />
 
           {/* Diagonal cirrus streaks */}
-          <div className="absolute top-1/6 left-1/3 w-80 h-0.5 bg-gradient-to-r from-transparent via-blue-300/25 to-transparent transform rotate-12 animate-float"
-               style={{ animationDelay: '1s', animationDuration: '14s' }} />
-          <div className="absolute top-3/4 right-1/4 w-60 h-0.5 bg-gradient-to-l from-transparent via-purple-300/20 to-transparent transform -rotate-6 animate-float-slow"
-               style={{ animationDelay: '3s', animationDuration: '16s' }} />
+          <div className="absolute top-1/6 left-1/3 w-80 h-1 bg-gradient-to-r from-transparent via-blue-400/45 to-transparent transform rotate-12 animate-float opacity-70"
+               style={{ animationDelay: '1s', animationDuration: '9s' }} />
+          <div className="absolute top-3/4 right-1/4 w-60 h-1 bg-gradient-to-l from-transparent via-purple-400/40 to-transparent transform -rotate-6 animate-drift opacity-65"
+               style={{ animationDelay: '3s', animationDuration: '11s' }} />
 
           {/* Curved cirrus wisps */}
-          <div className="absolute top-1/2 left-1/6 w-96 h-8 bg-gradient-to-r from-transparent via-blue-100/30 to-transparent rounded-full blur-sm animate-float opacity-50"
-               style={{ animationDelay: '5s', animationDuration: '20s' }} />
-          <div className="absolute top-1/5 right-1/3 w-72 h-6 bg-gradient-to-l from-transparent via-purple-200/25 to-transparent rounded-full blur-sm animate-drift opacity-40"
-               style={{ animationDelay: '7s', animationDuration: '22s' }} />
+          <div className="absolute top-1/2 left-1/6 w-96 h-12 bg-gradient-to-r from-transparent via-blue-200/50 to-transparent rounded-full blur-sm animate-float opacity-70"
+               style={{ animationDelay: '5s', animationDuration: '13s' }} />
+          <div className="absolute top-1/5 right-1/3 w-72 h-10 bg-gradient-to-l from-transparent via-purple-300/45 to-transparent rounded-full blur-sm animate-drift opacity-60"
+               style={{ animationDelay: '7s', animationDuration: '15s' }} />
+
+          {/* Additional flowing streaks */}
+          <div className="absolute top-1/8 left-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-indigo-300/40 to-transparent transform rotate-45 animate-float opacity-55"
+               style={{ animationDelay: '6s', animationDuration: '14s' }} />
+          <div className="absolute bottom-1/4 right-1/6 w-64 h-1 bg-gradient-to-l from-transparent via-blue-300/35 to-transparent transform -rotate-12 animate-drift opacity-50"
+               style={{ animationDelay: '8s', animationDuration: '16s' }} />
         </div>
 
         {/* Enhanced floating particles */}
         <div className="absolute inset-0">
-          {particles.map((particle) => (
+          {particles.map((particle, index) => (
             <div
               key={particle.id}
-              className="absolute w-1 h-1 bg-blue-400 rounded-full opacity-40 animate-float"
+              className={`absolute w-1.5 h-1.5 bg-blue-400 rounded-full opacity-60 ${
+                index % 3 === 0 ? 'animate-drift' : index % 2 === 0 ? 'animate-float' : 'animate-float-slow'
+              }`}
               style={{
                 left: `${particle.left}%`,
                 top: `${particle.top}%`,
                 animationDelay: `${particle.animationDelay}s`,
-                animationDuration: `${particle.animationDuration}s`,
+                animationDuration: `${particle.animationDuration + (index % 2)}s`,
               }}
             />
           ))}
@@ -111,15 +119,33 @@ export default function CloudBackground() {
 
         {/* Additional purple accent particles */}
         <div className="absolute inset-0">
-          {particles.slice(0, 8).map((particle, index) => (
+          {particles.slice(0, 12).map((particle, index) => (
             <div
               key={`purple-${particle.id}`}
-              className="absolute w-1.5 h-1.5 bg-purple-300 rounded-full opacity-25 animate-float-slow"
+              className={`absolute w-2 h-2 bg-purple-300 rounded-full opacity-45 ${
+                index % 2 === 0 ? 'animate-drift' : 'animate-float-slow'
+              }`}
               style={{
-                left: `${(particle.left + 20) % 100}%`,
-                top: `${(particle.top + 30) % 100}%`,
-                animationDelay: `${particle.animationDelay + 2}s`,
-                animationDuration: `${particle.animationDuration + 2}s`,
+                left: `${(particle.left + 25) % 100}%`,
+                top: `${(particle.top + 35) % 100}%`,
+                animationDelay: `${particle.animationDelay + 1}s`,
+                animationDuration: `${particle.animationDuration + 3}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Indigo accent particles for extra depth */}
+        <div className="absolute inset-0">
+          {particles.slice(0, 6).map((particle, index) => (
+            <div
+              key={`indigo-${particle.id}`}
+              className="absolute w-1 h-1 bg-indigo-400 rounded-full opacity-50 animate-drift"
+              style={{
+                left: `${(particle.left + 50) % 100}%`,
+                top: `${(particle.top + 60) % 100}%`,
+                animationDelay: `${particle.animationDelay + 3}s`,
+                animationDuration: `${particle.animationDuration + 4}s`,
               }}
             />
           ))}
