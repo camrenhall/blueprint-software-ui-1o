@@ -32,6 +32,7 @@ export default function Dashboard({
   const [showSettings, setShowSettings] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [stepTransitioning, setStepTransitioning] = useState(false);
 
   // Create page state
   const [createStep, setCreateStep] = useState(1);
@@ -90,6 +91,19 @@ export default function Dashboard({
       setActiveTab(newTab);
       setIsTransitioning(false);
     }, 150);
+  };
+
+  // Enhanced step transition with smooth animations
+  const handleStepTransition = (newStep: number) => {
+    if (newStep === createStep) return;
+
+    setStepTransitioning(true);
+    setTimeout(() => {
+      setCreateStep(newStep);
+      setTimeout(() => {
+        setStepTransitioning(false);
+      }, 100);
+    }, 300);
   };
 
   // Create page functions
@@ -885,10 +899,10 @@ export default function Dashboard({
             </div>
 
             {/* Step Content */}
-            <div className="min-h-[500px]">
+            <div className="min-h-[500px] relative overflow-hidden">
               {/* Step 1: Choose Creation Method */}
               {createStep === 1 && (
-                <div className="max-w-5xl mx-auto">
+                <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                   <div className="text-center mb-12">
                     <h1 className="text-4xl font-light text-slate-800 mb-6">Create New Case</h1>
                     <p className="text-slate-600 text-lg max-w-2xl mx-auto">Choose your preferred method for creating a new case and requesting documents from your client</p>
@@ -898,9 +912,9 @@ export default function Dashboard({
                     <button
                       onClick={() => {
                         setCreateMethod("ai");
-                        setCreateStep(2);
+                        handleStepTransition(2);
                       }}
-                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all p-8 rounded-2xl text-center group"
+                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all duration-500 p-8 rounded-2xl text-center group"
                     >
                       <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -914,9 +928,9 @@ export default function Dashboard({
                     <button
                       onClick={() => {
                         setCreateMethod("manual");
-                        setCreateStep(2);
+                        handleStepTransition(2);
                       }}
-                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all p-8 rounded-2xl text-center group"
+                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all duration-500 p-8 rounded-2xl text-center group"
                     >
                       <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -930,9 +944,9 @@ export default function Dashboard({
                     <button
                       onClick={() => {
                         setCreateMethod("questionnaire");
-                        setCreateStep(2);
+                        handleStepTransition(2);
                       }}
-                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all p-8 rounded-2xl text-center group"
+                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all duration-500 p-8 rounded-2xl text-center group"
                     >
                       <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
                         <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -948,7 +962,7 @@ export default function Dashboard({
 
               {/* Step 2: Method-Specific Interface */}
               {createStep === 2 && (
-                <div className="max-w-6xl mx-auto">
+                <div className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                   {createMethod === "ai" && (
                     <div>
                       <div className="text-center mb-10">
@@ -970,7 +984,7 @@ export default function Dashboard({
                             <button
                               onClick={() => {
                                 handleAISubmit();
-                                setCreateStep(3);
+                                handleStepTransition(3);
                               }}
                               disabled={!aiDescription.trim()}
                               className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
@@ -983,8 +997,8 @@ export default function Dashboard({
 
                       <div className="flex justify-center">
                         <button
-                          onClick={() => setCreateStep(1)}
-                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium"
+                          onClick={() => handleStepTransition(1)}
+                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1126,8 +1140,8 @@ export default function Dashboard({
 
                       <div className="flex justify-between items-center mt-8">
                         <button
-                          onClick={() => setCreateStep(1)}
-                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium"
+                          onClick={() => handleStepTransition(1)}
+                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1136,11 +1150,11 @@ export default function Dashboard({
                         </button>
 
                         <button
-                          onClick={() => setCreateStep(3)}
+                          onClick={() => handleStepTransition(4)}
                           disabled={selectedDocuments.length === 0}
                           className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
                         >
-                          Continue with {selectedDocuments.length} Documents
+                          Continue to Case Information
                         </button>
                       </div>
                     </div>
@@ -1173,7 +1187,7 @@ export default function Dashboard({
 
                         <div className="flex justify-center">
                           <button
-                            onClick={() => setCreateStep(4)}
+                            onClick={() => handleStepTransition(4)}
                             className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
                           >
                             Continue with Questionnaire
@@ -1183,8 +1197,8 @@ export default function Dashboard({
 
                       <div className="flex justify-center mt-8">
                         <button
-                          onClick={() => setCreateStep(1)}
-                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium"
+                          onClick={() => handleStepTransition(1)}
+                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1197,9 +1211,9 @@ export default function Dashboard({
                 </div>
               )}
 
-              {/* Step 3: Document Management (Unified for AI and Manual) */}
-              {createStep === 3 && (
-                <div className="max-w-6xl mx-auto">
+              {/* Step 3: Document Management (Only for AI flow) */}
+              {createStep === 3 && createMethod === "ai" && (
+                <div className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                   <div className="text-center mb-10">
                     <h1 className="text-3xl font-light text-slate-800 mb-4">
                       {createMethod === "ai" ? "Review AI Suggestions" : "Manage Documents"}
@@ -1349,8 +1363,8 @@ export default function Dashboard({
 
                   <div className="flex justify-between items-center mt-8">
                     <button
-                      onClick={() => setCreateStep(2)}
-                      className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium"
+                      onClick={() => handleStepTransition(2)}
+                      className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1359,7 +1373,7 @@ export default function Dashboard({
                     </button>
 
                     <button
-                      onClick={() => setCreateStep(4)}
+                      onClick={() => handleStepTransition(4)}
                       disabled={selectedDocuments.length === 0}
                       className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
                     >
@@ -1371,7 +1385,7 @@ export default function Dashboard({
 
               {/* Step 4: Case Information */}
               {createStep === 4 && (
-                <div className="max-w-4xl mx-auto">
+                <div className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                   <div className="text-center mb-8">
                     <h2 className="text-2xl font-light text-slate-700 mb-3">Case Information</h2>
                     <p className="text-slate-600">Enter the basic information for this case</p>
@@ -1448,8 +1462,8 @@ export default function Dashboard({
 
                     <div className="flex justify-between items-center">
                       <button
-                        onClick={() => setCreateStep(3)}
-                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                        onClick={() => handleStepTransition(createMethod === "ai" ? 3 : 2)}
+                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2 transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1458,7 +1472,7 @@ export default function Dashboard({
                       </button>
 
                       <button
-                        onClick={() => setCreateStep(5)}
+                        onClick={() => handleStepTransition(5)}
                         className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition-colors"
                       >
                         Review Case
@@ -1470,7 +1484,7 @@ export default function Dashboard({
 
               {/* Step 5: Final Review */}
               {createStep === 5 && (
-                <div className="max-w-4xl mx-auto">
+                <div className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                   <div className="text-center mb-8">
                     <h2 className="text-2xl font-light text-slate-700 mb-3">Review Your Case</h2>
                     <p className="text-slate-600">Please review all details before creating the case</p>
@@ -1528,8 +1542,8 @@ export default function Dashboard({
 
                     <div className="flex justify-between items-center pt-6">
                       <button
-                        onClick={() => setCreateStep(4)}
-                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                        onClick={() => handleStepTransition(4)}
+                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2 transition-colors"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -1546,52 +1560,87 @@ export default function Dashboard({
               )}
             </div>
 
-            {/* Template Loading Modal */}
+            {/* Futuristic Template Loading Modal */}
             {showTemplateModal && (
-              <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-2xl">
-                  <div className="flex items-center justify-between p-6 border-b border-slate-200">
-                    <h3 className="text-xl font-semibold text-slate-700">Load Document Template</h3>
-                    <button
-                      onClick={() => setShowTemplateModal(false)}
-                      className="text-slate-500 hover:text-slate-700 transition-colors"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
+              <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-[60] flex items-center justify-center p-4">
+                <div className="relative">
+                  {/* Animated background rings */}
+                  <div className="absolute inset-0 animate-pulse">
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500/20 to-purple-600/20 blur-xl"></div>
+                    <div className="absolute inset-2 rounded-3xl bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-lg"></div>
                   </div>
 
-                  <div className="p-6">
-                    <div className="space-y-3">
-                      {savedTemplates.map((template, index) => (
-                        <div key={index} className="border border-slate-200 rounded-xl p-4 hover:bg-slate-50 transition-colors">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <h4 className="font-medium text-slate-700 mb-1">{template.name}</h4>
-                              <p className="text-sm text-slate-500">{template.documents.length} documents</p>
-                              <div className="flex flex-wrap gap-1 mt-2">
-                                {template.documents.slice(0, 3).map((doc, docIndex) => (
-                                  <span key={docIndex} className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">
-                                    {doc}
+                  <div className="relative bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden">
+                    {/* Header with holographic effect */}
+                    <div className="relative bg-gradient-to-r from-slate-900/80 to-slate-800/80 p-8">
+                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-600/10"></div>
+                      <div className="relative flex items-center justify-between">
+                        <div>
+                          <h3 className="text-2xl font-light text-white mb-2">Document Templates</h3>
+                          <p className="text-slate-300/80 text-sm">Choose from our pre-configured document sets</p>
+                        </div>
+                        <button
+                          onClick={() => setShowTemplateModal(false)}
+                          className="text-white/60 hover:text-white transition-all duration-300 p-2 rounded-full hover:bg-white/10"
+                        >
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Content with glass morphism */}
+                    <div className="p-8">
+                      <div className="grid gap-4">
+                        {savedTemplates.map((template, index) => (
+                          <div key={index} className="group relative">
+                            {/* Hover glow effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-purple-600/0 group-hover:from-indigo-500/20 group-hover:to-purple-600/20 rounded-2xl transition-all duration-500 blur-xl"></div>
+
+                            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-500 hover:border-indigo-400/50">
+                              <div className="flex items-center justify-between">
+                                <div className="flex-1 mr-6">
+                                  <div className="flex items-center space-x-3 mb-3">
+                                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-500"></div>
+                                    <h4 className="font-medium text-white text-lg">{template.name}</h4>
+                                  </div>
+                                  <p className="text-slate-300/70 text-sm mb-4">{template.documents.length} documents included</p>
+
+                                  <div className="flex flex-wrap gap-2">
+                                    {template.documents.slice(0, 4).map((doc, docIndex) => (
+                                      <span key={docIndex} className="bg-white/10 border border-white/20 text-white/90 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-sm">
+                                        {doc}
+                                      </span>
+                                    ))}
+                                    {template.documents.length > 4 && (
+                                      <span className="bg-gradient-to-r from-indigo-500/20 to-purple-600/20 border border-indigo-400/30 text-indigo-200 px-3 py-1.5 rounded-full text-xs font-medium">
+                                        +{template.documents.length - 4} more
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+
+                                <button
+                                  onClick={() => {
+                                    handleLoadTemplate(template);
+                                    setShowTemplateModal(false);
+                                  }}
+                                  className="relative group/btn bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-lg hover:shadow-indigo-500/25"
+                                >
+                                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/0 opacity-0 group-hover/btn:opacity-100 rounded-xl transition-opacity duration-300"></div>
+                                  <span className="relative flex items-center space-x-2">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                    <span>Load</span>
                                   </span>
-                                ))}
-                                {template.documents.length > 3 && (
-                                  <span className="bg-slate-100 text-slate-600 px-2 py-1 rounded text-xs">
-                                    +{template.documents.length - 3} more
-                                  </span>
-                                )}
+                                </button>
                               </div>
                             </div>
-                            <button
-                              onClick={() => handleLoadTemplate(template)}
-                              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
-                            >
-                              Load Template
-                            </button>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
