@@ -13,124 +13,36 @@ export default function Index() {
   }, []);
   const menuItems = [
     {
-      id: "explore",
-      title: "Explore",
-      subItems: [
-        {
-          id: "explore-worlds",
-          title: "New Worlds",
-          action: () => {
-            setDashboardTitle("New Worlds");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "explore-galaxies",
-          title: "Distant Galaxies",
-          action: () => {
-            setDashboardTitle("Distant Galaxies");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "explore-dimensions",
-          title: "Other Dimensions",
-          action: () => {
-            setDashboardTitle("Other Dimensions");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      id: "overview",
+      title: "Overview",
+      action: () => {
+        setDashboardTitle("");
+        setDashboardOpen(true);
+      },
     },
     {
       id: "create",
       title: "Create",
-      subItems: [
-        {
-          id: "create-project",
-          title: "New Project",
-          action: () => {
-            setDashboardTitle("New Project");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "create-design",
-          title: "Dashboard",
-          action: () => {
-            setDashboardTitle("Dashboard");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "create-experiment",
-          title: "Experiment Lab",
-          action: () => {
-            setDashboardTitle("Experiment Lab");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      action: () => {
+        setDashboardTitle("");
+        setDashboardOpen(true);
+      },
     },
     {
-      id: "connect",
-      title: "Connect",
-      subItems: [
-        {
-          id: "connect-community",
-          title: "Community Hub",
-          action: () => {
-            setDashboardTitle("Community Hub");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "connect-collaborate",
-          title: "Collaborate",
-          action: () => {
-            setDashboardTitle("Collaborate");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "connect-network",
-          title: "Network",
-          action: () => {
-            setDashboardTitle("Network");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      id: "review",
+      title: "Review",
+      action: () => {
+        setDashboardTitle("");
+        setDashboardOpen(true);
+      },
     },
     {
-      id: "learn",
-      title: "Learn",
-      subItems: [
-        {
-          id: "learn-tutorials",
-          title: "Tutorials",
-          action: () => {
-            setDashboardTitle("Tutorials");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "learn-courses",
-          title: "Courses",
-          action: () => {
-            setDashboardTitle("Courses");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "learn-documentation",
-          title: "Documentation",
-          action: () => {
-            setDashboardTitle("Documentation");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      id: "reports",
+      title: "Reports",
+      action: () => {
+        setDashboardTitle("");
+        setDashboardOpen(true);
+      },
     },
     {
       id: "settings",
@@ -138,9 +50,9 @@ export default function Index() {
       subItems: [
         {
           id: "settings-profile",
-          title: "Profile",
+          title: "User Profile",
           action: () => {
-            setDashboardTitle("Profile");
+            setDashboardTitle("");
             setDashboardOpen(true);
           },
         },
@@ -148,7 +60,7 @@ export default function Index() {
           id: "settings-preferences",
           title: "Preferences",
           action: () => {
-            setDashboardTitle("Preferences");
+            setDashboardTitle("");
             setDashboardOpen(true);
           },
         },
@@ -156,11 +68,27 @@ export default function Index() {
           id: "settings-security",
           title: "Security",
           action: () => {
-            setDashboardTitle("Security");
+            setDashboardTitle("");
+            setDashboardOpen(true);
+          },
+        },
+        {
+          id: "settings-billing",
+          title: "Billing",
+          action: () => {
+            setDashboardTitle("");
             setDashboardOpen(true);
           },
         },
       ],
+    },
+    {
+      id: "logout",
+      title: "Log Out",
+      action: () => {
+        // Navigate back to login page
+        window.location.href = "/";
+      },
     },
   ];
 
