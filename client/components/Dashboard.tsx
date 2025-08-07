@@ -753,10 +753,15 @@ export default function Dashboard({
                         </span>
                       </div>
 
-                      {/* Review Info with dark numbers - cols 4-5 */}
-                      <div className="col-span-2 text-sm whitespace-nowrap">
-                        <span className="text-slate-800 font-semibold">{caseItem.reviewInfo.split(' ')[0]}</span>
-                        <span className="text-slate-500 ml-1">{caseItem.reviewInfo.split(' ').slice(1).join(' ')}</span>
+                      {/* Review Info with icon and dark numbers - cols 4-5 */}
+                      <div className="col-span-2 flex items-center space-x-2 text-sm whitespace-nowrap">
+                        <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>
+                          <span className="text-slate-800 font-semibold">{caseItem.reviewInfo.split(' ')[0]}</span>
+                          <span className="text-slate-500 ml-1">{caseItem.reviewInfo.split(' ').slice(1).join(' ')}</span>
+                        </span>
                       </div>
 
                       {/* Progress Text with consistent positioning - cols 6-7 */}
