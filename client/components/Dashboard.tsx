@@ -1418,9 +1418,13 @@ export default function Dashboard({
                         <input
                           type="tel"
                           value={caseInfo.phone}
-                          onChange={(e) => setCaseInfo({...caseInfo, phone: e.target.value})}
+                          onChange={(e) => {
+                            const formatted = formatPhoneNumber(e.target.value);
+                            setCaseInfo({...caseInfo, phone: formatted});
+                          }}
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                           placeholder="(555) 123-4567"
+                          maxLength={14}
                         />
                       </div>
                       <div>
@@ -1932,7 +1936,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        •••• •••• •••• 4242
+                        •••• •••�� •••• 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
