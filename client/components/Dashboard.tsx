@@ -65,10 +65,10 @@ export default function Dashboard({
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Quick Stats */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl border border-blue-200/50">
+              <div className="bg-gradient-to-br from-blue-50/80 to-sky-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-700 mb-1">
+                    <h3 className="text-lg font-medium text-slate-700 mb-1">
                       Total Users
                     </h3>
                     <div className="text-3xl font-light text-blue-600">
@@ -94,13 +94,13 @@ export default function Dashboard({
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-xl border border-green-200/50">
+              <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-700 mb-1">
+                    <h3 className="text-lg font-medium text-slate-700 mb-1">
                       Active Sessions
                     </h3>
-                    <div className="text-3xl font-light text-emerald-600">
+                    <div className="text-3xl font-light text-indigo-600">
                       1,429
                     </div>
                   </div>
@@ -121,10 +121,10 @@ export default function Dashboard({
                 <p className="text-sm text-gray-600 mt-2">Currently online</p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-xl border border-purple-200/50">
+              <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium text-gray-700 mb-1">
+                    <h3 className="text-lg font-medium text-slate-700 mb-1">
                       Revenue
                     </h3>
                     <div className="text-3xl font-light text-purple-600">
@@ -150,8 +150,8 @@ export default function Dashboard({
             </div>
 
             {/* Recent Activity */}
-            <div className="bg-gradient-to-br from-amber-50 to-orange-100 p-6 rounded-xl border border-amber-200/50">
-              <h3 className="text-lg font-medium text-gray-700 mb-4">
+            <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-6 rounded-xl border border-slate-200/40 backdrop-blur-sm">
+              <h3 className="text-lg font-medium text-slate-700 mb-4">
                 Recent Activity
               </h3>
               <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
@@ -209,20 +209,20 @@ export default function Dashboard({
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between py-3 px-4 bg-white/60 rounded-lg"
+                    className="flex items-center justify-between py-3 px-4 bg-white/70 rounded-lg"
                   >
                     <div className="flex items-center space-x-3">
                       <div
                         className={cn(
                           "w-2 h-2 rounded-full",
-                          item.type === "success" && "bg-green-400",
-                          item.type === "info" && "bg-blue-400",
-                          item.type === "warning" && "bg-amber-400",
+                          item.type === "success" && "bg-blue-400",
+                          item.type === "info" && "bg-indigo-400",
+                          item.type === "warning" && "bg-purple-400",
                         )}
                       />
-                      <span className="text-gray-700">{item.action}</span>
+                      <span className="text-slate-700">{item.action}</span>
                     </div>
-                    <span className="text-sm text-gray-500">{item.time}</span>
+                    <span className="text-sm text-slate-500">{item.time}</span>
                   </div>
                 ))}
               </div>
@@ -230,38 +230,38 @@ export default function Dashboard({
 
             {/* Additional Overview Sections */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-rose-50 to-pink-100 p-6 rounded-xl border border-rose-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <div className="bg-gradient-to-br from-lavender-50/80 to-purple-50/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   System Health
                 </h3>
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-600">CPU Usage</span>
-                    <span className="text-green-600 font-medium">23%</span>
+                    <span className="text-slate-600">CPU Usage</span>
+                    <span className="text-blue-600 font-medium">23%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Memory Usage</span>
-                    <span className="text-blue-600 font-medium">67%</span>
+                    <span className="text-slate-600">Memory Usage</span>
+                    <span className="text-indigo-600 font-medium">67%</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Disk Usage</span>
-                    <span className="text-amber-600 font-medium">45%</span>
+                    <span className="text-slate-600">Disk Usage</span>
+                    <span className="text-purple-600 font-medium">45%</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-50 to-blue-100 p-6 rounded-xl border border-cyan-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <div className="bg-gradient-to-br from-sky-50/80 to-blue-100/80 p-6 rounded-xl border border-sky-200/40 backdrop-blur-sm">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   Quick Actions
                 </h3>
                 <div className="space-y-2">
-                  <button className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                  <button className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
                     Generate Monthly Report
                   </button>
-                  <button className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                  <button className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
                     Export User Data
                   </button>
-                  <button className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors">
+                  <button className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
                     Schedule Maintenance
                   </button>
                 </div>
