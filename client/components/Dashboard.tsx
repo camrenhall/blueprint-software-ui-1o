@@ -130,8 +130,8 @@ const FuturisticCaseScroller = ({
                 onClick={() => onCaseSelect(caseItem)}
               >
                 <div className={cn(
-                  "bg-gradient-to-r rounded-xl p-4 border backdrop-blur-sm transition-all duration-500 relative",
-                  isFocused
+                  "bg-gradient-to-r rounded-xl p-4 border backdrop-blur-sm transition-all duration-300 relative",
+                  isTopFocused
                     ? "from-white/95 via-white/98 to-white/95 border-indigo-200/60 shadow-xl shadow-indigo-500/5"
                     : "from-white/70 via-white/80 to-white/70 border-slate-200/40 shadow-md"
                 )}>
@@ -139,17 +139,17 @@ const FuturisticCaseScroller = ({
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-3 flex-1">
                       <div className={cn(
-                        "rounded-lg flex items-center justify-center shadow-md transition-all duration-500",
-                        isFocused
+                        "rounded-lg flex items-center justify-center shadow-md transition-all duration-300",
+                        index === 0
                           ? "w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600"
-                          : "w-8 h-8 bg-gradient-to-br from-indigo-400 to-blue-500"
+                          : "w-9 h-9 bg-gradient-to-br from-indigo-400 to-blue-500"
                       )}>
                         <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
                       </div>
                       <div className="flex items-center space-x-2 min-w-0">
                         <h3 className={cn(
-                          "font-semibold transition-all duration-500 truncate",
-                          isFocused
+                          "font-semibold transition-all duration-300 truncate",
+                          index === 0
                             ? "text-slate-800 text-base"
                             : "text-slate-700 text-sm"
                         )}>
@@ -162,7 +162,7 @@ const FuturisticCaseScroller = ({
                     {/* Hover indicator */}
                     <div className={cn(
                       "transition-all duration-300 flex-shrink-0",
-                      isFocused ? "opacity-100" : "opacity-0 group-hover:opacity-70"
+                      index === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-70"
                     )}>
                       <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
