@@ -814,7 +814,7 @@ export default function Dashboard({
 
                 {/* Notifications Dropdown */}
                 {showNotifications && (
-                  <div className="absolute top-12 right-0 w-80 bg-white rounded-xl shadow-xl border border-slate-200/50 z-50 transition-all duration-200">
+                  <div className="absolute top-12 right-0 w-80 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-slate-200/50 z-50 transition-all duration-200">
                     <div className="p-4 border-b border-slate-100">
                       <h3 className="font-medium text-slate-800">
                         Notifications
