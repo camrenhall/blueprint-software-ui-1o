@@ -147,7 +147,7 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-sm text-slate-600 mt-2">+15.3% this month</p>
+                <p className="text-sm text-slate-600 mt-2">This month</p>
               </div>
             </div>
 
