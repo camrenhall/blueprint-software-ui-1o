@@ -127,10 +127,10 @@ export default function Dashboard({
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-lg font-medium text-slate-700 mb-1">
-                      Revenue
+                      Billable Hours
                     </h3>
                     <div className="text-3xl font-light text-purple-600">
-                      $24.8K
+                      1,847
                     </div>
                   </div>
                   <svg
