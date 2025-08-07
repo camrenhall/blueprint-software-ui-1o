@@ -58,6 +58,11 @@ export default function Dashboard({
     { name: "Family Law Basic", documents: ["Birth Certificate", "Marriage Certificate", "Financial Statements", "Tax Returns (2023)"] }
   ]);
 
+  // Review page state
+  const [reviewSearch, setReviewSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [casesPerPage] = useState(6);
+
   useEffect(() => {
     if (isOpen) {
       // Small delay to ensure smooth entrance
