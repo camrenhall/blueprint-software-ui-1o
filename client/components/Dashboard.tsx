@@ -10,8 +10,18 @@ interface DashboardProps {
   className?: string;
 }
 
-// Futuristic Case Scroller Component
-const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseSelect: (caseItem: any) => void }) => {
+// Futuristic Case Scroller Component with Integrated Search
+const FuturisticCaseScroller = ({
+  cases,
+  onCaseSelect,
+  searchValue,
+  onSearchChange
+}: {
+  cases: any[],
+  onCaseSelect: (caseItem: any) => void,
+  searchValue: string,
+  onSearchChange: (value: string) => void
+}) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [focusIndex, setFocusIndex] = useState(0);
 
@@ -27,19 +37,19 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
       blur = 0;
     } else if (distance === 1) {
       opacity = 0.7;
-      scale = 0.95;
+      scale = 0.96;
       blur = 1;
     } else if (distance === 2) {
-      opacity = 0.4;
-      scale = 0.9;
+      opacity = 0.5;
+      scale = 0.92;
       blur = 2;
     } else if (distance === 3) {
-      opacity = 0.25;
-      scale = 0.85;
+      opacity = 0.3;
+      scale = 0.88;
       blur = 3;
     } else {
-      opacity = 0.15;
-      scale = 0.8;
+      opacity = 0.2;
+      scale = 0.85;
       blur = 4;
     }
 
@@ -84,18 +94,46 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
   }, [handleScroll]);
 
   return (
-    <div className="relative h-[600px] overflow-hidden bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md">
+    <div className="relative bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md overflow-hidden" style={{ height: 'calc(100vh - 280px)' }}>
+      {/* Integrated Search Header */}
+      <div className="relative bg-white/90 border-b border-slate-200/60 p-4 backdrop-blur-sm z-20">
+        <div className="flex items-center justify-between">
+          <div className="relative flex-1 max-w-md">
+            <input
+              type="text"
+              value={searchValue}
+              onChange={(e) => onSearchChange(e.target.value)}
+              placeholder="Search cases or clients..."
+              className="w-full pl-10 pr-4 py-2.5 bg-white/80 border border-slate-200/60 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 transition-all placeholder-slate-400 text-slate-700 shadow-sm"
+            />
+            <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+          </div>
+          <div className="text-sm text-slate-500 ml-4">
+            {cases.length} case{cases.length !== 1 ? 's' : ''}
+          </div>
+        </div>
+      </div>
+
       {/* Gradient overlays for depth effect */}
-      <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-white via-white/80 to-transparent pointer-events-none z-10" />
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10" />
+      <div className="absolute top-16 left-0 right-0 h-12 bg-gradient-to-b from-white via-white/60 to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none z-10" />
 
       {/* Scrollable container */}
       <div
         ref={scrollContainerRef}
-        className="h-full overflow-y-auto px-6 py-20"
-        style={{ scrollBehavior: 'smooth' }}
+        className="h-full overflow-y-auto px-4 py-6"
+        style={{
+          scrollBehavior: 'smooth',
+          paddingTop: '1rem',
+          paddingBottom: '1rem',
+          marginTop: '64px' // Account for header
+        }}
       >
-        <div className="space-y-8">
+        <div className="space-y-4">
           {cases.map((caseItem, index) => {
             const { opacity, scale, blur } = getCaseEffects(index);
             const isFocused = index === focusIndex;
@@ -104,7 +142,7 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
               <div
                 key={caseItem.caseId + index}
                 data-case-index={index}
-                className="group cursor-pointer transition-all duration-700 ease-out transform-gpu"
+                className="group cursor-pointer transition-all duration-500 ease-out transform-gpu"
                 style={{
                   opacity,
                   transform: `scale(${scale})`,
@@ -114,52 +152,52 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
                 onMouseEnter={() => setFocusIndex(index)}
               >
                 <div className={cn(
-                  "bg-gradient-to-r rounded-2xl p-6 border backdrop-blur-sm transition-all duration-700 relative",
+                  "bg-gradient-to-r rounded-xl p-4 border backdrop-blur-sm transition-all duration-500 relative",
                   isFocused
-                    ? "from-white/90 via-white/95 to-white/90 border-indigo-200/60 shadow-2xl"
-                    : "from-white/60 via-white/70 to-white/60 border-slate-200/40 shadow-lg"
+                    ? "from-white/95 via-white/98 to-white/95 border-indigo-200/60 shadow-xl shadow-indigo-500/5"
+                    : "from-white/70 via-white/80 to-white/70 border-slate-200/40 shadow-md"
                 )}>
                   {/* Case Header */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-4 flex-1">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center space-x-3 flex-1">
                       <div className={cn(
-                        "rounded-xl flex items-center justify-center shadow-lg transition-all duration-500",
+                        "rounded-lg flex items-center justify-center shadow-md transition-all duration-500",
                         isFocused
-                          ? "w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-600"
-                          : "w-10 h-10 bg-gradient-to-br from-indigo-400 to-blue-500"
+                          ? "w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600"
+                          : "w-8 h-8 bg-gradient-to-br from-indigo-400 to-blue-500"
                       )}>
                         <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
                       </div>
-                      <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2 min-w-0">
                         <h3 className={cn(
-                          "font-semibold transition-all duration-500",
+                          "font-semibold transition-all duration-500 truncate",
                           isFocused
-                            ? "text-slate-800 text-lg"
-                            : "text-slate-700 text-base"
+                            ? "text-slate-800 text-base"
+                            : "text-slate-700 text-sm"
                         )}>
                           {caseItem.name}
                         </h3>
-                        <span className="text-slate-500 text-sm font-mono italic">{caseItem.caseId}</span>
+                        <span className="text-slate-500 text-xs font-mono italic flex-shrink-0">{caseItem.caseId}</span>
                       </div>
                     </div>
 
                     {/* Hover indicator */}
                     <div className={cn(
-                      "transition-all duration-300",
+                      "transition-all duration-300 flex-shrink-0",
                       isFocused ? "opacity-100" : "opacity-0 group-hover:opacity-70"
                     )}>
-                      <svg className="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="mb-4">
-                    <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div className="mb-3">
+                    <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
                       <div
                         className={cn(
-                          "h-full rounded-full transition-all duration-700",
+                          "h-full rounded-full transition-all duration-500",
                           caseItem.status === 'Needs Review'
                             ? 'bg-gradient-to-r from-purple-500 to-violet-600'
                             : 'bg-gradient-to-r from-sky-500 to-blue-600'
@@ -170,18 +208,18 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
                   </div>
 
                   {/* Statistics Grid */}
-                  <div className="grid grid-cols-5 gap-4 items-center">
+                  <div className="grid grid-cols-5 gap-3 items-center">
                     {/* Status */}
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-2 h-2 rounded-full ${caseItem.status === 'Needs Review' ? 'bg-purple-500' : 'bg-sky-500'}`} />
+                    <div className="flex items-center space-x-1.5">
+                      <div className={`w-1.5 h-1.5 rounded-full ${caseItem.status === 'Needs Review' ? 'bg-purple-500' : 'bg-sky-500'}`} />
                       <span className={`text-xs font-semibold whitespace-nowrap ${caseItem.status === 'Needs Review' ? 'text-purple-700' : 'text-sky-700'}`}>
                         {caseItem.status}
                       </span>
                     </div>
 
                     {/* Review Info */}
-                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
-                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
+                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <span>
@@ -191,21 +229,21 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
                     </div>
 
                     {/* Progress */}
-                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
-                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
+                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                       </svg>
                       <span>
                         <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[0].trim()}</span>
-                        <span className="text-slate-500 mx-1">/</span>
+                        <span className="text-slate-500 mx-0.5">/</span>
                         <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[1].split(' ')[0].trim()}</span>
                         <span className="text-slate-500 ml-1">{caseItem.progress.split(' ').slice(-2).join(' ')}</span>
                       </span>
                     </div>
 
                     {/* Last Activity */}
-                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
-                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
+                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <span>
@@ -215,8 +253,8 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
                     </div>
 
                     {/* Queue Time */}
-                    <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
-                      <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
+                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                       </svg>
                       <span>
@@ -228,7 +266,7 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
 
                   {/* Subtle glow effect for focused item */}
                   {isFocused && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-300/10 to-purple-300/10 blur-xl -z-10 scale-110 rounded-2xl" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-indigo-300/8 to-purple-300/8 blur-xl -z-10 scale-105 rounded-xl" />
                   )}
                 </div>
               </div>
@@ -238,9 +276,9 @@ const FuturisticCaseScroller = ({ cases, onCaseSelect }: { cases: any[], onCaseS
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-slate-400">
-        <div className="flex flex-col items-center space-y-2">
-          <div className="w-1 h-16 bg-slate-200 rounded-full relative overflow-hidden">
+      <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 z-20">
+        <div className="flex flex-col items-center space-y-1.5">
+          <div className="w-0.5 h-12 bg-slate-200 rounded-full relative overflow-hidden">
             <div
               className="w-full bg-indigo-400 rounded-full transition-all duration-300"
               style={{
