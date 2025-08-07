@@ -146,7 +146,7 @@ export default function Login() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-white/80 mb-2"
+                  className="block text-sm font-medium text-slate-700 mb-2"
                 >
                   Password
                 </label>
@@ -156,12 +156,12 @@ export default function Login() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-200"
                     placeholder="Enter your password"
                     required
                   />
                   <svg
-                    className="absolute right-3 top-3.5 w-5 h-5 text-white/40"
+                    className="absolute right-3 top-3.5 w-5 h-5 text-slate-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
