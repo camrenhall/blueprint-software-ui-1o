@@ -880,7 +880,7 @@ export default function Dashboard({
           return <CaseDetails selectedCase={selectedCase} onBack={() => setSelectedCase(null)} />;
         }
         return (
-          <div className="space-y-8">
+          <div className="space-y-4">
             {/* Compact Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300">
