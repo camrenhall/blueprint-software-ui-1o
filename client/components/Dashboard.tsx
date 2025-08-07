@@ -1586,87 +1586,67 @@ export default function Dashboard({
               )}
             </div>
 
-            {/* Futuristic Template Loading Modal */}
+            {/* Professional Template Modal */}
             {showTemplateModal && (
-              <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-[60] flex items-center justify-center p-4">
-                <div className="relative">
-                  {/* Animated background rings */}
-                  <div className="absolute inset-0 animate-pulse">
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-indigo-500/20 to-purple-600/20 blur-xl"></div>
-                    <div className="absolute inset-2 rounded-3xl bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-lg"></div>
+              <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+                <div className="bg-white rounded-3xl shadow-xl w-full max-w-4xl max-h-[80vh] overflow-hidden border border-slate-200/60">
+                  {/* Clean Header */}
+                  <div className="px-8 py-6 border-b border-slate-100/80">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-2xl font-light text-slate-800 mb-1">Document Templates</h3>
+                        <p className="text-slate-500 text-sm">Pre-configured document collections for common case types</p>
+                      </div>
+                      <button
+                        onClick={() => setShowTemplateModal(false)}
+                        className="text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-xl hover:bg-slate-50"
+                      >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
 
-                  <div className="relative bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl shadow-2xl w-full max-w-3xl overflow-hidden">
-                    {/* Header with holographic effect */}
-                    <div className="relative bg-gradient-to-r from-slate-900/80 to-slate-800/80 p-8">
-                      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-600/10"></div>
-                      <div className="relative flex items-center justify-between">
-                        <div>
-                          <h3 className="text-2xl font-light text-white mb-2">Document Templates</h3>
-                          <p className="text-slate-300/80 text-sm">Choose from our pre-configured document sets</p>
-                        </div>
-                        <button
-                          onClick={() => setShowTemplateModal(false)}
-                          className="text-white/60 hover:text-white transition-all duration-300 p-2 rounded-full hover:bg-white/10"
-                        >
-                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
+                  {/* Template Grid */}
+                  <div className="p-8 max-h-[60vh] overflow-y-auto">
+                    <div className="grid gap-6">
+                      {savedTemplates.map((template, index) => (
+                        <div key={index} className="group border border-slate-200/60 rounded-2xl p-6 hover:border-slate-300/80 hover:shadow-sm transition-all duration-300">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-3 mb-3">
+                                <div className="w-2 h-2 rounded-full bg-slate-400"></div>
+                                <h4 className="font-medium text-slate-800 text-lg">{template.name}</h4>
+                              </div>
+                              <p className="text-slate-500 text-sm mb-4">{template.documents.length} documents included in this template</p>
 
-                    {/* Content with glass morphism */}
-                    <div className="p-8">
-                      <div className="grid gap-4">
-                        {savedTemplates.map((template, index) => (
-                          <div key={index} className="group relative">
-                            {/* Hover glow effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/0 to-purple-600/0 group-hover:from-indigo-500/20 group-hover:to-purple-600/20 rounded-2xl transition-all duration-500 blur-xl"></div>
-
-                            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-500 hover:border-indigo-400/50">
-                              <div className="flex items-center justify-between">
-                                <div className="flex-1 mr-6">
-                                  <div className="flex items-center space-x-3 mb-3">
-                                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-400 to-purple-500"></div>
-                                    <h4 className="font-medium text-white text-lg">{template.name}</h4>
-                                  </div>
-                                  <p className="text-slate-300/70 text-sm mb-4">{template.documents.length} documents included</p>
-
-                                  <div className="flex flex-wrap gap-2">
-                                    {template.documents.slice(0, 4).map((doc, docIndex) => (
-                                      <span key={docIndex} className="bg-white/10 border border-white/20 text-white/90 px-3 py-1.5 rounded-full text-xs font-medium backdrop-blur-sm">
-                                        {doc}
-                                      </span>
-                                    ))}
-                                    {template.documents.length > 4 && (
-                                      <span className="bg-gradient-to-r from-indigo-500/20 to-purple-600/20 border border-indigo-400/30 text-indigo-200 px-3 py-1.5 rounded-full text-xs font-medium">
-                                        +{template.documents.length - 4} more
-                                      </span>
-                                    )}
-                                  </div>
-                                </div>
-
-                                <button
-                                  onClick={() => {
-                                    handleLoadTemplate(template);
-                                    setShowTemplateModal(false);
-                                  }}
-                                  className="relative group/btn bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-6 py-3 rounded-xl transition-all duration-300 font-medium shadow-lg hover:shadow-indigo-500/25"
-                                >
-                                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/0 opacity-0 group-hover/btn:opacity-100 rounded-xl transition-opacity duration-300"></div>
-                                  <span className="relative flex items-center space-x-2">
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                    </svg>
-                                    <span>Load</span>
+                              <div className="flex flex-wrap gap-2 mb-4">
+                                {template.documents.slice(0, 5).map((doc, docIndex) => (
+                                  <span key={docIndex} className="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200/60">
+                                    {doc}
                                   </span>
-                                </button>
+                                ))}
+                                {template.documents.length > 5 && (
+                                  <span className="bg-slate-50 text-slate-500 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200/60">
+                                    +{template.documents.length - 5} more documents
+                                  </span>
+                                )}
                               </div>
                             </div>
+
+                            <button
+                              onClick={() => {
+                                handleLoadTemplate(template);
+                                setShowTemplateModal(false);
+                              }}
+                              className="ml-6 bg-slate-800 hover:bg-slate-900 text-white px-6 py-3 rounded-2xl transition-all font-medium text-sm hover:shadow-lg group-hover:bg-slate-900"
+                            >
+                              Load Template
+                            </button>
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
