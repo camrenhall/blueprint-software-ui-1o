@@ -875,27 +875,27 @@ export default function Dashboard({
             <div className="min-h-[500px]">
               {/* Step 1: Choose Creation Method */}
               {createStep === 1 && (
-                <div className="max-w-4xl mx-auto">
-                  <div className="text-center mb-8">
-                    <h2 className="text-3xl font-light text-slate-700 mb-3">Create New Case</h2>
-                    <p className="text-slate-600">Choose how you'd like to create your case</p>
+                <div className="max-w-5xl mx-auto">
+                  <div className="text-center mb-12">
+                    <h1 className="text-4xl font-light text-slate-800 mb-6">Create New Case</h1>
+                    <p className="text-slate-600 text-lg max-w-2xl mx-auto">Choose your preferred method for creating a new case and requesting documents from your client</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <button
                       onClick={() => {
                         setCreateMethod("ai");
                         setCreateStep(2);
                       }}
-                      className="bg-gradient-to-br from-purple-50/90 to-violet-100/90 hover:from-purple-100/90 hover:to-violet-200/90 transition-all p-8 rounded-2xl border border-purple-200/50 text-center group"
+                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all p-8 rounded-2xl text-center group"
                     >
-                      <div className="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-semibold text-slate-700 mb-3">AI Assist</h3>
-                      <p className="text-slate-600 leading-relaxed">Describe the case, and AI will suggest what documents to send from your available templates</p>
+                      <h3 className="text-xl font-medium text-slate-800 mb-3">AI Assist</h3>
+                      <p className="text-slate-600 leading-relaxed">Describe your case and let AI suggest the most relevant documents to request</p>
                     </button>
 
                     <button
@@ -903,15 +903,15 @@ export default function Dashboard({
                         setCreateMethod("manual");
                         setCreateStep(2);
                       }}
-                      className="bg-gradient-to-br from-sky-50/90 to-blue-100/90 hover:from-sky-100/90 hover:to-blue-200/90 transition-all p-8 rounded-2xl border border-sky-200/50 text-center group"
+                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all p-8 rounded-2xl text-center group"
                     >
-                      <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-semibold text-slate-700 mb-3">Manual Select</h3>
-                      <p className="text-slate-600 leading-relaxed">Manually select requested documents from your document library</p>
+                      <h3 className="text-xl font-medium text-slate-800 mb-3">Manual Select</h3>
+                      <p className="text-slate-600 leading-relaxed">Manually choose documents from your organized document library</p>
                     </button>
 
                     <button
@@ -919,15 +919,15 @@ export default function Dashboard({
                         setCreateMethod("questionnaire");
                         setCreateStep(2);
                       }}
-                      className="bg-gradient-to-br from-indigo-50/90 to-purple-100/90 hover:from-indigo-100/90 hover:to-purple-200/90 transition-all p-8 rounded-2xl border border-indigo-200/50 text-center group"
+                      className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all p-8 rounded-2xl text-center group"
                     >
-                      <div className="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-semibold text-slate-700 mb-3">Questionnaire</h3>
-                      <p className="text-slate-600 leading-relaxed">Select a questionnaire to send to your client</p>
+                      <h3 className="text-xl font-medium text-slate-800 mb-3">Questionnaire</h3>
+                      <p className="text-slate-600 leading-relaxed">Send a structured questionnaire tailored to your case type</p>
                     </button>
                   </div>
                 </div>
