@@ -123,6 +123,7 @@ export default function Index() {
       <Dashboard
         isOpen={dashboardOpen}
         title={dashboardTitle}
+        page={dashboardPage}
         onClose={() => setDashboardOpen(false)}
       />
     </div>
