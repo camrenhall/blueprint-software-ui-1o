@@ -406,48 +406,83 @@ export default function Dashboard({
 
       case "review":
         return (
-          <div className="space-y-6">
-            {/* Stats Cards */}
+          <div className="space-y-8">
+            {/* Enhanced Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-medium text-slate-600">Open Cases</h3>
-                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
+              <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/60 border border-blue-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Open Cases</h3>
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-4xl font-bold text-slate-800 mb-2">34</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="text-sm text-blue-600 font-medium">Frame</div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                  </div>
                 </div>
-                <div className="text-3xl font-light text-slate-800 mb-1">34</div>
-                <div className="text-xs text-slate-500">Frame</div>
               </div>
 
-              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-medium text-slate-600">Needs Review</h3>
-                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                  </svg>
+              <div className="group relative bg-gradient-to-br from-amber-50/80 via-white to-orange-50/60 border border-amber-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Needs Review</h3>
+                    <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-4xl font-bold text-slate-800 mb-2">2</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="text-sm text-amber-600 font-medium">Priority</div>
+                    <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                  </div>
                 </div>
-                <div className="text-3xl font-light text-slate-800">2</div>
               </div>
 
-              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-medium text-slate-600">Idle Clients</h3>
-                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Idle Clients</h3>
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-4xl font-bold text-slate-800 mb-2">5</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="text-sm text-purple-600 font-medium">Waiting</div>
+                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  </div>
                 </div>
-                <div className="text-3xl font-light text-slate-800">5</div>
               </div>
 
-              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-medium text-slate-600">Passed Validation</h3>
-                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+              <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-3xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-semibold text-slate-700 tracking-wide uppercase">Validation Rate</h3>
+                    <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="text-4xl font-bold text-slate-800 mb-2">93.8%</div>
+                  <div className="flex items-center space-x-2">
+                    <div className="text-sm text-emerald-600 font-medium">Excellent</div>
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                  </div>
                 </div>
-                <div className="text-3xl font-light text-slate-800">93.8%</div>
               </div>
             </div>
 
