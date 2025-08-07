@@ -172,12 +172,12 @@ export default function RadialScroller({
                 className={cn(
                   "font-light tracking-wide transition-all duration-300 whitespace-nowrap",
                   isSelected
-                    ? "text-white drop-shadow-lg"
-                    : "text-white/60 hover:text-white/80",
+                  ? "text-slate-800 drop-shadow-md"
+                  : "text-slate-600 hover:text-slate-700",
                   currentLevel === "main"
                     ? "text-4xl md:text-5xl"
                     : "text-3xl md:text-4xl",
-                  isBackItem && "text-white/50",
+                  isBackItem && "text-slate-500",
                 )}
               >
                 {item.title}
@@ -185,7 +185,7 @@ export default function RadialScroller({
 
               {/* Subtle glow effect for selected item */}
               {isSelected && !isBackItem && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 blur-xl -z-10 scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-300/20 to-purple-300/20 blur-xl -z-10 scale-110" />
               )}
             </div>
           );

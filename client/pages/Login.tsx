@@ -101,10 +101,10 @@ export default function Login() {
 
         {/* Login form - Right side */}
         <div className="flex-shrink-0 w-full max-w-lg pr-20 md:pr-32 lg:pr-40">
-          <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-10">
+          <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-white/40 shadow-2xl p-10">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-light text-white mb-2">Sign In</h2>
-              <p className="text-white/60">Access your account</p>
+              <h2 className="text-2xl font-light text-slate-800 mb-2">Sign In</h2>
+              <p className="text-slate-600">Access your account</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -180,7 +180,7 @@ export default function Login() {
               <div className="flex justify-end text-sm">
                 <button
                   type="button"
-                  className="text-blue-300 hover:text-blue-200 transition-colors duration-200"
+                  className="text-blue-600 hover:text-blue-700 transition-colors duration-200"
                 >
                   Forgot password?
                 </button>
@@ -219,8 +219,8 @@ export default function Login() {
       </div>
 
       {/* Subtle corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-br-full" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-400/10 to-transparent rounded-tl-full" />
+      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-transparent rounded-br-full" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-200/20 to-transparent rounded-tl-full" />
     </div>
   );
 }
