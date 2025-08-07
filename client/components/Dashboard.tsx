@@ -1216,17 +1216,15 @@ export default function Dashboard({
                 <div className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
                   <div className="text-center mb-10">
                     <h1 className="text-3xl font-light text-slate-800 mb-4">
-                      {createMethod === "ai" ? "Review AI Suggestions" : "Manage Documents"}
+                      Review AI Suggestions
                     </h1>
                     <p className="text-slate-600 text-lg">
-                      {createMethod === "ai"
-                        ? "Review AI recommendations and customize your document list"
-                        : "Review and organize your selected documents"}
+                      Review AI recommendations and customize your document list
                     </p>
                   </div>
 
-                  {/* Unified Document Management Interface */}
-                  <div className="grid grid-cols-12 gap-8">
+                  {/* Professional Document Management Interface */}
+                  <div className="grid grid-cols-12 gap-12">
                     {/* Available Documents */}
                     <div className="col-span-7">
                       <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg overflow-hidden">
@@ -1933,7 +1931,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        •••• •••• •••• 4242
+                        ���••• •••• •••• 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
