@@ -601,6 +601,9 @@ export default function Dashboard({
         );
 
       case "review":
+        if (selectedCase) {
+          return <CaseDetails selectedCase={selectedCase} onBack={() => setSelectedCase(null)} />;
+        }
         return (
           <div className="space-y-8">
             {/* Enhanced Stats Cards - Reduced Height */}
