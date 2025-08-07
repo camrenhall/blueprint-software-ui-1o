@@ -1141,106 +1141,205 @@ export default function Dashboard({
                 </div>
               )}
 
-              {/* Step 3: Case Information */}
+              {/* Step 3: Document Management (AI Suggestions or Review) */}
               {createStep === 3 && (
-                <div className="max-w-4xl mx-auto">
-                  <div className="text-center mb-8">
-                    <h2 className="text-2xl font-light text-slate-700 mb-3">Case Information</h2>
-                    <p className="text-slate-600">Enter the basic information for this case</p>
-                  </div>
+                <div className="max-w-5xl mx-auto">
+                  {createMethod === "ai" ? (
+                    <div>
+                      <div className="text-center mb-8">
+                        <h2 className="text-2xl font-light text-slate-700 mb-3">AI Document Suggestions</h2>
+                        <p className="text-slate-600">Review AI recommendations and customize your document list</p>
+                      </div>
 
-                  <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-8 rounded-2xl border border-slate-200/40 backdrop-blur-sm">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
-                        <input
-                          type="text"
-                          value={caseInfo.firstName}
-                          onChange={(e) => setCaseInfo({...caseInfo, firstName: e.target.value})}
-                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
-                          placeholder="Enter first name"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
-                        <input
-                          type="text"
-                          value={caseInfo.lastName}
-                          onChange={(e) => setCaseInfo({...caseInfo, lastName: e.target.value})}
-                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
-                          placeholder="Enter last name"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
-                        <input
-                          type="tel"
-                          value={caseInfo.phone}
-                          onChange={(e) => setCaseInfo({...caseInfo, phone: e.target.value})}
-                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
-                          placeholder="(555) 123-4567"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
-                        <input
-                          type="email"
-                          value={caseInfo.email}
-                          onChange={(e) => setCaseInfo({...caseInfo, email: e.target.value})}
-                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
-                          placeholder="client@email.com"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Matter ID</label>
-                        <input
-                          type="text"
-                          value={caseInfo.matterId}
-                          onChange={(e) => setCaseInfo({...caseInfo, matterId: e.target.value})}
-                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
-                          placeholder="MTR-2024-001"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">State</label>
-                        <select
-                          value={caseInfo.state}
-                          onChange={(e) => setCaseInfo({...caseInfo, state: e.target.value})}
-                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
-                        >
-                          <option value="">Select state</option>
-                          <option value="CA">California</option>
-                          <option value="NY">New York</option>
-                          <option value="TX">Texas</option>
-                          <option value="FL">Florida</option>
-                          <option value="IL">Illinois</option>
-                        </select>
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {/* Available Documents */}
+                        <div className="lg:col-span-2">
+                          <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-2xl border border-purple-200/40 backdrop-blur-sm">
+                            <div className="flex items-center justify-between mb-6">
+                              <h3 className="text-lg font-medium text-slate-700">Add More Documents</h3>
+                              <button
+                                onClick={() => setShowTemplateModal(true)}
+                                className="text-purple-600 hover:text-purple-700 flex items-center space-x-2 text-sm"
+                              >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                </svg>
+                                <span>Load Template</span>
+                              </button>
+                            </div>
+
+                            <div className="mb-4">
+                              <input
+                                type="text"
+                                value={documentSearch}
+                                onChange={(e) => setDocumentSearch(e.target.value)}
+                                className="w-full p-3 bg-white/80 rounded-xl border border-slate-200/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all"
+                                placeholder="Search for additional documents..."
+                              />
+                            </div>
+
+                            <div className="max-h-80 overflow-y-auto space-y-2">
+                              {filteredAvailableDocuments.map((doc, index) => (
+                                <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors">
+                                  <span className="text-slate-700">{doc}</span>
+                                  <button
+                                    onClick={() => handleAddDocument(doc)}
+                                    className="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded text-sm font-medium"
+                                  >
+                                    Add
+                                  </button>
+                                </div>
+                              ))}
+                              {filteredAvailableDocuments.length === 0 && (
+                                <div className="text-center py-8 text-slate-500">
+                                  {documentSearch ? "No documents match your search" : "All documents have been added"}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* AI Suggested Documents */}
+                        <div className="lg:col-span-1">
+                          <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-2xl border border-indigo-200/40 backdrop-blur-sm">
+                            <div className="flex items-center justify-between mb-4">
+                              <h3 className="text-lg font-medium text-slate-700">AI Suggestions</h3>
+                              <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-sm font-medium">
+                                {selectedDocuments.length}
+                              </span>
+                            </div>
+
+                            <div className="max-h-80 overflow-y-auto space-y-2">
+                              {selectedDocuments.map((doc, index) => (
+                                <div key={index} className="p-3 bg-white/70 rounded-lg">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <span className="text-slate-700 text-sm font-medium">{doc.name}</span>
+                                    <button
+                                      onClick={() => handleRemoveDocument(doc.name)}
+                                      className="text-red-600 hover:text-red-700"
+                                      title="Remove"
+                                    >
+                                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                      </svg>
+                                    </button>
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <button
+                                      onClick={() => handleToggleOptional(doc.name)}
+                                      className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                                        doc.optional
+                                          ? "bg-yellow-100 text-yellow-700 hover:bg-yellow-200"
+                                          : "bg-green-100 text-green-700 hover:bg-green-200"
+                                      }`}
+                                    >
+                                      {doc.optional ? "Optional" : "Required"}
+                                    </button>
+                                  </div>
+                                </div>
+                              ))}
+                              {selectedDocuments.length === 0 && (
+                                <div className="text-center py-8 text-slate-500 text-sm">
+                                  No documents selected
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  ) : (
+                    // For Manual/Questionnaire - this is the document management step
+                    <div>
+                      <div className="text-center mb-8">
+                        <h2 className="text-2xl font-light text-slate-700 mb-3">Manage Documents</h2>
+                        <p className="text-slate-600">Review and organize your selected documents</p>
+                      </div>
 
-                    <div className="flex justify-between items-center">
-                      <button
-                        onClick={() => setCreateStep(2)}
-                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                        <span>Back</span>
-                      </button>
+                      <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-8 rounded-2xl border border-indigo-200/40 backdrop-blur-sm">
+                        <div className="flex items-center justify-between mb-6">
+                          <div className="flex items-center space-x-4">
+                            <span className="text-lg font-medium text-slate-700">Selected Documents</span>
+                            <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
+                              {selectedDocuments.length} items
+                            </span>
+                          </div>
+                          <button className="text-indigo-600 hover:text-indigo-700 flex items-center space-x-2">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                            </svg>
+                            <span>Save as Template</span>
+                          </button>
+                        </div>
 
-                      <button
-                        onClick={() => setCreateStep(4)}
-                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition-colors"
-                      >
-                        Continue to Documents
-                      </button>
+                        <div className="space-y-3 mb-8 max-h-80 overflow-y-auto">
+                          {selectedDocuments.map((doc, index) => (
+                            <div key={index} className="flex items-center justify-between p-4 bg-white/70 rounded-xl">
+                              <div className="flex items-center space-x-3">
+                                <span className="text-slate-700 font-medium">{doc.name}</span>
+                                {doc.optional && (
+                                  <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
+                                )}
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <button
+                                  onClick={() => handleToggleOptional(doc.name)}
+                                  className="text-yellow-600 hover:text-yellow-700 p-2 rounded-lg hover:bg-yellow-100/50 transition-colors"
+                                  title="Toggle Optional"
+                                >
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                                  </svg>
+                                </button>
+                                <button
+                                  onClick={() => handleRemoveDocument(doc.name)}
+                                  className="text-red-600 hover:text-red-700 p-2 rounded-lg hover:bg-red-100/50 transition-colors"
+                                  title="Remove"
+                                >
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                  </svg>
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+
+                          {selectedDocuments.length === 0 && (
+                            <div className="text-center py-12 text-slate-500">
+                              <svg className="w-12 h-12 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              <p>No documents selected yet</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
+                  )}
+
+                  <div className="flex justify-between items-center mt-8">
+                    <button
+                      onClick={() => setCreateStep(2)}
+                      className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      <span>Back</span>
+                    </button>
+
+                    <button
+                      onClick={() => setCreateStep(4)}
+                      disabled={selectedDocuments.length === 0}
+                      className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-colors"
+                    >
+                      Continue to Case Info
+                    </button>
                   </div>
                 </div>
               )}
 
-              {/* Step 4: Document Management */}
+              {/* Step 4: Case Information */}
               {createStep === 4 && (
                 <div className="max-w-5xl mx-auto">
                   <div className="text-center mb-8">
