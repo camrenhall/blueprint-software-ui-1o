@@ -562,11 +562,7 @@ export default function Dashboard({
                       </svg>
                     </div>
                   </div>
-                  <div className="text-4xl font-bold text-slate-800 mb-2">34</div>
-                  <div className="flex items-center space-x-2">
-                    <div className="text-sm text-blue-600 font-medium">Frame</div>
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                  </div>
+                  <div className="text-4xl font-bold text-slate-800">34</div>
                 </div>
               </div>
 
@@ -581,11 +577,7 @@ export default function Dashboard({
                       </svg>
                     </div>
                   </div>
-                  <div className="text-4xl font-bold text-slate-800 mb-2">2</div>
-                  <div className="flex items-center space-x-2">
-                    <div className="text-sm text-purple-600 font-medium">Priority</div>
-                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                  </div>
+                  <div className="text-4xl font-bold text-slate-800">2</div>
                 </div>
               </div>
 
@@ -600,11 +592,7 @@ export default function Dashboard({
                       </svg>
                     </div>
                   </div>
-                  <div className="text-4xl font-bold text-slate-800 mb-2">5</div>
-                  <div className="flex items-center space-x-2">
-                    <div className="text-sm text-sky-600 font-medium">Waiting</div>
-                    <div className="w-2 h-2 bg-sky-400 rounded-full"></div>
-                  </div>
+                  <div className="text-4xl font-bold text-slate-800">5</div>
                 </div>
               </div>
 
@@ -619,17 +607,13 @@ export default function Dashboard({
                       </svg>
                     </div>
                   </div>
-                  <div className="text-4xl font-bold text-slate-800 mb-2">93.8%</div>
-                  <div className="flex items-center space-x-2">
-                    <div className="text-sm text-indigo-600 font-medium">Excellent</div>
-                    <div className="w-2 h-2 bg-indigo-400 rounded-full"></div>
-                  </div>
+                  <div className="text-4xl font-bold text-slate-800">93.8%</div>
                 </div>
               </div>
             </div>
 
             {/* Enhanced Toolbar */}
-            <div className="bg-gradient-to-r from-white via-slate-50/30 to-white border border-slate-200/60 rounded-3xl p-8 shadow-lg backdrop-blur-sm">
+            <div className="bg-gradient-to-r from-white via-slate-50/30 to-white border border-slate-200/60 rounded-3xl p-4 shadow-lg backdrop-blur-sm">
               <div className="flex items-center justify-between gap-8">
                 <div className="flex items-center space-x-6 min-w-0 flex-shrink">
                   <div className="flex items-center space-x-2 bg-white/60 rounded-2xl p-2 border border-slate-200/40">
@@ -714,11 +698,6 @@ export default function Dashboard({
 
             {/* Enhanced Cases List */}
             <div className="bg-gradient-to-b from-white via-slate-50/30 to-white border border-slate-200/60 rounded-3xl shadow-lg overflow-hidden backdrop-blur-sm">
-              <div className="bg-gradient-to-r from-slate-50/80 to-white px-8 py-4 border-b border-slate-200/60">
-                <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold text-slate-800">Active Cases</h2>
-                </div>
-              </div>
 
               <div className="divide-y divide-slate-100/60">
                 {currentCases.map((caseItem, index) => (
@@ -735,12 +714,8 @@ export default function Dashboard({
                         </div>
                       </div>
 
-                      {/* Actions anchored to same position */}
+                      {/* Actions anchored to same position - removed colored circle */}
                       <div className="flex items-center space-x-3 w-20 justify-end">
-                        <div className={`w-2 h-2 rounded-full ${
-                          caseItem.priority === 'high' ? 'bg-red-400' :
-                          caseItem.priority === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
-                        }`}></div>
                         <button className="opacity-0 group-hover:opacity-100 transition-all duration-200 w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105">
                           <svg className="w-3.5 h-3.5 text-slate-600 hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -757,40 +732,40 @@ export default function Dashboard({
                     {/* Row 2: ALL other information */}
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-8 flex-1">
-                        {/* Status Flag - anchored at position 0 */}
-                        <div className="flex items-center space-x-3 min-w-max" style={{marginLeft: '56px'}}>
+                        {/* Status Flag - aligned with avatar */}
+                        <div className="flex items-center space-x-3 min-w-max">
                           <span className={`inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
                             <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-purple-400' : 'bg-sky-400'}`}></div>
                             {caseItem.status}
                           </span>
-                          <span className="text-slate-600 font-medium text-sm">{caseItem.reviewInfo}</span>
+                          <span className="text-slate-600 font-medium text-sm whitespace-nowrap">{caseItem.reviewInfo}</span>
                         </div>
 
-                        {/* Progress - anchored at fixed position */}
-                        <div className="flex items-center space-x-3 min-w-max">
+                        {/* Progress - spaced further */}
+                        <div className="flex items-center space-x-3 min-w-max ml-12">
                           <div className="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
                             <div
                               className="h-full bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full transition-all duration-500"
                               style={{ width: `${caseItem.progressPercent}%` }}
                             ></div>
                           </div>
-                          <span className="text-slate-600 font-medium text-sm">{caseItem.progress}</span>
+                          <span className="text-slate-600 font-medium text-sm whitespace-nowrap">{caseItem.progress}</span>
                         </div>
 
-                        {/* Last Activity - anchored at fixed position */}
-                        <div className="flex items-center space-x-2 text-sm min-w-max">
+                        {/* Last Activity - spaced further with wider text area */}
+                        <div className="flex items-center space-x-2 text-sm min-w-max ml-12">
                           <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span className="text-slate-600 w-20 text-left">{caseItem.lastActivity}</span>
+                          <span className="text-slate-600 w-28 text-left whitespace-nowrap">{caseItem.lastActivity}</span>
                         </div>
 
-                        {/* Queue Time - anchored at fixed position */}
-                        <div className="flex items-center space-x-2 text-sm min-w-max">
+                        {/* Queue Time - spaced further with wider text area */}
+                        <div className="flex items-center space-x-2 text-sm min-w-max ml-12">
                           <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
                           </svg>
-                          <span className="text-slate-500 w-24 text-left">{caseItem.queueTime}</span>
+                          <span className="text-slate-500 w-32 text-left whitespace-nowrap">{caseItem.queueTime}</span>
                         </div>
                       </div>
 
