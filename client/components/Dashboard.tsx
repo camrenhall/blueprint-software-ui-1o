@@ -699,9 +699,9 @@ export default function Dashboard({
             {/* Enhanced Cases List */}
             <div className="bg-gradient-to-b from-white via-slate-50/30 to-white border border-slate-200/60 rounded-3xl shadow-lg overflow-hidden backdrop-blur-sm">
 
-              <div className="divide-y divide-slate-100/60">
+              <div className="space-y-4 p-4">
                 {currentCases.map((caseItem, index) => (
-                  <div key={index} className="group p-4 hover:bg-gradient-to-r hover:from-slate-50/50 hover:to-transparent transition-all duration-300 cursor-pointer">
+                  <div key={index} className="group bg-white/50 rounded-2xl p-4 hover:bg-white/70 transition-all duration-300 cursor-pointer border border-slate-100/60">
                     {/* Row 1: Name and Case ID ONLY */}
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center space-x-4 flex-1">
@@ -714,7 +714,7 @@ export default function Dashboard({
                         </div>
                       </div>
 
-                      {/* Actions anchored to same position - removed colored circle */}
+                      {/* Actions anchored to same position */}
                       <div className="flex items-center space-x-3 w-20 justify-end">
                         <button className="opacity-0 group-hover:opacity-100 transition-all duration-200 w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105">
                           <svg className="w-3.5 h-3.5 text-slate-600 hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -729,9 +729,9 @@ export default function Dashboard({
                       </div>
                     </div>
 
-                    {/* Row 2: Progress Bar ONLY - Full Width with Status Color */}
-                    <div className="mb-2 px-14">
-                      <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                    {/* Row 2: Progress Bar ONLY - Thinner and aligned with avatar */}
+                    <div className="mb-3">
+                      <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-500 ${
                             caseItem.status === 'Needs Review'
@@ -743,44 +743,50 @@ export default function Dashboard({
                       </div>
                     </div>
 
-                    {/* Row 3: ALL other information - evenly spaced */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center justify-between flex-1 pr-20">
-                        {/* Status Flag - aligned with avatar, fixed width for consistent positioning */}
-                        <div className="flex items-center space-x-3 min-w-max">
-                          <span className={`inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
-                            <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-purple-400' : 'bg-sky-400'}`}></div>
-                            {caseItem.status}
-                          </span>
-                          <span className="text-slate-600 font-medium text-sm whitespace-nowrap w-28">{caseItem.reviewInfo}</span>
-                        </div>
+                    {/* Row 3: ALL other information with consistent grid positioning */}
+                    <div className="grid grid-cols-12 gap-4 items-center">
+                      {/* Status Flag - no bubble, just text and icon - cols 1-3 */}
+                      <div className="col-span-3 flex items-center space-x-2">
+                        <div className={`w-2 h-2 rounded-full ${caseItem.status === 'Needs Review' ? 'bg-purple-500' : 'bg-sky-500'}`}></div>
+                        <span className={`text-xs font-semibold whitespace-nowrap ${caseItem.status === 'Needs Review' ? 'text-purple-700' : 'text-sky-700'}`}>
+                          {caseItem.status}
+                        </span>
+                      </div>
 
-                        {/* Progress Text - updated with spaces */}
-                        <div className="flex items-center text-sm min-w-max">
-                          <span className="text-slate-600 font-medium whitespace-nowrap">{caseItem.progress.replace('/', ' / ')}</span>
-                        </div>
+                      {/* Review Info with dark numbers - cols 4-5 */}
+                      <div className="col-span-2 text-sm whitespace-nowrap">
+                        <span className="text-slate-800 font-semibold">{caseItem.reviewInfo.split(' ')[0]}</span>
+                        <span className="text-slate-500 ml-1">{caseItem.reviewInfo.split(' ').slice(1).join(' ')}</span>
+                      </div>
 
-                        {/* Last Activity - number dark, descriptor light */}
-                        <div className="flex items-center space-x-2 text-sm min-w-max">
-                          <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <span className="whitespace-nowrap">
-                            <span className="text-slate-800 font-semibold">{caseItem.lastActivity.split(' ')[0]}</span>
-                            <span className="text-slate-500 ml-1">{caseItem.lastActivity.split(' ').slice(1).join(' ')}</span>
-                          </span>
-                        </div>
+                      {/* Progress Text with consistent positioning - cols 6-7 */}
+                      <div className="col-span-2 text-sm whitespace-nowrap">
+                        <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[0].trim()}</span>
+                        <span className="text-slate-500 mx-1">/</span>
+                        <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[1].split(' ')[0].trim()}</span>
+                        <span className="text-slate-500 ml-1">{caseItem.progress.split(' ').slice(-2).join(' ')}</span>
+                      </div>
 
-                        {/* Queue Time - number dark, descriptor light */}
-                        <div className="flex items-center space-x-2 text-sm min-w-max">
-                          <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
-                          </svg>
-                          <span className="whitespace-nowrap">
-                            <span className="text-slate-800 font-semibold">{caseItem.queueTime.split(' ')[0]}</span>
-                            <span className="text-slate-500 ml-1">{caseItem.queueTime.split(' ').slice(1).join(' ')}</span>
-                          </span>
-                        </div>
+                      {/* Last Activity with dark numbers - cols 8-9 */}
+                      <div className="col-span-2 flex items-center space-x-2 text-sm whitespace-nowrap">
+                        <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>
+                          <span className="text-slate-800 font-semibold">{caseItem.lastActivity.split(' ')[0]}</span>
+                          <span className="text-slate-500 ml-1">{caseItem.lastActivity.split(' ').slice(1).join(' ')}</span>
+                        </span>
+                      </div>
+
+                      {/* Queue Time with dark numbers - cols 10-11 */}
+                      <div className="col-span-2 flex items-center space-x-2 text-sm whitespace-nowrap">
+                        <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
+                        </svg>
+                        <span>
+                          <span className="text-slate-800 font-semibold">{caseItem.queueTime.split(' ')[0]}</span>
+                          <span className="text-slate-500 ml-1">{caseItem.queueTime.split(' ').slice(1).join(' ')}</span>
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -2113,7 +2119,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        ���••• ��••• •••• 4242
+                        ���••• •••• •••• 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
