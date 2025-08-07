@@ -560,116 +560,184 @@ export default function Dashboard({
               </div>
             </div>
 
-            {/* Cases List */}
-            <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
-              <div className="divide-y divide-slate-100">
+            {/* Enhanced Cases List */}
+            <div className="bg-gradient-to-b from-white via-slate-50/30 to-white border border-slate-200/60 rounded-3xl shadow-lg overflow-hidden backdrop-blur-sm">
+              <div className="bg-gradient-to-r from-slate-50/80 to-white px-8 py-4 border-b border-slate-200/60">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-lg font-semibold text-slate-800">Active Cases</h2>
+                  <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
+                      <span className="text-slate-600">Live Updates</span>
+                    </div>
+                    <button className="text-slate-500 hover:text-slate-700 transition-colors">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="divide-y divide-slate-100/60">
                 {[
                   {
                     name: "Rosen, Claire",
                     caseId: "#BTYREV50101",
                     status: "Needs Review",
-                    statusColor: "text-blue-600",
-                    statusBg: "bg-blue-50",
+                    statusColor: "text-blue-700",
+                    statusBg: "bg-gradient-to-r from-blue-50 to-indigo-50",
+                    statusBorder: "border-blue-200",
                     reviewInfo: "1 Review Required",
                     progress: "5/5 Tasks Complete",
+                    progressPercent: 100,
                     lastActivity: "16 Minutes Ago",
-                    queueTime: "11 Days in Queue"
+                    queueTime: "11 Days in Queue",
+                    priority: "high",
+                    avatar: "RC"
                   },
                   {
                     name: "Martinez, Elena",
                     caseId: "#QWXPLO82394",
                     status: "Needs Review",
-                    statusColor: "text-blue-600",
-                    statusBg: "bg-blue-50",
+                    statusColor: "text-blue-700",
+                    statusBg: "bg-gradient-to-r from-blue-50 to-indigo-50",
+                    statusBorder: "border-blue-200",
                     reviewInfo: "1 Review Required",
                     progress: "3/3 Tasks Complete",
+                    progressPercent: 100,
                     lastActivity: "2 Days Ago",
-                    queueTime: "7 Days in Queue"
+                    queueTime: "7 Days in Queue",
+                    priority: "medium",
+                    avatar: "ME"
                   },
                   {
                     name: "Thompson, David",
                     caseId: "#MNZFGH45672",
                     status: "Awaiting Documents",
-                    statusColor: "text-amber-600",
-                    statusBg: "bg-amber-50",
+                    statusColor: "text-amber-700",
+                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
+                    statusBorder: "border-amber-200",
                     reviewInfo: "1 Outstanding",
                     progress: "4/5 Tasks Complete",
+                    progressPercent: 80,
                     lastActivity: "5 Hours Ago",
-                    queueTime: "13 Days in Queue"
+                    queueTime: "13 Days in Queue",
+                    priority: "high",
+                    avatar: "TD"
                   },
                   {
                     name: "Anderson, Sarah",
                     caseId: "#PLKJHG91238",
                     status: "Awaiting Documents",
-                    statusColor: "text-amber-600",
-                    statusBg: "bg-amber-50",
+                    statusColor: "text-amber-700",
+                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
+                    statusBorder: "border-amber-200",
                     reviewInfo: "1 Outstanding",
                     progress: "3/7 Tasks Complete",
+                    progressPercent: 43,
                     lastActivity: "Yesterday",
-                    queueTime: "4 Days in Queue"
+                    queueTime: "4 Days in Queue",
+                    priority: "medium",
+                    avatar: "AS"
                   },
                   {
                     name: "Chen, Michael",
                     caseId: "#RTYV8N67845",
                     status: "Awaiting Documents",
-                    statusColor: "text-amber-600",
-                    statusBg: "bg-amber-50",
+                    statusColor: "text-amber-700",
+                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
+                    statusBorder: "border-amber-200",
                     reviewInfo: "1 Outstanding",
                     progress: "2/9 Tasks Complete",
+                    progressPercent: 22,
                     lastActivity: "2 Days Ago",
-                    queueTime: "5 Days in Queue"
+                    queueTime: "5 Days in Queue",
+                    priority: "low",
+                    avatar: "CM"
                   },
                   {
                     name: "Williams, Jessica",
                     caseId: "#ASDFGK23756",
                     status: "Awaiting Documents",
-                    statusColor: "text-amber-600",
-                    statusBg: "bg-amber-50",
+                    statusColor: "text-amber-700",
+                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
+                    statusBorder: "border-amber-200",
                     reviewInfo: "1 Outstanding",
                     progress: "0/4 Tasks Complete",
+                    progressPercent: 0,
                     lastActivity: "3 Days Ago",
-                    queueTime: "7 Days in Queue"
+                    queueTime: "7 Days in Queue",
+                    priority: "low",
+                    avatar: "WJ"
                   }
                 ].map((caseItem, index) => (
-                  <div key={index} className="p-6 hover:bg-slate-50/50 transition-colors group">
+                  <div key={index} className="group p-6 hover:bg-gradient-to-r hover:from-slate-50/50 hover:to-transparent transition-all duration-300 cursor-pointer">
                     <div className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-4 mb-3">
-                          <h3 className="font-medium text-slate-800">{caseItem.name}</h3>
-                          <span className="text-slate-500 text-sm">{caseItem.caseId}</span>
+                      <div className="flex items-center space-x-6 flex-1">
+                        {/* Avatar & Name */}
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                            <span className="text-white font-semibold text-sm">{caseItem.avatar}</span>
+                          </div>
+                          <div>
+                            <h3 className="font-semibold text-slate-800 text-lg group-hover:text-indigo-700 transition-colors">{caseItem.name}</h3>
+                            <span className="text-slate-500 text-sm font-mono">{caseItem.caseId}</span>
+                          </div>
                         </div>
 
-                        <div className="flex items-center space-x-6 text-sm">
-                          <div className="flex items-center space-x-2">
-                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${caseItem.statusBg} ${caseItem.statusColor}`}>
+                        {/* Status & Info */}
+                        <div className="flex items-center space-x-8">
+                          <div className="flex items-center space-x-3">
+                            <span className={`inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
+                              <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-blue-400' : 'bg-amber-400'}`}></div>
                               {caseItem.status}
                             </span>
-                            <span className="text-slate-600">{caseItem.reviewInfo}</span>
+                            <span className="text-slate-600 font-medium">{caseItem.reviewInfo}</span>
                           </div>
 
-                          <div className="flex items-center space-x-2">
-                            <span className="text-slate-600">{caseItem.progress}</span>
+                          {/* Progress */}
+                          <div className="flex items-center space-x-3">
+                            <div className="w-24 h-2 bg-slate-200 rounded-full overflow-hidden">
+                              <div
+                                className="h-full bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full transition-all duration-500"
+                                style={{ width: `${caseItem.progressPercent}%` }}
+                              ></div>
+                            </div>
+                            <span className="text-slate-600 font-medium text-sm min-w-max">{caseItem.progress}</span>
                           </div>
 
-                          <div className="flex items-center space-x-2">
-                            <span className="text-slate-500">{caseItem.lastActivity}</span>
-                            <span className="text-slate-400">Last Activity</span>
-                          </div>
-
-                          <div className="flex items-center space-x-2">
-                            <span className="text-slate-500">{caseItem.queueTime}</span>
+                          {/* Timing */}
+                          <div className="flex items-center space-x-6 text-sm">
+                            <div className="flex items-center space-x-2">
+                              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span className="text-slate-600 font-medium">{caseItem.lastActivity}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
+                              </svg>
+                              <span className="text-slate-500">{caseItem.queueTime}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
 
+                      {/* Actions */}
                       <div className="flex items-center space-x-3">
-                        <button className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-600">
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className={`w-2 h-2 rounded-full ${
+                          caseItem.priority === 'high' ? 'bg-red-400' :
+                          caseItem.priority === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
+                        }`}></div>
+                        <button className="opacity-0 group-hover:opacity-100 transition-all duration-200 w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105">
+                          <svg className="w-4 h-4 text-slate-600 hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </button>
-                        <button className="text-slate-400 hover:text-slate-600 transition-colors">
-                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <button className="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:scale-105 transition-all duration-200">
+                          <svg className="w-4 h-4 text-slate-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
                           </svg>
                         </button>
