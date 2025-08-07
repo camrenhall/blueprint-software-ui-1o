@@ -2088,7 +2088,7 @@ export default function Dashboard({
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex items-center justify-end pr-8 md:pr-16 transition-all duration-500",
+        "fixed inset-0 z-50 flex items-center justify-center px-6 md:px-8 lg:px-12 transition-all duration-500",
         className,
       )}
     >
@@ -2101,10 +2101,10 @@ export default function Dashboard({
         onClick={onClose}
       />
 
-      {/* Dashboard Panel */}
+      {/* Dashboard Panel - Full Width */}
       <div
         className={cn(
-          "relative w-full max-w-4xl h-[85vh] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl transition-all duration-500 ease-out flex flex-col",
+          "relative w-full h-[90vh] bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl transition-all duration-500 ease-out flex flex-col",
           isVisible
             ? "transform translate-x-0 opacity-100 scale-100"
             : "transform translate-x-full opacity-0 scale-95",
