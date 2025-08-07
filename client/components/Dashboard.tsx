@@ -755,7 +755,7 @@ export default function Dashboard({
         )}
       >
         {/* Navigation Bar */}
-        <div className="bg-white border-b border-gray-100 rounded-t-2xl">
+        <div className="bg-white border-b border-slate-100 rounded-t-2xl">
           <div className="flex items-center justify-between px-8 py-6">
             <div className="flex items-center space-x-12">
               <h2 className="text-2xl font-light text-slate-800 tracking-wide">
@@ -814,8 +814,8 @@ export default function Dashboard({
 
                 {/* Notifications Dropdown */}
                 {showNotifications && (
-                  <div className="absolute top-12 right-0 w-80 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
-                    <div className="p-4 border-b border-gray-100">
+                  <div className="absolute top-12 right-0 w-80 bg-white rounded-xl shadow-xl border border-slate-200/50 z-50 transition-all duration-200">
+                    <div className="p-4 border-b border-slate-100">
                       <h3 className="font-medium text-slate-800">
                         Notifications
                       </h3>
@@ -845,7 +845,7 @@ export default function Dashboard({
                       ].map((notification, index) => (
                         <div
                           key={index}
-                          className="p-3 hover:bg-gray-50 border-b border-gray-50 last:border-0"
+                          className="p-3 hover:bg-gray-50 border-b border-slate-50 last:border-0"
                         >
                           <div className="text-sm text-slate-700">
                             {notification.text}
@@ -856,7 +856,7 @@ export default function Dashboard({
                         </div>
                       ))}
                     </div>
-                    <div className="p-3 border-t border-gray-100">
+                    <div className="p-3 border-t border-slate-100">
                       <button className="text-sm text-blue-600 hover:text-blue-700">
                         View all notifications
                       </button>
@@ -898,8 +898,8 @@ export default function Dashboard({
 
                 {/* Settings Dropdown */}
                 {showSettings && (
-                  <div className="absolute top-12 right-0 w-64 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
-                    <div className="p-4 border-b border-gray-100">
+                  <div className="absolute top-12 right-0 w-64 bg-white rounded-xl shadow-xl border border-slate-200/50 z-50 transition-all duration-200">
+                    <div className="p-4 border-b border-slate-100">
                       <h3 className="font-medium text-slate-800">Settings</h3>
                     </div>
                     <div className="p-2">
@@ -1023,7 +1023,7 @@ export default function Dashboard({
 
               {/* User Profile */}
               <div className="relative" data-dropdown>
-                <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
+                <div className="flex items-center space-x-3 pl-4 border-l border-slate-200">
                   <div className="text-right hidden sm:block">
                     <div className="text-sm font-medium text-slate-700">
                       Alex Chen
@@ -1044,8 +1044,8 @@ export default function Dashboard({
 
                 {/* Profile Dropdown */}
                 {showProfile && (
-                  <div className="absolute top-12 right-0 w-72 bg-white rounded-xl shadow-xl border border-gray-200/50 z-50 transition-all duration-200">
-                    <div className="p-4 border-b border-gray-100">
+                  <div className="absolute top-12 right-0 w-72 bg-white rounded-xl shadow-xl border border-slate-200/50 z-50 transition-all duration-200">
+                    <div className="p-4 border-b border-slate-100">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
                           <span className="text-white font-medium">AC</span>
