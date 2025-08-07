@@ -1089,6 +1089,93 @@ export default function Dashboard({
                 </div>
               </div>
             </div>
+
+            {/* Review Case Modal */}
+            {showReviewCase && (
+              <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+                  <div className="flex items-center justify-between p-6 border-b border-slate-200">
+                    <h3 className="text-xl font-semibold text-slate-700">Review New Case</h3>
+                    <button
+                      onClick={() => setShowReviewCase(false)}
+                      className="text-slate-500 hover:text-slate-700 transition-colors"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
+                    <div className="space-y-6">
+                      {/* Case Summary */}
+                      <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40">
+                        <h4 className="text-lg font-medium text-slate-700 mb-4">Case Summary</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                          <div><span className="font-medium text-slate-600">Creation Method:</span> {createMethod === "ai" ? "AI Assist" : createMethod === "manual" ? "Manual Select" : "Questionnaire"}</div>
+                          <div><span className="font-medium text-slate-600">Total Documents:</span> {selectedDocuments.length}</div>
+                          <div><span className="font-medium text-slate-600">Required Documents:</span> {selectedDocuments.filter(doc => !doc.optional).length}</div>
+                          <div><span className="font-medium text-slate-600">Optional Documents:</span> {selectedDocuments.filter(doc => doc.optional).length}</div>
+                        </div>
+                      </div>
+
+                      {/* Client Information */}
+                      <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
+                        <h4 className="text-lg font-medium text-slate-700 mb-4">Client Information</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                          <div><span className="font-medium text-slate-600">Name:</span> [Client Name]</div>
+                          <div><span className="font-medium text-slate-600">Email:</span> [Client Email]</div>
+                          <div><span className="font-medium text-slate-600">Phone:</span> [Client Phone]</div>
+                          <div><span className="font-medium text-slate-600">Matter ID:</span> [Matter ID]</div>
+                          <div><span className="font-medium text-slate-600">State:</span> [State]</div>
+                          <div><span className="font-medium text-slate-600">Language:</span> [Language]</div>
+                        </div>
+                      </div>
+
+                      {/* Document List */}
+                      <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40">
+                        <h4 className="text-lg font-medium text-slate-700 mb-4">Requested Documents</h4>
+                        <div className="space-y-2">
+                          {selectedDocuments.map((doc, index) => (
+                            <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg">
+                              <div className="flex items-center space-x-3">
+                                <span className="text-slate-700">{doc.name}</span>
+                                {doc.optional && (
+                                  <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
+                                )}
+                              </div>
+                              <span className="text-sm text-slate-500">
+                                {doc.optional ? "Optional" : "Required"}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* AI Description (if AI was used) */}
+                      {createMethod === "ai" && aiDescription && (
+                        <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
+                          <h4 className="text-lg font-medium text-slate-700 mb-4">AI Case Description</h4>
+                          <p className="text-slate-600 bg-white/70 p-4 rounded-lg">{aiDescription}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-end space-x-3 p-6 border-t border-slate-200 bg-slate-50/50">
+                    <button
+                      onClick={() => setShowReviewCase(false)}
+                      className="px-4 py-2 text-slate-600 hover:text-slate-700 transition-colors"
+                    >
+                      Back to Edit
+                    </button>
+                    <button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6 py-2 rounded-lg transition-all font-medium">
+                      Create Case
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         );
 
