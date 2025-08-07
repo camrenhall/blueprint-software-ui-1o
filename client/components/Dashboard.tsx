@@ -633,13 +633,13 @@ export default function Dashboard({
 
                   <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
                     <span className="font-medium text-slate-700">Showing</span>
-                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-lg font-semibold">{Math.min(casesPerPage, allCases.length - (currentPage - 1) * casesPerPage)}</span>
-                    <span className="text-slate-600">of {allCases.length} cases</span>
+                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-lg font-semibold">{Math.min(casesPerPage, filteredCases.length - (currentPage - 1) * casesPerPage)}</span>
+                    <span className="text-slate-600">of {filteredCases.length} cases</span>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-8 min-w-0 flex-1 justify-end">
-                  <div className="relative flex-1 max-w-md">
+                <div className="flex items-center space-x-8">
+                  <div className="relative w-80">
                     <input
                       type="text"
                       value={reviewSearch}
@@ -654,8 +654,8 @@ export default function Dashboard({
                     </div>
                   </div>
 
-                  {/* Enhanced Pagination */}
-                  <div className="flex items-center space-x-2 bg-white/60 rounded-2xl p-2 border border-slate-200/40 flex-shrink-0">
+                  {/* Enhanced Pagination - Fixed width */}
+                  <div className="flex items-center space-x-2 bg-white/60 rounded-2xl p-2 border border-slate-200/40 w-60 justify-center">
                     <button
                       onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                       disabled={currentPage === 1}
@@ -703,7 +703,7 @@ export default function Dashboard({
                 {currentCases.map((caseItem, index) => (
                   <div key={index} className="group p-4 hover:bg-gradient-to-r hover:from-slate-50/50 hover:to-transparent transition-all duration-300 cursor-pointer">
                     {/* Row 1: Name and Case ID ONLY */}
-                    <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center space-x-4 flex-1">
                         <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
                           <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
@@ -729,48 +729,59 @@ export default function Dashboard({
                       </div>
                     </div>
 
-                    {/* Row 2: ALL other information */}
+                    {/* Row 2: Progress Bar ONLY - Full Width with Status Color */}
+                    <div className="mb-2 px-14">
+                      <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all duration-500 ${
+                            caseItem.status === 'Needs Review'
+                              ? 'bg-gradient-to-r from-purple-500 to-violet-600'
+                              : 'bg-gradient-to-r from-sky-500 to-blue-600'
+                          }`}
+                          style={{ width: `${caseItem.progressPercent}%` }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    {/* Row 3: ALL other information - evenly spaced */}
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-8 flex-1">
-                        {/* Status Flag - aligned with avatar */}
+                      <div className="flex items-center justify-between flex-1 pr-20">
+                        {/* Status Flag - aligned with avatar, fixed width for consistent positioning */}
                         <div className="flex items-center space-x-3 min-w-max">
                           <span className={`inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
                             <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-purple-400' : 'bg-sky-400'}`}></div>
                             {caseItem.status}
                           </span>
-                          <span className="text-slate-600 font-medium text-sm whitespace-nowrap">{caseItem.reviewInfo}</span>
+                          <span className="text-slate-600 font-medium text-sm whitespace-nowrap w-28">{caseItem.reviewInfo}</span>
                         </div>
 
-                        {/* Progress - spaced further */}
-                        <div className="flex items-center space-x-3 min-w-max ml-12">
-                          <div className="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                            <div
-                              className="h-full bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full transition-all duration-500"
-                              style={{ width: `${caseItem.progressPercent}%` }}
-                            ></div>
-                          </div>
-                          <span className="text-slate-600 font-medium text-sm whitespace-nowrap">{caseItem.progress}</span>
+                        {/* Progress Text - updated with spaces */}
+                        <div className="flex items-center text-sm min-w-max">
+                          <span className="text-slate-600 font-medium whitespace-nowrap">{caseItem.progress.replace('/', ' / ')}</span>
                         </div>
 
-                        {/* Last Activity - spaced further with wider text area */}
-                        <div className="flex items-center space-x-2 text-sm min-w-max ml-12">
+                        {/* Last Activity - number dark, descriptor light */}
+                        <div className="flex items-center space-x-2 text-sm min-w-max">
                           <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          <span className="text-slate-600 w-28 text-left whitespace-nowrap">{caseItem.lastActivity}</span>
+                          <span className="whitespace-nowrap">
+                            <span className="text-slate-800 font-semibold">{caseItem.lastActivity.split(' ')[0]}</span>
+                            <span className="text-slate-500 ml-1">{caseItem.lastActivity.split(' ').slice(1).join(' ')}</span>
+                          </span>
                         </div>
 
-                        {/* Queue Time - spaced further with wider text area */}
-                        <div className="flex items-center space-x-2 text-sm min-w-max ml-12">
+                        {/* Queue Time - number dark, descriptor light */}
+                        <div className="flex items-center space-x-2 text-sm min-w-max">
                           <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
                           </svg>
-                          <span className="text-slate-500 w-32 text-left whitespace-nowrap">{caseItem.queueTime}</span>
+                          <span className="whitespace-nowrap">
+                            <span className="text-slate-800 font-semibold">{caseItem.queueTime.split(' ')[0]}</span>
+                            <span className="text-slate-500 ml-1">{caseItem.queueTime.split(' ').slice(1).join(' ')}</span>
+                          </span>
                         </div>
                       </div>
-
-                      {/* Spacer to maintain consistent right margin */}
-                      <div className="w-20"></div>
                     </div>
                   </div>
                 ))}
@@ -2102,7 +2113,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        ���••• •••• •••• 4242
+                        ���••• ��••• •••• 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
