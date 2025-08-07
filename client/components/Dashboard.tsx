@@ -159,52 +159,52 @@ export default function Dashboard({
               <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
                 {[
                   {
-                    action: "New user registration",
+                    action: "Case #247 filed successfully",
                     time: "2 minutes ago",
                     type: "success",
                   },
                   {
-                    action: "System optimization completed",
+                    action: "Court hearing scheduled",
                     time: "15 minutes ago",
                     type: "info",
                   },
                   {
-                    action: "Data sync in progress",
+                    action: "Document review pending",
                     time: "32 minutes ago",
                     type: "warning",
                   },
                   {
-                    action: "Performance metrics updated",
+                    action: "Case #243 won in court",
                     time: "1 hour ago",
                     type: "success",
                   },
                   {
-                    action: "Database backup completed",
+                    action: "Client consultation completed",
                     time: "2 hours ago",
                     type: "success",
                   },
                   {
-                    action: "New feature deployed",
+                    action: "Evidence analysis finished",
                     time: "3 hours ago",
                     type: "info",
                   },
                   {
-                    action: "Security scan completed",
+                    action: "Settlement negotiations ongoing",
                     time: "4 hours ago",
-                    type: "success",
-                  },
-                  {
-                    action: "Cache optimization running",
-                    time: "5 hours ago",
                     type: "warning",
                   },
                   {
-                    action: "User feedback received",
+                    action: "Legal research completed",
+                    time: "5 hours ago",
+                    type: "success",
+                  },
+                  {
+                    action: "Expert witness contacted",
                     time: "6 hours ago",
                     type: "info",
                   },
                   {
-                    action: "API response time improved",
+                    action: "Case brief submitted",
                     time: "7 hours ago",
                     type: "success",
                   },
