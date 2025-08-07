@@ -407,256 +407,229 @@ export default function Dashboard({
       case "review":
         return (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Performance Chart */}
-              <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Performance Trends
-                </h3>
-                <div className="h-64 flex items-center justify-center">
-                  <div className="w-full h-full bg-gradient-to-t from-blue-100/80 to-blue-50/80 rounded-lg flex items-end justify-center p-4 space-x-2">
-                    {Array.from({ length: 12 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="bg-gradient-to-t from-blue-400 to-indigo-400 rounded-t opacity-80"
-                        style={{
-                          height: `${30 + Math.random() * 50}%`,
-                          width: "6%",
-                        }}
-                      />
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-medium text-slate-600">Open Cases</h3>
+                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <div className="text-3xl font-light text-slate-800 mb-1">34</div>
+                <div className="text-xs text-slate-500">Frame</div>
+              </div>
+
+              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-medium text-slate-600">Needs Review</h3>
+                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                  </svg>
+                </div>
+                <div className="text-3xl font-light text-slate-800">2</div>
+              </div>
+
+              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-medium text-slate-600">Idle Clients</h3>
+                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="text-3xl font-light text-slate-800">5</div>
+              </div>
+
+              <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-medium text-slate-600">Passed Validation</h3>
+                  <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div className="text-3xl font-light text-slate-800">93.8%</div>
+              </div>
+            </div>
+
+            {/* Toolbar */}
+            <div className="bg-white/95 border border-slate-200/40 rounded-3xl p-6 shadow-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <button className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                    <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                  </button>
+                  <button className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                    <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                  </button>
+                  <button className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                    <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="w-64 pl-10 pr-4 py-2 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
+                    />
+                    <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+
+                  {/* Pagination */}
+                  <div className="flex items-center space-x-2">
+                    <button className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                      <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <button
+                        key={num}
+                        className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-medium transition-colors ${
+                          num === 1
+                            ? "bg-slate-800 text-white"
+                            : "bg-slate-100 hover:bg-slate-200 text-slate-600"
+                        }`}
+                      >
+                        {num}
+                      </button>
                     ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* User Demographics */}
-              <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  User Demographics
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-600">Desktop Users</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-20 h-2 bg-white/40 rounded-full">
-                        <div className="w-16 h-2 bg-purple-400 rounded-full"></div>
-                      </div>
-                      <span className="text-sm text-slate-500">78%</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-600">Mobile Users</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-20 h-2 bg-white/40 rounded-full">
-                        <div className="w-12 h-2 bg-blue-400 rounded-full"></div>
-                      </div>
-                      <span className="text-sm text-slate-500">22%</span>
-                    </div>
+                    <button className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                      <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Detailed Metrics */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {[
-                {
-                  label: "Page Views",
-                  value: "125.4K",
-                  change: "+12%",
-                  icon: "eye",
-                },
-                {
-                  label: "Bounce Rate",
-                  value: "23.7%",
-                  change: "-3%",
-                  icon: "refresh",
-                },
-                {
-                  label: "Session Duration",
-                  value: "4m 32s",
-                  change: "+8%",
-                  icon: "clock",
-                },
-                {
-                  label: "Conversion Rate",
-                  value: "3.4%",
-                  change: "+1.2%",
-                  icon: "target",
-                },
-              ].map((metric, index) => (
-                <div
-                  key={index}
-                  className="bg-white/70 p-4 rounded-xl border border-slate-200/40 backdrop-blur-sm"
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-slate-600 text-sm">
-                      {metric.label}
-                    </span>
-                    {metric.icon === "eye" && (
-                      <svg
-                        className="w-5 h-5 text-slate-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                        />
-                      </svg>
-                    )}
-                    {metric.icon === "refresh" && (
-                      <svg
-                        className="w-5 h-5 text-slate-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                        />
-                      </svg>
-                    )}
-                    {metric.icon === "clock" && (
-                      <svg
-                        className="w-5 h-5 text-slate-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                    )}
-                    {metric.icon === "target" && (
-                      <svg
-                        className="w-5 h-5 text-slate-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                      </svg>
-                    )}
-                  </div>
-                  <div className="text-2xl font-light text-slate-800">
-                    {metric.value}
-                  </div>
-                  <div className="text-sm text-blue-600">{metric.change}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Additional Analytics Content */}
-            <div className="space-y-6">
-              <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Traffic Sources
-                </h3>
-                <div className="space-y-4">
-                  {[
-                    {
-                      source: "Direct Traffic",
-                      percentage: 45,
-                      color: "bg-blue-400",
-                    },
-                    {
-                      source: "Search Engines",
-                      percentage: 32,
-                      color: "bg-indigo-400",
-                    },
-                    {
-                      source: "Social Media",
-                      percentage: 15,
-                      color: "bg-purple-400",
-                    },
-                    {
-                      source: "Referrals",
-                      percentage: 8,
-                      color: "bg-violet-400",
-                    },
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between"
-                    >
-                      <span className="text-slate-700">{item.source}</span>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-24 h-2 bg-white/40 rounded-full">
-                          <div
-                            className={`h-2 ${item.color} rounded-full`}
-                            style={{ width: `${item.percentage}%` }}
-                          ></div>
+            {/* Cases List */}
+            <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
+              <div className="divide-y divide-slate-100">
+                {[
+                  {
+                    name: "Rosen, Claire",
+                    caseId: "#BTYREV50101",
+                    status: "Needs Review",
+                    statusColor: "text-blue-600",
+                    statusBg: "bg-blue-50",
+                    reviewInfo: "1 Review Required",
+                    progress: "5/5 Tasks Complete",
+                    lastActivity: "16 Minutes Ago",
+                    queueTime: "11 Days in Queue"
+                  },
+                  {
+                    name: "Martinez, Elena",
+                    caseId: "#QWXPLO82394",
+                    status: "Needs Review",
+                    statusColor: "text-blue-600",
+                    statusBg: "bg-blue-50",
+                    reviewInfo: "1 Review Required",
+                    progress: "3/3 Tasks Complete",
+                    lastActivity: "2 Days Ago",
+                    queueTime: "7 Days in Queue"
+                  },
+                  {
+                    name: "Thompson, David",
+                    caseId: "#MNZFGH45672",
+                    status: "Awaiting Documents",
+                    statusColor: "text-amber-600",
+                    statusBg: "bg-amber-50",
+                    reviewInfo: "1 Outstanding",
+                    progress: "4/5 Tasks Complete",
+                    lastActivity: "5 Hours Ago",
+                    queueTime: "13 Days in Queue"
+                  },
+                  {
+                    name: "Anderson, Sarah",
+                    caseId: "#PLKJHG91238",
+                    status: "Awaiting Documents",
+                    statusColor: "text-amber-600",
+                    statusBg: "bg-amber-50",
+                    reviewInfo: "1 Outstanding",
+                    progress: "3/7 Tasks Complete",
+                    lastActivity: "Yesterday",
+                    queueTime: "4 Days in Queue"
+                  },
+                  {
+                    name: "Chen, Michael",
+                    caseId: "#RTYV8N67845",
+                    status: "Awaiting Documents",
+                    statusColor: "text-amber-600",
+                    statusBg: "bg-amber-50",
+                    reviewInfo: "1 Outstanding",
+                    progress: "2/9 Tasks Complete",
+                    lastActivity: "2 Days Ago",
+                    queueTime: "5 Days in Queue"
+                  },
+                  {
+                    name: "Williams, Jessica",
+                    caseId: "#ASDFGK23756",
+                    status: "Awaiting Documents",
+                    statusColor: "text-amber-600",
+                    statusBg: "bg-amber-50",
+                    reviewInfo: "1 Outstanding",
+                    progress: "0/4 Tasks Complete",
+                    lastActivity: "3 Days Ago",
+                    queueTime: "7 Days in Queue"
+                  }
+                ].map((caseItem, index) => (
+                  <div key={index} className="p-6 hover:bg-slate-50/50 transition-colors group">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-4 mb-3">
+                          <h3 className="font-medium text-slate-800">{caseItem.name}</h3>
+                          <span className="text-slate-500 text-sm">{caseItem.caseId}</span>
                         </div>
-                        <span className="text-sm text-slate-600 w-8">
-                          {item.percentage}%
-                        </span>
+
+                        <div className="flex items-center space-x-6 text-sm">
+                          <div className="flex items-center space-x-2">
+                            <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${caseItem.statusBg} ${caseItem.statusColor}`}>
+                              {caseItem.status}
+                            </span>
+                            <span className="text-slate-600">{caseItem.reviewInfo}</span>
+                          </div>
+
+                          <div className="flex items-center space-x-2">
+                            <span className="text-slate-600">{caseItem.progress}</span>
+                          </div>
+
+                          <div className="flex items-center space-x-2">
+                            <span className="text-slate-500">{caseItem.lastActivity}</span>
+                            <span className="text-slate-400">Last Activity</span>
+                          </div>
+
+                          <div className="flex items-center space-x-2">
+                            <span className="text-slate-500">{caseItem.queueTime}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-3">
+                        <button className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-600">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                        <button className="text-slate-400 hover:text-slate-600 transition-colors">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                          </svg>
+                        </button>
                       </div>
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-sky-50/80 to-cyan-100/80 p-6 rounded-xl border border-sky-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Geographic Distribution
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {[
-                    {
-                      country: "United States",
-                      users: "4,247",
-                      percentage: 34,
-                    },
-                    {
-                      country: "United Kingdom",
-                      users: "2,156",
-                      percentage: 17,
-                    },
-                    { country: "Canada", users: "1,834", percentage: 15 },
-                    { country: "Germany", users: "1,542", percentage: 12 },
-                    { country: "France", users: "1,098", percentage: 9 },
-                    { country: "Others", users: "1,970", percentage: 13 },
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex justify-between items-center p-3 bg-white/70 rounded-lg"
-                    >
-                      <div>
-                        <div className="font-medium text-slate-700">
-                          {item.country}
-                        </div>
-                        <div className="text-sm text-slate-500">
-                          {item.users} users
-                        </div>
-                      </div>
-                      <div className="text-lg font-medium text-sky-600">
-                        {item.percentage}%
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
