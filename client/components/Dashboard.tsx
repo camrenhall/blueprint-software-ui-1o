@@ -935,136 +935,177 @@ export default function Dashboard({
 
               {/* Step 2: Method-Specific Interface */}
               {createStep === 2 && (
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-6xl mx-auto">
                   {createMethod === "ai" && (
                     <div>
-                      <div className="text-center mb-8">
-                        <h2 className="text-2xl font-light text-slate-700 mb-3">Describe Your Case</h2>
-                        <p className="text-slate-600">Our AI will analyze your description and suggest relevant documents</p>
+                      <div className="text-center mb-10">
+                        <h1 className="text-3xl font-light text-slate-800 mb-4">Describe Your Case</h1>
+                        <p className="text-slate-600 text-lg">Our AI will analyze your description and suggest relevant documents</p>
                       </div>
 
-                      <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-8 rounded-2xl border border-purple-200/40 backdrop-blur-sm">
-                        <textarea
-                          value={aiDescription}
-                          onChange={(e) => setAiDescription(e.target.value)}
-                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all h-40 resize-none text-slate-700"
-                          placeholder="Describe the case details, client situation, legal issues, and any specific requirements..."
-                        />
+                      <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg p-8 mb-8">
+                        <div className="max-w-3xl mx-auto">
+                          <label className="block text-sm font-medium text-slate-700 mb-3">Case Description</label>
+                          <textarea
+                            value={aiDescription}
+                            onChange={(e) => setAiDescription(e.target.value)}
+                            className="w-full p-4 bg-white border border-slate-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all h-32 resize-none text-slate-700 placeholder-slate-400"
+                            placeholder="Describe the case details, client situation, legal issues, and any specific requirements..."
+                          />
 
-                        <div className="flex justify-between items-center mt-6">
-                          <button
-                            onClick={() => setCreateStep(1)}
-                            className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                            <span>Back</span>
-                          </button>
-
-                          <button
-                            onClick={() => {
-                              handleAISubmit();
-                              setCreateStep(3);
-                            }}
-                            disabled={!aiDescription.trim()}
-                            className="bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-colors flex items-center space-x-2"
-                          >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            <span>Get AI Suggestions</span>
-                          </button>
+                          <div className="flex justify-end mt-4">
+                            <button
+                              onClick={() => {
+                                handleAISubmit();
+                                setCreateStep(3);
+                              }}
+                              disabled={!aiDescription.trim()}
+                              className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
+                            >
+                              Generate AI Suggestions
+                            </button>
+                          </div>
                         </div>
+                      </div>
+
+                      <div className="flex justify-center">
+                        <button
+                          onClick={() => setCreateStep(1)}
+                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                          <span>Back to Method Selection</span>
+                        </button>
                       </div>
                     </div>
                   )}
 
                   {createMethod === "manual" && (
                     <div>
-                      <div className="text-center mb-8">
-                        <h2 className="text-2xl font-light text-slate-700 mb-3">Select Documents</h2>
-                        <p className="text-slate-600">Choose documents from your library to request from the client</p>
+                      <div className="text-center mb-10">
+                        <h1 className="text-3xl font-light text-slate-800 mb-4">Select Documents</h1>
+                        <p className="text-slate-600 text-lg">Choose documents from your library to request from the client</p>
                       </div>
 
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                      {/* Unified Document Management Interface */}
+                      <div className="grid grid-cols-12 gap-8">
                         {/* Available Documents */}
-                        <div className="lg:col-span-2">
-                          <div className="bg-gradient-to-br from-sky-50/80 to-blue-100/80 p-6 rounded-2xl border border-sky-200/40 backdrop-blur-sm">
-                            <div className="flex items-center justify-between mb-6">
-                              <h3 className="text-lg font-medium text-slate-700">Available Documents</h3>
-                              <button
-                                onClick={() => setShowTemplateModal(true)}
-                                className="text-blue-600 hover:text-blue-700 flex items-center space-x-2 text-sm"
-                              >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                </svg>
-                                <span>Load Template</span>
-                              </button>
+                        <div className="col-span-7">
+                          <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg overflow-hidden">
+                            <div className="bg-slate-50/80 px-6 py-4 border-b border-slate-200/60">
+                              <div className="flex items-center justify-between">
+                                <h3 className="text-lg font-medium text-slate-800">Available Documents</h3>
+                                <button
+                                  onClick={() => setShowTemplateModal(true)}
+                                  className="text-indigo-600 hover:text-indigo-700 flex items-center space-x-2 text-sm font-medium"
+                                >
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                  </svg>
+                                  <span>Load Template</span>
+                                </button>
+                              </div>
                             </div>
 
-                            <div className="mb-4">
-                              <input
-                                type="text"
-                                value={documentSearch}
-                                onChange={(e) => setDocumentSearch(e.target.value)}
-                                className="w-full p-3 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
-                                placeholder="Search documents..."
-                              />
-                            </div>
+                            <div className="p-6">
+                              <div className="mb-4">
+                                <input
+                                  type="text"
+                                  value={documentSearch}
+                                  onChange={(e) => setDocumentSearch(e.target.value)}
+                                  className="w-full p-3 bg-white border border-slate-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400"
+                                  placeholder="Search documents..."
+                                />
+                              </div>
 
-                            <div className="max-h-96 overflow-y-auto space-y-2">
-                              {filteredAvailableDocuments.map((doc, index) => (
-                                <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors">
-                                  <span className="text-slate-700">{doc}</span>
-                                  <button
-                                    onClick={() => handleAddDocument(doc)}
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded text-sm font-medium"
-                                  >
-                                    Add
-                                  </button>
-                                </div>
-                              ))}
-                              {filteredAvailableDocuments.length === 0 && (
-                                <div className="text-center py-8 text-slate-500">
-                                  {documentSearch ? "No documents match your search" : "All documents have been added"}
-                                </div>
-                              )}
+                              <div className="h-96 overflow-y-auto space-y-2 pr-2">
+                                {filteredAvailableDocuments.map((doc, index) => (
+                                  <div key={index} className="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200">
+                                    <span className="text-slate-700 font-medium">{doc}</span>
+                                    <button
+                                      onClick={() => handleAddDocument(doc)}
+                                      className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded text-sm font-medium transition-colors"
+                                    >
+                                      Add
+                                    </button>
+                                  </div>
+                                ))}
+                                {filteredAvailableDocuments.length === 0 && (
+                                  <div className="text-center py-12 text-slate-500">
+                                    <svg className="w-8 h-8 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    <p>{documentSearch ? "No documents match your search" : "All documents have been added"}</p>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Selected Documents Preview */}
-                        <div className="lg:col-span-1">
-                          <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-6 rounded-2xl border border-indigo-200/40 backdrop-blur-sm">
-                            <div className="flex items-center justify-between mb-4">
-                              <h3 className="text-lg font-medium text-slate-700">Selected</h3>
-                              <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-sm font-medium">
-                                {selectedDocuments.length}
-                              </span>
+                        {/* Selected Documents */}
+                        <div className="col-span-5">
+                          <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg overflow-hidden">
+                            <div className="bg-slate-50/80 px-6 py-4 border-b border-slate-200/60">
+                              <div className="flex items-center justify-between">
+                                <h3 className="text-lg font-medium text-slate-800">Selected Documents</h3>
+                                <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
+                                  {selectedDocuments.length}
+                                </span>
+                              </div>
                             </div>
 
-                            <div className="max-h-80 overflow-y-auto space-y-2">
-                              {selectedDocuments.map((doc, index) => (
-                                <div key={index} className="flex items-center justify-between p-2 bg-white/70 rounded text-sm">
-                                  <span className="text-slate-700 truncate">{doc.name}</span>
-                                  <button
-                                    onClick={() => handleRemoveDocument(doc.name)}
-                                    className="text-red-600 hover:text-red-700 ml-2"
-                                    title="Remove"
-                                  >
-                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            <div className="p-6">
+                              <div className="mb-4">
+                                <input
+                                  type="text"
+                                  value={selectedDocumentSearch}
+                                  onChange={(e) => setSelectedDocumentSearch(e.target.value)}
+                                  className="w-full p-3 bg-white border border-slate-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400"
+                                  placeholder="Search selected documents..."
+                                />
+                              </div>
+
+                              <div className="h-96 overflow-y-auto space-y-2 pr-2">
+                                {filteredSelectedDocuments.map((doc, index) => (
+                                  <div key={index} className="bg-slate-50 border border-slate-200 rounded-lg p-3">
+                                    <div className="flex items-start justify-between mb-2">
+                                      <span className="text-slate-700 font-medium text-sm leading-relaxed">{doc.name}</span>
+                                      <button
+                                        onClick={() => handleRemoveDocument(doc.name)}
+                                        className="text-slate-400 hover:text-red-500 transition-colors ml-2"
+                                        title="Remove document"
+                                      >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                      </button>
+                                    </div>
+                                    <div className="flex items-center space-x-2">
+                                      <button
+                                        onClick={() => handleToggleOptional(doc.name)}
+                                        className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
+                                          doc.optional
+                                            ? "bg-amber-100 text-amber-700 hover:bg-amber-200"
+                                            : "bg-emerald-100 text-emerald-700 hover:bg-emerald-200"
+                                        }`}
+                                      >
+                                        {doc.optional ? "Optional" : "Required"}
+                                      </button>
+                                    </div>
+                                  </div>
+                                ))}
+                                {filteredSelectedDocuments.length === 0 && (
+                                  <div className="text-center py-12 text-slate-500">
+                                    <svg className="w-8 h-8 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                     </svg>
-                                  </button>
-                                </div>
-                              ))}
-                              {selectedDocuments.length === 0 && (
-                                <div className="text-center py-8 text-slate-500 text-sm">
-                                  No documents selected
-                                </div>
-                              )}
+                                    <p>{selectedDocumentSearch ? "No selected documents match your search" : "No documents selected"}</p>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1073,20 +1114,20 @@ export default function Dashboard({
                       <div className="flex justify-between items-center mt-8">
                         <button
                           onClick={() => setCreateStep(1)}
-                          className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                           </svg>
-                          <span>Back</span>
+                          <span>Back to Method Selection</span>
                         </button>
 
                         <button
                           onClick={() => setCreateStep(3)}
                           disabled={selectedDocuments.length === 0}
-                          className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-colors"
+                          className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
                         >
-                          Continue ({selectedDocuments.length} selected)
+                          Continue with {selectedDocuments.length} Documents
                         </button>
                       </div>
                     </div>
@@ -1094,12 +1135,12 @@ export default function Dashboard({
 
                   {createMethod === "questionnaire" && (
                     <div>
-                      <div className="text-center mb-8">
-                        <h2 className="text-2xl font-light text-slate-700 mb-3">Select Questionnaire</h2>
-                        <p className="text-slate-600">Choose a questionnaire template to send to your client</p>
+                      <div className="text-center mb-10">
+                        <h1 className="text-3xl font-light text-slate-800 mb-4">Select Questionnaire</h1>
+                        <p className="text-slate-600 text-lg">Choose a questionnaire template to send to your client</p>
                       </div>
 
-                      <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-8 rounded-2xl border border-indigo-200/40 backdrop-blur-sm">
+                      <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg p-8">
                         <div className="space-y-4 mb-8">
                           {[
                             { name: "Employment Law Intake", description: "Comprehensive intake for employment-related cases" },
@@ -1109,32 +1150,34 @@ export default function Dashboard({
                           ].map((questionnaire, index) => (
                             <button
                               key={index}
-                              className="w-full text-left p-6 bg-white/70 rounded-xl hover:bg-white/90 transition-colors border border-indigo-200/30"
+                              className="w-full text-left p-6 bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200 rounded-lg"
                             >
-                              <h4 className="font-semibold text-slate-700 mb-2">{questionnaire.name}</h4>
+                              <h4 className="font-medium text-slate-800 mb-2">{questionnaire.name}</h4>
                               <p className="text-slate-600 text-sm">{questionnaire.description}</p>
                             </button>
                           ))}
                         </div>
 
-                        <div className="flex justify-between items-center">
-                          <button
-                            onClick={() => setCreateStep(1)}
-                            className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                            <span>Back</span>
-                          </button>
-
+                        <div className="flex justify-center">
                           <button
                             onClick={() => setCreateStep(4)}
-                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl transition-colors"
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
                           >
                             Continue with Questionnaire
                           </button>
                         </div>
+                      </div>
+
+                      <div className="flex justify-center mt-8">
+                        <button
+                          onClick={() => setCreateStep(1)}
+                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                          <span>Back to Method Selection</span>
+                        </button>
                       </div>
                     </div>
                   )}
