@@ -306,8 +306,6 @@ export default function Dashboard({
 
   // Review page state
   const [reviewSearch, setReviewSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [casesPerPage] = useState(6);
   const [selectedCase, setSelectedCase] = useState<any>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [showSort, setShowSort] = useState(false);
