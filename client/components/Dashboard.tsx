@@ -721,143 +721,52 @@ export default function Dashboard({
               </div>
 
               <div className="divide-y divide-slate-100/60">
-                {[
-                  {
-                    name: "Rosen, Claire",
-                    caseId: "#BTYREV50101",
-                    status: "Needs Review",
-                    statusColor: "text-blue-700",
-                    statusBg: "bg-gradient-to-r from-blue-50 to-indigo-50",
-                    statusBorder: "border-blue-200",
-                    reviewInfo: "1 Review Required",
-                    progress: "5/5 Tasks Complete",
-                    progressPercent: 100,
-                    lastActivity: "16 Minutes Ago",
-                    queueTime: "11 Days in Queue",
-                    priority: "high",
-                    avatar: "RC"
-                  },
-                  {
-                    name: "Martinez, Elena",
-                    caseId: "#QWXPLO82394",
-                    status: "Needs Review",
-                    statusColor: "text-blue-700",
-                    statusBg: "bg-gradient-to-r from-blue-50 to-indigo-50",
-                    statusBorder: "border-blue-200",
-                    reviewInfo: "1 Review Required",
-                    progress: "3/3 Tasks Complete",
-                    progressPercent: 100,
-                    lastActivity: "2 Days Ago",
-                    queueTime: "7 Days in Queue",
-                    priority: "medium",
-                    avatar: "ME"
-                  },
-                  {
-                    name: "Thompson, David",
-                    caseId: "#MNZFGH45672",
-                    status: "Awaiting Documents",
-                    statusColor: "text-amber-700",
-                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
-                    statusBorder: "border-amber-200",
-                    reviewInfo: "1 Outstanding",
-                    progress: "4/5 Tasks Complete",
-                    progressPercent: 80,
-                    lastActivity: "5 Hours Ago",
-                    queueTime: "13 Days in Queue",
-                    priority: "high",
-                    avatar: "TD"
-                  },
-                  {
-                    name: "Anderson, Sarah",
-                    caseId: "#PLKJHG91238",
-                    status: "Awaiting Documents",
-                    statusColor: "text-amber-700",
-                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
-                    statusBorder: "border-amber-200",
-                    reviewInfo: "1 Outstanding",
-                    progress: "3/7 Tasks Complete",
-                    progressPercent: 43,
-                    lastActivity: "Yesterday",
-                    queueTime: "4 Days in Queue",
-                    priority: "medium",
-                    avatar: "AS"
-                  },
-                  {
-                    name: "Chen, Michael",
-                    caseId: "#RTYV8N67845",
-                    status: "Awaiting Documents",
-                    statusColor: "text-amber-700",
-                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
-                    statusBorder: "border-amber-200",
-                    reviewInfo: "1 Outstanding",
-                    progress: "2/9 Tasks Complete",
-                    progressPercent: 22,
-                    lastActivity: "2 Days Ago",
-                    queueTime: "5 Days in Queue",
-                    priority: "low",
-                    avatar: "CM"
-                  },
-                  {
-                    name: "Williams, Jessica",
-                    caseId: "#ASDFGK23756",
-                    status: "Awaiting Documents",
-                    statusColor: "text-amber-700",
-                    statusBg: "bg-gradient-to-r from-amber-50 to-orange-50",
-                    statusBorder: "border-amber-200",
-                    reviewInfo: "1 Outstanding",
-                    progress: "0/4 Tasks Complete",
-                    progressPercent: 0,
-                    lastActivity: "3 Days Ago",
-                    queueTime: "7 Days in Queue",
-                    priority: "low",
-                    avatar: "WJ"
-                  }
-                ].map((caseItem, index) => (
-                  <div key={index} className="group p-6 hover:bg-gradient-to-r hover:from-slate-50/50 hover:to-transparent transition-all duration-300 cursor-pointer">
+                {currentCases.map((caseItem, index) => (
+                  <div key={index} className="group p-4 hover:bg-gradient-to-r hover:from-slate-50/50 hover:to-transparent transition-all duration-300 cursor-pointer">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-6 flex-1">
                         {/* Avatar & Name */}
                         <div className="flex items-center space-x-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                            <span className="text-white font-semibold text-sm">{caseItem.avatar}</span>
+                          <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                            <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
                           </div>
                           <div>
-                            <h3 className="font-semibold text-slate-800 text-lg group-hover:text-indigo-700 transition-colors">{caseItem.name}</h3>
+                            <h3 className="font-semibold text-slate-800 group-hover:text-indigo-700 transition-colors">{caseItem.name}</h3>
                             <span className="text-slate-500 text-sm font-mono">{caseItem.caseId}</span>
                           </div>
                         </div>
 
                         {/* Status & Info */}
                         <div className="flex items-center space-x-8">
-                          <div className="flex items-center space-x-3">
-                            <span className={`inline-flex items-center px-3 py-1.5 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
-                              <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-blue-400' : 'bg-amber-400'}`}></div>
+                          <div className="flex items-center space-x-3 min-w-max">
+                            <span className={`inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
+                              <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-purple-400' : 'bg-sky-400'}`}></div>
                               {caseItem.status}
                             </span>
-                            <span className="text-slate-600 font-medium">{caseItem.reviewInfo}</span>
+                            <span className="text-slate-600 font-medium text-sm">{caseItem.reviewInfo}</span>
                           </div>
 
                           {/* Progress */}
-                          <div className="flex items-center space-x-3">
-                            <div className="w-24 h-2 bg-slate-200 rounded-full overflow-hidden">
+                          <div className="flex items-center space-x-3 min-w-max">
+                            <div className="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
                               <div
                                 className="h-full bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full transition-all duration-500"
                                 style={{ width: `${caseItem.progressPercent}%` }}
                               ></div>
                             </div>
-                            <span className="text-slate-600 font-medium text-sm min-w-max">{caseItem.progress}</span>
+                            <span className="text-slate-600 font-medium text-sm">{caseItem.progress}</span>
                           </div>
 
                           {/* Timing */}
                           <div className="flex items-center space-x-6 text-sm">
                             <div className="flex items-center space-x-2">
-                              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
-                              <span className="text-slate-600 font-medium">{caseItem.lastActivity}</span>
+                              <span className="text-slate-600">{caseItem.lastActivity}</span>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
                               </svg>
                               <span className="text-slate-500">{caseItem.queueTime}</span>
@@ -872,13 +781,13 @@ export default function Dashboard({
                           caseItem.priority === 'high' ? 'bg-red-400' :
                           caseItem.priority === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
                         }`}></div>
-                        <button className="opacity-0 group-hover:opacity-100 transition-all duration-200 w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105">
-                          <svg className="w-4 h-4 text-slate-600 hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button className="opacity-0 group-hover:opacity-100 transition-all duration-200 w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105">
+                          <svg className="w-3.5 h-3.5 text-slate-600 hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </button>
-                        <button className="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:scale-105 transition-all duration-200">
-                          <svg className="w-4 h-4 text-slate-600" fill="currentColor" viewBox="0 0 24 24">
+                        <button className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:scale-105 transition-all duration-200">
+                          <svg className="w-3.5 h-3.5 text-slate-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
                           </svg>
                         </button>
@@ -887,6 +796,50 @@ export default function Dashboard({
                   </div>
                 ))}
               </div>
+
+              {/* Bottom Pagination */}
+              {totalPages > 1 && (
+                <div className="px-8 py-4 border-t border-slate-200/60 bg-gradient-to-r from-slate-50/80 to-white">
+                  <div className="flex items-center justify-center">
+                    <div className="flex items-center space-x-2 bg-white/60 rounded-2xl p-2 border border-slate-200/40">
+                      <button
+                        onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                        disabled={currentPage === 1}
+                        className="w-8 h-8 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/60 flex items-center justify-center transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <svg className="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        const pageNum = i + Math.max(1, currentPage - 2);
+                        return pageNum <= totalPages ? (
+                          <button
+                            key={pageNum}
+                            onClick={() => setCurrentPage(pageNum)}
+                            className={`w-8 h-8 rounded-xl flex items-center justify-center text-sm font-semibold transition-all duration-200 hover:scale-105 ${
+                              pageNum === currentPage
+                                ? "bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-md"
+                                : "bg-white hover:bg-slate-50 text-slate-600 border border-slate-200/60"
+                            }`}
+                          >
+                            {pageNum}
+                          </button>
+                        ) : null;
+                      })}
+                      <button
+                        onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                        disabled={currentPage === totalPages}
+                        className="w-8 h-8 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/60 flex items-center justify-center transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <svg className="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         );
