@@ -62,6 +62,12 @@ export default function Dashboard({
   const [reviewSearch, setReviewSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [casesPerPage] = useState(6);
+  const [selectedCase, setSelectedCase] = useState<any>(null);
+  const [showFilters, setShowFilters] = useState(false);
+  const [showSort, setShowSort] = useState(false);
+  const [showCaseActions, setShowCaseActions] = useState<number | null>(null);
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<string>("status-time");
 
   useEffect(() => {
     if (isOpen) {
