@@ -766,18 +766,30 @@ export default function Dashboard({
 
               {/* Navigation Tabs */}
               <nav className="hidden md:flex items-center space-x-8">
-                {[
-                  { id: "overview", label: "Overview" },
-                  { id: "analytics", label: "Analytics" },
-                  { id: "reports", label: "Reports" },
-                ].map((tab) => (
+                {(() => {
+                  if (activeTab.startsWith("settings-")) {
+                    return [
+                      { id: "settings-profile", label: "Profile" },
+                      { id: "settings-preferences", label: "Preferences" },
+                      { id: "settings-security", label: "Security" },
+                      { id: "settings-billing", label: "Billing" },
+                    ];
+                  } else {
+                    return [
+                      { id: "overview", label: "Overview" },
+                      { id: "review", label: "Review" },
+                      { id: "reports", label: "Reports" },
+                      { id: "create", label: "Create" },
+                    ];
+                  }
+                })().map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id as NavigationTab)}
                     className={cn(
                       "text-sm font-medium transition-all duration-200 pb-1 border-b-2",
                       activeTab === tab.id
-                        ? "text-slate-800 border-blue-400"
+                        ? "text-slate-800 border-indigo-400"
                         : "text-slate-500 hover:text-slate-700 border-transparent",
                     )}
                   >
