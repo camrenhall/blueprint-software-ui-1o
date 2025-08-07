@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import CaseDetails from "./CaseDetails";
 
 interface DashboardProps {
   isOpen: boolean;
