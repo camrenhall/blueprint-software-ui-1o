@@ -800,383 +800,518 @@ export default function Dashboard({
       case "create":
         return (
           <div className="space-y-6">
-            {/* Creation Method Selection */}
-            <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
-              <h3 className="text-xl font-medium text-slate-700 mb-6">Create New Case</h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <button
-                  onClick={() => setCreateMethod("ai")}
-                  className={`transition-all p-6 rounded-xl text-left group ${
-                    createMethod === "ai"
-                      ? "bg-gradient-to-br from-purple-100/90 to-violet-200/90 border-purple-300 ring-2 ring-purple-300"
-                      : "bg-gradient-to-br from-purple-50/90 to-violet-100/90 hover:from-purple-100/90 hover:to-violet-200/90 border border-purple-200/50"
-                  }`}
-                >
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
-                    </div>
-                    <h4 className="font-semibold text-slate-700">AI Assist</h4>
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">Describe the case, and AI will suggest what Documents to send from your available templates</p>
-                </button>
-
-                <button
-                  onClick={() => setCreateMethod("manual")}
-                  className={`transition-all p-6 rounded-xl text-left group ${
-                    createMethod === "manual"
-                      ? "bg-gradient-to-br from-sky-100/90 to-blue-200/90 border-sky-300 ring-2 ring-sky-300"
-                      : "bg-gradient-to-br from-sky-50/90 to-blue-100/90 hover:from-sky-100/90 hover:to-blue-200/90 border border-sky-200/50"
-                  }`}
-                >
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                      </svg>
-                    </div>
-                    <h4 className="font-semibold text-slate-700">Manual Select</h4>
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">Manually Select Requested Documents</p>
-                </button>
-
-                <button
-                  onClick={() => setCreateMethod("questionnaire")}
-                  className={`transition-all p-6 rounded-xl text-left group ${
-                    createMethod === "questionnaire"
-                      ? "bg-gradient-to-br from-indigo-100/90 to-purple-200/90 border-indigo-300 ring-2 ring-indigo-300"
-                      : "bg-gradient-to-br from-indigo-50/90 to-purple-100/90 hover:from-indigo-100/90 hover:to-purple-200/90 border border-indigo-200/50"
-                  }`}
-                >
-                  <div className="flex items-center space-x-3 mb-3">
-                    <div className="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center">
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <h4 className="font-semibold text-slate-700">Questionnaire</h4>
-                  </div>
-                  <p className="text-sm text-slate-600 leading-relaxed">Select Questionnaire to send</p>
-                </button>
-              </div>
-            </div>
-
-            {/* Case Information Form */}
-            <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-6 rounded-xl border border-slate-200/40 backdrop-blur-sm">
-              <h3 className="text-lg font-medium text-slate-700 mb-6">Case Information</h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
-                  <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="Enter first name" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
-                  <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="Enter last name" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
-                  <input type="tel" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="(555) 123-4567" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="client@email.com" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Matter ID</label>
-                  <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="MTR-2024-001" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">State</label>
-                  <select className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all">
-                    <option value="">Select state</option>
-                    <option value="CA">California</option>
-                    <option value="NY">New York</option>
-                    <option value="TX">Texas</option>
-                    <option value="FL">Florida</option>
-                    <option value="IL">Illinois</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">Language</label>
-                  <select className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all">
-                    <option value="en">English</option>
-                    <option value="es">Spanish</option>
-                    <option value="fr">French</option>
-                    <option value="de">German</option>
-                    <option value="zh">Chinese</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            {/* Document Selection Area */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {/* Available Documents / AI Chat / Manual Selection */}
-              <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-slate-700">Document Selection</h3>
-                  <button className="text-sm text-purple-600 hover:text-purple-700 flex items-center space-x-1">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    <span>Load Template</span>
-                  </button>
-                </div>
-
-                {/* AI Chat Interface (when AI Assist is selected) */}
-                {createMethod === "ai" && (
-                  <div className="mb-4 p-4 bg-white/70 rounded-lg border border-purple-200/30">
-                    <h4 className="font-medium text-slate-700 mb-3">Describe Your Case</h4>
-                    <textarea
-                      value={aiDescription}
-                      onChange={(e) => setAiDescription(e.target.value)}
-                      className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all h-24 resize-none"
-                      placeholder="Describe the case details, client situation, and any specific requirements..."
-                    ></textarea>
-                    <div className="flex justify-end mt-3">
-                      <button
-                        onClick={handleAISubmit}
-                        disabled={!aiDescription.trim()}
-                        className="bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2"
-                      >
+            {/* Step Indicator */}
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex items-center space-x-4">
+                {[1, 2, 3, 4, 5].map((step) => (
+                  <div key={step} className="flex items-center">
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all ${
+                        step < createStep
+                          ? "bg-green-500 text-white"
+                          : step === createStep
+                          ? "bg-indigo-500 text-white"
+                          : "bg-slate-200 text-slate-500"
+                      }`}
+                    >
+                      {step < createStep ? (
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
-                        <span>Get AI Suggestions</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* Questionnaire Interface (when Questionnaire is selected) */}
-                {createMethod === "questionnaire" && (
-                  <div className="mb-4 p-4 bg-white/70 rounded-lg border border-indigo-200/30">
-                    <h4 className="font-medium text-slate-700 mb-3">Available Questionnaires</h4>
-                    <div className="space-y-2">
-                      {[
-                        "Employment Law Intake",
-                        "Personal Injury Assessment",
-                        "Family Law Questionnaire",
-                        "Corporate Compliance Check"
-                      ].map((questionnaire, index) => (
-                        <button
-                          key={index}
-                          className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors border border-indigo-200/30"
-                        >
-                          {questionnaire}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* Manual Document List */}
-                {(createMethod === "manual" || createMethod === "ai") && (
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <div className="flex-1">
-                        <input
-                          type="text"
-                          value={documentSearch}
-                          onChange={(e) => setDocumentSearch(e.target.value)}
-                          className="w-full p-2 bg-white/80 rounded-lg border border-slate-200/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all text-sm"
-                          placeholder="Search documents..."
-                        />
-                      </div>
-                    </div>
-
-                    <div className="max-h-96 overflow-y-auto space-y-2">
-                      {filteredAvailableDocuments.map((doc, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors border border-purple-200/30">
-                          <span className="text-slate-700">{doc}</span>
-                          <button
-                            onClick={() => handleAddDocument(doc)}
-                            className="text-purple-600 hover:text-purple-700 text-sm font-medium"
-                          >
-                            + Add
-                          </button>
-                        </div>
-                      ))}
-                      {filteredAvailableDocuments.length === 0 && (
-                        <div className="text-center py-8 text-slate-500">
-                          {documentSearch ? "No documents match your search" : "All documents have been added"}
-                        </div>
+                      ) : (
+                        step
                       )}
                     </div>
+                    {step < 5 && (
+                      <div
+                        className={`w-12 h-0.5 mx-2 transition-all ${
+                          step < createStep ? "bg-green-500" : "bg-slate-200"
+                        }`}
+                      />
+                    )}
                   </div>
-                )}
-              </div>
-
-              {/* Running Document Total */}
-              <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-slate-700">Requested Documents</h3>
-                  <div className="flex items-center space-x-2">
-                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-sm font-medium">
-                      {selectedDocuments.length} items
-                    </span>
-                    <button className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center space-x-1">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
-                      </svg>
-                      <span>Save Template</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div className="space-y-2 mb-4">
-                  <input
-                    type="text"
-                    value={selectedDocumentSearch}
-                    onChange={(e) => setSelectedDocumentSearch(e.target.value)}
-                    className="w-full p-2 bg-white/80 rounded-lg border border-slate-200/50 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition-all text-sm"
-                    placeholder="Search selected documents..."
-                  />
-                </div>
-
-                <div className="max-h-96 overflow-y-auto space-y-2">
-                  {filteredSelectedDocuments.map((doc, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg border border-indigo-200/30">
-                      <div className="flex items-center space-x-3">
-                        <span className="text-slate-700">{doc.name}</span>
-                        {doc.optional && (
-                          <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
-                        )}
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <button
-                          onClick={() => handleToggleOptional(doc.name)}
-                          className="text-yellow-600 hover:text-yellow-700 text-sm"
-                          title="Toggle Optional"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
-                          </svg>
-                        </button>
-                        <button
-                          onClick={() => handleRemoveDocument(doc.name)}
-                          className="text-red-600 hover:text-red-700 text-sm"
-                          title="Remove"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                  {filteredSelectedDocuments.length === 0 && (
-                    <div className="text-center py-8 text-slate-500">
-                      {selectedDocumentSearch ? "No selected documents match your search" : "No documents selected yet"}
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-indigo-200/50">
-                  <button
-                    onClick={() => setShowReviewCase(true)}
-                    disabled={selectedDocuments.length === 0}
-                    className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 disabled:from-slate-400 disabled:to-slate-500 disabled:cursor-not-allowed text-white py-3 rounded-lg transition-all font-medium flex items-center justify-center space-x-2"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                    <span>Review New Case</span>
-                  </button>
-                </div>
+                ))}
               </div>
             </div>
 
-            {/* Review Case Modal */}
-            {showReviewCase && (
-              <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-                <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
-                  <div className="flex items-center justify-between p-6 border-b border-slate-200">
-                    <h3 className="text-xl font-semibold text-slate-700">Review New Case</h3>
-                    <button
-                      onClick={() => setShowReviewCase(false)}
-                      className="text-slate-500 hover:text-slate-700 transition-colors"
-                    >
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
+            {/* Step Content */}
+            <div className="min-h-[500px]">
+              {/* Step 1: Choose Creation Method */}
+              {createStep === 1 && (
+                <div className="max-w-4xl mx-auto">
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl font-light text-slate-700 mb-3">Create New Case</h2>
+                    <p className="text-slate-600">Choose how you'd like to create your case</p>
                   </div>
 
-                  <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
-                    <div className="space-y-6">
-                      {/* Case Summary */}
-                      <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40">
-                        <h4 className="text-lg font-medium text-slate-700 mb-4">Case Summary</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                          <div><span className="font-medium text-slate-600">Creation Method:</span> {createMethod === "ai" ? "AI Assist" : createMethod === "manual" ? "Manual Select" : "Questionnaire"}</div>
-                          <div><span className="font-medium text-slate-600">Total Documents:</span> {selectedDocuments.length}</div>
-                          <div><span className="font-medium text-slate-600">Required Documents:</span> {selectedDocuments.filter(doc => !doc.optional).length}</div>
-                          <div><span className="font-medium text-slate-600">Optional Documents:</span> {selectedDocuments.filter(doc => doc.optional).length}</div>
-                        </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <button
+                      onClick={() => {
+                        setCreateMethod("ai");
+                        setCreateStep(2);
+                      }}
+                      className="bg-gradient-to-br from-purple-50/90 to-violet-100/90 hover:from-purple-100/90 hover:to-violet-200/90 transition-all p-8 rounded-2xl border border-purple-200/50 text-center group"
+                    >
+                      <div className="w-16 h-16 bg-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-semibold text-slate-700 mb-3">AI Assist</h3>
+                      <p className="text-slate-600 leading-relaxed">Describe the case, and AI will suggest what documents to send from your available templates</p>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setCreateMethod("manual");
+                        setCreateStep(2);
+                      }}
+                      className="bg-gradient-to-br from-sky-50/90 to-blue-100/90 hover:from-sky-100/90 hover:to-blue-200/90 transition-all p-8 rounded-2xl border border-sky-200/50 text-center group"
+                    >
+                      <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-semibold text-slate-700 mb-3">Manual Select</h3>
+                      <p className="text-slate-600 leading-relaxed">Manually select requested documents from your document library</p>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setCreateMethod("questionnaire");
+                        setCreateStep(2);
+                      }}
+                      className="bg-gradient-to-br from-indigo-50/90 to-purple-100/90 hover:from-indigo-100/90 hover:to-purple-200/90 transition-all p-8 rounded-2xl border border-indigo-200/50 text-center group"
+                    >
+                      <div className="w-16 h-16 bg-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-semibold text-slate-700 mb-3">Questionnaire</h3>
+                      <p className="text-slate-600 leading-relaxed">Select a questionnaire to send to your client</p>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 2: Method-Specific Interface */}
+              {createStep === 2 && (
+                <div className="max-w-3xl mx-auto">
+                  {createMethod === "ai" && (
+                    <div className="text-center mb-8">
+                      <h2 className="text-2xl font-light text-slate-700 mb-3">Describe Your Case</h2>
+                      <p className="text-slate-600">Our AI will analyze your description and suggest relevant documents</p>
+                    </div>
+                  )}
+
+                  {createMethod === "ai" && (
+                    <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-8 rounded-2xl border border-purple-200/40 backdrop-blur-sm">
+                      <textarea
+                        value={aiDescription}
+                        onChange={(e) => setAiDescription(e.target.value)}
+                        className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all h-40 resize-none text-slate-700"
+                        placeholder="Describe the case details, client situation, legal issues, and any specific requirements..."
+                      />
+
+                      <div className="flex justify-between items-center mt-6">
+                        <button
+                          onClick={() => setCreateStep(1)}
+                          className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                          <span>Back</span>
+                        </button>
+
+                        <button
+                          onClick={() => {
+                            handleAISubmit();
+                            setCreateStep(3);
+                          }}
+                          disabled={!aiDescription.trim()}
+                          className="bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-colors flex items-center space-x-2"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                          <span>Get AI Suggestions</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {createMethod === "manual" && (
+                    <div>
+                      <div className="text-center mb-8">
+                        <h2 className="text-2xl font-light text-slate-700 mb-3">Select Documents</h2>
+                        <p className="text-slate-600">Choose documents from your library to request from the client</p>
                       </div>
 
-                      {/* Client Information */}
-                      <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
-                        <h4 className="text-lg font-medium text-slate-700 mb-4">Client Information</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                          <div><span className="font-medium text-slate-600">Name:</span> [Client Name]</div>
-                          <div><span className="font-medium text-slate-600">Email:</span> [Client Email]</div>
-                          <div><span className="font-medium text-slate-600">Phone:</span> [Client Phone]</div>
-                          <div><span className="font-medium text-slate-600">Matter ID:</span> [Matter ID]</div>
-                          <div><span className="font-medium text-slate-600">State:</span> [State]</div>
-                          <div><span className="font-medium text-slate-600">Language:</span> [Language]</div>
+                      <div className="bg-gradient-to-br from-sky-50/80 to-blue-100/80 p-8 rounded-2xl border border-sky-200/40 backdrop-blur-sm">
+                        <div className="mb-6">
+                          <input
+                            type="text"
+                            value={documentSearch}
+                            onChange={(e) => setDocumentSearch(e.target.value)}
+                            className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                            placeholder="Search documents..."
+                          />
                         </div>
-                      </div>
 
-                      {/* Document List */}
-                      <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40">
-                        <h4 className="text-lg font-medium text-slate-700 mb-4">Requested Documents</h4>
-                        <div className="space-y-2">
-                          {selectedDocuments.map((doc, index) => (
-                            <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg">
-                              <div className="flex items-center space-x-3">
-                                <span className="text-slate-700">{doc.name}</span>
-                                {doc.optional && (
-                                  <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
-                                )}
-                              </div>
-                              <span className="text-sm text-slate-500">
-                                {doc.optional ? "Optional" : "Required"}
-                              </span>
+                        <div className="max-h-80 overflow-y-auto space-y-3 mb-6">
+                          {filteredAvailableDocuments.map((doc, index) => (
+                            <div key={index} className="flex items-center justify-between p-4 bg-white/70 rounded-xl hover:bg-white/90 transition-colors">
+                              <span className="text-slate-700 font-medium">{doc}</span>
+                              <button
+                                onClick={() => handleAddDocument(doc)}
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
+                              >
+                                Add
+                              </button>
                             </div>
                           ))}
                         </div>
+
+                        <div className="flex justify-between items-center">
+                          <button
+                            onClick={() => setCreateStep(1)}
+                            className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                            <span>Back</span>
+                          </button>
+
+                          <button
+                            onClick={() => setCreateStep(3)}
+                            disabled={selectedDocuments.length === 0}
+                            className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-colors"
+                          >
+                            Continue ({selectedDocuments.length} selected)
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {createMethod === "questionnaire" && (
+                    <div>
+                      <div className="text-center mb-8">
+                        <h2 className="text-2xl font-light text-slate-700 mb-3">Select Questionnaire</h2>
+                        <p className="text-slate-600">Choose a questionnaire template to send to your client</p>
                       </div>
 
-                      {/* AI Description (if AI was used) */}
-                      {createMethod === "ai" && aiDescription && (
-                        <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
-                          <h4 className="text-lg font-medium text-slate-700 mb-4">AI Case Description</h4>
-                          <p className="text-slate-600 bg-white/70 p-4 rounded-lg">{aiDescription}</p>
+                      <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-8 rounded-2xl border border-indigo-200/40 backdrop-blur-sm">
+                        <div className="space-y-4 mb-8">
+                          {[
+                            { name: "Employment Law Intake", description: "Comprehensive intake for employment-related cases" },
+                            { name: "Personal Injury Assessment", description: "Detailed assessment for personal injury claims" },
+                            { name: "Family Law Questionnaire", description: "Family law matters including divorce and custody" },
+                            { name: "Corporate Compliance Check", description: "Corporate compliance and regulatory matters" }
+                          ].map((questionnaire, index) => (
+                            <button
+                              key={index}
+                              className="w-full text-left p-6 bg-white/70 rounded-xl hover:bg-white/90 transition-colors border border-indigo-200/30"
+                            >
+                              <h4 className="font-semibold text-slate-700 mb-2">{questionnaire.name}</h4>
+                              <p className="text-slate-600 text-sm">{questionnaire.description}</p>
+                            </button>
+                          ))}
+                        </div>
+
+                        <div className="flex justify-between items-center">
+                          <button
+                            onClick={() => setCreateStep(1)}
+                            className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                            <span>Back</span>
+                          </button>
+
+                          <button
+                            onClick={() => setCreateStep(3)}
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl transition-colors"
+                          >
+                            Continue with Questionnaire
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Step 3: Case Information */}
+              {createStep === 3 && (
+                <div className="max-w-4xl mx-auto">
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl font-light text-slate-700 mb-3">Case Information</h2>
+                    <p className="text-slate-600">Enter the basic information for this case</p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-8 rounded-2xl border border-slate-200/40 backdrop-blur-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+                        <input
+                          type="text"
+                          value={caseInfo.firstName}
+                          onChange={(e) => setCaseInfo({...caseInfo, firstName: e.target.value})}
+                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                          placeholder="Enter first name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+                        <input
+                          type="text"
+                          value={caseInfo.lastName}
+                          onChange={(e) => setCaseInfo({...caseInfo, lastName: e.target.value})}
+                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                          placeholder="Enter last name"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
+                        <input
+                          type="tel"
+                          value={caseInfo.phone}
+                          onChange={(e) => setCaseInfo({...caseInfo, phone: e.target.value})}
+                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+                        <input
+                          type="email"
+                          value={caseInfo.email}
+                          onChange={(e) => setCaseInfo({...caseInfo, email: e.target.value})}
+                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                          placeholder="client@email.com"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">Matter ID</label>
+                        <input
+                          type="text"
+                          value={caseInfo.matterId}
+                          onChange={(e) => setCaseInfo({...caseInfo, matterId: e.target.value})}
+                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                          placeholder="MTR-2024-001"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">State</label>
+                        <select
+                          value={caseInfo.state}
+                          onChange={(e) => setCaseInfo({...caseInfo, state: e.target.value})}
+                          className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                        >
+                          <option value="">Select state</option>
+                          <option value="CA">California</option>
+                          <option value="NY">New York</option>
+                          <option value="TX">Texas</option>
+                          <option value="FL">Florida</option>
+                          <option value="IL">Illinois</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center">
+                      <button
+                        onClick={() => setCreateStep(2)}
+                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span>Back</span>
+                      </button>
+
+                      <button
+                        onClick={() => setCreateStep(4)}
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl transition-colors"
+                      >
+                        Continue to Documents
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 4: Document Management */}
+              {createStep === 4 && (
+                <div className="max-w-5xl mx-auto">
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl font-light text-slate-700 mb-3">Manage Documents</h2>
+                    <p className="text-slate-600">Review and organize your selected documents</p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-8 rounded-2xl border border-indigo-200/40 backdrop-blur-sm">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center space-x-4">
+                        <span className="text-lg font-medium text-slate-700">Selected Documents</span>
+                        <span className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
+                          {selectedDocuments.length} items
+                        </span>
+                      </div>
+                      <button className="text-indigo-600 hover:text-indigo-700 flex items-center space-x-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <span>Save as Template</span>
+                      </button>
+                    </div>
+
+                    <div className="space-y-3 mb-8 max-h-80 overflow-y-auto">
+                      {selectedDocuments.map((doc, index) => (
+                        <div key={index} className="flex items-center justify-between p-4 bg-white/70 rounded-xl">
+                          <div className="flex items-center space-x-3">
+                            <span className="text-slate-700 font-medium">{doc.name}</span>
+                            {doc.optional && (
+                              <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
+                            )}
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <button
+                              onClick={() => handleToggleOptional(doc.name)}
+                              className="text-yellow-600 hover:text-yellow-700 p-2 rounded-lg hover:bg-yellow-100/50 transition-colors"
+                              title="Toggle Optional"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={() => handleRemoveDocument(doc.name)}
+                              className="text-red-600 hover:text-red-700 p-2 rounded-lg hover:bg-red-100/50 transition-colors"
+                              title="Remove"
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+
+                      {selectedDocuments.length === 0 && (
+                        <div className="text-center py-12 text-slate-500">
+                          <svg className="w-12 h-12 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                          <p>No documents selected yet</p>
                         </div>
                       )}
                     </div>
-                  </div>
 
-                  <div className="flex items-center justify-end space-x-3 p-6 border-t border-slate-200 bg-slate-50/50">
-                    <button
-                      onClick={() => setShowReviewCase(false)}
-                      className="px-4 py-2 text-slate-600 hover:text-slate-700 transition-colors"
-                    >
-                      Back to Edit
-                    </button>
-                    <button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6 py-2 rounded-lg transition-all font-medium">
-                      Create Case
-                    </button>
+                    <div className="flex justify-between items-center">
+                      <button
+                        onClick={() => setCreateStep(3)}
+                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span>Back</span>
+                      </button>
+
+                      <button
+                        onClick={() => setCreateStep(5)}
+                        disabled={selectedDocuments.length === 0}
+                        className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-colors"
+                      >
+                        Review Case
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+
+              {/* Step 5: Final Review */}
+              {createStep === 5 && (
+                <div className="max-w-4xl mx-auto">
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl font-light text-slate-700 mb-3">Review Your Case</h2>
+                    <p className="text-slate-600">Please review all details before creating the case</p>
+                  </div>
+
+                  <div className="space-y-6">
+                    {/* Case Summary */}
+                    <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40">
+                      <h4 className="text-lg font-medium text-slate-700 mb-4">Case Summary</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div><span className="font-medium text-slate-600">Creation Method:</span> {createMethod === "ai" ? "AI Assist" : createMethod === "manual" ? "Manual Select" : "Questionnaire"}</div>
+                        <div><span className="font-medium text-slate-600">Total Documents:</span> {selectedDocuments.length}</div>
+                        <div><span className="font-medium text-slate-600">Required Documents:</span> {selectedDocuments.filter(doc => !doc.optional).length}</div>
+                        <div><span className="font-medium text-slate-600">Optional Documents:</span> {selectedDocuments.filter(doc => doc.optional).length}</div>
+                      </div>
+                    </div>
+
+                    {/* Client Information */}
+                    <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
+                      <h4 className="text-lg font-medium text-slate-700 mb-4">Client Information</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                        <div><span className="font-medium text-slate-600">Name:</span> {caseInfo.firstName} {caseInfo.lastName}</div>
+                        <div><span className="font-medium text-slate-600">Email:</span> {caseInfo.email || "Not provided"}</div>
+                        <div><span className="font-medium text-slate-600">Phone:</span> {caseInfo.phone || "Not provided"}</div>
+                        <div><span className="font-medium text-slate-600">Matter ID:</span> {caseInfo.matterId || "Not provided"}</div>
+                        <div><span className="font-medium text-slate-600">State:</span> {caseInfo.state || "Not selected"}</div>
+                        <div><span className="font-medium text-slate-600">Language:</span> {caseInfo.language === "en" ? "English" : caseInfo.language}</div>
+                      </div>
+                    </div>
+
+                    {/* Document List */}
+                    <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40">
+                      <h4 className="text-lg font-medium text-slate-700 mb-4">Requested Documents</h4>
+                      <div className="space-y-2">
+                        {selectedDocuments.map((doc, index) => (
+                          <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg">
+                            <div className="flex items-center space-x-3">
+                              <span className="text-slate-700">{doc.name}</span>
+                              {doc.optional && (
+                                <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* AI Description (if AI was used) */}
+                    {createMethod === "ai" && aiDescription && (
+                      <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
+                        <h4 className="text-lg font-medium text-slate-700 mb-4">AI Case Description</h4>
+                        <p className="text-slate-600 bg-white/70 p-4 rounded-lg">{aiDescription}</p>
+                      </div>
+                    )}
+
+                    <div className="flex justify-between items-center pt-6">
+                      <button
+                        onClick={() => setCreateStep(4)}
+                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                        <span>Back to Edit</span>
+                      </button>
+
+                      <button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 rounded-xl transition-all font-medium text-lg">
+                        Create Case
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         );
 
