@@ -1014,7 +1014,9 @@ export default function Dashboard({
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-medium text-slate-700">Requested Documents</h3>
                   <div className="flex items-center space-x-2">
-                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-sm font-medium">7 items</span>
+                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-sm font-medium">
+                      {selectedDocuments.length} items
+                    </span>
                     <button className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center space-x-1">
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
@@ -1025,19 +1027,17 @@ export default function Dashboard({
                 </div>
 
                 <div className="space-y-2 mb-4">
-                  <input type="text" className="w-full p-2 bg-white/80 rounded-lg border border-slate-200/50 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition-all text-sm" placeholder="Search selected documents..." />
+                  <input
+                    type="text"
+                    value={selectedDocumentSearch}
+                    onChange={(e) => setSelectedDocumentSearch(e.target.value)}
+                    className="w-full p-2 bg-white/80 rounded-lg border border-slate-200/50 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition-all text-sm"
+                    placeholder="Search selected documents..."
+                  />
                 </div>
 
                 <div className="max-h-96 overflow-y-auto space-y-2">
-                  {[
-                    { name: "W2 Tax Form", optional: false },
-                    { name: "Bank Statements", optional: true },
-                    { name: "Employment Records", optional: false },
-                    { name: "Medical Records", optional: false },
-                    { name: "Insurance Documents", optional: true },
-                    { name: "Driver's License", optional: false },
-                    { name: "Tax Returns (2023)", optional: false }
-                  ].map((doc, index) => (
+                  {filteredSelectedDocuments.map((doc, index) => (
                     <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg border border-indigo-200/30">
                       <div className="flex items-center space-x-3">
                         <span className="text-slate-700">{doc.name}</span>
@@ -1046,12 +1046,20 @@ export default function Dashboard({
                         )}
                       </div>
                       <div className="flex items-center space-x-2">
-                        <button className="text-yellow-600 hover:text-yellow-700 text-sm" title="Toggle Optional">
+                        <button
+                          onClick={() => handleToggleOptional(doc.name)}
+                          className="text-yellow-600 hover:text-yellow-700 text-sm"
+                          title="Toggle Optional"
+                        >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
                           </svg>
                         </button>
-                        <button className="text-red-600 hover:text-red-700 text-sm" title="Remove">
+                        <button
+                          onClick={() => handleRemoveDocument(doc.name)}
+                          className="text-red-600 hover:text-red-700 text-sm"
+                          title="Remove"
+                        >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                           </svg>
@@ -1059,6 +1067,11 @@ export default function Dashboard({
                       </div>
                     </div>
                   ))}
+                  {filteredSelectedDocuments.length === 0 && (
+                    <div className="text-center py-8 text-slate-500">
+                      {selectedDocumentSearch ? "No selected documents match your search" : "No documents selected yet"}
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-indigo-200/50">
