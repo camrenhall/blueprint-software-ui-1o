@@ -33,6 +33,21 @@ export default function Dashboard({
   const [showProfile, setShowProfile] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Create page state
+  const [createMethod, setCreateMethod] = useState<"ai" | "manual" | "questionnaire" | null>(null);
+  const [aiDescription, setAiDescription] = useState("");
+  const [selectedDocuments, setSelectedDocuments] = useState<Array<{name: string, optional: boolean}>>([
+    { name: "W2 Tax Form", optional: false },
+    { name: "Bank Statements", optional: true },
+    { name: "Employment Records", optional: false },
+    { name: "Medical Records", optional: false },
+    { name: "Insurance Documents", optional: true },
+    { name: "Driver's License", optional: false },
+    { name: "Tax Returns (2023)", optional: false }
+  ]);
+  const [documentSearch, setDocumentSearch] = useState("");
+  const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
+
   useEffect(() => {
     if (isOpen) {
       // Small delay to ensure smooth entrance
