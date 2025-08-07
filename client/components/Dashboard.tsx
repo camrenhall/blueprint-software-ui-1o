@@ -789,7 +789,7 @@ export default function Dashboard({
               {/* Notification Icon */}
               <div className="relative" data-dropdown>
                 <button
-                  className="relative hover:bg-gray-100/50 p-2 transition-colors duration-200"
+                  className="relative hover:bg-slate-100/50 p-2 transition-colors duration-200"
                   onClick={() => {
                     setShowNotifications(!showNotifications);
                     setShowSettings(false);
@@ -845,7 +845,7 @@ export default function Dashboard({
                       ].map((notification, index) => (
                         <div
                           key={index}
-                          className="p-3 hover:bg-gray-50 border-b border-slate-50 last:border-0"
+                          className="p-3 hover:bg-slate-50 border-b border-slate-50 last:border-0"
                         >
                           <div className="text-sm text-slate-700">
                             {notification.text}
@@ -868,7 +868,7 @@ export default function Dashboard({
               {/* Settings Icon */}
               <div className="relative" data-dropdown>
                 <button
-                  className="hover:bg-gray-100/50 p-2 transition-colors duration-200"
+                  className="hover:bg-slate-100/50 p-2 transition-colors duration-200"
                   onClick={() => {
                     setShowSettings(!showSettings);
                     setShowNotifications(false);
@@ -913,7 +913,7 @@ export default function Dashboard({
                       ].map((item, index) => (
                         <button
                           key={index}
-                          className="w-full text-left p-3 hover:bg-gray-50 rounded-lg flex items-center space-x-3"
+                          className="w-full text-left p-3 hover:bg-slate-50 rounded-lg flex items-center space-x-3"
                         >
                           {item.icon === "user" && (
                             <svg
@@ -1074,7 +1074,7 @@ export default function Dashboard({
                       ].map((item, index) => (
                         <button
                           key={index}
-                          className="w-full text-left p-3 hover:bg-gray-50 rounded-lg flex items-center space-x-3"
+                          className="w-full text-left p-3 hover:bg-slate-50 rounded-lg flex items-center space-x-3"
                         >
                           {item.icon === "user" && (
                             <svg
@@ -1185,7 +1185,7 @@ export default function Dashboard({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="hover:bg-gray-100/50 p-2 transition-colors duration-200 text-slate-500 hover:text-slate-700"
+                className="hover:bg-slate-100/50 p-2 transition-colors duration-200 text-slate-500 hover:text-slate-700"
               >
                 <svg
                   className="w-5 h-5"
