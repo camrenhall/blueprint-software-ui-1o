@@ -759,11 +759,7 @@ export default function Dashboard({
         {/* Navigation Bar */}
         <div className="bg-white border-b border-slate-100 rounded-t-2xl">
           <div className="flex items-center justify-between px-8 py-6">
-            <div className="flex items-center space-x-12">
-              <h2 className="text-2xl font-light text-slate-800 tracking-wide">
-                {title}
-              </h2>
-
+            <div className="flex items-center">
               {/* Navigation Tabs */}
               <nav className="hidden md:flex items-center space-x-8">
                 {(() => {
