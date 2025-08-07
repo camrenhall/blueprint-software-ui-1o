@@ -1076,7 +1076,11 @@ export default function Dashboard({
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-indigo-200/50">
-                  <button className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white py-3 rounded-lg transition-all font-medium flex items-center justify-center space-x-2">
+                  <button
+                    onClick={() => setShowReviewCase(true)}
+                    disabled={selectedDocuments.length === 0}
+                    className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 disabled:from-slate-400 disabled:to-slate-500 disabled:cursor-not-allowed text-white py-3 rounded-lg transition-all font-medium flex items-center justify-center space-x-2"
+                  >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
