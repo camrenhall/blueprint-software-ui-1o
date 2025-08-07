@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import WelcomeLoader from "@/components/WelcomeLoader";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,24 +15,23 @@ export default function Login() {
     // Demo: Allow any login to work
     setTimeout(() => {
       setIsLoading(false);
-      setShowWelcome(true);
-    }, 800);
-  };
+      setIsTransitioning(true);
 
-  // Extract user name from email (take part before @, capitalize first letter)
-  const getUserName = () => {
-    if (!email) return "User";
-    const namePart = email.split("@")[0];
-    return namePart.charAt(0).toUpperCase() + namePart.slice(1);
+      // Brief transition delay for fluid experience
+      setTimeout(() => {
+        navigate("/menu");
+      }, 400);
+    }, 600);
   };
-
-  // Show welcome screen after successful login
-  if (showWelcome) {
-    return <WelcomeLoader userName={getUserName()} />;
-  }
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden">
+    <div
+      className={`min-h-screen w-full relative overflow-hidden transition-all duration-500 ease-out ${
+        isTransitioning
+          ? 'opacity-0 transform scale-105'
+          : 'opacity-100 transform scale-100'
+      }`}
+    >
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center">
         {/* Hero section - Left side */}
