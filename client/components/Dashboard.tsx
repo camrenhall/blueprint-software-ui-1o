@@ -2571,8 +2571,8 @@ export default function Dashboard({
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-hidden bg-white rounded-b-2xl">
-          <div className="h-full p-8 overflow-y-auto">
+        <div className="flex-1 overflow-hidden bg-white rounded-b-3xl">
+          <div className="h-full px-12 py-10 overflow-y-auto">
             <div
               className={cn(
                 "transition-all duration-500 ease-in-out",
