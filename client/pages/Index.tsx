@@ -5,6 +5,7 @@ import Dashboard from "@/components/Dashboard";
 export default function Index() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [dashboardTitle, setDashboardTitle] = useState("");
+  const [dashboardPage, setDashboardPage] = useState("overview");
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
