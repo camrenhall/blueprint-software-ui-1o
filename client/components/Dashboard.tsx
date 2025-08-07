@@ -723,60 +723,20 @@ export default function Dashboard({
               <div className="divide-y divide-slate-100/60">
                 {currentCases.map((caseItem, index) => (
                   <div key={index} className="group p-4 hover:bg-gradient-to-r hover:from-slate-50/50 hover:to-transparent transition-all duration-300 cursor-pointer">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-6 flex-1">
-                        {/* Avatar & Name */}
-                        <div className="flex items-center space-x-4">
-                          <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
-                            <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
-                          </div>
-                          <div>
-                            <h3 className="font-semibold text-slate-800 group-hover:text-indigo-700 transition-colors">{caseItem.name}</h3>
-                            <span className="text-slate-500 text-sm font-mono">{caseItem.caseId}</span>
-                          </div>
+                    {/* Row 1: Name and Case ID ONLY */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-4 flex-1">
+                        <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                          <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
                         </div>
-
-                        {/* Status & Info */}
-                        <div className="flex items-center space-x-8">
-                          <div className="flex items-center space-x-3 min-w-max">
-                            <span className={`inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
-                              <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-purple-400' : 'bg-sky-400'}`}></div>
-                              {caseItem.status}
-                            </span>
-                            <span className="text-slate-600 font-medium text-sm">{caseItem.reviewInfo}</span>
-                          </div>
-
-                          {/* Progress */}
-                          <div className="flex items-center space-x-3 min-w-max">
-                            <div className="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
-                              <div
-                                className="h-full bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full transition-all duration-500"
-                                style={{ width: `${caseItem.progressPercent}%` }}
-                              ></div>
-                            </div>
-                            <span className="text-slate-600 font-medium text-sm">{caseItem.progress}</span>
-                          </div>
-
-                          {/* Timing */}
-                          <div className="flex items-center space-x-6 text-sm">
-                            <div className="flex items-center space-x-2">
-                              <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                              </svg>
-                              <span className="text-slate-600">{caseItem.lastActivity}</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
-                              </svg>
-                              <span className="text-slate-500">{caseItem.queueTime}</span>
-                            </div>
-                          </div>
+                        <div className="flex items-center space-x-2">
+                          <h3 className="font-semibold text-slate-800 group-hover:text-indigo-700 transition-colors">{caseItem.name}</h3>
+                          <span className="text-slate-500 text-sm font-mono">{caseItem.caseId}</span>
                         </div>
                       </div>
 
-                      {/* Actions */}
-                      <div className="flex items-center space-x-3">
+                      {/* Actions anchored to same position */}
+                      <div className="flex items-center space-x-3 w-20 justify-end">
                         <div className={`w-2 h-2 rounded-full ${
                           caseItem.priority === 'high' ? 'bg-red-400' :
                           caseItem.priority === 'medium' ? 'bg-yellow-400' : 'bg-green-400'
@@ -792,6 +752,50 @@ export default function Dashboard({
                           </svg>
                         </button>
                       </div>
+                    </div>
+
+                    {/* Row 2: ALL other information */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-8 flex-1">
+                        {/* Status Flag - anchored at position 0 */}
+                        <div className="flex items-center space-x-3 min-w-max" style={{marginLeft: '56px'}}>
+                          <span className={`inline-flex items-center px-3 py-1 rounded-xl text-xs font-semibold border ${caseItem.statusBg} ${caseItem.statusColor} ${caseItem.statusBorder}`}>
+                            <div className={`w-2 h-2 rounded-full mr-2 ${caseItem.status === 'Needs Review' ? 'bg-purple-400' : 'bg-sky-400'}`}></div>
+                            {caseItem.status}
+                          </span>
+                          <span className="text-slate-600 font-medium text-sm">{caseItem.reviewInfo}</span>
+                        </div>
+
+                        {/* Progress - anchored at fixed position */}
+                        <div className="flex items-center space-x-3 min-w-max">
+                          <div className="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-gradient-to-r from-indigo-500 to-blue-600 rounded-full transition-all duration-500"
+                              style={{ width: `${caseItem.progressPercent}%` }}
+                            ></div>
+                          </div>
+                          <span className="text-slate-600 font-medium text-sm">{caseItem.progress}</span>
+                        </div>
+
+                        {/* Last Activity - anchored at fixed position */}
+                        <div className="flex items-center space-x-2 text-sm min-w-max">
+                          <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <span className="text-slate-600 w-20 text-left">{caseItem.lastActivity}</span>
+                        </div>
+
+                        {/* Queue Time - anchored at fixed position */}
+                        <div className="flex items-center space-x-2 text-sm min-w-max">
+                          <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
+                          </svg>
+                          <span className="text-slate-500 w-24 text-left">{caseItem.queueTime}</span>
+                        </div>
+                      </div>
+
+                      {/* Spacer to maintain consistent right margin */}
+                      <div className="w-20"></div>
                     </div>
                   </div>
                 ))}
