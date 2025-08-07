@@ -47,6 +47,7 @@ export default function Dashboard({
   ]);
   const [documentSearch, setDocumentSearch] = useState("");
   const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
+  const [showReviewCase, setShowReviewCase] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
