@@ -49,6 +49,13 @@ export default function Dashboard({
   const [selectedDocuments, setSelectedDocuments] = useState<Array<{name: string, optional: boolean}>>([]);
   const [documentSearch, setDocumentSearch] = useState("");
   const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
+  const [showTemplateModal, setShowTemplateModal] = useState(false);
+  const [savedTemplates] = useState([
+    { name: "Personal Injury Standard", documents: ["Medical Records", "Insurance Documents", "Employment Records", "W2 Tax Form"] },
+    { name: "Employment Law Package", documents: ["Employment Records", "Payroll Records", "Employment Verification Letter", "Wage and Hour Records"] },
+    { name: "Corporate Compliance", documents: ["Financial Statements", "Tax Returns (2023)", "Corporate Documents", "Compliance Records"] },
+    { name: "Family Law Basic", documents: ["Birth Certificate", "Marriage Certificate", "Financial Statements", "Tax Returns (2023)"] }
+  ]);
 
   useEffect(() => {
     if (isOpen) {
