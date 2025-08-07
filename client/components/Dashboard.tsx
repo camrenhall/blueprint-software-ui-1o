@@ -710,7 +710,7 @@ export default function Dashboard({
                         </div>
                         <div className="flex items-center space-x-2">
                           <h3 className="font-semibold text-slate-800 group-hover:text-indigo-700 transition-colors">{caseItem.name}</h3>
-                          <span className="text-slate-500 text-sm font-mono">{caseItem.caseId}</span>
+                          <span className="text-slate-500 text-sm font-mono italic">{caseItem.caseId}</span>
                         </div>
                       </div>
 
