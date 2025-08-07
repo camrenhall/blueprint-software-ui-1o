@@ -803,7 +803,14 @@ export default function Dashboard({
               <h3 className="text-xl font-medium text-slate-700 mb-6">Create New Case</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <button className="bg-gradient-to-br from-purple-50/90 to-violet-100/90 hover:from-purple-100/90 hover:to-violet-200/90 transition-all p-6 rounded-xl border border-purple-200/50 text-left group">
+                <button
+                  onClick={() => setCreateMethod("ai")}
+                  className={`transition-all p-6 rounded-xl text-left group ${
+                    createMethod === "ai"
+                      ? "bg-gradient-to-br from-purple-100/90 to-violet-200/90 border-purple-300 ring-2 ring-purple-300"
+                      : "bg-gradient-to-br from-purple-50/90 to-violet-100/90 hover:from-purple-100/90 hover:to-violet-200/90 border border-purple-200/50"
+                  }`}
+                >
                   <div className="flex items-center space-x-3 mb-3">
                     <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -815,7 +822,14 @@ export default function Dashboard({
                   <p className="text-sm text-slate-600 leading-relaxed">Describe the case, and AI will suggest what Documents to send from your available templates</p>
                 </button>
 
-                <button className="bg-gradient-to-br from-sky-50/90 to-blue-100/90 hover:from-sky-100/90 hover:to-blue-200/90 transition-all p-6 rounded-xl border border-sky-200/50 text-left group">
+                <button
+                  onClick={() => setCreateMethod("manual")}
+                  className={`transition-all p-6 rounded-xl text-left group ${
+                    createMethod === "manual"
+                      ? "bg-gradient-to-br from-sky-100/90 to-blue-200/90 border-sky-300 ring-2 ring-sky-300"
+                      : "bg-gradient-to-br from-sky-50/90 to-blue-100/90 hover:from-sky-100/90 hover:to-blue-200/90 border border-sky-200/50"
+                  }`}
+                >
                   <div className="flex items-center space-x-3 mb-3">
                     <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -827,7 +841,14 @@ export default function Dashboard({
                   <p className="text-sm text-slate-600 leading-relaxed">Manually Select Requested Documents</p>
                 </button>
 
-                <button className="bg-gradient-to-br from-indigo-50/90 to-purple-100/90 hover:from-indigo-100/90 hover:to-purple-200/90 transition-all p-6 rounded-xl border border-indigo-200/50 text-left group">
+                <button
+                  onClick={() => setCreateMethod("questionnaire")}
+                  className={`transition-all p-6 rounded-xl text-left group ${
+                    createMethod === "questionnaire"
+                      ? "bg-gradient-to-br from-indigo-100/90 to-purple-200/90 border-indigo-300 ring-2 ring-indigo-300"
+                      : "bg-gradient-to-br from-indigo-50/90 to-purple-100/90 hover:from-indigo-100/90 hover:to-purple-200/90 border border-indigo-200/50"
+                  }`}
+                >
                   <div className="flex items-center space-x-3 mb-3">
                     <div className="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
