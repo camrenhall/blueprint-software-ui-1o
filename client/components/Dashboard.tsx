@@ -103,19 +103,41 @@ export default function Dashboard({
   };
 
   const handleAISubmit = async () => {
-    // Simulate AI processing
+    // Simulate AI processing based on description
     const aiSuggestions = [
       "Employment Verification Letter",
       "Wage and Hour Records",
       "Workers Compensation Claims",
-      "Performance Reviews"
+      "Performance Reviews",
+      "Employment Contract",
+      "Payroll Records"
     ];
 
     // Add AI suggestions to document list
     const newDocs = aiSuggestions.map(name => ({ name, optional: false }));
     setSelectedDocuments([...selectedDocuments, ...newDocs]);
-    setAiDescription("");
   };
+
+  // Reset create form when switching tabs
+  useEffect(() => {
+    if (activeTab !== "create") {
+      setCreateStep(1);
+      setCreateMethod(null);
+      setAiDescription("");
+      setCaseInfo({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        matterId: "",
+        state: "",
+        language: "en"
+      });
+      setSelectedDocuments([]);
+      setDocumentSearch("");
+      setSelectedDocumentSearch("");
+    }
+  }, [activeTab]);
 
   const availableDocuments = [
     "W2 Tax Form", "1098 Tax Return", "Bank Statements", "Employment Records",
