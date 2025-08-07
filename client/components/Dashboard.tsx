@@ -201,6 +201,143 @@ export default function Dashboard({
     doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase())
   );
 
+  // All cases data
+  const allCases = [
+    {
+      name: "Rosen, Claire",
+      caseId: "#BTYREV50101",
+      status: "Needs Review",
+      statusColor: "text-purple-700",
+      statusBg: "bg-gradient-to-r from-purple-50 to-violet-50",
+      statusBorder: "border-purple-200",
+      reviewInfo: "1 Review Required",
+      progress: "5/5 Tasks Complete",
+      progressPercent: 100,
+      lastActivity: "16 Minutes Ago",
+      queueTime: "11 Days in Queue",
+      priority: "high",
+      avatar: "RC"
+    },
+    {
+      name: "Martinez, Elena",
+      caseId: "#QWXPLO82394",
+      status: "Needs Review",
+      statusColor: "text-purple-700",
+      statusBg: "bg-gradient-to-r from-purple-50 to-violet-50",
+      statusBorder: "border-purple-200",
+      reviewInfo: "1 Review Required",
+      progress: "3/3 Tasks Complete",
+      progressPercent: 100,
+      lastActivity: "2 Days Ago",
+      queueTime: "7 Days in Queue",
+      priority: "medium",
+      avatar: "ME"
+    },
+    {
+      name: "Thompson, David",
+      caseId: "#MNZFGH45672",
+      status: "Awaiting Documents",
+      statusColor: "text-sky-700",
+      statusBg: "bg-gradient-to-r from-sky-50 to-blue-50",
+      statusBorder: "border-sky-200",
+      reviewInfo: "1 Outstanding",
+      progress: "4/5 Tasks Complete",
+      progressPercent: 80,
+      lastActivity: "5 Hours Ago",
+      queueTime: "13 Days in Queue",
+      priority: "high",
+      avatar: "TD"
+    },
+    {
+      name: "Anderson, Sarah",
+      caseId: "#PLKJHG91238",
+      status: "Awaiting Documents",
+      statusColor: "text-sky-700",
+      statusBg: "bg-gradient-to-r from-sky-50 to-blue-50",
+      statusBorder: "border-sky-200",
+      reviewInfo: "1 Outstanding",
+      progress: "3/7 Tasks Complete",
+      progressPercent: 43,
+      lastActivity: "Yesterday",
+      queueTime: "4 Days in Queue",
+      priority: "medium",
+      avatar: "AS"
+    },
+    {
+      name: "Chen, Michael",
+      caseId: "#RTYV8N67845",
+      status: "Awaiting Documents",
+      statusColor: "text-sky-700",
+      statusBg: "bg-gradient-to-r from-sky-50 to-blue-50",
+      statusBorder: "border-sky-200",
+      reviewInfo: "1 Outstanding",
+      progress: "2/9 Tasks Complete",
+      progressPercent: 22,
+      lastActivity: "2 Days Ago",
+      queueTime: "5 Days in Queue",
+      priority: "low",
+      avatar: "CM"
+    },
+    {
+      name: "Williams, Jessica",
+      caseId: "#ASDFGK23756",
+      status: "Awaiting Documents",
+      statusColor: "text-sky-700",
+      statusBg: "bg-gradient-to-r from-sky-50 to-blue-50",
+      statusBorder: "border-sky-200",
+      reviewInfo: "1 Outstanding",
+      progress: "0/4 Tasks Complete",
+      progressPercent: 0,
+      lastActivity: "3 Days Ago",
+      queueTime: "7 Days in Queue",
+      priority: "low",
+      avatar: "WJ"
+    },
+    {
+      name: "Johnson, Mark",
+      caseId: "#LKJHGF98765",
+      status: "Needs Review",
+      statusColor: "text-purple-700",
+      statusBg: "bg-gradient-to-r from-purple-50 to-violet-50",
+      statusBorder: "border-purple-200",
+      reviewInfo: "2 Reviews Required",
+      progress: "6/6 Tasks Complete",
+      progressPercent: 100,
+      lastActivity: "4 Hours Ago",
+      queueTime: "2 Days in Queue",
+      priority: "high",
+      avatar: "JM"
+    },
+    {
+      name: "Davis, Lisa",
+      caseId: "#MNBVCX54321",
+      status: "Awaiting Documents",
+      statusColor: "text-sky-700",
+      statusBg: "bg-gradient-to-r from-sky-50 to-blue-50",
+      statusBorder: "border-sky-200",
+      reviewInfo: "3 Outstanding",
+      progress: "1/8 Tasks Complete",
+      progressPercent: 12,
+      lastActivity: "1 Day Ago",
+      queueTime: "9 Days in Queue",
+      priority: "medium",
+      avatar: "DL"
+    }
+  ];
+
+  // Filter cases based on search
+  const filteredCases = allCases.filter(caseItem =>
+    caseItem.name.toLowerCase().includes(reviewSearch.toLowerCase()) ||
+    caseItem.caseId.toLowerCase().includes(reviewSearch.toLowerCase()) ||
+    caseItem.status.toLowerCase().includes(reviewSearch.toLowerCase())
+  );
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredCases.length / casesPerPage);
+  const startIndex = (currentPage - 1) * casesPerPage;
+  const endIndex = startIndex + casesPerPage;
+  const currentCases = filteredCases.slice(startIndex, endIndex);
+
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
