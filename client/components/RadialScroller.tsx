@@ -11,6 +11,7 @@ interface MenuItem {
   id: string;
   title: string;
   subItems?: SubMenuItem[];
+  action?: () => void;
 }
 
 interface RadialScrollerProps {
