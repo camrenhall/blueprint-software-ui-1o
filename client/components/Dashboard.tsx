@@ -1455,11 +1455,8 @@ export default function Dashboard({
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                         >
                           <option value="">Select state</option>
-                          <option value="CA">California</option>
-                          <option value="NY">New York</option>
-                          <option value="TX">Texas</option>
-                          <option value="FL">Florida</option>
-                          <option value="IL">Illinois</option>
+                          <option value="KS">Kansas</option>
+                          <option value="MO">Missouri</option>
                         </select>
                       </div>
                     </div>
@@ -1936,7 +1933,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        •••• •••�� •••• 4242
+                        •••• •••• •••• 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
