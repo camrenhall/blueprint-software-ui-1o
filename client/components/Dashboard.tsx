@@ -275,16 +275,16 @@ export default function Dashboard({
           <div className="space-y-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {/* Performance Chart */}
-              <div className="bg-gradient-to-br from-gray-50 to-slate-100 p-6 rounded-xl border border-gray-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   Performance Trends
                 </h3>
                 <div className="h-64 flex items-center justify-center">
-                  <div className="w-full h-full bg-gradient-to-t from-blue-100 to-blue-50 rounded-lg flex items-end justify-center p-4 space-x-2">
+                  <div className="w-full h-full bg-gradient-to-t from-blue-100/80 to-blue-50/80 rounded-lg flex items-end justify-center p-4 space-x-2">
                     {Array.from({ length: 12 }).map((_, i) => (
                       <div
                         key={i}
-                        className="bg-blue-400 rounded-t opacity-80"
+                        className="bg-gradient-to-t from-blue-400 to-indigo-400 rounded-t opacity-80"
                         style={{
                           height: `${30 + Math.random() * 50}%`,
                           width: "6%",
@@ -296,27 +296,27 @@ export default function Dashboard({
               </div>
 
               {/* User Demographics */}
-              <div className="bg-gradient-to-br from-rose-50 to-pink-100 p-6 rounded-xl border border-rose-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   User Demographics
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Desktop Users</span>
+                    <span className="text-slate-600">Desktop Users</span>
                     <div className="flex items-center space-x-2">
-                      <div className="w-20 h-2 bg-gray-200 rounded-full">
-                        <div className="w-16 h-2 bg-blue-400 rounded-full"></div>
+                      <div className="w-20 h-2 bg-white/40 rounded-full">
+                        <div className="w-16 h-2 bg-purple-400 rounded-full"></div>
                       </div>
-                      <span className="text-sm text-gray-500">78%</span>
+                      <span className="text-sm text-slate-500">78%</span>
                     </div>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-gray-600">Mobile Users</span>
+                    <span className="text-slate-600">Mobile Users</span>
                     <div className="flex items-center space-x-2">
-                      <div className="w-20 h-2 bg-gray-200 rounded-full">
-                        <div className="w-12 h-2 bg-green-400 rounded-full"></div>
+                      <div className="w-20 h-2 bg-white/40 rounded-full">
+                        <div className="w-12 h-2 bg-blue-400 rounded-full"></div>
                       </div>
-                      <span className="text-sm text-gray-500">22%</span>
+                      <span className="text-sm text-slate-500">22%</span>
                     </div>
                   </div>
                 </div>
@@ -353,15 +353,15 @@ export default function Dashboard({
               ].map((metric, index) => (
                 <div
                   key={index}
-                  className="bg-white/80 p-4 rounded-xl border border-gray-200/50"
+                  className="bg-white/70 p-4 rounded-xl border border-slate-200/40 backdrop-blur-sm"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-gray-600 text-sm">
+                    <span className="text-slate-600 text-sm">
                       {metric.label}
                     </span>
                     {metric.icon === "eye" && (
                       <svg
-                        className="w-5 h-5 text-gray-400"
+                        className="w-5 h-5 text-slate-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -382,7 +382,7 @@ export default function Dashboard({
                     )}
                     {metric.icon === "refresh" && (
                       <svg
-                        className="w-5 h-5 text-gray-400"
+                        className="w-5 h-5 text-slate-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -397,7 +397,7 @@ export default function Dashboard({
                     )}
                     {metric.icon === "clock" && (
                       <svg
-                        className="w-5 h-5 text-gray-400"
+                        className="w-5 h-5 text-slate-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -412,7 +412,7 @@ export default function Dashboard({
                     )}
                     {metric.icon === "target" && (
                       <svg
-                        className="w-5 h-5 text-gray-400"
+                        className="w-5 h-5 text-slate-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -426,18 +426,18 @@ export default function Dashboard({
                       </svg>
                     )}
                   </div>
-                  <div className="text-2xl font-light text-gray-800">
+                  <div className="text-2xl font-light text-slate-800">
                     {metric.value}
                   </div>
-                  <div className="text-sm text-green-600">{metric.change}</div>
+                  <div className="text-sm text-blue-600">{metric.change}</div>
                 </div>
               ))}
             </div>
 
             {/* Additional Analytics Content */}
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-indigo-50 to-blue-100 p-6 rounded-xl border border-indigo-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   Traffic Sources
                 </h3>
                 <div className="space-y-4">
@@ -450,7 +450,7 @@ export default function Dashboard({
                     {
                       source: "Search Engines",
                       percentage: 32,
-                      color: "bg-green-400",
+                      color: "bg-indigo-400",
                     },
                     {
                       source: "Social Media",
@@ -460,22 +460,22 @@ export default function Dashboard({
                     {
                       source: "Referrals",
                       percentage: 8,
-                      color: "bg-orange-400",
+                      color: "bg-violet-400",
                     },
                   ].map((item, index) => (
                     <div
                       key={index}
                       className="flex items-center justify-between"
                     >
-                      <span className="text-gray-700">{item.source}</span>
+                      <span className="text-slate-700">{item.source}</span>
                       <div className="flex items-center space-x-2">
-                        <div className="w-24 h-2 bg-gray-200 rounded-full">
+                        <div className="w-24 h-2 bg-white/40 rounded-full">
                           <div
                             className={`h-2 ${item.color} rounded-full`}
                             style={{ width: `${item.percentage}%` }}
                           ></div>
                         </div>
-                        <span className="text-sm text-gray-600 w-8">
+                        <span className="text-sm text-slate-600 w-8">
                           {item.percentage}%
                         </span>
                       </div>
@@ -484,8 +484,8 @@ export default function Dashboard({
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-xl border border-emerald-200/50">
-                <h3 className="text-lg font-medium text-gray-700 mb-4">
+              <div className="bg-gradient-to-br from-sky-50/80 to-cyan-100/80 p-6 rounded-xl border border-sky-200/40 backdrop-blur-sm">
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
                   Geographic Distribution
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -507,17 +507,17 @@ export default function Dashboard({
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="flex justify-between items-center p-3 bg-white/60 rounded-lg"
+                      className="flex justify-between items-center p-3 bg-white/70 rounded-lg"
                     >
                       <div>
-                        <div className="font-medium text-gray-700">
+                        <div className="font-medium text-slate-700">
                           {item.country}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-slate-500">
                           {item.users} users
                         </div>
                       </div>
-                      <div className="text-lg font-medium text-emerald-600">
+                      <div className="text-lg font-medium text-sky-600">
                         {item.percentage}%
                       </div>
                     </div>
