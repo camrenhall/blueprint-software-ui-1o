@@ -1044,7 +1044,7 @@ export default function Dashboard({
 
                 {/* Profile Dropdown */}
                 {showProfile && (
-                  <div className="absolute top-12 right-0 w-72 bg-white rounded-xl shadow-xl border border-slate-200/50 z-50 transition-all duration-200">
+                  <div className="absolute top-12 right-0 w-72 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-slate-200/50 z-50 transition-all duration-200">
                     <div className="p-4 border-b border-slate-100">
                       <div className="flex items-center space-x-3">
                         <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
