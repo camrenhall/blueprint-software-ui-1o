@@ -83,6 +83,56 @@ export default function Dashboard({
     }, 150);
   };
 
+  // Create page functions
+  const handleAddDocument = (docName: string) => {
+    if (!selectedDocuments.find(doc => doc.name === docName)) {
+      setSelectedDocuments([...selectedDocuments, { name: docName, optional: false }]);
+    }
+  };
+
+  const handleRemoveDocument = (docName: string) => {
+    setSelectedDocuments(selectedDocuments.filter(doc => doc.name !== docName));
+  };
+
+  const handleToggleOptional = (docName: string) => {
+    setSelectedDocuments(selectedDocuments.map(doc =>
+      doc.name === docName ? { ...doc, optional: !doc.optional } : doc
+    ));
+  };
+
+  const handleAISubmit = async () => {
+    // Simulate AI processing
+    const aiSuggestions = [
+      "Employment Verification Letter",
+      "Wage and Hour Records",
+      "Workers Compensation Claims",
+      "Performance Reviews"
+    ];
+
+    // Add AI suggestions to document list
+    const newDocs = aiSuggestions.map(name => ({ name, optional: false }));
+    setSelectedDocuments([...selectedDocuments, ...newDocs]);
+    setAiDescription("");
+  };
+
+  const availableDocuments = [
+    "W2 Tax Form", "1098 Tax Return", "Bank Statements", "Employment Records",
+    "Medical Records", "Insurance Documents", "Property Deeds", "Driver's License",
+    "Social Security Card", "Birth Certificate", "Marriage Certificate",
+    "Financial Statements", "Credit Reports", "Tax Returns (2023)", "Payroll Records",
+    "Employment Verification Letter", "Wage and Hour Records", "Workers Compensation Claims",
+    "Performance Reviews", "Contracts and Agreements", "Court Documents"
+  ];
+
+  const filteredAvailableDocuments = availableDocuments.filter(doc =>
+    doc.toLowerCase().includes(documentSearch.toLowerCase()) &&
+    !selectedDocuments.find(selectedDoc => selectedDoc.name === doc)
+  );
+
+  const filteredSelectedDocuments = selectedDocuments.filter(doc =>
+    doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase())
+  );
+
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
