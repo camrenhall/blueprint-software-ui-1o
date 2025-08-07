@@ -120,7 +120,7 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-sm text-slate-600 mt-2">Currently online</p>
+                <p className="text-sm text-slate-600 mt-2">76% success rate</p>
               </div>
 
               <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
