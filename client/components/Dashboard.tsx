@@ -23,74 +23,58 @@ const FuturisticCaseScroller = ({
   onSearchChange: (value: string) => void
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [focusIndex, setFocusIndex] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
 
-  // Calculate visual effects for each case based on distance from focus
+  // Calculate visual effects based on position from top (simplified for performance)
   const getCaseEffects = (index: number) => {
-    const distance = Math.abs(index - focusIndex);
+    // Default opacity decreases from top to bottom
+    let opacity;
 
-    let opacity, scale, blur;
-
-    if (distance === 0) {
-      opacity = 1;
-      scale = 1;
-      blur = 0;
-    } else if (distance === 1) {
-      opacity = 0.7;
-      scale = 0.96;
-      blur = 1;
-    } else if (distance === 2) {
-      opacity = 0.5;
-      scale = 0.92;
-      blur = 2;
-    } else if (distance === 3) {
-      opacity = 0.3;
-      scale = 0.88;
-      blur = 3;
+    if (index === 0) {
+      opacity = 1; // Top item always full opacity
+    } else if (index === 1) {
+      opacity = 0.85; // Second item very visible
+    } else if (index === 2) {
+      opacity = 0.7; // Third item mostly visible
+    } else if (index === 3) {
+      opacity = 0.55; // Fourth item moderately visible
+    } else if (index === 4) {
+      opacity = 0.4; // Fifth item less visible
     } else {
-      opacity = 0.2;
-      scale = 0.85;
-      blur = 4;
+      opacity = 0.25; // Rest fade more
     }
 
-    return { opacity, scale, blur };
+    // Adjust based on scroll position to create focus effect
+    const container = scrollContainerRef.current;
+    if (container) {
+      const itemHeight = 120; // Approximate height of each case
+      const focusedIndex = Math.round(scrollPosition / itemHeight);
+      const distanceFromFocus = Math.abs(index - focusedIndex);
+
+      if (distanceFromFocus === 0) {
+        opacity = 1;
+      } else if (distanceFromFocus === 1) {
+        opacity = Math.max(opacity, 0.75);
+      } else if (distanceFromFocus === 2) {
+        opacity = Math.max(opacity, 0.55);
+      }
+    }
+
+    return { opacity };
   };
 
-  // Handle scroll events to update focus
+  // Handle scroll events (simplified)
   const handleScroll = useCallback(() => {
     if (!scrollContainerRef.current) return;
-
-    const container = scrollContainerRef.current;
-    const containerRect = container.getBoundingClientRect();
-    const centerY = containerRect.top + containerRect.height / 2;
-
-    const caseElements = container.querySelectorAll('[data-case-index]');
-    let closestIndex = 0;
-    let closestDistance = Infinity;
-
-    caseElements.forEach((element, index) => {
-      const rect = element.getBoundingClientRect();
-      const elementCenterY = rect.top + rect.height / 2;
-      const distance = Math.abs(elementCenterY - centerY);
-
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    setFocusIndex(closestIndex);
+    setScrollPosition(scrollContainerRef.current.scrollTop);
   }, []);
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const handleScrollEvent = () => handleScroll();
-    container.addEventListener('scroll', handleScrollEvent);
-    handleScroll(); // Initial calculation
-
-    return () => container.removeEventListener('scroll', handleScrollEvent);
+    container.addEventListener('scroll', handleScroll);
+    return () => container.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
   return (
