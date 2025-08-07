@@ -230,7 +230,7 @@ export default function Dashboard({
 
             {/* Additional Overview Sections */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-lavender-50/80 to-purple-50/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
+              <div className="bg-gradient-to-br from-purple-50/80 to-violet-50/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
                 <h3 className="text-lg font-medium text-slate-700 mb-4">
                   System Health
                 </h3>
