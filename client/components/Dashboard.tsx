@@ -175,7 +175,7 @@ const FuturisticCaseScroller = ({
                     <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
                       <div
                         className={cn(
-                          "h-full rounded-full transition-all duration-500",
+                          "h-full rounded-full transition-all duration-300",
                           caseItem.status === 'Needs Review'
                             ? 'bg-gradient-to-r from-purple-500 to-violet-600'
                             : 'bg-gradient-to-r from-sky-500 to-blue-600'
@@ -2207,7 +2207,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        ���••• •••• •••• 4242
+                        ���••• •••• ���••• 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
