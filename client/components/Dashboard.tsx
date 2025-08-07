@@ -9,7 +9,15 @@ interface DashboardProps {
   className?: string;
 }
 
-type NavigationTab = "overview" | "review" | "reports" | "create" | "settings-profile" | "settings-preferences" | "settings-security" | "settings-billing";
+type NavigationTab =
+  | "overview"
+  | "review"
+  | "reports"
+  | "create"
+  | "settings-profile"
+  | "settings-preferences"
+  | "settings-security"
+  | "settings-billing";
 
 export default function Dashboard({
   isOpen,
@@ -73,9 +81,7 @@ export default function Dashboard({
                     <h3 className="text-lg font-medium text-slate-700 mb-1">
                       Active Cases
                     </h3>
-                    <div className="text-3xl font-light text-blue-600">
-                      247
-                    </div>
+                    <div className="text-3xl font-light text-blue-600">247</div>
                   </div>
                   <svg
                     className="w-8 h-8 text-slate-400"
@@ -91,9 +97,7 @@ export default function Dashboard({
                     />
                   </svg>
                 </div>
-                <p className="text-sm text-slate-600 mt-2">
-                  +12 new this week
-                </p>
+                <p className="text-sm text-slate-600 mt-2">+12 new this week</p>
               </div>
 
               <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
@@ -641,7 +645,9 @@ export default function Dashboard({
                       <div className="font-medium text-slate-700">
                         {report.name}
                       </div>
-                      <div className="text-sm text-slate-500">{report.date}</div>
+                      <div className="text-sm text-slate-500">
+                        {report.date}
+                      </div>
                     </div>
                     <div
                       className={cn(
@@ -729,17 +735,29 @@ export default function Dashboard({
           <div className="space-y-6">
             {/* Case Creation Header */}
             <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
-              <h3 className="text-xl font-medium text-slate-700 mb-4">Create New Law Case</h3>
-              <p className="text-slate-600 mb-6">Start building a new case from templates or create from scratch</p>
+              <h3 className="text-xl font-medium text-slate-700 mb-4">
+                Create New Law Case
+              </h3>
+              <p className="text-slate-600 mb-6">
+                Start building a new case from templates or create from scratch
+              </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <button className="bg-white/80 hover:bg-white transition-colors p-4 rounded-lg text-left border border-blue-200/40">
-                  <h4 className="font-medium text-slate-700 mb-2">Quick Case Template</h4>
-                  <p className="text-sm text-slate-500">Use a pre-configured template for common case types</p>
+                  <h4 className="font-medium text-slate-700 mb-2">
+                    Quick Case Template
+                  </h4>
+                  <p className="text-sm text-slate-500">
+                    Use a pre-configured template for common case types
+                  </p>
                 </button>
                 <button className="bg-white/80 hover:bg-white transition-colors p-4 rounded-lg text-left border border-purple-200/40">
-                  <h4 className="font-medium text-slate-700 mb-2">Custom Case Builder</h4>
-                  <p className="text-sm text-slate-500">Build a case from scratch with full customization</p>
+                  <h4 className="font-medium text-slate-700 mb-2">
+                    Custom Case Builder
+                  </h4>
+                  <p className="text-sm text-slate-500">
+                    Build a case from scratch with full customization
+                  </p>
                 </button>
               </div>
             </div>
@@ -747,10 +765,20 @@ export default function Dashboard({
             {/* Case Types */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">Civil Cases</h3>
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
+                  Civil Cases
+                </h3>
                 <div className="space-y-2">
-                  {["Contract Disputes", "Personal Injury", "Property Law", "Employment Law"].map((caseType, index) => (
-                    <button key={index} className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
+                  {[
+                    "Contract Disputes",
+                    "Personal Injury",
+                    "Property Law",
+                    "Employment Law",
+                  ].map((caseType, index) => (
+                    <button
+                      key={index}
+                      className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700"
+                    >
                       {caseType}
                     </button>
                   ))}
@@ -758,10 +786,20 @@ export default function Dashboard({
               </div>
 
               <div className="bg-gradient-to-br from-sky-50/80 to-blue-100/80 p-6 rounded-xl border border-sky-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">Criminal Cases</h3>
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
+                  Criminal Cases
+                </h3>
                 <div className="space-y-2">
-                  {["Felony Defense", "Misdemeanor", "DUI/DWI", "White Collar"].map((caseType, index) => (
-                    <button key={index} className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
+                  {[
+                    "Felony Defense",
+                    "Misdemeanor",
+                    "DUI/DWI",
+                    "White Collar",
+                  ].map((caseType, index) => (
+                    <button
+                      key={index}
+                      className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700"
+                    >
                       {caseType}
                     </button>
                   ))}
@@ -769,10 +807,20 @@ export default function Dashboard({
               </div>
 
               <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">Corporate Law</h3>
+                <h3 className="text-lg font-medium text-slate-700 mb-4">
+                  Corporate Law
+                </h3>
                 <div className="space-y-2">
-                  {["Mergers & Acquisitions", "Corporate Compliance", "Intellectual Property", "Securities"].map((caseType, index) => (
-                    <button key={index} className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
+                  {[
+                    "Mergers & Acquisitions",
+                    "Corporate Compliance",
+                    "Intellectual Property",
+                    "Securities",
+                  ].map((caseType, index) => (
+                    <button
+                      key={index}
+                      className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700"
+                    >
                       {caseType}
                     </button>
                   ))}
@@ -782,17 +830,35 @@ export default function Dashboard({
 
             {/* Recent Templates */}
             <div className="bg-gradient-to-br from-violet-50/80 to-purple-100/80 p-6 rounded-xl border border-violet-200/40 backdrop-blur-sm">
-              <h3 className="text-lg font-medium text-slate-700 mb-4">Recent Templates</h3>
+              <h3 className="text-lg font-medium text-slate-700 mb-4">
+                Recent Templates
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[
-                  { name: "Personal Injury Template", lastUsed: "2 days ago", type: "Civil" },
-                  { name: "Corporate Contract Template", lastUsed: "1 week ago", type: "Corporate" },
-                  { name: "Criminal Defense Template", lastUsed: "3 days ago", type: "Criminal" },
+                  {
+                    name: "Personal Injury Template",
+                    lastUsed: "2 days ago",
+                    type: "Civil",
+                  },
+                  {
+                    name: "Corporate Contract Template",
+                    lastUsed: "1 week ago",
+                    type: "Corporate",
+                  },
+                  {
+                    name: "Criminal Defense Template",
+                    lastUsed: "3 days ago",
+                    type: "Criminal",
+                  },
                 ].map((template, index) => (
                   <div key={index} className="p-4 bg-white/70 rounded-lg">
-                    <h4 className="font-medium text-slate-700">{template.name}</h4>
+                    <h4 className="font-medium text-slate-700">
+                      {template.name}
+                    </h4>
                     <p className="text-sm text-slate-500">{template.type}</p>
-                    <p className="text-xs text-slate-400 mt-1">Last used: {template.lastUsed}</p>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Last used: {template.lastUsed}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -804,35 +870,69 @@ export default function Dashboard({
         return (
           <div className="space-y-6">
             <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
-              <h3 className="text-xl font-medium text-slate-700 mb-6">User Profile</h3>
+              <h3 className="text-xl font-medium text-slate-700 mb-6">
+                User Profile
+              </h3>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
-                    <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50" defaultValue="Alex Chen" />
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Full Name
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50"
+                      defaultValue="Alex Chen"
+                    />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
-                    <input type="email" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50" defaultValue="alex.chen@email.com" />
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50"
+                      defaultValue="alex.chen@email.com"
+                    />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
-                    <input type="tel" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50" defaultValue="+1 (555) 123-4567" />
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50"
+                      defaultValue="+1 (555) 123-4567"
+                    />
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Job Title</label>
-                    <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50" defaultValue="Senior Attorney" />
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Job Title
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50"
+                      defaultValue="Senior Attorney"
+                    />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Bar Number</label>
-                    <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50" defaultValue="BAR123456" />
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Bar Number
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50"
+                      defaultValue="BAR123456"
+                    />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-2">Specialization</label>
+                    <label className="block text-sm font-medium text-slate-700 mb-2">
+                      Specialization
+                    </label>
                     <select className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50">
                       <option>Corporate Law</option>
                       <option>Criminal Law</option>
@@ -856,20 +956,37 @@ export default function Dashboard({
         return (
           <div className="space-y-6">
             <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
-              <h3 className="text-xl font-medium text-slate-700 mb-6">Preferences</h3>
+              <h3 className="text-xl font-medium text-slate-700 mb-6">
+                Preferences
+              </h3>
 
               <div className="space-y-6">
                 <div>
-                  <h4 className="font-medium text-slate-700 mb-4">Notification Settings</h4>
+                  <h4 className="font-medium text-slate-700 mb-4">
+                    Notification Settings
+                  </h4>
                   <div className="space-y-3">
                     {[
-                      { label: "Email notifications for new cases", checked: true },
-                      { label: "SMS alerts for urgent matters", checked: false },
+                      {
+                        label: "Email notifications for new cases",
+                        checked: true,
+                      },
+                      {
+                        label: "SMS alerts for urgent matters",
+                        checked: false,
+                      },
                       { label: "Desktop notifications", checked: true },
                       { label: "Weekly summary reports", checked: true },
                     ].map((setting, index) => (
-                      <label key={index} className="flex items-center space-x-3">
-                        <input type="checkbox" defaultChecked={setting.checked} className="rounded border-slate-300" />
+                      <label
+                        key={index}
+                        className="flex items-center space-x-3"
+                      >
+                        <input
+                          type="checkbox"
+                          defaultChecked={setting.checked}
+                          className="rounded border-slate-300"
+                        />
                         <span className="text-slate-700">{setting.label}</span>
                       </label>
                     ))}
@@ -877,10 +994,14 @@ export default function Dashboard({
                 </div>
 
                 <div>
-                  <h4 className="font-medium text-slate-700 mb-4">Display Settings</h4>
+                  <h4 className="font-medium text-slate-700 mb-4">
+                    Display Settings
+                  </h4>
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">Theme</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                        Theme
+                      </label>
                       <select className="w-full max-w-xs p-3 bg-white/80 rounded-lg border border-slate-200/50">
                         <option>Light Mode</option>
                         <option>Dark Mode</option>
@@ -888,7 +1009,9 @@ export default function Dashboard({
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">Timezone</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">
+                        Timezone
+                      </label>
                       <select className="w-full max-w-xs p-3 bg-white/80 rounded-lg border border-slate-200/50">
                         <option>Pacific Time (UTC-8)</option>
                         <option>Eastern Time (UTC-5)</option>
@@ -907,40 +1030,71 @@ export default function Dashboard({
         return (
           <div className="space-y-6">
             <div className="bg-gradient-to-br from-sky-50/80 to-cyan-100/80 p-6 rounded-xl border border-sky-200/40 backdrop-blur-sm">
-              <h3 className="text-xl font-medium text-slate-700 mb-6">Security Settings</h3>
+              <h3 className="text-xl font-medium text-slate-700 mb-6">
+                Security Settings
+              </h3>
 
               <div className="space-y-6">
                 <div className="p-4 bg-white/70 rounded-lg">
-                  <h4 className="font-medium text-slate-700 mb-2">Two-Factor Authentication</h4>
-                  <p className="text-sm text-slate-600 mb-4">Add an extra layer of security to your account</p>
+                  <h4 className="font-medium text-slate-700 mb-2">
+                    Two-Factor Authentication
+                  </h4>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Add an extra layer of security to your account
+                  </p>
                   <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors">
                     Enable 2FA
                   </button>
                 </div>
 
                 <div className="p-4 bg-white/70 rounded-lg">
-                  <h4 className="font-medium text-slate-700 mb-2">Password Settings</h4>
-                  <p className="text-sm text-slate-600 mb-4">Change your account password</p>
+                  <h4 className="font-medium text-slate-700 mb-2">
+                    Password Settings
+                  </h4>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Change your account password
+                  </p>
                   <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
                     Change Password
                   </button>
                 </div>
 
                 <div className="p-4 bg-white/70 rounded-lg">
-                  <h4 className="font-medium text-slate-700 mb-2">Active Sessions</h4>
-                  <p className="text-sm text-slate-600 mb-4">Monitor and manage your active login sessions</p>
+                  <h4 className="font-medium text-slate-700 mb-2">
+                    Active Sessions
+                  </h4>
+                  <p className="text-sm text-slate-600 mb-4">
+                    Monitor and manage your active login sessions
+                  </p>
                   <div className="space-y-2">
                     {[
-                      { device: "Chrome on MacBook Pro", location: "San Francisco, CA", time: "Current session" },
-                      { device: "Safari on iPhone", location: "San Francisco, CA", time: "2 hours ago" },
+                      {
+                        device: "Chrome on MacBook Pro",
+                        location: "San Francisco, CA",
+                        time: "Current session",
+                      },
+                      {
+                        device: "Safari on iPhone",
+                        location: "San Francisco, CA",
+                        time: "2 hours ago",
+                      },
                     ].map((session, index) => (
-                      <div key={index} className="flex justify-between items-center p-3 bg-slate-50 rounded">
+                      <div
+                        key={index}
+                        className="flex justify-between items-center p-3 bg-slate-50 rounded"
+                      >
                         <div>
-                          <p className="font-medium text-slate-700">{session.device}</p>
-                          <p className="text-sm text-slate-500">{session.location} • {session.time}</p>
+                          <p className="font-medium text-slate-700">
+                            {session.device}
+                          </p>
+                          <p className="text-sm text-slate-500">
+                            {session.location} • {session.time}
+                          </p>
                         </div>
                         {index > 0 && (
-                          <button className="text-red-600 hover:text-red-700 text-sm">Revoke</button>
+                          <button className="text-red-600 hover:text-red-700 text-sm">
+                            Revoke
+                          </button>
                         )}
                       </div>
                     ))}
@@ -955,15 +1109,23 @@ export default function Dashboard({
         return (
           <div className="space-y-6">
             <div className="bg-gradient-to-br from-violet-50/80 to-purple-100/80 p-6 rounded-xl border border-violet-200/40 backdrop-blur-sm">
-              <h3 className="text-xl font-medium text-slate-700 mb-6">Billing & Subscription</h3>
+              <h3 className="text-xl font-medium text-slate-700 mb-6">
+                Billing & Subscription
+              </h3>
 
               <div className="space-y-6">
                 <div className="p-4 bg-white/70 rounded-lg">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h4 className="font-medium text-slate-700">Current Plan</h4>
-                      <p className="text-2xl font-light text-purple-600 mt-1">Premium Tier</p>
-                      <p className="text-sm text-slate-600">$99/month • Billed annually</p>
+                      <h4 className="font-medium text-slate-700">
+                        Current Plan
+                      </h4>
+                      <p className="text-2xl font-light text-purple-600 mt-1">
+                        Premium Tier
+                      </p>
+                      <p className="text-sm text-slate-600">
+                        $99/month • Billed annually
+                      </p>
                     </div>
                     <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors">
                       Upgrade Plan
@@ -978,33 +1140,54 @@ export default function Dashboard({
                 </div>
 
                 <div className="p-4 bg-white/70 rounded-lg">
-                  <h4 className="font-medium text-slate-700 mb-4">Payment Method</h4>
+                  <h4 className="font-medium text-slate-700 mb-4">
+                    Payment Method
+                  </h4>
                   <div className="flex items-center space-x-4">
                     <div className="flex-1 p-3 bg-slate-50 rounded flex items-center space-x-3">
-                      <div className="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">VISA</div>
-                      <span className="text-slate-700">•••• •••• •••• 4242</span>
+                      <div className="w-8 h-6 bg-blue-600 rounded text-white text-xs flex items-center justify-center font-bold">
+                        VISA
+                      </div>
+                      <span className="text-slate-700">
+                        •••• •••• •••• 4242
+                      </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
-                    <button className="text-indigo-600 hover:text-indigo-700">Edit</button>
+                    <button className="text-indigo-600 hover:text-indigo-700">
+                      Edit
+                    </button>
                   </div>
                 </div>
 
                 <div className="p-4 bg-white/70 rounded-lg">
-                  <h4 className="font-medium text-slate-700 mb-4">Billing History</h4>
+                  <h4 className="font-medium text-slate-700 mb-4">
+                    Billing History
+                  </h4>
                   <div className="space-y-2">
                     {[
                       { date: "Jan 1, 2024", amount: "$99.00", status: "Paid" },
                       { date: "Dec 1, 2023", amount: "$99.00", status: "Paid" },
                       { date: "Nov 1, 2023", amount: "$99.00", status: "Paid" },
                     ].map((invoice, index) => (
-                      <div key={index} className="flex justify-between items-center p-3 bg-slate-50 rounded">
+                      <div
+                        key={index}
+                        className="flex justify-between items-center p-3 bg-slate-50 rounded"
+                      >
                         <div>
-                          <p className="font-medium text-slate-700">{invoice.date}</p>
-                          <p className="text-sm text-slate-500">Monthly subscription</p>
+                          <p className="font-medium text-slate-700">
+                            {invoice.date}
+                          </p>
+                          <p className="text-sm text-slate-500">
+                            Monthly subscription
+                          </p>
                         </div>
                         <div className="text-right">
-                          <p className="font-medium text-slate-700">{invoice.amount}</p>
-                          <p className="text-sm text-green-600">{invoice.status}</p>
+                          <p className="font-medium text-slate-700">
+                            {invoice.amount}
+                          </p>
+                          <p className="text-sm text-green-600">
+                            {invoice.status}
+                          </p>
                         </div>
                       </div>
                     ))}
