@@ -100,10 +100,10 @@ export default function Dashboard({
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-lg font-medium text-slate-700 mb-1">
-                      Active Sessions
+                      Cases Won
                     </h3>
                     <div className="text-3xl font-light text-indigo-600">
-                      1,429
+                      189
                     </div>
                   </div>
                   <svg
