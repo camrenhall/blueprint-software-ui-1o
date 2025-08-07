@@ -106,6 +106,16 @@ export default function Dashboard({
     }, 300);
   };
 
+  // Phone number formatting function
+  const formatPhoneNumber = (value: string) => {
+    const phone = value.replace(/\D/g, '');
+    const match = phone.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+    if (match) {
+      return !match[2] ? match[1] : `(${match[1]}) ${match[2]}${match[3] ? `-${match[3]}` : ''}`;
+    }
+    return value;
+  };
+
   // Create page functions
   const handleAddDocument = (docName: string) => {
     if (!selectedDocuments.find(doc => doc.name === docName)) {
