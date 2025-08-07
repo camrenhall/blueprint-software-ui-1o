@@ -717,17 +717,6 @@ export default function Dashboard({
               <div className="bg-gradient-to-r from-slate-50/80 to-white px-8 py-4 border-b border-slate-200/60">
                 <div className="flex items-center justify-between">
                   <h2 className="text-lg font-semibold text-slate-800">Active Cases</h2>
-                  <div className="flex items-center space-x-3">
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
-                      <span className="text-slate-600">Live Updates</span>
-                    </div>
-                    <button className="text-slate-500 hover:text-slate-700 transition-colors">
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                      </svg>
-                    </button>
-                  </div>
                 </div>
               </div>
 
