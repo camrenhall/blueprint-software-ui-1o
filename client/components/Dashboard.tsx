@@ -331,12 +331,59 @@ export default function Dashboard({
     }
   ];
 
-  // Filter cases based on search
-  const filteredCases = allCases.filter(caseItem =>
-    caseItem.name.toLowerCase().includes(reviewSearch.toLowerCase()) ||
-    caseItem.caseId.toLowerCase().includes(reviewSearch.toLowerCase()) ||
-    caseItem.status.toLowerCase().includes(reviewSearch.toLowerCase())
-  );
+  // Enhanced case filtering and sorting
+  const getFilteredAndSortedCases = () => {
+    let filtered = allCases.filter(caseItem => {
+      const matchesSearch = caseItem.name.toLowerCase().includes(reviewSearch.toLowerCase()) ||
+        caseItem.caseId.toLowerCase().includes(reviewSearch.toLowerCase()) ||
+        caseItem.status.toLowerCase().includes(reviewSearch.toLowerCase());
+
+      if (activeFilters.length === 0) return matchesSearch;
+
+      const matchesFilters = activeFilters.some(filter => {
+        switch (filter) {
+          case 'high-priority': return caseItem.priority === 'high';
+          case 'medium-priority': return caseItem.priority === 'medium';
+          case 'low-priority': return caseItem.priority === 'low';
+          case 'needs-review': return caseItem.status === 'Needs Review';
+          case 'awaiting-docs': return caseItem.status === 'Awaiting Documents';
+          case 'overdue': return parseInt(caseItem.queueTime.split(' ')[0]) > 10;
+          default: return true;
+        }
+      });
+
+      return matchesSearch && matchesFilters;
+    });
+
+    // Apply sorting - "Needs Review" first, then "Awaiting Documents", then by time within categories
+    filtered.sort((a, b) => {
+      // Primary sort: Status priority
+      if (a.status !== b.status) {
+        if (a.status === 'Needs Review') return -1;
+        if (b.status === 'Needs Review') return 1;
+        if (a.status === 'Awaiting Documents') return -1;
+        if (b.status === 'Awaiting Documents') return 1;
+      }
+
+      // Secondary sort: Within same status, sort by time (most recent first)
+      const timeA = parseTimeToMinutes(a.lastActivity);
+      const timeB = parseTimeToMinutes(b.lastActivity);
+      return timeA - timeB; // Lower minutes = more recent
+    });
+
+    return filtered;
+  };
+
+  const parseTimeToMinutes = (timeStr: string): number => {
+    const parts = timeStr.toLowerCase();
+    if (parts.includes('minute')) return parseInt(parts);
+    if (parts.includes('hour')) return parseInt(parts) * 60;
+    if (parts.includes('day')) return parseInt(parts) * 1440;
+    if (parts.includes('yesterday')) return 1440;
+    return 999999; // Default for unknown formats
+  };
+
+  const filteredCases = getFilteredAndSortedCases();
 
   // Calculate pagination
   const totalPages = Math.ceil(filteredCases.length / casesPerPage);
