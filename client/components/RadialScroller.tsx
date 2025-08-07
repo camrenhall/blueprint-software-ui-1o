@@ -74,6 +74,9 @@ export default function RadialScroller({
           setSelectedIndex(0);
           setIsTransitioning(false);
         }, 300);
+      } else if (selectedItem?.action) {
+        // Execute direct action for items without subitems
+        selectedItem.action();
       }
     } else {
       const selectedSubItem = currentSubItems[selectedIndex];
