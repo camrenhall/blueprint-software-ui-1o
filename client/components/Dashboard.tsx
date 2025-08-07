@@ -669,61 +669,20 @@ export default function Dashboard({
               </div>
             </div>
 
-            {/* Simplified Toolbar */}
+            {/* Search Only Toolbar */}
             <div className="bg-white/80 border border-slate-200/50 rounded-2xl p-3 shadow-sm backdrop-blur-sm">
-              <div className="flex items-center justify-between">
-                <div className="relative w-80">
-                  <input
-                    type="text"
-                    value={reviewSearch}
-                    onChange={(e) => setReviewSearch(e.target.value)}
-                    placeholder="Search cases or clients..."
-                    className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200/60 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 transition-all placeholder-slate-400 text-slate-700"
-                  />
-                  <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                    <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Simplified Pagination */}
-                <div className="flex items-center space-x-1">
-                  <button
-                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                    className="w-8 h-8 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <svg className="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                    const pageNum = i + Math.max(1, currentPage - 2);
-                    return pageNum <= totalPages ? (
-                      <button
-                        key={pageNum}
-                        onClick={() => setCurrentPage(pageNum)}
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium transition-all ${
-                          pageNum === currentPage
-                            ? "bg-indigo-500 text-white"
-                            : "bg-white hover:bg-slate-50 text-slate-600 border border-slate-200"
-                        }`}
-                      >
-                        {pageNum}
-                      </button>
-                    ) : null;
-                  })}
-                  {totalPages > 5 && currentPage < totalPages - 2 && <span className="text-slate-400 px-1 text-sm">...</span>}
-                  <button
-                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                    className="w-8 h-8 rounded-lg bg-white hover:bg-slate-50 border border-slate-200 flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    <svg className="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
+              <div className="relative w-80">
+                <input
+                  type="text"
+                  value={reviewSearch}
+                  onChange={(e) => setReviewSearch(e.target.value)}
+                  placeholder="Search cases or clients..."
+                  className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200/60 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 transition-all placeholder-slate-400 text-slate-700"
+                />
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                  <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
                 </div>
               </div>
             </div>
