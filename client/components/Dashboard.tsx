@@ -496,11 +496,6 @@ export default function Dashboard({
               <div className="flex items-center justify-between gap-8">
                 <div className="flex items-center space-x-6 min-w-0 flex-shrink">
                   <div className="flex items-center space-x-2 bg-white/60 rounded-2xl p-2 border border-slate-200/40">
-                    <button className="group w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 flex items-center justify-center transition-all duration-200 hover:scale-105 shadow-md">
-                      <svg className="w-4 h-4 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                      </svg>
-                    </button>
                     <button className="group w-10 h-10 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/60 flex items-center justify-center transition-all duration-200 hover:scale-105">
                       <svg className="w-4 h-4 text-slate-600 group-hover:text-slate-800 group-hover:scale-110 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -517,8 +512,8 @@ export default function Dashboard({
 
                   <div className="flex items-center space-x-2 text-sm whitespace-nowrap">
                     <span className="font-medium text-slate-700">Showing</span>
-                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-lg font-semibold">6</span>
-                    <span className="text-slate-600">of 47 cases</span>
+                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-lg font-semibold">{Math.min(casesPerPage, allCases.length - (currentPage - 1) * casesPerPage)}</span>
+                    <span className="text-slate-600">of {allCases.length} cases</span>
                   </div>
                 </div>
 
@@ -526,7 +521,9 @@ export default function Dashboard({
                   <div className="relative flex-1 max-w-md">
                     <input
                       type="text"
-                      placeholder="Search cases, clients, or case IDs..."
+                      value={reviewSearch}
+                      onChange={(e) => setReviewSearch(e.target.value)}
+                      placeholder="Search cases or clients..."
                       className="w-full pl-12 pr-4 py-3 bg-white/80 border border-slate-200/60 rounded-2xl focus:bg-white focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 transition-all placeholder-slate-400 text-slate-700 shadow-sm"
                     />
                     <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
@@ -538,25 +535,37 @@ export default function Dashboard({
 
                   {/* Enhanced Pagination */}
                   <div className="flex items-center space-x-2 bg-white/60 rounded-2xl p-2 border border-slate-200/40 flex-shrink-0">
-                    <button className="w-9 h-9 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/60 flex items-center justify-center transition-all duration-200 hover:scale-105 disabled:opacity-50">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="w-9 h-9 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/60 flex items-center justify-center transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                       </svg>
                     </button>
-                    {[1, 2, 3, 4, 5].map((num) => (
-                      <button
-                        key={num}
-                        className={`w-9 h-9 rounded-xl flex items-center justify-center text-sm font-semibold transition-all duration-200 hover:scale-105 ${
-                          num === 1
-                            ? "bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-md"
-                            : "bg-white hover:bg-slate-50 text-slate-600 border border-slate-200/60"
-                        }`}
-                      >
-                        {num}
-                      </button>
-                    ))}
-                    <div className="text-slate-400 px-1">...</div>
-                    <button className="w-9 h-9 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/60 flex items-center justify-center transition-all duration-200 hover:scale-105">
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      const pageNum = i + Math.max(1, currentPage - 2);
+                      return pageNum <= totalPages ? (
+                        <button
+                          key={pageNum}
+                          onClick={() => setCurrentPage(pageNum)}
+                          className={`w-9 h-9 rounded-xl flex items-center justify-center text-sm font-semibold transition-all duration-200 hover:scale-105 ${
+                            pageNum === currentPage
+                              ? "bg-gradient-to-br from-indigo-500 to-blue-600 text-white shadow-md"
+                              : "bg-white hover:bg-slate-50 text-slate-600 border border-slate-200/60"
+                          }`}
+                        >
+                          {pageNum}
+                        </button>
+                      ) : null;
+                    })}
+                    {totalPages > 5 && currentPage < totalPages - 2 && <div className="text-slate-400 px-1">...</div>}
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="w-9 h-9 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/60 flex items-center justify-center transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       <svg className="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
