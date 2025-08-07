@@ -701,7 +701,7 @@ export default function Dashboard({
 
               <div className="space-y-6 p-6">
                 {currentCases.map((caseItem, index) => (
-                  <div key={index} className="group bg-white/50 rounded-2xl p-4 hover:bg-white/70 transition-all duration-300 cursor-pointer border border-slate-100/60">
+                  <div key={index} className="group bg-gradient-to-r from-white/60 via-white/80 to-white/60 rounded-2xl p-5 hover:from-white/80 hover:via-white/95 hover:to-white/80 transition-all duration-500 cursor-pointer border border-slate-200/40 shadow-sm hover:shadow-md hover:border-slate-300/60 backdrop-blur-sm">
                     {/* Row 1: Name and Case ID ONLY */}
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center space-x-4 flex-1">
