@@ -1252,55 +1252,62 @@ export default function Dashboard({
 
                   {/* Professional Document Management Interface */}
                   <div className="grid grid-cols-12 gap-12">
-                    {/* Available Documents */}
+                    {/* Available Documents - Elegant Design */}
                     <div className="col-span-7">
-                      <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg overflow-hidden">
-                        <div className="bg-slate-50/80 px-6 py-4 border-b border-slate-200/60">
+                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
+                        <div className="px-8 py-6 border-b border-slate-100/60">
                           <div className="flex items-center justify-between">
-                            <h3 className="text-lg font-medium text-slate-800">
-                              {createMethod === "ai" ? "Add More Documents" : "Available Documents"}
-                            </h3>
+                            <div>
+                              <h3 className="text-xl font-light text-slate-700 mb-1">Document Library</h3>
+                              <p className="text-sm text-slate-500">Add more documents to your AI suggestions</p>
+                            </div>
                             <button
                               onClick={() => setShowTemplateModal(true)}
-                              className="text-indigo-600 hover:text-indigo-700 flex items-center space-x-2 text-sm font-medium"
+                              className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-4 py-2 transition-all"
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                               </svg>
-                              <span>Load Template</span>
+                              <span>Templates</span>
                             </button>
                           </div>
                         </div>
 
-                        <div className="p-6">
-                          <div className="mb-4">
+                        <div className="p-8">
+                          <div className="mb-6">
                             <input
                               type="text"
                               value={documentSearch}
                               onChange={(e) => setDocumentSearch(e.target.value)}
-                              className="w-full p-3 bg-white border border-slate-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400"
-                              placeholder="Search documents..."
+                              className="w-full p-4 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
+                              placeholder="Search document library..."
                             />
                           </div>
 
-                          <div className="h-96 overflow-y-auto space-y-2 pr-2">
+                          <div className="h-96 overflow-y-auto space-y-1">
                             {filteredAvailableDocuments.map((doc, index) => (
-                              <div key={index} className="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-lg transition-colors border border-slate-200">
-                                <span className="text-slate-700 font-medium">{doc}</span>
-                                <button
-                                  onClick={() => handleAddDocument(doc)}
-                                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded text-sm font-medium transition-colors"
+                              <button
+                                key={index}
+                                onClick={() => handleAddDocument(doc)}
+                                className="w-full flex items-center justify-between p-4 hover:bg-slate-50/80 rounded-2xl transition-all duration-200 group border-0 bg-transparent text-left"
+                              >
+                                <span className="text-slate-700 font-normal flex-1">{doc}</span>
+                                <svg
+                                  className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
                                 >
-                                  Add
-                                </button>
-                              </div>
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                              </button>
                             ))}
                             {filteredAvailableDocuments.length === 0 && (
-                              <div className="text-center py-12 text-slate-500">
-                                <svg className="w-8 h-8 mx-auto mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              <div className="text-center py-16 text-slate-500">
+                                <svg className="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
-                                <p>{documentSearch ? "No documents match your search" : "All documents have been added"}</p>
+                                <p className="font-light">{documentSearch ? "No documents match your search" : "All documents have been selected"}</p>
                               </div>
                             )}
                           </div>
