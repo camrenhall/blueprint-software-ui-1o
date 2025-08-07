@@ -125,6 +125,14 @@ export default function Dashboard({
     setSelectedDocuments([...selectedDocuments, ...newDocs]);
   };
 
+  const handleLoadTemplate = (template: typeof savedTemplates[0]) => {
+    const templateDocs = template.documents.map(name => ({ name, optional: false }));
+    setSelectedDocuments([...selectedDocuments, ...templateDocs.filter(doc =>
+      !selectedDocuments.find(existing => existing.name === doc.name)
+    )]);
+    setShowTemplateModal(false);
+  };
+
   // Reset create form when switching tabs
   useEffect(() => {
     if (activeTab !== "create") {
