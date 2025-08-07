@@ -539,7 +539,7 @@ export default function Dashboard({
                     Monthly Report
                   </h3>
                   <svg
-                    className="w-6 h-6 text-gray-400"
+                    className="w-6 h-6 text-slate-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -566,7 +566,7 @@ export default function Dashboard({
                     User Analytics
                   </h3>
                   <svg
-                    className="w-6 h-6 text-gray-400"
+                    className="w-6 h-6 text-slate-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
