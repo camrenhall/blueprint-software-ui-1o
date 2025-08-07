@@ -256,11 +256,11 @@ const FuturisticCaseScroller = ({
             <div
               className="w-full bg-indigo-400 rounded-full transition-all duration-300"
               style={{
-                height: `${Math.min(100, (focusIndex / Math.max(1, cases.length - 1)) * 100)}%`
+                height: `${Math.min(100, (scrollPosition / Math.max(1, (cases.length - 1) * 120)) * 100)}%`
               }}
             />
           </div>
-          <span className="text-xs font-medium">{focusIndex + 1}/{cases.length}</span>
+          <span className="text-xs font-medium">{Math.min(cases.length, Math.round(scrollPosition / 120) + 1)}/{cases.length}</span>
         </div>
       </div>
     </div>
