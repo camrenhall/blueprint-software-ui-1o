@@ -791,7 +791,7 @@ export default function Dashboard({
                       {/* Queue Time with dark numbers - cols 10-11 */}
                       <div className="col-span-2 flex items-center space-x-2 text-sm whitespace-nowrap">
                         <svg className="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3a2 2 0 012-2h4a2 2 0 012 2v4m-6 0V6a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6m-6 0l.5-.5a2 2 0 011.414-.586h.172a2 2 0 011.414.586L12 7m0 0v5m0 0l2.5 2.5M12 12l-2.5 2.5" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
                         <span>
                           <span className="text-slate-800 font-semibold">{caseItem.queueTime.split(' ')[0]}</span>
