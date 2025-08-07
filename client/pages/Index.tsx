@@ -17,6 +17,7 @@ export default function Index() {
       id: "overview",
       title: "Overview",
       action: () => {
+        setDashboardPage("overview");
         setDashboardTitle("");
         setDashboardOpen(true);
       },
@@ -25,6 +26,7 @@ export default function Index() {
       id: "create",
       title: "Create",
       action: () => {
+        setDashboardPage("create");
         setDashboardTitle("");
         setDashboardOpen(true);
       },
@@ -33,6 +35,7 @@ export default function Index() {
       id: "review",
       title: "Review",
       action: () => {
+        setDashboardPage("review");
         setDashboardTitle("");
         setDashboardOpen(true);
       },
@@ -41,6 +44,7 @@ export default function Index() {
       id: "reports",
       title: "Reports",
       action: () => {
+        setDashboardPage("reports");
         setDashboardTitle("");
         setDashboardOpen(true);
       },
@@ -53,6 +57,7 @@ export default function Index() {
           id: "settings-profile",
           title: "User Profile",
           action: () => {
+            setDashboardPage("settings-profile");
             setDashboardTitle("");
             setDashboardOpen(true);
           },
@@ -61,6 +66,7 @@ export default function Index() {
           id: "settings-preferences",
           title: "Preferences",
           action: () => {
+            setDashboardPage("settings-preferences");
             setDashboardTitle("");
             setDashboardOpen(true);
           },
@@ -69,6 +75,7 @@ export default function Index() {
           id: "settings-security",
           title: "Security",
           action: () => {
+            setDashboardPage("settings-security");
             setDashboardTitle("");
             setDashboardOpen(true);
           },
@@ -77,6 +84,7 @@ export default function Index() {
           id: "settings-billing",
           title: "Billing",
           action: () => {
+            setDashboardPage("settings-billing");
             setDashboardTitle("");
             setDashboardOpen(true);
           },
