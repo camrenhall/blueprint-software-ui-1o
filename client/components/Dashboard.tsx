@@ -629,12 +629,6 @@ export default function Dashboard({
 
   const filteredCases = getFilteredAndSortedCases();
 
-  // Calculate pagination
-  const totalPages = Math.ceil(filteredCases.length / casesPerPage);
-  const startIndex = (currentPage - 1) * casesPerPage;
-  const endIndex = startIndex + casesPerPage;
-  const currentCases = filteredCases.slice(startIndex, endIndex);
-
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
