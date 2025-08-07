@@ -733,134 +733,212 @@ export default function Dashboard({
       case "create":
         return (
           <div className="space-y-6">
-            {/* Case Creation Header */}
+            {/* Creation Method Selection */}
             <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
-              <h3 className="text-xl font-medium text-slate-700 mb-4">
-                Create New Law Case
-              </h3>
-              <p className="text-slate-600 mb-6">
-                Start building a new case from templates or create from scratch
-              </p>
+              <h3 className="text-xl font-medium text-slate-700 mb-6">Create New Case</h3>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <button className="bg-white/80 hover:bg-white transition-colors p-4 rounded-lg text-left border border-blue-200/40">
-                  <h4 className="font-medium text-slate-700 mb-2">
-                    Quick Case Template
-                  </h4>
-                  <p className="text-sm text-slate-500">
-                    Use a pre-configured template for common case types
-                  </p>
-                </button>
-                <button className="bg-white/80 hover:bg-white transition-colors p-4 rounded-lg text-left border border-purple-200/40">
-                  <h4 className="font-medium text-slate-700 mb-2">
-                    Custom Case Builder
-                  </h4>
-                  <p className="text-sm text-slate-500">
-                    Build a case from scratch with full customization
-                  </p>
-                </button>
-              </div>
-            </div>
-
-            {/* Case Types */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Civil Cases
-                </h3>
-                <div className="space-y-2">
-                  {[
-                    "Contract Disputes",
-                    "Personal Injury",
-                    "Property Law",
-                    "Employment Law",
-                  ].map((caseType, index) => (
-                    <button
-                      key={index}
-                      className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700"
-                    >
-                      {caseType}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-sky-50/80 to-blue-100/80 p-6 rounded-xl border border-sky-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Criminal Cases
-                </h3>
-                <div className="space-y-2">
-                  {[
-                    "Felony Defense",
-                    "Misdemeanor",
-                    "DUI/DWI",
-                    "White Collar",
-                  ].map((caseType, index) => (
-                    <button
-                      key={index}
-                      className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700"
-                    >
-                      {caseType}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Corporate Law
-                </h3>
-                <div className="space-y-2">
-                  {[
-                    "Mergers & Acquisitions",
-                    "Corporate Compliance",
-                    "Intellectual Property",
-                    "Securities",
-                  ].map((caseType, index) => (
-                    <button
-                      key={index}
-                      className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700"
-                    >
-                      {caseType}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Recent Templates */}
-            <div className="bg-gradient-to-br from-violet-50/80 to-purple-100/80 p-6 rounded-xl border border-violet-200/40 backdrop-blur-sm">
-              <h3 className="text-lg font-medium text-slate-700 mb-4">
-                Recent Templates
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  {
-                    name: "Personal Injury Template",
-                    lastUsed: "2 days ago",
-                    type: "Civil",
-                  },
-                  {
-                    name: "Corporate Contract Template",
-                    lastUsed: "1 week ago",
-                    type: "Corporate",
-                  },
-                  {
-                    name: "Criminal Defense Template",
-                    lastUsed: "3 days ago",
-                    type: "Criminal",
-                  },
-                ].map((template, index) => (
-                  <div key={index} className="p-4 bg-white/70 rounded-lg">
-                    <h4 className="font-medium text-slate-700">
-                      {template.name}
-                    </h4>
-                    <p className="text-sm text-slate-500">{template.type}</p>
-                    <p className="text-xs text-slate-400 mt-1">
-                      Last used: {template.lastUsed}
-                    </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <button className="bg-gradient-to-br from-purple-50/90 to-violet-100/90 hover:from-purple-100/90 hover:to-violet-200/90 transition-all p-6 rounded-xl border border-purple-200/50 text-left group">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <h4 className="font-semibold text-slate-700">AI Assist</h4>
                   </div>
-                ))}
+                  <p className="text-sm text-slate-600 leading-relaxed">Describe the case, and AI will suggest what Documents to send from your available templates</p>
+                </button>
+
+                <button className="bg-gradient-to-br from-sky-50/90 to-blue-100/90 hover:from-sky-100/90 hover:to-blue-200/90 transition-all p-6 rounded-xl border border-sky-200/50 text-left group">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
+                    </div>
+                    <h4 className="font-semibold text-slate-700">Manual Select</h4>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-relaxed">Manually Select Requested Documents</p>
+                </button>
+
+                <button className="bg-gradient-to-br from-indigo-50/90 to-purple-100/90 hover:from-indigo-100/90 hover:to-purple-200/90 transition-all p-6 rounded-xl border border-indigo-200/50 text-left group">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h4 className="font-semibold text-slate-700">Questionnaire</h4>
+                  </div>
+                  <p className="text-sm text-slate-600 leading-relaxed">Select Questionnaire to send</p>
+                </button>
+              </div>
+            </div>
+
+            {/* Case Information Form */}
+            <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-6 rounded-xl border border-slate-200/40 backdrop-blur-sm">
+              <h3 className="text-lg font-medium text-slate-700 mb-6">Case Information</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+                  <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="Enter first name" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+                  <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="Enter last name" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
+                  <input type="tel" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="(555) 123-4567" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+                  <input type="email" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="client@email.com" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Matter ID</label>
+                  <input type="text" className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all" placeholder="MTR-2024-001" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">State</label>
+                  <select className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all">
+                    <option value="">Select state</option>
+                    <option value="CA">California</option>
+                    <option value="NY">New York</option>
+                    <option value="TX">Texas</option>
+                    <option value="FL">Florida</option>
+                    <option value="IL">Illinois</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">Language</label>
+                  <select className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="zh">Chinese</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* Document Selection Area */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Available Documents / AI Chat / Manual Selection */}
+              <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-medium text-slate-700">Document Selection</h3>
+                  <button className="text-sm text-purple-600 hover:text-purple-700 flex items-center space-x-1">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    <span>Load Template</span>
+                  </button>
+                </div>
+
+                {/* AI Chat Interface (when AI Assist is selected) */}
+                <div className="hidden mb-4 p-4 bg-white/70 rounded-lg border border-purple-200/30">
+                  <h4 className="font-medium text-slate-700 mb-3">Describe Your Case</h4>
+                  <textarea className="w-full p-3 bg-white/80 rounded-lg border border-slate-200/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all h-24 resize-none" placeholder="Describe the case details, client situation, and any specific requirements..."></textarea>
+                  <div className="flex justify-end mt-3">
+                    <button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span>Get AI Suggestions</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Manual Document List */}
+                <div className="space-y-2">
+                  <div className="flex items-center space-x-2 mb-3">
+                    <div className="flex-1">
+                      <input type="text" className="w-full p-2 bg-white/80 rounded-lg border border-slate-200/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-200 transition-all text-sm" placeholder="Search documents..." />
+                    </div>
+                  </div>
+
+                  <div className="max-h-96 overflow-y-auto space-y-2">
+                    {[
+                      "W2 Tax Form", "1098 Tax Return", "Bank Statements", "Employment Records",
+                      "Medical Records", "Insurance Documents", "Property Deeds", "Driver's License",
+                      "Social Security Card", "Birth Certificate", "Marriage Certificate",
+                      "Financial Statements", "Credit Reports", "Tax Returns (2023)", "Payroll Records"
+                    ].map((doc, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors border border-purple-200/30">
+                        <span className="text-slate-700">{doc}</span>
+                        <button className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                          + Add
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Running Document Total */}
+              <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-medium text-slate-700">Requested Documents</h3>
+                  <div className="flex items-center space-x-2">
+                    <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-sm font-medium">7 items</span>
+                    <button className="text-sm text-indigo-600 hover:text-indigo-700 flex items-center space-x-1">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      <span>Save Template</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-2 mb-4">
+                  <input type="text" className="w-full p-2 bg-white/80 rounded-lg border border-slate-200/50 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-200 transition-all text-sm" placeholder="Search selected documents..." />
+                </div>
+
+                <div className="max-h-96 overflow-y-auto space-y-2">
+                  {[
+                    { name: "W2 Tax Form", optional: false },
+                    { name: "Bank Statements", optional: true },
+                    { name: "Employment Records", optional: false },
+                    { name: "Medical Records", optional: false },
+                    { name: "Insurance Documents", optional: true },
+                    { name: "Driver's License", optional: false },
+                    { name: "Tax Returns (2023)", optional: false }
+                  ].map((doc, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg border border-indigo-200/30">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-slate-700">{doc.name}</span>
+                        {doc.optional && (
+                          <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
+                        )}
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <button className="text-yellow-600 hover:text-yellow-700 text-sm" title="Toggle Optional">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                          </svg>
+                        </button>
+                        <button className="text-red-600 hover:text-red-700 text-sm" title="Remove">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-indigo-200/50">
+                  <button className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white py-3 rounded-lg transition-all font-medium flex items-center justify-center space-x-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                    <span>Review New Case</span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
