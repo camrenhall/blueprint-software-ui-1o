@@ -103,7 +103,9 @@ export default function Login() {
         <div className="flex-shrink-0 w-full max-w-lg pr-20 md:pr-32 lg:pr-40">
           <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-white/40 shadow-2xl p-10">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-light text-slate-800 mb-2">Sign In</h2>
+              <h2 className="text-2xl font-light text-slate-800 mb-2">
+                Sign In
+              </h2>
               <p className="text-slate-600">Access your account</p>
             </div>
 

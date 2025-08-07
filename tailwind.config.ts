@@ -96,7 +96,7 @@ export default {
             transform: "translateY(-25px) translateX(-10px)",
           },
         },
-        "drift": {
+        drift: {
           "0%": {
             transform: "translateX(0px) translateY(0px) scale(1)",
             opacity: "0.4",

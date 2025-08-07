@@ -172,8 +172,8 @@ export default function RadialScroller({
                 className={cn(
                   "font-light tracking-wide transition-all duration-300 whitespace-nowrap",
                   isSelected
-                  ? "text-slate-800 drop-shadow-md"
-                  : "text-slate-600 hover:text-slate-700",
+                    ? "text-slate-800 drop-shadow-md"
+                    : "text-slate-600 hover:text-slate-700",
                   currentLevel === "main"
                     ? "text-4xl md:text-5xl"
                     : "text-3xl md:text-4xl",

@@ -85,38 +85,68 @@ export default function CloudBackground() {
         {/* Organic floating cloud wisps */}
         <div className="absolute inset-0">
           {/* Large flowing cloud formations */}
-          <div className="absolute top-1/6 left-1/4 w-80 h-32 bg-gradient-to-r from-transparent via-blue-200/30 to-transparent rounded-full blur-lg animate-drift opacity-60"
-               style={{ animationDelay: '0s', animationDuration: '18s' }} />
-          <div className="absolute top-1/3 right-1/5 w-96 h-24 bg-gradient-to-l from-transparent via-purple-200/25 to-transparent rounded-full blur-lg animate-float opacity-50"
-               style={{ animationDelay: '3s', animationDuration: '22s' }} />
-          <div className="absolute bottom-1/3 left-1/6 w-72 h-28 bg-gradient-to-r from-transparent via-indigo-200/35 to-transparent rounded-full blur-lg animate-drift opacity-55"
-               style={{ animationDelay: '6s', animationDuration: '20s' }} />
+          <div
+            className="absolute top-1/6 left-1/4 w-80 h-32 bg-gradient-to-r from-transparent via-blue-200/30 to-transparent rounded-full blur-lg animate-drift opacity-60"
+            style={{ animationDelay: "0s", animationDuration: "18s" }}
+          />
+          <div
+            className="absolute top-1/3 right-1/5 w-96 h-24 bg-gradient-to-l from-transparent via-purple-200/25 to-transparent rounded-full blur-lg animate-float opacity-50"
+            style={{ animationDelay: "3s", animationDuration: "22s" }}
+          />
+          <div
+            className="absolute bottom-1/3 left-1/6 w-72 h-28 bg-gradient-to-r from-transparent via-indigo-200/35 to-transparent rounded-full blur-lg animate-drift opacity-55"
+            style={{ animationDelay: "6s", animationDuration: "20s" }}
+          />
 
           {/* Medium cloud wisps */}
-          <div className="absolute top-2/5 right-1/3 w-48 h-20 bg-gradient-to-l from-transparent via-blue-300/20 to-transparent rounded-full blur-md animate-float opacity-40"
-               style={{ animationDelay: '2s', animationDuration: '16s' }} />
-          <div className="absolute bottom-1/4 left-2/5 w-56 h-16 bg-gradient-to-r from-transparent via-purple-300/18 to-transparent rounded-full blur-md animate-drift opacity-45"
-               style={{ animationDelay: '8s', animationDuration: '24s' }} />
-          <div className="absolute top-3/4 right-1/6 w-64 h-18 bg-gradient-to-l from-transparent via-indigo-300/22 to-transparent rounded-full blur-md animate-float opacity-35"
-               style={{ animationDelay: '12s', animationDuration: '19s' }} />
+          <div
+            className="absolute top-2/5 right-1/3 w-48 h-20 bg-gradient-to-l from-transparent via-blue-300/20 to-transparent rounded-full blur-md animate-float opacity-40"
+            style={{ animationDelay: "2s", animationDuration: "16s" }}
+          />
+          <div
+            className="absolute bottom-1/4 left-2/5 w-56 h-16 bg-gradient-to-r from-transparent via-purple-300/18 to-transparent rounded-full blur-md animate-drift opacity-45"
+            style={{ animationDelay: "8s", animationDuration: "24s" }}
+          />
+          <div
+            className="absolute top-3/4 right-1/6 w-64 h-18 bg-gradient-to-l from-transparent via-indigo-300/22 to-transparent rounded-full blur-md animate-float opacity-35"
+            style={{ animationDelay: "12s", animationDuration: "19s" }}
+          />
 
           {/* Small ethereal wisps */}
-          <div className="absolute top-1/8 left-3/5 w-32 h-12 bg-gradient-to-r from-transparent via-blue-400/15 to-transparent rounded-full blur-sm animate-drift opacity-30"
-               style={{ animationDelay: '4s', animationDuration: '14s' }} />
-          <div className="absolute bottom-1/5 right-2/5 w-40 h-10 bg-gradient-to-l from-transparent via-purple-400/12 to-transparent rounded-full blur-sm animate-float opacity-25"
-               style={{ animationDelay: '10s', animationDuration: '17s' }} />
+          <div
+            className="absolute top-1/8 left-3/5 w-32 h-12 bg-gradient-to-r from-transparent via-blue-400/15 to-transparent rounded-full blur-sm animate-drift opacity-30"
+            style={{ animationDelay: "4s", animationDuration: "14s" }}
+          />
+          <div
+            className="absolute bottom-1/5 right-2/5 w-40 h-10 bg-gradient-to-l from-transparent via-purple-400/12 to-transparent rounded-full blur-sm animate-float opacity-25"
+            style={{ animationDelay: "10s", animationDuration: "17s" }}
+          />
         </div>
 
         {/* Primary floating particles - varied sizes */}
         <div className="absolute inset-0">
           {particles.map((particle, index) => {
-            const size = index % 4 === 0 ? 'w-2 h-2' : index % 3 === 0 ? 'w-1.5 h-1.5' : 'w-1 h-1';
-            const opacity = index % 4 === 0 ? 'opacity-50' : index % 3 === 0 ? 'opacity-40' : 'opacity-30';
+            const size =
+              index % 4 === 0
+                ? "w-2 h-2"
+                : index % 3 === 0
+                  ? "w-1.5 h-1.5"
+                  : "w-1 h-1";
+            const opacity =
+              index % 4 === 0
+                ? "opacity-50"
+                : index % 3 === 0
+                  ? "opacity-40"
+                  : "opacity-30";
             return (
               <div
                 key={particle.id}
                 className={`absolute ${size} bg-blue-300 rounded-full ${opacity} ${
-                  index % 3 === 0 ? 'animate-drift' : index % 2 === 0 ? 'animate-float' : 'animate-float-slow'
+                  index % 3 === 0
+                    ? "animate-drift"
+                    : index % 2 === 0
+                      ? "animate-float"
+                      : "animate-float-slow"
                 }`}
                 style={{
                   left: `${particle.left}%`,
@@ -132,13 +162,13 @@ export default function CloudBackground() {
         {/* Purple accent particles - organic distribution */}
         <div className="absolute inset-0">
           {particles.slice(0, 10).map((particle, index) => {
-            const size = index % 3 === 0 ? 'w-2.5 h-2.5' : 'w-1.5 h-1.5';
-            const opacity = index % 3 === 0 ? 'opacity-35' : 'opacity-25';
+            const size = index % 3 === 0 ? "w-2.5 h-2.5" : "w-1.5 h-1.5";
+            const opacity = index % 3 === 0 ? "opacity-35" : "opacity-25";
             return (
               <div
                 key={`purple-${particle.id}`}
                 className={`absolute ${size} bg-purple-300 rounded-full ${opacity} ${
-                  index % 2 === 0 ? 'animate-drift' : 'animate-float-slow'
+                  index % 2 === 0 ? "animate-drift" : "animate-float-slow"
                 }`}
                 style={{
                   left: `${(particle.left + 30) % 100}%`,
