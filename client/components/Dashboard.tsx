@@ -4,15 +4,17 @@ import { cn } from "@/lib/utils";
 interface DashboardProps {
   isOpen: boolean;
   title: string;
+  page?: string;
   onClose: () => void;
   className?: string;
 }
 
-type NavigationTab = "overview" | "analytics" | "reports";
+type NavigationTab = "overview" | "review" | "reports" | "create" | "settings-profile" | "settings-preferences" | "settings-security" | "settings-billing";
 
 export default function Dashboard({
   isOpen,
   title,
+  page = "overview",
   onClose,
   className,
 }: DashboardProps) {
