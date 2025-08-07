@@ -1247,9 +1247,9 @@ export default function Dashboard({
                   } else {
                     return [
                       { id: "overview", label: "Overview" },
+                      { id: "create", label: "Create" },
                       { id: "review", label: "Review" },
                       { id: "reports", label: "Reports" },
-                      { id: "create", label: "Create" },
                     ];
                   }
                 })().map((tab) => (
