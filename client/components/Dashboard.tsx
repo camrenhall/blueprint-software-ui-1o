@@ -750,18 +750,11 @@ export default function Dashboard({
                         </div>
                       </div>
 
-                      {/* Actions anchored to same position */}
-                      <div className="flex items-center space-x-3 w-20 justify-end">
-                        <button className="opacity-0 group-hover:opacity-100 transition-all duration-200 w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-indigo-50 hover:border-indigo-200 hover:scale-105">
-                          <svg className="w-3.5 h-3.5 text-slate-600 hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                        <button className="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:scale-105 transition-all duration-200">
-                          <svg className="w-3.5 h-3.5 text-slate-600" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-                          </svg>
-                        </button>
+                      {/* Hover indicator */}
+                      <div className="opacity-0 group-hover:opacity-100 transition-all duration-200">
+                        <svg className="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </div>
                     </div>
 
