@@ -71,10 +71,10 @@ export default function Dashboard({
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-lg font-medium text-slate-700 mb-1">
-                      Total Users
+                      Active Cases
                     </h3>
                     <div className="text-3xl font-light text-blue-600">
-                      12,847
+                      247
                     </div>
                   </div>
                   <svg
