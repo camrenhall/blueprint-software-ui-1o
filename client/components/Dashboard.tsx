@@ -29,11 +29,11 @@ export default function Dashboard({
     if (isOpen) {
       // Small delay to ensure smooth entrance
       setTimeout(() => setIsVisible(true), 50);
-      setActiveTab("overview"); // Reset to overview when opening
+      setActiveTab(page as NavigationTab); // Set to the page passed from menu
     } else {
       setIsVisible(false);
     }
-  }, [isOpen]);
+  }, [isOpen, page]);
 
   // Close dropdowns when clicking outside
   useEffect(() => {
