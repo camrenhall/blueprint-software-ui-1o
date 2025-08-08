@@ -111,9 +111,7 @@ const FuturisticCaseScroller = ({
         ref={scrollContainerRef}
         className="absolute top-16 left-0 right-0 bottom-0 overflow-y-auto px-4"
         style={{
-          scrollBehavior: 'smooth',
-          height: 'calc(100% - 64px)', // Account for header height
-          paddingTop: '0'
+          scrollBehavior: 'smooth'
         }}
       >
         <div className="space-y-4" style={{ marginTop: '0', paddingTop: '0' }}>
