@@ -113,7 +113,6 @@ const FuturisticCaseScroller = ({
         style={{
           scrollBehavior: 'smooth',
           height: 'calc(100% - 64px)', // Account for header height
-          marginTop: '64px',
           paddingTop: '0'
         }}
       >
