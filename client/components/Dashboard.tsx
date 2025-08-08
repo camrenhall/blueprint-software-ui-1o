@@ -79,8 +79,8 @@ const FuturisticCaseScroller = ({
 
   return (
     <div className="bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md flex flex-col" style={{ height: 'calc(100vh - 200px)' }}>
-      {/* Integrated Search Header */}
-      <div className="relative bg-white/90 border-b border-slate-200/60 p-4 backdrop-blur-sm z-20">
+      {/* Fixed Search Header */}
+      <div className="flex-shrink-0 bg-white/90 border-b border-slate-200/60 p-4 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <div className="relative flex-1 max-w-md">
             <input
