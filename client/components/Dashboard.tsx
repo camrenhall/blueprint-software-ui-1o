@@ -109,14 +109,14 @@ const FuturisticCaseScroller = ({
       {/* Scrollable container */}
       <div
         ref={scrollContainerRef}
-        className="h-full overflow-y-auto px-4"
+        className="overflow-y-auto px-4"
         style={{
           scrollBehavior: 'smooth',
-          marginTop: '64px', // Account for header
-          paddingBottom: '1rem'
+          height: 'calc(100% - 64px)', // Account for header height
+          marginTop: '64px'
         }}
       >
-        <div className="space-y-4 pt-2">
+        <div className="space-y-4">
           {cases.map((caseItem, index) => {
             const { opacity } = getCaseEffects(index);
             const isTopFocused = index <= 2; // Top 3 items get enhanced styling
@@ -2187,7 +2187,7 @@ export default function Dashboard({
                   </div>
                   <div className="text-sm text-slate-600">
                     <p>✓ Unlimited cases</p>
-                    <p>✓ Advanced analytics</p>
+                    <p>��� Advanced analytics</p>
                     <p>✓ Priority support</p>
                     <p>✓ Custom integrations</p>
                   </div>
