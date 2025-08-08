@@ -114,7 +114,7 @@ const FuturisticCaseScroller = ({
           scrollBehavior: 'smooth'
         }}
       >
-        <div className="space-y-4" style={{ marginTop: '0', paddingTop: '0' }}>
+        <div className="space-y-4 pt-3">
           {cases.map((caseItem, index) => {
             const { opacity } = getCaseEffects(index);
             const isTopFocused = index <= 2; // Top 3 items get enhanced styling
