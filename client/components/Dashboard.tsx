@@ -2096,7 +2096,10 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="space-y-1 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
+                          <div className="relative space-y-1 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 480px)' }}>
+                            {/* Scroll Fade Gradients */}
+                            <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white/95 to-transparent pointer-events-none z-10"></div>
+                            <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white/95 to-transparent pointer-events-none z-10"></div>
                             {filteredAvailableDocuments.map((doc, index) => (
                               <button
                                 key={index}
@@ -2179,7 +2182,10 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="space-y-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
+                          <div className="relative space-y-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 520px)' }}>
+                            {/* Scroll Fade Gradients */}
+                            <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white/95 to-transparent pointer-events-none z-10"></div>
+                            <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white/95 to-transparent pointer-events-none z-10"></div>
                             {filteredSelectedDocuments.map((doc, index) => (
                               <div
                                 key={index}
