@@ -260,7 +260,7 @@ export default function CaseDetails({
                   </svg>
                 </div>
               </div>
-              <div className="space-y-2 overflow-y-auto" style={{ height: '152px' }}>
+              <div className="space-y-2 overflow-y-auto overflow-hidden" style={{ height: '152px' }}>
                 {recentActivity.map((activity, index) => (
                   <div key={index} className="flex items-start space-x-3 p-2 bg-slate-50/50 rounded-lg">
                     <div className="w-6 h-6 bg-slate-100 rounded flex items-center justify-center flex-shrink-0 mt-0.5">
