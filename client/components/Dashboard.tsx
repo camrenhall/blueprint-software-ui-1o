@@ -599,10 +599,10 @@ export default function Dashboard({
   const handleTabChange = (newTab: NavigationTab) => {
     if (newTab === activeTab) return;
 
-    setIsTransitioning(true);
+    setIsTabTransitioning(true);
     setTimeout(() => {
       setActiveTab(newTab);
-      setIsTransitioning(false);
+      setIsTabTransitioning(false);
     }, 150);
   };
 
