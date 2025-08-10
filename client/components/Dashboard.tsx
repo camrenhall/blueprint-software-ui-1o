@@ -1652,45 +1652,65 @@ export default function Dashboard({
 
                   {createMethod === "manual" && (
                     <div className="relative h-full">
-                      {/* Header */}
-                      <div className="text-center mb-6">
-                        <h1 className="text-3xl font-light text-slate-800 mb-2">Select Documents</h1>
-                        <p className="text-slate-600">Choose documents from your library to request from the client</p>
-                      </div>
-
                       {/* Fixed Height Document Management Interface */}
                       <div className="grid grid-cols-12 gap-8" style={{ height: 'calc(100vh - 480px)' }}>
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full overflow-hidden">
-                            {/* Header */}
+                            {/* Header with Search Icon */}
                             <div className="px-6 py-4 border-b border-slate-100/60 flex-shrink-0">
                               <div className="flex items-center justify-between">
-                                <div>
-                                  <h3 className="text-lg font-semibold text-slate-800 mb-1">Document Library</h3>
-                                  <p className="text-sm text-slate-500">Select documents to request from client</p>
+                                <div className="flex items-center space-x-4">
+                                  <div>
+                                    <h3 className="text-lg font-semibold text-slate-800 mb-1">Document Library</h3>
+                                    <p className="text-sm text-slate-500">{availableDocuments.length - selectedDocuments.length} available documents</p>
+                                  </div>
                                 </div>
-                                <button
-                                  onClick={() => setShowTemplateModal(true)}
-                                  className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-3 py-2 transition-all"
-                                >
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                  </svg>
-                                  <span>Templates</span>
-                                </button>
+                                <div className="flex items-center space-x-2">
+                                  <button
+                                    onClick={() => {
+                                      if (isDocLibrarySearchVisible && documentSearch) {
+                                        setDocumentSearch('');
+                                      } else {
+                                        setIsDocLibrarySearchVisible(!isDocLibrarySearchVisible);
+                                      }
+                                    }}
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
+                                  >
+                                    {isDocLibrarySearchVisible && documentSearch ? (
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                      </svg>
+                                    ) : (
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                      </svg>
+                                    )}
+                                  </button>
+                                  <button
+                                    onClick={() => setShowTemplateModal(true)}
+                                    className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-3 py-2 transition-all"
+                                  >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                    </svg>
+                                    <span>Templates</span>
+                                  </button>
+                                </div>
                               </div>
                             </div>
 
-                            {/* Search Bar */}
-                            <div className="px-6 py-4 border-b border-slate-100/40 flex-shrink-0">
-                              <input
-                                type="text"
-                                value={documentSearch}
-                                onChange={(e) => setDocumentSearch(e.target.value)}
-                                className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
-                                placeholder="Search document library..."
-                              />
+                            {/* Collapsible Search Bar */}
+                            <div className={`overflow-hidden transition-all duration-300 ease-out border-b border-slate-100/40 ${isDocLibrarySearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
+                              <div className="px-6 py-4">
+                                <input
+                                  type="text"
+                                  value={documentSearch}
+                                  onChange={(e) => setDocumentSearch(e.target.value)}
+                                  className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
+                                  placeholder="Search document library..."
+                                />
+                              </div>
                             </div>
 
                             {/* Scrollable Document List */}
