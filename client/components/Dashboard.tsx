@@ -1403,7 +1403,7 @@ export default function Dashboard({
             {/* Cases List with Sidebar and Collapsible Search */}
             <CaseScrollerWithSidebar
               cases={filteredCases}
-              onCaseSelect={setSelectedCase}
+              onCaseSelect={handleCaseSelect}
               searchValue={reviewSearch}
               onSearchChange={setReviewSearch}
               activeFilters={activeFilters}
