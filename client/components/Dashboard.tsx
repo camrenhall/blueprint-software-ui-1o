@@ -2001,16 +2001,7 @@ export default function Dashboard({
                 <div
                   className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
                 >
-                  <div className="text-center mb-8">
-                    <h2 className="text-2xl font-light text-slate-700 mb-3">
-                      Case Information
-                    </h2>
-                    <p className="text-slate-600">
-                      Enter the basic information for this case
-                    </p>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-8 rounded-2xl border border-slate-200/40 backdrop-blur-sm">
+                  <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm p-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
