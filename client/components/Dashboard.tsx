@@ -1807,34 +1807,6 @@ export default function Dashboard({
                         </div>
                       </div>
 
-                      {/* Floating Navigation */}
-                      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between p-6 bg-white/80 backdrop-blur-xl border border-slate-200/40 rounded-2xl mx-6 mt-6 shadow-lg">
-                        <button
-                          onClick={() => handleStepTransition(1)}
-                          className="flex items-center space-x-2 px-4 py-3 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
-                        >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                          </svg>
-                          <span>Back</span>
-                        </button>
-
-                        <div className="flex items-center space-x-4">
-                          <div className="text-sm text-slate-600">
-                            <span className="font-semibold text-indigo-600">{selectedDocuments.length}</span> documents selected
-                          </div>
-                          <button
-                            onClick={() => handleStepTransition(4)}
-                            disabled={selectedDocuments.length === 0}
-                            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
-                          >
-                            <span>Continue</span>
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </button>
-                        </div>
-                      </div>
                     </div>
                   )}
 
