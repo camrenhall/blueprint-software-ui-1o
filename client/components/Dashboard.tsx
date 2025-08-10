@@ -1415,10 +1415,15 @@ export default function Dashboard({
       case "reports":
         if (selectedCompletedCase) {
           return (
-            <CaseDetails
-              selectedCase={selectedCompletedCase}
-              onBack={() => setSelectedCompletedCase(null)}
-            />
+            <TransitionWrapper
+              isTransitioning={isCompletedTransitioning}
+              direction={completedTransitionDirection}
+            >
+              <CaseDetails
+                selectedCase={selectedCompletedCase}
+                onBack={handleCompletedCaseBack}
+              />
+            </TransitionWrapper>
           );
         }
         return (
