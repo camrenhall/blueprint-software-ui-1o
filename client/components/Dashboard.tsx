@@ -1630,41 +1630,7 @@ export default function Dashboard({
                             placeholder="Describe the case details, client situation, legal issues, and any specific requirements..."
                           />
 
-                          <div className="flex justify-end mt-4">
-                            <button
-                              onClick={() => {
-                                handleAISubmit();
-                                handleStepTransition(3);
-                              }}
-                              disabled={!aiDescription.trim()}
-                              className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
-                            >
-                              Generate AI Suggestions
-                            </button>
-                          </div>
                         </div>
-                      </div>
-
-                      <div className="flex justify-center">
-                        <button
-                          onClick={() => handleStepTransition(1)}
-                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
-                        >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M15 19l-7-7 7-7"
-                            />
-                          </svg>
-                          <span>Back to Method Selection</span>
-                        </button>
                       </div>
                     </div>
                   )}
@@ -2824,7 +2790,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        ���••• •••• ���••• 4242
+                        ���••• •••• ���••�� 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
