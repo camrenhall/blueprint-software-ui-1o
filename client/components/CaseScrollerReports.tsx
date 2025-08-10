@@ -77,7 +77,7 @@ export default function CaseScrollerReports({
   }, [handleScroll]);
 
   return (
-    <div className="bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md flex overflow-hidden" style={{ height: 'calc(100vh - 300px)' }}>
+    <div className="bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md flex overflow-hidden" style={{ height: 'calc(100vh - 320px)' }}>
       {/* Vertical Sidebar */}
       <div className="flex-shrink-0 w-12 bg-white/60 backdrop-blur-sm border-r border-slate-200/40 flex flex-col items-center py-3 space-y-3 rounded-l-3xl">
         {/* Search Icon */}
