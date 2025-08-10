@@ -1091,6 +1091,14 @@ export default function Dashboard({
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
+        if (selectedCase) {
+          return (
+            <CaseDetails
+              selectedCase={selectedCase}
+              onBack={() => setSelectedCase(null)}
+            />
+          );
+        }
         return (
           <div className="space-y-6">
             {/* Floating Status Indicators */}
