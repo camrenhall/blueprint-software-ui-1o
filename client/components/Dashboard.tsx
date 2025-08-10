@@ -1059,198 +1059,77 @@ export default function Dashboard({
         );
 
       case "reports":
+        if (selectedCompletedCase) {
+          return <CaseDetails selectedCase={selectedCompletedCase} onBack={() => setSelectedCompletedCase(null)} />;
+        }
         return (
-          <div className="space-y-6">
-            {/* Report Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-indigo-50 to-blue-100 p-6 rounded-xl border border-indigo-200/50">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-slate-700">
-                    Monthly Report
-                  </h3>
-                  <svg
-                    className="w-6 h-6 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                    />
-                  </svg>
-                </div>
-                <p className="text-slate-600 text-sm mb-4">
-                  Comprehensive analysis of this month's performance
-                </p>
-                <button className="bg-white/80 hover:bg-white transition-colors px-4 py-2 rounded-lg text-sm font-medium text-slate-700">
-                  Generate Report
-                </button>
-              </div>
-
-              <div className="bg-gradient-to-br from-emerald-50 to-green-100 p-6 rounded-xl border border-emerald-200/50">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-medium text-slate-700">
-                    User Analytics
-                  </h3>
-                  <svg
-                    className="w-6 h-6 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-                    />
-                  </svg>
-                </div>
-                <p className="text-slate-600 text-sm mb-4">
-                  Detailed breakdown of user behavior and engagement
-                </p>
-                <button className="bg-white/80 hover:bg-white transition-colors px-4 py-2 rounded-lg text-sm font-medium text-slate-700">
-                  View Analytics
-                </button>
-              </div>
-            </div>
-
-            {/* Recent Reports */}
-            <div className="bg-gradient-to-br from-violet-50 to-purple-100 p-6 rounded-xl border border-violet-200/50">
-              <h3 className="text-lg font-medium text-slate-700 mb-4">
-                Recent Reports
-              </h3>
-              <div className="space-y-3">
-                {[
-                  {
-                    name: "Q4 Performance Summary",
-                    date: "Dec 31, 2023",
-                    status: "completed",
-                  },
-                  {
-                    name: "User Engagement Analysis",
-                    date: "Dec 28, 2023",
-                    status: "completed",
-                  },
-                  {
-                    name: "Revenue Breakdown Report",
-                    date: "Dec 25, 2023",
-                    status: "processing",
-                  },
-                  {
-                    name: "Security Audit Report",
-                    date: "Dec 20, 2023",
-                    status: "completed",
-                  },
-                  {
-                    name: "Monthly Traffic Analysis",
-                    date: "Dec 15, 2023",
-                    status: "completed",
-                  },
-                  {
-                    name: "Customer Satisfaction Survey",
-                    date: "Dec 10, 2023",
-                    status: "completed",
-                  },
-                  {
-                    name: "Performance Optimization Report",
-                    date: "Dec 5, 2023",
-                    status: "completed",
-                  },
-                ].map((report, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between py-3 px-4 bg-white/60 rounded-lg"
-                  >
-                    <div>
-                      <div className="font-medium text-slate-700">
-                        {report.name}
-                      </div>
-                      <div className="text-sm text-slate-500">
-                        {report.date}
-                      </div>
-                    </div>
-                    <div
-                      className={cn(
-                        "px-3 py-1 rounded-full text-xs font-medium",
-                        report.status === "completed" &&
-                          "bg-green-100 text-green-700",
-                        report.status === "processing" &&
-                          "bg-yellow-100 text-yellow-700",
-                      )}
-                    >
-                      {report.status}
-                    </div>
+          <div className="space-y-2">
+            {/* Compact Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Completed Cases</h3>
+                    <div className="text-2xl font-bold text-slate-800">127</div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Additional Reports Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-orange-50 to-red-100 p-6 rounded-xl border border-orange-200/50">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Scheduled Reports
-                </h3>
-                <div className="space-y-3">
-                  {[
-                    {
-                      name: "Weekly Performance Report",
-                      frequency: "Every Monday",
-                      nextRun: "Jan 8, 2024",
-                    },
-                    {
-                      name: "Monthly Analytics Summary",
-                      frequency: "First of month",
-                      nextRun: "Feb 1, 2024",
-                    },
-                    {
-                      name: "Quarterly Business Review",
-                      frequency: "Every quarter",
-                      nextRun: "Apr 1, 2024",
-                    },
-                  ].map((item, index) => (
-                    <div key={index} className="p-3 bg-white/60 rounded-lg">
-                      <div className="font-medium text-slate-700">
-                        {item.name}
-                      </div>
-                      <div className="text-sm text-slate-500">
-                        {item.frequency}
-                      </div>
-                      <div className="text-xs text-slate-400">
-                        Next: {item.nextRun}
-                      </div>
-                    </div>
-                  ))}
+                  <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-teal-50 to-cyan-100 p-6 rounded-xl border border-teal-200/50">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Report Templates
-                </h3>
-                <div className="space-y-2">
-                  {[
-                    "Executive Dashboard",
-                    "Technical Performance",
-                    "User Behavior Analysis",
-                    "Financial Summary",
-                    "Security Assessment",
-                    "Custom Report Builder",
-                  ].map((template, index) => (
-                    <button
-                      key={index}
-                      className="w-full text-left p-3 bg-white/60 rounded-lg hover:bg-white/80 transition-colors text-slate-700"
-                    >
-                      {template}
-                    </button>
-                  ))}
+              <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Avg Completion</h3>
+                    <div className="text-2xl font-bold text-slate-800">18.2 Days</div>
+                  </div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">This Month</h3>
+                    <div className="text-2xl font-bold text-slate-800">23</div>
+                  </div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Success Rate</h3>
+                    <div className="text-2xl font-bold text-slate-800">96.7%</div>
+                  </div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
+
+            {/* Completed Cases List */}
+            <CaseScrollerReports
+              cases={filteredCompletedCases}
+              onCaseSelect={setSelectedCompletedCase}
+              searchValue={reportsSearch}
+              onSearchChange={setReportsSearch}
+            />
           </div>
         );
 
