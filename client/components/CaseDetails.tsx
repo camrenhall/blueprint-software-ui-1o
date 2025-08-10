@@ -437,7 +437,7 @@ export default function CaseDetails({
               </div>
               <div
                 className="space-y-2 overflow-y-auto overflow-hidden"
-                style={{ height: "152px" }}
+                style={{ height: "124px" }}
               >
                 {recentActivity.map((activity, index) => (
                   <div
