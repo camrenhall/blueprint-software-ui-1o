@@ -1406,10 +1406,9 @@ export default function Dashboard({
                 <div className="flex items-center space-x-6">
                   {[
                     { number: 1, label: "Method" },
-                    { number: 2, label: "Content" },
-                    { number: 3, label: "Documents" },
-                    { number: 4, label: "Case Info" },
-                    { number: 5, label: "Review" },
+                    { number: 2, label: "Documents" },
+                    { number: 3, label: "Case Info" },
+                    { number: 4, label: "Review" },
                   ].map((step, index) => (
                     <div key={step.number} className="flex items-center">
                       <div className="flex flex-col items-center">
