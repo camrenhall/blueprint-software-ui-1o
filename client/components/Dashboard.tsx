@@ -1542,7 +1542,7 @@ export default function Dashboard({
             {/* Completed Cases List */}
             <CaseScrollerReports
               cases={filteredCompletedCases}
-              onCaseSelect={setSelectedCompletedCase}
+              onCaseSelect={handleCompletedCaseSelect}
               searchValue={reportsSearch}
               onSearchChange={setReportsSearch}
             />
