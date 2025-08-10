@@ -18,12 +18,12 @@ const FuturisticCaseScroller = ({
   cases,
   onCaseSelect,
   searchValue,
-  onSearchChange
+  onSearchChange,
 }: {
-  cases: any[],
-  onCaseSelect: (caseItem: any) => void,
-  searchValue: string,
-  onSearchChange: (value: string) => void
+  cases: any[];
+  onCaseSelect: (caseItem: any) => void;
+  searchValue: string;
+  onSearchChange: (value: string) => void;
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -77,12 +77,15 @@ const FuturisticCaseScroller = ({
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
   return (
-    <div className="bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md flex overflow-hidden" style={{ height: 'calc(100vh - 300px)' }}>
+    <div
+      className="bg-gradient-to-b from-white/95 via-slate-50/40 to-white/95 border border-slate-200/80 rounded-3xl shadow-xl backdrop-blur-md flex overflow-hidden"
+      style={{ height: "calc(100vh - 300px)" }}
+    >
       {/* Fixed Search Header */}
       <div className="flex-shrink-0 bg-white/90 border-b border-slate-200/60 p-3 backdrop-blur-sm rounded-t-3xl">
         <div className="flex items-center justify-between">
@@ -95,13 +98,23 @@ const FuturisticCaseScroller = ({
               className="w-full pl-10 pr-4 py-2.5 bg-white/80 border border-slate-200/60 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300 transition-all placeholder-slate-400 text-slate-700 shadow-sm"
             />
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-              <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                className="w-4 h-4 text-slate-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             </div>
           </div>
           <div className="text-sm text-slate-500 ml-4">
-            {cases.length} case{cases.length !== 1 ? 's' : ''}
+            {cases.length} case{cases.length !== 1 ? "s" : ""}
           </div>
         </div>
       </div>
@@ -115,7 +128,7 @@ const FuturisticCaseScroller = ({
         ref={scrollContainerRef}
         className="absolute top-16 left-0 right-0 bottom-0 overflow-y-auto px-4 rounded-b-3xl"
         style={{
-          scrollBehavior: 'smooth'
+          scrollBehavior: "smooth",
         }}
       >
         <div className="space-y-4 pt-3">
@@ -131,43 +144,67 @@ const FuturisticCaseScroller = ({
                 style={{ opacity }}
                 onClick={() => onCaseSelect(caseItem)}
               >
-                <div className={cn(
-                  "bg-gradient-to-r rounded-xl p-4 border backdrop-blur-sm transition-all duration-300 relative",
-                  isTopFocused
-                    ? "from-white/95 via-white/98 to-white/95 border-indigo-200/60 shadow-xl shadow-indigo-500/5"
-                    : "from-white/70 via-white/80 to-white/70 border-slate-200/40 shadow-md"
-                )}>
+                <div
+                  className={cn(
+                    "bg-gradient-to-r rounded-xl p-4 border backdrop-blur-sm transition-all duration-300 relative",
+                    isTopFocused
+                      ? "from-white/95 via-white/98 to-white/95 border-indigo-200/60 shadow-xl shadow-indigo-500/5"
+                      : "from-white/70 via-white/80 to-white/70 border-slate-200/40 shadow-md",
+                  )}
+                >
                   {/* Case Header */}
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-3 flex-1">
-                      <div className={cn(
-                        "rounded-lg flex items-center justify-center shadow-md transition-all duration-300",
-                        index === 0
-                          ? "w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600"
-                          : "w-9 h-9 bg-gradient-to-br from-indigo-400 to-blue-500"
-                      )}>
-                        <span className="text-white font-semibold text-xs">{caseItem.avatar}</span>
+                      <div
+                        className={cn(
+                          "rounded-lg flex items-center justify-center shadow-md transition-all duration-300",
+                          index === 0
+                            ? "w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600"
+                            : "w-9 h-9 bg-gradient-to-br from-indigo-400 to-blue-500",
+                        )}
+                      >
+                        <span className="text-white font-semibold text-xs">
+                          {caseItem.avatar}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-2 min-w-0">
-                        <h3 className={cn(
-                          "font-semibold transition-all duration-300 truncate",
-                          index === 0
-                            ? "text-slate-800 text-base"
-                            : "text-slate-700 text-sm"
-                        )}>
+                        <h3
+                          className={cn(
+                            "font-semibold transition-all duration-300 truncate",
+                            index === 0
+                              ? "text-slate-800 text-base"
+                              : "text-slate-700 text-sm",
+                          )}
+                        >
                           {caseItem.name}
                         </h3>
-                        <span className="text-slate-500 text-xs font-mono italic flex-shrink-0">{caseItem.caseId}</span>
+                        <span className="text-slate-500 text-xs font-mono italic flex-shrink-0">
+                          {caseItem.caseId}
+                        </span>
                       </div>
                     </div>
 
                     {/* Hover indicator */}
-                    <div className={cn(
-                      "transition-all duration-300 flex-shrink-0",
-                      index === 0 ? "opacity-100" : "opacity-0 group-hover:opacity-70"
-                    )}>
-                      <svg className="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <div
+                      className={cn(
+                        "transition-all duration-300 flex-shrink-0",
+                        index === 0
+                          ? "opacity-100"
+                          : "opacity-0 group-hover:opacity-70",
+                      )}
+                    >
+                      <svg
+                        className="w-4 h-4 text-indigo-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </div>
                   </div>
@@ -178,9 +215,9 @@ const FuturisticCaseScroller = ({
                       <div
                         className={cn(
                           "h-full rounded-full transition-all duration-300",
-                          caseItem.status === 'Needs Review'
-                            ? 'bg-gradient-to-r from-purple-500 to-violet-600'
-                            : 'bg-gradient-to-r from-sky-500 to-blue-600'
+                          caseItem.status === "Needs Review"
+                            ? "bg-gradient-to-r from-purple-500 to-violet-600"
+                            : "bg-gradient-to-r from-sky-500 to-blue-600",
                         )}
                         style={{ width: `${caseItem.progressPercent}%` }}
                       />
@@ -191,59 +228,120 @@ const FuturisticCaseScroller = ({
                   <div className="grid grid-cols-5 gap-3 items-center">
                     {/* Status */}
                     <div className="flex items-center space-x-1.5">
-                      <div className={`w-1.5 h-1.5 rounded-full ${caseItem.status === 'Needs Review' ? 'bg-purple-500' : 'bg-sky-500'}`} />
-                      <span className={`text-xs font-semibold whitespace-nowrap ${caseItem.status === 'Needs Review' ? 'text-purple-700' : 'text-sky-700'}`}>
+                      <div
+                        className={`w-1.5 h-1.5 rounded-full ${caseItem.status === "Needs Review" ? "bg-purple-500" : "bg-sky-500"}`}
+                      />
+                      <span
+                        className={`text-xs font-semibold whitespace-nowrap ${caseItem.status === "Needs Review" ? "text-purple-700" : "text-sky-700"}`}
+                      >
                         {caseItem.status}
                       </span>
                     </div>
 
                     {/* Review Info */}
                     <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
-                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg
+                        className="w-3 h-3 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                       </svg>
                       <span>
-                        <span className="text-slate-800 font-semibold">{caseItem.reviewInfo.split(' ')[0]}</span>
-                        <span className="text-slate-500 ml-1">{caseItem.reviewInfo.split(' ').slice(1).join(' ')}</span>
+                        <span className="text-slate-800 font-semibold">
+                          {caseItem.reviewInfo.split(" ")[0]}
+                        </span>
+                        <span className="text-slate-500 ml-1">
+                          {caseItem.reviewInfo.split(" ").slice(1).join(" ")}
+                        </span>
                       </span>
                     </div>
 
                     {/* Progress */}
                     <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
-                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      <svg
+                        className="w-3 h-3 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                        />
                       </svg>
                       <span>
-                        <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[0].trim()}</span>
+                        <span className="text-slate-800 font-semibold">
+                          {caseItem.progress.split("/")[0].trim()}
+                        </span>
                         <span className="text-slate-500 mx-0.5">/</span>
-                        <span className="text-slate-800 font-semibold">{caseItem.progress.split('/')[1].split(' ')[0].trim()}</span>
-                        <span className="text-slate-500 ml-1">{caseItem.progress.split(' ').slice(-2).join(' ')}</span>
+                        <span className="text-slate-800 font-semibold">
+                          {caseItem.progress.split("/")[1].split(" ")[0].trim()}
+                        </span>
+                        <span className="text-slate-500 ml-1">
+                          {caseItem.progress.split(" ").slice(-2).join(" ")}
+                        </span>
                       </span>
                     </div>
 
                     {/* Last Activity */}
                     <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
-                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      <svg
+                        className="w-3 h-3 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                       </svg>
                       <span>
-                        <span className="text-slate-800 font-semibold">{caseItem.lastActivity.split(' ')[0]}</span>
-                        <span className="text-slate-500 ml-1">{caseItem.lastActivity.split(' ').slice(1).join(' ')}</span>
+                        <span className="text-slate-800 font-semibold">
+                          {caseItem.lastActivity.split(" ")[0]}
+                        </span>
+                        <span className="text-slate-500 ml-1">
+                          {caseItem.lastActivity.split(" ").slice(1).join(" ")}
+                        </span>
                       </span>
                     </div>
 
                     {/* Queue Time */}
                     <div className="flex items-center space-x-1.5 text-xs whitespace-nowrap">
-                      <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      <svg
+                        className="w-3 h-3 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                        />
                       </svg>
                       <span>
-                        <span className="text-slate-800 font-semibold">{caseItem.queueTime.split(' ')[0]}</span>
-                        <span className="text-slate-500 ml-1">{caseItem.queueTime.split(' ').slice(1).join(' ')}</span>
+                        <span className="text-slate-800 font-semibold">
+                          {caseItem.queueTime.split(" ")[0]}
+                        </span>
+                        <span className="text-slate-500 ml-1">
+                          {caseItem.queueTime.split(" ").slice(1).join(" ")}
+                        </span>
                       </span>
                     </div>
                   </div>
-
                 </div>
               </div>
             );
@@ -258,11 +356,14 @@ const FuturisticCaseScroller = ({
             <div
               className="w-full bg-indigo-400 rounded-full transition-all duration-300"
               style={{
-                height: `${Math.min(100, (scrollPosition / Math.max(1, (cases.length - 1) * 120)) * 100)}%`
+                height: `${Math.min(100, (scrollPosition / Math.max(1, (cases.length - 1) * 120)) * 100)}%`,
               }}
             />
           </div>
-          <span className="text-xs font-medium">{Math.min(cases.length, Math.round(scrollPosition / 120) + 1)}/{cases.length}</span>
+          <span className="text-xs font-medium">
+            {Math.min(cases.length, Math.round(scrollPosition / 120) + 1)}/
+            {cases.length}
+          </span>
         </div>
       </div>
     </div>
@@ -296,7 +397,9 @@ export default function Dashboard({
 
   // Create page state
   const [createStep, setCreateStep] = useState(1);
-  const [createMethod, setCreateMethod] = useState<"ai" | "manual" | "questionnaire" | null>(null);
+  const [createMethod, setCreateMethod] = useState<
+    "ai" | "manual" | "questionnaire" | null
+  >(null);
   const [aiDescription, setAiDescription] = useState("");
   const [caseInfo, setCaseInfo] = useState({
     firstName: "",
@@ -305,17 +408,51 @@ export default function Dashboard({
     email: "",
     matterId: "",
     state: "",
-    language: "en"
+    language: "en",
   });
-  const [selectedDocuments, setSelectedDocuments] = useState<Array<{name: string, optional: boolean}>>([]);
+  const [selectedDocuments, setSelectedDocuments] = useState<
+    Array<{ name: string; optional: boolean }>
+  >([]);
   const [documentSearch, setDocumentSearch] = useState("");
   const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
   const [showTemplateModal, setShowTemplateModal] = useState(false);
   const [savedTemplates] = useState([
-    { name: "Personal Injury Standard", documents: ["Medical Records", "Insurance Documents", "Employment Records", "W2 Tax Form"] },
-    { name: "Employment Law Package", documents: ["Employment Records", "Payroll Records", "Employment Verification Letter", "Wage and Hour Records"] },
-    { name: "Corporate Compliance", documents: ["Financial Statements", "Tax Returns (2023)", "Corporate Documents", "Compliance Records"] },
-    { name: "Family Law Basic", documents: ["Birth Certificate", "Marriage Certificate", "Financial Statements", "Tax Returns (2023)"] }
+    {
+      name: "Personal Injury Standard",
+      documents: [
+        "Medical Records",
+        "Insurance Documents",
+        "Employment Records",
+        "W2 Tax Form",
+      ],
+    },
+    {
+      name: "Employment Law Package",
+      documents: [
+        "Employment Records",
+        "Payroll Records",
+        "Employment Verification Letter",
+        "Wage and Hour Records",
+      ],
+    },
+    {
+      name: "Corporate Compliance",
+      documents: [
+        "Financial Statements",
+        "Tax Returns (2023)",
+        "Corporate Documents",
+        "Compliance Records",
+      ],
+    },
+    {
+      name: "Family Law Basic",
+      documents: [
+        "Birth Certificate",
+        "Marriage Certificate",
+        "Financial Statements",
+        "Tax Returns (2023)",
+      ],
+    },
   ]);
 
   // Review page state
@@ -381,29 +518,38 @@ export default function Dashboard({
 
   // Phone number formatting function
   const formatPhoneNumber = (value: string) => {
-    const phone = value.replace(/\D/g, '');
+    const phone = value.replace(/\D/g, "");
     const match = phone.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
     if (match) {
-      return !match[2] ? match[1] : `(${match[1]}) ${match[2]}${match[3] ? `-${match[3]}` : ''}`;
+      return !match[2]
+        ? match[1]
+        : `(${match[1]}) ${match[2]}${match[3] ? `-${match[3]}` : ""}`;
     }
     return value;
   };
 
   // Create page functions
   const handleAddDocument = (docName: string) => {
-    if (!selectedDocuments.find(doc => doc.name === docName)) {
-      setSelectedDocuments([...selectedDocuments, { name: docName, optional: false }]);
+    if (!selectedDocuments.find((doc) => doc.name === docName)) {
+      setSelectedDocuments([
+        ...selectedDocuments,
+        { name: docName, optional: false },
+      ]);
     }
   };
 
   const handleRemoveDocument = (docName: string) => {
-    setSelectedDocuments(selectedDocuments.filter(doc => doc.name !== docName));
+    setSelectedDocuments(
+      selectedDocuments.filter((doc) => doc.name !== docName),
+    );
   };
 
   const handleToggleOptional = (docName: string) => {
-    setSelectedDocuments(selectedDocuments.map(doc =>
-      doc.name === docName ? { ...doc, optional: !doc.optional } : doc
-    ));
+    setSelectedDocuments(
+      selectedDocuments.map((doc) =>
+        doc.name === docName ? { ...doc, optional: !doc.optional } : doc,
+      ),
+    );
   };
 
   const handleAISubmit = async () => {
@@ -414,19 +560,26 @@ export default function Dashboard({
       "Workers Compensation Claims",
       "Performance Reviews",
       "Employment Contract",
-      "Payroll Records"
+      "Payroll Records",
     ];
 
     // Add AI suggestions to document list
-    const newDocs = aiSuggestions.map(name => ({ name, optional: false }));
+    const newDocs = aiSuggestions.map((name) => ({ name, optional: false }));
     setSelectedDocuments([...selectedDocuments, ...newDocs]);
   };
 
-  const handleLoadTemplate = (template: typeof savedTemplates[0]) => {
-    const templateDocs = template.documents.map(name => ({ name, optional: false }));
-    setSelectedDocuments([...selectedDocuments, ...templateDocs.filter(doc =>
-      !selectedDocuments.find(existing => existing.name === doc.name)
-    )]);
+  const handleLoadTemplate = (template: (typeof savedTemplates)[0]) => {
+    const templateDocs = template.documents.map((name) => ({
+      name,
+      optional: false,
+    }));
+    setSelectedDocuments([
+      ...selectedDocuments,
+      ...templateDocs.filter(
+        (doc) =>
+          !selectedDocuments.find((existing) => existing.name === doc.name),
+      ),
+    ]);
     setShowTemplateModal(false);
   };
 
@@ -443,7 +596,7 @@ export default function Dashboard({
         email: "",
         matterId: "",
         state: "",
-        language: "en"
+        language: "en",
       });
       setSelectedDocuments([]);
       setDocumentSearch("");
@@ -452,21 +605,37 @@ export default function Dashboard({
   }, [activeTab]);
 
   const availableDocuments = [
-    "W2 Tax Form", "1098 Tax Return", "Bank Statements", "Employment Records",
-    "Medical Records", "Insurance Documents", "Property Deeds", "Driver's License",
-    "Social Security Card", "Birth Certificate", "Marriage Certificate",
-    "Financial Statements", "Credit Reports", "Tax Returns (2023)", "Payroll Records",
-    "Employment Verification Letter", "Wage and Hour Records", "Workers Compensation Claims",
-    "Performance Reviews", "Contracts and Agreements", "Court Documents"
+    "W2 Tax Form",
+    "1098 Tax Return",
+    "Bank Statements",
+    "Employment Records",
+    "Medical Records",
+    "Insurance Documents",
+    "Property Deeds",
+    "Driver's License",
+    "Social Security Card",
+    "Birth Certificate",
+    "Marriage Certificate",
+    "Financial Statements",
+    "Credit Reports",
+    "Tax Returns (2023)",
+    "Payroll Records",
+    "Employment Verification Letter",
+    "Wage and Hour Records",
+    "Workers Compensation Claims",
+    "Performance Reviews",
+    "Contracts and Agreements",
+    "Court Documents",
   ];
 
-  const filteredAvailableDocuments = availableDocuments.filter(doc =>
-    doc.toLowerCase().includes(documentSearch.toLowerCase()) &&
-    !selectedDocuments.find(selectedDoc => selectedDoc.name === doc)
+  const filteredAvailableDocuments = availableDocuments.filter(
+    (doc) =>
+      doc.toLowerCase().includes(documentSearch.toLowerCase()) &&
+      !selectedDocuments.find((selectedDoc) => selectedDoc.name === doc),
   );
 
-  const filteredSelectedDocuments = selectedDocuments.filter(doc =>
-    doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase())
+  const filteredSelectedDocuments = selectedDocuments.filter((doc) =>
+    doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase()),
   );
 
   // All cases data
@@ -484,7 +653,7 @@ export default function Dashboard({
       lastActivity: "16 Minutes Ago",
       queueTime: "11 Days in Queue",
       priority: "high",
-      avatar: "RC"
+      avatar: "RC",
     },
     {
       name: "Martinez, Elena",
@@ -499,7 +668,7 @@ export default function Dashboard({
       lastActivity: "2 Days Ago",
       queueTime: "7 Days in Queue",
       priority: "medium",
-      avatar: "ME"
+      avatar: "ME",
     },
     {
       name: "Thompson, David",
@@ -514,7 +683,7 @@ export default function Dashboard({
       lastActivity: "5 Hours Ago",
       queueTime: "13 Days in Queue",
       priority: "high",
-      avatar: "TD"
+      avatar: "TD",
     },
     {
       name: "Anderson, Sarah",
@@ -529,7 +698,7 @@ export default function Dashboard({
       lastActivity: "Yesterday",
       queueTime: "4 Days in Queue",
       priority: "medium",
-      avatar: "AS"
+      avatar: "AS",
     },
     {
       name: "Chen, Michael",
@@ -544,7 +713,7 @@ export default function Dashboard({
       lastActivity: "2 Days Ago",
       queueTime: "5 Days in Queue",
       priority: "low",
-      avatar: "CM"
+      avatar: "CM",
     },
     {
       name: "Williams, Jessica",
@@ -559,7 +728,7 @@ export default function Dashboard({
       lastActivity: "3 Days Ago",
       queueTime: "7 Days in Queue",
       priority: "low",
-      avatar: "WJ"
+      avatar: "WJ",
     },
     {
       name: "Johnson, Mark",
@@ -574,7 +743,7 @@ export default function Dashboard({
       lastActivity: "4 Hours Ago",
       queueTime: "2 Days in Queue",
       priority: "high",
-      avatar: "JM"
+      avatar: "JM",
     },
     {
       name: "Davis, Lisa",
@@ -589,8 +758,8 @@ export default function Dashboard({
       lastActivity: "1 Day Ago",
       queueTime: "9 Days in Queue",
       priority: "medium",
-      avatar: "DL"
-    }
+      avatar: "DL",
+    },
   ];
 
   // Completed cases data for Reports page
@@ -607,7 +776,7 @@ export default function Dashboard({
       daysInQueue: "16",
       caseType: "Employment",
       priority: "high",
-      avatar: "JA"
+      avatar: "JA",
     },
     {
       name: "Williams, Robert",
@@ -621,7 +790,7 @@ export default function Dashboard({
       daysInQueue: "23",
       caseType: "Personal Injury",
       priority: "high",
-      avatar: "WR"
+      avatar: "WR",
     },
     {
       name: "Garcia, Maria",
@@ -635,7 +804,7 @@ export default function Dashboard({
       daysInQueue: "18",
       caseType: "Family Law",
       priority: "medium",
-      avatar: "GM"
+      avatar: "GM",
     },
     {
       name: "Brown, Christopher",
@@ -649,7 +818,7 @@ export default function Dashboard({
       daysInQueue: "31",
       caseType: "Corporate",
       priority: "high",
-      avatar: "BC"
+      avatar: "BC",
     },
     {
       name: "Miller, Jennifer",
@@ -663,7 +832,7 @@ export default function Dashboard({
       daysInQueue: "14",
       caseType: "Contract",
       priority: "medium",
-      avatar: "MJ"
+      avatar: "MJ",
     },
     {
       name: "Davis, Michael",
@@ -677,7 +846,7 @@ export default function Dashboard({
       daysInQueue: "19",
       caseType: "Real Estate",
       priority: "low",
-      avatar: "DM"
+      avatar: "DM",
     },
     {
       name: "Wilson, Sarah",
@@ -691,7 +860,7 @@ export default function Dashboard({
       daysInQueue: "25",
       caseType: "Employment",
       priority: "medium",
-      avatar: "WS"
+      avatar: "WS",
     },
     {
       name: "Taylor, James",
@@ -705,28 +874,36 @@ export default function Dashboard({
       daysInQueue: "27",
       caseType: "Personal Injury",
       priority: "high",
-      avatar: "TJ"
-    }
+      avatar: "TJ",
+    },
   ];
 
   // Enhanced case filtering and sorting
   const getFilteredAndSortedCases = () => {
-    let filtered = allCases.filter(caseItem => {
-      const matchesSearch = caseItem.name.toLowerCase().includes(reviewSearch.toLowerCase()) ||
+    let filtered = allCases.filter((caseItem) => {
+      const matchesSearch =
+        caseItem.name.toLowerCase().includes(reviewSearch.toLowerCase()) ||
         caseItem.caseId.toLowerCase().includes(reviewSearch.toLowerCase()) ||
         caseItem.status.toLowerCase().includes(reviewSearch.toLowerCase());
 
       if (activeFilters.length === 0) return matchesSearch;
 
-      const matchesFilters = activeFilters.some(filter => {
+      const matchesFilters = activeFilters.some((filter) => {
         switch (filter) {
-          case 'high-priority': return caseItem.priority === 'high';
-          case 'medium-priority': return caseItem.priority === 'medium';
-          case 'low-priority': return caseItem.priority === 'low';
-          case 'needs-review': return caseItem.status === 'Needs Review';
-          case 'awaiting-docs': return caseItem.status === 'Awaiting Documents';
-          case 'overdue': return parseInt(caseItem.queueTime.split(' ')[0]) > 10;
-          default: return true;
+          case "high-priority":
+            return caseItem.priority === "high";
+          case "medium-priority":
+            return caseItem.priority === "medium";
+          case "low-priority":
+            return caseItem.priority === "low";
+          case "needs-review":
+            return caseItem.status === "Needs Review";
+          case "awaiting-docs":
+            return caseItem.status === "Awaiting Documents";
+          case "overdue":
+            return parseInt(caseItem.queueTime.split(" ")[0]) > 10;
+          default:
+            return true;
         }
       });
 
@@ -737,10 +914,10 @@ export default function Dashboard({
     filtered.sort((a, b) => {
       // Primary sort: Status priority
       if (a.status !== b.status) {
-        if (a.status === 'Needs Review') return -1;
-        if (b.status === 'Needs Review') return 1;
-        if (a.status === 'Awaiting Documents') return -1;
-        if (b.status === 'Awaiting Documents') return 1;
+        if (a.status === "Needs Review") return -1;
+        if (b.status === "Needs Review") return 1;
+        if (a.status === "Awaiting Documents") return -1;
+        if (b.status === "Awaiting Documents") return 1;
       }
 
       // Secondary sort: Within same status, sort by time (most recent first)
@@ -754,10 +931,10 @@ export default function Dashboard({
 
   const parseTimeToMinutes = (timeStr: string): number => {
     const parts = timeStr.toLowerCase();
-    if (parts.includes('minute')) return parseInt(parts);
-    if (parts.includes('hour')) return parseInt(parts) * 60;
-    if (parts.includes('day')) return parseInt(parts) * 1440;
-    if (parts.includes('yesterday')) return 1440;
+    if (parts.includes("minute")) return parseInt(parts);
+    if (parts.includes("hour")) return parseInt(parts) * 60;
+    if (parts.includes("day")) return parseInt(parts) * 1440;
+    if (parts.includes("yesterday")) return 1440;
     return 999999; // Default for unknown formats
   };
 
@@ -765,10 +942,12 @@ export default function Dashboard({
 
   // Filter completed cases for Reports page
   const getFilteredCompletedCases = () => {
-    return completedCases.filter(caseItem => {
-      return caseItem.name.toLowerCase().includes(reportsSearch.toLowerCase()) ||
+    return completedCases.filter((caseItem) => {
+      return (
+        caseItem.name.toLowerCase().includes(reportsSearch.toLowerCase()) ||
         caseItem.caseId.toLowerCase().includes(reportsSearch.toLowerCase()) ||
-        caseItem.caseType.toLowerCase().includes(reportsSearch.toLowerCase());
+        caseItem.caseType.toLowerCase().includes(reportsSearch.toLowerCase())
+      );
     });
   };
 
@@ -784,7 +963,7 @@ export default function Dashboard({
       tasksInfo: "6 / 6 Tasks Submitted",
       dateInfo: "Jun 30, 2025 Date Completed",
       daysInQueue: "11 Days in Queue",
-      avatar: "FJ"
+      avatar: "FJ",
     },
     {
       name: "Rosen, Claire",
@@ -794,7 +973,7 @@ export default function Dashboard({
       tasksInfo: "5 / 5 Tasks Complete",
       dateInfo: "Jun 29, 2025 Date Updated",
       daysInQueue: "13 Days in Queue",
-      avatar: "RC"
+      avatar: "RC",
     },
     {
       name: "Morrison, Kate",
@@ -804,8 +983,8 @@ export default function Dashboard({
       tasksInfo: "4 / 5 Tasks Complete",
       dateInfo: "Jun 29, 2025 Date Updated",
       daysInQueue: "10 Days in Queue",
-      avatar: "MK"
-    }
+      avatar: "MK",
+    },
   ];
 
   const renderContent = () => {
@@ -823,8 +1002,12 @@ export default function Dashboard({
                     <div className="absolute inset-0 w-3 h-3 bg-emerald-400 rounded-full animate-ping opacity-20"></div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-slate-800 group-hover:text-emerald-600 transition-colors duration-200">127</div>
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Complete</div>
+                    <div className="text-2xl font-bold text-slate-800 group-hover:text-emerald-600 transition-colors duration-200">
+                      127
+                    </div>
+                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                      Complete
+                    </div>
                   </div>
                 </div>
 
@@ -838,8 +1021,12 @@ export default function Dashboard({
                     <div className="absolute inset-0 w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-20"></div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors duration-200">7</div>
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Review</div>
+                    <div className="text-2xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors duration-200">
+                      7
+                    </div>
+                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                      Review
+                    </div>
                   </div>
                 </div>
 
@@ -853,8 +1040,12 @@ export default function Dashboard({
                     <div className="absolute inset-0 w-3 h-3 bg-sky-400 rounded-full animate-ping opacity-20"></div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors duration-200">34</div>
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Awaiting</div>
+                    <div className="text-2xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors duration-200">
+                      34
+                    </div>
+                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                      Awaiting
+                    </div>
                   </div>
                 </div>
               </div>
@@ -872,7 +1063,12 @@ export default function Dashboard({
 
       case "review":
         if (selectedCase) {
-          return <CaseDetails selectedCase={selectedCase} onBack={() => setSelectedCase(null)} />;
+          return (
+            <CaseDetails
+              selectedCase={selectedCase}
+              onBack={() => setSelectedCase(null)}
+            />
+          );
         }
         return (
           <div className="space-y-2">
@@ -881,12 +1077,24 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Open Cases</h3>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      Open Cases
+                    </h3>
                     <div className="text-2xl font-bold text-slate-800">34</div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -895,12 +1103,24 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Needs Review</h3>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      Needs Review
+                    </h3>
                     <div className="text-2xl font-bold text-slate-800">2</div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -909,12 +1129,24 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 border border-sky-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Idle Clients</h3>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      Idle Clients
+                    </h3>
                     <div className="text-2xl font-bold text-slate-800">5</div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -923,12 +1155,26 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Validation Rate</h3>
-                    <div className="text-2xl font-bold text-slate-800">93.8%</div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      Validation Rate
+                    </h3>
+                    <div className="text-2xl font-bold text-slate-800">
+                      93.8%
+                    </div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -949,7 +1195,12 @@ export default function Dashboard({
 
       case "reports":
         if (selectedCompletedCase) {
-          return <CaseDetails selectedCase={selectedCompletedCase} onBack={() => setSelectedCompletedCase(null)} />;
+          return (
+            <CaseDetails
+              selectedCase={selectedCompletedCase}
+              onBack={() => setSelectedCompletedCase(null)}
+            />
+          );
         }
         return (
           <div className="space-y-2">
@@ -958,12 +1209,24 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Completed Cases</h3>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      Completed Cases
+                    </h3>
                     <div className="text-2xl font-bold text-slate-800">127</div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -972,12 +1235,26 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Avg Completion</h3>
-                    <div className="text-2xl font-bold text-slate-800">18.2 Days</div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      Avg Completion
+                    </h3>
+                    <div className="text-2xl font-bold text-slate-800">
+                      18.2 Days
+                    </div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -986,12 +1263,24 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">This Month</h3>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      This Month
+                    </h3>
                     <div className="text-2xl font-bold text-slate-800">23</div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -1000,12 +1289,26 @@ export default function Dashboard({
               <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Success Rate</h3>
-                    <div className="text-2xl font-bold text-slate-800">96.7%</div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                      Success Rate
+                    </h3>
+                    <div className="text-2xl font-bold text-slate-800">
+                      96.7%
+                    </div>
                   </div>
                   <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7" />
+                    <svg
+                      className="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7"
+                      />
                     </svg>
                   </div>
                 </div>
@@ -1033,7 +1336,7 @@ export default function Dashboard({
                   { number: 2, label: "Content" },
                   { number: 3, label: "Documents" },
                   { number: 4, label: "Case Info" },
-                  { number: 5, label: "Review" }
+                  { number: 5, label: "Review" },
                 ].map((step, index) => (
                   <div key={step.number} className="flex items-center">
                     <div className="flex flex-col items-center">
@@ -1042,28 +1345,44 @@ export default function Dashboard({
                           step.number < createStep
                             ? "bg-emerald-500 border-emerald-500 text-white"
                             : step.number === createStep
-                            ? "bg-indigo-600 border-indigo-600 text-white"
-                            : "bg-white border-slate-300 text-slate-400"
+                              ? "bg-indigo-600 border-indigo-600 text-white"
+                              : "bg-white border-slate-300 text-slate-400"
                         }`}
                       >
                         {step.number < createStep ? (
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                          <svg
+                            className="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2.5}
+                              d="M5 13l4 4L19 7"
+                            />
                           </svg>
                         ) : (
                           step.number
                         )}
                       </div>
-                      <span className={`text-xs font-medium mt-2 ${
-                        step.number <= createStep ? "text-slate-700" : "text-slate-400"
-                      }`}>
+                      <span
+                        className={`text-xs font-medium mt-2 ${
+                          step.number <= createStep
+                            ? "text-slate-700"
+                            : "text-slate-400"
+                        }`}
+                      >
                         {step.label}
                       </span>
                     </div>
                     {index < 4 && (
                       <div
                         className={`w-16 h-px mx-4 transition-all ${
-                          step.number < createStep ? "bg-emerald-500" : "bg-slate-300"
+                          step.number < createStep
+                            ? "bg-emerald-500"
+                            : "bg-slate-300"
                         }`}
                       />
                     )}
@@ -1076,10 +1395,17 @@ export default function Dashboard({
             <div className="min-h-[500px] relative overflow-hidden">
               {/* Step 1: Choose Creation Method */}
               {createStep === 1 && (
-                <div className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                <div
+                  className={`max-w-5xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
+                >
                   <div className="text-center mb-12">
-                    <h1 className="text-4xl font-light text-slate-800 mb-6">Create New Case</h1>
-                    <p className="text-slate-600 text-lg max-w-2xl mx-auto">Choose your preferred method for creating a new case and requesting documents from your client</p>
+                    <h1 className="text-4xl font-light text-slate-800 mb-6">
+                      Create New Case
+                    </h1>
+                    <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+                      Choose your preferred method for creating a new case and
+                      requesting documents from your client
+                    </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1091,12 +1417,27 @@ export default function Dashboard({
                       className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all duration-500 p-8 rounded-2xl text-center group"
                     >
                       <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        <svg
+                          className="w-7 h-7 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                          />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-medium text-slate-800 mb-3">AI Assist</h3>
-                      <p className="text-slate-600 leading-relaxed">Describe your case and let AI suggest the most relevant documents to request</p>
+                      <h3 className="text-xl font-medium text-slate-800 mb-3">
+                        AI Assist
+                      </h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Describe your case and let AI suggest the most relevant
+                        documents to request
+                      </p>
                     </button>
 
                     <button
@@ -1107,12 +1448,27 @@ export default function Dashboard({
                       className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all duration-500 p-8 rounded-2xl text-center group"
                     >
                       <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        <svg
+                          className="w-7 h-7 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                          />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-medium text-slate-800 mb-3">Manual Select</h3>
-                      <p className="text-slate-600 leading-relaxed">Manually choose documents from your organized document library</p>
+                      <h3 className="text-xl font-medium text-slate-800 mb-3">
+                        Manual Select
+                      </h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Manually choose documents from your organized document
+                        library
+                      </p>
                     </button>
 
                     <button
@@ -1123,12 +1479,27 @@ export default function Dashboard({
                       className="bg-white/80 backdrop-blur-xl border border-slate-200/60 hover:border-indigo-300 hover:shadow-lg transition-all duration-500 p-8 rounded-2xl text-center group"
                     >
                       <div className="w-14 h-14 bg-indigo-600 rounded-xl flex items-center justify-center mx-auto mb-6 group-hover:bg-indigo-700 transition-colors">
-                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <svg
+                          className="w-7 h-7 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                          />
                         </svg>
                       </div>
-                      <h3 className="text-xl font-medium text-slate-800 mb-3">Questionnaire</h3>
-                      <p className="text-slate-600 leading-relaxed">Send a structured questionnaire tailored to your case type</p>
+                      <h3 className="text-xl font-medium text-slate-800 mb-3">
+                        Questionnaire
+                      </h3>
+                      <p className="text-slate-600 leading-relaxed">
+                        Send a structured questionnaire tailored to your case
+                        type
+                      </p>
                     </button>
                   </div>
                 </div>
@@ -1136,17 +1507,26 @@ export default function Dashboard({
 
               {/* Step 2: Method-Specific Interface */}
               {createStep === 2 && (
-                <div className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                <div
+                  className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
+                >
                   {createMethod === "ai" && (
                     <div>
                       <div className="text-center mb-10">
-                        <h1 className="text-3xl font-light text-slate-800 mb-4">Describe Your Case</h1>
-                        <p className="text-slate-600 text-lg">Our AI will analyze your description and suggest relevant documents</p>
+                        <h1 className="text-3xl font-light text-slate-800 mb-4">
+                          Describe Your Case
+                        </h1>
+                        <p className="text-slate-600 text-lg">
+                          Our AI will analyze your description and suggest
+                          relevant documents
+                        </p>
                       </div>
 
                       <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg p-8 mb-8">
                         <div className="max-w-3xl mx-auto">
-                          <label className="block text-sm font-medium text-slate-700 mb-3">Case Description</label>
+                          <label className="block text-sm font-medium text-slate-700 mb-3">
+                            Case Description
+                          </label>
                           <textarea
                             value={aiDescription}
                             onChange={(e) => setAiDescription(e.target.value)}
@@ -1174,8 +1554,18 @@ export default function Dashboard({
                           onClick={() => handleStepTransition(1)}
                           className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 19l-7-7 7-7"
+                            />
                           </svg>
                           <span>Back to Method Selection</span>
                         </button>
@@ -1186,8 +1576,13 @@ export default function Dashboard({
                   {createMethod === "manual" && (
                     <div>
                       <div className="text-center mb-10">
-                        <h1 className="text-3xl font-light text-slate-800 mb-4">Select Documents</h1>
-                        <p className="text-slate-600 text-lg">Choose documents from your library to request from the client</p>
+                        <h1 className="text-3xl font-light text-slate-800 mb-4">
+                          Select Documents
+                        </h1>
+                        <p className="text-slate-600 text-lg">
+                          Choose documents from your library to request from the
+                          client
+                        </p>
                       </div>
 
                       {/* Professional Document Management Interface */}
@@ -1198,15 +1593,29 @@ export default function Dashboard({
                             <div className="px-8 py-6 border-b border-slate-100/60">
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <h3 className="text-xl font-light text-slate-700 mb-1">Document Library</h3>
-                                  <p className="text-sm text-slate-500">Select documents to request from client</p>
+                                  <h3 className="text-xl font-light text-slate-700 mb-1">
+                                    Document Library
+                                  </h3>
+                                  <p className="text-sm text-slate-500">
+                                    Select documents to request from client
+                                  </p>
                                 </div>
                                 <button
                                   onClick={() => setShowTemplateModal(true)}
                                   className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-4 py-2 transition-all"
                                 >
-                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                  <svg
+                                    className="w-4 h-4"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={1.5}
+                                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                    />
                                   </svg>
                                   <span>Templates</span>
                                 </button>
@@ -1218,36 +1627,61 @@ export default function Dashboard({
                                 <input
                                   type="text"
                                   value={documentSearch}
-                                  onChange={(e) => setDocumentSearch(e.target.value)}
+                                  onChange={(e) =>
+                                    setDocumentSearch(e.target.value)
+                                  }
                                   className="w-full p-4 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
                                   placeholder="Search document library..."
                                 />
                               </div>
 
                               <div className="h-96 overflow-y-auto space-y-1">
-                                {filteredAvailableDocuments.map((doc, index) => (
-                                  <button
-                                    key={index}
-                                    onClick={() => handleAddDocument(doc)}
-                                    className="w-full flex items-center justify-between p-4 hover:bg-slate-50/80 rounded-2xl transition-all duration-200 group border-0 bg-transparent text-left"
-                                  >
-                                    <span className="text-slate-700 font-normal flex-1">{doc}</span>
+                                {filteredAvailableDocuments.map(
+                                  (doc, index) => (
+                                    <button
+                                      key={index}
+                                      onClick={() => handleAddDocument(doc)}
+                                      className="w-full flex items-center justify-between p-4 hover:bg-slate-50/80 rounded-2xl transition-all duration-200 group border-0 bg-transparent text-left"
+                                    >
+                                      <span className="text-slate-700 font-normal flex-1">
+                                        {doc}
+                                      </span>
+                                      <svg
+                                        className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={1.5}
+                                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                        />
+                                      </svg>
+                                    </button>
+                                  ),
+                                )}
+                                {filteredAvailableDocuments.length === 0 && (
+                                  <div className="text-center py-16 text-slate-500">
                                     <svg
-                                      className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
+                                      className="w-12 h-12 mx-auto mb-4 opacity-30"
                                       fill="none"
                                       stroke="currentColor"
                                       viewBox="0 0 24 24"
                                     >
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1}
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                      />
                                     </svg>
-                                  </button>
-                                ))}
-                                {filteredAvailableDocuments.length === 0 && (
-                                  <div className="text-center py-16 text-slate-500">
-                                    <svg className="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    <p className="font-light">{documentSearch ? "No documents match your search" : "All documents have been selected"}</p>
+                                    <p className="font-light">
+                                      {documentSearch
+                                        ? "No documents match your search"
+                                        : "All documents have been selected"}
+                                    </p>
                                   </div>
                                 )}
                               </div>
@@ -1261,8 +1695,14 @@ export default function Dashboard({
                             <div className="px-8 py-6 border-b border-slate-100/60">
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <h3 className="text-xl font-light text-slate-700 mb-1">Selected Documents</h3>
-                                  <p className="text-sm text-slate-500">{selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} selected</p>
+                                  <h3 className="text-xl font-light text-slate-700 mb-1">
+                                    Selected Documents
+                                  </h3>
+                                  <p className="text-sm text-slate-500">
+                                    {selectedDocuments.length} document
+                                    {selectedDocuments.length !== 1 ? "s" : ""}{" "}
+                                    selected
+                                  </p>
                                 </div>
                                 <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-sm font-medium">
                                   {selectedDocuments.length}
@@ -1275,7 +1715,9 @@ export default function Dashboard({
                                 <input
                                   type="text"
                                   value={selectedDocumentSearch}
-                                  onChange={(e) => setSelectedDocumentSearch(e.target.value)}
+                                  onChange={(e) =>
+                                    setSelectedDocumentSearch(e.target.value)
+                                  }
                                   className="w-full p-4 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
                                   placeholder="Search selected..."
                                 />
@@ -1283,22 +1725,41 @@ export default function Dashboard({
 
                               <div className="h-96 overflow-y-auto space-y-3">
                                 {filteredSelectedDocuments.map((doc, index) => (
-                                  <div key={index} className="border border-slate-200/60 rounded-2xl p-4 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
+                                  <div
+                                    key={index}
+                                    className="border border-slate-200/60 rounded-2xl p-4 bg-slate-50/30 hover:bg-slate-50/60 transition-all"
+                                  >
                                     <div className="flex items-start justify-between mb-3">
-                                      <span className="text-slate-700 font-normal text-sm leading-relaxed flex-1 pr-3">{doc.name}</span>
+                                      <span className="text-slate-700 font-normal text-sm leading-relaxed flex-1 pr-3">
+                                        {doc.name}
+                                      </span>
                                       <button
-                                        onClick={() => handleRemoveDocument(doc.name)}
+                                        onClick={() =>
+                                          handleRemoveDocument(doc.name)
+                                        }
                                         className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
                                         title="Remove document"
                                       >
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                                        <svg
+                                          className="w-4 h-4"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={1.5}
+                                            d="M6 18L18 6M6 6l12 12"
+                                          />
                                         </svg>
                                       </button>
                                     </div>
                                     <div className="flex items-center justify-between">
                                       <button
-                                        onClick={() => handleToggleOptional(doc.name)}
+                                        onClick={() =>
+                                          handleToggleOptional(doc.name)
+                                        }
                                         className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all border ${
                                           doc.optional
                                             ? "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
@@ -1317,10 +1778,24 @@ export default function Dashboard({
                                 ))}
                                 {filteredSelectedDocuments.length === 0 && (
                                   <div className="text-center py-16 text-slate-500">
-                                    <svg className="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    <svg
+                                      className="w-12 h-12 mx-auto mb-4 opacity-30"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1}
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                      />
                                     </svg>
-                                    <p className="font-light">{selectedDocumentSearch ? "No documents match search" : "Select documents to get started"}</p>
+                                    <p className="font-light">
+                                      {selectedDocumentSearch
+                                        ? "No documents match search"
+                                        : "Select documents to get started"}
+                                    </p>
                                   </div>
                                 )}
                               </div>
@@ -1334,8 +1809,18 @@ export default function Dashboard({
                           onClick={() => handleStepTransition(1)}
                           className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 19l-7-7 7-7"
+                            />
                           </svg>
                           <span>Back to Method Selection</span>
                         </button>
@@ -1354,24 +1839,48 @@ export default function Dashboard({
                   {createMethod === "questionnaire" && (
                     <div>
                       <div className="text-center mb-10">
-                        <h1 className="text-3xl font-light text-slate-800 mb-4">Select Questionnaire</h1>
-                        <p className="text-slate-600 text-lg">Choose a questionnaire template to send to your client</p>
+                        <h1 className="text-3xl font-light text-slate-800 mb-4">
+                          Select Questionnaire
+                        </h1>
+                        <p className="text-slate-600 text-lg">
+                          Choose a questionnaire template to send to your client
+                        </p>
                       </div>
 
                       <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg p-8">
                         <div className="space-y-4 mb-8">
                           {[
-                            { name: "Employment Law Intake", description: "Comprehensive intake for employment-related cases" },
-                            { name: "Personal Injury Assessment", description: "Detailed assessment for personal injury claims" },
-                            { name: "Family Law Questionnaire", description: "Family law matters including divorce and custody" },
-                            { name: "Corporate Compliance Check", description: "Corporate compliance and regulatory matters" }
+                            {
+                              name: "Employment Law Intake",
+                              description:
+                                "Comprehensive intake for employment-related cases",
+                            },
+                            {
+                              name: "Personal Injury Assessment",
+                              description:
+                                "Detailed assessment for personal injury claims",
+                            },
+                            {
+                              name: "Family Law Questionnaire",
+                              description:
+                                "Family law matters including divorce and custody",
+                            },
+                            {
+                              name: "Corporate Compliance Check",
+                              description:
+                                "Corporate compliance and regulatory matters",
+                            },
                           ].map((questionnaire, index) => (
                             <button
                               key={index}
                               className="w-full text-left p-6 bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-200 rounded-lg"
                             >
-                              <h4 className="font-medium text-slate-800 mb-2">{questionnaire.name}</h4>
-                              <p className="text-slate-600 text-sm">{questionnaire.description}</p>
+                              <h4 className="font-medium text-slate-800 mb-2">
+                                {questionnaire.name}
+                              </h4>
+                              <p className="text-slate-600 text-sm">
+                                {questionnaire.description}
+                              </p>
                             </button>
                           ))}
                         </div>
@@ -1391,8 +1900,18 @@ export default function Dashboard({
                           onClick={() => handleStepTransition(1)}
                           className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                         >
-                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 19l-7-7 7-7"
+                            />
                           </svg>
                           <span>Back to Method Selection</span>
                         </button>
@@ -1404,7 +1923,9 @@ export default function Dashboard({
 
               {/* Step 3: Document Management (Only for AI flow) */}
               {createStep === 3 && createMethod === "ai" && (
-                <div className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                <div
+                  className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
+                >
                   <div className="text-center mb-10">
                     <h1 className="text-3xl font-light text-slate-800 mb-4">
                       Review AI Suggestions
@@ -1422,15 +1943,29 @@ export default function Dashboard({
                         <div className="px-8 py-6 border-b border-slate-100/60">
                           <div className="flex items-center justify-between">
                             <div>
-                              <h3 className="text-xl font-light text-slate-700 mb-1">Document Library</h3>
-                              <p className="text-sm text-slate-500">Add more documents to your AI suggestions</p>
+                              <h3 className="text-xl font-light text-slate-700 mb-1">
+                                Document Library
+                              </h3>
+                              <p className="text-sm text-slate-500">
+                                Add more documents to your AI suggestions
+                              </p>
                             </div>
                             <button
                               onClick={() => setShowTemplateModal(true)}
                               className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-4 py-2 transition-all"
                             >
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={1.5}
+                                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                />
                               </svg>
                               <span>Templates</span>
                             </button>
@@ -1442,7 +1977,9 @@ export default function Dashboard({
                             <input
                               type="text"
                               value={documentSearch}
-                              onChange={(e) => setDocumentSearch(e.target.value)}
+                              onChange={(e) =>
+                                setDocumentSearch(e.target.value)
+                              }
                               className="w-full p-4 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
                               placeholder="Search document library..."
                             />
@@ -1455,23 +1992,44 @@ export default function Dashboard({
                                 onClick={() => handleAddDocument(doc)}
                                 className="w-full flex items-center justify-between p-4 hover:bg-slate-50/80 rounded-2xl transition-all duration-200 group border-0 bg-transparent text-left"
                               >
-                                <span className="text-slate-700 font-normal flex-1">{doc}</span>
+                                <span className="text-slate-700 font-normal flex-1">
+                                  {doc}
+                                </span>
                                 <svg
                                   className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"
                                 >
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={1.5}
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                  />
                                 </svg>
                               </button>
                             ))}
                             {filteredAvailableDocuments.length === 0 && (
                               <div className="text-center py-16 text-slate-500">
-                                <svg className="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                <svg
+                                  className="w-12 h-12 mx-auto mb-4 opacity-30"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={1}
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                  />
                                 </svg>
-                                <p className="font-light">{documentSearch ? "No documents match your search" : "All documents have been selected"}</p>
+                                <p className="font-light">
+                                  {documentSearch
+                                    ? "No documents match your search"
+                                    : "All documents have been selected"}
+                                </p>
                               </div>
                             )}
                           </div>
@@ -1485,8 +2043,14 @@ export default function Dashboard({
                         <div className="px-8 py-6 border-b border-slate-100/60">
                           <div className="flex items-center justify-between">
                             <div>
-                              <h3 className="text-xl font-light text-slate-700 mb-1">AI Suggestions</h3>
-                              <p className="text-sm text-slate-500">{selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} recommended</p>
+                              <h3 className="text-xl font-light text-slate-700 mb-1">
+                                AI Suggestions
+                              </h3>
+                              <p className="text-sm text-slate-500">
+                                {selectedDocuments.length} document
+                                {selectedDocuments.length !== 1 ? "s" : ""}{" "}
+                                recommended
+                              </p>
                             </div>
                             <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-sm font-medium">
                               {selectedDocuments.length}
@@ -1499,7 +2063,9 @@ export default function Dashboard({
                             <input
                               type="text"
                               value={selectedDocumentSearch}
-                              onChange={(e) => setSelectedDocumentSearch(e.target.value)}
+                              onChange={(e) =>
+                                setSelectedDocumentSearch(e.target.value)
+                              }
                               className="w-full p-4 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
                               placeholder="Search suggestions..."
                             />
@@ -1507,22 +2073,41 @@ export default function Dashboard({
 
                           <div className="h-96 overflow-y-auto space-y-3">
                             {filteredSelectedDocuments.map((doc, index) => (
-                              <div key={index} className="border border-slate-200/60 rounded-2xl p-4 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
+                              <div
+                                key={index}
+                                className="border border-slate-200/60 rounded-2xl p-4 bg-slate-50/30 hover:bg-slate-50/60 transition-all"
+                              >
                                 <div className="flex items-start justify-between mb-3">
-                                  <span className="text-slate-700 font-normal text-sm leading-relaxed flex-1 pr-3">{doc.name}</span>
+                                  <span className="text-slate-700 font-normal text-sm leading-relaxed flex-1 pr-3">
+                                    {doc.name}
+                                  </span>
                                   <button
-                                    onClick={() => handleRemoveDocument(doc.name)}
+                                    onClick={() =>
+                                      handleRemoveDocument(doc.name)
+                                    }
                                     className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
                                     title="Remove document"
                                   >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                                    <svg
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1.5}
+                                        d="M6 18L18 6M6 6l12 12"
+                                      />
                                     </svg>
                                   </button>
                                 </div>
                                 <div className="flex items-center justify-between">
                                   <button
-                                    onClick={() => handleToggleOptional(doc.name)}
+                                    onClick={() =>
+                                      handleToggleOptional(doc.name)
+                                    }
                                     className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all border ${
                                       doc.optional
                                         ? "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
@@ -1541,10 +2126,24 @@ export default function Dashboard({
                             ))}
                             {filteredSelectedDocuments.length === 0 && (
                               <div className="text-center py-16 text-slate-500">
-                                <svg className="w-12 h-12 mx-auto mb-4 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                <svg
+                                  className="w-12 h-12 mx-auto mb-4 opacity-30"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={1}
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                  />
                                 </svg>
-                                <p className="font-light">{selectedDocumentSearch ? "No documents match search" : "AI will suggest documents based on your case description"}</p>
+                                <p className="font-light">
+                                  {selectedDocumentSearch
+                                    ? "No documents match search"
+                                    : "AI will suggest documents based on your case description"}
+                                </p>
                               </div>
                             )}
                           </div>
@@ -1558,8 +2157,18 @@ export default function Dashboard({
                       onClick={() => handleStepTransition(2)}
                       className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
                       </svg>
                       <span>Back</span>
                     </button>
@@ -1577,42 +2186,64 @@ export default function Dashboard({
 
               {/* Step 4: Case Information */}
               {createStep === 4 && (
-                <div className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                <div
+                  className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
+                >
                   <div className="text-center mb-8">
-                    <h2 className="text-2xl font-light text-slate-700 mb-3">Case Information</h2>
-                    <p className="text-slate-600">Enter the basic information for this case</p>
+                    <h2 className="text-2xl font-light text-slate-700 mb-3">
+                      Case Information
+                    </h2>
+                    <p className="text-slate-600">
+                      Enter the basic information for this case
+                    </p>
                   </div>
 
                   <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-8 rounded-2xl border border-slate-200/40 backdrop-blur-sm">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                       <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">First Name</label>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                          First Name
+                        </label>
                         <input
                           type="text"
                           value={caseInfo.firstName}
-                          onChange={(e) => setCaseInfo({...caseInfo, firstName: e.target.value})}
+                          onChange={(e) =>
+                            setCaseInfo({
+                              ...caseInfo,
+                              firstName: e.target.value,
+                            })
+                          }
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                           placeholder="Enter first name"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Last Name</label>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                          Last Name
+                        </label>
                         <input
                           type="text"
                           value={caseInfo.lastName}
-                          onChange={(e) => setCaseInfo({...caseInfo, lastName: e.target.value})}
+                          onChange={(e) =>
+                            setCaseInfo({
+                              ...caseInfo,
+                              lastName: e.target.value,
+                            })
+                          }
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                           placeholder="Enter last name"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Phone Number</label>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                          Phone Number
+                        </label>
                         <input
                           type="tel"
                           value={caseInfo.phone}
                           onChange={(e) => {
                             const formatted = formatPhoneNumber(e.target.value);
-                            setCaseInfo({...caseInfo, phone: formatted});
+                            setCaseInfo({ ...caseInfo, phone: formatted });
                           }}
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                           placeholder="(555) 123-4567"
@@ -1620,30 +2251,45 @@ export default function Dashboard({
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                          Email Address
+                        </label>
                         <input
                           type="email"
                           value={caseInfo.email}
-                          onChange={(e) => setCaseInfo({...caseInfo, email: e.target.value})}
+                          onChange={(e) =>
+                            setCaseInfo({ ...caseInfo, email: e.target.value })
+                          }
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                           placeholder="client@email.com"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Matter ID</label>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                          Matter ID
+                        </label>
                         <input
                           type="text"
                           value={caseInfo.matterId}
-                          onChange={(e) => setCaseInfo({...caseInfo, matterId: e.target.value})}
+                          onChange={(e) =>
+                            setCaseInfo({
+                              ...caseInfo,
+                              matterId: e.target.value,
+                            })
+                          }
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                           placeholder="MTR-2024-001"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">State</label>
+                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                          State
+                        </label>
                         <select
                           value={caseInfo.state}
-                          onChange={(e) => setCaseInfo({...caseInfo, state: e.target.value})}
+                          onChange={(e) =>
+                            setCaseInfo({ ...caseInfo, state: e.target.value })
+                          }
                           className="w-full p-4 bg-white/80 rounded-xl border border-slate-200/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
                         >
                           <option value="">Select state</option>
@@ -1655,11 +2301,23 @@ export default function Dashboard({
 
                     <div className="flex justify-between items-center">
                       <button
-                        onClick={() => handleStepTransition(createMethod === "ai" ? 3 : 2)}
+                        onClick={() =>
+                          handleStepTransition(createMethod === "ai" ? 3 : 2)
+                        }
                         className="text-slate-600 hover:text-slate-700 flex items-center space-x-2 transition-colors"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 19l-7-7 7-7"
+                          />
                         </svg>
                         <span>Back</span>
                       </button>
@@ -1677,47 +2335,126 @@ export default function Dashboard({
 
               {/* Step 5: Final Review */}
               {createStep === 5 && (
-                <div className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+                <div
+                  className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
+                >
                   <div className="text-center mb-8">
-                    <h2 className="text-2xl font-light text-slate-700 mb-3">Review Your Case</h2>
-                    <p className="text-slate-600">Please review all details before creating the case</p>
+                    <h2 className="text-2xl font-light text-slate-700 mb-3">
+                      Review Your Case
+                    </h2>
+                    <p className="text-slate-600">
+                      Please review all details before creating the case
+                    </p>
                   </div>
 
                   <div className="space-y-6">
                     {/* Case Summary */}
                     <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40">
-                      <h4 className="text-lg font-medium text-slate-700 mb-4">Case Summary</h4>
+                      <h4 className="text-lg font-medium text-slate-700 mb-4">
+                        Case Summary
+                      </h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div><span className="font-medium text-slate-600">Creation Method:</span> {createMethod === "ai" ? "AI Assist" : createMethod === "manual" ? "Manual Select" : "Questionnaire"}</div>
-                        <div><span className="font-medium text-slate-600">Total Documents:</span> {selectedDocuments.length}</div>
-                        <div><span className="font-medium text-slate-600">Required Documents:</span> {selectedDocuments.filter(doc => !doc.optional).length}</div>
-                        <div><span className="font-medium text-slate-600">Optional Documents:</span> {selectedDocuments.filter(doc => doc.optional).length}</div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Creation Method:
+                          </span>{" "}
+                          {createMethod === "ai"
+                            ? "AI Assist"
+                            : createMethod === "manual"
+                              ? "Manual Select"
+                              : "Questionnaire"}
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Total Documents:
+                          </span>{" "}
+                          {selectedDocuments.length}
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Required Documents:
+                          </span>{" "}
+                          {
+                            selectedDocuments.filter((doc) => !doc.optional)
+                              .length
+                          }
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Optional Documents:
+                          </span>{" "}
+                          {
+                            selectedDocuments.filter((doc) => doc.optional)
+                              .length
+                          }
+                        </div>
                       </div>
                     </div>
 
                     {/* Client Information */}
                     <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
-                      <h4 className="text-lg font-medium text-slate-700 mb-4">Client Information</h4>
+                      <h4 className="text-lg font-medium text-slate-700 mb-4">
+                        Client Information
+                      </h4>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div><span className="font-medium text-slate-600">Name:</span> {caseInfo.firstName} {caseInfo.lastName}</div>
-                        <div><span className="font-medium text-slate-600">Email:</span> {caseInfo.email || "Not provided"}</div>
-                        <div><span className="font-medium text-slate-600">Phone:</span> {caseInfo.phone || "Not provided"}</div>
-                        <div><span className="font-medium text-slate-600">Matter ID:</span> {caseInfo.matterId || "Not provided"}</div>
-                        <div><span className="font-medium text-slate-600">State:</span> {caseInfo.state || "Not selected"}</div>
-                        <div><span className="font-medium text-slate-600">Language:</span> {caseInfo.language === "en" ? "English" : caseInfo.language}</div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Name:
+                          </span>{" "}
+                          {caseInfo.firstName} {caseInfo.lastName}
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Email:
+                          </span>{" "}
+                          {caseInfo.email || "Not provided"}
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Phone:
+                          </span>{" "}
+                          {caseInfo.phone || "Not provided"}
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Matter ID:
+                          </span>{" "}
+                          {caseInfo.matterId || "Not provided"}
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            State:
+                          </span>{" "}
+                          {caseInfo.state || "Not selected"}
+                        </div>
+                        <div>
+                          <span className="font-medium text-slate-600">
+                            Language:
+                          </span>{" "}
+                          {caseInfo.language === "en"
+                            ? "English"
+                            : caseInfo.language}
+                        </div>
                       </div>
                     </div>
 
                     {/* Document List */}
                     <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40">
-                      <h4 className="text-lg font-medium text-slate-700 mb-4">Requested Documents</h4>
+                      <h4 className="text-lg font-medium text-slate-700 mb-4">
+                        Requested Documents
+                      </h4>
                       <div className="space-y-2">
                         {selectedDocuments.map((doc, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 bg-white/70 rounded-lg">
+                          <div
+                            key={index}
+                            className="flex items-center justify-between p-3 bg-white/70 rounded-lg"
+                          >
                             <div className="flex items-center space-x-3">
                               <span className="text-slate-700">{doc.name}</span>
                               {doc.optional && (
-                                <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">Optional</span>
+                                <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">
+                                  Optional
+                                </span>
                               )}
                             </div>
                           </div>
@@ -1728,8 +2465,12 @@ export default function Dashboard({
                     {/* AI Description (if AI was used) */}
                     {createMethod === "ai" && aiDescription && (
                       <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
-                        <h4 className="text-lg font-medium text-slate-700 mb-4">AI Case Description</h4>
-                        <p className="text-slate-600 bg-white/70 p-4 rounded-lg">{aiDescription}</p>
+                        <h4 className="text-lg font-medium text-slate-700 mb-4">
+                          AI Case Description
+                        </h4>
+                        <p className="text-slate-600 bg-white/70 p-4 rounded-lg">
+                          {aiDescription}
+                        </p>
                       </div>
                     )}
 
@@ -1738,8 +2479,18 @@ export default function Dashboard({
                         onClick={() => handleStepTransition(4)}
                         className="text-slate-600 hover:text-slate-700 flex items-center space-x-2 transition-colors"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M15 19l-7-7 7-7"
+                          />
                         </svg>
                         <span>Back to Case Info</span>
                       </button>
@@ -1761,15 +2512,30 @@ export default function Dashboard({
                   <div className="px-8 py-6 border-b border-slate-100/80">
                     <div className="flex items-center justify-between">
                       <div>
-                        <h3 className="text-2xl font-light text-slate-800 mb-1">Document Templates</h3>
-                        <p className="text-slate-500 text-sm">Pre-configured document collections for common case types</p>
+                        <h3 className="text-2xl font-light text-slate-800 mb-1">
+                          Document Templates
+                        </h3>
+                        <p className="text-slate-500 text-sm">
+                          Pre-configured document collections for common case
+                          types
+                        </p>
                       </div>
                       <button
                         onClick={() => setShowTemplateModal(false)}
                         className="text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-xl hover:bg-slate-50"
                       >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          className="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -1779,24 +2545,38 @@ export default function Dashboard({
                   <div className="p-8 max-h-[60vh] overflow-y-auto">
                     <div className="grid gap-6">
                       {savedTemplates.map((template, index) => (
-                        <div key={index} className="group border border-slate-200/60 rounded-2xl p-6 hover:border-slate-300/80 hover:shadow-sm transition-all duration-300">
+                        <div
+                          key={index}
+                          className="group border border-slate-200/60 rounded-2xl p-6 hover:border-slate-300/80 hover:shadow-sm transition-all duration-300"
+                        >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center space-x-3 mb-3">
                                 <div className="w-2 h-2 rounded-full bg-slate-400"></div>
-                                <h4 className="font-medium text-slate-800 text-lg">{template.name}</h4>
+                                <h4 className="font-medium text-slate-800 text-lg">
+                                  {template.name}
+                                </h4>
                               </div>
-                              <p className="text-slate-500 text-sm mb-4">{template.documents.length} documents included in this template</p>
+                              <p className="text-slate-500 text-sm mb-4">
+                                {template.documents.length} documents included
+                                in this template
+                              </p>
 
                               <div className="flex flex-wrap gap-2 mb-4">
-                                {template.documents.slice(0, 5).map((doc, docIndex) => (
-                                  <span key={docIndex} className="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200/60">
-                                    {doc}
-                                  </span>
-                                ))}
+                                {template.documents
+                                  .slice(0, 5)
+                                  .map((doc, docIndex) => (
+                                    <span
+                                      key={docIndex}
+                                      className="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200/60"
+                                    >
+                                      {doc}
+                                    </span>
+                                  ))}
                                 {template.documents.length > 5 && (
                                   <span className="bg-slate-50 text-slate-500 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200/60">
-                                    +{template.documents.length - 5} more documents
+                                    +{template.documents.length - 5} more
+                                    documents
                                   </span>
                                 )}
                               </div>
