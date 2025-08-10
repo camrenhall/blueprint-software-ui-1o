@@ -2034,9 +2034,6 @@ export default function Dashboard({
                                 recommended
                               </p>
                             </div>
-                            <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-sm font-medium">
-                              {selectedDocuments.length}
-                            </div>
                           </div>
                         </div>
 
@@ -2053,55 +2050,55 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="h-96 overflow-y-auto space-y-3">
+                          <div className="h-96 overflow-y-auto space-y-2">
                             {filteredSelectedDocuments.map((doc, index) => (
                               <div
                                 key={index}
-                                className="border border-slate-200/60 rounded-2xl p-4 bg-slate-50/30 hover:bg-slate-50/60 transition-all"
+                                className="border border-slate-200/60 rounded-2xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all"
                               >
-                                <div className="flex items-start justify-between mb-3">
-                                  <span className="text-slate-700 font-normal text-sm leading-relaxed flex-1 pr-3">
+                                <div className="flex items-center justify-between">
+                                  <span className="text-slate-700 font-normal text-sm flex-1 pr-3 truncate">
                                     {doc.name}
                                   </span>
-                                  <button
-                                    onClick={() =>
-                                      handleRemoveDocument(doc.name)
-                                    }
-                                    className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
-                                    title="Remove document"
-                                  >
-                                    <svg
-                                      className="w-4 h-4"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      viewBox="0 0 24 24"
+                                  <div className="flex items-center space-x-2 flex-shrink-0">
+                                    <button
+                                      onClick={() =>
+                                        handleToggleOptional(doc.name)
+                                      }
+                                      className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
+                                      title={doc.optional ? "Make required" : "Make optional"}
                                     >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={1.5}
-                                        d="M6 18L18 6M6 6l12 12"
-                                      />
-                                    </svg>
-                                  </button>
-                                </div>
-                                <div className="flex items-center justify-between">
-                                  <button
-                                    onClick={() =>
-                                      handleToggleOptional(doc.name)
-                                    }
-                                    className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all border ${
-                                      doc.optional
-                                        ? "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
-                                        : "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100"
-                                    }`}
-                                  >
-                                    {doc.optional ? "Optional" : "Required"}
-                                  </button>
-                                  <div className="flex items-center space-x-1">
-                                    <div className="w-1 h-1 rounded-full bg-slate-400"></div>
-                                    <div className="w-1 h-1 rounded-full bg-slate-300"></div>
-                                    <div className="w-1 h-1 rounded-full bg-slate-200"></div>
+                                      {doc.optional ? (
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01" />
+                                        </svg>
+                                      ) : (
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                      )}
+                                    </button>
+                                    <button
+                                      onClick={() =>
+                                        handleRemoveDocument(doc.name)
+                                      }
+                                      className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
+                                      title="Remove document"
+                                    >
+                                      <svg
+                                        className="w-4 h-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={1.5}
+                                          d="M6 18L18 6M6 6l12 12"
+                                        />
+                                      </svg>
+                                    </button>
                                   </div>
                                 </div>
                               </div>
