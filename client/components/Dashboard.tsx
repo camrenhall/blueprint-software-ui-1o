@@ -3598,7 +3598,7 @@ export default function Dashboard({
             <div
               className={cn(
                 "transition-all duration-500 ease-in-out",
-                isTransitioning
+                isTabTransitioning
                   ? "opacity-0 transform translate-x-4"
                   : "opacity-100 transform translate-x-0",
               )}
