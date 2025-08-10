@@ -499,37 +499,29 @@ export default function Dashboard({
 
   // Smooth transition functions
   const handleCaseSelect = (caseItem: any) => {
-    // Start transitioning out immediately
+    // Start fade out
     setIsTransitioning(true);
     setTransitionDirection('out');
 
-    // Small delay to ensure transition starts, then switch content
+    // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCase(caseItem);
       setTransitionDirection('in');
-
-      // Allow transition to complete before removing transitioning state
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 150);
-    }, 50);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleCaseBack = () => {
-    // Start transitioning out immediately
+    // Start fade out
     setIsTransitioning(true);
     setTransitionDirection('out');
 
-    // Small delay to ensure transition starts, then switch content
+    // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCase(null);
       setTransitionDirection('in');
-
-      // Allow transition to complete before removing transitioning state
-      setTimeout(() => {
-        setIsTransitioning(false);
-      }, 150);
-    }, 50);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const handleCompletedCaseSelect = (caseItem: any) => {
