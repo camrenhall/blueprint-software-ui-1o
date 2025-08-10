@@ -10,7 +10,7 @@ interface DashboardProps {
   className?: string;
 }
 
-// Futuristic Case Scroller Component with Integrated Search
+// Futuristic Case Scroller Component with Sidebar and Collapsible Search
 const FuturisticCaseScroller = ({
   cases,
   onCaseSelect,
@@ -24,6 +24,7 @@ const FuturisticCaseScroller = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
 
   // Calculate visual effects based on position from top (simplified for performance)
   const getCaseEffects = (index: number) => {
