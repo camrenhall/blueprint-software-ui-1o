@@ -1427,10 +1427,14 @@ export default function Dashboard({
           );
         }
         return (
-          <div className="space-y-2">
-            {/* Compact Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-              <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+          <TransitionWrapper
+            isTransitioning={isCompletedTransitioning}
+            direction={completedTransitionDirection}
+          >
+            <div className="space-y-2">
+              {/* Compact Stats Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
@@ -1546,7 +1550,8 @@ export default function Dashboard({
               searchValue={reportsSearch}
               onSearchChange={setReportsSearch}
             />
-          </div>
+            </div>
+          </TransitionWrapper>
         );
 
       case "create":
