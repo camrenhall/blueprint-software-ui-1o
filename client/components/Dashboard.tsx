@@ -3419,6 +3419,143 @@ export default function Dashboard({
           </div>
         </div>
       </div>
+
+      {/* Beautiful Save Template Modal */}
+      {showSaveTemplateModal && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+          <div className="bg-white/95 backdrop-blur-xl border border-slate-200/40 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
+            <div className="p-8">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">Save Template</h3>
+                <p className="text-slate-600 text-sm">Give your template a name to save {selectedDocuments.length} documents</p>
+              </div>
+
+              <div className="mb-6">
+                <input
+                  type="text"
+                  value={templateName}
+                  onChange={(e) => setTemplateName(e.target.value)}
+                  placeholder="Enter template name..."
+                  className="w-full p-4 bg-slate-50/50 border border-slate-200/60 rounded-xl focus:bg-white focus:ring-2 focus:ring-green-200 focus:border-green-300 transition-all placeholder-slate-400 text-slate-700"
+                  onKeyPress={(e) => e.key === 'Enter' && handleConfirmSaveTemplate()}
+                  autoFocus
+                />
+              </div>
+
+              <div className="flex space-x-3">
+                <button
+                  onClick={() => {
+                    setShowSaveTemplateModal(false);
+                    setTemplateName('');
+                  }}
+                  className="flex-1 py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirmSaveTemplate}
+                  className="flex-1 py-3 px-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-xl transition-all font-medium shadow-lg"
+                >
+                  Save Template
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Beautiful Clear Confirmation Modal */}
+      {showClearConfirmModal && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+          <div className="bg-white/95 backdrop-blur-xl border border-slate-200/40 rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
+            <div className="p-8">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H9a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">Clear All Documents</h3>
+                <p className="text-slate-600 text-sm">Are you sure you want to remove all {selectedDocuments.length} selected documents? This action cannot be undone.</p>
+              </div>
+
+              <div className="flex space-x-3">
+                <button
+                  onClick={() => setShowClearConfirmModal(false)}
+                  className="flex-1 py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleConfirmClearAll}
+                  className="flex-1 py-3 px-4 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white rounded-xl transition-all font-medium shadow-lg"
+                >
+                  Clear All
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Beautiful Template Conflict Modal */}
+      {showTemplateConflictModal && pendingTemplate && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+          <div className="bg-white/95 backdrop-blur-xl border border-slate-200/40 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden">
+            <div className="p-8">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">Load Template</h3>
+                <p className="text-slate-600 text-sm">You have {selectedDocuments.length} documents already selected. How would you like to load the "{pendingTemplate.name}" template?</p>
+              </div>
+
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleTemplateConflictResolve('replace')}
+                  className="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white rounded-xl transition-all font-medium shadow-lg text-left flex items-center space-x-3"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  <div>
+                    <div className="font-semibold">Replace</div>
+                    <div className="text-indigo-100 text-xs">Remove current documents and load template</div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => handleTemplateConflictResolve('add')}
+                  className="w-full py-3 px-4 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white rounded-xl transition-all font-medium shadow-lg text-left flex items-center space-x-3"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  <div>
+                    <div className="font-semibold">Add To</div>
+                    <div className="text-emerald-100 text-xs">Keep current documents and add template</div>
+                  </div>
+                </button>
+
+                <button
+                  onClick={() => handleTemplateConflictResolve('cancel')}
+                  className="w-full py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
