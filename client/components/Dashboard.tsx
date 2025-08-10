@@ -1501,8 +1501,8 @@ export default function Dashboard({
             )}
 
             {/* Step Content */}
-            <div className={`min-h-[500px] relative overflow-hidden transition-all duration-700 ease-out ${
-              createStep > 1 ? 'ml-36' : ''
+            <div className={`min-h-[500px] relative transition-all duration-700 ease-out ${
+              createStep > 1 ? 'ml-44' : ''
             }`}>
               {/* Step 1: Choose Creation Method */}
               {createStep === 1 && (
@@ -1652,8 +1652,8 @@ export default function Dashboard({
 
                   {createMethod === "manual" && (
                     <div className="relative h-full">
-                      {/* Fixed Height Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 400px)', minHeight: '500px' }}>
+                      {/* Fixed Height Document Management Interface - DECISIVE FIX */}
+                      <div className="grid grid-cols-12 gap-6" style={{ height: '70vh', minHeight: '600px', maxHeight: '800px' }}>
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full">
@@ -1713,8 +1713,12 @@ export default function Dashboard({
                               </div>
                             </div>
 
-                            {/* Scrollable Document List */}
-                            <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
+                            {/* Scrollable Document List - DECISIVE SCROLLING FIX */}
+                            <div className="flex-1 p-6" style={{
+                              overflowY: 'scroll',
+                              scrollbarWidth: 'thin',
+                              scrollbarColor: '#cbd5e1 transparent'
+                            }}>
                               <div className="space-y-1">
                                 {filteredAvailableDocuments.map((doc, index) => (
                                   <button
@@ -1794,8 +1798,12 @@ export default function Dashboard({
                               </div>
                             </div>
 
-                            {/* Scrollable Selected Documents */}
-                            <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
+                            {/* Scrollable Selected Documents - DECISIVE SCROLLING FIX */}
+                            <div className="flex-1 p-6" style={{
+                              overflowY: 'scroll',
+                              scrollbarWidth: 'thin',
+                              scrollbarColor: '#cbd5e1 transparent'
+                            }}>
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
                                   <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
@@ -1917,11 +1925,11 @@ export default function Dashboard({
                     </p>
                   </div>
 
-                  {/* Professional Document Management Interface */}
-                  <div className="grid grid-cols-12 gap-8" style={{ minHeight: '500px' }}>
+                  {/* Professional Document Management Interface - DECISIVE FIX */}
+                  <div className="grid grid-cols-12 gap-6" style={{ height: '70vh', minHeight: '600px', maxHeight: '800px' }}>
                     {/* Available Documents - Elegant Design */}
                     <div className="col-span-7">
-                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col" style={{ height: 'calc(100vh - 500px)', minHeight: '500px' }}>
+                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col h-full">
                         <div className="px-8 py-6 border-b border-slate-100/60">
                           <div className="flex items-center justify-between">
                             <div>
@@ -1967,7 +1975,11 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="flex-1 overflow-y-auto space-y-1 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
+                          <div className="flex-1 space-y-1" style={{
+                            overflowY: 'scroll',
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: '#cbd5e1 transparent'
+                          }}>
                             {filteredAvailableDocuments.map((doc, index) => (
                               <button
                                 key={index}
@@ -2021,7 +2033,7 @@ export default function Dashboard({
 
                     {/* Selected Documents - Professional Design */}
                     <div className="col-span-5">
-                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col" style={{ height: 'calc(100vh - 500px)', minHeight: '500px' }}>
+                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col h-full">
                         <div className="px-8 py-6 border-b border-slate-100/60">
                           <div className="flex items-center justify-between">
                             <div>
@@ -2050,7 +2062,11 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="flex-1 overflow-y-auto space-y-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
+                          <div className="flex-1 space-y-2" style={{
+                            overflowY: 'scroll',
+                            scrollbarWidth: 'thin',
+                            scrollbarColor: '#cbd5e1 transparent'
+                          }}>
                             {filteredSelectedDocuments.map((doc, index) => (
                               <div
                                 key={index}
