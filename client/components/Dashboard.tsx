@@ -546,29 +546,37 @@ export default function Dashboard({
   };
 
   const handleCompletedCaseSelect = (caseItem: any) => {
-    setCompletedTransitionDirection('out');
+    // Start transitioning out immediately
     setIsCompletedTransitioning(true);
+    setCompletedTransitionDirection('out');
 
+    // Small delay to ensure transition starts, then switch content
     setTimeout(() => {
       setSelectedCompletedCase(caseItem);
       setCompletedTransitionDirection('in');
+
+      // Allow transition to complete before removing transitioning state
       setTimeout(() => {
         setIsCompletedTransitioning(false);
-      }, 100);
-    }, 200);
+      }, 150);
+    }, 50);
   };
 
   const handleCompletedCaseBack = () => {
-    setCompletedTransitionDirection('out');
+    // Start transitioning out immediately
     setIsCompletedTransitioning(true);
+    setCompletedTransitionDirection('out');
 
+    // Small delay to ensure transition starts, then switch content
     setTimeout(() => {
       setSelectedCompletedCase(null);
       setCompletedTransitionDirection('in');
+
+      // Allow transition to complete before removing transitioning state
       setTimeout(() => {
         setIsCompletedTransitioning(false);
-      }, 100);
-    }, 200);
+      }, 150);
+    }, 50);
   };
 
   // Create page document search visibility
