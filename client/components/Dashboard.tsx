@@ -417,6 +417,11 @@ export default function Dashboard({
   const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
   const [showTemplateModal, setShowTemplateModal] = useState(false);
   const [showTemplatesInline, setShowTemplatesInline] = useState(false);
+  const [showSaveTemplateModal, setShowSaveTemplateModal] = useState(false);
+  const [showClearConfirmModal, setShowClearConfirmModal] = useState(false);
+  const [showTemplateConflictModal, setShowTemplateConflictModal] = useState(false);
+  const [pendingTemplate, setPendingTemplate] = useState<any>(null);
+  const [templateName, setTemplateName] = useState('');
   const [savedTemplates] = useState([
     {
       name: "Personal Injury Standard",
@@ -1654,7 +1659,7 @@ export default function Dashboard({
                   {createMethod === "manual" && (
                     <div className="relative">
                       {/* Fixed Height Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 350px)' }}>
+                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 400px)' }}>
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full">
@@ -1715,7 +1720,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Templates or Document List */}
-                            <div className="px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
+                            <div className="px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 500px)' }}>
                               {showTemplatesInline ? (
                                 /* Template Selection */
                                 <div className="space-y-3">
@@ -1858,7 +1863,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Selected Documents - FIXED HEIGHT WITH INTERNAL SCROLL */}
-                            <div className="px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
+                            <div className="px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 500px)' }}>
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
                                   <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
