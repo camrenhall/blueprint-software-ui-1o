@@ -419,9 +419,10 @@ export default function Dashboard({
   const [showTemplatesInline, setShowTemplatesInline] = useState(false);
   const [showSaveTemplateModal, setShowSaveTemplateModal] = useState(false);
   const [showClearConfirmModal, setShowClearConfirmModal] = useState(false);
-  const [showTemplateConflictModal, setShowTemplateConflictModal] = useState(false);
+  const [showTemplateConflictModal, setShowTemplateConflictModal] =
+    useState(false);
   const [pendingTemplate, setPendingTemplate] = useState<any>(null);
-  const [templateName, setTemplateName] = useState('');
+  const [templateName, setTemplateName] = useState("");
   const [savedTemplates] = useState([
     {
       name: "Personal Injury Standard",
@@ -470,8 +471,10 @@ export default function Dashboard({
   const [selectedCompletedCase, setSelectedCompletedCase] = useState<any>(null);
 
   // Create page document search visibility
-  const [isDocLibrarySearchVisible, setIsDocLibrarySearchVisible] = useState(false);
-  const [isSelectedDocsSearchVisible, setIsSelectedDocsSearchVisible] = useState(false);
+  const [isDocLibrarySearchVisible, setIsDocLibrarySearchVisible] =
+    useState(false);
+  const [isSelectedDocsSearchVisible, setIsSelectedDocsSearchVisible] =
+    useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [showSort, setShowSort] = useState(false);
   const [showCaseActions, setShowCaseActions] = useState<number | null>(null);
@@ -593,8 +596,10 @@ export default function Dashboard({
     }
   };
 
-  const handleTemplateConflictResolve = (action: 'replace' | 'add' | 'cancel') => {
-    if (action === 'cancel' || !pendingTemplate) {
+  const handleTemplateConflictResolve = (
+    action: "replace" | "add" | "cancel",
+  ) => {
+    if (action === "cancel" || !pendingTemplate) {
       setShowTemplateConflictModal(false);
       setPendingTemplate(null);
       return;
@@ -605,9 +610,9 @@ export default function Dashboard({
       optional: false,
     }));
 
-    if (action === 'replace') {
+    if (action === "replace") {
       setSelectedDocuments(templateDocs);
-    } else if (action === 'add') {
+    } else if (action === "add") {
       setSelectedDocuments([
         ...selectedDocuments,
         ...templateDocs.filter(
@@ -623,7 +628,7 @@ export default function Dashboard({
 
   const handleSaveTemplate = () => {
     if (selectedDocuments.length === 0) {
-      alert('Please select some documents before saving a template.');
+      alert("Please select some documents before saving a template.");
       return;
     }
     setShowSaveTemplateModal(true);
@@ -631,16 +636,16 @@ export default function Dashboard({
 
   const handleConfirmSaveTemplate = () => {
     if (!templateName.trim()) {
-      alert('Please enter a template name.');
+      alert("Please enter a template name.");
       return;
     }
     // Here you would save to backend/localStorage
-    console.log('Saving template:', {
+    console.log("Saving template:", {
       name: templateName,
-      documents: selectedDocuments.map(d => d.name)
+      documents: selectedDocuments.map((d) => d.name),
     });
     setShowSaveTemplateModal(false);
-    setTemplateName('');
+    setTemplateName("");
     alert(`Template "${templateName}" saved successfully!`);
   };
 
@@ -1460,8 +1465,18 @@ export default function Dashboard({
                           }`}
                         >
                           {step.number < createStep ? (
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            <svg
+                              className="w-5 h-5"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2.5}
+                                d="M5 13l4 4L19 7"
+                              />
                             </svg>
                           ) : (
                             step.number
@@ -1469,7 +1484,9 @@ export default function Dashboard({
                         </div>
                         <span
                           className={`text-xs font-medium mt-2 transition-all duration-500 ${
-                            step.number <= createStep ? "text-slate-700" : "text-slate-400"
+                            step.number <= createStep
+                              ? "text-slate-700"
+                              : "text-slate-400"
                           }`}
                         >
                           {step.label}
@@ -1478,7 +1495,9 @@ export default function Dashboard({
                       {index < 3 && (
                         <div
                           className={`w-16 h-px mx-4 transition-all duration-500 ${
-                            step.number < createStep ? "bg-emerald-500" : "bg-slate-300"
+                            step.number < createStep
+                              ? "bg-emerald-500"
+                              : "bg-slate-300"
                           }`}
                         />
                       )}
@@ -1509,8 +1528,18 @@ export default function Dashboard({
                             }`}
                           >
                             {step.number < createStep ? (
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={3}
+                                  d="M5 13l4 4L19 7"
+                                />
                               </svg>
                             ) : (
                               step.number
@@ -1518,7 +1547,9 @@ export default function Dashboard({
                           </div>
                           <span
                             className={`text-xs font-medium transition-all duration-500 whitespace-nowrap ${
-                              step.number <= createStep ? "text-slate-700" : "text-slate-400"
+                              step.number <= createStep
+                                ? "text-slate-700"
+                                : "text-slate-400"
                             }`}
                           >
                             {step.label}
@@ -1527,7 +1558,9 @@ export default function Dashboard({
                         {index < 3 && (
                           <div
                             className={`w-px h-6 my-2 ml-4 transition-all duration-500 ${
-                              step.number < createStep ? "bg-emerald-500" : "bg-slate-300"
+                              step.number < createStep
+                                ? "bg-emerald-500"
+                                : "bg-slate-300"
                             }`}
                           />
                         )}
@@ -1547,8 +1580,18 @@ export default function Dashboard({
                       onClick={() => handleStepTransition(createStep - 1)}
                       className="flex items-center space-x-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
                     >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
                       </svg>
                       <span>Back</span>
                     </button>
@@ -1560,9 +1603,12 @@ export default function Dashboard({
                         {createStep === 4 && "Review & Create"}
                       </h2>
                       <p className="text-sm text-slate-600">
-                        {createStep === 2 && "Choose documents from your library to request from the client"}
-                        {createStep === 3 && "Enter the basic information for this case"}
-                        {createStep === 4 && "Review all details before creating the case"}
+                        {createStep === 2 &&
+                          "Choose documents from your library to request from the client"}
+                        {createStep === 3 &&
+                          "Enter the basic information for this case"}
+                        {createStep === 4 &&
+                          "Review all details before creating the case"}
                       </p>
                     </div>
                   </div>
@@ -1572,12 +1618,20 @@ export default function Dashboard({
                       if (createStep === 1 && createMethod === "ai") {
                         handleAISubmit();
                         handleStepTransition(2);
-                      } else if (createStep === 1 && createMethod === "questionnaire") {
+                      } else if (
+                        createStep === 1 &&
+                        createMethod === "questionnaire"
+                      ) {
                         handleStepTransition(3);
                       } else if (createStep === 4) {
                         // Handle case creation/submission logic here
-                        console.log('Creating case with data:', { createMethod, selectedDocuments, caseInfo, aiDescription });
-                        alert('Case created successfully!');
+                        console.log("Creating case with data:", {
+                          createMethod,
+                          selectedDocuments,
+                          caseInfo,
+                          aiDescription,
+                        });
+                        alert("Case created successfully!");
                         // You would typically call an API here to create the case
                       } else {
                         handleStepTransition(createStep + 1);
@@ -1585,15 +1639,32 @@ export default function Dashboard({
                     }}
                     disabled={
                       (createStep === 2 && selectedDocuments.length === 0) ||
-                      (createStep === 3 && (!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email))
+                      (createStep === 3 &&
+                        (!caseInfo.firstName ||
+                          !caseInfo.lastName ||
+                          !caseInfo.email))
                     }
                     className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
                   >
                     <span>
-                      {createStep === 1 && createMethod === "ai" ? "Generate AI Suggestions" : createStep === 4 ? "Create Case" : "Continue"}
+                      {createStep === 1 && createMethod === "ai"
+                        ? "Generate AI Suggestions"
+                        : createStep === 4
+                          ? "Create Case"
+                          : "Continue"}
                     </span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
                     </svg>
                   </button>
                 </div>
@@ -1601,9 +1672,11 @@ export default function Dashboard({
             )}
 
             {/* Step Content */}
-            <div className={`min-h-[500px] relative transition-all duration-700 ease-out ${
-              createStep > 1 ? 'ml-44' : ''
-            }`}>
+            <div
+              className={`min-h-[500px] relative transition-all duration-700 ease-out ${
+                createStep > 1 ? "ml-44" : ""
+              }`}
+            >
               {/* Step 1: Choose Creation Method */}
               {createStep === 1 && (
                 <div
@@ -1724,7 +1797,10 @@ export default function Dashboard({
                   {(createMethod === "manual" || createMethod === "ai") && (
                     <div className="relative">
                       {/* Fixed Height Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 400px)' }}>
+                      <div
+                        className="grid grid-cols-12 gap-6"
+                        style={{ height: "calc(100vh - 400px)" }}
+                      >
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full">
@@ -1733,37 +1809,83 @@ export default function Dashboard({
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-4">
                                   <div>
-                                    <h3 className="text-lg font-semibold text-slate-800 mb-1">Document Library</h3>
-                                    <p className="text-sm text-slate-500">{availableDocuments.length - selectedDocuments.length} available documents</p>
+                                    <h3 className="text-lg font-semibold text-slate-800 mb-1">
+                                      Document Library
+                                    </h3>
+                                    <p className="text-sm text-slate-500">
+                                      {availableDocuments.length -
+                                        selectedDocuments.length}{" "}
+                                      available documents
+                                    </p>
                                   </div>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                   <button
                                     onClick={() => {
-                                      if (isDocLibrarySearchVisible && documentSearch) {
-                                        setDocumentSearch('');
+                                      if (
+                                        isDocLibrarySearchVisible &&
+                                        documentSearch
+                                      ) {
+                                        setDocumentSearch("");
                                       } else {
-                                        setIsDocLibrarySearchVisible(!isDocLibrarySearchVisible);
+                                        setIsDocLibrarySearchVisible(
+                                          !isDocLibrarySearchVisible,
+                                        );
                                       }
                                     }}
                                     className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
                                   >
-                                    {isDocLibrarySearchVisible && documentSearch ? (
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    {isDocLibrarySearchVisible &&
+                                    documentSearch ? (
+                                      <svg
+                                        className="w-4 h-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M6 18L18 6M6 6l12 12"
+                                        />
                                       </svg>
                                     ) : (
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                      <svg
+                                        className="w-4 h-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                        />
                                       </svg>
                                     )}
                                   </button>
                                   <button
-                                    onClick={() => setShowTemplatesInline(!showTemplatesInline)}
-                                    className={`text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-3 py-2 transition-all ${showTemplatesInline ? 'bg-slate-100 border-slate-300' : ''}`}
+                                    onClick={() =>
+                                      setShowTemplatesInline(
+                                        !showTemplatesInline,
+                                      )
+                                    }
+                                    className={`text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-3 py-2 transition-all ${showTemplatesInline ? "bg-slate-100 border-slate-300" : ""}`}
                                   >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                    <svg
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1.5}
+                                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                                      />
                                     </svg>
                                     <span>Templates</span>
                                   </button>
@@ -1772,12 +1894,16 @@ export default function Dashboard({
                             </div>
 
                             {/* Collapsible Search Bar */}
-                            <div className={`overflow-hidden transition-all duration-300 ease-out border-b border-slate-100/40 ${isDocLibrarySearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
+                            <div
+                              className={`overflow-hidden transition-all duration-300 ease-out border-b border-slate-100/40 ${isDocLibrarySearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}
+                            >
                               <div className="px-6 py-4">
                                 <input
                                   type="text"
                                   value={documentSearch}
-                                  onChange={(e) => setDocumentSearch(e.target.value)}
+                                  onChange={(e) =>
+                                    setDocumentSearch(e.target.value)
+                                  }
                                   className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
                                   placeholder="Search document library..."
                                 />
@@ -1785,32 +1911,59 @@ export default function Dashboard({
                             </div>
 
                             {/* Templates or Document List */}
-                            <div className="relative px-6 pb-4 pt-2 overflow-y-auto document-scroll" style={{
-                              height: 'calc(100vh - 480px)',
-                              maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
-                              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
-                            }}>
+                            <div
+                              className="relative px-6 pb-4 pt-2 overflow-y-auto document-scroll"
+                              style={{
+                                height: "calc(100vh - 480px)",
+                                maskImage:
+                                  "linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)",
+                                WebkitMaskImage:
+                                  "linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)",
+                              }}
+                            >
                               {showTemplatesInline ? (
                                 /* Template Selection */
                                 <div className="space-y-3">
-                                  <div className="text-sm text-slate-600 mb-4 font-medium">Select a template to load:</div>
+                                  <div className="text-sm text-slate-600 mb-4 font-medium">
+                                    Select a template to load:
+                                  </div>
                                   {savedTemplates.map((template, index) => (
-                                    <div key={index} className="border border-slate-200/60 rounded-xl p-4 hover:border-slate-300/80 hover:bg-slate-50/50 transition-all duration-200">
+                                    <div
+                                      key={index}
+                                      className="border border-slate-200/60 rounded-xl p-4 hover:border-slate-300/80 hover:bg-slate-50/50 transition-all duration-200"
+                                    >
                                       <div className="flex items-center justify-between">
                                         <div className="flex-1">
-                                          <h4 className="font-medium text-slate-800 text-sm mb-1">{template.name}</h4>
-                                          <p className="text-slate-500 text-xs mb-2">{template.documents.length} documents</p>
+                                          <h4 className="font-medium text-slate-800 text-sm mb-1">
+                                            {template.name}
+                                          </h4>
+                                          <p className="text-slate-500 text-xs mb-2">
+                                            {template.documents.length}{" "}
+                                            documents
+                                          </p>
                                           <div className="flex flex-wrap gap-1">
-                                            {template.documents.slice(0, 3).map((doc, docIndex) => (
-                                              <span key={docIndex} className="bg-slate-100 text-slate-600 px-2 py-1 rounded-lg text-xs">{doc}</span>
-                                            ))}
+                                            {template.documents
+                                              .slice(0, 3)
+                                              .map((doc, docIndex) => (
+                                                <span
+                                                  key={docIndex}
+                                                  className="bg-slate-100 text-slate-600 px-2 py-1 rounded-lg text-xs"
+                                                >
+                                                  {doc}
+                                                </span>
+                                              ))}
                                             {template.documents.length > 3 && (
-                                              <span className="text-slate-400 text-xs">+{template.documents.length - 3} more</span>
+                                              <span className="text-slate-400 text-xs">
+                                                +{template.documents.length - 3}{" "}
+                                                more
+                                              </span>
                                             )}
                                           </div>
                                         </div>
                                         <button
-                                          onClick={() => handleLoadTemplate(template)}
+                                          onClick={() =>
+                                            handleLoadTemplate(template)
+                                          }
                                           className="ml-3 bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-medium transition-all"
                                         >
                                           Load
@@ -1819,7 +1972,9 @@ export default function Dashboard({
                                     </div>
                                   ))}
                                   <button
-                                    onClick={() => setShowTemplatesInline(false)}
+                                    onClick={() =>
+                                      setShowTemplatesInline(false)
+                                    }
                                     className="w-full text-center text-slate-500 hover:text-slate-700 text-sm py-2 border border-dashed border-slate-300 rounded-xl hover:border-slate-400 transition-all"
                                   >
                                     ← Back to Document Library
@@ -1828,31 +1983,54 @@ export default function Dashboard({
                               ) : (
                                 /* Regular Document List */
                                 <div className="space-y-1">
-                                {filteredAvailableDocuments.map((doc, index) => (
-                                  <button
-                                    key={index}
-                                    onClick={() => handleAddDocument(doc)}
-                                    className="w-full flex items-center justify-between p-3 hover:bg-slate-50/80 rounded-xl transition-all duration-200 group border-0 bg-transparent text-left"
-                                  >
-                                    <span className="text-slate-700 font-normal flex-1">{doc}</span>
-                                    <svg
-                                      className="w-4 h-4 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                    </svg>
-                                  </button>
-                                ))}
-                                {filteredAvailableDocuments.length === 0 && (
-                                  <div className="text-center py-12 text-slate-500">
-                                    <svg className="w-10 h-10 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    <p className="font-light text-sm">{documentSearch ? "No documents match your search" : "All documents have been selected"}</p>
-                                  </div>
-                                )}
+                                  {filteredAvailableDocuments.map(
+                                    (doc, index) => (
+                                      <button
+                                        key={index}
+                                        onClick={() => handleAddDocument(doc)}
+                                        className="w-full flex items-center justify-between p-3 hover:bg-slate-50/80 rounded-xl transition-all duration-200 group border-0 bg-transparent text-left"
+                                      >
+                                        <span className="text-slate-700 font-normal flex-1">
+                                          {doc}
+                                        </span>
+                                        <svg
+                                          className="w-4 h-4 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={1.5}
+                                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                          />
+                                        </svg>
+                                      </button>
+                                    ),
+                                  )}
+                                  {filteredAvailableDocuments.length === 0 && (
+                                    <div className="text-center py-12 text-slate-500">
+                                      <svg
+                                        className="w-10 h-10 mx-auto mb-3 opacity-30"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={1}
+                                          d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                        />
+                                      </svg>
+                                      <p className="font-light text-sm">
+                                        {documentSearch
+                                          ? "No documents match your search"
+                                          : "All documents have been selected"}
+                                      </p>
+                                    </div>
+                                  )}
                                 </div>
                               )}
                             </div>
@@ -1866,27 +2044,59 @@ export default function Dashboard({
                             <div className="px-6 py-4 border-b border-slate-100/60 flex-shrink-0">
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <h3 className="text-lg font-semibold text-slate-800 mb-1">Selected Documents</h3>
-                                  <p className="text-sm text-slate-500">{selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} selected</p>
+                                  <h3 className="text-lg font-semibold text-slate-800 mb-1">
+                                    Selected Documents
+                                  </h3>
+                                  <p className="text-sm text-slate-500">
+                                    {selectedDocuments.length} document
+                                    {selectedDocuments.length !== 1 ? "s" : ""}{" "}
+                                    selected
+                                  </p>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                   <button
                                     onClick={() => {
-                                      if (isSelectedDocsSearchVisible && selectedDocumentSearch) {
-                                        setSelectedDocumentSearch('');
+                                      if (
+                                        isSelectedDocsSearchVisible &&
+                                        selectedDocumentSearch
+                                      ) {
+                                        setSelectedDocumentSearch("");
                                       } else {
-                                        setIsSelectedDocsSearchVisible(!isSelectedDocsSearchVisible);
+                                        setIsSelectedDocsSearchVisible(
+                                          !isSelectedDocsSearchVisible,
+                                        );
                                       }
                                     }}
                                     className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
                                   >
-                                    {isSelectedDocsSearchVisible && selectedDocumentSearch ? (
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    {isSelectedDocsSearchVisible &&
+                                    selectedDocumentSearch ? (
+                                      <svg
+                                        className="w-4 h-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M6 18L18 6M6 6l12 12"
+                                        />
                                       </svg>
                                     ) : (
-                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                      <svg
+                                        className="w-4 h-4"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth={2}
+                                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                        />
                                       </svg>
                                     )}
                                   </button>
@@ -1895,8 +2105,18 @@ export default function Dashboard({
                                     className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
                                     title="Save as template"
                                   >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                                    <svg
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
+                                      />
                                     </svg>
                                   </button>
                                   <button
@@ -1904,8 +2124,18 @@ export default function Dashboard({
                                     className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
                                     title="Clear all selected documents"
                                   >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H9a1 1 0 00-1 1v3M4 7h16" />
+                                    <svg
+                                      className="w-4 h-4"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H9a1 1 0 00-1 1v3M4 7h16"
+                                      />
                                     </svg>
                                   </button>
                                 </div>
@@ -1913,12 +2143,16 @@ export default function Dashboard({
                             </div>
 
                             {/* Collapsible Search Bar */}
-                            <div className={`overflow-hidden transition-all duration-300 ease-out border-b border-slate-100/40 ${isSelectedDocsSearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
+                            <div
+                              className={`overflow-hidden transition-all duration-300 ease-out border-b border-slate-100/40 ${isSelectedDocsSearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}
+                            >
                               <div className="px-6 py-4">
                                 <input
                                   type="text"
                                   value={selectedDocumentSearch}
-                                  onChange={(e) => setSelectedDocumentSearch(e.target.value)}
+                                  onChange={(e) =>
+                                    setSelectedDocumentSearch(e.target.value)
+                                  }
                                   className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
                                   placeholder="Search selected..."
                                 />
@@ -1926,39 +2160,87 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Selected Documents - FIXED HEIGHT WITH INTERNAL SCROLL */}
-                            <div className="relative px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{
-                              height: 'calc(100vh - 520px)',
-                              maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
-                              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
-                            }}>
+                            <div
+                              className="relative px-6 pb-6 pt-2 overflow-y-auto document-scroll"
+                              style={{
+                                height: "calc(100vh - 520px)",
+                                maskImage:
+                                  "linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)",
+                                WebkitMaskImage:
+                                  "linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)",
+                              }}
+                            >
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
-                                  <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
+                                  <div
+                                    key={index}
+                                    className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all"
+                                  >
                                     <div className="flex items-center justify-between">
-                                      <span className="text-slate-700 font-normal text-sm flex-1 pr-3 truncate">{doc.name}</span>
+                                      <span className="text-slate-700 font-normal text-sm flex-1 pr-3 truncate">
+                                        {doc.name}
+                                      </span>
                                       <div className="flex items-center space-x-2 flex-shrink-0">
                                         <button
-                                          onClick={() => handleToggleOptional(doc.name)}
+                                          onClick={() =>
+                                            handleToggleOptional(doc.name)
+                                          }
                                           className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
-                                          title={doc.optional ? "Make required" : "Make optional"}
+                                          title={
+                                            doc.optional
+                                              ? "Make required"
+                                              : "Make optional"
+                                          }
                                         >
                                           {doc.optional ? (
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            <svg
+                                              className="w-4 h-4"
+                                              fill="none"
+                                              stroke="currentColor"
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={1.5}
+                                                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                              />
                                             </svg>
                                           ) : (
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            <svg
+                                              className="w-4 h-4"
+                                              fill="none"
+                                              stroke="currentColor"
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={1.5}
+                                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                              />
                                             </svg>
                                           )}
                                         </button>
                                         <button
-                                          onClick={() => handleRemoveDocument(doc.name)}
+                                          onClick={() =>
+                                            handleRemoveDocument(doc.name)
+                                          }
                                           className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
                                           title="Remove document"
                                         >
-                                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                                          <svg
+                                            className="w-4 h-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <path
+                                              strokeLinecap="round"
+                                              strokeLinejoin="round"
+                                              strokeWidth={1.5}
+                                              d="M6 18L18 6M6 6l12 12"
+                                            />
                                           </svg>
                                         </button>
                                       </div>
@@ -1967,10 +2249,24 @@ export default function Dashboard({
                                 ))}
                                 {filteredSelectedDocuments.length === 0 && (
                                   <div className="text-center py-12 text-slate-500">
-                                    <svg className="w-10 h-10 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    <svg
+                                      className="w-10 h-10 mx-auto mb-3 opacity-30"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={1}
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                      />
                                     </svg>
-                                    <p className="font-light text-sm">{selectedDocumentSearch ? "No documents match search" : "Select documents to get started"}</p>
+                                    <p className="font-light text-sm">
+                                      {selectedDocumentSearch
+                                        ? "No documents match search"
+                                        : "Select documents to get started"}
+                                    </p>
                                   </div>
                                 )}
                               </div>
@@ -1978,7 +2274,6 @@ export default function Dashboard({
                           </div>
                         </div>
                       </div>
-
                     </div>
                   )}
 
@@ -2030,14 +2325,11 @@ export default function Dashboard({
                             </button>
                           ))}
                         </div>
-
                       </div>
-
                     </div>
                   )}
                 </div>
               )}
-
 
               {/* Step 3: Case Information */}
               {createStep === 3 && (
@@ -2183,11 +2475,19 @@ export default function Dashboard({
                   className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
                 >
                   {/* Single scrollable container */}
-                  <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col" style={{ height: 'calc(100vh - 350px)' }}>
-                    <div className="p-6 overflow-y-auto document-scroll" style={{
-                      maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
-                      WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
-                    }}>
+                  <div
+                    className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col"
+                    style={{ height: "calc(100vh - 350px)" }}
+                  >
+                    <div
+                      className="p-6 overflow-y-auto document-scroll"
+                      style={{
+                        maskImage:
+                          "linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)",
+                        WebkitMaskImage:
+                          "linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)",
+                      }}
+                    >
                       <div className="space-y-6">
                         {/* Case Summary */}
                         <div className="bg-white/95 border border-slate-200/40 rounded-2xl p-6">
@@ -2211,14 +2511,20 @@ export default function Dashboard({
                               <span className="font-medium text-slate-600">
                                 Total Documents:
                               </span>{" "}
-                              <span className="text-slate-800">{selectedDocuments.length}</span>
+                              <span className="text-slate-800">
+                                {selectedDocuments.length}
+                              </span>
                             </div>
                             <div>
                               <span className="font-medium text-slate-600">
                                 Required Documents:
                               </span>{" "}
                               <span className="text-slate-800">
-                                {selectedDocuments.filter((doc) => !doc.optional).length}
+                                {
+                                  selectedDocuments.filter(
+                                    (doc) => !doc.optional,
+                                  ).length
+                                }
                               </span>
                             </div>
                             <div>
@@ -2226,7 +2532,11 @@ export default function Dashboard({
                                 Optional Documents:
                               </span>{" "}
                               <span className="text-slate-800">
-                                {selectedDocuments.filter((doc) => doc.optional).length}
+                                {
+                                  selectedDocuments.filter(
+                                    (doc) => doc.optional,
+                                  ).length
+                                }
                               </span>
                             </div>
                           </div>
@@ -2283,7 +2593,9 @@ export default function Dashboard({
                                 Language:
                               </span>{" "}
                               <span className="text-slate-800">
-                                {caseInfo.language === "en" ? "English" : caseInfo.language}
+                                {caseInfo.language === "en"
+                                  ? "English"
+                                  : caseInfo.language}
                               </span>
                             </div>
                           </div>
@@ -2301,7 +2613,9 @@ export default function Dashboard({
                                 className="flex items-center justify-between p-3 bg-slate-50/60 rounded-xl border border-slate-200/40"
                               >
                                 <div className="flex items-center space-x-3">
-                                  <span className="text-slate-700 font-medium">{doc.name}</span>
+                                  <span className="text-slate-700 font-medium">
+                                    {doc.name}
+                                  </span>
                                   {doc.optional && (
                                     <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs font-medium">
                                       Optional
@@ -2332,7 +2646,6 @@ export default function Dashboard({
                 </div>
               )}
             </div>
-
           </div>
         );
 
@@ -3183,12 +3496,27 @@ export default function Dashboard({
             <div className="p-8">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
+                    />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">Save Template</h3>
-                <p className="text-slate-600 text-sm">Give your template a name to save {selectedDocuments.length} documents</p>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">
+                  Save Template
+                </h3>
+                <p className="text-slate-600 text-sm">
+                  Give your template a name to save {selectedDocuments.length}{" "}
+                  documents
+                </p>
               </div>
 
               <div className="mb-6">
@@ -3198,7 +3526,9 @@ export default function Dashboard({
                   onChange={(e) => setTemplateName(e.target.value)}
                   placeholder="Enter template name..."
                   className="w-full p-4 bg-slate-50/50 border border-slate-200/60 rounded-xl focus:bg-white focus:ring-2 focus:ring-green-200 focus:border-green-300 transition-all placeholder-slate-400 text-slate-700"
-                  onKeyPress={(e) => e.key === 'Enter' && handleConfirmSaveTemplate()}
+                  onKeyPress={(e) =>
+                    e.key === "Enter" && handleConfirmSaveTemplate()
+                  }
                   autoFocus
                 />
               </div>
@@ -3207,7 +3537,7 @@ export default function Dashboard({
                 <button
                   onClick={() => {
                     setShowSaveTemplateModal(false);
-                    setTemplateName('');
+                    setTemplateName("");
                   }}
                   className="flex-1 py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
                 >
@@ -3232,12 +3562,27 @@ export default function Dashboard({
             <div className="p-8">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H9a1 1 0 00-1 1v3M4 7h16" />
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H9a1 1 0 00-1 1v3M4 7h16"
+                    />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">Clear All Documents</h3>
-                <p className="text-slate-600 text-sm">Are you sure you want to remove all {selectedDocuments.length} selected documents? This action cannot be undone.</p>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">
+                  Clear All Documents
+                </h3>
+                <p className="text-slate-600 text-sm">
+                  Are you sure you want to remove all {selectedDocuments.length}{" "}
+                  selected documents? This action cannot be undone.
+                </p>
               </div>
 
               <div className="flex space-x-3">
@@ -3266,43 +3611,83 @@ export default function Dashboard({
             <div className="p-8">
               <div className="text-center mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-2">Load Template</h3>
-                <p className="text-slate-600 text-sm">You have {selectedDocuments.length} documents already selected. How would you like to load the "{pendingTemplate.name}" template?</p>
+                <h3 className="text-xl font-semibold text-slate-800 mb-2">
+                  Load Template
+                </h3>
+                <p className="text-slate-600 text-sm">
+                  You have {selectedDocuments.length} documents already
+                  selected. How would you like to load the "
+                  {pendingTemplate.name}" template?
+                </p>
               </div>
 
               <div className="space-y-3">
                 <button
-                  onClick={() => handleTemplateConflictResolve('replace')}
+                  onClick={() => handleTemplateConflictResolve("replace")}
                   className="w-full py-3 px-4 bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white rounded-xl transition-all font-medium shadow-lg text-left flex items-center space-x-3"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
                   </svg>
                   <div>
                     <div className="font-semibold">Replace</div>
-                    <div className="text-indigo-100 text-xs">Remove current documents and load template</div>
+                    <div className="text-indigo-100 text-xs">
+                      Remove current documents and load template
+                    </div>
                   </div>
                 </button>
 
                 <button
-                  onClick={() => handleTemplateConflictResolve('add')}
+                  onClick={() => handleTemplateConflictResolve("add")}
                   className="w-full py-3 px-4 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white rounded-xl transition-all font-medium shadow-lg text-left flex items-center space-x-3"
                 >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
                   </svg>
                   <div>
                     <div className="font-semibold">Add To</div>
-                    <div className="text-emerald-100 text-xs">Keep current documents and add template</div>
+                    <div className="text-emerald-100 text-xs">
+                      Keep current documents and add template
+                    </div>
                   </div>
                 </button>
 
                 <button
-                  onClick={() => handleTemplateConflictResolve('cancel')}
+                  onClick={() => handleTemplateConflictResolve("cancel")}
                   className="w-full py-3 px-4 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
                 >
                   Cancel
