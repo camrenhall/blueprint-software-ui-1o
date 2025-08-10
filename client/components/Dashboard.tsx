@@ -813,83 +813,59 @@ export default function Dashboard({
       case "overview":
         return (
           <div className="space-y-6">
-            {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Recent Activity - Using same table structure */}
-              <div className="lg:col-span-2">
-                <RecentActivityTable
-                  activities={recentActivity}
-                  onCaseSelect={setSelectedCase}
-                />
-              </div>
+            {/* Floating Status Indicators */}
+            <div className="flex items-center justify-center mb-8">
+              <div className="flex items-center space-x-8 bg-white/40 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 shadow-xl">
+                {/* Completed Cases */}
+                <div className="flex items-center space-x-3 group">
+                  <div className="relative">
+                    <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                    <div className="absolute inset-0 w-3 h-3 bg-emerald-400 rounded-full animate-ping opacity-20"></div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-slate-800 group-hover:text-emerald-600 transition-colors duration-200">127</div>
+                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Complete</div>
+                  </div>
+                </div>
 
-              {/* Quick Stats */}
-              <div className="space-y-6">
-                <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 border border-slate-200/40 rounded-2xl p-6 shadow-sm backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-slate-800 mb-4">Quick Stats</h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Total Cases</span>
-                      <span className="text-slate-800 font-semibold">168</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Active</span>
-                      <span className="text-blue-600 font-semibold">34</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Completed</span>
-                      <span className="text-emerald-600 font-semibold">127</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-slate-600">Success Rate</span>
-                      <span className="text-indigo-600 font-semibold">94.2%</span>
-                    </div>
+                {/* Divider */}
+                <div className="w-px h-8 bg-gradient-to-b from-transparent via-slate-300/50 to-transparent"></div>
+
+                {/* Needs Review */}
+                <div className="flex items-center space-x-3 group">
+                  <div className="relative">
+                    <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
+                    <div className="absolute inset-0 w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-20"></div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors duration-200">7</div>
+                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Review</div>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="w-px h-8 bg-gradient-to-b from-transparent via-slate-300/50 to-transparent"></div>
+
+                {/* Awaiting Documents */}
+                <div className="flex items-center space-x-3 group">
+                  <div className="relative">
+                    <div className="w-3 h-3 bg-sky-500 rounded-full animate-pulse"></div>
+                    <div className="absolute inset-0 w-3 h-3 bg-sky-400 rounded-full animate-ping opacity-20"></div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors duration-200">34</div>
+                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">Awaiting</div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Compact Monthly Trend */}
-            <div className="bg-white/90 border border-slate-200/40 rounded-2xl p-6 shadow-sm backdrop-blur-sm">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-slate-800">Monthly Trend</h3>
-                <div className="flex items-center space-x-4 text-sm">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                    <span className="text-slate-600">Completed</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-sky-500 rounded-full"></div>
-                    <span className="text-slate-600">Active</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Compact Bar Chart */}
-              <div className="h-32 flex items-end justify-between space-x-3">
-                {[
-                  { month: 'Jan', active: 30, completed: 85 },
-                  { month: 'Feb', active: 28, completed: 90 },
-                  { month: 'Mar', active: 35, completed: 78 },
-                  { month: 'Apr', active: 32, completed: 95 },
-                  { month: 'May', active: 29, completed: 88 },
-                  { month: 'Jun', active: 34, completed: 102 }
-                ].map((data, index) => (
-                  <div key={index} className="flex-1 flex flex-col items-center space-y-2">
-                    <div className="flex flex-col space-y-1 w-full max-w-8">
-                      <div
-                        className="w-full bg-emerald-500 rounded-t-sm"
-                        style={{ height: `${Math.max(4, (data.completed / 120) * 100)}px` }}
-                      ></div>
-                      <div
-                        className="w-full bg-sky-500 rounded-b-sm"
-                        style={{ height: `${Math.max(4, (data.active / 120) * 100)}px` }}
-                      ></div>
-                    </div>
-                    <span className="text-xs font-medium text-slate-600">{data.month}</span>
-                  </div>
-                ))}
-              </div>
+            {/* Recent Activity - Full Width */}
+            <div className="max-w-4xl mx-auto">
+              <RecentActivityTable
+                activities={recentActivity}
+                onCaseSelect={setSelectedCase}
+              />
             </div>
           </div>
         );
