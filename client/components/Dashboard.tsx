@@ -1380,8 +1380,8 @@ export default function Dashboard({
               </div>
             ) : (
               /* Vertical Step Indicator for Steps 2+ */
-              <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-30 transition-all duration-700 ease-out">
-                <div className="bg-white/90 backdrop-blur-xl border border-slate-200/40 rounded-2xl p-4 shadow-lg">
+              <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-30 transition-all duration-700 ease-out">
+                <div className="bg-white/90 backdrop-blur-xl border border-slate-200/40 rounded-r-2xl pl-6 pr-4 py-4 shadow-lg">
                   <div className="flex flex-col space-y-4">
                     {[
                       { number: 1, label: "Method" },
@@ -1390,7 +1390,7 @@ export default function Dashboard({
                       { number: 4, label: "Case Info" },
                       { number: 5, label: "Review" },
                     ].map((step, index) => (
-                      <div key={step.number} className="flex flex-col items-center">
+                      <div key={step.number} className="flex flex-col">
                         <div className="flex items-center space-x-3">
                           <div
                             className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 border-2 ${
@@ -1419,7 +1419,7 @@ export default function Dashboard({
                         </div>
                         {index < 4 && (
                           <div
-                            className={`w-px h-6 my-2 transition-all duration-500 ${
+                            className={`w-px h-6 my-2 ml-4 transition-all duration-500 ${
                               step.number < createStep ? "bg-emerald-500" : "bg-slate-300"
                             }`}
                           />
