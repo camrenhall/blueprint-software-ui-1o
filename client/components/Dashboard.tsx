@@ -1384,7 +1384,7 @@ export default function Dashboard({
               </div>
             ) : (
               /* Vertical Step Indicator for Steps 2+ */
-              <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-30 transition-all duration-700 ease-out">
+              <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-10 transition-all duration-700 ease-out">
                 <div className="bg-white/90 backdrop-blur-xl border border-slate-200/40 rounded-r-2xl pl-6 pr-4 py-4 shadow-lg">
                   <div className="flex flex-col space-y-4">
                     {[
@@ -1653,10 +1653,10 @@ export default function Dashboard({
                   {createMethod === "manual" && (
                     <div className="relative h-full">
                       {/* Fixed Height Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 480px)' }}>
+                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 400px)', minHeight: '500px' }}>
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
-                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full overflow-hidden">
+                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full">
                             {/* Header with Search Icon */}
                             <div className="px-6 py-4 border-b border-slate-100/60 flex-shrink-0">
                               <div className="flex items-center justify-between">
@@ -1714,7 +1714,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Document List */}
-                            <div className="flex-1 overflow-y-auto p-6">
+                            <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
                               <div className="space-y-1">
                                 {filteredAvailableDocuments.map((doc, index) => (
                                   <button
@@ -1748,7 +1748,7 @@ export default function Dashboard({
 
                         {/* Selected Documents - Constrained Height */}
                         <div className="col-span-5 flex flex-col">
-                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full overflow-hidden">
+                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full">
                             {/* Header with Search Icon */}
                             <div className="px-6 py-4 border-b border-slate-100/60 flex-shrink-0">
                               <div className="flex items-center justify-between">
@@ -1795,7 +1795,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Selected Documents */}
-                            <div className="flex-1 overflow-y-auto p-6">
+                            <div className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
                                   <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
@@ -1918,10 +1918,10 @@ export default function Dashboard({
                   </div>
 
                   {/* Professional Document Management Interface */}
-                  <div className="grid grid-cols-12 gap-12">
+                  <div className="grid grid-cols-12 gap-8" style={{ minHeight: '500px' }}>
                     {/* Available Documents - Elegant Design */}
                     <div className="col-span-7">
-                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
+                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col" style={{ height: 'calc(100vh - 500px)', minHeight: '500px' }}>
                         <div className="px-8 py-6 border-b border-slate-100/60">
                           <div className="flex items-center justify-between">
                             <div>
@@ -1954,7 +1954,7 @@ export default function Dashboard({
                           </div>
                         </div>
 
-                        <div className="p-8">
+                        <div className="p-8 flex flex-col flex-1">
                           <div className="mb-6">
                             <input
                               type="text"
@@ -1967,7 +1967,7 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="h-96 overflow-y-auto space-y-1">
+                          <div className="flex-1 overflow-y-auto space-y-1 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
                             {filteredAvailableDocuments.map((doc, index) => (
                               <button
                                 key={index}
@@ -2021,7 +2021,7 @@ export default function Dashboard({
 
                     {/* Selected Documents - Professional Design */}
                     <div className="col-span-5">
-                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
+                      <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col" style={{ height: 'calc(100vh - 500px)', minHeight: '500px' }}>
                         <div className="px-8 py-6 border-b border-slate-100/60">
                           <div className="flex items-center justify-between">
                             <div>
@@ -2037,7 +2037,7 @@ export default function Dashboard({
                           </div>
                         </div>
 
-                        <div className="p-8">
+                        <div className="p-8 flex flex-col flex-1">
                           <div className="mb-6">
                             <input
                               type="text"
@@ -2050,7 +2050,7 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="h-96 overflow-y-auto space-y-2">
+                          <div className="flex-1 overflow-y-auto space-y-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-slate-300 hover:scrollbar-thumb-slate-400">
                             {filteredSelectedDocuments.map((doc, index) => (
                               <div
                                 key={index}
