@@ -1451,7 +1451,7 @@ export default function Dashboard({
               </div>
             ) : (
               /* Vertical Step Indicator for Steps 2+ */
-              <div className="fixed left-0 z-20 transition-all duration-700 ease-out" style={{ top: 'calc(50vh - 50px)' }}>
+              <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-20 transition-all duration-700 ease-out">
                 <div className="bg-white/90 backdrop-blur-xl border border-slate-200/40 rounded-r-2xl pl-6 pr-4 py-4 shadow-lg">
                   <div className="flex flex-col space-y-4">
                     {[
@@ -1781,10 +1781,11 @@ export default function Dashboard({
                             </div>
 
                             {/* Templates or Document List */}
-                            <div className="relative px-6 pb-4 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 480px)' }}>
-                              {/* Scroll Fade Gradients */}
-                              <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white/95 to-transparent pointer-events-none z-10"></div>
-                              <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white/95 to-transparent pointer-events-none z-10"></div>
+                            <div className="relative px-6 pb-4 pt-2 overflow-y-auto document-scroll" style={{
+                              height: 'calc(100vh - 480px)',
+                              maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
+                              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
+                            }}>
                               {showTemplatesInline ? (
                                 /* Template Selection */
                                 <div className="space-y-3">
@@ -1921,10 +1922,11 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Selected Documents - FIXED HEIGHT WITH INTERNAL SCROLL */}
-                            <div className="relative px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 520px)' }}>
-                              {/* Scroll Fade Gradients */}
-                              <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white/95 to-transparent pointer-events-none z-10"></div>
-                              <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white/95 to-transparent pointer-events-none z-10"></div>
+                            <div className="relative px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{
+                              height: 'calc(100vh - 520px)',
+                              maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
+                              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
+                            }}>
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
                                   <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
@@ -2096,10 +2098,11 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="relative space-y-1 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 480px)' }}>
-                            {/* Scroll Fade Gradients */}
-                            <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white/95 to-transparent pointer-events-none z-10"></div>
-                            <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white/95 to-transparent pointer-events-none z-10"></div>
+                          <div className="relative space-y-1 overflow-y-auto document-scroll" style={{
+                            height: 'calc(100vh - 480px)',
+                            maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
+                            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
+                          }}>
                             {filteredAvailableDocuments.map((doc, index) => (
                               <button
                                 key={index}
@@ -2182,10 +2185,11 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="relative space-y-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 520px)' }}>
-                            {/* Scroll Fade Gradients */}
-                            <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white/95 to-transparent pointer-events-none z-10"></div>
-                            <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white/95 to-transparent pointer-events-none z-10"></div>
+                          <div className="relative space-y-2 overflow-y-auto document-scroll" style={{
+                            height: 'calc(100vh - 520px)',
+                            maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
+                            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
+                          }}>
                             {filteredSelectedDocuments.map((doc, index) => (
                               <div
                                 key={index}
