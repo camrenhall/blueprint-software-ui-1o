@@ -773,6 +773,40 @@ export default function Dashboard({
 
   const filteredCompletedCases = getFilteredCompletedCases();
 
+  // Recent Activity data for Overview page (backend would provide this)
+  const recentActivity = [
+    {
+      name: "Fulsom, Jackson",
+      caseId: "#KYMDCV23922",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      tasksInfo: "6 / 6 Tasks Submitted",
+      dateInfo: "Jun 30, 2025 Date Completed",
+      daysInQueue: "11 Days in Queue",
+      avatar: "FJ"
+    },
+    {
+      name: "Rosen, Claire",
+      caseId: "#BTYREV50101",
+      status: "Needs Review",
+      statusColor: "text-purple-700",
+      tasksInfo: "5 / 5 Tasks Complete",
+      dateInfo: "Jun 29, 2025 Date Updated",
+      daysInQueue: "13 Days in Queue",
+      avatar: "RC"
+    },
+    {
+      name: "Morrison, Kate",
+      caseId: "#XREMVB32482",
+      status: "Awaiting Documents",
+      statusColor: "text-sky-700",
+      tasksInfo: "4 / 5 Tasks Complete",
+      dateInfo: "Jun 29, 2025 Date Updated",
+      daysInQueue: "10 Days in Queue",
+      avatar: "MK"
+    }
+  ];
+
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
