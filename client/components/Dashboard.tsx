@@ -592,6 +592,122 @@ export default function Dashboard({
     }
   ];
 
+  // Completed cases data for Reports page
+  const completedCases = [
+    {
+      name: "Johnson, Amanda",
+      caseId: "#KYMDCV23922",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "7",
+      dateCompleted: "Jun 28, 2025",
+      daysInQueue: "16",
+      caseType: "Employment",
+      priority: "high",
+      avatar: "JA"
+    },
+    {
+      name: "Williams, Robert",
+      caseId: "#PLKMNB87456",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "12",
+      dateCompleted: "Jun 25, 2025",
+      daysInQueue: "23",
+      caseType: "Personal Injury",
+      priority: "high",
+      avatar: "WR"
+    },
+    {
+      name: "Garcia, Maria",
+      caseId: "#QWERTY34567",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "9",
+      dateCompleted: "Jun 22, 2025",
+      daysInQueue: "18",
+      caseType: "Family Law",
+      priority: "medium",
+      avatar: "GM"
+    },
+    {
+      name: "Brown, Christopher",
+      caseId: "#ZXCVBN78901",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "15",
+      dateCompleted: "Jun 20, 2025",
+      daysInQueue: "31",
+      caseType: "Corporate",
+      priority: "high",
+      avatar: "BC"
+    },
+    {
+      name: "Miller, Jennifer",
+      caseId: "#ASDFGH12345",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "6",
+      dateCompleted: "Jun 18, 2025",
+      daysInQueue: "14",
+      caseType: "Contract",
+      priority: "medium",
+      avatar: "MJ"
+    },
+    {
+      name: "Davis, Michael",
+      caseId: "#HJKLNM56789",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "8",
+      dateCompleted: "Jun 15, 2025",
+      daysInQueue: "19",
+      caseType: "Real Estate",
+      priority: "low",
+      avatar: "DM"
+    },
+    {
+      name: "Wilson, Sarah",
+      caseId: "#POIUYT98765",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "11",
+      dateCompleted: "Jun 12, 2025",
+      daysInQueue: "25",
+      caseType: "Employment",
+      priority: "medium",
+      avatar: "WS"
+    },
+    {
+      name: "Taylor, James",
+      caseId: "#MNBVCX54321",
+      status: "Complete",
+      statusColor: "text-emerald-700",
+      statusBg: "bg-gradient-to-r from-emerald-50 to-green-50",
+      statusBorder: "border-emerald-200",
+      tasksComplete: "13",
+      dateCompleted: "Jun 10, 2025",
+      daysInQueue: "27",
+      caseType: "Personal Injury",
+      priority: "high",
+      avatar: "TJ"
+    }
+  ];
+
   // Enhanced case filtering and sorting
   const getFilteredAndSortedCases = () => {
     let filtered = allCases.filter(caseItem => {
