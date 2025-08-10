@@ -1673,41 +1673,21 @@ export default function Dashboard({
                 </div>
               )}
 
-              {/* Step 2: Method-Specific Interface */}
+              {/* Step 2: Document Selection (For all methods) */}
               {createStep === 2 && (
                 <div
                   className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
                 >
-                  {createMethod === "ai" && (
-                    <div>
-                      <div className="text-center mb-10">
-                        <h1 className="text-3xl font-light text-slate-800 mb-4">
-                          Describe Your Case
-                        </h1>
-                        <p className="text-slate-600 text-lg">
-                          Our AI will analyze your description and suggest
-                          relevant documents
-                        </p>
-                      </div>
+                  <div className="text-center mb-10">
+                    <h1 className="text-3xl font-light text-slate-800 mb-4">
+                      Select Documents
+                    </h1>
+                    <p className="text-slate-600 text-lg">
+                      {createMethod === "ai" ? "Review AI suggestions and customize your document list" : "Choose documents from your library to request from the client"}
+                    </p>
+                  </div>
 
-                      <div className="bg-white/60 backdrop-blur-xl border border-slate-200/60 rounded-2xl shadow-lg p-8 mb-8">
-                        <div className="max-w-3xl mx-auto">
-                          <label className="block text-sm font-medium text-slate-700 mb-3">
-                            Case Description
-                          </label>
-                          <textarea
-                            value={aiDescription}
-                            onChange={(e) => setAiDescription(e.target.value)}
-                            className="w-full p-4 bg-white border border-slate-300 rounded-lg focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all h-32 resize-none text-slate-700 placeholder-slate-400"
-                            placeholder="Describe the case details, client situation, legal issues, and any specific requirements..."
-                          />
-
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {createMethod === "manual" && (
+                  {(createMethod === "manual" || createMethod === "ai") && (
                     <div className="relative">
                       {/* Fixed Height Document Management Interface */}
                       <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 400px)' }}>
