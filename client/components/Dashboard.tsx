@@ -1749,28 +1749,52 @@ export default function Dashboard({
                         {/* Selected Documents - Constrained Height */}
                         <div className="col-span-5 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full overflow-hidden">
-                            {/* Header */}
+                            {/* Header with Search Icon */}
                             <div className="px-6 py-4 border-b border-slate-100/60 flex-shrink-0">
                               <div className="flex items-center justify-between">
                                 <div>
                                   <h3 className="text-lg font-semibold text-slate-800 mb-1">Selected Documents</h3>
                                   <p className="text-sm text-slate-500">{selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} selected</p>
                                 </div>
-                                <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm font-bold">
-                                  {selectedDocuments.length}
+                                <div className="flex items-center space-x-2">
+                                  <button
+                                    onClick={() => {
+                                      if (isSelectedDocsSearchVisible && selectedDocumentSearch) {
+                                        setSelectedDocumentSearch('');
+                                      } else {
+                                        setIsSelectedDocsSearchVisible(!isSelectedDocsSearchVisible);
+                                      }
+                                    }}
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
+                                  >
+                                    {isSelectedDocsSearchVisible && selectedDocumentSearch ? (
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                      </svg>
+                                    ) : (
+                                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                      </svg>
+                                    )}
+                                  </button>
+                                  <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm font-bold">
+                                    {selectedDocuments.length}
+                                  </div>
                                 </div>
                               </div>
                             </div>
 
-                            {/* Search Bar */}
-                            <div className="px-6 py-4 border-b border-slate-100/40 flex-shrink-0">
-                              <input
-                                type="text"
-                                value={selectedDocumentSearch}
-                                onChange={(e) => setSelectedDocumentSearch(e.target.value)}
-                                className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
-                                placeholder="Search selected..."
-                              />
+                            {/* Collapsible Search Bar */}
+                            <div className={`overflow-hidden transition-all duration-300 ease-out border-b border-slate-100/40 ${isSelectedDocsSearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
+                              <div className="px-6 py-4">
+                                <input
+                                  type="text"
+                                  value={selectedDocumentSearch}
+                                  onChange={(e) => setSelectedDocumentSearch(e.target.value)}
+                                  className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
+                                  placeholder="Search selected..."
+                                />
+                              </div>
                             </div>
 
                             {/* Scrollable Selected Documents */}
