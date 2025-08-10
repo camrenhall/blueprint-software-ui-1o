@@ -13,6 +13,39 @@ interface DashboardProps {
   className?: string;
 }
 
+// Smooth Transition Wrapper Component
+const TransitionWrapper = ({
+  children,
+  isTransitioning,
+  direction,
+  className = ""
+}: {
+  children: React.ReactNode;
+  isTransitioning: boolean;
+  direction: 'in' | 'out';
+  className?: string;
+}) => {
+  const getTransformClass = () => {
+    if (!isTransitioning) return "translate-x-0 opacity-100";
+
+    if (direction === 'out') {
+      return "translate-x-8 opacity-0";
+    } else {
+      return "-translate-x-8 opacity-0";
+    }
+  };
+
+  return (
+    <div className={cn(
+      "transition-all duration-300 ease-in-out transform",
+      getTransformClass(),
+      className
+    )}>
+      {children}
+    </div>
+  );
+};
+
 // Futuristic Case Scroller Component with Sidebar and Collapsible Search
 const FuturisticCaseScroller = ({
   cases,
