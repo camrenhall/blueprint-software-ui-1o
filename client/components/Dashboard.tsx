@@ -474,6 +474,59 @@ export default function Dashboard({
   const [isCompletedTransitioning, setIsCompletedTransitioning] = useState(false);
   const [completedTransitionDirection, setCompletedTransitionDirection] = useState<'in' | 'out'>('in');
 
+  // Smooth transition functions
+  const handleCaseSelect = (caseItem: any) => {
+    setTransitionDirection('out');
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      setSelectedCase(caseItem);
+      setTransitionDirection('in');
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 100);
+    }, 200);
+  };
+
+  const handleCaseBack = () => {
+    setTransitionDirection('out');
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      setSelectedCase(null);
+      setTransitionDirection('in');
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 100);
+    }, 200);
+  };
+
+  const handleCompletedCaseSelect = (caseItem: any) => {
+    setCompletedTransitionDirection('out');
+    setIsCompletedTransitioning(true);
+
+    setTimeout(() => {
+      setSelectedCompletedCase(caseItem);
+      setCompletedTransitionDirection('in');
+      setTimeout(() => {
+        setIsCompletedTransitioning(false);
+      }, 100);
+    }, 200);
+  };
+
+  const handleCompletedCaseBack = () => {
+    setCompletedTransitionDirection('out');
+    setIsCompletedTransitioning(true);
+
+    setTimeout(() => {
+      setSelectedCompletedCase(null);
+      setCompletedTransitionDirection('in');
+      setTimeout(() => {
+        setIsCompletedTransitioning(false);
+      }, 100);
+    }, 200);
+  };
+
   // Create page document search visibility
   const [isDocLibrarySearchVisible, setIsDocLibrarySearchVisible] =
     useState(false);
