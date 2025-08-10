@@ -425,7 +425,7 @@ export default function Dashboard({
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isTabTransitioning, setIsTabTransitioning] = useState(false);
   const [stepTransitioning, setStepTransitioning] = useState(false);
 
   // Create page state
