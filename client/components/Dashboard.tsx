@@ -18,19 +18,21 @@ const TransitionWrapper = ({
   children,
   isTransitioning,
   direction,
-  className = ""
+  className = "",
 }: {
   children: React.ReactNode;
   isTransitioning: boolean;
-  direction: 'in' | 'out';
+  direction: "in" | "out";
   className?: string;
 }) => {
   return (
-    <div className={cn(
-      "transition-opacity duration-300 ease-in-out",
-      isTransitioning && direction === 'out' ? "opacity-0" : "opacity-100",
-      className
-    )}>
+    <div
+      className={cn(
+        "transition-opacity duration-300 ease-in-out",
+        isTransitioning && direction === "out" ? "opacity-0" : "opacity-100",
+        className,
+      )}
+    >
       {children}
     </div>
   );
@@ -489,24 +491,28 @@ export default function Dashboard({
   const [reviewSearch, setReviewSearch] = useState("");
   const [selectedCase, setSelectedCase] = useState<any>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [transitionDirection, setTransitionDirection] = useState<'in' | 'out'>('in');
+  const [transitionDirection, setTransitionDirection] = useState<"in" | "out">(
+    "in",
+  );
 
   // Reports page state
   const [reportsSearch, setReportsSearch] = useState("");
   const [selectedCompletedCase, setSelectedCompletedCase] = useState<any>(null);
-  const [isCompletedTransitioning, setIsCompletedTransitioning] = useState(false);
-  const [completedTransitionDirection, setCompletedTransitionDirection] = useState<'in' | 'out'>('in');
+  const [isCompletedTransitioning, setIsCompletedTransitioning] =
+    useState(false);
+  const [completedTransitionDirection, setCompletedTransitionDirection] =
+    useState<"in" | "out">("in");
 
   // Smooth transition functions
   const handleCaseSelect = (caseItem: any) => {
     // Start fade out
     setIsTransitioning(true);
-    setTransitionDirection('out');
+    setTransitionDirection("out");
 
     // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCase(caseItem);
-      setTransitionDirection('in');
+      setTransitionDirection("in");
       setIsTransitioning(false);
     }, 300);
   };
@@ -514,12 +520,12 @@ export default function Dashboard({
   const handleCaseBack = () => {
     // Start fade out
     setIsTransitioning(true);
-    setTransitionDirection('out');
+    setTransitionDirection("out");
 
     // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCase(null);
-      setTransitionDirection('in');
+      setTransitionDirection("in");
       setIsTransitioning(false);
     }, 300);
   };
@@ -527,12 +533,12 @@ export default function Dashboard({
   const handleCompletedCaseSelect = (caseItem: any) => {
     // Start fade out
     setIsCompletedTransitioning(true);
-    setCompletedTransitionDirection('out');
+    setCompletedTransitionDirection("out");
 
     // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCompletedCase(caseItem);
-      setCompletedTransitionDirection('in');
+      setCompletedTransitionDirection("in");
       setIsCompletedTransitioning(false);
     }, 300);
   };
@@ -540,12 +546,12 @@ export default function Dashboard({
   const handleCompletedCaseBack = () => {
     // Start fade out
     setIsCompletedTransitioning(true);
-    setCompletedTransitionDirection('out');
+    setCompletedTransitionDirection("out");
 
     // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCompletedCase(null);
-      setCompletedTransitionDirection('in');
+      setCompletedTransitionDirection("in");
       setIsCompletedTransitioning(false);
     }, 300);
   };
@@ -1288,121 +1294,123 @@ export default function Dashboard({
               {/* Compact Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      Open Cases
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">34</div>
-                  </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      Needs Review
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">2</div>
-                  </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 border border-sky-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      Idle Clients
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">5</div>
-                  </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      Validation Rate
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">
-                      93.8%
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        Open Cases
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">
+                        34
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                        />
+                      </svg>
                     </div>
                   </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
+                </div>
+
+                <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        Needs Review
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">2</div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 border border-sky-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        Idle Clients
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">5</div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        Validation Rate
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">
+                        93.8%
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Cases List with Sidebar and Collapsible Search */}
-            <CaseScrollerWithSidebar
-              cases={filteredCases}
-              onCaseSelect={handleCaseSelect}
-              searchValue={reviewSearch}
-              onSearchChange={setReviewSearch}
-              activeFilters={activeFilters}
-              onFiltersChange={setActiveFilters}
-            />
+              {/* Cases List with Sidebar and Collapsible Search */}
+              <CaseScrollerWithSidebar
+                cases={filteredCases}
+                onCaseSelect={handleCaseSelect}
+                searchValue={reviewSearch}
+                onSearchChange={setReviewSearch}
+                activeFilters={activeFilters}
+                onFiltersChange={setActiveFilters}
+              />
             </div>
           </TransitionWrapper>
         );
@@ -1430,121 +1438,125 @@ export default function Dashboard({
               {/* Compact Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
                 <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      Completed Cases
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">127</div>
-                  </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      Avg Completion
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">
-                      18.2 Days
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        Completed Cases
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">
+                        127
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
                     </div>
                   </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </div>
                 </div>
-              </div>
 
-              <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      This Month
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">23</div>
-                  </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
-                      Success Rate
-                    </h3>
-                    <div className="text-2xl font-bold text-slate-800">
-                      96.7%
+                <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        Avg Completion
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">
+                        18.2 Days
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
                     </div>
                   </div>
-                  <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
-                    <svg
-                      className="w-4 h-4 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 10V3L4 14h7v7l9-11h-7"
-                      />
-                    </svg>
+                </div>
+
+                <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        This Month
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">
+                        23
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">
+                        Success Rate
+                      </h3>
+                      <div className="text-2xl font-bold text-slate-800">
+                        96.7%
+                      </div>
+                    </div>
+                    <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 10V3L4 14h7v7l9-11h-7"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Completed Cases List */}
-            <CaseScrollerReports
-              cases={filteredCompletedCases}
-              onCaseSelect={handleCompletedCaseSelect}
-              searchValue={reportsSearch}
-              onSearchChange={setReportsSearch}
-            />
+              {/* Completed Cases List */}
+              <CaseScrollerReports
+                cases={filteredCompletedCases}
+                onCaseSelect={handleCompletedCaseSelect}
+                searchValue={reportsSearch}
+                onSearchChange={setReportsSearch}
+              />
             </div>
           </TransitionWrapper>
         );
@@ -2159,7 +2171,9 @@ export default function Dashboard({
                                   </h3>
                                   <p className="text-sm text-slate-500">
                                     {selectedDocuments.length} document
-                                    {selectedDocuments.length !== 1 ? "s" : ""}{" "}
+                                    {selectedDocuments.length !== 1
+                                      ? "s"
+                                      : ""}{" "}
                                     selected
                                   </p>
                                 </div>
