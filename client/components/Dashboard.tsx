@@ -762,6 +762,17 @@ export default function Dashboard({
 
   const filteredCases = getFilteredAndSortedCases();
 
+  // Filter completed cases for Reports page
+  const getFilteredCompletedCases = () => {
+    return completedCases.filter(caseItem => {
+      return caseItem.name.toLowerCase().includes(reportsSearch.toLowerCase()) ||
+        caseItem.caseId.toLowerCase().includes(reportsSearch.toLowerCase()) ||
+        caseItem.caseType.toLowerCase().includes(reportsSearch.toLowerCase());
+    });
+  };
+
+  const filteredCompletedCases = getFilteredCompletedCases();
+
   const renderContent = () => {
     switch (activeTab) {
       case "overview":
