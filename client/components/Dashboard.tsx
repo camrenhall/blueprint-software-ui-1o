@@ -1455,18 +1455,31 @@ export default function Dashboard({
                       </div>
                     )}
                     <button
-                      onClick={() => handleStepTransition(createStep + 1)}
-                      disabled={
-                        (createStep === 2 && createMethod === "manual" && selectedDocuments.length === 0) ||
-                        (createStep === 4 && (!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email))
+                    onClick={() => {
+                      if (createStep === 2 && createMethod === "ai") {
+                        handleAISubmit();
+                        handleStepTransition(3);
+                      } else if (createStep === 2 && createMethod === "questionnaire") {
+                        handleStepTransition(4);
+                      } else {
+                        handleStepTransition(createStep + 1);
                       }
-                      className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
-                    >
-                      <span>Continue</span>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </button>
+                    }}
+                    disabled={
+                      (createStep === 2 && createMethod === "manual" && selectedDocuments.length === 0) ||
+                      (createStep === 2 && createMethod === "ai" && !aiDescription.trim()) ||
+                      (createStep === 3 && createMethod === "ai" && selectedDocuments.length === 0) ||
+                      (createStep === 4 && (!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email))
+                    }
+                    className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
+                  >
+                    <span>
+                      {createStep === 2 && createMethod === "ai" ? "Generate AI Suggestions" : "Continue"}
+                    </span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                   </div>
                 </div>
               </div>
