@@ -2278,7 +2278,7 @@ export default function Dashboard({
       {/* Dashboard Panel - Right-Justified with Reduced Width */}
       <div
         className={cn(
-          "relative w-[65%] max-w-6xl h-[90vh] bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl transition-all duration-500 ease-out flex flex-col",
+          "relative w-[80%] max-w-6xl h-[90vh] bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl transition-all duration-500 ease-out flex flex-col",
           isVisible
             ? "transform translate-x-0 opacity-100 scale-100"
             : "transform translate-x-full opacity-0 scale-95",
