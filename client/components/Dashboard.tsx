@@ -857,7 +857,7 @@ export default function Dashboard({
           <div className="space-y-2">
             {/* Compact Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-              <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Open Cases</h3>
@@ -871,7 +871,7 @@ export default function Dashboard({
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Needs Review</h3>
@@ -885,7 +885,7 @@ export default function Dashboard({
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 border border-sky-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="group relative bg-gradient-to-br from-sky-50/80 via-white to-blue-50/60 border border-sky-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Idle Clients</h3>
@@ -899,7 +899,7 @@ export default function Dashboard({
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300">
+              <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Validation Rate</h3>
