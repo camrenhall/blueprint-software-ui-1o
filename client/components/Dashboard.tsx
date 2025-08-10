@@ -1473,7 +1473,9 @@ export default function Dashboard({
             )}
 
             {/* Step Content */}
-            <div className="min-h-[500px] relative overflow-hidden">
+            <div className={`min-h-[500px] relative overflow-hidden transition-all duration-700 ease-out ${
+              createStep > 1 ? 'ml-48' : ''
+            }`}>
               {/* Step 1: Choose Creation Method */}
               {createStep === 1 && (
                 <div
