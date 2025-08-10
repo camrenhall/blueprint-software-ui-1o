@@ -244,9 +244,9 @@ export default function CaseDetails({
             </div>
 
             {/* Communications - Fixed Height */}
-            <div 
+            <div
               onClick={handleViewAllCommunications}
-              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group h-40"
+              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group h-48"
             >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-slate-800">Communications</h3>
@@ -257,7 +257,7 @@ export default function CaseDetails({
                   </svg>
                 </div>
               </div>
-              <div className="space-y-2 overflow-y-auto" style={{ height: '120px' }}>
+              <div className="space-y-2 overflow-y-auto" style={{ height: '152px' }}>
                 {correspondence.map((comm, index) => (
                   <div key={index} className="border-l-2 border-indigo-200 pl-2">
                     <div className="flex items-start justify-between">
