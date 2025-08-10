@@ -1536,6 +1536,11 @@ export default function Dashboard({
                         handleStepTransition(2);
                       } else if (createStep === 1 && createMethod === "questionnaire") {
                         handleStepTransition(3);
+                      } else if (createStep === 4) {
+                        // Handle case creation/submission logic here
+                        console.log('Creating case with data:', { createMethod, selectedDocuments, caseInfo, aiDescription });
+                        alert('Case created successfully!');
+                        // You would typically call an API here to create the case
                       } else {
                         handleStepTransition(createStep + 1);
                       }
@@ -1547,7 +1552,7 @@ export default function Dashboard({
                     className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
                   >
                     <span>
-                      {createStep === 1 && createMethod === "ai" ? "Generate AI Suggestions" : "Continue"}
+                      {createStep === 1 && createMethod === "ai" ? "Generate AI Suggestions" : createStep === 4 ? "Create Case" : "Continue"}
                     </span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -2137,168 +2142,153 @@ export default function Dashboard({
               {/* Step 4: Final Review */}
               {createStep === 4 && (
                 <div
-                  className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
+                  className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
                 >
-                  <div className="text-center mb-8">
-                    <h2 className="text-2xl font-light text-slate-700 mb-3">
-                      Review Your Case
-                    </h2>
-                    <p className="text-slate-600">
-                      Please review all details before creating the case
-                    </p>
-                  </div>
-
-                  <div className="space-y-6">
-                    {/* Case Summary */}
-                    <div className="bg-gradient-to-br from-blue-50/80 to-indigo-100/80 p-6 rounded-xl border border-blue-200/40">
-                      <h4 className="text-lg font-medium text-slate-700 mb-4">
-                        Case Summary
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Creation Method:
-                          </span>{" "}
-                          {createMethod === "ai"
-                            ? "AI Assist"
-                            : createMethod === "manual"
-                              ? "Manual Select"
-                              : "Questionnaire"}
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Total Documents:
-                          </span>{" "}
-                          {selectedDocuments.length}
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Required Documents:
-                          </span>{" "}
-                          {
-                            selectedDocuments.filter((doc) => !doc.optional)
-                              .length
-                          }
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Optional Documents:
-                          </span>{" "}
-                          {
-                            selectedDocuments.filter((doc) => doc.optional)
-                              .length
-                          }
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Client Information */}
-                    <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
-                      <h4 className="text-lg font-medium text-slate-700 mb-4">
-                        Client Information
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Name:
-                          </span>{" "}
-                          {caseInfo.firstName} {caseInfo.lastName}
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Email:
-                          </span>{" "}
-                          {caseInfo.email || "Not provided"}
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Phone:
-                          </span>{" "}
-                          {caseInfo.phone || "Not provided"}
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Matter ID:
-                          </span>{" "}
-                          {caseInfo.matterId || "Not provided"}
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            State:
-                          </span>{" "}
-                          {caseInfo.state || "Not selected"}
-                        </div>
-                        <div>
-                          <span className="font-medium text-slate-600">
-                            Language:
-                          </span>{" "}
-                          {caseInfo.language === "en"
-                            ? "English"
-                            : caseInfo.language}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Document List */}
-                    <div className="bg-gradient-to-br from-indigo-50/80 to-blue-100/80 p-6 rounded-xl border border-indigo-200/40">
-                      <h4 className="text-lg font-medium text-slate-700 mb-4">
-                        Requested Documents
-                      </h4>
-                      <div className="space-y-2">
-                        {selectedDocuments.map((doc, index) => (
-                          <div
-                            key={index}
-                            className="flex items-center justify-between p-3 bg-white/70 rounded-lg"
-                          >
-                            <div className="flex items-center space-x-3">
-                              <span className="text-slate-700">{doc.name}</span>
-                              {doc.optional && (
-                                <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">
-                                  Optional
-                                </span>
-                              )}
+                  {/* Single scrollable container */}
+                  <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col" style={{ height: 'calc(100vh - 350px)' }}>
+                    <div className="p-6 overflow-y-auto document-scroll" style={{
+                      maskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)',
+                      WebkitMaskImage: 'linear-gradient(to bottom, transparent 0px, black 12px, black calc(100% - 12px), transparent 100%)'
+                    }}>
+                      <div className="space-y-6">
+                        {/* Case Summary */}
+                        <div className="bg-white/95 border border-slate-200/40 rounded-2xl p-6">
+                          <h4 className="text-lg font-semibold text-slate-800 mb-4">
+                            Case Summary
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Creation Method:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {createMethod === "ai"
+                                  ? "AI Assist"
+                                  : createMethod === "manual"
+                                    ? "Manual Select"
+                                    : "Questionnaire"}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Total Documents:
+                              </span>{" "}
+                              <span className="text-slate-800">{selectedDocuments.length}</span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Required Documents:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {selectedDocuments.filter((doc) => !doc.optional).length}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Optional Documents:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {selectedDocuments.filter((doc) => doc.optional).length}
+                              </span>
                             </div>
                           </div>
-                        ))}
+                        </div>
+
+                        {/* Client Information */}
+                        <div className="bg-white/95 border border-slate-200/40 rounded-2xl p-6">
+                          <h4 className="text-lg font-semibold text-slate-800 mb-4">
+                            Client Information
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Name:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {caseInfo.firstName} {caseInfo.lastName}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Email:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {caseInfo.email || "Not provided"}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Phone:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {caseInfo.phone || "Not provided"}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Matter ID:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {caseInfo.matterId || "Not provided"}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                State:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {caseInfo.state || "Not selected"}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="font-medium text-slate-600">
+                                Language:
+                              </span>{" "}
+                              <span className="text-slate-800">
+                                {caseInfo.language === "en" ? "English" : caseInfo.language}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Document List */}
+                        <div className="bg-white/95 border border-slate-200/40 rounded-2xl p-6">
+                          <h4 className="text-lg font-semibold text-slate-800 mb-4">
+                            Requested Documents ({selectedDocuments.length})
+                          </h4>
+                          <div className="space-y-2">
+                            {selectedDocuments.map((doc, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center justify-between p-3 bg-slate-50/60 rounded-xl border border-slate-200/40"
+                              >
+                                <div className="flex items-center space-x-3">
+                                  <span className="text-slate-700 font-medium">{doc.name}</span>
+                                  {doc.optional && (
+                                    <span className="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs font-medium">
+                                      Optional
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* AI Description (if AI was used) */}
+                        {createMethod === "ai" && aiDescription && (
+                          <div className="bg-white/95 border border-slate-200/40 rounded-2xl p-6">
+                            <h4 className="text-lg font-semibold text-slate-800 mb-4">
+                              AI Case Description
+                            </h4>
+                            <div className="bg-slate-50/60 border border-slate-200/40 rounded-xl p-4">
+                              <p className="text-slate-700 leading-relaxed">
+                                {aiDescription}
+                              </p>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-
-                    {/* AI Description (if AI was used) */}
-                    {createMethod === "ai" && aiDescription && (
-                      <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40">
-                        <h4 className="text-lg font-medium text-slate-700 mb-4">
-                          AI Case Description
-                        </h4>
-                        <p className="text-slate-600 bg-white/70 p-4 rounded-lg">
-                          {aiDescription}
-                        </p>
-                      </div>
-                    )}
-
-                    <div className="flex justify-between items-center pt-6">
-                      <button
-                        onClick={() => handleStepTransition(3)}
-                        className="text-slate-600 hover:text-slate-700 flex items-center space-x-2 transition-colors"
-                      >
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 19l-7-7 7-7"
-                          />
-                        </svg>
-                        <span>Back to Case Info</span>
-                      </button>
-
-                      <button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 rounded-xl transition-all font-medium text-lg">
-                        Create Case
-                      </button>
                     </div>
                   </div>
                 </div>
