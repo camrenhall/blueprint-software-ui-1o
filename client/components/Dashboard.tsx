@@ -1547,7 +1547,7 @@ export default function Dashboard({
                     className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
                   >
                     <span>
-                      {createStep === 2 && createMethod === "ai" ? "Generate AI Suggestions" : "Continue"}
+                      {createStep === 1 && createMethod === "ai" ? "Generate AI Suggestions" : "Continue"}
                     </span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -2867,7 +2867,7 @@ export default function Dashboard({
                         VISA
                       </div>
                       <span className="text-slate-700">
-                        ���••• •••• ���••�� 4242
+                        �����••• •••• ���••�� 4242
                       </span>
                       <span className="text-slate-500">12/25</span>
                     </div>
