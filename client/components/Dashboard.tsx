@@ -1665,7 +1665,7 @@ export default function Dashboard({
                       </div>
 
                       {/* Fixed Height Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-8" style={{ height: 'calc(100vh - 420px)' }}>
+                      <div className="grid grid-cols-12 gap-8" style={{ height: 'calc(100vh - 480px)' }}>
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full overflow-hidden">
