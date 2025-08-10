@@ -109,7 +109,7 @@ const FuturisticCaseScroller = ({
       {/* Scrollable container */}
       <div
         ref={scrollContainerRef}
-        className="absolute top-16 left-0 right-0 bottom-0 overflow-y-auto px-4"
+        className="absolute top-16 left-0 right-0 bottom-0 overflow-y-auto px-4 rounded-b-3xl"
         style={{
           scrollBehavior: 'smooth'
         }}
