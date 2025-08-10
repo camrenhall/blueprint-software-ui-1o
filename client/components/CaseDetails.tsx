@@ -281,7 +281,7 @@ export default function CaseDetails({
             </div>
 
             {/* Quick Actions - Fixed Height */}
-            <div className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm h-40">
+            <div className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm h-48">
               <h3 className="text-sm font-semibold text-slate-800 mb-3">Quick Actions</h3>
               <div className="space-y-2">
                 <button className="w-full flex items-center space-x-2 p-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-all text-indigo-700 text-xs font-medium">
