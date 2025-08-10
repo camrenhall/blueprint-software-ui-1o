@@ -1522,12 +1522,9 @@ export default function Dashboard({
                         {createStep === 4 && "Review & Create"}
                       </h2>
                       <p className="text-sm text-slate-600">
-                        {createStep === 2 && createMethod === "manual" && "Choose documents from your library to request from the client"}
-                        {createStep === 2 && createMethod === "ai" && "Our AI will analyze your description and suggest relevant documents"}
-                        {createStep === 2 && createMethod === "questionnaire" && "Choose a questionnaire template to send to your client"}
-                        {createStep === 3 && (createMethod === "ai" ? "Review AI recommendations and customize your document list" : "Choose documents from your library to request from the client")}
-                        {createStep === 4 && "Enter the basic information for this case"}
-                        {createStep === 5 && "Review all details before creating the case"}
+                        {createStep === 2 && "Choose documents from your library to request from the client"}
+                        {createStep === 3 && "Enter the basic information for this case"}
+                        {createStep === 4 && "Review all details before creating the case"}
                       </p>
                     </div>
                   </div>
