@@ -1574,19 +1574,15 @@ export default function Dashboard({
                   )}
 
                   {createMethod === "manual" && (
-                    <div>
-                      <div className="text-center mb-10">
-                        <h1 className="text-3xl font-light text-slate-800 mb-4">
-                          Select Documents
-                        </h1>
-                        <p className="text-slate-600 text-lg">
-                          Choose documents from your library to request from the
-                          client
-                        </p>
+                    <div className="relative h-full">
+                      {/* Header */}
+                      <div className="text-center mb-6">
+                        <h1 className="text-3xl font-light text-slate-800 mb-2">Select Documents</h1>
+                        <p className="text-slate-600">Choose documents from your library to request from the client</p>
                       </div>
 
-                      {/* Professional Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-12">
+                      {/* Fixed Height Document Management Interface */}
+                      <div className="grid grid-cols-12 gap-8" style={{ height: 'calc(100vh - 420px)' }}>
                         {/* Available Documents - Elegant Design */}
                         <div className="col-span-7">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
