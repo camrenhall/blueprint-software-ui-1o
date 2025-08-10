@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { cn } from "@/lib/utils";
 import CaseDetails from "./CaseDetails";
+import CaseScrollerWithSidebar from "./CaseScrollerWithSidebar";
 
 interface DashboardProps {
   isOpen: boolean;
