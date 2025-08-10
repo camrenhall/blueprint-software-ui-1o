@@ -920,6 +920,8 @@ export default function Dashboard({
               onCaseSelect={setSelectedCase}
               searchValue={reviewSearch}
               onSearchChange={setReviewSearch}
+              activeFilters={activeFilters}
+              onFiltersChange={setActiveFilters}
             />
           </div>
         );
