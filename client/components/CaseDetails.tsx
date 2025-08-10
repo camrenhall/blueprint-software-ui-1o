@@ -160,9 +160,9 @@ export default function CaseDetails({
             </div>
 
             {/* Documents Section - Fixed Height */}
-            <div 
+            <div
               onClick={handleViewAllDocuments}
-              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group h-40"
+              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group h-48"
             >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-slate-800">Submitted Documents</h3>
@@ -173,7 +173,7 @@ export default function CaseDetails({
                   </svg>
                 </div>
               </div>
-              <div className="space-y-2 overflow-y-auto" style={{ height: '120px' }}>
+              <div className="space-y-2 overflow-y-auto" style={{ height: '152px' }}>
                 {documents.slice(0, 3).map((doc, index) => (
                   <div key={index} className="flex items-center justify-between text-xs">
                     <div className="flex items-center space-x-2">
