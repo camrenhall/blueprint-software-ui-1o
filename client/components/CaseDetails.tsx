@@ -55,10 +55,6 @@ export default function CaseDetails({
     alert(`Opening document: ${docName}\n\nThis would open a document viewer in a real application.`);
   };
 
-  const handleBulkDownload = () => {
-    alert(`Downloading ${documents.length} documents...\n\nThis would trigger a bulk download in a real application.`);
-  };
-
   const handleViewAllDocuments = () => {
     alert("Opening detailed documents view...\n\nThis would navigate to a full documents page.");
   };
@@ -101,59 +97,49 @@ export default function CaseDetails({
 
   return (
     <div className="bg-white rounded-3xl shadow-xl overflow-hidden backdrop-blur-md">
-      <div className="p-6 border-b border-slate-200/60">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+      <div className="p-4 border-b border-slate-200/60">
+        {/* Compact Header */}
+        <div className="flex items-center justify-between mb-3">
           <button
             onClick={onBack}
             className="flex items-center space-x-2 text-slate-600 hover:text-slate-800 transition-all duration-200 hover:scale-105"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            <span className="font-medium">Back to Cases</span>
-          </button>
-          
-          <button
-            onClick={handleBulkDownload}
-            className="flex items-center space-x-2 bg-indigo-600 text-white px-4 py-2 rounded-xl hover:bg-indigo-700 transition-all font-medium"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-4-4m4 4l4-4m-2-7h-4a2 2 0 00-2 2v1M5 9V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v2M7 21h10a2 2 0 002-2v-4a2 2 0 00-2-2H7a2 2 0 00-2 2v4a2 2 0 002 2z" />
-            </svg>
-            <span>Download All</span>
+            <span className="font-medium text-sm">Back to Cases</span>
           </button>
         </div>
 
         {/* Compact Case Header */}
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
-            <span className="text-white font-bold text-sm">{selectedCase.avatar}</span>
+          <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md">
+            <span className="text-white font-bold text-xs">{selectedCase.avatar}</span>
           </div>
           <div>
             <div className="flex items-center space-x-3">
-              <h1 className="text-xl font-bold text-slate-800">{selectedCase.name}</h1>
-              <span className="text-slate-500 font-mono text-sm">{selectedCase.caseId}</span>
+              <h1 className="text-lg font-bold text-slate-800">{selectedCase.name}</h1>
+              <span className="text-slate-500 font-mono text-xs">{selectedCase.caseId}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content - Compact Layout */}
-      <div className="p-6 overflow-y-auto" style={{ height: 'calc(100vh - 180px)' }}>
+      {/* Main Content - Compact Layout with Perfect Grid */}
+      <div className="p-4 overflow-y-auto" style={{ height: 'calc(100vh - 140px)' }}>
         <div className="grid grid-cols-12 gap-4">
           
           {/* Left Column - Main Content */}
           <div className="col-span-8 space-y-4">
             
-            {/* Case Progress - Compact */}
-            <div className="bg-gradient-to-r from-slate-50/80 to-blue-50/40 rounded-xl p-4 border border-slate-200/40">
-              <div className="flex items-center justify-between mb-3">
+            {/* Case Progress - Fixed Height */}
+            <div className="bg-gradient-to-r from-slate-50/80 to-blue-50/40 rounded-xl p-4 border border-slate-200/40 h-32 flex flex-col justify-between">
+              <div className="flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-slate-800">Case Progress</h3>
                 <span className="text-lg font-bold text-slate-800">{selectedCase.progressPercent}%</span>
               </div>
               
-              <div className="mb-3">
+              <div className="flex-1 flex flex-col justify-center">
                 <div className="flex justify-between text-xs text-slate-600 mb-2">
                   <span>Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Fulfilled</span>
                   <span>{selectedCase.progress}</span>
@@ -171,23 +157,12 @@ export default function CaseDetails({
                   ></div>
                 </div>
               </div>
-
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className="flex justify-between">
-                  <span className="text-slate-600">Requested:</span>
-                  <span className="font-medium text-slate-800">{caseStats.totalDocuments}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-slate-600">Fulfilled:</span>
-                  <span className="font-medium text-slate-800">{caseStats.approvedDocuments}</span>
-                </div>
-              </div>
             </div>
 
-            {/* Documents Section - At-a-glance */}
+            {/* Documents Section - Fixed Height */}
             <div 
               onClick={handleViewAllDocuments}
-              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group"
+              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group h-40"
             >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-slate-800">Submitted Documents</h3>
@@ -198,7 +173,7 @@ export default function CaseDetails({
                   </svg>
                 </div>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 overflow-y-auto" style={{ height: '120px' }}>
                 {documents.slice(0, 3).map((doc, index) => (
                   <div key={index} className="flex items-center justify-between text-xs">
                     <div className="flex items-center space-x-2">
@@ -222,10 +197,10 @@ export default function CaseDetails({
               </div>
             </div>
 
-            {/* Recent Activity - At-a-glance */}
+            {/* Recent Activity - Fixed Height */}
             <div 
               onClick={handleViewAllActivity}
-              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group"
+              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group h-40"
             >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-slate-800">Recent Activity</h3>
@@ -236,7 +211,7 @@ export default function CaseDetails({
                   </svg>
                 </div>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 overflow-y-auto" style={{ height: '120px' }}>
                 {recentActivity.map((activity, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <div className="text-sm">{activity.icon}</div>
@@ -250,13 +225,13 @@ export default function CaseDetails({
             </div>
           </div>
 
-          {/* Right Column - Compact Sidebar */}
+          {/* Right Column - Fixed Height Sidebar */}
           <div className="col-span-4 space-y-4">
             
-            {/* Case Stats - Improved alignment */}
-            <div className="bg-gradient-to-r from-indigo-50/80 to-purple-50/40 rounded-xl p-4 border border-slate-200/40">
-              <h3 className="text-sm font-semibold text-slate-800 mb-3">Case Overview</h3>
-              <div className="space-y-3">
+            {/* Case Stats - Fixed Height to match Case Progress */}
+            <div className="bg-gradient-to-r from-indigo-50/80 to-purple-50/40 rounded-xl p-4 border border-slate-200/40 h-32 flex flex-col justify-between">
+              <h3 className="text-sm font-semibold text-slate-800">Case Overview</h3>
+              <div className="space-y-2 flex-1 flex flex-col justify-center">
                 <div className="flex items-center justify-between">
                   <span className="text-xs text-slate-600">Time in Queue</span>
                   <span className="text-sm font-semibold text-slate-800">{caseStats.timeInQueue}</span>
@@ -265,19 +240,13 @@ export default function CaseDetails({
                   <span className="text-xs text-slate-600">Avg Response</span>
                   <span className="text-sm font-semibold text-emerald-600">{caseStats.avgResponseTime}</span>
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-slate-600">Tasks Left</span>
-                  <span className={`text-sm font-semibold ${caseStats.remainingTasks === 0 ? 'text-emerald-600' : 'text-amber-600'}`}>
-                    {caseStats.remainingTasks}
-                  </span>
-                </div>
               </div>
             </div>
 
-            {/* Communications - At-a-glance */}
+            {/* Communications - Fixed Height */}
             <div 
               onClick={handleViewAllCommunications}
-              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group"
+              className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm hover:shadow-md transition-all cursor-pointer group h-40"
             >
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-semibold text-slate-800">Communications</h3>
@@ -288,7 +257,7 @@ export default function CaseDetails({
                   </svg>
                 </div>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 overflow-y-auto" style={{ height: '120px' }}>
                 {correspondence.map((comm, index) => (
                   <div key={index} className="border-l-2 border-indigo-200 pl-2">
                     <div className="flex items-start justify-between">
@@ -311,8 +280,8 @@ export default function CaseDetails({
               </div>
             </div>
 
-            {/* Quick Actions - Compact */}
-            <div className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm">
+            {/* Quick Actions - Fixed Height */}
+            <div className="bg-white rounded-xl p-4 border border-slate-200/40 shadow-sm h-40">
               <h3 className="text-sm font-semibold text-slate-800 mb-3">Quick Actions</h3>
               <div className="space-y-2">
                 <button className="w-full flex items-center space-x-2 p-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-all text-indigo-700 text-xs font-medium">
