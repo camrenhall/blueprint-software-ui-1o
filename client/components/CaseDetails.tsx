@@ -246,7 +246,7 @@ export default function CaseDetails({
   }
 
   return (
-    <div className="bg-white rounded-3xl shadow-xl overflow-hidden backdrop-blur-md">
+    <div className="bg-white rounded-3xl shadow-xl overflow-hidden backdrop-blur-md transform transition-all duration-300 ease-out">
       <div className="p-4 border-b border-slate-200/60">
         {/* Compact Header */}
         <div className="flex items-center justify-between mb-3">
