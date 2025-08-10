@@ -1450,8 +1450,8 @@ export default function Dashboard({
                 </div>
               </div>
             ) : (
-              /* Vertical Step Indicator for Steps 2+ */
-              <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-20 transition-all duration-700 ease-out">
+              /* Vertical Step Indicator for Steps 2+ - Fixed consistent position */
+              <div className="fixed left-0 z-20 transition-all duration-700 ease-out" style={{ top: 'calc(50vh - 120px)' }}>
                 <div className="bg-white/90 backdrop-blur-xl border border-slate-200/40 rounded-r-2xl pl-6 pr-4 py-4 shadow-lg">
                   <div className="flex flex-col space-y-4">
                     {[
@@ -1522,7 +1522,7 @@ export default function Dashboard({
                         {createStep === 2 && createMethod === "manual" && "Select Documents"}
                         {createStep === 2 && createMethod === "ai" && "Describe Your Case"}
                         {createStep === 2 && createMethod === "questionnaire" && "Select Questionnaire"}
-                        {createStep === 3 && "Review AI Suggestions"}
+                        {createStep === 3 && "Select Documents"}
                         {createStep === 4 && "Case Information"}
                         {createStep === 5 && "Review & Create"}
                       </h2>
@@ -1530,7 +1530,7 @@ export default function Dashboard({
                         {createStep === 2 && createMethod === "manual" && "Choose documents from your library to request from the client"}
                         {createStep === 2 && createMethod === "ai" && "Our AI will analyze your description and suggest relevant documents"}
                         {createStep === 2 && createMethod === "questionnaire" && "Choose a questionnaire template to send to your client"}
-                        {createStep === 3 && "Review AI recommendations and customize your document list"}
+                        {createStep === 3 && (createMethod === "ai" ? "Review AI recommendations and customize your document list" : "Choose documents from your library to request from the client")}
                         {createStep === 4 && "Enter the basic information for this case"}
                         {createStep === 5 && "Review all details before creating the case"}
                       </p>
@@ -1544,6 +1544,8 @@ export default function Dashboard({
                         handleStepTransition(3);
                       } else if (createStep === 2 && createMethod === "questionnaire") {
                         handleStepTransition(4);
+                      } else if (createStep === 2 && createMethod === "manual") {
+                        handleStepTransition(3);
                       } else {
                         handleStepTransition(createStep + 1);
                       }
@@ -1551,7 +1553,7 @@ export default function Dashboard({
                     disabled={
                       (createStep === 2 && createMethod === "manual" && selectedDocuments.length === 0) ||
                       (createStep === 2 && createMethod === "ai" && !aiDescription.trim()) ||
-                      (createStep === 3 && createMethod === "ai" && selectedDocuments.length === 0) ||
+                      (createStep === 3 && selectedDocuments.length === 0) ||
                       (createStep === 4 && (!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email))
                     }
                     className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
@@ -1888,7 +1890,7 @@ export default function Dashboard({
                                   </button>
                                   <button
                                     onClick={handleSaveTemplate}
-                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-green-50 text-green-600 hover:bg-green-100 border border-green-200/60"
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
                                     title="Save as template"
                                   >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1897,7 +1899,7 @@ export default function Dashboard({
                                   </button>
                                   <button
                                     onClick={handleClearAllDocuments}
-                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-red-50 text-red-600 hover:bg-red-100 border border-red-200/60"
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
                                     title="Clear all selected documents"
                                   >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2034,17 +2036,17 @@ export default function Dashboard({
                 </div>
               )}
 
-              {/* Step 3: Document Management (Only for AI flow) */}
-              {createStep === 3 && createMethod === "ai" && (
+              {/* Step 3: Document Management (For all flows that reach step 3) */}
+              {createStep === 3 && (
                 <div
                   className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
                 >
                   <div className="text-center mb-10">
                     <h1 className="text-3xl font-light text-slate-800 mb-4">
-                      Review AI Suggestions
+                      {createMethod === "ai" ? "Review AI Suggestions" : "Select Documents"}
                     </h1>
                     <p className="text-slate-600 text-lg">
-                      Review AI recommendations and customize your document list
+                      {createMethod === "ai" ? "Review AI recommendations and customize your document list" : "Choose documents from your library to request from the client"}
                     </p>
                   </div>
 
@@ -2161,12 +2163,12 @@ export default function Dashboard({
                           <div className="flex items-center justify-between">
                             <div>
                               <h3 className="text-xl font-light text-slate-700 mb-1">
-                                AI Suggestions
+                                {createMethod === "ai" ? "AI Suggestions" : "Selected Documents"}
                               </h3>
                               <p className="text-sm text-slate-500">
                                 {selectedDocuments.length} document
                                 {selectedDocuments.length !== 1 ? "s" : ""}{" "}
-                                recommended
+                                {createMethod === "ai" ? "recommended" : "selected"}
                               </p>
                             </div>
                           </div>
@@ -2390,9 +2392,7 @@ export default function Dashboard({
 
                     <div className="flex justify-between items-center">
                       <button
-                        onClick={() =>
-                          handleStepTransition(createMethod === "ai" ? 3 : 2)
-                        }
+                        onClick={() => handleStepTransition(3)}
                         className="text-slate-600 hover:text-slate-700 flex items-center space-x-2 transition-colors"
                       >
                         <svg
