@@ -2390,8 +2390,8 @@ export default function Dashboard({
                 </div>
               )}
 
-              {/* Step 5: Final Review */}
-              {createStep === 5 && (
+              {/* Step 4: Final Review */}
+              {createStep === 4 && (
                 <div
                   className={`max-w-4xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
                 >
