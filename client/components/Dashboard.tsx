@@ -416,6 +416,7 @@ export default function Dashboard({
   const [documentSearch, setDocumentSearch] = useState("");
   const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
   const [showTemplateModal, setShowTemplateModal] = useState(false);
+  const [showTemplatesInline, setShowTemplatesInline] = useState(false);
   const [savedTemplates] = useState([
     {
       name: "Personal Injury Standard",
@@ -1688,8 +1689,8 @@ export default function Dashboard({
                                     )}
                                   </button>
                                   <button
-                                    onClick={() => setShowTemplateModal(true)}
-                                    className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-3 py-2 transition-all"
+                                    onClick={() => setShowTemplatesInline(!showTemplatesInline)}
+                                    className={`text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-3 py-2 transition-all ${showTemplatesInline ? 'bg-slate-100 border-slate-300' : ''}`}
                                   >
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
@@ -1713,9 +1714,49 @@ export default function Dashboard({
                               </div>
                             </div>
 
-                            {/* Scrollable Document List - FIXED HEIGHT WITH INTERNAL SCROLL */}
+                            {/* Templates or Document List */}
                             <div className="px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
-                              <div className="space-y-1">
+                              {showTemplatesInline ? (
+                                /* Template Selection */
+                                <div className="space-y-3">
+                                  <div className="text-sm text-slate-600 mb-4 font-medium">Select a template to load:</div>
+                                  {savedTemplates.map((template, index) => (
+                                    <div key={index} className="border border-slate-200/60 rounded-xl p-4 hover:border-slate-300/80 hover:bg-slate-50/50 transition-all duration-200">
+                                      <div className="flex items-center justify-between">
+                                        <div className="flex-1">
+                                          <h4 className="font-medium text-slate-800 text-sm mb-1">{template.name}</h4>
+                                          <p className="text-slate-500 text-xs mb-2">{template.documents.length} documents</p>
+                                          <div className="flex flex-wrap gap-1">
+                                            {template.documents.slice(0, 3).map((doc, docIndex) => (
+                                              <span key={docIndex} className="bg-slate-100 text-slate-600 px-2 py-1 rounded-lg text-xs">{doc}</span>
+                                            ))}
+                                            {template.documents.length > 3 && (
+                                              <span className="text-slate-400 text-xs">+{template.documents.length - 3} more</span>
+                                            )}
+                                          </div>
+                                        </div>
+                                        <button
+                                          onClick={() => {
+                                            handleLoadTemplate(template);
+                                            setShowTemplatesInline(false);
+                                          }}
+                                          className="ml-3 bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-medium transition-all"
+                                        >
+                                          Load
+                                        </button>
+                                      </div>
+                                    </div>
+                                  ))}
+                                  <button
+                                    onClick={() => setShowTemplatesInline(false)}
+                                    className="w-full text-center text-slate-500 hover:text-slate-700 text-sm py-2 border border-dashed border-slate-300 rounded-xl hover:border-slate-400 transition-all"
+                                  >
+                                    ← Back to Document Library
+                                  </button>
+                                </div>
+                              ) : (
+                                /* Regular Document List */
+                                <div className="space-y-1">
                                 {filteredAvailableDocuments.map((doc, index) => (
                                   <button
                                     key={index}
@@ -1741,7 +1782,8 @@ export default function Dashboard({
                                     <p className="font-light text-sm">{documentSearch ? "No documents match your search" : "All documents have been selected"}</p>
                                   </div>
                                 )}
-                              </div>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
@@ -1776,6 +1818,18 @@ export default function Dashboard({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                       </svg>
                                     )}
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      // Save current selection as template - placeholder functionality
+                                      console.log('Save template with documents:', selectedDocuments.map(d => d.name));
+                                    }}
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-green-50 text-green-600 hover:bg-green-100 border border-green-200/60"
+                                    title="Save as template"
+                                  >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                                    </svg>
                                   </button>
                                   <button
                                     onClick={() => setSelectedDocuments([])}
@@ -2463,101 +2517,6 @@ export default function Dashboard({
               )}
             </div>
 
-            {/* Professional Template Modal */}
-            {showTemplateModal && (
-              <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
-                <div className="bg-white rounded-3xl shadow-xl w-full max-w-4xl max-h-[80vh] overflow-hidden border border-slate-200/60">
-                  {/* Clean Header */}
-                  <div className="px-8 py-6 border-b border-slate-100/80">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-2xl font-light text-slate-800 mb-1">
-                          Document Templates
-                        </h3>
-                        <p className="text-slate-500 text-sm">
-                          Pre-configured document collections for common case
-                          types
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => setShowTemplateModal(false)}
-                        className="text-slate-400 hover:text-slate-600 transition-colors p-2 rounded-xl hover:bg-slate-50"
-                      >
-                        <svg
-                          className="w-6 h-6"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Template Grid */}
-                  <div className="p-8 max-h-[60vh] overflow-y-auto">
-                    <div className="grid gap-6">
-                      {savedTemplates.map((template, index) => (
-                        <div
-                          key={index}
-                          className="group border border-slate-200/60 rounded-2xl p-6 hover:border-slate-300/80 hover:shadow-sm transition-all duration-300"
-                        >
-                          <div className="flex items-start justify-between">
-                            <div className="flex-1">
-                              <div className="flex items-center space-x-3 mb-3">
-                                <div className="w-2 h-2 rounded-full bg-slate-400"></div>
-                                <h4 className="font-medium text-slate-800 text-lg">
-                                  {template.name}
-                                </h4>
-                              </div>
-                              <p className="text-slate-500 text-sm mb-4">
-                                {template.documents.length} documents included
-                                in this template
-                              </p>
-
-                              <div className="flex flex-wrap gap-2 mb-4">
-                                {template.documents
-                                  .slice(0, 5)
-                                  .map((doc, docIndex) => (
-                                    <span
-                                      key={docIndex}
-                                      className="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200/60"
-                                    >
-                                      {doc}
-                                    </span>
-                                  ))}
-                                {template.documents.length > 5 && (
-                                  <span className="bg-slate-50 text-slate-500 px-3 py-1.5 rounded-xl text-xs font-medium border border-slate-200/60">
-                                    +{template.documents.length - 5} more
-                                    documents
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-
-                            <button
-                              onClick={() => {
-                                handleLoadTemplate(template);
-                                setShowTemplateModal(false);
-                              }}
-                              className="ml-6 bg-slate-800 hover:bg-slate-900 text-white px-6 py-3 rounded-2xl transition-all font-medium text-sm hover:shadow-lg group-hover:bg-slate-900"
-                            >
-                              Load Template
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         );
 
