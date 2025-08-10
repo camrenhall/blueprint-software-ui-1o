@@ -126,7 +126,7 @@ export default function CaseDetails({
       </div>
 
       {/* Main Content - Compact Layout with Perfect Grid */}
-      <div className="p-4 overflow-y-auto" style={{ height: 'calc(100vh - 140px)' }}>
+      <div className="p-4 overflow-y-auto" style={{ height: 'auto', flexGrow: 0 }}>
         <div className="grid grid-cols-12 gap-4">
           
           {/* Left Column - Main Content */}
