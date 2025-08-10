@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import CaseDetails from "./CaseDetails";
 import CaseScrollerWithSidebar from "./CaseScrollerWithSidebar";
 import CaseScrollerReports from "./CaseScrollerReports";
+import RecentActivityTable from "./RecentActivityTable";
 
 interface DashboardProps {
   isOpen: boolean;
