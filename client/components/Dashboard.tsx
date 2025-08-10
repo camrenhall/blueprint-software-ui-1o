@@ -525,37 +525,29 @@ export default function Dashboard({
   };
 
   const handleCompletedCaseSelect = (caseItem: any) => {
-    // Start transitioning out immediately
+    // Start fade out
     setIsCompletedTransitioning(true);
     setCompletedTransitionDirection('out');
 
-    // Small delay to ensure transition starts, then switch content
+    // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCompletedCase(caseItem);
       setCompletedTransitionDirection('in');
-
-      // Allow transition to complete before removing transitioning state
-      setTimeout(() => {
-        setIsCompletedTransitioning(false);
-      }, 150);
-    }, 50);
+      setIsCompletedTransitioning(false);
+    }, 300);
   };
 
   const handleCompletedCaseBack = () => {
-    // Start transitioning out immediately
+    // Start fade out
     setIsCompletedTransitioning(true);
     setCompletedTransitionDirection('out');
 
-    // Small delay to ensure transition starts, then switch content
+    // Wait for fade out to complete, then switch content and fade in
     setTimeout(() => {
       setSelectedCompletedCase(null);
       setCompletedTransitionDirection('in');
-
-      // Allow transition to complete before removing transitioning state
-      setTimeout(() => {
-        setIsCompletedTransitioning(false);
-      }, 150);
-    }, 50);
+      setIsCompletedTransitioning(false);
+    }, 300);
   };
 
   // Create page document search visibility
