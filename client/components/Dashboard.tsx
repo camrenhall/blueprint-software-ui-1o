@@ -1714,7 +1714,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Document List - FIXED HEIGHT WITH INTERNAL SCROLL */}
-                            <div className="p-6 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
+                            <div className="px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
                               <div className="space-y-1">
                                 {filteredAvailableDocuments.map((doc, index) => (
                                   <button
@@ -1777,6 +1777,15 @@ export default function Dashboard({
                                       </svg>
                                     )}
                                   </button>
+                                  <button
+                                    onClick={() => setSelectedDocuments([])}
+                                    className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-red-50 text-red-600 hover:bg-red-100 border border-red-200/60"
+                                    title="Clear all selected documents"
+                                  >
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H9a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -1795,7 +1804,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Selected Documents - FIXED HEIGHT WITH INTERNAL SCROLL */}
-                            <div className="p-6 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
+                            <div className="px-6 pb-6 pt-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 450px)' }}>
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
                                   <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
@@ -2820,7 +2829,7 @@ export default function Dashboard({
                   <div className="text-sm text-slate-600">
                     <p>✓ Unlimited cases</p>
                     <p>✓ Advanced analytics</p>
-                    <p>�� Priority support</p>
+                    <p>✓ Priority support</p>
                     <p>✓ Custom integrations</p>
                   </div>
                 </div>
