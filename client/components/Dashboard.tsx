@@ -1278,10 +1278,15 @@ export default function Dashboard({
       case "review":
         if (selectedCase) {
           return (
-            <CaseDetails
-              selectedCase={selectedCase}
-              onBack={() => setSelectedCase(null)}
-            />
+            <TransitionWrapper
+              isTransitioning={isTransitioning}
+              direction={transitionDirection}
+            >
+              <CaseDetails
+                selectedCase={selectedCase}
+                onBack={handleCaseBack}
+              />
+            </TransitionWrapper>
           );
         }
         return (
