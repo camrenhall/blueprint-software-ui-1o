@@ -1583,101 +1583,65 @@ export default function Dashboard({
 
                       {/* Fixed Height Document Management Interface */}
                       <div className="grid grid-cols-12 gap-8" style={{ height: 'calc(100vh - 420px)' }}>
-                        {/* Available Documents - Elegant Design */}
-                        <div className="col-span-7">
-                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
-                            <div className="px-8 py-6 border-b border-slate-100/60">
+                        {/* Available Documents - Constrained Height */}
+                        <div className="col-span-7 flex flex-col">
+                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full overflow-hidden">
+                            {/* Header */}
+                            <div className="px-6 py-4 border-b border-slate-100/60 flex-shrink-0">
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <h3 className="text-xl font-light text-slate-700 mb-1">
-                                    Document Library
-                                  </h3>
-                                  <p className="text-sm text-slate-500">
-                                    Select documents to request from client
-                                  </p>
+                                  <h3 className="text-lg font-semibold text-slate-800 mb-1">Document Library</h3>
+                                  <p className="text-sm text-slate-500">Select documents to request from client</p>
                                 </div>
                                 <button
                                   onClick={() => setShowTemplateModal(true)}
-                                  className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-4 py-2 transition-all"
+                                  className="text-slate-600 hover:text-slate-800 flex items-center space-x-2 text-sm font-medium border border-slate-200 hover:border-slate-300 rounded-xl px-3 py-2 transition-all"
                                 >
-                                  <svg
-                                    className="w-4 h-4"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={1.5}
-                                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                                    />
+                                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                   </svg>
                                   <span>Templates</span>
                                 </button>
                               </div>
                             </div>
 
-                            <div className="p-8">
-                              <div className="mb-6">
-                                <input
-                                  type="text"
-                                  value={documentSearch}
-                                  onChange={(e) =>
-                                    setDocumentSearch(e.target.value)
-                                  }
-                                  className="w-full p-4 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
-                                  placeholder="Search document library..."
-                                />
-                              </div>
+                            {/* Search Bar */}
+                            <div className="px-6 py-4 border-b border-slate-100/40 flex-shrink-0">
+                              <input
+                                type="text"
+                                value={documentSearch}
+                                onChange={(e) => setDocumentSearch(e.target.value)}
+                                className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
+                                placeholder="Search document library..."
+                              />
+                            </div>
 
-                              <div className="h-96 overflow-y-auto space-y-1">
-                                {filteredAvailableDocuments.map(
-                                  (doc, index) => (
-                                    <button
-                                      key={index}
-                                      onClick={() => handleAddDocument(doc)}
-                                      className="w-full flex items-center justify-between p-4 hover:bg-slate-50/80 rounded-2xl transition-all duration-200 group border-0 bg-transparent text-left"
-                                    >
-                                      <span className="text-slate-700 font-normal flex-1">
-                                        {doc}
-                                      </span>
-                                      <svg
-                                        className="w-5 h-5 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        viewBox="0 0 24 24"
-                                      >
-                                        <path
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth={1.5}
-                                          d="M13 7l5 5m0 0l-5 5m5-5H6"
-                                        />
-                                      </svg>
-                                    </button>
-                                  ),
-                                )}
-                                {filteredAvailableDocuments.length === 0 && (
-                                  <div className="text-center py-16 text-slate-500">
+                            {/* Scrollable Document List */}
+                            <div className="flex-1 overflow-y-auto p-6">
+                              <div className="space-y-1">
+                                {filteredAvailableDocuments.map((doc, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => handleAddDocument(doc)}
+                                    className="w-full flex items-center justify-between p-3 hover:bg-slate-50/80 rounded-xl transition-all duration-200 group border-0 bg-transparent text-left"
+                                  >
+                                    <span className="text-slate-700 font-normal flex-1">{doc}</span>
                                     <svg
-                                      className="w-12 h-12 mx-auto mb-4 opacity-30"
+                                      className="w-4 h-4 text-slate-400 group-hover:text-slate-600 group-hover:translate-x-1 transition-all duration-200"
                                       fill="none"
                                       stroke="currentColor"
                                       viewBox="0 0 24 24"
                                     >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={1}
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                      />
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                     </svg>
-                                    <p className="font-light">
-                                      {documentSearch
-                                        ? "No documents match your search"
-                                        : "All documents have been selected"}
-                                    </p>
+                                  </button>
+                                ))}
+                                {filteredAvailableDocuments.length === 0 && (
+                                  <div className="text-center py-12 text-slate-500">
+                                    <svg className="w-10 h-10 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                    </svg>
+                                    <p className="font-light text-sm">{documentSearch ? "No documents match your search" : "All documents have been selected"}</p>
                                   </div>
                                 )}
                               </div>
