@@ -1327,69 +1327,150 @@ export default function Dashboard({
 
       case "create":
         return (
-          <div className="space-y-6">
-            {/* Step Indicator */}
-            <div className="flex items-center justify-center mb-12">
-              <div className="flex items-center space-x-6">
-                {[
-                  { number: 1, label: "Method" },
-                  { number: 2, label: "Content" },
-                  { number: 3, label: "Documents" },
-                  { number: 4, label: "Case Info" },
-                  { number: 5, label: "Review" },
-                ].map((step, index) => (
-                  <div key={step.number} className="flex items-center">
-                    <div className="flex flex-col items-center">
-                      <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all border-2 ${
-                          step.number < createStep
-                            ? "bg-emerald-500 border-emerald-500 text-white"
-                            : step.number === createStep
-                              ? "bg-indigo-600 border-indigo-600 text-white"
-                              : "bg-white border-slate-300 text-slate-400"
-                        }`}
-                      >
-                        {step.number < createStep ? (
-                          <svg
-                            className="w-5 h-5"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+          <div className="relative min-h-full">
+            {/* Step Indicator - Horizontal for Step 1, Vertical for Steps 2+ */}
+            {createStep === 1 ? (
+              /* Horizontal Step Indicator for Step 1 */
+              <div className="flex items-center justify-center mb-12">
+                <div className="flex items-center space-x-6">
+                  {[
+                    { number: 1, label: "Method" },
+                    { number: 2, label: "Content" },
+                    { number: 3, label: "Documents" },
+                    { number: 4, label: "Case Info" },
+                    { number: 5, label: "Review" },
+                  ].map((step, index) => (
+                    <div key={step.number} className="flex items-center">
+                      <div className="flex flex-col items-center">
+                        <div
+                          className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-500 border-2 ${
+                            step.number < createStep
+                              ? "bg-emerald-500 border-emerald-500 text-white"
+                              : step.number === createStep
+                                ? "bg-indigo-600 border-indigo-600 text-white"
+                                : "bg-white border-slate-300 text-slate-400"
+                          }`}
+                        >
+                          {step.number < createStep ? (
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
+                          ) : (
+                            step.number
+                          )}
+                        </div>
+                        <span
+                          className={`text-xs font-medium mt-2 transition-all duration-500 ${
+                            step.number <= createStep ? "text-slate-700" : "text-slate-400"
+                          }`}
+                        >
+                          {step.label}
+                        </span>
+                      </div>
+                      {index < 4 && (
+                        <div
+                          className={`w-16 h-px mx-4 transition-all duration-500 ${
+                            step.number < createStep ? "bg-emerald-500" : "bg-slate-300"
+                          }`}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              /* Vertical Step Indicator for Steps 2+ */
+              <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-30 transition-all duration-700 ease-out">
+                <div className="bg-white/90 backdrop-blur-xl border border-slate-200/40 rounded-2xl p-4 shadow-lg">
+                  <div className="flex flex-col space-y-4">
+                    {[
+                      { number: 1, label: "Method" },
+                      { number: 2, label: "Content" },
+                      { number: 3, label: "Documents" },
+                      { number: 4, label: "Case Info" },
+                      { number: 5, label: "Review" },
+                    ].map((step, index) => (
+                      <div key={step.number} className="flex flex-col items-center">
+                        <div className="flex items-center space-x-3">
+                          <div
+                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-500 border-2 ${
+                              step.number < createStep
+                                ? "bg-emerald-500 border-emerald-500 text-white"
+                                : step.number === createStep
+                                  ? "bg-indigo-600 border-indigo-600 text-white"
+                                  : "bg-white border-slate-300 text-slate-400"
+                            }`}
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2.5}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        ) : (
-                          step.number
+                            {step.number < createStep ? (
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                            ) : (
+                              step.number
+                            )}
+                          </div>
+                          <span
+                            className={`text-xs font-medium transition-all duration-500 whitespace-nowrap ${
+                              step.number <= createStep ? "text-slate-700" : "text-slate-400"
+                            }`}
+                          >
+                            {step.label}
+                          </span>
+                        </div>
+                        {index < 4 && (
+                          <div
+                            className={`w-px h-6 my-2 transition-all duration-500 ${
+                              step.number < createStep ? "bg-emerald-500" : "bg-slate-300"
+                            }`}
+                          />
                         )}
                       </div>
-                      <span
-                        className={`text-xs font-medium mt-2 ${
-                          step.number <= createStep
-                            ? "text-slate-700"
-                            : "text-slate-400"
-                        }`}
-                      >
-                        {step.label}
-                      </span>
-                    </div>
-                    {index < 4 && (
-                      <div
-                        className={`w-16 h-px mx-4 transition-all ${
-                          step.number < createStep
-                            ? "bg-emerald-500"
-                            : "bg-slate-300"
-                        }`}
-                      />
-                    )}
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            )}
+
+            {/* Top Navigation Bar for Steps 2+ */}
+            {createStep > 1 && (
+              <div className="mb-6">
+                <div className="flex items-center justify-between p-4 bg-white/80 backdrop-blur-xl border border-slate-200/40 rounded-2xl shadow-lg">
+                  <button
+                    onClick={() => handleStepTransition(createStep - 1)}
+                    className="flex items-center space-x-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                    <span>Back</span>
+                  </button>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="text-sm text-slate-600">
+                      Step <span className="font-semibold text-indigo-600">{createStep}</span> of 5
+                    </div>
+                    {createStep === 2 && createMethod === "manual" && (
+                      <div className="text-sm text-slate-600">
+                        <span className="font-semibold text-indigo-600">{selectedDocuments.length}</span> documents selected
+                      </div>
+                    )}
+                    <button
+                      onClick={() => handleStepTransition(createStep + 1)}
+                      disabled={
+                        (createStep === 2 && createMethod === "manual" && selectedDocuments.length === 0) ||
+                        (createStep === 4 && (!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email))
+                      }
+                      className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
+                    >
+                      <span>Continue</span>
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Step Content */}
             <div className="min-h-[500px] relative overflow-hidden">
