@@ -1871,27 +1871,6 @@ export default function Dashboard({
                         </div>
                       </div>
 
-                      <div className="flex justify-center mt-8">
-                        <button
-                          onClick={() => handleStepTransition(1)}
-                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
-                        >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M15 19l-7-7 7-7"
-                            />
-                          </svg>
-                          <span>Back to Method Selection</span>
-                        </button>
-                      </div>
                     </div>
                   )}
                 </div>
