@@ -1435,26 +1435,38 @@ export default function Dashboard({
             {createStep > 1 && (
               <div className="mb-6">
                 <div className="flex items-center justify-between p-4 bg-white/80 backdrop-blur-xl border border-slate-200/40 rounded-2xl shadow-lg">
-                  <button
-                    onClick={() => handleStepTransition(createStep - 1)}
-                    className="flex items-center space-x-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                    <span>Back</span>
-                  </button>
-
                   <div className="flex items-center space-x-4">
-                    <div className="text-sm text-slate-600">
-                      Step <span className="font-semibold text-indigo-600">{createStep}</span> of 5
-                    </div>
-                    {createStep === 2 && createMethod === "manual" && (
-                      <div className="text-sm text-slate-600">
-                        <span className="font-semibold text-indigo-600">{selectedDocuments.length}</span> documents selected
-                      </div>
-                    )}
                     <button
+                      onClick={() => handleStepTransition(createStep - 1)}
+                      className="flex items-center space-x-2 px-4 py-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      <span>Back</span>
+                    </button>
+
+                    <div className="border-l border-slate-300 pl-4">
+                      <h2 className="text-lg font-semibold text-slate-800">
+                        {createStep === 2 && createMethod === "manual" && "Select Documents"}
+                        {createStep === 2 && createMethod === "ai" && "Describe Your Case"}
+                        {createStep === 2 && createMethod === "questionnaire" && "Select Questionnaire"}
+                        {createStep === 3 && "Review AI Suggestions"}
+                        {createStep === 4 && "Case Information"}
+                        {createStep === 5 && "Review & Create"}
+                      </h2>
+                      <p className="text-sm text-slate-600">
+                        {createStep === 2 && createMethod === "manual" && "Choose documents from your library to request from the client"}
+                        {createStep === 2 && createMethod === "ai" && "Our AI will analyze your description and suggest relevant documents"}
+                        {createStep === 2 && createMethod === "questionnaire" && "Choose a questionnaire template to send to your client"}
+                        {createStep === 3 && "Review AI recommendations and customize your document list"}
+                        {createStep === 4 && "Enter the basic information for this case"}
+                        {createStep === 5 && "Review all details before creating the case"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
                     onClick={() => {
                       if (createStep === 2 && createMethod === "ai") {
                         handleAISubmit();
@@ -1480,7 +1492,6 @@ export default function Dashboard({
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
-                  </div>
                 </div>
               </div>
             )}
