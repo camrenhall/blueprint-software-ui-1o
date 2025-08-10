@@ -465,6 +465,8 @@ export default function Dashboard({
   // Review page state
   const [reviewSearch, setReviewSearch] = useState("");
   const [selectedCase, setSelectedCase] = useState<any>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [transitionDirection, setTransitionDirection] = useState<'in' | 'out'>('in');
 
   // Reports page state
   const [reportsSearch, setReportsSearch] = useState("");
