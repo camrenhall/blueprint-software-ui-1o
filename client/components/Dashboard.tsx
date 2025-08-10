@@ -914,8 +914,8 @@ export default function Dashboard({
               </div>
             </div>
 
-            {/* Futuristic Scrolling Cases List with Integrated Search */}
-            <FuturisticCaseScroller
+            {/* Cases List with Sidebar and Collapsible Search */}
+            <CaseScrollerWithSidebar
               cases={filteredCases}
               onCaseSelect={setSelectedCase}
               searchValue={reviewSearch}
