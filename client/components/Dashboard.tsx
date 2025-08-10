@@ -471,6 +471,8 @@ export default function Dashboard({
   // Reports page state
   const [reportsSearch, setReportsSearch] = useState("");
   const [selectedCompletedCase, setSelectedCompletedCase] = useState<any>(null);
+  const [isCompletedTransitioning, setIsCompletedTransitioning] = useState(false);
+  const [completedTransitionDirection, setCompletedTransitionDirection] = useState<'in' | 'out'>('in');
 
   // Create page document search visibility
   const [isDocLibrarySearchVisible, setIsDocLibrarySearchVisible] =
