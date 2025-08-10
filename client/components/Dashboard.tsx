@@ -579,18 +579,79 @@ export default function Dashboard({
   };
 
   const handleLoadTemplate = (template: (typeof savedTemplates)[0]) => {
-    const templateDocs = template.documents.map((name) => ({
+    if (selectedDocuments.length > 0) {
+      setPendingTemplate(template);
+      setShowTemplateConflictModal(true);
+      setShowTemplatesInline(false);
+    } else {
+      const templateDocs = template.documents.map((name) => ({
+        name,
+        optional: false,
+      }));
+      setSelectedDocuments(templateDocs);
+      setShowTemplatesInline(false);
+    }
+  };
+
+  const handleTemplateConflictResolve = (action: 'replace' | 'add' | 'cancel') => {
+    if (action === 'cancel' || !pendingTemplate) {
+      setShowTemplateConflictModal(false);
+      setPendingTemplate(null);
+      return;
+    }
+
+    const templateDocs = pendingTemplate.documents.map((name: string) => ({
       name,
       optional: false,
     }));
-    setSelectedDocuments([
-      ...selectedDocuments,
-      ...templateDocs.filter(
-        (doc) =>
-          !selectedDocuments.find((existing) => existing.name === doc.name),
-      ),
-    ]);
-    setShowTemplateModal(false);
+
+    if (action === 'replace') {
+      setSelectedDocuments(templateDocs);
+    } else if (action === 'add') {
+      setSelectedDocuments([
+        ...selectedDocuments,
+        ...templateDocs.filter(
+          (doc) =>
+            !selectedDocuments.find((existing) => existing.name === doc.name),
+        ),
+      ]);
+    }
+
+    setShowTemplateConflictModal(false);
+    setPendingTemplate(null);
+  };
+
+  const handleSaveTemplate = () => {
+    if (selectedDocuments.length === 0) {
+      alert('Please select some documents before saving a template.');
+      return;
+    }
+    setShowSaveTemplateModal(true);
+  };
+
+  const handleConfirmSaveTemplate = () => {
+    if (!templateName.trim()) {
+      alert('Please enter a template name.');
+      return;
+    }
+    // Here you would save to backend/localStorage
+    console.log('Saving template:', {
+      name: templateName,
+      documents: selectedDocuments.map(d => d.name)
+    });
+    setShowSaveTemplateModal(false);
+    setTemplateName('');
+    alert(`Template "${templateName}" saved successfully!`);
+  };
+
+  const handleClearAllDocuments = () => {
+    if (selectedDocuments.length === 0) return;
+    setShowClearConfirmModal(true);
+  };
+
+  const handleConfirmClearAll = () => {
+    setSelectedDocuments([]);
+    setShowClearConfirmModal(false);
   };
 
   // Reset create form when switching tabs
@@ -1741,10 +1802,7 @@ export default function Dashboard({
                                           </div>
                                         </div>
                                         <button
-                                          onClick={() => {
-                                            handleLoadTemplate(template);
-                                            setShowTemplatesInline(false);
-                                          }}
+                                          onClick={() => handleLoadTemplate(template)}
                                           className="ml-3 bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-lg text-xs font-medium transition-all"
                                         >
                                           Load
@@ -1825,10 +1883,7 @@ export default function Dashboard({
                                     )}
                                   </button>
                                   <button
-                                    onClick={() => {
-                                      // Save current selection as template - placeholder functionality
-                                      console.log('Save template with documents:', selectedDocuments.map(d => d.name));
-                                    }}
+                                    onClick={handleSaveTemplate}
                                     className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-green-50 text-green-600 hover:bg-green-100 border border-green-200/60"
                                     title="Save as template"
                                   >
@@ -1837,7 +1892,7 @@ export default function Dashboard({
                                     </svg>
                                   </button>
                                   <button
-                                    onClick={() => setSelectedDocuments([])}
+                                    onClick={handleClearAllDocuments}
                                     className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105 bg-red-50 text-red-600 hover:bg-red-100 border border-red-200/60"
                                     title="Clear all selected documents"
                                   >
