@@ -2360,7 +2360,7 @@ export default function Dashboard({
 
                     <div className="flex justify-between items-center">
                       <button
-                        onClick={() => handleStepTransition(3)}
+                        onClick={() => handleStepTransition(2)}
                         className="text-slate-600 hover:text-slate-700 flex items-center space-x-2 transition-colors"
                       >
                         <svg
