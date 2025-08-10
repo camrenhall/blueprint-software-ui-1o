@@ -316,13 +316,6 @@ export default function CaseDetails({
                         </div>
                         <span className="text-xs font-medium text-slate-800">{comm.type.toUpperCase()}</span>
                       </div>
-                      <span className={`px-1 py-0.5 rounded text-xs font-medium ${
-                        comm.status === "sent" ? "bg-blue-100 text-blue-700" :
-                        comm.status === "delivered" ? "bg-green-100 text-green-700" :
-                        "bg-gray-100 text-gray-700"
-                      }`}>
-                        {comm.status}
-                      </span>
                     </div>
                     <p className="text-xs text-slate-600 truncate mt-1">{comm.subject}</p>
                     <p className="text-xs text-slate-400">{comm.time}</p>
