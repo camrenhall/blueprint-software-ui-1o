@@ -320,6 +320,10 @@ export default function Dashboard({
   // Review page state
   const [reviewSearch, setReviewSearch] = useState("");
   const [selectedCase, setSelectedCase] = useState<any>(null);
+
+  // Reports page state
+  const [reportsSearch, setReportsSearch] = useState("");
+  const [selectedCompletedCase, setSelectedCompletedCase] = useState<any>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [showSort, setShowSort] = useState(false);
   const [showCaseActions, setShowCaseActions] = useState<number | null>(null);
