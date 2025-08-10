@@ -1450,8 +1450,8 @@ export default function Dashboard({
                 </div>
               </div>
             ) : (
-              /* Vertical Step Indicator for Steps 2+ - Fixed consistent position */
-              <div className="fixed left-0 z-20 transition-all duration-700 ease-out" style={{ top: 'calc(50vh - 120px)' }}>
+              /* Vertical Step Indicator for Steps 2+ */
+              <div className="fixed left-0 top-1/2 transform -translate-y-1/2 z-20 transition-all duration-700 ease-out">
                 <div className="bg-white/90 backdrop-blur-xl border border-slate-200/40 rounded-r-2xl pl-6 pr-4 py-4 shadow-lg">
                   <div className="flex flex-col space-y-4">
                     {[
