@@ -812,204 +812,186 @@ export default function Dashboard({
       case "overview":
         return (
           <div className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Quick Stats */}
-              <div className="bg-gradient-to-br from-blue-50/80 to-sky-100/80 p-6 rounded-xl border border-blue-200/40 backdrop-blur-sm">
+            {/* Hero Statistics Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="group relative bg-gradient-to-br from-blue-50/80 via-white to-sky-50/60 border border-blue-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium text-slate-700 mb-1">
-                      Active Cases
-                    </h3>
-                    <div className="text-3xl font-light text-blue-600">247</div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Active Cases</h3>
+                    <div className="text-2xl font-bold text-slate-800">34</div>
                   </div>
-                  <svg
-                    className="w-8 h-8 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-sky-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
                 </div>
-                <p className="text-sm text-slate-600 mt-2">+12 new this week</p>
               </div>
 
-              <div className="bg-gradient-to-br from-indigo-50/80 to-purple-100/80 p-6 rounded-xl border border-indigo-200/40 backdrop-blur-sm">
+              <div className="group relative bg-gradient-to-br from-purple-50/80 via-white to-violet-50/60 border border-purple-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium text-slate-700 mb-1">
-                      Cases Won
-                    </h3>
-                    <div className="text-3xl font-light text-indigo-600">
-                      189
-                    </div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Needs Review</h3>
+                    <div className="text-2xl font-bold text-slate-800">7</div>
                   </div>
-                  <svg
-                    className="w-8 h-8 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
+                  <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    </svg>
+                  </div>
                 </div>
-                <p className="text-sm text-slate-600 mt-2">76% success rate</p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50/80 to-violet-100/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
+              <div className="group relative bg-gradient-to-br from-emerald-50/80 via-white to-green-50/60 border border-emerald-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-medium text-slate-700 mb-1">
-                      Billable Hours
-                    </h3>
-                    <div className="text-3xl font-light text-purple-600">
-                      1,847
-                    </div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Completed</h3>
+                    <div className="text-2xl font-bold text-slate-800">127</div>
                   </div>
-                  <svg
-                    className="w-8 h-8 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                  <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
                 </div>
-                <p className="text-sm text-slate-600 mt-2">This month</p>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-indigo-50/80 via-white to-slate-50/60 border border-indigo-200/30 rounded-2xl p-4 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-xs font-semibold text-slate-600 tracking-wide uppercase mb-1">Success Rate</h3>
+                    <div className="text-2xl font-bold text-slate-800">94.2%</div>
+                  </div>
+                  <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-slate-600 rounded-xl flex items-center justify-center">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Recent Activity */}
-            <div className="bg-gradient-to-br from-slate-50/80 to-blue-50/80 p-6 rounded-xl border border-slate-200/40 backdrop-blur-sm">
-              <h3 className="text-lg font-medium text-slate-700 mb-4">
-                Recent Activity
-              </h3>
-              <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
-                {[
-                  {
-                    action: "Case #247 filed successfully",
-                    time: "2 minutes ago",
-                    type: "success",
-                  },
-                  {
-                    action: "Court hearing scheduled",
-                    time: "15 minutes ago",
-                    type: "info",
-                  },
-                  {
-                    action: "Document review pending",
-                    time: "32 minutes ago",
-                    type: "warning",
-                  },
-                  {
-                    action: "Case #243 won in court",
-                    time: "1 hour ago",
-                    type: "success",
-                  },
-                  {
-                    action: "Client consultation completed",
-                    time: "2 hours ago",
-                    type: "success",
-                  },
-                  {
-                    action: "Evidence analysis finished",
-                    time: "3 hours ago",
-                    type: "info",
-                  },
-                  {
-                    action: "Settlement negotiations ongoing",
-                    time: "4 hours ago",
-                    type: "warning",
-                  },
-                  {
-                    action: "Legal research completed",
-                    time: "5 hours ago",
-                    type: "success",
-                  },
-                  {
-                    action: "Expert witness contacted",
-                    time: "6 hours ago",
-                    type: "info",
-                  },
-                  {
-                    action: "Case brief submitted",
-                    time: "7 hours ago",
-                    type: "success",
-                  },
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between py-3 px-4 bg-white/70 rounded-lg"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div
-                        className={cn(
-                          "w-2 h-2 rounded-full",
-                          item.type === "success" && "bg-blue-400",
-                          item.type === "info" && "bg-indigo-400",
-                          item.type === "warning" && "bg-purple-400",
-                        )}
-                      />
-                      <span className="text-slate-700">{item.action}</span>
+            {/* Main Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Recent Activity - Lightweight */}
+              <div className="lg:col-span-2">
+                <div className="bg-white/90 border border-slate-200/40 rounded-2xl p-6 shadow-sm backdrop-blur-sm">
+                  <h3 className="text-lg font-semibold text-slate-800 mb-5">Recent Activity</h3>
+                  <div className="space-y-4">
+                    {recentActivity.map((activity, index) => (
+                      <div key={index} className="group">
+                        <div className="flex items-center justify-between pb-3 border-b border-slate-100 last:border-b-0 last:pb-0">
+                          <div className="flex items-center space-x-3 flex-1 min-w-0">
+                            <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-slate-500 to-slate-600 flex items-center justify-center">
+                              <span className="text-white font-semibold text-xs">{activity.avatar}</span>
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center space-x-2 mb-1">
+                                <h4 className="font-semibold text-slate-800 text-sm truncate">{activity.name}</h4>
+                                <span className="text-slate-500 text-xs font-mono">{activity.caseId}</span>
+                              </div>
+                              <div className="flex items-center space-x-1 mb-2">
+                                <div className={cn(
+                                  "w-1.5 h-1.5 rounded-full",
+                                  activity.status === 'Complete' && 'bg-emerald-500',
+                                  activity.status === 'Needs Review' && 'bg-purple-500',
+                                  activity.status === 'Awaiting Documents' && 'bg-sky-500'
+                                )} />
+                                <span className={cn(
+                                  "text-xs font-semibold",
+                                  activity.statusColor
+                                )}>
+                                  {activity.status}
+                                </span>
+                              </div>
+                              <div className="grid grid-cols-3 gap-2 text-xs text-slate-600">
+                                <span className="font-medium">{activity.tasksInfo.split(' ')[0]}</span>
+                                <span>{activity.dateInfo.split(' ')[0]} {activity.dateInfo.split(' ')[1]}</span>
+                                <span className="font-medium">{activity.daysInQueue.split(' ')[0]} Days</span>
+                              </div>
+                            </div>
+                          </div>
+                          <svg className="w-4 h-4 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Client Communications Stats */}
+              <div className="space-y-6">
+                <div className="bg-gradient-to-br from-indigo-50/80 to-blue-50/80 border border-indigo-200/40 rounded-2xl p-6 shadow-sm backdrop-blur-sm">
+                  <h3 className="text-lg font-semibold text-slate-800 mb-4">Client Communications</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-600">Emails Sent</span>
+                      <span className="text-slate-800 font-semibold">1,247</span>
                     </div>
-                    <span className="text-sm text-slate-500">{item.time}</span>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-600">Response Rate</span>
+                      <span className="text-emerald-600 font-semibold">87.3%</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-600">Avg Response Time</span>
+                      <span className="text-slate-800 font-semibold">2.4 hrs</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-slate-600">Follow-ups Sent</span>
+                      <span className="text-slate-800 font-semibold">342</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-indigo-200/50">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="text-slate-600">This Week</span>
+                      <span className="text-indigo-600 font-semibold">+23%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Monthly Statistics Histogram */}
+            <div className="bg-white/90 border border-slate-200/40 rounded-2xl p-6 shadow-sm backdrop-blur-sm">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-semibold text-slate-800">Monthly Case Statistics</h3>
+                <div className="flex items-center space-x-4 text-sm">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <span className="text-slate-600">Needs Review</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-sky-500 rounded-full"></div>
+                    <span className="text-slate-600">Awaiting Docs</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                    <span className="text-slate-600">Completed</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Simple Bar Chart - Frontend visualization, backend provides data */}
+              <div className="h-64 flex items-end justify-between space-x-2">
+                {[
+                  { month: 'Jan', needsReview: 40, awaitingDocs: 60, completed: 85 },
+                  { month: 'Feb', needsReview: 35, awaitingDocs: 55, completed: 90 },
+                  { month: 'Mar', needsReview: 50, awaitingDocs: 45, completed: 78 },
+                  { month: 'Apr', needsReview: 30, awaitingDocs: 65, completed: 95 },
+                  { month: 'May', needsReview: 45, awaitingDocs: 40, completed: 88 },
+                  { month: 'Jun', needsReview: 25, awaitingDocs: 50, completed: 102 }
+                ].map((data, index) => (
+                  <div key={index} className="flex-1 flex flex-col items-center space-y-2">
+                    <div className="flex flex-col items-center space-y-1 w-full max-w-12">
+                      <div className="w-full bg-emerald-500 rounded-t-sm" style={{ height: `${(data.completed / 120) * 200}px` }}></div>
+                      <div className="w-full bg-sky-500" style={{ height: `${(data.awaitingDocs / 120) * 200}px` }}></div>
+                      <div className="w-full bg-purple-500 rounded-b-sm" style={{ height: `${(data.needsReview / 120) * 200}px` }}></div>
+                    </div>
+                    <span className="text-xs font-medium text-slate-600">{data.month}</span>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Additional Overview Sections */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="bg-gradient-to-br from-purple-50/80 to-violet-50/80 p-6 rounded-xl border border-purple-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Case Status Overview
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-600">Pending Cases</span>
-                    <span className="text-blue-600 font-medium">23</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-600">In Progress</span>
-                    <span className="text-indigo-600 font-medium">67</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-slate-600">Awaiting Review</span>
-                    <span className="text-purple-600 font-medium">45</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-sky-50/80 to-blue-100/80 p-6 rounded-xl border border-sky-200/40 backdrop-blur-sm">
-                <h3 className="text-lg font-medium text-slate-700 mb-4">
-                  Quick Actions
-                </h3>
-                <div className="space-y-2">
-                  <button className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
-                    Generate Monthly Report
-                  </button>
-                  <button className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
-                    Export User Data
-                  </button>
-                  <button className="w-full text-left p-3 bg-white/70 rounded-lg hover:bg-white/90 transition-colors text-slate-700">
-                    Schedule Maintenance
-                  </button>
-                </div>
               </div>
             </div>
           </div>
