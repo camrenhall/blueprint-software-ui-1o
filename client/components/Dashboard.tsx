@@ -1653,7 +1653,7 @@ export default function Dashboard({
                   {createMethod === "manual" && (
                     <div className="relative">
                       {/* Fixed Height Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-6">
+                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 250px)' }}>
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full">
@@ -1918,7 +1918,7 @@ export default function Dashboard({
                   </div>
 
                   {/* Professional Document Management Interface */}
-                  <div className="grid grid-cols-12 gap-6">
+                  <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 250px)' }}>
                     {/* Available Documents - Elegant Design */}
                     <div className="col-span-7">
                       <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col h-full">
