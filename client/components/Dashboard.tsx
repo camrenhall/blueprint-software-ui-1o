@@ -1437,7 +1437,7 @@ export default function Dashboard({
                           {step.label}
                         </span>
                       </div>
-                      {index < 4 && (
+                      {index < 3 && (
                         <div
                           className={`w-16 h-px mx-4 transition-all duration-500 ${
                             step.number < createStep ? "bg-emerald-500" : "bg-slate-300"
