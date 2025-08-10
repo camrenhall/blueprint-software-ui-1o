@@ -1531,22 +1531,18 @@ export default function Dashboard({
 
                   <button
                     onClick={() => {
-                      if (createStep === 2 && createMethod === "ai") {
+                      if (createStep === 1 && createMethod === "ai") {
                         handleAISubmit();
-                        handleStepTransition(3);
-                      } else if (createStep === 2 && createMethod === "questionnaire") {
-                        handleStepTransition(4);
-                      } else if (createStep === 2 && createMethod === "manual") {
+                        handleStepTransition(2);
+                      } else if (createStep === 1 && createMethod === "questionnaire") {
                         handleStepTransition(3);
                       } else {
                         handleStepTransition(createStep + 1);
                       }
                     }}
                     disabled={
-                      (createStep === 2 && createMethod === "manual" && selectedDocuments.length === 0) ||
-                      (createStep === 2 && createMethod === "ai" && !aiDescription.trim()) ||
-                      (createStep === 3 && selectedDocuments.length === 0) ||
-                      (createStep === 4 && (!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email))
+                      (createStep === 2 && selectedDocuments.length === 0) ||
+                      (createStep === 3 && (!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email))
                     }
                     className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
                   >
