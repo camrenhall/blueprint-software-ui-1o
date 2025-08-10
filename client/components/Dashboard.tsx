@@ -1517,12 +1517,9 @@ export default function Dashboard({
 
                     <div className="border-l border-slate-300 pl-4">
                       <h2 className="text-lg font-semibold text-slate-800">
-                        {createStep === 2 && createMethod === "manual" && "Select Documents"}
-                        {createStep === 2 && createMethod === "ai" && "Describe Your Case"}
-                        {createStep === 2 && createMethod === "questionnaire" && "Select Questionnaire"}
-                        {createStep === 3 && "Select Documents"}
-                        {createStep === 4 && "Case Information"}
-                        {createStep === 5 && "Review & Create"}
+                        {createStep === 2 && "Select Documents"}
+                        {createStep === 3 && "Case Information"}
+                        {createStep === 4 && "Review & Create"}
                       </h2>
                       <p className="text-sm text-slate-600">
                         {createStep === 2 && createMethod === "manual" && "Choose documents from your library to request from the client"}
