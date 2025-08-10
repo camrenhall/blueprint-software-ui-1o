@@ -26,8 +26,11 @@ const TransitionWrapper = ({
   className?: string;
 }) => {
   const getTransformClass = () => {
-    if (!isTransitioning) return "translate-x-0 opacity-100";
+    if (!isTransitioning) {
+      return "translate-x-0 opacity-100";
+    }
 
+    // When transitioning, immediately apply the appropriate state
     if (direction === 'out') {
       return "translate-x-8 opacity-0";
     } else {
@@ -37,7 +40,7 @@ const TransitionWrapper = ({
 
   return (
     <div className={cn(
-      "transition-all duration-300 ease-in-out transform",
+      "transition-all duration-300 ease-out transform",
       getTransformClass(),
       className
     )}>
