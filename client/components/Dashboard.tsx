@@ -1649,78 +1649,54 @@ export default function Dashboard({
                           </div>
                         </div>
 
-                        {/* Selected Documents - Inspired by user's design */}
-                        <div className="col-span-5">
-                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm overflow-hidden">
-                            <div className="px-8 py-6 border-b border-slate-100/60">
+                        {/* Selected Documents - Constrained Height */}
+                        <div className="col-span-5 flex flex-col">
+                          <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full overflow-hidden">
+                            {/* Header */}
+                            <div className="px-6 py-4 border-b border-slate-100/60 flex-shrink-0">
                               <div className="flex items-center justify-between">
                                 <div>
-                                  <h3 className="text-xl font-light text-slate-700 mb-1">
-                                    Selected Documents
-                                  </h3>
-                                  <p className="text-sm text-slate-500">
-                                    {selectedDocuments.length} document
-                                    {selectedDocuments.length !== 1 ? "s" : ""}{" "}
-                                    selected
-                                  </p>
+                                  <h3 className="text-lg font-semibold text-slate-800 mb-1">Selected Documents</h3>
+                                  <p className="text-sm text-slate-500">{selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} selected</p>
                                 </div>
-                                <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center text-sm font-medium">
+                                <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-sm font-bold">
                                   {selectedDocuments.length}
                                 </div>
                               </div>
                             </div>
 
-                            <div className="p-8">
-                              <div className="mb-6">
-                                <input
-                                  type="text"
-                                  value={selectedDocumentSearch}
-                                  onChange={(e) =>
-                                    setSelectedDocumentSearch(e.target.value)
-                                  }
-                                  className="w-full p-4 bg-slate-50/50 border-0 rounded-2xl focus:bg-white focus:ring-2 focus:ring-slate-200 transition-all placeholder-slate-400 text-slate-700"
-                                  placeholder="Search selected..."
-                                />
-                              </div>
+                            {/* Search Bar */}
+                            <div className="px-6 py-4 border-b border-slate-100/40 flex-shrink-0">
+                              <input
+                                type="text"
+                                value={selectedDocumentSearch}
+                                onChange={(e) => setSelectedDocumentSearch(e.target.value)}
+                                className="w-full p-3 bg-slate-50/50 border-0 rounded-xl focus:bg-white focus:ring-2 focus:ring-indigo-200 transition-all placeholder-slate-400 text-slate-700"
+                                placeholder="Search selected..."
+                              />
+                            </div>
 
-                              <div className="h-96 overflow-y-auto space-y-3">
+                            {/* Scrollable Selected Documents */}
+                            <div className="flex-1 overflow-y-auto p-6">
+                              <div className="space-y-3">
                                 {filteredSelectedDocuments.map((doc, index) => (
-                                  <div
-                                    key={index}
-                                    className="border border-slate-200/60 rounded-2xl p-4 bg-slate-50/30 hover:bg-slate-50/60 transition-all"
-                                  >
+                                  <div key={index} className="border border-slate-200/60 rounded-xl p-4 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
                                     <div className="flex items-start justify-between mb-3">
-                                      <span className="text-slate-700 font-normal text-sm leading-relaxed flex-1 pr-3">
-                                        {doc.name}
-                                      </span>
+                                      <span className="text-slate-700 font-normal text-sm leading-relaxed flex-1 pr-3">{doc.name}</span>
                                       <button
-                                        onClick={() =>
-                                          handleRemoveDocument(doc.name)
-                                        }
+                                        onClick={() => handleRemoveDocument(doc.name)}
                                         className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-white/60"
                                         title="Remove document"
                                       >
-                                        <svg
-                                          className="w-4 h-4"
-                                          fill="none"
-                                          stroke="currentColor"
-                                          viewBox="0 0 24 24"
-                                        >
-                                          <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={1.5}
-                                            d="M6 18L18 6M6 6l12 12"
-                                          />
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                                         </svg>
                                       </button>
                                     </div>
                                     <div className="flex items-center justify-between">
                                       <button
-                                        onClick={() =>
-                                          handleToggleOptional(doc.name)
-                                        }
-                                        className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all border ${
+                                        onClick={() => handleToggleOptional(doc.name)}
+                                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all border ${
                                           doc.optional
                                             ? "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
                                             : "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100"
@@ -1737,25 +1713,11 @@ export default function Dashboard({
                                   </div>
                                 ))}
                                 {filteredSelectedDocuments.length === 0 && (
-                                  <div className="text-center py-16 text-slate-500">
-                                    <svg
-                                      className="w-12 h-12 mx-auto mb-4 opacity-30"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={1}
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                                      />
+                                  <div className="text-center py-12 text-slate-500">
+                                    <svg className="w-10 h-10 mx-auto mb-3 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                     </svg>
-                                    <p className="font-light">
-                                      {selectedDocumentSearch
-                                        ? "No documents match search"
-                                        : "Select documents to get started"}
-                                    </p>
+                                    <p className="font-light text-sm">{selectedDocumentSearch ? "No documents match search" : "Select documents to get started"}</p>
                                   </div>
                                 )}
                               </div>
@@ -1764,34 +1726,33 @@ export default function Dashboard({
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center mt-8">
+                      {/* Floating Navigation */}
+                      <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between p-6 bg-white/80 backdrop-blur-xl border border-slate-200/40 rounded-2xl mx-6 mt-6 shadow-lg">
                         <button
                           onClick={() => handleStepTransition(1)}
-                          className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
+                          className="flex items-center space-x-2 px-4 py-3 text-slate-600 hover:text-slate-800 hover:bg-slate-100/60 rounded-xl transition-all font-medium"
                         >
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M15 19l-7-7 7-7"
-                            />
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                           </svg>
-                          <span>Back to Method Selection</span>
+                          <span>Back</span>
                         </button>
 
-                        <button
-                          onClick={() => handleStepTransition(4)}
-                          disabled={selectedDocuments.length === 0}
-                          className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
-                        >
-                          Continue to Case Information
-                        </button>
+                        <div className="flex items-center space-x-4">
+                          <div className="text-sm text-slate-600">
+                            <span className="font-semibold text-indigo-600">{selectedDocuments.length}</span> documents selected
+                          </div>
+                          <button
+                            onClick={() => handleStepTransition(4)}
+                            disabled={selectedDocuments.length === 0}
+                            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-3 rounded-xl transition-all font-medium flex items-center space-x-2 shadow-lg disabled:shadow-none"
+                          >
+                            <span>Continue</span>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </div>
                       </div>
                     </div>
                   )}
