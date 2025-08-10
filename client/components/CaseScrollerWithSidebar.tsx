@@ -6,17 +6,22 @@ interface CaseScrollerProps {
   onCaseSelect: (caseItem: any) => void;
   searchValue: string;
   onSearchChange: (value: string) => void;
+  activeFilters: string[];
+  onFiltersChange: (filters: string[]) => void;
 }
 
-export default function CaseScrollerWithSidebar({ 
-  cases, 
-  onCaseSelect, 
-  searchValue, 
-  onSearchChange 
+export default function CaseScrollerWithSidebar({
+  cases,
+  onCaseSelect,
+  searchValue,
+  onSearchChange,
+  activeFilters,
+  onFiltersChange
 }: CaseScrollerProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [hoveredCaseIndex, setHoveredCaseIndex] = useState<number | null>(null);
 
   // Calculate visual effects based on position from top (simplified for performance)
   const getCaseEffects = (index: number) => {
@@ -53,6 +58,11 @@ export default function CaseScrollerWithSidebar({
       }
     }
     
+    // Override opacity to 100% on hover
+    if (hoveredCaseIndex === index) {
+      opacity = 1;
+    }
+
     return { opacity };
   };
 
@@ -76,26 +86,80 @@ export default function CaseScrollerWithSidebar({
       <div className="flex-shrink-0 w-12 bg-white/60 backdrop-blur-sm border-r border-slate-200/40 flex flex-col items-center py-3 space-y-3 rounded-l-3xl">
         {/* Search Icon */}
         <button
-          onClick={() => setIsSearchVisible(!isSearchVisible)}
+          onClick={() => {
+            if (isSearchVisible && searchValue) {
+              // Clear search if search is visible and has content
+              onSearchChange('');
+            } else {
+              // Toggle search visibility
+              setIsSearchVisible(!isSearchVisible);
+            }
+          }}
           className={cn(
             "w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105",
-            isSearchVisible 
-              ? "bg-indigo-500 text-white shadow-md" 
+            isSearchVisible
+              ? "bg-indigo-500 text-white shadow-md"
               : "bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
           )}
         >
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+          {isSearchVisible && searchValue ? (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          )}
         </button>
         
-        {/* Placeholder for future icons */}
-        <div className="w-8 h-8 rounded-xl bg-slate-100/50 flex items-center justify-center opacity-30">
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-        </div>
-        <div className="w-8 h-8 rounded-xl bg-slate-100/50 flex items-center justify-center opacity-30">
-          <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
-        </div>
+        {/* Needs Review Filter */}
+        <button
+          onClick={() => {
+            const isActive = activeFilters.includes('needs-review');
+            if (isActive) {
+              onFiltersChange(activeFilters.filter(f => f !== 'needs-review'));
+            } else {
+              onFiltersChange([...activeFilters.filter(f => f !== 'awaiting-docs'), 'needs-review']);
+            }
+          }}
+          className={cn(
+            "w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105",
+            activeFilters.includes('needs-review')
+              ? "bg-purple-500 text-white shadow-md"
+              : "bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
+          )}
+          title="Filter: Needs Review"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+          </svg>
+        </button>
+
+        {/* Awaiting Documents Filter */}
+        <button
+          onClick={() => {
+            const isActive = activeFilters.includes('awaiting-docs');
+            if (isActive) {
+              onFiltersChange(activeFilters.filter(f => f !== 'awaiting-docs'));
+            } else {
+              onFiltersChange([...activeFilters.filter(f => f !== 'needs-review'), 'awaiting-docs']);
+            }
+          }}
+          className={cn(
+            "w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-200 hover:scale-105",
+            activeFilters.includes('awaiting-docs')
+              ? "bg-sky-500 text-white shadow-md"
+              : "bg-white/80 text-slate-600 hover:bg-slate-50 border border-slate-200/60"
+          )}
+          title="Filter: Awaiting Documents"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </button>
+
+        {/* Placeholder for future icon */}
         <div className="w-8 h-8 rounded-xl bg-slate-100/50 flex items-center justify-center opacity-30">
           <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
         </div>
@@ -157,6 +221,8 @@ export default function CaseScrollerWithSidebar({
                     className="group cursor-pointer transition-opacity duration-300 ease-out"
                     style={{ opacity }}
                     onClick={() => onCaseSelect(caseItem)}
+                    onMouseEnter={() => setHoveredCaseIndex(index)}
+                    onMouseLeave={() => setHoveredCaseIndex(null)}
                   >
                     <div className={cn(
                       "bg-gradient-to-r rounded-xl p-4 border backdrop-blur-sm transition-all duration-300 relative",
