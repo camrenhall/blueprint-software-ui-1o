@@ -1714,11 +1714,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Document List - DECISIVE SCROLLING FIX */}
-                            <div className="flex-1 p-6" style={{
-                              overflowY: 'scroll',
-                              scrollbarWidth: 'thin',
-                              scrollbarColor: '#cbd5e1 transparent'
-                            }}>
+                            <div className="flex-1 p-6 overflow-y-auto document-scroll">
                               <div className="space-y-1">
                                 {filteredAvailableDocuments.map((doc, index) => (
                                   <button
@@ -1799,11 +1795,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Selected Documents - DECISIVE SCROLLING FIX */}
-                            <div className="flex-1 p-6" style={{
-                              overflowY: 'scroll',
-                              scrollbarWidth: 'thin',
-                              scrollbarColor: '#cbd5e1 transparent'
-                            }}>
+                            <div className="flex-1 p-6 overflow-y-auto document-scroll">
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
                                   <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
@@ -1975,11 +1967,7 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="flex-1 space-y-1" style={{
-                            overflowY: 'scroll',
-                            scrollbarWidth: 'thin',
-                            scrollbarColor: '#cbd5e1 transparent'
-                          }}>
+                          <div className="flex-1 space-y-1 overflow-y-auto document-scroll">
                             {filteredAvailableDocuments.map((doc, index) => (
                               <button
                                 key={index}
@@ -2062,11 +2050,7 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="flex-1 space-y-2" style={{
-                            overflowY: 'scroll',
-                            scrollbarWidth: 'thin',
-                            scrollbarColor: '#cbd5e1 transparent'
-                          }}>
+                          <div className="flex-1 space-y-2 overflow-y-auto document-scroll">
                             {filteredSelectedDocuments.map((doc, index) => (
                               <div
                                 key={index}
