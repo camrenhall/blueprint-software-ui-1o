@@ -1653,7 +1653,7 @@ export default function Dashboard({
                   {createMethod === "manual" && (
                     <div className="relative">
                       {/* Fixed Height Document Management Interface */}
-                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 250px)' }}>
+                      <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 350px)' }}>
                         {/* Available Documents - Constrained Height */}
                         <div className="col-span-7 flex flex-col">
                           <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm backdrop-blur-sm flex flex-col h-full">
@@ -1714,7 +1714,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Document List - FIXED HEIGHT WITH INTERNAL SCROLL */}
-                            <div className="p-6 overflow-y-auto document-scroll" style={{ height: '200px' }}>
+                            <div className="p-6 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 500px)' }}>
                               <div className="space-y-1">
                                 {filteredAvailableDocuments.map((doc, index) => (
                                   <button
@@ -1795,7 +1795,7 @@ export default function Dashboard({
                             </div>
 
                             {/* Scrollable Selected Documents - FIXED HEIGHT WITH INTERNAL SCROLL */}
-                            <div className="p-6 overflow-y-auto document-scroll" style={{ height: '200px' }}>
+                            <div className="p-6 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 500px)' }}>
                               <div className="space-y-2">
                                 {filteredSelectedDocuments.map((doc, index) => (
                                   <div key={index} className="border border-slate-200/60 rounded-xl p-3 bg-slate-50/30 hover:bg-slate-50/60 transition-all">
@@ -1918,7 +1918,7 @@ export default function Dashboard({
                   </div>
 
                   {/* Professional Document Management Interface */}
-                  <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 250px)' }}>
+                  <div className="grid grid-cols-12 gap-6" style={{ height: 'calc(100vh - 350px)' }}>
                     {/* Available Documents - Elegant Design */}
                     <div className="col-span-7">
                       <div className="bg-white/95 border border-slate-200/40 rounded-3xl shadow-sm flex flex-col h-full">
@@ -1967,7 +1967,7 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="space-y-1 overflow-y-auto document-scroll" style={{ height: '200px' }}>
+                          <div className="space-y-1 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 500px)' }}>
                             {filteredAvailableDocuments.map((doc, index) => (
                               <button
                                 key={index}
@@ -2050,7 +2050,7 @@ export default function Dashboard({
                             />
                           </div>
 
-                          <div className="space-y-2 overflow-y-auto document-scroll" style={{ height: '200px' }}>
+                          <div className="space-y-2 overflow-y-auto document-scroll" style={{ height: 'calc(100vh - 500px)' }}>
                             {filteredSelectedDocuments.map((doc, index) => (
                               <div
                                 key={index}
