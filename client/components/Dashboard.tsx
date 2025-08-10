@@ -2128,35 +2128,6 @@ export default function Dashboard({
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center mt-8">
-                    <button
-                      onClick={() => handleStepTransition(2)}
-                      className="text-slate-500 hover:text-slate-700 flex items-center space-x-2 font-medium transition-colors"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 19l-7-7 7-7"
-                        />
-                      </svg>
-                      <span>Back</span>
-                    </button>
-
-                    <button
-                      onClick={() => handleStepTransition(4)}
-                      disabled={selectedDocuments.length === 0}
-                      className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white px-6 py-2.5 rounded-lg transition-colors font-medium"
-                    >
-                      Continue to Case Information
-                    </button>
-                  </div>
                 </div>
               )}
 
