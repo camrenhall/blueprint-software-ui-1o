@@ -1200,74 +1200,79 @@ export default function Dashboard({
           );
         }
         return (
-          <div className="space-y-6">
-            {/* Floating Status Indicators */}
-            <div className="flex items-center justify-center mb-8">
-              <div className="flex items-center space-x-8 bg-white/40 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 shadow-xl">
-                {/* Completed Cases */}
-                <div className="flex items-center space-x-3 group">
-                  <div className="relative">
-                    <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
-                    <div className="absolute inset-0 w-3 h-3 bg-emerald-400 rounded-full animate-ping opacity-20"></div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-slate-800 group-hover:text-emerald-600 transition-colors duration-200">
-                      127
+          <TransitionWrapper
+            isTransitioning={isTransitioning}
+            direction={transitionDirection}
+          >
+            <div className="space-y-6">
+              {/* Floating Status Indicators */}
+              <div className="flex items-center justify-center mb-8">
+                <div className="flex items-center space-x-8 bg-white/40 backdrop-blur-xl border border-white/20 rounded-full px-8 py-4 shadow-xl">
+                  {/* Completed Cases */}
+                  <div className="flex items-center space-x-3 group">
+                    <div className="relative">
+                      <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                      <div className="absolute inset-0 w-3 h-3 bg-emerald-400 rounded-full animate-ping opacity-20"></div>
                     </div>
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-                      Complete
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-slate-800 group-hover:text-emerald-600 transition-colors duration-200">
+                        127
+                      </div>
+                      <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                        Complete
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Divider */}
-                <div className="w-px h-8 bg-gradient-to-b from-transparent via-slate-300/50 to-transparent"></div>
+                  {/* Divider */}
+                  <div className="w-px h-8 bg-gradient-to-b from-transparent via-slate-300/50 to-transparent"></div>
 
-                {/* Needs Review */}
-                <div className="flex items-center space-x-3 group">
-                  <div className="relative">
-                    <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
-                    <div className="absolute inset-0 w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-20"></div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors duration-200">
-                      7
+                  {/* Needs Review */}
+                  <div className="flex items-center space-x-3 group">
+                    <div className="relative">
+                      <div className="w-3 h-3 bg-purple-500 rounded-full animate-pulse"></div>
+                      <div className="absolute inset-0 w-3 h-3 bg-purple-400 rounded-full animate-ping opacity-20"></div>
                     </div>
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-                      Review
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors duration-200">
+                        7
+                      </div>
+                      <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                        Review
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Divider */}
-                <div className="w-px h-8 bg-gradient-to-b from-transparent via-slate-300/50 to-transparent"></div>
+                  {/* Divider */}
+                  <div className="w-px h-8 bg-gradient-to-b from-transparent via-slate-300/50 to-transparent"></div>
 
-                {/* Awaiting Documents */}
-                <div className="flex items-center space-x-3 group">
-                  <div className="relative">
-                    <div className="w-3 h-3 bg-sky-500 rounded-full animate-pulse"></div>
-                    <div className="absolute inset-0 w-3 h-3 bg-sky-400 rounded-full animate-ping opacity-20"></div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors duration-200">
-                      34
+                  {/* Awaiting Documents */}
+                  <div className="flex items-center space-x-3 group">
+                    <div className="relative">
+                      <div className="w-3 h-3 bg-sky-500 rounded-full animate-pulse"></div>
+                      <div className="absolute inset-0 w-3 h-3 bg-sky-400 rounded-full animate-ping opacity-20"></div>
                     </div>
-                    <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-                      Awaiting
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-slate-800 group-hover:text-sky-600 transition-colors duration-200">
+                        34
+                      </div>
+                      <div className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                        Awaiting
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Recent Activity - Full Width */}
-            <div className="max-w-4xl mx-auto">
-              <RecentActivityTable
-                activities={recentActivity}
-                onCaseSelect={setSelectedCase}
-              />
+              {/* Recent Activity - Full Width */}
+              <div className="max-w-4xl mx-auto">
+                <RecentActivityTable
+                  activities={recentActivity}
+                  onCaseSelect={handleCaseSelect}
+                />
+              </div>
             </div>
-          </div>
+          </TransitionWrapper>
         );
 
       case "review":
