@@ -1678,15 +1678,6 @@ export default function Dashboard({
                 <div
                   className={`max-w-6xl mx-auto transition-all duration-700 ease-out ${stepTransitioning ? "opacity-0 translate-y-4" : "opacity-100 translate-y-0"}`}
                 >
-                  <div className="text-center mb-10">
-                    <h1 className="text-3xl font-light text-slate-800 mb-4">
-                      Select Documents
-                    </h1>
-                    <p className="text-slate-600 text-lg">
-                      {createMethod === "ai" ? "Review AI suggestions and customize your document list" : "Choose documents from your library to request from the client"}
-                    </p>
-                  </div>
-
                   {(createMethod === "manual" || createMethod === "ai") && (
                     <div className="relative">
                       {/* Fixed Height Document Management Interface */}
