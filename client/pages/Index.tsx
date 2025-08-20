@@ -7,6 +7,7 @@ export default function Index() {
   const [dashboardTitle, setDashboardTitle] = useState("");
   const [dashboardPage, setDashboardPage] = useState("overview");
   const [isVisible, setIsVisible] = useState(false);
+  const [activeRightContent, setActiveRightContent] = useState<string | null>(null);
 
   useEffect(() => {
     // Fade in the menu after a short delay
