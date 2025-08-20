@@ -37,19 +37,19 @@ export default function Login() {
         {/* Hero section - Left side */}
         <div className="flex-1 pl-20 md:pl-32 lg:pl-40 pr-8">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-7xl font-light text-slate-800 mb-6 tracking-wide leading-tight">
-              <span className="bg-gradient-to-r from-blue-600 via-slate-800 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-light mb-6 tracking-wide leading-tight">
+              <span className="bg-gradient-to-r from-[#0E315C] via-[#99C0F0] to-[#C5BFEE] bg-clip-text text-transparent">
                 Welcome Back
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-slate-700 mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl text-[#0E315C] mb-8 leading-relaxed opacity-90">
               Step into a world of infinite possibilities. Your journey through
               space and time continues here.
             </p>
-            <div className="space-y-4 text-slate-600">
+            <div className="space-y-4 text-[#0E315C]">
               <div className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 text-blue-600"
+                  className="w-5 h-5 text-[#99C0F0]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -65,7 +65,7 @@ export default function Login() {
               </div>
               <div className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 text-purple-600"
+                  className="w-5 h-5 text-[#C5BFEE]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -81,7 +81,7 @@ export default function Login() {
               </div>
               <div className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 text-emerald-600"
+                  className="w-5 h-5 text-[#99C0F0]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -101,12 +101,12 @@ export default function Login() {
 
         {/* Login form - Right side */}
         <div className="flex-shrink-0 w-full max-w-lg pr-20 md:pr-32 lg:pr-40">
-          <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-white/40 shadow-2xl p-10">
+          <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-[#C1D9F6]/60 shadow-2xl p-10 shadow-[#99C0F0]/20">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-light text-slate-800 mb-2">
+              <h2 className="text-2xl font-light text-[#0E315C] mb-2">
                 Sign In
               </h2>
-              <p className="text-slate-600">Access your account</p>
+              <p className="text-[#0E315C]/70">Access your account</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -114,7 +114,7 @@ export default function Login() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-slate-700 mb-2"
+                  className="block text-sm font-medium text-[#0E315C] mb-2"
                 >
                   Email
                 </label>
@@ -124,12 +124,12 @@ export default function Login() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white/80 border border-[#C1D9F6] rounded-xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all duration-200"
                     placeholder="Enter your email"
                     required
                   />
                   <svg
-                    className="absolute right-3 top-3.5 w-5 h-5 text-slate-400"
+                    className="absolute right-3 top-3.5 w-5 h-5 text-[#0E315C]/40"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -148,7 +148,7 @@ export default function Login() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-slate-700 mb-2"
+                  className="block text-sm font-medium text-[#0E315C] mb-2"
                 >
                   Password
                 </label>
@@ -158,12 +158,12 @@ export default function Login() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/70 border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white/80 border border-[#C1D9F6] rounded-xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all duration-200"
                     placeholder="Enter your password"
                     required
                   />
                   <svg
-                    className="absolute right-3 top-3.5 w-5 h-5 text-slate-400"
+                    className="absolute right-3 top-3.5 w-5 h-5 text-[#0E315C]/40"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -182,7 +182,7 @@ export default function Login() {
               <div className="flex justify-end text-sm">
                 <button
                   type="button"
-                  className="text-blue-600 hover:text-blue-700 transition-colors duration-200"
+                  className="text-[#99C0F0] hover:text-[#0E315C] transition-colors duration-200"
                 >
                   Forgot password?
                 </button>
@@ -192,7 +192,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#99C0F0] text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg hover:shadow-[#99C0F0]/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center space-x-2">
@@ -220,9 +220,13 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Subtle corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-transparent rounded-br-full" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-200/20 to-transparent rounded-tl-full" />
+      {/* Elegant corner accents with new palette */}
+      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#C1D9F6]/30 to-transparent rounded-br-full" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#C5BFEE]/30 to-transparent rounded-tl-full" />
+      
+      {/* Additional floating accents */}
+      <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-gradient-to-br from-[#99C0F0]/20 to-transparent rounded-full blur-xl" />
+      <div className="absolute bottom-1/3 left-1/5 w-20 h-20 bg-gradient-to-br from-[#C5BFEE]/15 to-transparent rounded-full blur-xl" />
     </div>
   );
 }
