@@ -104,27 +104,27 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
       <div className="flex-1">
         {/* Step 1: Method Selection */}
         {createStep === 1 && (
-          <div className="space-y-6">
-            <div className="text-center mb-6">
-              <p className="text-[#0E315C]/80 text-sm leading-relaxed max-w-md mx-auto">
+          <div className={`relative z-10 space-y-8 transition-all duration-1000 ease-out delay-700 ${createStep === 1 ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}>
+            <div className="text-center mb-8">
+              <p className="text-[#0E315C]/60 text-sm leading-relaxed max-w-sm mx-auto font-light">
                 Choose your preferred method for creating a new case and requesting documents from your client
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               <button
                 onClick={() => handleMethodSelect("ai")}
-                className="w-full bg-white/80 backdrop-blur-sm border border-[#C1D9F6]/60 hover:border-[#99C0F0] hover:shadow-lg hover:shadow-[#99C0F0]/10 transition-all duration-300 p-6 rounded-2xl text-left group"
+                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-[#99C0F0] rounded-xl flex items-center justify-center group-hover:bg-[#0E315C] transition-colors flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start space-x-5">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-medium text-[#0E315C] mb-1">AI Assist</h3>
-                    <p className="text-[#0E315C]/70 text-sm leading-relaxed">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-light text-[#0E315C] mb-2">AI Assist</h3>
+                    <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
                       Describe your case and let AI suggest the most relevant documents to request
                     </p>
                   </div>
@@ -133,17 +133,17 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
               <button
                 onClick={() => handleMethodSelect("manual")}
-                className="w-full bg-white/80 backdrop-blur-sm border border-[#C1D9F6]/60 hover:border-[#99C0F0] hover:shadow-lg hover:shadow-[#99C0F0]/10 transition-all duration-300 p-6 rounded-2xl text-left group"
+                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C5BFEE]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C5BFEE]/5 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-[#C5BFEE] rounded-xl flex items-center justify-center group-hover:bg-[#0E315C] transition-colors flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start space-x-5">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#C5BFEE]/80 to-[#C1D9F6]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-medium text-[#0E315C] mb-1">Manual Select</h3>
-                    <p className="text-[#0E315C]/70 text-sm leading-relaxed">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-light text-[#0E315C] mb-2">Manual Select</h3>
+                    <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
                       Manually choose documents from your organized document library
                     </p>
                   </div>
@@ -152,17 +152,17 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
               <button
                 onClick={() => handleMethodSelect("questionnaire")}
-                className="w-full bg-white/80 backdrop-blur-sm border border-[#C1D9F6]/60 hover:border-[#99C0F0] hover:shadow-lg hover:shadow-[#99C0F0]/10 transition-all duration-300 p-6 rounded-2xl text-left group"
+                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C1D9F6]/70 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C1D9F6]/5 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform"
               >
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-[#C1D9F6] rounded-xl flex items-center justify-center group-hover:bg-[#0E315C] transition-colors flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-start space-x-5">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#C1D9F6]/80 to-[#99C0F0]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-medium text-[#0E315C] mb-1">Questionnaire</h3>
-                    <p className="text-[#0E315C]/70 text-sm leading-relaxed">
+                  <div className="flex-1">
+                    <h3 className="text-lg font-light text-[#0E315C] mb-2">Questionnaire</h3>
+                    <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
                       Send a structured questionnaire tailored to your case type
                     </p>
                   </div>
