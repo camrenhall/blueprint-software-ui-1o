@@ -115,7 +115,7 @@ export default function Index() {
         <RadialScroller items={menuItems} className="h-full" />
 
         {/* Elegant Vertical Divider */}
-        <div className="absolute left-[35%] top-0 h-full flex items-center z-20">
+        <div className="absolute left-[40%] top-0 h-full flex items-center z-20">
           <div className="relative h-[75vh]">
             {/* Main divider line - more visible */}
             <div className="w-0.5 h-full bg-gradient-to-b from-transparent via-[#99C0F0]/80 to-transparent shadow-sm"></div>
