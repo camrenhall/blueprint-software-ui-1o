@@ -115,20 +115,20 @@ export default function Index() {
         <RadialScroller items={menuItems} className="h-full" />
 
         {/* Elegant Vertical Divider */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 h-[80vh] flex items-center">
-          <div className="relative">
-            {/* Main divider line */}
-            <div className="w-px h-full bg-gradient-to-b from-transparent via-[#C1D9F6]/60 to-transparent"></div>
+        <div className="absolute left-[60%] top-0 h-full flex items-center z-20">
+          <div className="relative h-[75vh]">
+            {/* Main divider line - more visible */}
+            <div className="w-0.5 h-full bg-gradient-to-b from-transparent via-[#99C0F0]/80 to-transparent shadow-sm"></div>
 
             {/* Floating accent dots */}
-            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#99C0F0]/40 rounded-full animate-pulse"></div>
-            <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#C5BFEE]/50 rounded-full animate-pulse" style={{ animationDelay: "1s" }}></div>
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#99C0F0]/50 rounded-full animate-pulse" style={{ animationDelay: "2s" }}></div>
-            <div className="absolute top-3/4 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#C5BFEE]/40 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }}></div>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#99C0F0]/40 rounded-full animate-pulse" style={{ animationDelay: "1.5s" }}></div>
+            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#C5BFEE]/70 rounded-full animate-pulse shadow-lg"></div>
+            <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#99C0F0]/60 rounded-full animate-pulse" style={{ animationDelay: "1s" }}></div>
+            <div className="absolute top-[45%] left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#C1D9F6]/80 rounded-full animate-pulse" style={{ animationDelay: "2s" }}></div>
+            <div className="absolute top-[70%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#C5BFEE]/60 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#99C0F0]/70 rounded-full animate-pulse" style={{ animationDelay: "1.5s" }}></div>
 
             {/* Subtle glow effect */}
-            <div className="absolute inset-0 w-px bg-gradient-to-b from-transparent via-[#99C0F0]/20 to-transparent blur-sm"></div>
+            <div className="absolute inset-0 w-0.5 bg-gradient-to-b from-transparent via-[#C1D9F6]/30 to-transparent blur-[1px]"></div>
           </div>
         </div>
       </div>
