@@ -55,19 +55,19 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         )}
       </div>
 
-      {/* Elegant Step Indicator */}
-      <div className="mb-8">
-        <div className="flex items-center space-x-4">
+      {/* Ethereal Step Indicator */}
+      <div className={`relative z-10 mb-12 transition-all duration-800 ease-out delay-500 ${createStep ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-3"}`}>
+        <div className="flex items-center justify-center space-x-6">
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-center">
               <div className="flex flex-col items-center">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium transition-all duration-500 ${
+                  className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-light transition-all duration-700 backdrop-blur-sm ${
                     step.number < createStep
-                      ? "bg-[#99C0F0] text-white shadow-md shadow-[#99C0F0]/30"
+                      ? "bg-[#99C0F0]/80 text-white shadow-lg shadow-[#99C0F0]/20 scale-110"
                       : step.number === createStep
-                        ? "bg-[#C5BFEE] text-white shadow-md shadow-[#C5BFEE]/30"
-                        : "bg-[#C1D9F6]/30 text-[#0E315C]/50 border border-[#C1D9F6]"
+                        ? "bg-[#C5BFEE]/80 text-white shadow-lg shadow-[#C5BFEE]/20 scale-105 animate-pulse"
+                        : "bg-white/40 text-[#0E315C]/50 border border-[#C1D9F6]/40 backdrop-blur-sm"
                   }`}
                 >
                   {step.number < createStep ? (
@@ -79,8 +79,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   )}
                 </div>
                 <span
-                  className={`text-xs font-medium mt-1 transition-all duration-500 ${
-                    step.number <= createStep ? "text-[#0E315C]" : "text-[#0E315C]/40"
+                  className={`text-xs font-light mt-2 transition-all duration-700 ${
+                    step.number <= createStep ? "text-[#0E315C]/80" : "text-[#0E315C]/30"
                   }`}
                 >
                   {step.label}
@@ -88,8 +88,10 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </div>
               {index < steps.length - 1 && (
                 <div
-                  className={`w-12 h-0.5 mx-3 transition-all duration-500 ${
-                    step.number < createStep ? "bg-[#99C0F0]" : "bg-[#C1D9F6]/40"
+                  className={`w-16 h-px mx-4 transition-all duration-700 ${
+                    step.number < createStep
+                      ? "bg-gradient-to-r from-[#99C0F0]/60 to-[#C5BFEE]/60"
+                      : "bg-[#C1D9F6]/30"
                   }`}
                 />
               )}
