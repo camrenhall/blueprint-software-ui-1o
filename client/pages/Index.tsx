@@ -131,6 +131,21 @@ export default function Index() {
             <div className="absolute inset-0 w-0.5 bg-gradient-to-b from-transparent via-[#C1D9F6]/30 to-transparent blur-[1px]"></div>
           </div>
         </div>
+
+        {/* Right Side Content Area */}
+        {activeRightContent && (
+          <div
+            className={`absolute right-0 top-0 h-full transition-all duration-500 ease-out ${
+              activeRightContent ? "w-[55%] opacity-100" : "w-0 opacity-0"
+            }`}
+          >
+            <div className="h-full bg-white/40 backdrop-blur-xl border-l border-[#C1D9F6]/30 shadow-xl">
+              {activeRightContent === "create" && (
+                <InlineCreate onClose={() => setActiveRightContent(null)} />
+              )}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Subtle corner accents */}
