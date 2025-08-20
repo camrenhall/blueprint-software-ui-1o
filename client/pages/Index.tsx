@@ -27,9 +27,7 @@ export default function Index() {
       id: "create",
       title: "Create",
       action: () => {
-        setDashboardPage("create");
-        setDashboardTitle("");
-        setDashboardOpen(true);
+        setActiveRightContent("create");
       },
     },
     {
