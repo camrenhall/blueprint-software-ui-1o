@@ -37,7 +37,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
   return (
     <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-hidden px-8 py-8 relative flex flex-col rounded-3xl">
       {/* Enhanced Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-[#C1D9F6]/8 to-[#99C0F0]/6 blur-2xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
+      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
 
       {/* Header */}
       <div className="relative z-10 text-center mb-8 flex-shrink-0">
@@ -278,7 +279,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </button>
             </div>
 
-            <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-2xl p-6">
+            <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
               <div className="text-center text-[#0E315C]/60 py-8">
                 <svg
                   className="w-12 h-12 mx-auto mb-4 opacity-40"
@@ -359,7 +360,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </button>
             </div>
 
-            <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-2xl p-6 space-y-4">
+            <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#0E315C] mb-2">
@@ -487,7 +488,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             </div>
 
             <div className="space-y-4">
-              <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-2xl p-6">
+              <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
                 <h3 className="text-sm font-medium text-[#0E315C] mb-3">
                   Case Summary
                 </h3>
