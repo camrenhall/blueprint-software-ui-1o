@@ -37,8 +37,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
   return (
     <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-hidden px-8 py-8 relative flex flex-col rounded-3xl">
       {/* Enhanced Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-[#C1D9F6]/10 to-[#99C0F0]/8 blur-2xl" />
-      <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-[#C1D9F6]/8 to-[#99C0F0]/6 blur-2xl" />
 
       {/* Header */}
       <div className="relative z-10 text-center mb-8 flex-shrink-0">
