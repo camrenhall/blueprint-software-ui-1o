@@ -2,14 +2,16 @@ import { FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Case } from './types';
 import { CaseRow } from './CaseRow';
+import { CaseRowCompact } from './CaseRowCompact';
 
 interface CaseListProps {
   cases: Case[];
   onCaseSelect: (caseItem: Case) => void;
+  isCompact?: boolean;
   className?: string;
 }
 
-export function CaseList({ cases, onCaseSelect, className }: CaseListProps) {
+export function CaseList({ cases, onCaseSelect, isCompact = false, className }: CaseListProps) {
   if (cases.length === 0) {
     return (
       <div className={cn("relative z-10 flex-1 flex items-center justify-center", className)}>
@@ -24,14 +26,26 @@ export function CaseList({ cases, onCaseSelect, className }: CaseListProps) {
 
   return (
     <div className={cn("relative z-10 flex-1 overflow-y-auto", className)}>
-      <div className="space-y-5 pr-2">
+      <div className={cn(
+        "pr-2 transition-all duration-300",
+        isCompact ? "space-y-2" : "space-y-5"
+      )}>
         {cases.map((caseItem, index) => (
-          <CaseRow
-            key={caseItem.id}
-            case={caseItem}
-            index={index}
-            onClick={onCaseSelect}
-          />
+          isCompact ? (
+            <CaseRowCompact
+              key={caseItem.id}
+              case={caseItem}
+              index={index}
+              onClick={onCaseSelect}
+            />
+          ) : (
+            <CaseRow
+              key={caseItem.id}
+              case={caseItem}
+              index={index}
+              onClick={onCaseSelect}
+            />
+          )
         ))}
       </div>
     </div>
