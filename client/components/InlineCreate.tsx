@@ -33,23 +33,24 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
   ];
 
   return (
-    <div className="h-full overflow-y-auto px-6 py-8 relative">
-      {/* Soft Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-[#C1D9F6]/5 to-[#99C0F0]/5 blur-3xl" />
+    <div className="h-full overflow-y-auto px-8 py-10 relative">
+      {/* Enhanced Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
+      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
 
       {/* Header */}
-      <div className="relative z-10 text-center mb-10">
+      <div className="relative z-10 text-center mb-12">
         <div className={`transition-all duration-1000 ease-out delay-300 ${createStep ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}>
-          <h1 className="text-3xl font-extralight text-[#0E315C] mb-3 tracking-wide">Create New Case</h1>
-          <p className="text-[#0E315C]/60 text-sm leading-relaxed">Build a new case with intelligent document collection</p>
+          <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">Create New Case</h1>
+          <p className="text-[#0E315C]/70 text-base leading-relaxed">Build a new case with intelligent document collection</p>
         </div>
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-0 right-0 w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/40 hover:text-[#0E315C] hover:bg-[#C1D9F6]/15 transition-all duration-300 hover:scale-110"
+            className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         )}
