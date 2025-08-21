@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CloudBackground from "@/components/CloudBackground";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,32 +15,40 @@ export default function Login() {
     // Demo: Allow any login to work
     setTimeout(() => {
       setIsLoading(false);
-      navigate("/menu");
-    }, 800);
+      setIsTransitioning(true);
+
+      // Brief transition delay for fluid experience
+      setTimeout(() => {
+        navigate("/menu");
+      }, 400);
+    }, 600);
   };
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden">
-      <CloudBackground />
-
+    <div
+      className={`min-h-screen w-full relative overflow-hidden transition-all duration-500 ease-out ${
+        isTransitioning
+          ? "opacity-0 transform scale-105"
+          : "opacity-100 transform scale-100"
+      }`}
+    >
       {/* Main content */}
       <div className="relative z-10 min-h-screen flex items-center">
         {/* Hero section - Left side */}
         <div className="flex-1 pl-20 md:pl-32 lg:pl-40 pr-8">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-7xl font-light text-white mb-6 tracking-wide leading-tight">
-              <span className="bg-gradient-to-r from-blue-300 via-white to-purple-300 bg-clip-text text-transparent">
-                Welcome Back
-              </span>
+            <h1 className="text-5xl md:text-7xl font-light text-[#0E315C] mb-6 tracking-wide leading-tight">
+              Luceron AI
             </h1>
-            <p className="text-xl md:text-2xl text-white/70 mb-8 leading-relaxed">
-              Step into a world of infinite possibilities. Your journey through
-              space and time continues here.
+            <p className="text-xl md:text-2xl text-[#0E315C] mb-8 leading-relaxed opacity-90">
+              Streamline your legal discovery process with intelligent
+              automation. Luceron simplifies document collection, client
+              follow-ups, and discovery auditing.
             </p>
-            <div className="space-y-4 text-white/60">
+            <div className="space-y-4 text-[#0E315C]">
               <div className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 text-blue-400"
+                  className="w-5 h-5 text-[#99C0F0]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -49,14 +57,14 @@ export default function Login() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={1.5}
-                    d="M5 13l4 4L19 7"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <span>Seamless cloud synchronization</span>
+                <span>Automated document collection</span>
               </div>
               <div className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 text-purple-400"
+                  className="w-5 h-5 text-[#C5BFEE]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -65,14 +73,14 @@ export default function Login() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={1.5}
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
                   />
                 </svg>
-                <span>Enterprise-grade security</span>
+                <span>Intelligent client follow-ups</span>
               </div>
               <div className="flex items-center space-x-3">
                 <svg
-                  className="w-5 h-5 text-emerald-400"
+                  className="w-5 h-5 text-[#99C0F0]"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -81,10 +89,10 @@ export default function Login() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={1.5}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
                   />
                 </svg>
-                <span>Lightning-fast performance</span>
+                <span>Comprehensive discovery auditing</span>
               </div>
             </div>
           </div>
@@ -92,10 +100,12 @@ export default function Login() {
 
         {/* Login form - Right side */}
         <div className="flex-shrink-0 w-full max-w-lg pr-20 md:pr-32 lg:pr-40">
-          <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-10">
+          <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-[#C1D9F6]/60 shadow-2xl p-10 shadow-[#99C0F0]/20">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-light text-white mb-2">Sign In</h2>
-              <p className="text-white/60">Access your account</p>
+              <h2 className="text-2xl font-light text-[#0E315C] mb-2">
+                Sign In
+              </h2>
+              <p className="text-[#0E315C]/70">Access your account</p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -103,7 +113,7 @@ export default function Login() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-white/80 mb-2"
+                  className="block text-sm font-medium text-[#0E315C] mb-2"
                 >
                   Email
                 </label>
@@ -113,12 +123,12 @@ export default function Login() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white/80 border border-[#C1D9F6] rounded-xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all duration-200"
                     placeholder="Enter your email"
                     required
                   />
                   <svg
-                    className="absolute right-3 top-3.5 w-5 h-5 text-white/40"
+                    className="absolute right-3 top-3.5 w-5 h-5 text-[#0E315C]/40"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -137,7 +147,7 @@ export default function Login() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-white/80 mb-2"
+                  className="block text-sm font-medium text-[#0E315C] mb-2"
                 >
                   Password
                 </label>
@@ -147,12 +157,12 @@ export default function Login() {
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 bg-white/80 border border-[#C1D9F6] rounded-xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all duration-200"
                     placeholder="Enter your password"
                     required
                   />
                   <svg
-                    className="absolute right-3 top-3.5 w-5 h-5 text-white/40"
+                    className="absolute right-3 top-3.5 w-5 h-5 text-[#0E315C]/40"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -171,7 +181,7 @@ export default function Login() {
               <div className="flex justify-end text-sm">
                 <button
                   type="button"
-                  className="text-blue-300 hover:text-blue-200 transition-colors duration-200"
+                  className="text-[#99C0F0] hover:text-[#0E315C] transition-colors duration-200"
                 >
                   Forgot password?
                 </button>
@@ -181,7 +191,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#99C0F0] text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg hover:shadow-[#99C0F0]/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center space-x-2">
@@ -209,9 +219,13 @@ export default function Login() {
         </div>
       </div>
 
-      {/* Subtle corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-br-full" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-400/10 to-transparent rounded-tl-full" />
+      {/* Elegant corner accents with new palette */}
+      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#C1D9F6]/30 to-transparent rounded-br-full" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#C5BFEE]/30 to-transparent rounded-tl-full" />
+
+      {/* Additional floating accents */}
+      <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-gradient-to-br from-[#99C0F0]/20 to-transparent rounded-full blur-xl" />
+      <div className="absolute bottom-1/3 left-1/5 w-20 h-20 bg-gradient-to-br from-[#C5BFEE]/15 to-transparent rounded-full blur-xl" />
     </div>
   );
 }

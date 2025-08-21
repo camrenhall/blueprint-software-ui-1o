@@ -85,7 +85,7 @@ export default {
             transform: "translateY(0px) translateX(0px)",
           },
           "50%": {
-            transform: "translateY(-10px) translateX(5px)",
+            transform: "translateY(-20px) translateX(15px)",
           },
         },
         "float-slow": {
@@ -93,7 +93,55 @@ export default {
             transform: "translateY(0px) translateX(0px)",
           },
           "50%": {
-            transform: "translateY(-15px) translateX(-5px)",
+            transform: "translateY(-25px) translateX(-10px)",
+          },
+        },
+        drift: {
+          "0%": {
+            transform: "translateX(0px) translateY(0px) scale(1)",
+            opacity: "0.4",
+          },
+          "33%": {
+            transform: "translateX(40px) translateY(-15px) scale(1.05)",
+            opacity: "0.8",
+          },
+          "66%": {
+            transform: "translateX(-20px) translateY(-25px) scale(0.95)",
+            opacity: "0.6",
+          },
+          "100%": {
+            transform: "translateX(0px) translateY(0px) scale(1)",
+            opacity: "0.4",
+          },
+        },
+        fadeIn: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px) scale(0.95)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px) scale(1)",
+          },
+        },
+        fadeOut: {
+          "0%": {
+            opacity: "1",
+            transform: "translateY(0px) scale(1)",
+          },
+          "100%": {
+            opacity: "0",
+            transform: "translateY(-20px) scale(1.05)",
+          },
+        },
+        fadeInUp: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px)",
           },
         },
       },
@@ -102,6 +150,10 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         float: "float 6s ease-in-out infinite",
         "float-slow": "float-slow 8s ease-in-out infinite",
+        drift: "drift 12s ease-in-out infinite",
+        fadeIn: "fadeIn 0.8s ease-out",
+        fadeOut: "fadeOut 1s ease-out",
+        fadeInUp: "fadeInUp 0.4s ease-out",
       },
     },
   },
