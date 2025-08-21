@@ -19,29 +19,26 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       progressPercent: 100,
       lastActivity: "2 Hours Ago",
       queueTime: "11 Days",
-      priority: "high",
       avatar: "FJ",
     },
     {
-      name: "Rosen, Claire", 
+      name: "Rosen, Claire",
       caseId: "#BTYREV50101",
       status: "Needs Review",
       progress: "5/5 Tasks Complete",
       progressPercent: 100,
       lastActivity: "16 Minutes Ago",
       queueTime: "13 Days",
-      priority: "high",
       avatar: "RC",
     },
     {
       name: "Morrison, Kate",
-      caseId: "#XREMVB32482", 
+      caseId: "#XREMVB32482",
       status: "Awaiting Documents",
       progress: "4/5 Tasks Complete",
       progressPercent: 80,
       lastActivity: "3 Hours Ago",
       queueTime: "10 Days",
-      priority: "medium",
       avatar: "MK",
     },
     {
@@ -52,29 +49,20 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       progressPercent: 100,
       lastActivity: "1 Day Ago",
       queueTime: "7 Days",
-      priority: "medium",
       avatar: "CD",
     },
     {
       name: "Williams, Sarah",
       caseId: "#WILL50203",
       status: "Awaiting Documents",
-      progress: "2/4 Tasks Complete", 
+      progress: "2/4 Tasks Complete",
       progressPercent: 50,
       lastActivity: "4 Hours Ago",
       queueTime: "15 Days",
-      priority: "high",
       avatar: "SW",
     },
   ];
 
-  // Metrics calculation
-  const metrics = {
-    openCases: allCases.filter(c => c.status !== "Complete").length,
-    needsReview: allCases.filter(c => c.status === "Needs Review").length,
-    awaitingDocs: allCases.filter(c => c.status === "Awaiting Documents").length,
-    validationRate: "93.8%"
-  };
 
   // Filtering logic
   const getFilteredCases = () => {
@@ -95,10 +83,8 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
           switch (filter) {
             case "needs-review":
               return caseItem.status === "Needs Review";
-            case "awaiting-docs": 
+            case "awaiting-docs":
               return caseItem.status === "Awaiting Documents";
-            case "high-priority":
-              return caseItem.priority === "high";
             default:
               return true;
           }
@@ -116,13 +102,7 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
         if (b.status === "Awaiting Documents") return 1;
       }
       
-      // Priority 2: Within same status, high priority first
-      if (a.priority !== b.priority) {
-        if (a.priority === "high") return -1;
-        if (b.priority === "high") return 1;
-      }
-
-      // Priority 3: By queue time (longer first)
+      // Priority 2: By queue time (longer first)
       return parseInt(b.queueTime) - parseInt(a.queueTime);
     });
 
@@ -175,7 +155,7 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
       
       {/* Header - Matching Create Style */}
-      <div className="relative z-10 text-center mb-10">
+      <div className="relative z-10 text-center mb-8">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
           <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">Case Review</h1>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">Monitor active cases and prioritize actions</p>
@@ -192,35 +172,9 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
         )}
       </div>
 
-      {/* Compact Stats Bar - Enhanced with Create styling */}
-      <div className="relative z-10 mb-8 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
-        <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-6 shadow-lg shadow-[#C1D9F6]/5">
-          <div className="flex items-center justify-center space-x-8">
-            <div className="text-center">
-              <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.openCases}</div>
-              <div className="text-xs text-[#0E315C]/60 font-light">Open Cases</div>
-            </div>
-            <div className="w-px h-12 bg-gradient-to-b from-transparent via-[#C1D9F6]/40 to-transparent"></div>
-            <div className="text-center">
-              <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.needsReview}</div>
-              <div className="text-xs text-[#0E315C]/60 font-light">Needs Review</div>
-            </div>
-            <div className="w-px h-12 bg-gradient-to-b from-transparent via-[#C1D9F6]/40 to-transparent"></div>
-            <div className="text-center">
-              <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.awaitingDocs}</div>
-              <div className="text-xs text-[#0E315C]/60 font-light">Awaiting Docs</div>
-            </div>
-            <div className="w-px h-12 bg-gradient-to-b from-transparent via-[#C1D9F6]/40 to-transparent"></div>
-            <div className="text-center">
-              <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.validationRate}</div>
-              <div className="text-xs text-[#0E315C]/60 font-light">Validation</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Search and Filters - Matching Create Button Style */}
-      <div className="relative z-10 mb-8 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
+      <div className="relative z-10 mb-6 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
         <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-6 shadow-lg shadow-[#C1D9F6]/5">
           {/* Search Input */}
           <div className="mb-5">
@@ -261,16 +215,6 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
             >
               Awaiting Docs
             </button>
-            <button
-              onClick={() => toggleFilter("high-priority")}
-              className={`px-4 py-2 rounded-2xl text-xs font-light transition-all duration-300 hover:scale-105 border backdrop-blur-sm ${
-                activeFilters.includes("high-priority")
-                  ? "bg-[#0E315C]/80 text-white shadow-lg shadow-[#0E315C]/20 border-[#0E315C]/60"
-                  : "bg-white/60 text-[#0E315C]/70 hover:bg-white/80 border-[#C1D9F6]/40 hover:border-[#0E315C]/40"
-              }`}
-            >
-              High Priority
-            </button>
             {activeFilters.length > 0 && (
               <button
                 onClick={() => setActiveFilters([])}
@@ -284,65 +228,60 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       </div>
 
       {/* Cases List - Redesigned to Match Create Button Style */}
-      <div className="relative z-10 transition-all duration-1200 ease-out delay-900 opacity-100 transform translate-y-0">
-        <div className="space-y-5 max-h-[420px] overflow-y-auto">
+      <div className="relative z-10 transition-all duration-1200 ease-out delay-500 opacity-100 transform translate-y-0">
+        <div className="space-y-4 max-h-[480px] overflow-y-auto pr-2">
           {filteredCases.map((caseItem, index) => {
             const statusColors = getStatusColor(caseItem.status);
             
             return (
               <div
                 key={caseItem.caseId}
-                className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 p-6 rounded-3xl cursor-pointer group hover:scale-[1.02] transform"
+                className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/10 transition-all duration-300 p-5 rounded-3xl cursor-pointer group"
                 onClick={() => setSelectedCase(caseItem)}
                 style={{
                   animationDelay: `${index * 100}ms`,
                   animation: "fadeInUp 0.6s ease-out forwards"
                 }}
               >
-                <div className="flex items-start space-x-5">
+                <div className="flex items-center space-x-4">
                   {/* Avatar - Matching Create Icon Style */}
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center text-white font-light text-sm group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center text-white font-light text-sm flex-shrink-0 shadow-lg">
                     {caseItem.avatar}
                   </div>
-                  
+
                   {/* Status Colored Dot */}
-                  <div className={`w-4 h-4 ${statusColors.dot} rounded-full shadow-lg ${statusColors.shadow} flex-shrink-0 mt-4`}></div>
-                  
-                  {/* Case Info - Expanded Layout */}
+                  <div className={`w-3 h-3 ${statusColors.dot} rounded-full shadow-md ${statusColors.shadow} flex-shrink-0`}></div>
+
+                  {/* Consolidated Case Info */}
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between mb-3">
-                      <div>
-                        <h3 className="text-lg font-light text-[#0E315C] mb-1">{caseItem.name}</h3>
-                        <p className="text-[#0E315C]/60 text-sm font-light mb-2">
-                          {caseItem.caseId} • {caseItem.progress}
-                        </p>
-                        <div className="flex items-center space-x-4 text-xs text-[#0E315C]/50 font-light">
-                          <span>{caseItem.queueTime} in queue</span>
-                          <span>•</span>
-                          <span>{caseItem.lastActivity}</span>
-                          {caseItem.priority === "high" && (
-                            <>
-                              <span>•</span>
-                              <span className="text-[#0E315C]/70 font-medium">High Priority</span>
-                            </>
-                          )}
-                        </div>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center space-x-3">
+                        <h3 className="text-base font-light text-[#0E315C]">{caseItem.name}</h3>
+                        <span className="text-sm text-[#0E315C]/60 font-light">{caseItem.caseId}</span>
                       </div>
-                      
-                      {/* Right Side Info */}
-                      <div className="text-right flex-shrink-0">
-                        <div className="text-sm font-light text-[#0E315C] mb-1">{caseItem.progressPercent}%</div>
-                        <div className="text-xs text-[#0E315C]/60 font-light mb-3">{caseItem.status}</div>
-                        <svg className="w-5 h-5 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                      {/* Right Side Status */}
+                      <div className="flex items-center space-x-3">
+                        <div className="text-right">
+                          <div className="text-sm font-light text-[#0E315C]">{caseItem.progressPercent}%</div>
+                          <div className="text-xs text-[#0E315C]/60 font-light">{caseItem.status}</div>
+                        </div>
+                        <svg className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                         </svg>
                       </div>
                     </div>
 
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="text-xs text-[#0E315C]/50 font-light">
+                        {caseItem.progress} • {caseItem.queueTime} in queue • {caseItem.lastActivity}
+                      </div>
+                    </div>
+
                     {/* Full Width Progress Bar */}
-                    <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
-                      <div 
-                        className={`h-2 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
+                    <div className="w-full bg-[#C1D9F6]/20 rounded-full h-1.5 overflow-hidden">
+                      <div
+                        className={`h-1.5 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
                         style={{ width: `${caseItem.progressPercent}%` }}
                       ></div>
                     </div>
