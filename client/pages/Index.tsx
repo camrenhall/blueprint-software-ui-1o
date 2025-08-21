@@ -178,14 +178,14 @@ export default function Index() {
             {activeRightContent && (
               <>
                 <div
-                  className={`absolute top-1/4 right-1/4 w-4 h-4 bg-[#99C0F0]/50 rounded-full blur-sm transition-all duration-1000 ease-out delay-500 ${
+                  className={`absolute top-1/4 right-1/4 w-4 h-4 bg-[#99C0F0]/50 rounded-full blur-sm transition-all duration-2000 ease-out delay-500 ${
                     activeRightContent
                       ? "opacity-70 animate-pulse"
                       : "opacity-0"
                   }`}
                 />
                 <div
-                  className={`absolute bottom-1/3 left-1/5 w-3 h-3 bg-[#C5BFEE]/60 rounded-full blur-sm transition-all duration-1000 ease-out delay-700 ${
+                  className={`absolute bottom-1/3 left-1/5 w-3 h-3 bg-[#C5BFEE]/60 rounded-full blur-sm transition-all duration-2000 ease-out delay-700 ${
                     activeRightContent
                       ? "opacity-60 animate-pulse"
                       : "opacity-0"
@@ -193,7 +193,7 @@ export default function Index() {
                   style={{ animationDelay: "1s" }}
                 />
                 <div
-                  className={`absolute top-1/2 right-1/6 w-2.5 h-2.5 bg-[#C1D9F6]/70 rounded-full blur-sm transition-all duration-1000 ease-out delay-900 ${
+                  className={`absolute top-1/2 right-1/6 w-2.5 h-2.5 bg-[#C1D9F6]/70 rounded-full blur-sm transition-all duration-2000 ease-out delay-900 ${
                     activeRightContent
                       ? "opacity-50 animate-pulse"
                       : "opacity-0"
@@ -201,7 +201,7 @@ export default function Index() {
                   style={{ animationDelay: "2s" }}
                 />
                 <div
-                  className={`absolute top-1/6 left-1/3 w-3 h-3 bg-[#99C0F0]/40 rounded-full blur-sm transition-all duration-1000 ease-out delay-1100 ${
+                  className={`absolute top-1/6 left-1/3 w-3 h-3 bg-[#99C0F0]/40 rounded-full blur-sm transition-all duration-2000 ease-out delay-1100 ${
                     activeRightContent
                       ? "opacity-40 animate-pulse"
                       : "opacity-0"
