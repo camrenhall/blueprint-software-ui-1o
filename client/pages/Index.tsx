@@ -153,6 +153,11 @@ export default function Index() {
                   <InlineCreate onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
+              {activeRightContent === "review" && (
+                <div className="w-full max-w-2xl mx-auto">
+                  <InlineReview onClose={() => setActiveRightContent(null)} />
+                </div>
+              )}
             </div>
 
             {/* Enhanced ambient elements */}
