@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { X } from "lucide-react";
 import { Case } from './types';
 import { filterCases, sortCases, convertLegacyCase } from './utils';
-import { SearchFilterBar } from './SearchFilterBar';
+import { SearchFilterBar, SortOption } from './SearchFilterBar';
 import { CaseList } from './CaseList';
 import { CaseModal } from './CaseModal';
 
@@ -13,6 +13,7 @@ interface ReviewProps {
 export default function Review({ onClose }: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<SortOption>('priority');
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
 
   // Mock case data (in real app, this would come from props or API)
@@ -72,8 +73,8 @@ export default function Review({ onClose }: ReviewProps) {
   // Filter and sort cases
   const processedCases = useMemo(() => {
     const filtered = filterCases(allCases, searchValue, activeFilters);
-    return sortCases(filtered);
-  }, [allCases, searchValue, activeFilters]);
+    return sortCases(filtered, sortBy);
+  }, [allCases, searchValue, activeFilters, sortBy]);
 
   const toggleFilter = (filterId: string) => {
     setActiveFilters(prev => 
@@ -117,13 +118,15 @@ export default function Review({ onClose }: ReviewProps) {
         )}
       </div>
 
-      {/* Compact Search and Filter Bar */}
+      {/* Enhanced Search, Filter and Sort Bar */}
       <SearchFilterBar
         searchValue={searchValue}
         onSearchChange={setSearchValue}
         activeFilters={activeFilters}
         onFilterToggle={toggleFilter}
         onClearFilters={clearFilters}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
         className="mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
       />
 
