@@ -1,10 +1,10 @@
 import { useState, useMemo } from "react";
 import { X } from "lucide-react";
-import { Case } from './types';
-import { filterCases, sortCases, convertLegacyCase } from './utils';
-import { SearchFilterBar, SortOption } from './SearchFilterBar';
-import { CaseList } from './CaseList';
-import { CaseModal } from './CaseModal';
+import { Case } from "./types";
+import { filterCases, sortCases, convertLegacyCase } from "./utils";
+import { SearchFilterBar, SortOption } from "./SearchFilterBar";
+import { CaseList } from "./CaseList";
+import { CaseModal } from "./CaseModal";
 
 interface ReviewProps {
   onClose?: () => void;
@@ -13,63 +13,66 @@ interface ReviewProps {
 export default function Review({ onClose }: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<SortOption>('priority');
+  const [sortBy, setSortBy] = useState<SortOption>("priority");
   const [isCompact, setIsCompact] = useState(false);
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
 
   // Mock case data (in real app, this would come from props or API)
-  const allCases: Case[] = useMemo(() => [
-    convertLegacyCase({
-      name: "Fulsom, Jackson",
-      caseId: "#FULJ30925",
-      status: "Complete",
-      progress: "6/6 Tasks Complete",
-      progressPercent: 100,
-      lastActivity: "2 Hours Ago",
-      queueTime: "11 Days",
-      avatar: "FJ",
-    }),
-    convertLegacyCase({
-      name: "Rosen, Claire",
-      caseId: "#BTYREV50101",
-      status: "Needs Review",
-      progress: "5/5 Tasks Complete",
-      progressPercent: 100,
-      lastActivity: "16 Minutes Ago",
-      queueTime: "13 Days",
-      avatar: "RC",
-    }),
-    convertLegacyCase({
-      name: "Morrison, Kate",
-      caseId: "#XREMVB32482",
-      status: "Awaiting Documents",
-      progress: "4/5 Tasks Complete",
-      progressPercent: 80,
-      lastActivity: "3 Hours Ago",
-      queueTime: "10 Days",
-      avatar: "MK",
-    }),
-    convertLegacyCase({
-      name: "Chen, David",
-      caseId: "#CHEN40101",
-      status: "Needs Review",
-      progress: "3/3 Tasks Complete",
-      progressPercent: 100,
-      lastActivity: "1 Day Ago",
-      queueTime: "7 Days",
-      avatar: "CD",
-    }),
-    convertLegacyCase({
-      name: "Williams, Sarah",
-      caseId: "#WILL50203",
-      status: "Awaiting Documents",
-      progress: "2/4 Tasks Complete",
-      progressPercent: 50,
-      lastActivity: "4 Hours Ago",
-      queueTime: "15 Days",
-      avatar: "SW",
-    }),
-  ], []);
+  const allCases: Case[] = useMemo(
+    () => [
+      convertLegacyCase({
+        name: "Fulsom, Jackson",
+        caseId: "#FULJ30925",
+        status: "Complete",
+        progress: "6/6 Tasks Complete",
+        progressPercent: 100,
+        lastActivity: "2 Hours Ago",
+        queueTime: "11 Days",
+        avatar: "FJ",
+      }),
+      convertLegacyCase({
+        name: "Rosen, Claire",
+        caseId: "#BTYREV50101",
+        status: "Needs Review",
+        progress: "5/5 Tasks Complete",
+        progressPercent: 100,
+        lastActivity: "16 Minutes Ago",
+        queueTime: "13 Days",
+        avatar: "RC",
+      }),
+      convertLegacyCase({
+        name: "Morrison, Kate",
+        caseId: "#XREMVB32482",
+        status: "Awaiting Documents",
+        progress: "4/5 Tasks Complete",
+        progressPercent: 80,
+        lastActivity: "3 Hours Ago",
+        queueTime: "10 Days",
+        avatar: "MK",
+      }),
+      convertLegacyCase({
+        name: "Chen, David",
+        caseId: "#CHEN40101",
+        status: "Needs Review",
+        progress: "3/3 Tasks Complete",
+        progressPercent: 100,
+        lastActivity: "1 Day Ago",
+        queueTime: "7 Days",
+        avatar: "CD",
+      }),
+      convertLegacyCase({
+        name: "Williams, Sarah",
+        caseId: "#WILL50203",
+        status: "Awaiting Documents",
+        progress: "2/4 Tasks Complete",
+        progressPercent: 50,
+        lastActivity: "4 Hours Ago",
+        queueTime: "15 Days",
+        avatar: "SW",
+      }),
+    ],
+    [],
+  );
 
   // Filter and sort cases
   const processedCases = useMemo(() => {
@@ -78,10 +81,10 @@ export default function Review({ onClose }: ReviewProps) {
   }, [allCases, searchValue, activeFilters, sortBy]);
 
   const toggleFilter = (filterId: string) => {
-    setActiveFilters(prev => 
-      prev.includes(filterId) 
-        ? prev.filter(f => f !== filterId)
-        : [...prev, filterId]
+    setActiveFilters((prev) =>
+      prev.includes(filterId)
+        ? prev.filter((f) => f !== filterId)
+        : [...prev, filterId],
     );
   };
 
@@ -106,12 +109,14 @@ export default function Review({ onClose }: ReviewProps) {
       {/* Enhanced Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
-      
+
       {/* Header */}
       <div className="relative z-10 text-center mb-8 flex-shrink-0">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <h1 className="text-4xl font-light text-[#0E315C] tracking-wide">Case Review</h1>
+            <h1 className="text-4xl font-light text-[#0E315C] tracking-wide">
+              Case Review
+            </h1>
             {isCompact && (
               <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
                 Compact View
@@ -160,10 +165,7 @@ export default function Review({ onClose }: ReviewProps) {
       />
 
       {/* Case Modal */}
-      <CaseModal
-        case={selectedCase}
-        onClose={closeModal}
-      />
+      <CaseModal case={selectedCase} onClose={closeModal} />
     </div>
   );
 }

@@ -9,7 +9,9 @@ export default function Index() {
   const [dashboardTitle, setDashboardTitle] = useState("");
   const [dashboardPage, setDashboardPage] = useState("overview");
   const [isVisible, setIsVisible] = useState(false);
-  const [activeRightContent, setActiveRightContent] = useState<string | null>(null);
+  const [activeRightContent, setActiveRightContent] = useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     // Fade in the menu after a short delay
@@ -121,10 +123,22 @@ export default function Index() {
 
             {/* Floating accent dots */}
             <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#C5BFEE]/70 rounded-full animate-pulse shadow-lg"></div>
-            <div className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#99C0F0]/60 rounded-full animate-pulse" style={{ animationDelay: "1s" }}></div>
-            <div className="absolute top-[45%] left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#C1D9F6]/80 rounded-full animate-pulse" style={{ animationDelay: "2s" }}></div>
-            <div className="absolute top-[70%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#C5BFEE]/60 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }}></div>
-            <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#99C0F0]/70 rounded-full animate-pulse" style={{ animationDelay: "1.5s" }}></div>
+            <div
+              className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#99C0F0]/60 rounded-full animate-pulse"
+              style={{ animationDelay: "1s" }}
+            ></div>
+            <div
+              className="absolute top-[45%] left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#C1D9F6]/80 rounded-full animate-pulse"
+              style={{ animationDelay: "2s" }}
+            ></div>
+            <div
+              className="absolute top-[70%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#C5BFEE]/60 rounded-full animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            ></div>
+            <div
+              className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#99C0F0]/70 rounded-full animate-pulse"
+              style={{ animationDelay: "1.5s" }}
+            ></div>
 
             {/* Subtle glow effect */}
             <div className="absolute inset-0 w-0.5 bg-gradient-to-b from-transparent via-[#C1D9F6]/30 to-transparent blur-[1px]"></div>
@@ -165,24 +179,32 @@ export default function Index() {
               <>
                 <div
                   className={`absolute top-1/4 right-1/4 w-4 h-4 bg-[#99C0F0]/50 rounded-full blur-sm transition-all duration-2000 ease-out delay-500 ${
-                    activeRightContent ? "opacity-70 animate-pulse" : "opacity-0"
+                    activeRightContent
+                      ? "opacity-70 animate-pulse"
+                      : "opacity-0"
                   }`}
                 />
                 <div
                   className={`absolute bottom-1/3 left-1/5 w-3 h-3 bg-[#C5BFEE]/60 rounded-full blur-sm transition-all duration-2000 ease-out delay-700 ${
-                    activeRightContent ? "opacity-60 animate-pulse" : "opacity-0"
+                    activeRightContent
+                      ? "opacity-60 animate-pulse"
+                      : "opacity-0"
                   }`}
                   style={{ animationDelay: "1s" }}
                 />
                 <div
                   className={`absolute top-1/2 right-1/6 w-2.5 h-2.5 bg-[#C1D9F6]/70 rounded-full blur-sm transition-all duration-2000 ease-out delay-900 ${
-                    activeRightContent ? "opacity-50 animate-pulse" : "opacity-0"
+                    activeRightContent
+                      ? "opacity-50 animate-pulse"
+                      : "opacity-0"
                   }`}
                   style={{ animationDelay: "2s" }}
                 />
                 <div
                   className={`absolute top-1/6 left-1/3 w-3 h-3 bg-[#99C0F0]/40 rounded-full blur-sm transition-all duration-2000 ease-out delay-1100 ${
-                    activeRightContent ? "opacity-40 animate-pulse" : "opacity-0"
+                    activeRightContent
+                      ? "opacity-40 animate-pulse"
+                      : "opacity-0"
                   }`}
                   style={{ animationDelay: "0.5s" }}
                 />

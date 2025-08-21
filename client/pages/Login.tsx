@@ -41,8 +41,9 @@ export default function Login() {
               Luceron AI
             </h1>
             <p className="text-xl md:text-2xl text-[#0E315C] mb-8 leading-relaxed opacity-90">
-              Streamline your legal discovery process with intelligent automation.
-              Luceron simplifies document collection, client follow-ups, and discovery auditing.
+              Streamline your legal discovery process with intelligent
+              automation. Luceron simplifies document collection, client
+              follow-ups, and discovery auditing.
             </p>
             <div className="space-y-4 text-[#0E315C]">
               <div className="flex items-center space-x-3">
@@ -221,7 +222,7 @@ export default function Login() {
       {/* Elegant corner accents with new palette */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-[#C1D9F6]/30 to-transparent rounded-br-full" />
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-[#C5BFEE]/30 to-transparent rounded-tl-full" />
-      
+
       {/* Additional floating accents */}
       <div className="absolute top-1/4 right-1/4 w-16 h-16 bg-gradient-to-br from-[#99C0F0]/20 to-transparent rounded-full blur-xl" />
       <div className="absolute bottom-1/3 left-1/5 w-20 h-20 bg-gradient-to-br from-[#C5BFEE]/15 to-transparent rounded-full blur-xl" />

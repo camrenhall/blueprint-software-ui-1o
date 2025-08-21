@@ -1,6 +1,10 @@
-import { Case, CaseStatus, StatusColors, FilterOption } from './types';
+import { Case, CaseStatus, StatusColors, FilterOption } from "./types";
 
-export type SortOption = 'priority' | 'alphabetical' | 'queueTime' | 'lastActivity';
+export type SortOption =
+  | "priority"
+  | "alphabetical"
+  | "queueTime"
+  | "lastActivity";
 
 export const getStatusColors = (status: CaseStatus): StatusColors => {
   switch (status) {
@@ -9,21 +13,21 @@ export const getStatusColors = (status: CaseStatus): StatusColors => {
         dot: "bg-[#C5BFEE]",
         progress: "bg-gradient-to-r from-[#C5BFEE]/80 to-[#C5BFEE]/60",
         hover: "hover:shadow-[#C5BFEE]/5",
-        border: "hover:border-[#C5BFEE]/60"
+        border: "hover:border-[#C5BFEE]/60",
       };
     case "Awaiting Documents":
       return {
         dot: "bg-[#99C0F0]",
         progress: "bg-gradient-to-r from-[#99C0F0]/80 to-[#99C0F0]/60",
         hover: "hover:shadow-[#99C0F0]/5",
-        border: "hover:border-[#99C0F0]/60"
+        border: "hover:border-[#99C0F0]/60",
       };
     case "Complete":
       return {
         dot: "bg-[#C1D9F6]",
         progress: "bg-gradient-to-r from-[#C1D9F6]/80 to-[#C1D9F6]/60",
         hover: "hover:shadow-[#C1D9F6]/5",
-        border: "hover:border-[#C1D9F6]/60"
+        border: "hover:border-[#C1D9F6]/60",
       };
   }
 };
@@ -38,8 +42,9 @@ export const filterOptions: FilterOption[] = [
       progress: "bg-gradient-to-r from-[#C5BFEE]/80 to-[#C5BFEE]/60",
       hover: "hover:shadow-[#C5BFEE]/5",
       border: "hover:border-[#C5BFEE]/60",
-      active: "bg-[#C5BFEE]/80 text-white shadow-lg shadow-[#C5BFEE]/20 border-[#C5BFEE]/60"
-    }
+      active:
+        "bg-[#C5BFEE]/80 text-white shadow-lg shadow-[#C5BFEE]/20 border-[#C5BFEE]/60",
+    },
   },
   {
     id: "awaiting-docs",
@@ -50,28 +55,34 @@ export const filterOptions: FilterOption[] = [
       progress: "bg-gradient-to-r from-[#99C0F0]/80 to-[#99C0F0]/60",
       hover: "hover:shadow-[#99C0F0]/5",
       border: "hover:border-[#99C0F0]/60",
-      active: "bg-[#99C0F0]/80 text-white shadow-lg shadow-[#99C0F0]/20 border-[#99C0F0]/60"
-    }
-  }
+      active:
+        "bg-[#99C0F0]/80 text-white shadow-lg shadow-[#99C0F0]/20 border-[#99C0F0]/60",
+    },
+  },
 ];
 
-export const filterCases = (cases: Case[], query: string, activeFilters: string[]): Case[] => {
+export const filterCases = (
+  cases: Case[],
+  query: string,
+  activeFilters: string[],
+): Case[] => {
   let filtered = cases;
 
   // Apply search filter
   if (query.trim()) {
     const lowercaseQuery = query.toLowerCase();
-    filtered = filtered.filter(caseItem =>
-      caseItem.name.toLowerCase().includes(lowercaseQuery) ||
-      caseItem.caseId.toLowerCase().includes(lowercaseQuery)
+    filtered = filtered.filter(
+      (caseItem) =>
+        caseItem.name.toLowerCase().includes(lowercaseQuery) ||
+        caseItem.caseId.toLowerCase().includes(lowercaseQuery),
     );
   }
 
   // Apply status filters
   if (activeFilters.length > 0) {
-    filtered = filtered.filter(caseItem => {
-      return activeFilters.some(filterId => {
-        const filterOption = filterOptions.find(f => f.id === filterId);
+    filtered = filtered.filter((caseItem) => {
+      return activeFilters.some((filterId) => {
+        const filterOption = filterOptions.find((f) => f.id === filterId);
         return filterOption ? caseItem.status === filterOption.status : false;
       });
     });
@@ -80,10 +91,17 @@ export const filterCases = (cases: Case[], query: string, activeFilters: string[
   return filtered;
 };
 
-export const sortCases = (cases: Case[], sortBy: 'priority' | 'alphabetical' | 'queueTime' | 'lastActivity' = 'priority'): Case[] => {
+export const sortCases = (
+  cases: Case[],
+  sortBy:
+    | "priority"
+    | "alphabetical"
+    | "queueTime"
+    | "lastActivity" = "priority",
+): Case[] => {
   return [...cases].sort((a, b) => {
     switch (sortBy) {
-      case 'priority':
+      case "priority":
         // Priority 1: Needs Review first
         if (a.status !== b.status) {
           if (a.status === "Needs Review") return -1;
@@ -94,21 +112,24 @@ export const sortCases = (cases: Case[], sortBy: 'priority' | 'alphabetical' | '
         // Priority 2: By queue time (longer first)
         return b.queueDays - a.queueDays;
 
-      case 'alphabetical':
+      case "alphabetical":
         return a.name.localeCompare(b.name);
 
-      case 'queueTime':
+      case "queueTime":
         return b.queueDays - a.queueDays;
 
-      case 'lastActivity':
+      case "lastActivity":
         // Convert lastActivity to comparable format (this is a simplified version)
         const getActivityScore = (activity: string): number => {
-          if (activity.includes('Minutes')) return parseInt(activity) || 0;
-          if (activity.includes('Hours')) return (parseInt(activity) || 0) * 60;
-          if (activity.includes('Day')) return (parseInt(activity) || 0) * 60 * 24;
+          if (activity.includes("Minutes")) return parseInt(activity) || 0;
+          if (activity.includes("Hours")) return (parseInt(activity) || 0) * 60;
+          if (activity.includes("Day"))
+            return (parseInt(activity) || 0) * 60 * 24;
           return 999999; // Default for unrecognized format
         };
-        return getActivityScore(a.lastActivity) - getActivityScore(b.lastActivity);
+        return (
+          getActivityScore(a.lastActivity) - getActivityScore(b.lastActivity)
+        );
 
       default:
         return 0;
@@ -126,5 +147,5 @@ export const convertLegacyCase = (legacyCase: any): Case => ({
   progressPercent: legacyCase.progressPercent,
   lastActivity: legacyCase.lastActivity,
   queueDays: parseInt(legacyCase.queueTime || "0"),
-  avatar: legacyCase.avatar
+  avatar: legacyCase.avatar,
 });

@@ -216,7 +216,7 @@ export default function CloudBackground() {
 
       {/* Sophisticated overlay for depth with new palette */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#C1D9F6]/20 via-transparent to-white/10" />
-      
+
       {/* Additional depth layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#99C0F0]/5 to-[#C5BFEE]/10" />
     </div>

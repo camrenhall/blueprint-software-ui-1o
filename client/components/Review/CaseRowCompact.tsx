@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Case } from './types';
-import { getStatusColors } from './utils';
+import { Case } from "./types";
+import { getStatusColors } from "./utils";
 
 interface CaseRowCompactProps {
   case: Case;
@@ -10,7 +10,12 @@ interface CaseRowCompactProps {
   className?: string;
 }
 
-export function CaseRowCompact({ case: caseItem, index, onClick, className }: CaseRowCompactProps) {
+export function CaseRowCompact({
+  case: caseItem,
+  index,
+  onClick,
+  className,
+}: CaseRowCompactProps) {
   const statusColors = getStatusColors(caseItem.status);
 
   return (
@@ -22,22 +27,29 @@ export function CaseRowCompact({ case: caseItem, index, onClick, className }: Ca
         "hover:bg-white/50 hover:shadow-md",
         statusColors.hover,
         "hover:border-opacity-80 transition-all duration-300 px-4 py-3 rounded-xl text-left group",
-        className
+        className,
       )}
       style={{
         animationDelay: `${index * 50}ms`,
-        animation: "fadeInUp 0.4s ease-out forwards"
+        animation: "fadeInUp 0.4s ease-out forwards",
       }}
     >
       <div className="flex items-center space-x-3">
         {/* Compact Avatar */}
         <div className="w-8 h-8 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200 flex-shrink-0 shadow-sm">
-          <span className="text-white font-medium text-xs">{caseItem.avatar}</span>
+          <span className="text-white font-medium text-xs">
+            {caseItem.avatar}
+          </span>
         </div>
 
         {/* Status Indicator */}
         <div className="flex items-center flex-shrink-0">
-          <div className={cn("w-2.5 h-2.5 rounded-full shadow-sm", statusColors.dot)} />
+          <div
+            className={cn(
+              "w-2.5 h-2.5 rounded-full shadow-sm",
+              statusColors.dot,
+            )}
+          />
         </div>
 
         {/* Main Information - Flexible Layout */}
@@ -73,7 +85,7 @@ export function CaseRowCompact({ case: caseItem, index, onClick, className }: Ca
                 <div
                   className={cn(
                     "h-full rounded-full transition-all duration-500 ease-out",
-                    statusColors.progress
+                    statusColors.progress,
                   )}
                   style={{ width: `${caseItem.progressPercent}%` }}
                 />

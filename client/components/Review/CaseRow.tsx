@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Case } from './types';
-import { getStatusColors } from './utils';
+import { Case } from "./types";
+import { getStatusColors } from "./utils";
 
 interface CaseRowProps {
   case: Case;
@@ -10,7 +10,12 @@ interface CaseRowProps {
   className?: string;
 }
 
-export function CaseRow({ case: caseItem, index, onClick, className }: CaseRowProps) {
+export function CaseRow({
+  case: caseItem,
+  index,
+  onClick,
+  className,
+}: CaseRowProps) {
   const statusColors = getStatusColors(caseItem.status);
 
   return (
@@ -22,31 +27,41 @@ export function CaseRow({ case: caseItem, index, onClick, className }: CaseRowPr
         "hover:bg-white/50 hover:shadow-lg",
         statusColors.hover,
         "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group",
-        className
+        className,
       )}
       style={{
         animationDelay: `${index * 100}ms`,
-        animation: "fadeInUp 0.6s ease-out forwards"
+        animation: "fadeInUp 0.6s ease-out forwards",
       }}
     >
       <div className="flex items-start space-x-5">
         {/* Avatar */}
         <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
-          <span className="text-white font-light text-sm">{caseItem.avatar}</span>
+          <span className="text-white font-light text-sm">
+            {caseItem.avatar}
+          </span>
         </div>
 
         {/* Main Case Information */}
         <div className="flex-1 min-w-0 relative">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-light text-[#0E315C] mb-1 truncate pr-24">{caseItem.name}</h3>
-              <p className="text-[#0E315C]/60 text-sm font-light mb-3 pr-24">{caseItem.caseId}</p>
+              <h3 className="text-lg font-light text-[#0E315C] mb-1 truncate pr-24">
+                {caseItem.name}
+              </h3>
+              <p className="text-[#0E315C]/60 text-sm font-light mb-3 pr-24">
+                {caseItem.caseId}
+              </p>
             </div>
 
             {/* Compact Right Side Stats */}
             <div className="absolute top-0 right-0 text-right flex-shrink-0">
-              <div className="text-xl font-light text-[#0E315C] mb-1">{caseItem.progressPercent}%</div>
-              <div className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">{caseItem.progress}</div>
+              <div className="text-xl font-light text-[#0E315C] mb-1">
+                {caseItem.progressPercent}%
+              </div>
+              <div className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">
+                {caseItem.progress}
+              </div>
             </div>
           </div>
 
@@ -56,7 +71,7 @@ export function CaseRow({ case: caseItem, index, onClick, className }: CaseRowPr
               <div
                 className={cn(
                   "h-2 rounded-full transition-all duration-700 ease-out shadow-sm",
-                  statusColors.progress
+                  statusColors.progress,
                 )}
                 style={{ width: `${caseItem.progressPercent}%` }}
               />
@@ -67,13 +82,24 @@ export function CaseRow({ case: caseItem, index, onClick, className }: CaseRowPr
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden pr-6">
               <div className="flex items-center space-x-1.5 flex-shrink-0">
-                <div className={cn("w-2.5 h-2.5 rounded-full shadow-sm", statusColors.dot)} />
-                <span className="text-[#0E315C]/70 font-medium whitespace-nowrap">{caseItem.status}</span>
+                <div
+                  className={cn(
+                    "w-2.5 h-2.5 rounded-full shadow-sm",
+                    statusColors.dot,
+                  )}
+                />
+                <span className="text-[#0E315C]/70 font-medium whitespace-nowrap">
+                  {caseItem.status}
+                </span>
               </div>
               <span className="flex-shrink-0">•</span>
-              <span className="whitespace-nowrap flex-shrink-0">{caseItem.queueDays} days in queue</span>
+              <span className="whitespace-nowrap flex-shrink-0">
+                {caseItem.queueDays} days in queue
+              </span>
               <span className="flex-shrink-0">•</span>
-              <span className="whitespace-nowrap flex-shrink-0">{caseItem.lastActivity}</span>
+              <span className="whitespace-nowrap flex-shrink-0">
+                {caseItem.lastActivity}
+              </span>
             </div>
 
             {/* Arrow Icon */}
