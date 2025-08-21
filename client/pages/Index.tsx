@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import RadialScroller from "@/components/RadialScroller";
 import Dashboard from "@/components/Dashboard";
 import InlineCreate from "@/components/InlineCreate";
+import InlineReview from "@/components/InlineReview";
 
 export default function Index() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
