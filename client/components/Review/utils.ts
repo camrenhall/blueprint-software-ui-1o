@@ -78,18 +78,39 @@ export const filterCases = (cases: Case[], query: string, activeFilters: string[
   return filtered;
 };
 
-export const sortCases = (cases: Case[]): Case[] => {
+export const sortCases = (cases: Case[], sortBy: 'priority' | 'alphabetical' | 'queueTime' | 'lastActivity' = 'priority'): Case[] => {
   return [...cases].sort((a, b) => {
-    // Priority 1: Needs Review first
-    if (a.status !== b.status) {
-      if (a.status === "Needs Review") return -1;
-      if (b.status === "Needs Review") return 1;
-      if (a.status === "Awaiting Documents") return -1;
-      if (b.status === "Awaiting Documents") return 1;
+    switch (sortBy) {
+      case 'priority':
+        // Priority 1: Needs Review first
+        if (a.status !== b.status) {
+          if (a.status === "Needs Review") return -1;
+          if (b.status === "Needs Review") return 1;
+          if (a.status === "Awaiting Documents") return -1;
+          if (b.status === "Awaiting Documents") return 1;
+        }
+        // Priority 2: By queue time (longer first)
+        return b.queueDays - a.queueDays;
+
+      case 'alphabetical':
+        return a.name.localeCompare(b.name);
+
+      case 'queueTime':
+        return b.queueDays - a.queueDays;
+
+      case 'lastActivity':
+        // Convert lastActivity to comparable format (this is a simplified version)
+        const getActivityScore = (activity: string): number => {
+          if (activity.includes('Minutes')) return parseInt(activity) || 0;
+          if (activity.includes('Hours')) return (parseInt(activity) || 0) * 60;
+          if (activity.includes('Day')) return (parseInt(activity) || 0) * 60 * 24;
+          return 999999; // Default for unrecognized format
+        };
+        return getActivityScore(a.lastActivity) - getActivityScore(b.lastActivity);
+
+      default:
+        return 0;
     }
-    
-    // Priority 2: By queue time (longer first)
-    return b.queueDays - a.queueDays;
   });
 };
 
