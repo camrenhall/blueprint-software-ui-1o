@@ -331,13 +331,6 @@ export function SearchFilterBar({
           </div>
         )}
 
-        {/* Description */}
-        <div className="text-center mt-4">
-          <p className="text-[#0E315C]/60 text-xs leading-relaxed max-w-md mx-auto font-light">
-            Search, filter, and sort cases to prioritize urgent reviews and
-            document requests
-          </p>
-        </div>
       </div>
     </div>
   );
