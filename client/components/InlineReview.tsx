@@ -397,15 +397,46 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
           })}
 
           {filteredCases.length === 0 && (
-            <div className="text-center py-8 text-[#0E315C]/60">
-              <svg className="w-8 h-8 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-              <p className="text-sm">No cases match your filters</p>
+            <div className="text-center py-12">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#C1D9F6]/30 to-[#99C0F0]/20 rounded-3xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-light text-[#0E315C] mb-2">No cases found</h3>
+              <p className="text-sm text-[#0E315C]/50 font-light">No cases match your current filters. Try adjusting your search criteria.</p>
             </div>
           )}
         </div>
       </div>
+
+      {/* Add custom scrollbar and animation styles */}
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(193, 217, 246, 0.1);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(153, 192, 240, 0.3);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(153, 192, 240, 0.5);
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
 
       {/* Simple Selected Case Modal */}
       {selectedCase && (
