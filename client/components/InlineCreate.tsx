@@ -28,6 +28,11 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     setCreateStep(newStep);
   };
 
+  useEffect(() => {
+    // Trigger animation after component mounts
+    setTimeout(() => setIsAnimated(true), 100);
+  }, []);
+
   const steps = [
     { number: 1, label: "Method" },
     { number: 2, label: "Documents" },
