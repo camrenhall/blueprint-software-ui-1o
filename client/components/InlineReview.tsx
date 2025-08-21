@@ -251,44 +251,44 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
                 </div>
 
                 {/* Main Case Information */}
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 relative">
                   <div className="flex items-start justify-between">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-light text-[#0E315C] mb-1 truncate pr-20">{caseItem.name}</h3>
-                      <p className="text-[#0E315C]/60 text-sm font-light mb-3 pr-20">{caseItem.caseId}</p>
+                    <div className="flex-1 min-w-0 pr-2">
+                      <h3 className="text-lg font-light text-[#0E315C] mb-1 truncate">{caseItem.name}</h3>
+                      <p className="text-[#0E315C]/60 text-sm font-light mb-3">{caseItem.caseId}</p>
+
+                      {/* Extended Progress Bar - reaches closer to right side */}
+                      <div className="pr-20 mb-2">
+                        <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
+                          <div
+                            className={`h-2 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
+                            style={{ width: `${caseItem.progressPercent}%` }}
+                          ></div>
+                        </div>
+                      </div>
+
+                      {/* Extended Status + Metadata Row - reaches closer to right side */}
+                      <div className="pr-20">
+                        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden">
+                          <div className="flex items-center space-x-1.5 flex-shrink-0">
+                            <div className={`w-2.5 h-2.5 ${statusColors.dot} rounded-full shadow-sm`}></div>
+                            <span className="text-[#0E315C]/70 font-medium whitespace-nowrap">{caseItem.status}</span>
+                          </div>
+                          <span className="flex-shrink-0">•</span>
+                          <span className="whitespace-nowrap flex-shrink-0">{caseItem.queueTime} in queue</span>
+                          <span className="flex-shrink-0">•</span>
+                          <span className="whitespace-nowrap flex-shrink-0">{caseItem.lastActivity}</span>
+                        </div>
+                      </div>
                     </div>
 
                     {/* Right Side Stats (Like Reference Image) */}
-                    <div className="text-right flex-shrink-0 ml-4 absolute right-0 top-0">
+                    <div className="text-right flex-shrink-0 w-16">
                       <div className="text-xl font-light text-[#0E315C] mb-1">{caseItem.progressPercent}%</div>
                       <div className="text-sm text-[#0E315C]/60 font-light mb-2">{caseItem.progress}</div>
                       <svg className="w-5 h-5 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                       </svg>
-                    </div>
-                  </div>
-
-                  {/* Extended Progress Bar */}
-                  <div className="w-full pr-24 mb-2">
-                    <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
-                      <div
-                        className={`h-2 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
-                        style={{ width: `${caseItem.progressPercent}%` }}
-                      ></div>
-                    </div>
-                  </div>
-
-                  {/* Extended Status + Metadata Row */}
-                  <div className="pr-24">
-                    <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden">
-                      <div className="flex items-center space-x-1.5 flex-shrink-0">
-                        <div className={`w-2.5 h-2.5 ${statusColors.dot} rounded-full shadow-sm`}></div>
-                        <span className="text-[#0E315C]/70 font-medium whitespace-nowrap">{caseItem.status}</span>
-                      </div>
-                      <span className="flex-shrink-0">•</span>
-                      <span className="whitespace-nowrap flex-shrink-0">{caseItem.queueTime} in queue</span>
-                      <span className="flex-shrink-0">•</span>
-                      <span className="whitespace-nowrap flex-shrink-0">{caseItem.lastActivity}</span>
                     </div>
                   </div>
                 </div>
