@@ -14,6 +14,7 @@ export default function Review({ onClose }: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>('priority');
+  const [isCompact, setIsCompact] = useState(false);
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
 
   // Mock case data (in real app, this would come from props or API)
@@ -88,6 +89,10 @@ export default function Review({ onClose }: ReviewProps) {
     setActiveFilters([]);
   };
 
+  const toggleCompactView = () => {
+    setIsCompact(!isCompact);
+  };
+
   const handleCaseSelect = (caseItem: Case) => {
     setSelectedCase(caseItem);
   };
@@ -127,6 +132,8 @@ export default function Review({ onClose }: ReviewProps) {
         onClearFilters={clearFilters}
         sortBy={sortBy}
         onSortChange={setSortBy}
+        isCompact={isCompact}
+        onCompactToggle={toggleCompactView}
         className="mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
       />
 
@@ -134,6 +141,7 @@ export default function Review({ onClose }: ReviewProps) {
       <CaseList
         cases={processedCases}
         onCaseSelect={handleCaseSelect}
+        isCompact={isCompact}
         className="transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0"
       />
 
