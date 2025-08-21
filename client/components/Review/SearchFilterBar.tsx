@@ -1,4 +1,4 @@
-import { Search, Filter, SortAsc, X, ChevronDown } from "lucide-react";
+import { Search, Filter, SortAsc, X, ChevronDown, LayoutGrid, List } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { filterOptions, SortOption } from './utils';
@@ -11,6 +11,8 @@ interface SearchFilterBarProps {
   onClearFilters: () => void;
   sortBy: SortOption;
   onSortChange: (sortBy: SortOption) => void;
+  isCompact: boolean;
+  onCompactToggle: () => void;
   className?: string;
 }
 
@@ -29,6 +31,8 @@ export function SearchFilterBar({
   onClearFilters,
   sortBy,
   onSortChange,
+  isCompact,
+  onCompactToggle,
   className
 }: SearchFilterBarProps) {
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
@@ -209,6 +213,30 @@ export function SearchFilterBar({
               </div>
             )}
           </div>
+
+          {/* View Toggle Button */}
+          <button
+            onClick={onCompactToggle}
+            className={cn(
+              "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
+              isCompact
+                ? "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/40 shadow-sm"
+                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40"
+            )}
+            title={isCompact ? "Switch to detailed view" : "Switch to compact view"}
+          >
+            {isCompact ? (
+              <>
+                <LayoutGrid className="w-4 h-4" />
+                <span className="hidden lg:inline">Detailed</span>
+              </>
+            ) : (
+              <>
+                <List className="w-4 h-4" />
+                <span className="hidden lg:inline">Compact</span>
+              </>
+            )}
+          </button>
 
           {/* Clear All Button - Only show when there are active filters or search */}
           {hasAnyActive && (
