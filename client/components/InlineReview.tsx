@@ -255,60 +255,84 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
         </div>
       </div>
 
-      {/* Search and Filters */}
-      <div className="relative z-10 mb-8 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
-        <div className="flex items-center space-x-4 mb-6">
-          {/* Search Input */}
-          <div className="flex-1 relative">
+      {/* Refined Search and Filters */}
+      <div className="relative z-10 mb-10 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
+        {/* Elegant Search Input */}
+        <div className="mb-8">
+          <div className="relative max-w-md mx-auto">
             <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search cases or clients..."
-              className="w-full px-4 py-3 pl-11 bg-white/50 backdrop-blur-sm border border-[#C1D9F6]/50 rounded-2xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all"
+              className="w-full px-6 py-4 pl-14 bg-white/60 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/30 focus:border-[#99C0F0]/60 focus:bg-white/80 transition-all duration-300 shadow-lg shadow-[#C1D9F6]/5"
             />
-            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+            <div className="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-xl flex items-center justify-center">
+              <svg className="w-4 h-4 text-[#0E315C]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            {searchValue && (
+              <button
+                onClick={() => setSearchValue("")}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-[#0E315C]/10 hover:bg-[#0E315C]/20 rounded-full flex items-center justify-center transition-all duration-200"
+              >
+                <svg className="w-3 h-3 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex items-center space-x-3">
+        {/* Sophisticated Filter Pills */}
+        <div className="flex items-center justify-center space-x-4 flex-wrap gap-3">
           <button
             onClick={() => toggleFilter("needs-review")}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+            className={`group px-6 py-3 rounded-2xl text-sm font-light transition-all duration-500 hover:scale-105 ${
               activeFilters.includes("needs-review")
-                ? "bg-[#C5BFEE] text-white shadow-lg"
-                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
+                ? "bg-gradient-to-r from-[#C5BFEE] to-[#C1D9F6] text-white shadow-xl shadow-[#C5BFEE]/20"
+                : "bg-white/50 backdrop-blur-sm text-[#0E315C]/70 hover:bg-white/70 hover:shadow-lg border border-[#C5BFEE]/30"
             }`}
           >
-            Needs Review
+            <div className="flex items-center space-x-2">
+              <div className={`w-2 h-2 rounded-full transition-all ${activeFilters.includes("needs-review") ? "bg-white/80" : "bg-[#C5BFEE]/60"}`} />
+              <span>Needs Review</span>
+            </div>
           </button>
+
           <button
             onClick={() => toggleFilter("awaiting-docs")}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+            className={`group px-6 py-3 rounded-2xl text-sm font-light transition-all duration-500 hover:scale-105 ${
               activeFilters.includes("awaiting-docs")
-                ? "bg-[#99C0F0] text-white shadow-lg"
-                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
+                ? "bg-gradient-to-r from-[#99C0F0] to-[#C1D9F6] text-white shadow-xl shadow-[#99C0F0]/20"
+                : "bg-white/50 backdrop-blur-sm text-[#0E315C]/70 hover:bg-white/70 hover:shadow-lg border border-[#99C0F0]/30"
             }`}
           >
-            Awaiting Docs
+            <div className="flex items-center space-x-2">
+              <div className={`w-2 h-2 rounded-full transition-all ${activeFilters.includes("awaiting-docs") ? "bg-white/80" : "bg-[#99C0F0]/60"}`} />
+              <span>Awaiting Docs</span>
+            </div>
           </button>
+
           <button
             onClick={() => toggleFilter("high-priority")}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+            className={`group px-6 py-3 rounded-2xl text-sm font-light transition-all duration-500 hover:scale-105 ${
               activeFilters.includes("high-priority")
-                ? "bg-[#0E315C] text-white shadow-lg"
-                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
+                ? "bg-gradient-to-r from-[#0E315C] to-[#99C0F0] text-white shadow-xl shadow-[#0E315C]/20"
+                : "bg-white/50 backdrop-blur-sm text-[#0E315C]/70 hover:bg-white/70 hover:shadow-lg border border-[#0E315C]/30"
             }`}
           >
-            High Priority
+            <div className="flex items-center space-x-2">
+              <div className={`w-2 h-2 rounded-full transition-all ${activeFilters.includes("high-priority") ? "bg-white/80" : "bg-[#0E315C]/60"}`} />
+              <span>High Priority</span>
+            </div>
           </button>
+
           {activeFilters.length > 0 && (
             <button
               onClick={() => setActiveFilters([])}
-              className="px-3 py-2 rounded-xl text-sm font-medium text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/40 transition-all"
+              className="px-4 py-3 rounded-2xl text-sm font-light text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/50 transition-all duration-300 border border-[#0E315C]/20 hover:border-[#0E315C]/40"
             >
               Clear All
             </button>
