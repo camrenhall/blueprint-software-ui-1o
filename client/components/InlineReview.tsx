@@ -152,13 +152,13 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
   };
 
   return (
-    <div className="h-full overflow-y-auto px-8 py-10 relative">
+    <div className="h-full overflow-hidden px-8 py-6 relative flex flex-col">
       {/* Enhanced Background Gradient - Exact Create Match */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
       
       {/* Header - Exact Create Match */}
-      <div className="relative z-10 text-center mb-12">
+      <div className="relative z-10 text-center mb-8 flex-shrink-0">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
           <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">Case Review</h1>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">Monitor active cases and prioritize critical actions</p>
@@ -176,7 +176,7 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       </div>
 
       {/* Elegant Search - Mimicking Create's Input Style */}
-      <div className="relative z-10 mb-8 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
+      <div className="relative z-10 mb-6 flex-shrink-0 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
         <div className="text-center mb-6">
           <p className="text-[#0E315C]/60 text-sm leading-relaxed max-w-md mx-auto font-light">
             Search and filter your active cases to prioritize urgent reviews and document requests
@@ -230,77 +230,72 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       </div>
 
       {/* Cases List - Exact Create Button Style */}
-      <div className="relative z-10 space-y-5 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
-        {filteredCases.map((caseItem, index) => {
-          const statusColors = getStatusColor(caseItem.status);
-          
-          return (
-            <button
-              key={caseItem.caseId}
-              onClick={() => setSelectedCase(caseItem)}
-              className={`w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 ${statusColors.border} hover:bg-white/50 hover:shadow-xl ${statusColors.hover} transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform`}
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animation: "fadeInUp 0.6s ease-out forwards"
-              }}
-            >
-              <div className="flex items-start space-x-5">
-                {/* Avatar - Exact Create Icon Style */}
-                <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
-                  <span className="text-white font-light text-sm">{caseItem.avatar}</span>
-                </div>
-                
-                {/* Status Colored Dot */}
-                <div className={`w-4 h-4 ${statusColors.dot} rounded-full shadow-lg flex-shrink-0 mt-4`}></div>
-                
-                {/* Case Information - Optimized Layout */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h3 className="text-lg font-light text-[#0E315C] mb-1">{caseItem.name}</h3>
-                      <p className="text-[#0E315C]/60 text-sm font-light">{caseItem.caseId}</p>
-                    </div>
-                    
-                    <div className="text-right flex items-center space-x-3">
-                      <div>
-                        <div className="text-base font-light text-[#0E315C] mb-1">{caseItem.progressPercent}%</div>
-                        <div className="text-xs text-[#0E315C]/60 font-light">{caseItem.status}</div>
-                      </div>
-                      <svg className="w-5 h-5 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  {/* Progress and Metadata Row */}
-                  <div className="mb-4">
-                    <div className="flex items-center justify-between text-xs text-[#0E315C]/50 font-light mb-2">
-                      <span>{caseItem.progress}</span>
-                      <span>{caseItem.queueTime} in queue • {caseItem.lastActivity}</span>
-                    </div>
-                    
-                    {/* Full Width Progress Bar */}
-                    <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
-                      <div 
-                        className={`h-2 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
-                        style={{ width: `${caseItem.progressPercent}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </button>
-          );
-        })}
+      <div className="relative z-10 flex-1 overflow-y-auto transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
+        <div className="space-y-4 pr-2">
+          {filteredCases.map((caseItem, index) => {
+            const statusColors = getStatusColor(caseItem.status);
 
-        {filteredCases.length === 0 && (
-          <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center">
-            <svg className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            <p className="text-[#0E315C]/60 font-light">No cases match your filters</p>
-          </div>
-        )}
+            return (
+              <button
+                key={caseItem.caseId}
+                onClick={() => setSelectedCase(caseItem)}
+                className={`w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 ${statusColors.border} hover:bg-white/50 hover:shadow-xl ${statusColors.hover} transition-all duration-500 p-5 rounded-3xl text-left group hover:scale-[1.02] transform`}
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  animation: "fadeInUp 0.6s ease-out forwards"
+                }}
+              >
+                {/* SINGLE ROW - Perfect Alignment */}
+                <div className="flex items-center space-x-4 mb-3">
+                  {/* Avatar - Starting Point */}
+                  <div className="w-11 h-11 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                    <span className="text-white font-light text-sm">{caseItem.avatar}</span>
+                  </div>
+
+                  {/* Name + Case ID */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center space-x-3">
+                      <h3 className="text-base font-light text-[#0E315C] truncate">{caseItem.name}</h3>
+                      <span className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">{caseItem.caseId}</span>
+                    </div>
+                  </div>
+
+                  {/* Status + Percentage + Arrow */}
+                  <div className="flex items-center space-x-4 flex-shrink-0">
+                    <span className="text-sm font-light text-[#0E315C] whitespace-nowrap">{caseItem.status}</span>
+                    <span className="text-base font-light text-[#0E315C] min-w-[3rem] text-right">{caseItem.progressPercent}%</span>
+                    <svg className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* SECOND ROW - Progress Bar with Metadata */}
+                <div className="ml-15">
+                  <div className="flex items-center justify-between text-xs text-[#0E315C]/50 font-light mb-2">
+                    <span>{caseItem.progress}</span>
+                    <span>{caseItem.queueTime} in queue • {caseItem.lastActivity}</span>
+                  </div>
+                  <div className="w-full bg-[#C1D9F6]/20 rounded-full h-1.5 overflow-hidden">
+                    <div
+                      className={`h-1.5 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
+                      style={{ width: `${caseItem.progressPercent}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+
+          {filteredCases.length === 0 && (
+            <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-8 text-center">
+              <svg className="w-10 h-10 mx-auto mb-3 text-[#0E315C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <p className="text-[#0E315C]/60 font-light text-sm">No cases match your filters</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Enhanced Selected Case Modal - Create Style */}
