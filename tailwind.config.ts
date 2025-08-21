@@ -153,6 +153,7 @@ export default {
         drift: "drift 12s ease-in-out infinite",
         fadeIn: "fadeIn 0.8s ease-out",
         fadeOut: "fadeOut 1s ease-out",
+        fadeInUp: "fadeInUp 0.4s ease-out",
       },
     },
   },
