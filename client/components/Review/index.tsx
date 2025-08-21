@@ -110,8 +110,22 @@ export default function Review({ onClose }: ReviewProps) {
       {/* Header */}
       <div className="relative z-10 text-center mb-8 flex-shrink-0">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
-          <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">Case Review</h1>
-          <p className="text-[#0E315C]/70 text-base leading-relaxed">Monitor active cases and prioritize critical actions</p>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <h1 className="text-4xl font-light text-[#0E315C] tracking-wide">Case Review</h1>
+            {isCompact && (
+              <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
+                Compact View
+              </div>
+            )}
+          </div>
+          <p className="text-[#0E315C]/70 text-base leading-relaxed">
+            Monitor active cases and prioritize critical actions
+            {isCompact && (
+              <span className="block text-sm text-[#0E315C]/50 mt-1">
+                Viewing {processedCases.length} cases in compact layout
+              </span>
+            )}
+          </p>
         </div>
         {onClose && (
           <button
