@@ -56,23 +56,23 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         )}
       </div>
 
-      {/* Ethereal Step Indicator */}
-      <div className={`relative z-10 mb-12 transition-all duration-800 ease-out delay-500 ${createStep ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-3"}`}>
-        <div className="flex items-center justify-center space-x-6">
+      {/* Enhanced Step Indicator */}
+      <div className={`relative z-10 mb-14 transition-all duration-800 ease-out delay-500 ${createStep ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-3"}`}>
+        <div className="flex items-center justify-center space-x-8">
           {steps.map((step, index) => (
             <div key={step.number} className="flex items-center">
               <div className="flex flex-col items-center">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-light transition-all duration-700 backdrop-blur-sm ${
+                  className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-700 backdrop-blur-sm ${
                     step.number < createStep
-                      ? "bg-[#99C0F0]/80 text-white shadow-lg shadow-[#99C0F0]/20 scale-110"
+                      ? "bg-[#99C0F0] text-white shadow-lg shadow-[#99C0F0]/30 scale-110"
                       : step.number === createStep
-                        ? "bg-[#C5BFEE]/80 text-white shadow-lg shadow-[#C5BFEE]/20 scale-105 animate-pulse"
-                        : "bg-white/40 text-[#0E315C]/50 border border-[#C1D9F6]/40 backdrop-blur-sm"
+                        ? "bg-[#C5BFEE] text-white shadow-lg shadow-[#C5BFEE]/30 scale-105 animate-pulse"
+                        : "bg-white/60 text-[#0E315C]/60 border-2 border-[#C1D9F6]/50 backdrop-blur-sm"
                   }`}
                 >
                   {step.number < createStep ? (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                     </svg>
                   ) : (
@@ -80,8 +80,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   )}
                 </div>
                 <span
-                  className={`text-xs font-light mt-2 transition-all duration-700 ${
-                    step.number <= createStep ? "text-[#0E315C]/80" : "text-[#0E315C]/30"
+                  className={`text-sm font-medium mt-3 transition-all duration-700 ${
+                    step.number <= createStep ? "text-[#0E315C]" : "text-[#0E315C]/40"
                   }`}
                 >
                   {step.label}
@@ -89,10 +89,10 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </div>
               {index < steps.length - 1 && (
                 <div
-                  className={`w-16 h-px mx-4 transition-all duration-700 ${
+                  className={`w-20 h-0.5 mx-4 transition-all duration-700 ${
                     step.number < createStep
-                      ? "bg-gradient-to-r from-[#99C0F0]/60 to-[#C5BFEE]/60"
-                      : "bg-[#C1D9F6]/30"
+                      ? "bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE]"
+                      : "bg-[#C1D9F6]/40"
                   }`}
                 />
               )}
