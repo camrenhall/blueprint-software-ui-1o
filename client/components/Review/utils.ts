@@ -1,5 +1,7 @@
 import { Case, CaseStatus, StatusColors, FilterOption } from './types';
 
+export type SortOption = 'priority' | 'alphabetical' | 'queueTime' | 'lastActivity';
+
 export const getStatusColors = (status: CaseStatus): StatusColors => {
   switch (status) {
     case "Needs Review":
