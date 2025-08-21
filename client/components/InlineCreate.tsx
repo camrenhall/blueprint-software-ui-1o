@@ -6,6 +6,7 @@ interface InlineCreateProps {
 
 export default function InlineCreate({ onClose }: InlineCreateProps) {
   const [createStep, setCreateStep] = useState(1);
+  const [isAnimated, setIsAnimated] = useState(false);
   const [createMethod, setCreateMethod] = useState<
     "ai" | "manual" | "questionnaire" | null
   >(null);
