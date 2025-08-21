@@ -340,84 +340,110 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
         </div>
       </div>
 
-      {/* Cases List */}
+      {/* Sophisticated Cases List */}
       <div className="relative z-10 transition-all duration-1200 ease-out delay-900 opacity-100 transform translate-y-0">
-        <div className="space-y-4 max-h-96 overflow-y-auto">
+        <div className="space-y-6 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
           {filteredCases.map((caseItem, index) => {
             const statusInfo = getStatusIndicator(caseItem.status);
             return (
               <div
                 key={caseItem.caseId}
-                className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/30 rounded-2xl p-6 hover:bg-white/60 hover:shadow-lg hover:scale-[1.01] transition-all duration-300 cursor-pointer group"
+                className="group bg-white/60 backdrop-blur-md border border-[#C1D9F6]/20 rounded-3xl p-8 hover:bg-white/80 hover:shadow-2xl hover:shadow-[#99C0F0]/5 hover:scale-[1.02] hover:border-[#99C0F0]/40 transition-all duration-500 cursor-pointer relative overflow-hidden"
                 onClick={() => setSelectedCase(caseItem)}
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                  animation: "fadeInUp 0.6s ease-out forwards"
+                }}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
-                    {/* Avatar */}
-                    <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center text-white font-medium shadow-lg group-hover:scale-110 transition-transform">
-                      {caseItem.avatar}
-                    </div>
-                    
-                    {/* Case Info */}
-                    <div>
-                      <div className="flex items-center space-x-3 mb-1">
-                        <h3 className="text-lg font-medium text-[#0E315C]">{caseItem.name}</h3>
-                        <span className="text-sm text-[#0E315C]/60 font-mono">{caseItem.caseId}</span>
+                {/* Subtle Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#C1D9F6]/5 to-[#99C0F0]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative flex items-center justify-between">
+                  <div className="flex items-center space-x-6">
+                    {/* Enhanced Avatar */}
+                    <div className="relative">
+                      <div className="w-16 h-16 bg-gradient-to-br from-[#99C0F0] via-[#C5BFEE] to-[#C1D9F6] rounded-2xl flex items-center justify-center text-white font-light text-lg shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                        {caseItem.avatar}
                       </div>
-                      <div className="flex items-center space-x-4 text-sm text-[#0E315C]/70">
-                        <span>{caseItem.progress}</span>
-                        <span>•</span>
-                        <span>{caseItem.queueTime} in queue</span>
-                        <span>•</span>
-                        <span>Updated {caseItem.lastActivity}</span>
+                      {caseItem.priority === "high" && (
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#0E315C] rounded-full flex items-center justify-center">
+                          <div className="w-2 h-2 bg-white rounded-full" />
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Refined Case Info */}
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-4 mb-3">
+                        <h3 className="text-xl font-light text-[#0E315C] group-hover:text-[#0E315C] transition-colors">{caseItem.name}</h3>
+                        <span className="text-sm text-[#0E315C]/50 font-mono bg-[#C1D9F6]/20 px-2 py-1 rounded-lg">{caseItem.caseId}</span>
+                      </div>
+                      <div className="flex items-center space-x-6 text-sm text-[#0E315C]/60 font-light">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-[#99C0F0]/60 rounded-full" />
+                          <span>{caseItem.progress}</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-[#C5BFEE]/60 rounded-full" />
+                          <span>{caseItem.queueTime} in queue</span>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-[#C1D9F6]/60 rounded-full" />
+                          <span>Updated {caseItem.lastActivity}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Status and Actions */}
-                  <div className="flex items-center space-x-4">
-                    {/* Priority Indicator */}
-                    {caseItem.priority === "high" && (
-                      <div className="w-2 h-2 bg-[#0E315C] rounded-full"></div>
-                    )}
-                    
-                    {/* Status Badge */}
-                    <div className={`px-3 py-1 rounded-full text-xs font-medium ${statusInfo.textColor} ${statusInfo.bgColor} border border-current/20`}>
+                  {/* Enhanced Status and Actions */}
+                  <div className="flex items-center space-x-6">
+                    {/* Elegant Status Badge */}
+                    <div className={`px-4 py-2 rounded-2xl text-sm font-light backdrop-blur-sm ${statusInfo.textColor} ${statusInfo.bgColor} border border-current/30 shadow-lg`}>
                       {caseItem.status}
                     </div>
 
-                    {/* Progress Ring */}
-                    <div className="relative w-8 h-8">
-                      <svg className="w-8 h-8 transform -rotate-90" viewBox="0 0 32 32">
+                    {/* Enhanced Progress Ring */}
+                    <div className="relative w-12 h-12 group-hover:scale-110 transition-transform duration-300">
+                      <svg className="w-12 h-12 transform -rotate-90" viewBox="0 0 48 48">
                         <circle
-                          cx="16"
-                          cy="16"
-                          r="12"
+                          cx="24"
+                          cy="24"
+                          r="18"
                           fill="none"
                           stroke="#C1D9F6"
                           strokeWidth="2"
+                          opacity="0.3"
                         />
                         <circle
-                          cx="16"
-                          cy="16"
-                          r="12"
+                          cx="24"
+                          cy="24"
+                          r="18"
                           fill="none"
-                          stroke="#99C0F0"
-                          strokeWidth="2"
-                          strokeDasharray={`${2 * Math.PI * 12}`}
-                          strokeDashoffset={`${2 * Math.PI * 12 * (1 - caseItem.progressPercent / 100)}`}
-                          className="transition-all duration-500"
+                          stroke="url(#progressGradient)"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeDasharray={`${2 * Math.PI * 18}`}
+                          strokeDashoffset={`${2 * Math.PI * 18 * (1 - caseItem.progressPercent / 100)}`}
+                          className="transition-all duration-700"
                         />
+                        <defs>
+                          <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#99C0F0" />
+                            <stop offset="100%" stopColor="#C5BFEE" />
+                          </linearGradient>
+                        </defs>
                       </svg>
-                      <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-[#0E315C]">
+                      <div className="absolute inset-0 flex items-center justify-center text-sm font-light text-[#0E315C]">
                         {caseItem.progressPercent}%
                       </div>
                     </div>
 
-                    {/* Arrow */}
-                    <svg className="w-5 h-5 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    {/* Refined Arrow */}
+                    <div className="w-10 h-10 bg-white/40 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:bg-[#99C0F0]/20 transition-all duration-300">
+                      <svg className="w-5 h-5 text-[#0E315C]/50 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
