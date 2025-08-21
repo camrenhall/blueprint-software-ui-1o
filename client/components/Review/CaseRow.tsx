@@ -26,7 +26,7 @@ export function CaseRow({
         statusColors.border,
         "hover:bg-white/50 hover:shadow-lg",
         statusColors.hover,
-        "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group",
+        "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
         className,
       )}
       style={{
