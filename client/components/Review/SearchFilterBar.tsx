@@ -1,9 +1,7 @@
 import { Search, Filter, SortAsc, X, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { filterOptions } from './utils';
-
-export type SortOption = 'priority' | 'alphabetical' | 'queueTime' | 'lastActivity';
+import { filterOptions, SortOption } from './utils';
 
 interface SearchFilterBarProps {
   searchValue: string;
