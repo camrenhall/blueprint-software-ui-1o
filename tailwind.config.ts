@@ -134,6 +134,16 @@ export default {
             transform: "translateY(-20px) scale(1.05)",
           },
         },
+        fadeInUp: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
