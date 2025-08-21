@@ -36,9 +36,7 @@ export default function Index() {
       id: "review",
       title: "Review",
       action: () => {
-        setDashboardPage("review");
-        setDashboardTitle("");
-        setDashboardOpen(true);
+        setActiveRightContent("review");
       },
     },
     {
