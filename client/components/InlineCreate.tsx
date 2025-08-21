@@ -359,7 +359,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </button>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6 space-y-4">
+            <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-2xl p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-[#0E315C] mb-2">
