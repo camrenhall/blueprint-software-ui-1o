@@ -266,15 +266,15 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
                       </div>
 
                       {/* Status + Metadata Row */}
-                      <div className="flex items-center space-x-3 text-xs text-[#0E315C]/50 font-light">
-                        <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden">
+                        <div className="flex items-center space-x-1.5 flex-shrink-0">
                           <div className={`w-2.5 h-2.5 ${statusColors.dot} rounded-full shadow-sm`}></div>
-                          <span className="text-[#0E315C]/70 font-medium">{caseItem.status}</span>
+                          <span className="text-[#0E315C]/70 font-medium whitespace-nowrap">{caseItem.status}</span>
                         </div>
-                        <span>•</span>
-                        <span>{caseItem.queueTime} in queue</span>
-                        <span>•</span>
-                        <span>{caseItem.lastActivity}</span>
+                        <span className="flex-shrink-0">•</span>
+                        <span className="whitespace-nowrap flex-shrink-0">{caseItem.queueTime} in queue</span>
+                        <span className="flex-shrink-0">•</span>
+                        <span className="whitespace-nowrap flex-shrink-0">{caseItem.lastActivity}</span>
                       </div>
                     </div>
 
