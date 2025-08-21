@@ -152,13 +152,13 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
   };
 
   return (
-    <div className="h-full overflow-y-auto px-8 py-10 relative">
+    <div className="h-full max-h-[85vh] overflow-hidden px-8 py-8 relative flex flex-col">
       {/* Enhanced Background Gradient - Exact Create Match */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
       
       {/* Header - Exact Create Match */}
-      <div className="relative z-10 text-center mb-12">
+      <div className="relative z-10 text-center mb-8 flex-shrink-0">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
           <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">Case Review</h1>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">Monitor active cases and prioritize critical actions</p>
@@ -176,7 +176,7 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       </div>
 
       {/* Elegant Search - Mimicking Create's Input Style */}
-      <div className="relative z-10 mb-8 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
+      <div className="relative z-10 mb-6 flex-shrink-0 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
         <div className="text-center mb-6">
           <p className="text-[#0E315C]/60 text-sm leading-relaxed max-w-md mx-auto font-light">
             Search and filter your active cases to prioritize urgent reviews and document requests
@@ -229,8 +229,9 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
         </div>
       </div>
 
-      {/* Cases List - Exact Create Button Style */}
-      <div className="relative z-10 space-y-5 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
+      {/* Cases List - Scrollable Container */}
+      <div className="relative z-10 flex-1 overflow-y-auto transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
+        <div className="space-y-5 pr-2">
         {filteredCases.map((caseItem, index) => {
           const statusColors = getStatusColor(caseItem.status);
 
@@ -301,14 +302,15 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
           );
         })}
 
-        {filteredCases.length === 0 && (
-          <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center">
-            <svg className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            <p className="text-[#0E315C]/60 font-light">No cases match your filters</p>
-          </div>
-        )}
+          {filteredCases.length === 0 && (
+            <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center">
+              <svg className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <p className="text-[#0E315C]/60 font-light">No cases match your filters</p>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Enhanced Selected Case Modal - Create Style */}
