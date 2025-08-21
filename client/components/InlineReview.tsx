@@ -174,49 +174,31 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
   };
 
   return (
-    <div className="h-full overflow-y-auto px-8 py-8 relative">
-      {/* Soft Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
-      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
-      
-      {/* Header */}
-      <div className="relative z-10 text-center mb-8">
+    <div className="h-full overflow-y-auto px-8 py-10 relative">
+      {/* Enhanced Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-[#C1D9F6]/20 to-[#99C0F0]/15 blur-2xl" />
+      <div className="absolute inset-0 bg-white/25 backdrop-blur-sm" />
+
+      {/* Floating decorative elements */}
+      <div className="absolute top-20 right-16 w-2 h-2 bg-[#99C0F0]/30 rounded-full animate-pulse" />
+      <div className="absolute bottom-24 left-12 w-1.5 h-1.5 bg-[#C5BFEE]/40 rounded-full animate-pulse" style={{ animationDelay: "1s" }} />
+
+      {/* Elegant Header */}
+      <div className="relative z-10 text-center mb-12">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
-          <h1 className="text-3xl font-light text-[#0E315C] mb-3 tracking-wide">Case Review</h1>
-          <p className="text-[#0E315C]/60 text-sm leading-relaxed">Monitor active cases and prioritize actions</p>
+          <h1 className="text-4xl font-extralight text-[#0E315C] mb-4 tracking-wide">Case Review</h1>
+          <p className="text-[#0E315C]/60 text-base leading-relaxed font-light max-w-sm mx-auto">Monitor active cases and prioritize actions with intelligent insights</p>
         </div>
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-0 right-0 w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+            className="absolute top-0 right-0 w-10 h-10 rounded-2xl flex items-center justify-center text-[#0E315C]/40 hover:text-[#0E315C] hover:bg-white/40 transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         )}
-      </div>
-
-      {/* Compact Metrics Overview */}
-      <div className="relative z-10 mb-8 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
-        <div className="grid grid-cols-4 gap-3">
-          <div className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
-            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.openCases}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Open</div>
-          </div>
-          <div className="bg-white/40 backdrop-blur-sm border border-[#C5BFEE]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
-            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.needsReview}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Review</div>
-          </div>
-          <div className="bg-white/40 backdrop-blur-sm border border-[#99C0F0]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
-            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.awaitingDocs}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Docs</div>
-          </div>
-          <div className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
-            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.validationRate}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Valid</div>
-          </div>
-        </div>
       </div>
 
       {/* Search and Filters */}
