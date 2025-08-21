@@ -178,7 +178,7 @@ export default function Index() {
             {activeRightContent && (
               <>
                 <div
-                  className={`absolute top-1/4 right-1/4 w-4 h-4 bg-[#99C0F0]/50 rounded-full blur-sm transition-all duration-2000 ease-out delay-500 ${
+                  className={`absolute top-1/4 right-1/4 w-4 h-4 bg-[#99C0F0]/50 rounded-full blur-sm transition-all duration-1000 ease-out delay-500 ${
                     activeRightContent
                       ? "opacity-70 animate-pulse"
                       : "opacity-0"
