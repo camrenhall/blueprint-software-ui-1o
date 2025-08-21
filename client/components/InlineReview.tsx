@@ -174,110 +174,72 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
   };
 
   return (
-    <div className="h-full overflow-y-auto px-10 py-12 relative">
-      {/* Sophisticated Background Layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-[#C1D9F6]/20 to-[#99C0F0]/15 blur-3xl" />
-      <div className="absolute inset-0 bg-gradient-radial from-[#C5BFEE]/10 via-transparent to-transparent" />
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
-
-      {/* Floating Decorative Elements */}
-      <div className="absolute top-20 right-20 w-2 h-2 bg-[#99C0F0]/40 rounded-full animate-pulse" />
-      <div className="absolute bottom-32 left-16 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full animate-pulse" style={{ animationDelay: "1s" }} />
-      <div className="absolute top-1/3 right-12 w-1 h-1 bg-[#C1D9F6]/60 rounded-full animate-pulse" style={{ animationDelay: "2s" }} />
-
-      {/* Elegant Header */}
-      <div className="relative z-10 text-center mb-12">
+    <div className="h-full overflow-y-auto px-8 py-8 relative">
+      {/* Soft Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
+      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
+      
+      {/* Header */}
+      <div className="relative z-10 text-center mb-8">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
-          <div className="inline-flex items-center space-x-3 mb-6">
-            <div className="w-8 h-8 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
-              <svg className="w-4 h-4 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-            </div>
-            <h1 className="text-5xl font-extralight text-[#0E315C] tracking-wide">Case Review</h1>
-          </div>
-          <p className="text-[#0E315C]/60 text-lg leading-relaxed font-light max-w-md mx-auto">Monitor active cases and prioritize actions with intelligent insights</p>
+          <h1 className="text-3xl font-light text-[#0E315C] mb-3 tracking-wide">Case Review</h1>
+          <p className="text-[#0E315C]/60 text-sm leading-relaxed">Monitor active cases and prioritize actions</p>
         </div>
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-0 right-0 w-12 h-12 rounded-2xl flex items-center justify-center text-[#0E315C]/40 hover:text-[#0E315C] hover:bg-white/40 transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
+            className="absolute top-0 right-0 w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
           >
-            <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         )}
       </div>
 
-      {/* Elegant Metrics Overview */}
-      <div className="relative z-10 mb-14 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="group bg-white/50 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#C1D9F6]/10 hover:scale-105 transition-all duration-500">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#C1D9F6]/30 to-[#99C0F0]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
-            </div>
-            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.openCases}</div>
-            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Open Cases</div>
+      {/* Compact Metrics Overview */}
+      <div className="relative z-10 mb-8 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
+        <div className="grid grid-cols-4 gap-3">
+          <div className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
+            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.openCases}</div>
+            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Open</div>
           </div>
-
-          <div className="group bg-white/50 backdrop-blur-md border border-[#C5BFEE]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#C5BFEE]/10 hover:scale-105 transition-all duration-500">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#C5BFEE]/40 to-[#C1D9F6]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-              </svg>
-            </div>
-            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.needsReview}</div>
-            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Needs Review</div>
+          <div className="bg-white/40 backdrop-blur-sm border border-[#C5BFEE]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
+            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.needsReview}</div>
+            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Review</div>
           </div>
-
-          <div className="group bg-white/50 backdrop-blur-md border border-[#99C0F0]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#99C0F0]/10 hover:scale-105 transition-all duration-500">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/40 to-[#C5BFEE]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.awaitingDocs}</div>
-            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Awaiting Docs</div>
+          <div className="bg-white/40 backdrop-blur-sm border border-[#99C0F0]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
+            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.awaitingDocs}</div>
+            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Docs</div>
           </div>
-
-          <div className="group bg-white/50 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#C1D9F6]/10 hover:scale-105 transition-all duration-500">
-            <div className="w-12 h-12 bg-gradient-to-br from-[#C1D9F6]/30 to-[#C5BFEE]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.validationRate}</div>
-            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Validation</div>
+          <div className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-3 text-center hover:bg-white/60 transition-all">
+            <div className="text-lg font-light text-[#0E315C] mb-1">{metrics.validationRate}</div>
+            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Valid</div>
           </div>
         </div>
       </div>
 
-      {/* Refined Search and Filters */}
-      <div className="relative z-10 mb-10 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
-        {/* Elegant Search Input */}
-        <div className="mb-8">
-          <div className="relative max-w-md mx-auto">
+      {/* Search and Filters */}
+      <div className="relative z-10 mb-6 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
+        {/* Search Input */}
+        <div className="mb-4">
+          <div className="relative">
             <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search cases or clients..."
-              className="w-full px-6 py-4 pl-14 bg-white/60 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/30 focus:border-[#99C0F0]/60 focus:bg-white/80 transition-all duration-300 shadow-lg shadow-[#C1D9F6]/5"
+              className="w-full px-4 py-2 pl-10 bg-white/50 backdrop-blur-sm border border-[#C1D9F6]/50 rounded-2xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all text-sm"
             />
-            <div className="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-xl flex items-center justify-center">
-              <svg className="w-4 h-4 text-[#0E315C]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
+            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
             {searchValue && (
               <button
                 onClick={() => setSearchValue("")}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-[#0E315C]/10 hover:bg-[#0E315C]/20 rounded-full flex items-center justify-center transition-all duration-200"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/40 hover:text-[#0E315C] transition-all"
               >
-                <svg className="w-3 h-3 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
@@ -285,165 +247,123 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
           </div>
         </div>
 
-        {/* Sophisticated Filter Pills */}
-        <div className="flex items-center justify-center space-x-4 flex-wrap gap-3">
+        {/* Filter Buttons */}
+        <div className="flex items-center space-x-2">
           <button
             onClick={() => toggleFilter("needs-review")}
-            className={`group px-6 py-3 rounded-2xl text-sm font-light transition-all duration-500 hover:scale-105 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
               activeFilters.includes("needs-review")
-                ? "bg-gradient-to-r from-[#C5BFEE] to-[#C1D9F6] text-white shadow-xl shadow-[#C5BFEE]/20"
-                : "bg-white/50 backdrop-blur-sm text-[#0E315C]/70 hover:bg-white/70 hover:shadow-lg border border-[#C5BFEE]/30"
+                ? "bg-[#C5BFEE] text-white shadow-md"
+                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
             }`}
           >
-            <div className="flex items-center space-x-2">
-              <div className={`w-2 h-2 rounded-full transition-all ${activeFilters.includes("needs-review") ? "bg-white/80" : "bg-[#C5BFEE]/60"}`} />
-              <span>Needs Review</span>
-            </div>
+            Needs Review
           </button>
-
           <button
             onClick={() => toggleFilter("awaiting-docs")}
-            className={`group px-6 py-3 rounded-2xl text-sm font-light transition-all duration-500 hover:scale-105 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
               activeFilters.includes("awaiting-docs")
-                ? "bg-gradient-to-r from-[#99C0F0] to-[#C1D9F6] text-white shadow-xl shadow-[#99C0F0]/20"
-                : "bg-white/50 backdrop-blur-sm text-[#0E315C]/70 hover:bg-white/70 hover:shadow-lg border border-[#99C0F0]/30"
+                ? "bg-[#99C0F0] text-white shadow-md"
+                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
             }`}
           >
-            <div className="flex items-center space-x-2">
-              <div className={`w-2 h-2 rounded-full transition-all ${activeFilters.includes("awaiting-docs") ? "bg-white/80" : "bg-[#99C0F0]/60"}`} />
-              <span>Awaiting Docs</span>
-            </div>
+            Awaiting Docs
           </button>
-
           <button
             onClick={() => toggleFilter("high-priority")}
-            className={`group px-6 py-3 rounded-2xl text-sm font-light transition-all duration-500 hover:scale-105 ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
               activeFilters.includes("high-priority")
-                ? "bg-gradient-to-r from-[#0E315C] to-[#99C0F0] text-white shadow-xl shadow-[#0E315C]/20"
-                : "bg-white/50 backdrop-blur-sm text-[#0E315C]/70 hover:bg-white/70 hover:shadow-lg border border-[#0E315C]/30"
+                ? "bg-[#0E315C] text-white shadow-md"
+                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
             }`}
           >
-            <div className="flex items-center space-x-2">
-              <div className={`w-2 h-2 rounded-full transition-all ${activeFilters.includes("high-priority") ? "bg-white/80" : "bg-[#0E315C]/60"}`} />
-              <span>High Priority</span>
-            </div>
+            High Priority
           </button>
-
           {activeFilters.length > 0 && (
             <button
               onClick={() => setActiveFilters([])}
-              className="px-4 py-3 rounded-2xl text-sm font-light text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/50 transition-all duration-300 border border-[#0E315C]/20 hover:border-[#0E315C]/40"
+              className="px-2 py-1.5 rounded-xl text-xs font-medium text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/40 transition-all"
             >
-              Clear All
+              Clear
             </button>
           )}
         </div>
       </div>
 
-      {/* Sophisticated Cases List */}
+      {/* Compact Cases List */}
       <div className="relative z-10 transition-all duration-1200 ease-out delay-900 opacity-100 transform translate-y-0">
-        <div className="space-y-6 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+        <div className="space-y-3 max-h-72 overflow-y-auto">
           {filteredCases.map((caseItem, index) => {
             const statusInfo = getStatusIndicator(caseItem.status);
             return (
               <div
                 key={caseItem.caseId}
-                className="group bg-white/60 backdrop-blur-md border border-[#C1D9F6]/20 rounded-3xl p-8 hover:bg-white/80 hover:shadow-2xl hover:shadow-[#99C0F0]/5 hover:scale-[1.02] hover:border-[#99C0F0]/40 transition-all duration-500 cursor-pointer relative overflow-hidden"
+                className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/30 rounded-2xl p-4 hover:bg-white/60 hover:shadow-lg hover:scale-[1.01] transition-all duration-300 cursor-pointer group"
                 onClick={() => setSelectedCase(caseItem)}
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                  animation: "fadeInUp 0.6s ease-out forwards"
-                }}
               >
-                {/* Subtle Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#C1D9F6]/5 to-[#99C0F0]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                <div className="relative flex items-center justify-between">
-                  <div className="flex items-center space-x-6">
-                    {/* Enhanced Avatar */}
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#99C0F0] via-[#C5BFEE] to-[#C1D9F6] rounded-2xl flex items-center justify-center text-white font-light text-lg shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
-                        {caseItem.avatar}
-                      </div>
-                      {caseItem.priority === "high" && (
-                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#0E315C] rounded-full flex items-center justify-center">
-                          <div className="w-2 h-2 bg-white rounded-full" />
-                        </div>
-                      )}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    {/* Compact Avatar */}
+                    <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center text-white font-medium text-sm shadow-md group-hover:scale-110 transition-transform">
+                      {caseItem.avatar}
                     </div>
-
-                    {/* Refined Case Info */}
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-4 mb-3">
-                        <h3 className="text-xl font-light text-[#0E315C] group-hover:text-[#0E315C] transition-colors">{caseItem.name}</h3>
-                        <span className="text-sm text-[#0E315C]/50 font-mono bg-[#C1D9F6]/20 px-2 py-1 rounded-lg">{caseItem.caseId}</span>
+                    
+                    {/* Case Info */}
+                    <div>
+                      <div className="flex items-center space-x-2 mb-1">
+                        <h3 className="text-sm font-medium text-[#0E315C]">{caseItem.name}</h3>
+                        <span className="text-xs text-[#0E315C]/50 font-mono">{caseItem.caseId}</span>
+                        {caseItem.priority === "high" && (
+                          <div className="w-1.5 h-1.5 bg-[#0E315C] rounded-full"></div>
+                        )}
                       </div>
-                      <div className="flex items-center space-x-6 text-sm text-[#0E315C]/60 font-light">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-[#99C0F0]/60 rounded-full" />
-                          <span>{caseItem.progress}</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-[#C5BFEE]/60 rounded-full" />
-                          <span>{caseItem.queueTime} in queue</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-[#C1D9F6]/60 rounded-full" />
-                          <span>Updated {caseItem.lastActivity}</span>
-                        </div>
+                      <div className="text-xs text-[#0E315C]/60">
+                        {caseItem.progress} • {caseItem.queueTime} • {caseItem.lastActivity}
                       </div>
                     </div>
                   </div>
 
-                  {/* Enhanced Status and Actions */}
-                  <div className="flex items-center space-x-6">
-                    {/* Elegant Status Badge */}
-                    <div className={`px-4 py-2 rounded-2xl text-sm font-light backdrop-blur-sm ${statusInfo.textColor} ${statusInfo.bgColor} border border-current/30 shadow-lg`}>
+                  {/* Status and Progress */}
+                  <div className="flex items-center space-x-3">
+                    {/* Status Badge */}
+                    <div className={`px-2 py-1 rounded-lg text-xs font-medium ${statusInfo.textColor} ${statusInfo.bgColor} border border-current/20`}>
                       {caseItem.status}
                     </div>
 
-                    {/* Enhanced Progress Ring */}
-                    <div className="relative w-12 h-12 group-hover:scale-110 transition-transform duration-300">
-                      <svg className="w-12 h-12 transform -rotate-90" viewBox="0 0 48 48">
+                    {/* Compact Progress Ring */}
+                    <div className="relative w-6 h-6">
+                      <svg className="w-6 h-6 transform -rotate-90" viewBox="0 0 24 24">
                         <circle
-                          cx="24"
-                          cy="24"
-                          r="18"
+                          cx="12"
+                          cy="12"
+                          r="8"
                           fill="none"
                           stroke="#C1D9F6"
-                          strokeWidth="2"
+                          strokeWidth="1.5"
                           opacity="0.3"
                         />
                         <circle
-                          cx="24"
-                          cy="24"
-                          r="18"
+                          cx="12"
+                          cy="12"
+                          r="8"
                           fill="none"
-                          stroke="url(#progressGradient)"
-                          strokeWidth="3"
+                          stroke="#99C0F0"
+                          strokeWidth="1.5"
                           strokeLinecap="round"
-                          strokeDasharray={`${2 * Math.PI * 18}`}
-                          strokeDashoffset={`${2 * Math.PI * 18 * (1 - caseItem.progressPercent / 100)}`}
-                          className="transition-all duration-700"
+                          strokeDasharray={`${2 * Math.PI * 8}`}
+                          strokeDashoffset={`${2 * Math.PI * 8 * (1 - caseItem.progressPercent / 100)}`}
+                          className="transition-all duration-500"
                         />
-                        <defs>
-                          <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#99C0F0" />
-                            <stop offset="100%" stopColor="#C5BFEE" />
-                          </linearGradient>
-                        </defs>
                       </svg>
-                      <div className="absolute inset-0 flex items-center justify-center text-sm font-light text-[#0E315C]">
+                      <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-[#0E315C]">
                         {caseItem.progressPercent}%
                       </div>
                     </div>
 
-                    {/* Refined Arrow */}
-                    <div className="w-10 h-10 bg-white/40 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:bg-[#99C0F0]/20 transition-all duration-300">
-                      <svg className="w-5 h-5 text-[#0E315C]/50 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
+                    {/* Arrow */}
+                    <svg className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -451,85 +371,36 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
           })}
 
           {filteredCases.length === 0 && (
-            <div className="text-center py-16">
-              <div className="w-20 h-20 bg-gradient-to-br from-[#C1D9F6]/30 to-[#99C0F0]/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-light text-[#0E315C] mb-2">No cases found</h3>
-              <p className="text-sm text-[#0E315C]/50 font-light">No cases match your current filters. Try adjusting your search criteria.</p>
+            <div className="text-center py-8 text-[#0E315C]/60">
+              <svg className="w-8 h-8 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              <p className="text-sm">No cases match your filters</p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Elegant Selected Case Modal */}
+      {/* Simple Selected Case Modal */}
       {selectedCase && (
-        <div
-          className="fixed inset-0 bg-[#0E315C]/20 backdrop-blur-md z-50 flex items-center justify-center transition-all duration-300"
-          onClick={() => setSelectedCase(null)}
-        >
-          <div
-            className="bg-white/95 backdrop-blur-xl rounded-3xl p-10 max-w-lg mx-4 shadow-2xl shadow-[#99C0F0]/10 transform scale-95 hover:scale-100 transition-all duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center" onClick={() => setSelectedCase(null)}>
+          <div className="bg-white/90 backdrop-blur-xl rounded-2xl p-6 max-w-sm mx-4 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-[#99C0F0] via-[#C5BFEE] to-[#C1D9F6] rounded-3xl flex items-center justify-center text-white font-light text-2xl mx-auto mb-6 shadow-xl">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center text-white font-medium mx-auto mb-4">
                 {selectedCase.avatar}
               </div>
-              <h3 className="text-3xl font-extralight text-[#0E315C] mb-2 tracking-wide">{selectedCase.name}</h3>
-              <p className="text-[#0E315C]/50 mb-3 font-mono text-sm bg-[#C1D9F6]/20 px-3 py-1 rounded-xl inline-block">{selectedCase.caseId}</p>
-              <div className="mb-8 text-sm text-[#0E315C]/60 space-y-1">
-                <p>{selectedCase.progress}</p>
-                <p>{selectedCase.queueTime} in queue • Updated {selectedCase.lastActivity}</p>
-              </div>
-              <div className="flex space-x-4 justify-center">
-                <button
-                  onClick={() => setSelectedCase(null)}
-                  className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#99C0F0] text-white px-8 py-3 rounded-2xl transition-all duration-300 font-light shadow-lg hover:shadow-xl hover:scale-105"
-                >
-                  Open Case Details
-                </button>
-                <button
-                  onClick={() => setSelectedCase(null)}
-                  className="bg-white/50 hover:bg-white/70 text-[#0E315C]/70 hover:text-[#0E315C] px-6 py-3 rounded-2xl transition-all duration-300 font-light border border-[#C1D9F6]/30"
-                >
-                  Close
-                </button>
-              </div>
+              <h3 className="text-lg font-light text-[#0E315C] mb-1">{selectedCase.name}</h3>
+              <p className="text-[#0E315C]/60 text-sm mb-4">{selectedCase.caseId}</p>
+              <button
+                onClick={() => setSelectedCase(null)}
+                className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-4 py-2 rounded-xl transition-all text-sm"
+              >
+                Open Case Details
+              </button>
             </div>
           </div>
         </div>
       )}
-
-      {/* Add custom scrollbar styles */}
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(193, 217, 246, 0.1);
-          border-radius: 3px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(153, 192, 240, 0.3);
-          border-radius: 3px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(153, 192, 240, 0.5);
-        }
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }
