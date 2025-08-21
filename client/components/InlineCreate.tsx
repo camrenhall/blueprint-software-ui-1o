@@ -278,7 +278,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </button>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
+            <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-2xl p-6">
               <div className="text-center text-[#0E315C]/60 py-8">
                 <svg
                   className="w-12 h-12 mx-auto mb-4 opacity-40"
