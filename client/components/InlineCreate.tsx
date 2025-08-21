@@ -35,13 +35,13 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
   ];
 
   return (
-    <div className="h-full overflow-y-auto px-8 py-10 relative">
+    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-hidden px-8 py-8 relative flex flex-col">
       {/* Enhanced Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
 
       {/* Header */}
-      <div className="relative z-10 text-center mb-12">
+      <div className="relative z-10 text-center mb-8 flex-shrink-0">
         <div
           className={`transition-all duration-1000 ease-out delay-300 ${createStep ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}
         >
