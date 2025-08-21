@@ -210,24 +210,47 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
         )}
       </div>
 
-      {/* Metrics Overview */}
-      <div className="relative z-10 mb-10 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-4 text-center">
-            <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.openCases}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Open Cases</div>
+      {/* Elegant Metrics Overview */}
+      <div className="relative z-10 mb-14 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="group bg-white/50 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#C1D9F6]/10 hover:scale-105 transition-all duration-500">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#C1D9F6]/30 to-[#99C0F0]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.openCases}</div>
+            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Open Cases</div>
           </div>
-          <div className="bg-white/40 backdrop-blur-sm border border-[#C5BFEE]/40 rounded-2xl p-4 text-center">
-            <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.needsReview}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Needs Review</div>
+
+          <div className="group bg-white/50 backdrop-blur-md border border-[#C5BFEE]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#C5BFEE]/10 hover:scale-105 transition-all duration-500">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#C5BFEE]/40 to-[#C1D9F6]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+            </div>
+            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.needsReview}</div>
+            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Needs Review</div>
           </div>
-          <div className="bg-white/40 backdrop-blur-sm border border-[#99C0F0]/40 rounded-2xl p-4 text-center">
-            <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.awaitingDocs}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Awaiting Docs</div>
+
+          <div className="group bg-white/50 backdrop-blur-md border border-[#99C0F0]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#99C0F0]/10 hover:scale-105 transition-all duration-500">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/40 to-[#C5BFEE]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.awaitingDocs}</div>
+            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Awaiting Docs</div>
           </div>
-          <div className="bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-4 text-center">
-            <div className="text-2xl font-light text-[#0E315C] mb-1">{metrics.validationRate}</div>
-            <div className="text-xs font-medium text-[#0E315C]/60 uppercase tracking-wider">Validation</div>
+
+          <div className="group bg-white/50 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-6 text-center hover:bg-white/70 hover:shadow-xl hover:shadow-[#C1D9F6]/10 hover:scale-105 transition-all duration-500">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#C1D9F6]/30 to-[#C5BFEE]/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <svg className="w-6 h-6 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="text-3xl font-extralight text-[#0E315C] mb-2">{metrics.validationRate}</div>
+            <div className="text-xs font-medium text-[#0E315C]/50 uppercase tracking-widest">Validation</div>
           </div>
         </div>
       </div>
