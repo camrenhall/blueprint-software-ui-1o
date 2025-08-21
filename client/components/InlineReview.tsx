@@ -265,8 +265,8 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
                     </div>
                   </div>
 
-                  {/* Extended Progress Bar - reaches almost to arrow */}
-                  <div className="pr-6 mb-2">
+                  {/* Extended Progress Bar - reaches across entire row */}
+                  <div className="pr-2 mb-2">
                     <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
                       <div
                         className={`h-2 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
