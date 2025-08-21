@@ -451,36 +451,85 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
           })}
 
           {filteredCases.length === 0 && (
-            <div className="text-center py-12 text-[#0E315C]/60">
-              <svg className="w-12 h-12 mx-auto mb-4 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-              <p className="text-sm">No cases match your current filters</p>
+            <div className="text-center py-16">
+              <div className="w-20 h-20 bg-gradient-to-br from-[#C1D9F6]/30 to-[#99C0F0]/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                <svg className="w-10 h-10 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-light text-[#0E315C] mb-2">No cases found</h3>
+              <p className="text-sm text-[#0E315C]/50 font-light">No cases match your current filters. Try adjusting your search criteria.</p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Selected Case Modal/Detail View would go here */}
+      {/* Elegant Selected Case Modal */}
       {selectedCase && (
-        <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center" onClick={() => setSelectedCase(null)}>
-          <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 max-w-md mx-4 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 bg-[#0E315C]/20 backdrop-blur-md z-50 flex items-center justify-center transition-all duration-300"
+          onClick={() => setSelectedCase(null)}
+        >
+          <div
+            className="bg-white/95 backdrop-blur-xl rounded-3xl p-10 max-w-lg mx-4 shadow-2xl shadow-[#99C0F0]/10 transform scale-95 hover:scale-100 transition-all duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-2xl flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+              <div className="w-20 h-20 bg-gradient-to-br from-[#99C0F0] via-[#C5BFEE] to-[#C1D9F6] rounded-3xl flex items-center justify-center text-white font-light text-2xl mx-auto mb-6 shadow-xl">
                 {selectedCase.avatar}
               </div>
-              <h3 className="text-2xl font-light text-[#0E315C] mb-2">{selectedCase.name}</h3>
-              <p className="text-[#0E315C]/60 mb-6">{selectedCase.caseId}</p>
-              <button
-                onClick={() => setSelectedCase(null)}
-                className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-6 py-3 rounded-xl transition-all"
-              >
-                Open Case Details
-              </button>
+              <h3 className="text-3xl font-extralight text-[#0E315C] mb-2 tracking-wide">{selectedCase.name}</h3>
+              <p className="text-[#0E315C]/50 mb-3 font-mono text-sm bg-[#C1D9F6]/20 px-3 py-1 rounded-xl inline-block">{selectedCase.caseId}</p>
+              <div className="mb-8 text-sm text-[#0E315C]/60 space-y-1">
+                <p>{selectedCase.progress}</p>
+                <p>{selectedCase.queueTime} in queue • Updated {selectedCase.lastActivity}</p>
+              </div>
+              <div className="flex space-x-4 justify-center">
+                <button
+                  onClick={() => setSelectedCase(null)}
+                  className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#99C0F0] text-white px-8 py-3 rounded-2xl transition-all duration-300 font-light shadow-lg hover:shadow-xl hover:scale-105"
+                >
+                  Open Case Details
+                </button>
+                <button
+                  onClick={() => setSelectedCase(null)}
+                  className="bg-white/50 hover:bg-white/70 text-[#0E315C]/70 hover:text-[#0E315C] px-6 py-3 rounded-2xl transition-all duration-300 font-light border border-[#C1D9F6]/30"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
       )}
+
+      {/* Add custom scrollbar styles */}
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(193, 217, 246, 0.1);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(153, 192, 240, 0.3);
+          border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(153, 192, 240, 0.5);
+        }
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 }
