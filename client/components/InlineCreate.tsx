@@ -134,7 +134,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
       </div>
 
       {/* Step Content */}
-      <div className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         {/* Step 1: Method Selection */}
         {createStep === 1 && (
           <div
