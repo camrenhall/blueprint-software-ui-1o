@@ -153,13 +153,13 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
   };
 
   return (
-    <div className="h-full overflow-y-auto px-8 py-10 relative">
+    <div className="h-full overflow-y-auto px-8 py-8 relative">
       {/* Soft Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
       
       {/* Header */}
-      <div className="relative z-10 text-center mb-10">
+      <div className="relative z-10 text-center mb-8">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
           <h1 className="text-3xl font-light text-[#0E315C] mb-3 tracking-wide">Case Review</h1>
           <p className="text-[#0E315C]/60 text-sm leading-relaxed">Monitor active cases and prioritize actions</p>
@@ -202,69 +202,70 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       </div>
 
       {/* Search and Filters */}
-      <div className="relative z-10 mb-8 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
-        {/* Search Input */}
-        <div className="mb-4">
+      <div className="relative z-10 mb-6 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
+        <div className="bg-white/30 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-4 space-y-3">
+          {/* Search Input */}
           <div className="relative">
             <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Search cases or clients..."
-              className="w-full px-4 py-2 pl-10 bg-white/50 backdrop-blur-sm border border-[#C1D9F6]/50 rounded-2xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all text-sm"
+              className="w-full px-4 py-3 pl-10 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/30 rounded-xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/40 focus:border-[#99C0F0]/60 focus:bg-white/80 transition-all text-sm shadow-sm"
             />
-            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-        </div>
 
-        {/* Filter Buttons */}
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={() => toggleFilter("needs-review")}
-            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
-              activeFilters.includes("needs-review")
-                ? "bg-[#C5BFEE] text-white shadow-md"
-                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
-            }`}
-          >
-            Needs Review
-          </button>
-          <button
-            onClick={() => toggleFilter("awaiting-docs")}
-            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
-              activeFilters.includes("awaiting-docs")
-                ? "bg-[#99C0F0] text-white shadow-md"
-                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
-            }`}
-          >
-            Awaiting Docs
-          </button>
-          <button
-            onClick={() => toggleFilter("high-priority")}
-            className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 ${
-              activeFilters.includes("high-priority")
-                ? "bg-[#0E315C] text-white shadow-md"
-                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60"
-            }`}
-          >
-            High Priority
-          </button>
-          {activeFilters.length > 0 && (
+          {/* Filter Pills */}
+          <div className="flex items-center flex-wrap gap-2">
+            <span className="text-xs text-[#0E315C]/60 font-medium">Filters:</span>
             <button
-              onClick={() => setActiveFilters([])}
-              className="px-2 py-1.5 rounded-xl text-xs font-medium text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/40 transition-all"
+              onClick={() => toggleFilter("needs-review")}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105 ${
+                activeFilters.includes("needs-review")
+                  ? "bg-[#C5BFEE]/80 text-white shadow-lg border border-[#C5BFEE]"
+                  : "bg-white/60 text-[#0E315C]/70 hover:bg-white/80 border border-[#C1D9F6]/40"
+              }`}
             >
-              Clear
+              Needs Review
             </button>
-          )}
+            <button
+              onClick={() => toggleFilter("awaiting-docs")}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105 ${
+                activeFilters.includes("awaiting-docs")
+                  ? "bg-[#99C0F0]/80 text-white shadow-lg border border-[#99C0F0]"
+                  : "bg-white/60 text-[#0E315C]/70 hover:bg-white/80 border border-[#C1D9F6]/40"
+              }`}
+            >
+              Awaiting Docs
+            </button>
+            <button
+              onClick={() => toggleFilter("high-priority")}
+              className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105 ${
+                activeFilters.includes("high-priority")
+                  ? "bg-[#0E315C]/80 text-white shadow-lg border border-[#0E315C]"
+                  : "bg-white/60 text-[#0E315C]/70 hover:bg-white/80 border border-[#C1D9F6]/40"
+              }`}
+            >
+              High Priority
+            </button>
+            {activeFilters.length > 0 && (
+              <button
+                onClick={() => setActiveFilters([])}
+                className="px-3 py-1.5 rounded-full text-xs font-medium text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/60 border border-[#C1D9F6]/40 transition-all hover:scale-105"
+              >
+                Clear All
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
       {/* Cases List */}
       <div className="relative z-10 transition-all duration-1200 ease-out delay-900 opacity-100 transform translate-y-0">
-        <div className="space-y-3 max-h-80 overflow-y-auto">
+        <div className="space-y-3 max-h-96 overflow-y-auto">
           {filteredCases.map((caseItem, index) => (
             <div
               key={caseItem.caseId}
@@ -273,32 +274,29 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                  {/* Status Colored Dot */}
-                  <div className={`w-3 h-3 ${getStatusColor(caseItem.status)} rounded-full shadow-md`}></div>
-                  
                   {/* Avatar */}
                   <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center text-white font-medium text-sm shadow-md group-hover:scale-110 transition-transform">
                     {caseItem.avatar}
                   </div>
-                  
+
+                  {/* Status Colored Dot */}
+                  <div className={`w-3 h-3 ${getStatusColor(caseItem.status)} rounded-full shadow-md`}></div>
+
                   {/* Case Info */}
                   <div className="flex-1">
-                    <div className="flex items-center space-x-3 mb-1">
+                    <div className="flex items-center space-x-2 mb-1">
                       <h3 className="text-sm font-medium text-[#0E315C]">{caseItem.name}</h3>
                       <span className="text-xs text-[#0E315C]/50 font-mono">{caseItem.caseId}</span>
-                      {caseItem.priority === "high" && (
-                        <div className="w-1.5 h-1.5 bg-[#0E315C] rounded-full"></div>
-                      )}
                     </div>
                     <div className="text-xs text-[#0E315C]/60 mb-2">
                       {caseItem.progress} • {caseItem.queueTime} • {caseItem.lastActivity}
                     </div>
                     {/* Progress Bar */}
-                    <div className="w-full bg-[#C1D9F6]/30 rounded-full h-1.5">
-                      <div 
+                    <div className="w-full bg-[#C1D9F6]/30 rounded-full h-1.5 mr-16">
+                      <div
                         className={`h-1.5 rounded-full transition-all duration-500 ${
-                          caseItem.status === "Needs Review" 
-                            ? "bg-[#C5BFEE]" 
+                          caseItem.status === "Needs Review"
+                            ? "bg-[#C5BFEE]"
                             : caseItem.status === "Complete"
                             ? "bg-[#C1D9F6]"
                             : "bg-[#99C0F0]"
