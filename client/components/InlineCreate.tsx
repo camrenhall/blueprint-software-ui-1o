@@ -49,7 +49,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
       {/* Header */}
       <div className="relative z-10 text-center mb-8 flex-shrink-0">
         <div
-          className={`transition-all duration-1000 ease-out delay-300 ${createStep ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}
+          className={`transition-all duration-1000 ease-out delay-300 ${isAnimated ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}
         >
           <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">
             Create New Case
