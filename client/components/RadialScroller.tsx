@@ -128,7 +128,7 @@ export default function RadialScroller({
   return (
     <div
       className={cn(
-        "relative flex items-center justify-start h-full",
+        "relative flex items-center justify-start h-full overflow-visible",
         className,
       )}
     >
