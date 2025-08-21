@@ -1,0 +1,144 @@
+import { useState, useMemo } from "react";
+import { X } from "lucide-react";
+import { Case } from './types';
+import { filterCases, sortCases, convertLegacyCase } from './utils';
+import { SearchFilterBar } from './SearchFilterBar';
+import { CaseList } from './CaseList';
+import { CaseModal } from './CaseModal';
+
+interface ReviewProps {
+  onClose?: () => void;
+}
+
+export default function Review({ onClose }: ReviewProps) {
+  const [searchValue, setSearchValue] = useState("");
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [selectedCase, setSelectedCase] = useState<Case | null>(null);
+
+  // Mock case data (in real app, this would come from props or API)
+  const allCases: Case[] = useMemo(() => [
+    convertLegacyCase({
+      name: "Fulsom, Jackson",
+      caseId: "#FULJ30925",
+      status: "Complete",
+      progress: "6/6 Tasks Complete",
+      progressPercent: 100,
+      lastActivity: "2 Hours Ago",
+      queueTime: "11 Days",
+      avatar: "FJ",
+    }),
+    convertLegacyCase({
+      name: "Rosen, Claire",
+      caseId: "#BTYREV50101",
+      status: "Needs Review",
+      progress: "5/5 Tasks Complete",
+      progressPercent: 100,
+      lastActivity: "16 Minutes Ago",
+      queueTime: "13 Days",
+      avatar: "RC",
+    }),
+    convertLegacyCase({
+      name: "Morrison, Kate",
+      caseId: "#XREMVB32482",
+      status: "Awaiting Documents",
+      progress: "4/5 Tasks Complete",
+      progressPercent: 80,
+      lastActivity: "3 Hours Ago",
+      queueTime: "10 Days",
+      avatar: "MK",
+    }),
+    convertLegacyCase({
+      name: "Chen, David",
+      caseId: "#CHEN40101",
+      status: "Needs Review",
+      progress: "3/3 Tasks Complete",
+      progressPercent: 100,
+      lastActivity: "1 Day Ago",
+      queueTime: "7 Days",
+      avatar: "CD",
+    }),
+    convertLegacyCase({
+      name: "Williams, Sarah",
+      caseId: "#WILL50203",
+      status: "Awaiting Documents",
+      progress: "2/4 Tasks Complete",
+      progressPercent: 50,
+      lastActivity: "4 Hours Ago",
+      queueTime: "15 Days",
+      avatar: "SW",
+    }),
+  ], []);
+
+  // Filter and sort cases
+  const processedCases = useMemo(() => {
+    const filtered = filterCases(allCases, searchValue, activeFilters);
+    return sortCases(filtered);
+  }, [allCases, searchValue, activeFilters]);
+
+  const toggleFilter = (filterId: string) => {
+    setActiveFilters(prev => 
+      prev.includes(filterId) 
+        ? prev.filter(f => f !== filterId)
+        : [...prev, filterId]
+    );
+  };
+
+  const clearFilters = () => {
+    setActiveFilters([]);
+  };
+
+  const handleCaseSelect = (caseItem: Case) => {
+    setSelectedCase(caseItem);
+  };
+
+  const closeModal = () => {
+    setSelectedCase(null);
+  };
+
+  return (
+    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-hidden px-8 py-8 relative flex flex-col">
+      {/* Enhanced Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
+      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
+      
+      {/* Header */}
+      <div className="relative z-10 text-center mb-8 flex-shrink-0">
+        <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
+          <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">Case Review</h1>
+          <p className="text-[#0E315C]/70 text-base leading-relaxed">Monitor active cases and prioritize critical actions</p>
+        </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
+      </div>
+
+      {/* Compact Search and Filter Bar */}
+      <SearchFilterBar
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        activeFilters={activeFilters}
+        onFilterToggle={toggleFilter}
+        onClearFilters={clearFilters}
+        className="mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
+      />
+
+      {/* Cases List */}
+      <CaseList
+        cases={processedCases}
+        onCaseSelect={handleCaseSelect}
+        className="transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0"
+      />
+
+      {/* Case Modal */}
+      <CaseModal
+        case={selectedCase}
+        onClose={closeModal}
+      />
+    </div>
+  );
+}
