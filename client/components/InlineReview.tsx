@@ -174,24 +174,37 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
   };
 
   return (
-    <div className="h-full overflow-y-auto px-8 py-10 relative">
-      {/* Enhanced Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
-      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
-      
-      {/* Header */}
-      <div className="relative z-10 text-center mb-10">
+    <div className="h-full overflow-y-auto px-10 py-12 relative">
+      {/* Sophisticated Background Layers */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-[#C1D9F6]/20 to-[#99C0F0]/15 blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-radial from-[#C5BFEE]/10 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
+
+      {/* Floating Decorative Elements */}
+      <div className="absolute top-20 right-20 w-2 h-2 bg-[#99C0F0]/40 rounded-full animate-pulse" />
+      <div className="absolute bottom-32 left-16 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/3 right-12 w-1 h-1 bg-[#C1D9F6]/60 rounded-full animate-pulse" style={{ animationDelay: "2s" }} />
+
+      {/* Elegant Header */}
+      <div className="relative z-10 text-center mb-12">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
-          <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">Case Review</h1>
-          <p className="text-[#0E315C]/70 text-base leading-relaxed">Monitor active cases and prioritize actions</p>
+          <div className="inline-flex items-center space-x-3 mb-6">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+              <svg className="w-4 h-4 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+              </svg>
+            </div>
+            <h1 className="text-5xl font-extralight text-[#0E315C] tracking-wide">Case Review</h1>
+          </div>
+          <p className="text-[#0E315C]/60 text-lg leading-relaxed font-light max-w-md mx-auto">Monitor active cases and prioritize actions with intelligent insights</p>
         </div>
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+            className="absolute top-0 right-0 w-12 h-12 rounded-2xl flex items-center justify-center text-[#0E315C]/40 hover:text-[#0E315C] hover:bg-white/40 transition-all duration-300 hover:scale-110 backdrop-blur-sm group"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         )}
