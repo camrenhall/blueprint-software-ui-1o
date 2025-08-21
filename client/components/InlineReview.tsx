@@ -173,56 +173,58 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
       </div>
 
 
-      {/* Search and Filters - Matching Create Button Style */}
+      {/* Elegant Search & Filter System */}
       <div className="relative z-10 mb-6 transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0">
-        <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-6 shadow-lg shadow-[#C1D9F6]/5">
-          {/* Search Input */}
-          <div className="mb-5">
-            <div className="relative">
+        <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-5 shadow-lg shadow-[#C1D9F6]/5">
+          {/* Integrated Search with Smart Filters */}
+          <div className="flex items-center space-x-4">
+            {/* Enhanced Search Input */}
+            <div className="flex-1 relative">
               <input
                 type="text"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Search cases or clients..."
-                className="w-full px-5 py-4 pl-12 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] focus:bg-white/80 transition-all text-sm font-light shadow-sm"
+                className="w-full px-4 py-3 pl-11 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 rounded-2xl text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/40 focus:border-[#99C0F0]/60 focus:bg-white/90 transition-all text-sm font-light shadow-sm"
               />
-              <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="absolute left-3.5 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
-          </div>
 
-          {/* Filter Buttons */}
-          <div className="flex items-center flex-wrap gap-3">
-            <span className="text-sm text-[#0E315C]/60 font-light">Filters:</span>
-            <button
-              onClick={() => toggleFilter("needs-review")}
-              className={`px-4 py-2 rounded-2xl text-xs font-light transition-all duration-300 hover:scale-105 border backdrop-blur-sm ${
-                activeFilters.includes("needs-review")
-                  ? "bg-[#C5BFEE]/80 text-white shadow-lg shadow-[#C5BFEE]/20 border-[#C5BFEE]/60"
-                  : "bg-white/60 text-[#0E315C]/70 hover:bg-white/80 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40"
-              }`}
-            >
-              Needs Review
-            </button>
-            <button
-              onClick={() => toggleFilter("awaiting-docs")}
-              className={`px-4 py-2 rounded-2xl text-xs font-light transition-all duration-300 hover:scale-105 border backdrop-blur-sm ${
-                activeFilters.includes("awaiting-docs")
-                  ? "bg-[#99C0F0]/80 text-white shadow-lg shadow-[#99C0F0]/20 border-[#99C0F0]/60"
-                  : "bg-white/60 text-[#0E315C]/70 hover:bg-white/80 border-[#C1D9F6]/40 hover:border-[#99C0F0]/40"
-              }`}
-            >
-              Awaiting Docs
-            </button>
-            {activeFilters.length > 0 && (
-              <button
-                onClick={() => setActiveFilters([])}
-                className="px-4 py-2 rounded-2xl text-xs font-light text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/60 border border-[#C1D9F6]/40 hover:border-[#C1D9F6]/60 transition-all hover:scale-105 backdrop-blur-sm"
-              >
-                Clear All
-              </button>
-            )}
+            {/* Elegant Filter Toggles */}
+            <div className="flex items-center space-x-2">
+              <div className="flex items-center bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/30 rounded-2xl p-1">
+                <button
+                  onClick={() => toggleFilter("needs-review")}
+                  className={`px-3 py-2 rounded-xl text-xs font-light transition-all duration-200 ${
+                    activeFilters.includes("needs-review")
+                      ? "bg-[#C5BFEE] text-white shadow-md"
+                      : "text-[#0E315C]/70 hover:bg-white/60"
+                  }`}
+                >
+                  Review
+                </button>
+                <button
+                  onClick={() => toggleFilter("awaiting-docs")}
+                  className={`px-3 py-2 rounded-xl text-xs font-light transition-all duration-200 ${
+                    activeFilters.includes("awaiting-docs")
+                      ? "bg-[#99C0F0] text-white shadow-md"
+                      : "text-[#0E315C]/70 hover:bg-white/60"
+                  }`}
+                >
+                  Docs
+                </button>
+                {activeFilters.length > 0 && (
+                  <button
+                    onClick={() => setActiveFilters([])}
+                    className="px-2 py-2 rounded-xl text-xs font-light text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/60 transition-all"
+                  >
+                    ×
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -236,55 +238,54 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
             return (
               <div
                 key={caseItem.caseId}
-                className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/10 transition-all duration-300 p-5 rounded-3xl cursor-pointer group"
+                className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/45 hover:shadow-xl hover:shadow-[#99C0F0]/8 hover:-translate-y-0.5 transition-all duration-400 p-5 rounded-3xl cursor-pointer group"
                 onClick={() => setSelectedCase(caseItem)}
                 style={{
                   animationDelay: `${index * 100}ms`,
                   animation: "fadeInUp 0.6s ease-out forwards"
                 }}
               >
-                <div className="flex items-center space-x-4">
-                  {/* Avatar - Matching Create Icon Style */}
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center text-white font-light text-sm flex-shrink-0 shadow-lg">
+                {/* Perfect Single-Row Alignment */}
+                <div className="flex items-center space-x-4 mb-3">
+                  {/* Bigger Avatar */}
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center text-white font-light text-sm flex-shrink-0 shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
                     {caseItem.avatar}
                   </div>
 
-                  {/* Status Colored Dot */}
-                  <div className={`w-3 h-3 ${statusColors.dot} rounded-full shadow-md ${statusColors.shadow} flex-shrink-0`}></div>
+                  {/* Status Colored Dot - Integrated */}
+                  <div className={`w-3.5 h-3.5 ${statusColors.dot} rounded-full shadow-lg ${statusColors.shadow} flex-shrink-0`}></div>
 
-                  {/* Consolidated Case Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center space-x-3">
-                        <h3 className="text-base font-light text-[#0E315C]">{caseItem.name}</h3>
-                        <span className="text-sm text-[#0E315C]/60 font-light">{caseItem.caseId}</span>
-                      </div>
-
-                      {/* Right Side Status */}
-                      <div className="flex items-center space-x-3">
-                        <div className="text-right">
-                          <div className="text-sm font-light text-[#0E315C]">{caseItem.progressPercent}%</div>
-                          <div className="text-xs text-[#0E315C]/60 font-light">{caseItem.status}</div>
-                        </div>
-                        <svg className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
+                  {/* PRIMARY ROW - Perfect Alignment */}
+                  <div className="flex-1 flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <h3 className="text-base font-light text-[#0E315C]">{caseItem.name}</h3>
+                      <span className="text-sm text-[#0E315C]/60 font-light">{caseItem.caseId}</span>
                     </div>
 
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="text-xs text-[#0E315C]/50 font-light">
-                        {caseItem.progress} • {caseItem.queueTime} in queue • {caseItem.lastActivity}
-                      </div>
+                    <div className="flex items-center space-x-4">
+                      <span className="text-sm font-light text-[#0E315C]">{caseItem.status}</span>
+                      <span className="text-base font-light text-[#0E315C]">{caseItem.progressPercent}%</span>
+                      <svg className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Full Width Progress Bar */}
-                    <div className="w-full bg-[#C1D9F6]/20 rounded-full h-1.5 overflow-hidden">
-                      <div
-                        className={`h-1.5 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
-                        style={{ width: `${caseItem.progressPercent}%` }}
-                      ></div>
-                    </div>
+                {/* SECONDARY ROW - Consolidated Metadata */}
+                <div className="ml-16 mb-3">
+                  <div className="text-xs text-[#0E315C]/50 font-light">
+                    {caseItem.progress} • {caseItem.queueTime} in queue • {caseItem.lastActivity}
+                  </div>
+                </div>
+
+                {/* THIRD ROW - Full Width Progress Bar */}
+                <div className="ml-16">
+                  <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
+                    <div
+                      className={`h-2 rounded-full transition-all duration-700 ease-out ${statusColors.progress} shadow-sm`}
+                      style={{ width: `${caseItem.progressPercent}%` }}
+                    ></div>
                   </div>
                 </div>
               </div>
