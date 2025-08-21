@@ -42,7 +42,7 @@ export function CaseList({
     <div className={cn("relative z-10 flex-1 overflow-y-auto", className)}>
       <div
         className={cn(
-          "pr-2 transition-all duration-300",
+          "px-4 transition-all duration-300",
           isCompact ? "space-y-2" : "space-y-5",
         )}
       >
