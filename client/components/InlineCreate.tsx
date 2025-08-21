@@ -82,7 +82,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
       {/* Ethereal Step Indicator */}
       <div
-        className={`relative z-10 mb-12 transition-all duration-800 ease-out delay-500 ${createStep ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-3"}`}
+        className={`relative z-10 mb-12 transition-all duration-800 ease-out delay-500 ${isAnimated ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-3"}`}
       >
         <div className="flex items-center justify-center space-x-6">
           {steps.map((step, index) => (
