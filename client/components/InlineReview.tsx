@@ -250,12 +250,6 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
                   <span className="text-white font-light text-sm">{caseItem.avatar}</span>
                 </div>
 
-                {/* Status Indicator + Text (Like Reference Image) */}
-                <div className="flex items-center space-x-2 flex-shrink-0">
-                  <div className={`w-3 h-3 ${statusColors.dot} rounded-full shadow-md`}></div>
-                  <span className="text-xs font-light text-[#0E315C] whitespace-nowrap">{caseItem.status}</span>
-                </div>
-
                 {/* Main Case Information */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between">
@@ -271,8 +265,16 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
                         ></div>
                       </div>
 
-                      <div className="text-xs text-[#0E315C]/50 font-light">
-                        {caseItem.queueTime} in queue • {caseItem.lastActivity}
+                      {/* Status + Metadata Row */}
+                      <div className="flex items-center space-x-3 text-xs text-[#0E315C]/50 font-light">
+                        <div className="flex items-center space-x-2">
+                          <div className={`w-2.5 h-2.5 ${statusColors.dot} rounded-full shadow-sm`}></div>
+                          <span className="text-[#0E315C]/70 font-medium">{caseItem.status}</span>
+                        </div>
+                        <span>•</span>
+                        <span>{caseItem.queueTime} in queue</span>
+                        <span>•</span>
+                        <span>{caseItem.lastActivity}</span>
                       </div>
                     </div>
 
