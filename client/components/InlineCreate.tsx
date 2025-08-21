@@ -153,7 +153,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </p>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-5 px-2 py-2">
               <button
                 onClick={() => handleMethodSelect("ai")}
                 className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform"
