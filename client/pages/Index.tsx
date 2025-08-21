@@ -103,7 +103,7 @@ export default function Index() {
   ];
 
   return (
-    <div className="min-h-screen w-full relative overflow-visible">
+    <div className="min-h-screen w-full relative overflow-hidden">
       {/* Main content */}
       <div
         className={`relative z-10 min-h-screen flex items-center pl-20 md:pl-32 lg:pl-40 transition-all duration-1000 ease-out ${
