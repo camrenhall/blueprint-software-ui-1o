@@ -113,8 +113,8 @@ export default function Index() {
         {/* Radial Scroller anchored to left but more centered */}
         <RadialScroller items={menuItems} className="h-full" />
 
-        {/* Elegant Vertical Divider */}
-        <div className="absolute left-[40%] top-0 h-full flex items-center z-20">
+        {/* Elegant Vertical Divider - Close to Menu */}
+        <div className="absolute left-80 lg:left-96 xl:left-[30rem] top-0 h-full flex items-center z-20">
           <div className="relative h-[75vh]">
             {/* Main divider line - more visible */}
             <div className="w-0.5 h-full bg-gradient-to-b from-transparent via-[#99C0F0]/80 to-transparent shadow-sm"></div>
@@ -131,9 +131,9 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Full Right Side Content Area */}
+        {/* Expanded Right Side Content Area */}
         <div
-          className={`absolute left-[40%] right-0 top-0 bottom-0 transition-all duration-1000 ease-out ${
+          className={`absolute left-80 lg:left-96 xl:left-[30rem] right-0 top-0 bottom-0 transition-all duration-1000 ease-out ${
             activeRightContent
               ? "opacity-100 transform translate-x-0"
               : "opacity-0 transform translate-x-8 pointer-events-none"
@@ -149,12 +149,12 @@ export default function Index() {
               }`}
             >
               {activeRightContent === "create" && (
-                <div className="w-full max-w-2xl mx-auto">
+                <div className="w-full max-w-4xl mx-auto">
                   <InlineCreate onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
               {activeRightContent === "review" && (
-                <div className="w-full max-w-2xl mx-auto">
+                <div className="w-full max-w-4xl mx-auto">
                   <InlineReview onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
