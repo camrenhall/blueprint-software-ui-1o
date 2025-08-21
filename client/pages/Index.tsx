@@ -132,16 +132,16 @@ export default function Index() {
           </div>
         </div>
 
-        {/* Seamless Content Integration */}
+        {/* Full Right Side Content Area */}
         <div
-          className={`absolute right-0 top-0 bottom-0 transition-all duration-1000 ease-out ${
+          className={`absolute left-[40%] right-0 top-0 bottom-0 transition-all duration-1000 ease-out ${
             activeRightContent
-              ? "w-[55%] opacity-100 transform translate-x-0"
-              : "w-[55%] opacity-0 transform translate-x-8 pointer-events-none"
+              ? "opacity-100 transform translate-x-0"
+              : "opacity-0 transform translate-x-8 pointer-events-none"
           }`}
         >
-          <div className="h-full flex items-center justify-center relative">
-            {/* Ethereal Content Container */}
+          <div className="h-full flex items-center justify-center relative px-8">
+            {/* Content Container */}
             <div
               className={`w-full h-full flex items-center justify-center transition-all duration-1200 ease-out delay-200 ${
                 activeRightContent
@@ -150,31 +150,37 @@ export default function Index() {
               }`}
             >
               {activeRightContent === "create" && (
-                <div className="w-full max-w-lg mx-auto">
+                <div className="w-full max-w-2xl mx-auto">
                   <InlineCreate onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
             </div>
 
-            {/* Floating ambient elements */}
+            {/* Enhanced ambient elements */}
             {activeRightContent && (
               <>
                 <div
-                  className={`absolute top-1/4 right-1/4 w-3 h-3 bg-[#99C0F0]/30 rounded-full blur-sm transition-all duration-2000 ease-out delay-500 ${
-                    activeRightContent ? "opacity-60 animate-pulse" : "opacity-0"
+                  className={`absolute top-1/4 right-1/4 w-4 h-4 bg-[#99C0F0]/50 rounded-full blur-sm transition-all duration-2000 ease-out delay-500 ${
+                    activeRightContent ? "opacity-70 animate-pulse" : "opacity-0"
                   }`}
                 />
                 <div
-                  className={`absolute bottom-1/3 left-1/5 w-2 h-2 bg-[#C5BFEE]/40 rounded-full blur-sm transition-all duration-2000 ease-out delay-700 ${
-                    activeRightContent ? "opacity-50 animate-pulse" : "opacity-0"
+                  className={`absolute bottom-1/3 left-1/5 w-3 h-3 bg-[#C5BFEE]/60 rounded-full blur-sm transition-all duration-2000 ease-out delay-700 ${
+                    activeRightContent ? "opacity-60 animate-pulse" : "opacity-0"
                   }`}
                   style={{ animationDelay: "1s" }}
                 />
                 <div
-                  className={`absolute top-1/2 right-1/6 w-1.5 h-1.5 bg-[#C1D9F6]/50 rounded-full blur-sm transition-all duration-2000 ease-out delay-900 ${
-                    activeRightContent ? "opacity-40 animate-pulse" : "opacity-0"
+                  className={`absolute top-1/2 right-1/6 w-2.5 h-2.5 bg-[#C1D9F6]/70 rounded-full blur-sm transition-all duration-2000 ease-out delay-900 ${
+                    activeRightContent ? "opacity-50 animate-pulse" : "opacity-0"
                   }`}
                   style={{ animationDelay: "2s" }}
+                />
+                <div
+                  className={`absolute top-1/6 left-1/3 w-3 h-3 bg-[#99C0F0]/40 rounded-full blur-sm transition-all duration-2000 ease-out delay-1100 ${
+                    activeRightContent ? "opacity-40 animate-pulse" : "opacity-0"
+                  }`}
+                  style={{ animationDelay: "0.5s" }}
                 />
               </>
             )}
