@@ -487,7 +487,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             </div>
 
             <div className="space-y-4">
-              <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
+              <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-2xl p-6">
                 <h3 className="text-sm font-medium text-[#0E315C] mb-3">
                   Case Summary
                 </h3>
