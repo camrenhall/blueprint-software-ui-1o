@@ -144,7 +144,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         {/* Step 1: Method Selection */}
         {createStep === 1 && (
           <div
-            className={`relative z-10 space-y-8 transition-all duration-1000 ease-out delay-700 ${createStep === 1 ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}
+            className={`relative z-10 space-y-8 transition-all duration-1000 ease-out delay-700 ${isAnimated && createStep === 1 ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}
           >
             <div className="text-center mb-8">
               <p className="text-[#0E315C]/60 text-sm leading-relaxed max-w-sm mx-auto font-light">
