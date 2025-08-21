@@ -152,7 +152,7 @@ export default function InlineReview({ onClose }: InlineReviewProps) {
   };
 
   return (
-    <div className="h-full max-h-[85vh] overflow-hidden px-8 py-8 relative flex flex-col">
+    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-hidden px-8 py-8 relative flex flex-col">
       {/* Enhanced Background Gradient - Exact Create Match */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
