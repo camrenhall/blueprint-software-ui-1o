@@ -70,10 +70,12 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     if (!currentConversation) {
       // No conversation exists, create a new one
       conversationId = createNewConversation(userMessage);
+      setResponseIndex(0); // Reset for new conversation
     } else if (currentConversation.messages.length === 0) {
       // Eager conversation exists but is empty, add first message to it
       conversationId = currentConversation.id;
       addMessageToConversation(userMessage);
+      setResponseIndex(0); // Reset for new conversation
     } else {
       // Existing conversation with messages, add to it
       conversationId = currentConversation.id;
