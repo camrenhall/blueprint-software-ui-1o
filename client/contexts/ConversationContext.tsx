@@ -165,6 +165,70 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     }));
   };
 
+  const addThinkingMessage = (conversationId: string, thinkingSteps: string[]): string => {
+    const messageId = Date.now().toString() + "_thinking";
+    const thinkingMessage: Message = {
+      id: messageId,
+      content: "",
+      role: "assistant",
+      timestamp: new Date(),
+      isThinking: true,
+      isStreaming: true,
+      thinkingSteps: [...thinkingSteps]
+    };
+
+    addMessageToConversationById(conversationId, thinkingMessage);
+    return messageId;
+  };
+
+  const updateThinkingMessage = (conversationId: string, messageId: string, step: string) => {
+    setConversations(prev => prev.map(conv => {
+      if (conv.id === conversationId) {
+        const updatedMessages = conv.messages.map(msg => {
+          if (msg.id === messageId && msg.isThinking) {
+            return {
+              ...msg,
+              thinkingSteps: [...(msg.thinkingSteps || []), step]
+            };
+          }
+          return msg;
+        });
+        return {
+          ...conv,
+          messages: updatedMessages,
+          updatedAt: new Date(),
+        };
+      }
+      return conv;
+    }));
+  };
+
+  const finalizeThinkingMessage = (conversationId: string, messageId: string, finalContent: string) => {
+    setConversations(prev => prev.map(conv => {
+      if (conv.id === conversationId) {
+        const updatedMessages = conv.messages.map(msg => {
+          if (msg.id === messageId && msg.isThinking) {
+            return {
+              ...msg,
+              content: finalContent,
+              isThinking: false,
+              isStreaming: false,
+              thinkingSteps: undefined
+            };
+          }
+          return msg;
+        });
+        return {
+          ...conv,
+          messages: updatedMessages,
+          summary: generateConversationSummary(updatedMessages),
+          updatedAt: new Date(),
+        };
+      }
+      return conv;
+    }));
+  };
+
   const exitChatMode = () => {
     // Clean up empty conversations before exiting
     if (currentConversationId) {
