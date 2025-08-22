@@ -174,6 +174,14 @@ export default {
             transform: "scale(1.05)",
           },
         },
+        textShimmer: {
+          "0%": {
+            backgroundPosition: "-200% 0",
+          },
+          "100%": {
+            backgroundPosition: "200% 0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
