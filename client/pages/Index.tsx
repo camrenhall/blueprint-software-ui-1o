@@ -21,6 +21,10 @@ function IndexContent() {
     // Fade in the menu after a short delay
     setTimeout(() => setIsVisible(true), 200);
   }, []);
+
+  const handleBackToMenu = () => {
+    setActiveRightContent("agents");
+  };
   const menuItems = [
     {
       id: "agents",
