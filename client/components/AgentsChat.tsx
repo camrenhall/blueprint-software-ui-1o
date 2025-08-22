@@ -310,10 +310,19 @@ How can I best support your current priorities?`,
                       {message.role === "user" && (
                         <User className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
                       )}
-                      <MessageContent
-                        content={message.content}
-                        className="min-w-0 flex-1"
-                      />
+                      {message.isStreamingText && message.fullContent ? (
+                        <TypewriterText
+                          text={message.fullContent}
+                          speed={60}
+                          onComplete={() => completeStreamingMessage(currentConversation?.id || '', message.id)}
+                          className="min-w-0 flex-1"
+                        />
+                      ) : (
+                        <MessageContent
+                          content={message.content}
+                          className="min-w-0 flex-1"
+                        />
+                      )}
                     </div>
                   </div>
                 )}
