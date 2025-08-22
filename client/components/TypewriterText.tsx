@@ -20,10 +20,26 @@ export default function TypewriterText({
 
   useEffect(() => {
     if (currentIndex < text.length) {
+      // Add slight randomness to typing speed for more natural feel
+      const char = text[currentIndex];
+      let delay = 1000 / speed;
+
+      // Slower for punctuation and line breaks
+      if (['.', '!', '?', '\n'].includes(char)) {
+        delay *= 2;
+      } else if ([',', ';', ':'].includes(char)) {
+        delay *= 1.5;
+      } else if (char === ' ') {
+        delay *= 0.5;
+      }
+
+      // Add small random variance (±20%)
+      delay *= (0.8 + Math.random() * 0.4);
+
       const timeoutId = setTimeout(() => {
         setDisplayedText(text.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
-      }, 1000 / speed);
+      }, delay);
 
       return () => clearTimeout(timeoutId);
     } else if (!isComplete) {
