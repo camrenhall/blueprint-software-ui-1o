@@ -3,23 +3,21 @@ import { cn } from "@/lib/utils";
 import { useConversationContext } from "@/contexts/ConversationContext";
 import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus, Bot, User } from "lucide-react";
 
-interface Message {
-  id: string;
-  content: string;
-  role: "user" | "assistant";
-  timestamp: Date;
-}
-
 interface AgentsChatProps {
   onClose: () => void;
 }
 
 export default function AgentsChat({ onClose }: AgentsChatProps) {
+  const {
+    currentConversation,
+    createNewConversation,
+    addMessageToConversation,
+    isInChatMode,
+  } = useConversationContext();
+
   const [inputValue, setInputValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [chatStarted, setChatStarted] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
