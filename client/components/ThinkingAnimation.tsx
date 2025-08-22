@@ -80,26 +80,20 @@ export default function ThinkingAnimation({
           )} />
         </div>
 
-        {/* Floating particles */}
+        {/* Simplified floating particles */}
         <div className="absolute inset-0 pointer-events-none">
           {[0, 1, 2].map(i => (
             <div
               key={i}
               className={cn(
-                "absolute bg-gradient-to-r from-[#99C0F0]/30 to-[#C5BFEE]/30 rounded-full blur-sm",
+                "absolute bg-gradient-to-r from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-full animate-gentlePulse",
                 dotSizes[size]
               )}
               style={{
-                top: '50%',
-                left: '50%',
-                transform: `
-                  translate(-50%, -50%)
-                  rotate(${i * 120 + animationPhase * 30}deg)
-                  translateY(-${size === "sm" ? "12" : size === "md" ? "16" : "20"}px)
-                `,
-                animationDelay: `${i * 0.3}s`
+                top: `${30 + i * 20}%`,
+                left: `${20 + i * 30}%`,
+                animationDelay: `${i * 0.4}s`
               }}
-              className="animate-orbit"
             />
           ))}
         </div>
