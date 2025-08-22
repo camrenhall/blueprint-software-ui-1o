@@ -165,8 +165,7 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
   };
 
   const startNewConversation = () => {
-    setCurrentConversationId(null);
-    setIsInChatMode(true);
+    createEagerConversation();
   };
 
   const enterChatMode = () => {
