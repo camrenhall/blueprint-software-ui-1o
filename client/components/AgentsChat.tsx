@@ -359,12 +359,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
               })}
             </div>
 
-            {/* Subtle footer hint */}
-            <div className="mt-6 text-center">
-              <p className="text-xs text-[#0E315C]/25 font-light italic">
-                Click any activity to view details
-              </p>
-            </div>
+            {/* Subtle footer hint removed */}
           </div>
         </div>
 
