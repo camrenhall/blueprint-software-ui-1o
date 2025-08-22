@@ -233,9 +233,7 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
       id: Date.now().toString() + "_response",
       content: finalContent,
       role: "assistant",
-      timestamp: new Date(),
-      isThinking: false,
-      isStreaming: false
+      timestamp: new Date()
     };
 
     addMessageToConversationById(conversationId, responseMessage);
