@@ -81,42 +81,32 @@ export default function MessageActions({
       {/* Thumbs up button */}
       <button
         onClick={() => handleRating("up")}
-        className={cn(
-          "p-1.5 rounded-lg transition-colors duration-200 group/up",
-          rating === "up" 
-            ? "bg-green-100 hover:bg-green-200" 
-            : "hover:bg-black/5"
-        )}
+        className="p-1.5 rounded-lg hover:bg-black/5 transition-colors duration-200 group/up"
         title="Good response"
       >
-        <ThumbsUp 
+        <ThumbsUp
           className={cn(
             "w-3.5 h-3.5 transition-colors duration-200",
-            rating === "up" 
-              ? "text-green-600" 
-              : "text-[#0E315C]/60 group-hover/up:text-green-600"
-          )} 
+            rating === "up"
+              ? "text-[#0E315C] fill-current"
+              : "text-[#0E315C]/60 group-hover/up:text-[#0E315C]/80"
+          )}
         />
       </button>
 
       {/* Thumbs down button */}
       <button
         onClick={() => handleRating("down")}
-        className={cn(
-          "p-1.5 rounded-lg transition-colors duration-200 group/down",
-          rating === "down" 
-            ? "bg-red-100 hover:bg-red-200" 
-            : "hover:bg-black/5"
-        )}
+        className="p-1.5 rounded-lg hover:bg-black/5 transition-colors duration-200 group/down"
         title="Poor response"
       >
-        <ThumbsDown 
+        <ThumbsDown
           className={cn(
             "w-3.5 h-3.5 transition-colors duration-200",
-            rating === "down" 
-              ? "text-red-600" 
-              : "text-[#0E315C]/60 group-hover/down:text-red-600"
-          )} 
+            rating === "down"
+              ? "text-[#0E315C] fill-current"
+              : "text-[#0E315C]/60 group-hover/down:text-[#0E315C]/80"
+          )}
         />
       </button>
     </div>
