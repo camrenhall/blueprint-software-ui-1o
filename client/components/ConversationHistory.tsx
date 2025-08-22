@@ -40,9 +40,11 @@ export default function ConversationHistory({
       <div
         className={cn(
           "w-full transition-all duration-500 ease-out",
-          // Match the divider positioning: left-80 lg:left-96 xl:left-[30rem]
-          "max-w-[280px] lg:max-w-[344px] xl:max-w-[440px]",
-          "pr-4 lg:pr-6 xl:pr-8",
+          // Calculate available space: divider position - container left padding - buffer
+          // Default: 320px (left-80) - 80px (pl-20) - 20px buffer = 220px
+          // Large: 384px (lg:left-96) - 160px (lg:pl-40) - 24px buffer = 200px
+          // XL: 480px (xl:left-[30rem]) - 160px (lg:pl-40) - 28px buffer = 292px
+          "max-w-[220px] lg:max-w-[200px] xl:max-w-[292px]",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
           isTransitioning && "opacity-0 translate-x-[-50px]"
         )}
