@@ -36,10 +36,10 @@ export default function ConversationHistory({
   };
 
   return (
-    <div className={cn("relative flex items-start justify-start h-full pt-16", className)}>
+    <div className={cn("relative flex items-start justify-start h-full pt-16 pr-8", className)}>
       <div
         className={cn(
-          "w-full max-w-lg transition-all duration-500 ease-out",
+          "w-full max-w-sm transition-all duration-500 ease-out",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
           isTransitioning && "opacity-0 translate-x-[-50px]"
         )}
