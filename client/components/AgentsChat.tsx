@@ -110,7 +110,8 @@ How can I best support your current priorities?`,
         "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?"
       ];
 
-      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      const selectedResponse = responses[responseIndex % responses.length];
+      setResponseIndex(prev => prev + 1);
 
       const assistantMessage = {
         id: (Date.now() + 1).toString(),
