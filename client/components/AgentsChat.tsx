@@ -177,8 +177,8 @@ How can I best support your current priorities?`,
           // Finalize the thinking message (keep it visible)
           finalizeThinkingMessage(conversationId, thinkingMessageId);
 
-          // Add the actual response as a separate message
-          addFinalResponseMessage(conversationId, selectedResponse);
+          // Add the streaming response message
+          addStreamingResponseMessage(conversationId, selectedResponse);
 
           setIsTyping(false);
           setCurrentThinkingId(null);
