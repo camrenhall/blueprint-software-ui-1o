@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Send, Sparkles } from "lucide-react";
+import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus } from "lucide-react";
 
 interface AgentsChatProps {
   onClose: () => void;
@@ -10,6 +10,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const [inputValue, setInputValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [layoutVariant, setLayoutVariant] = useState<"horizontal" | "floating" | "timeline">("horizontal");
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Animation entrance effect
@@ -38,10 +39,226 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     }
   };
 
+  const recentActivities = [
+    {
+      id: 1,
+      type: "review",
+      icon: CheckCircle,
+      title: "Case Review Completed",
+      description: "Rosen, Claire (#BTYREV50101)",
+      time: "16m ago",
+      color: "from-[#99C0F0] to-[#C1D9F6]"
+    },
+    {
+      id: 2,
+      type: "create",
+      icon: UserPlus,
+      title: "New Case Created",
+      description: "Martinez, Elena employment case",
+      time: "2h ago",
+      color: "from-[#C5BFEE] to-[#99C0F0]"
+    },
+    {
+      id: 3,
+      type: "document",
+      icon: FileText,
+      title: "Documents Received",
+      description: "Thompson, David medical records",
+      time: "5h ago",
+      color: "from-[#C1D9F6] to-[#C5BFEE]"
+    }
+  ];
+
+  const renderHorizontalLayout = () => (
+    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+      isVisible 
+        ? "opacity-100 transform translate-y-0" 
+        : "opacity-0 transform translate-y-4"
+    }`}>
+      <div className="text-center mb-6">
+        <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
+          Recent Activity
+        </h2>
+      </div>
+      
+      {/* Horizontal Scrolling Strip */}
+      <div className="relative">
+        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4">
+          {recentActivities.map((activity, index) => {
+            const IconComponent = activity.icon;
+            return (
+              <div
+                key={activity.id}
+                className={`flex-shrink-0 w-72 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80 cursor-pointer transform hover:scale-[1.02] ${
+                  index === 0 ? "ml-4" : ""
+                } ${index === recentActivities.length - 1 ? "mr-4" : ""}`}
+              >
+                <div className="flex items-start space-x-3">
+                  <div className={`w-10 h-10 bg-gradient-to-br ${activity.color} rounded-xl flex items-center justify-center shadow-sm flex-shrink-0`}>
+                    <IconComponent className="w-5 h-5 text-white" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
+                      {activity.title}
+                    </h3>
+                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
+                      {activity.description}
+                    </p>
+                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light flex items-center">
+                      <Clock className="w-3 h-3 mr-1" />
+                      {activity.time}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Gradient overlays for scroll indication */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+  );
+
+  const renderFloatingLayout = () => (
+    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+      isVisible 
+        ? "opacity-100 transform translate-y-0" 
+        : "opacity-0 transform translate-y-4"
+    }`}>
+      <div className="text-center mb-8">
+        <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
+          Recent Activity
+        </h2>
+      </div>
+      
+      {/* Floating Bubble Layout */}
+      <div className="relative max-w-4xl mx-auto h-32">
+        {recentActivities.map((activity, index) => {
+          const IconComponent = activity.icon;
+          const positions = [
+            { left: "10%", top: "20%" },
+            { left: "45%", top: "60%" },
+            { left: "75%", top: "15%" }
+          ];
+          
+          return (
+            <div
+              key={activity.id}
+              className={`absolute bg-white/80 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-3 hover:bg-white/90 cursor-pointer transform hover:scale-105 animate-pulse`}
+              style={{ 
+                left: positions[index].left, 
+                top: positions[index].top,
+                animationDelay: `${index * 0.5}s`,
+                animationDuration: "3s"
+              }}
+            >
+              <div className="flex items-center space-x-2">
+                <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-lg flex items-center justify-center shadow-sm`}>
+                  <IconComponent className="w-4 h-4 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-medium text-[#0E315C] truncate max-w-32">
+                    {activity.title}
+                  </p>
+                  <p className="text-xs text-[#0E315C]/40 font-light">
+                    {activity.time}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  const renderTimelineLayout = () => (
+    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+      isVisible 
+        ? "opacity-100 transform translate-y-0" 
+        : "opacity-0 transform translate-y-4"
+    }`}>
+      <div className="text-center mb-8">
+        <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
+          Recent Activity
+        </h2>
+      </div>
+      
+      {/* Minimalist Timeline */}
+      <div className="max-w-2xl mx-auto">
+        <div className="relative">
+          {/* Central timeline line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-[#C1D9F6]/60 via-[#99C0F0]/40 to-[#C5BFEE]/60"></div>
+          
+          <div className="space-y-8">
+            {recentActivities.map((activity, index) => {
+              const IconComponent = activity.icon;
+              const isLeft = index % 2 === 0;
+              
+              return (
+                <div key={activity.id} className="relative">
+                  {/* Timeline dot */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
+                    <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg border-2 border-white`}>
+                      <IconComponent className="w-4 h-4 text-white" />
+                    </div>
+                  </div>
+                  
+                  {/* Content card */}
+                  <div className={`flex ${isLeft ? "justify-start pr-8" : "justify-end pl-8"}`}>
+                    <div className={`w-64 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80 cursor-pointer ${isLeft ? "mr-8" : "ml-8"}`}>
+                      <h3 className="text-sm font-medium text-[#0E315C] mb-1">
+                        {activity.title}
+                      </h3>
+                      <p className="text-xs text-[#0E315C]/60 mb-2">
+                        {activity.description}
+                      </p>
+                      <p className="text-xs text-[#0E315C]/40 font-light flex items-center">
+                        <Clock className="w-3 h-3 mr-1" />
+                        {activity.time}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="h-full flex items-center justify-center px-8">
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
         
+        {/* Layout Variant Selector (for demo purposes) */}
+        <div className={`mb-4 transition-all duration-1000 ease-out ${
+          isVisible 
+            ? "opacity-100 transform translate-y-0" 
+            : "opacity-0 transform translate-y-4"
+        }`}>
+          <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/30 rounded-xl p-1">
+            {["horizontal", "floating", "timeline"].map((variant) => (
+              <button
+                key={variant}
+                onClick={() => setLayoutVariant(variant as any)}
+                className={cn(
+                  "px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200",
+                  layoutVariant === variant
+                    ? "bg-white text-[#0E315C] shadow-sm"
+                    : "text-[#0E315C]/60 hover:text-[#0E315C]/80"
+                )}
+              >
+                {variant.charAt(0).toUpperCase() + variant.slice(1)}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Welcome Header */}
         <div className={`text-center mb-12 transition-all duration-1000 ease-out ${
           isVisible 
@@ -127,86 +344,10 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
             </div>
           </div>
 
-          {/* Recent Activity Section */}
-          <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
-            isVisible
-              ? "opacity-100 transform translate-y-0"
-              : "opacity-0 transform translate-y-4"
-          }`}>
-            <div className="text-center mb-6">
-              <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
-                Recent Activity
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-              {/* Activity Card 1 */}
-              <div className="group bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C1D9F6] rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
-                      Case Review Completed
-                    </h3>
-                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
-                      Rosen, Claire (#BTYREV50101) ready for final approval
-                    </p>
-                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light">
-                      16 minutes ago
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Activity Card 2 */}
-              <div className="group bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#C5BFEE] to-[#99C0F0] rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
-                      New Case Created
-                    </h3>
-                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
-                      Martinez, Elena employment case initiated
-                    </p>
-                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light">
-                      2 hours ago
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Activity Card 3 */}
-              <div className="group bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80">
-                <div className="flex items-start space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#C1D9F6] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
-                    </svg>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
-                      Documents Received
-                    </h3>
-                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
-                      Thompson, David submitted medical records
-                    </p>
-                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light">
-                      5 hours ago
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          {/* Dynamic Recent Activity Layout */}
+          {layoutVariant === "horizontal" && renderHorizontalLayout()}
+          {layoutVariant === "floating" && renderFloatingLayout()}
+          {layoutVariant === "timeline" && renderTimelineLayout()}
         </div>
 
         {/* Floating ambient elements */}
