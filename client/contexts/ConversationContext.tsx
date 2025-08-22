@@ -24,7 +24,7 @@ interface ConversationContextType {
   isInChatMode: boolean;
   
   // Actions
-  createNewConversation: (firstMessage: Message) => void;
+  createNewConversation: (firstMessage: Message) => string;
   switchToConversation: (conversationId: string) => void;
   addMessageToConversation: (message: Message) => void;
   generateConversationSummary: (messages: Message[]) => string;
