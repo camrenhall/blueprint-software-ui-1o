@@ -128,19 +128,6 @@ export default function ThinkingAnimation({
           </span>
         </div>
       )}
-
-      <style jsx>{`
-        @keyframes orbit {
-          0%, 100% {
-            opacity: 0.3;
-            transform: translate(-50%, -50%) rotate(var(--rotation)) translateY(var(--distance)) scale(0.8);
-          }
-          50% {
-            opacity: 0.8;
-            transform: translate(-50%, -50%) rotate(var(--rotation)) translateY(var(--distance)) scale(1.2);
-          }
-        }
-      `}</style>
     </div>
   );
 }
