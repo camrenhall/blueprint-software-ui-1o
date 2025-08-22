@@ -121,11 +121,17 @@ export default function ConversationHistory({
                     <div className="flex-1 min-w-0">
                       <h3
                         className={cn(
-                          "text-sm font-light leading-snug mb-1 truncate transition-colors",
+                          "text-sm font-light leading-snug mb-1 transition-colors break-words",
+                          "line-clamp-2 overflow-hidden",
                           isActive
                             ? "text-slate-800"
                             : "text-slate-600 group-hover:text-slate-700"
                         )}
+                        style={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2,
+                          WebkitBoxOrient: 'vertical'
+                        }}
                       >
                         {conversation.summary}
                       </h3>
