@@ -188,9 +188,11 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
       if (conv.id === conversationId) {
         const updatedMessages = conv.messages.map(msg => {
           if (msg.id === messageId && msg.isThinking) {
+            const newSteps = [...(msg.thinkingSteps || []), step];
             return {
               ...msg,
-              thinkingSteps: [...(msg.thinkingSteps || []), step]
+              thinkingSteps: newSteps,
+              currentStepIndex: newSteps.length - 1
             };
           }
           return msg;
