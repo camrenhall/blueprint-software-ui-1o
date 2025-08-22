@@ -117,10 +117,44 @@ export default function RadialScroller({
 
   const getItemOpacity = (index: number) => {
     const distance = Math.abs(index - selectedIndex);
-    if (distance === 0) return 1;
-    if (distance === 1) return 0.6;
-    if (distance === 2) return 0.3;
-    return 0.15;
+    let baseOpacity;
+    if (distance === 0) baseOpacity = 1;
+    else if (distance === 1) baseOpacity = 0.6;
+    else if (distance === 2) baseOpacity = 0.3;
+    else baseOpacity = 0.15;
+
+    // Add edge fade-out effect
+    const { y } = getItemPosition(index);
+    const screenHeight = window.innerHeight;
+    const paddingArea = screenHeight * 0.15; // 15% padding at top and bottom
+    const fadeZone = screenHeight * 0.25; // 25% fade zone
+
+    // Calculate position relative to screen center
+    const screenCenter = screenHeight / 2;
+    const itemScreenY = screenCenter + y;
+
+    // Calculate fade multiplier based on distance from edges
+    let edgeFadeMultiplier = 1;
+
+    // Top edge fade
+    if (itemScreenY < paddingArea + fadeZone) {
+      if (itemScreenY <= paddingArea) {
+        edgeFadeMultiplier = 0; // Completely hidden in padding area
+      } else {
+        edgeFadeMultiplier = (itemScreenY - paddingArea) / fadeZone;
+      }
+    }
+
+    // Bottom edge fade
+    else if (itemScreenY > screenHeight - paddingArea - fadeZone) {
+      if (itemScreenY >= screenHeight - paddingArea) {
+        edgeFadeMultiplier = 0; // Completely hidden in padding area
+      } else {
+        edgeFadeMultiplier = (screenHeight - paddingArea - itemScreenY) / fadeZone;
+      }
+    }
+
+    return baseOpacity * edgeFadeMultiplier;
   };
 
   const currentItems = currentLevel === "main" ? items : currentSubItems;
