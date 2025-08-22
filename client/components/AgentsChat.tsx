@@ -232,18 +232,21 @@ How can I best support your current priorities?`,
                           )}
                         </div>
                         {message.thinkingSteps && message.thinkingSteps.length > 0 && (
-                          <div className="space-y-1">
+                          <div className="space-y-2">
                             {message.thinkingSteps.map((step, index) => (
                               <div
                                 key={index}
-                                className="text-xs text-[#0E315C]/60 animate-fadeInUp flex items-center space-x-2"
-                                style={{ animationDelay: `${index * 100}ms` }}
+                                className="text-xs text-[#0E315C]/60 animate-slideInLeft flex items-center space-x-2"
+                                style={{
+                                  animationDelay: `${index * 200}ms`,
+                                  animationFillMode: 'both'
+                                }}
                               >
                                 <div className={cn(
-                                  "w-1 h-1 rounded-full flex-shrink-0",
-                                  message.isStreaming ? "bg-[#99C0F0]/60" : "bg-[#99C0F0]/80"
+                                  "w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-300",
+                                  message.isStreaming ? "bg-[#99C0F0]/60 animate-gentlePulse" : "bg-[#99C0F0]/80"
                                 )} />
-                                <span>{step}</span>
+                                <span className="leading-relaxed">{step}</span>
                               </div>
                             ))}
                           </div>
