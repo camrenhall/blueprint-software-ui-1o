@@ -178,6 +178,8 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     currentConversation,
     isInChatMode,
     createNewConversation,
+    createEagerConversation,
+    removeConversation,
     switchToConversation,
     addMessageToConversation,
     addMessageToConversationById,
