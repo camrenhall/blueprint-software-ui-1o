@@ -124,7 +124,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     return (
       <div className="h-full flex flex-col">
         {/* Chat Header */}
-        <div className={`flex-shrink-0 bg-white/60 backdrop-blur-sm border-b border-[#C1D9F6]/30 px-6 py-4 transition-all duration-1000 ease-out ${
+        <div className={`flex-shrink-0 px-6 py-4 transition-all duration-1000 ease-out ${
           chatStarted 
             ? "opacity-100 transform translate-y-0" 
             : "opacity-0 transform translate-y-4"
@@ -161,7 +161,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                 <div
                   className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm ${
                     message.role === "user"
-                      ? "bg-gradient-to-r from-[#99C0F0] to-[#C1D9F6] text-white"
+                      ? "bg-[#99C0F0] text-white"
                       : "bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 text-[#0E315C]"
                   }`}
                 >
@@ -174,11 +174,6 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                     )}
                     <p className="text-sm leading-relaxed">{message.content}</p>
                   </div>
-                  <p className={`text-xs ${
-                    message.role === "user" ? "text-white/70" : "text-[#0E315C]/40"
-                  }`}>
-                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                  </p>
                 </div>
               </div>
             ))}
@@ -203,7 +198,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
         </div>
 
         {/* Chat Input - Fixed at bottom */}
-        <div className="flex-shrink-0 bg-white/60 backdrop-blur-sm border-t border-[#C1D9F6]/30 p-4">
+        <div className="flex-shrink-0 p-4">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
               <div className="flex-1 relative">
