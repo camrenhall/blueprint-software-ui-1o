@@ -216,7 +216,7 @@ How can I best support your current priorities?`,
                       {/* Fixed size container for both states */}
                       <div className="w-6 h-6 mt-1 flex items-center justify-center">
                         {message.isStreaming ? (
-                          <ThinkingAnimation size="sm" showText={false} />
+                          <SimpleThinkingAnimation size="sm" />
                         ) : (
                           <div className="w-6 h-6 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center shadow-sm">
                             <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
