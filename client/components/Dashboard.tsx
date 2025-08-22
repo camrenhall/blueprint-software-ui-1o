@@ -3016,6 +3016,16 @@ export default function Dashboard({
           </div>
         );
 
+      case "agents":
+        return (
+          <div className="flex items-center justify-center h-full">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-slate-800 mb-4">Agents</h2>
+              <p className="text-slate-600">Agents page coming soon...</p>
+            </div>
+          </div>
+        );
+
       default:
         return null;
     }
