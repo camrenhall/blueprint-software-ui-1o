@@ -7,7 +7,7 @@ import InlineReview from "@/components/InlineReview";
 import AgentsChat from "@/components/AgentsChat";
 import { ConversationProvider, useConversationContext } from "@/contexts/ConversationContext";
 
-export default function Index() {
+function IndexContent() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [dashboardTitle, setDashboardTitle] = useState("");
   const [dashboardPage, setDashboardPage] = useState("overview");
