@@ -276,6 +276,7 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     addThinkingMessage,
     updateThinkingMessage,
     finalizeThinkingMessage,
+    addFinalResponseMessage,
     generateConversationSummary,
     startNewConversation,
     exitChatMode,
