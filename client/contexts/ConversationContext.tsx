@@ -57,35 +57,35 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
 
   const generateConversationSummary = (messages: Message[]): string => {
     if (messages.length === 0) return "New conversation";
-    
+
     const firstUserMessage = messages.find(msg => msg.role === "user");
     if (!firstUserMessage) return "New conversation";
-    
+
     // Generate a concise summary from the first user message
-    const content = firstUserMessage.content;
-    
+    const content = firstUserMessage.content.trim();
+
     // If the message is short enough, use it as is
-    if (content.length <= 50) {
+    if (content.length <= 40) {
       return content;
     }
-    
+
     // Extract key phrases and create a summary
     const keywords = content
       .toLowerCase()
       .split(/\s+/)
-      .filter(word => 
-        word.length > 3 && 
-        !['with', 'that', 'this', 'what', 'when', 'where', 'how', 'why', 'the', 'and', 'but', 'or', 'so'].includes(word)
+      .filter(word =>
+        word.length > 3 &&
+        !['with', 'that', 'this', 'what', 'when', 'where', 'how', 'why', 'the', 'and', 'but', 'or', 'so', 'can', 'you', 'help', 'need'].includes(word)
       )
       .slice(0, 3);
-    
+
     if (keywords.length > 0) {
       const summary = keywords.join(' ');
-      return summary.length > 45 ? summary.substring(0, 42) + '...' : summary;
+      return summary.length > 35 ? summary.substring(0, 32) + '...' : summary;
     }
-    
+
     // Fallback to truncated first message
-    return content.substring(0, 45) + (content.length > 45 ? '...' : '');
+    return content.substring(0, 35) + (content.length > 35 ? '...' : '');
   };
 
   const createNewConversation = (firstMessage: Message): string => {
