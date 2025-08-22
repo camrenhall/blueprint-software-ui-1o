@@ -203,17 +203,16 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     }));
   };
 
-  const finalizeThinkingMessage = (conversationId: string, messageId: string, finalContent: string) => {
+  const finalizeThinkingMessage = (conversationId: string, messageId: string) => {
     setConversations(prev => prev.map(conv => {
       if (conv.id === conversationId) {
         const updatedMessages = conv.messages.map(msg => {
           if (msg.id === messageId && msg.isThinking) {
             return {
               ...msg,
-              content: finalContent,
               isThinking: false,
               isStreaming: false,
-              thinkingSteps: undefined
+              content: "Thinking process completed"
             };
           }
           return msg;
@@ -221,12 +220,24 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
         return {
           ...conv,
           messages: updatedMessages,
-          summary: generateConversationSummary(updatedMessages),
           updatedAt: new Date(),
         };
       }
       return conv;
     }));
+  };
+
+  const addFinalResponseMessage = (conversationId: string, finalContent: string) => {
+    const responseMessage: Message = {
+      id: Date.now().toString() + "_response",
+      content: finalContent,
+      role: "assistant",
+      timestamp: new Date(),
+      isThinking: false,
+      isStreaming: false
+    };
+
+    addMessageToConversationById(conversationId, responseMessage);
   };
 
   const exitChatMode = () => {
