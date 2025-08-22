@@ -128,7 +128,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   if (chatStarted) {
     // Chat Mode - Slides to bottom
     return (
-      <div className="absolute inset-0 flex flex-col">
+      <div className="absolute inset-0 flex flex-col" style={{ transform: 'translateZ(0)' }}>
 
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto px-6 pt-8 pb-4">
