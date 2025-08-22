@@ -118,8 +118,15 @@ function IndexContent() {
             : "opacity-0 transform translate-y-8"
         }`}
       >
-        {/* Radial Scroller anchored to left but more centered */}
-        <RadialScroller items={menuItems} className="h-full" />
+        {/* Conditional Menu - RadialScroller or ConversationHistory */}
+        {isInChatMode ? (
+          <ConversationHistory
+            className="h-full"
+            onBackToMenu={handleBackToMenu}
+          />
+        ) : (
+          <RadialScroller items={menuItems} className="h-full" />
+        )}
 
         {/* Elegant Vertical Divider - Close to Menu */}
         <div className="absolute left-80 lg:left-96 xl:left-[30rem] top-0 h-full flex items-center z-20">
