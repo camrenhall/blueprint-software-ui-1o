@@ -102,10 +102,10 @@ export default function Index() {
   ];
 
   return (
-    <div className="min-h-screen w-full relative">
+    <div className="h-screen w-full relative overflow-hidden">
       {/* Main content */}
       <div
-        className={`relative z-10 min-h-screen flex items-center pl-20 md:pl-32 lg:pl-40 transition-all duration-1000 ease-out overflow-visible ${
+        className={`relative z-10 h-screen flex items-center pl-20 md:pl-32 lg:pl-40 transition-all duration-1000 ease-out ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-8"
