@@ -3,6 +3,7 @@ import RadialScroller from "@/components/RadialScroller";
 import Dashboard from "@/components/Dashboard";
 import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
+import AgentsChat from "@/components/AgentsChat";
 
 export default function Index() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
@@ -10,7 +11,7 @@ export default function Index() {
   const [dashboardPage, setDashboardPage] = useState("overview");
   const [isVisible, setIsVisible] = useState(false);
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
-    null,
+    "agents",
   );
 
   useEffect(() => {
@@ -22,9 +23,7 @@ export default function Index() {
       id: "agents",
       title: "Agents",
       action: () => {
-        setDashboardPage("agents");
-        setDashboardTitle("");
-        setDashboardOpen(true);
+        setActiveRightContent("agents");
       },
     },
     {
@@ -162,6 +161,11 @@ export default function Index() {
                   : "opacity-0 transform translate-y-6 scale-95"
               }`}
             >
+              {activeRightContent === "agents" && (
+                <div className="w-full h-full">
+                  <AgentsChat onClose={() => setActiveRightContent(null)} />
+                </div>
+              )}
               {activeRightContent === "create" && (
                 <div className="w-full max-w-4xl mx-auto">
                   <InlineCreate onClose={() => setActiveRightContent(null)} />
