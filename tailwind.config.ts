@@ -144,6 +144,16 @@ export default {
             transform: "translateY(0px)",
           },
         },
+        orbit: {
+          "0%, 100%": {
+            opacity: "0.3",
+            transform: "translate(-50%, -50%) scale(0.8)",
+          },
+          "50%": {
+            opacity: "0.8",
+            transform: "translate(-50%, -50%) scale(1.2)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
