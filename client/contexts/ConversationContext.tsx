@@ -246,7 +246,8 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
       role: "assistant",
       timestamp: new Date(),
       isStreamingText: true,
-      fullContent: fullContent
+      fullContent: fullContent,
+      typewriterProgress: 0
     };
 
     addMessageToConversationById(conversationId, responseMessage);
