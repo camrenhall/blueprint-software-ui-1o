@@ -142,8 +142,12 @@ How can I best support your current priorities?`,
           const selectedResponse = responses[responseIndex % responses.length];
           setResponseIndex(prev => prev + 1);
 
-          // Finalize the thinking message with the actual response
-          finalizeThinkingMessage(conversationId, thinkingMessageId, selectedResponse);
+          // Finalize the thinking message (keep it visible)
+          finalizeThinkingMessage(conversationId, thinkingMessageId);
+
+          // Add the actual response as a separate message
+          addFinalResponseMessage(conversationId, selectedResponse);
+
           setIsTyping(false);
           setCurrentThinkingId(null);
         }, 800); // Brief pause before final response
