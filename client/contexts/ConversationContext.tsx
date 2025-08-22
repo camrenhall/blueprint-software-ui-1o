@@ -155,6 +155,7 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     addMessageToConversation,
     addMessageToConversationById,
     generateConversationSummary,
+    startNewConversation,
     exitChatMode,
     enterChatMode,
   };
