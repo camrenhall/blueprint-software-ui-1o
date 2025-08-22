@@ -44,9 +44,21 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     setTimeout(() => inputRef.current?.focus(), 600);
   }, []);
 
-  // Gentle auto scroll to bottom when new messages are added
+  // Track scroll position to determine if we should auto-scroll
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollTop = container.scrollTop;
+    const scrollHeight = container.scrollHeight;
+    const clientHeight = container.clientHeight;
+
+    // Consider user at bottom if within 100px of the bottom
+    const isNearBottom = scrollTop + clientHeight >= scrollHeight - 100;
+    setShouldAutoScroll(isNearBottom);
+  };
+
+  // Gentle auto scroll to bottom when new messages are added (only if user is near bottom)
   useEffect(() => {
-    if (messagesEndRef.current) {
+    if (shouldAutoScroll && messagesEndRef.current) {
       // Small delay to let the message render first
       setTimeout(() => {
         if (messagesEndRef.current) {
@@ -56,9 +68,9 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
             inline: 'nearest'
           });
         }
-      }, 100);
+      }, 150);
     }
-  }, [messages]);
+  }, [messages, shouldAutoScroll]);
 
   const handleInputFocus = () => {
     if (!hasInteracted) {
