@@ -44,6 +44,7 @@ interface ConversationContextType {
   addStreamingResponseMessage: (conversationId: string, fullContent: string) => string;
   completeStreamingMessage: (conversationId: string, messageId: string) => void;
   updateMessageRating: (conversationId: string, messageId: string, rating: "up" | "down" | null) => void;
+  updateTypewriterProgress: (conversationId: string, messageId: string, progress: number) => void;
   generateConversationSummary: (messages: Message[]) => string;
   startNewConversation: () => void;
   exitChatMode: () => void;
