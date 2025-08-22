@@ -86,6 +86,25 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     }
   }, [messages, shouldAutoScroll]);
 
+  // Also scroll when streaming text is growing (for typewriter effect)
+  useEffect(() => {
+    const hasStreamingText = messages.some(msg => msg.isStreamingText);
+    if (hasStreamingText && shouldAutoScroll) {
+      // More frequent but gentle scrolling during text streaming
+      const scrollInterval = setInterval(() => {
+        if (messagesEndRef.current && shouldAutoScroll) {
+          messagesEndRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
+          });
+        }
+      }, 500); // Scroll every 500ms during streaming
+
+      return () => clearInterval(scrollInterval);
+    }
+  }, [messages, shouldAutoScroll]);
+
   const handleInputFocus = () => {
     if (!hasInteracted) {
       setHasInteracted(true);
