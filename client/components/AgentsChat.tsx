@@ -220,7 +220,10 @@ How can I best support your current priorities?`,
       <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-6 py-4 border border-[#C1D9F6]/80 hover:border-[#99C0F0] rounded-2xl transition-colors duration-300 mb-0">
+        <div
+          className="flex-1 overflow-y-auto px-6 py-4 border border-[#C1D9F6]/80 hover:border-[#99C0F0] rounded-2xl transition-colors duration-300 mb-0"
+          onScroll={handleScroll}
+        >
           <div className="max-w-4xl mx-auto space-y-4">
             {messages.map((message) => (
               <div
