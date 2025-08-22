@@ -173,7 +173,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                 </div>
               </div>
             ))}
-            
+
             {isTyping && (
               <div className="flex justify-start animate-fadeInUp">
                 <div className="bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 px-4 py-3 rounded-2xl shadow-sm">
@@ -207,6 +207,50 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                   onKeyDown={handleKeyDown}
                   onFocus={handleInputFocus}
                   placeholder="Continue the conversation..."
+                  className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
+                />
+              </div>
+              <button
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim()}
+                className={cn(
+                  "flex items-center gap-2 px-5 py-4 rounded-xl text-sm font-medium transition-all duration-200 border",
+                  inputValue.trim()
+                    ? "bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/40 shadow-sm hover:bg-[#99C0F0]/30 hover:shadow-md"
+                    : "bg-white/40 text-[#0E315C]/40 border-[#C1D9F6]/40 cursor-not-allowed",
+                )}
+              >
+                <Send className="w-4 h-4" />
+                <span className="hidden sm:inline">Send</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (isNewChatMode) {
+    // Minimal New Chat Mode - Just input at bottom
+    return (
+      <div className="absolute inset-0 flex flex-col" style={{ transform: 'translateZ(0)' }}>
+        {/* Empty space for messages */}
+        <div className="flex-1"></div>
+
+        {/* Chat Input - Fixed at bottom */}
+        <div className="flex-shrink-0 p-6">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
+              <div className="flex-1 relative">
+                <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" />
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  onFocus={handleInputFocus}
+                  placeholder="Start a new conversation..."
                   className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
                 />
               </div>
