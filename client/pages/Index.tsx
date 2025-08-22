@@ -248,3 +248,11 @@ function IndexContent() {
     </div>
   );
 }
+
+export default function Index() {
+  return (
+    <ConversationProvider>
+      <IndexContent />
+    </ConversationProvider>
+  );
+}
