@@ -34,13 +34,13 @@ export default function ThinkingAnimation({
   }, []);
 
   const sizeClasses = {
-    sm: "w-6 h-6",
-    md: "w-8 h-8", 
+    sm: "w-5 h-5",
+    md: "w-8 h-8",
     lg: "w-12 h-12"
   };
 
   const dotSizes = {
-    sm: "w-1.5 h-1.5",
+    sm: "w-1 h-1",
     md: "w-2 h-2",
     lg: "w-3 h-3"
   };
