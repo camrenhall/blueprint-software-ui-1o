@@ -26,6 +26,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   // Derive state from conversation context
   const messages = currentConversation?.messages || [];
   const chatStarted = isInChatMode && currentConversation !== null;
+  const isNewChatMode = isInChatMode && currentConversation === null;
 
   // Animation entrance effect
   useEffect(() => {
