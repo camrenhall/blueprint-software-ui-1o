@@ -336,6 +336,8 @@ How can I best support your current priorities?`,
                         <TypewriterText
                           text={message.fullContent}
                           speed={75}
+                          initialProgress={message.typewriterProgress || 0}
+                          onProgressUpdate={(progress) => updateTypewriterProgress(currentConversation?.id || '', message.id, progress)}
                           onComplete={() => completeStreamingMessage(currentConversation?.id || '', message.id)}
                           className="min-w-0 flex-1"
                         />
