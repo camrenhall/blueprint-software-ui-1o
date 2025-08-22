@@ -160,6 +160,14 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
   };
 
   const exitChatMode = () => {
+    // Clean up empty conversations before exiting
+    if (currentConversationId) {
+      const currentConv = conversations.find(conv => conv.id === currentConversationId);
+      if (currentConv && currentConv.messages.length === 0) {
+        removeConversation(currentConversationId);
+      }
+    }
+
     setIsInChatMode(false);
     setCurrentConversationId(null);
   };
