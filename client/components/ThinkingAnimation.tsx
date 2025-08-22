@@ -66,17 +66,17 @@ export default function ThinkingAnimation({
         {/* Middle pulsing ring */}
         <div className={cn(
           "absolute border border-[#99C0F0]/30 rounded-full animate-pulse",
-          size === "sm" ? "w-5 h-5" : size === "md" ? "w-7 h-7" : "w-10 h-10"
+          size === "sm" ? "w-4 h-4" : size === "md" ? "w-7 h-7" : "w-10 h-10"
         )} />
-        
+
         {/* Inner glass container */}
         <div className={cn(
           "relative bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-full flex items-center justify-center shadow-lg shadow-[#99C0F0]/20",
-          size === "sm" ? "w-4 h-4" : size === "md" ? "w-6 h-6" : "w-8 h-8"
+          size === "sm" ? "w-3 h-3" : size === "md" ? "w-6 h-6" : "w-8 h-8"
         )}>
           <IconComponent className={cn(
             "text-[#0E315C]/70 animate-pulse",
-            size === "sm" ? "w-2 h-2" : size === "md" ? "w-3 h-3" : "w-4 h-4"
+            size === "sm" ? "w-1.5 h-1.5" : size === "md" ? "w-3 h-3" : "w-4 h-4"
           )} />
         </div>
 
