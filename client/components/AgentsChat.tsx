@@ -12,6 +12,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     currentConversation,
     createNewConversation,
     addMessageToConversation,
+    addMessageToConversationById,
     isInChatMode,
   } = useConversationContext();
 
