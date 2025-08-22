@@ -22,6 +22,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     finalizeThinkingMessage,
     addStreamingResponseMessage,
     completeStreamingMessage,
+    updateMessageRating,
     removeConversation,
     isInChatMode,
   } = useConversationContext();
