@@ -276,6 +276,28 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     }));
   };
 
+  const updateMessageRating = (conversationId: string, messageId: string, rating: "up" | "down" | null) => {
+    setConversations(prev => prev.map(conv => {
+      if (conv.id === conversationId) {
+        const updatedMessages = conv.messages.map(msg => {
+          if (msg.id === messageId) {
+            return {
+              ...msg,
+              rating: rating
+            };
+          }
+          return msg;
+        });
+        return {
+          ...conv,
+          messages: updatedMessages,
+          updatedAt: new Date(),
+        };
+      }
+      return conv;
+    }));
+  };
+
   const exitChatMode = () => {
     // Clean up empty conversations before exiting
     if (currentConversationId) {
