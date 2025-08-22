@@ -12,232 +12,157 @@ export default function ConversationHistory({
   className,
   onBackToMenu,
 }: ConversationHistoryProps) {
-  const { 
-    conversations, 
-    currentConversationId, 
-    switchToConversation, 
-    exitChatMode 
+  const {
+    conversations,
+    currentConversationId,
+    switchToConversation,
+    exitChatMode
   } = useConversationContext();
-  
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const [isVisible, setIsVisible] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Items include "Back", "New Chat", and all conversations
-  const items = [
-    { 
-      id: "back", 
-      type: "back" as const, 
-      title: "Back", 
-      subtitle: "Return to main menu",
-      action: () => {
-        setIsTransitioning(true);
-        setTimeout(() => {
-          exitChatMode();
-          onBackToMenu();
-        }, 300);
-      }
-    },
-    { 
-      id: "new-chat", 
-      type: "new-chat" as const, 
-      title: "New Chat", 
-      subtitle: "Start fresh conversation",
-      action: () => {
-        // This will be handled by the chat component
-        // when user starts typing a new message
-      }
-    },
-    ...conversations.map(conv => ({
-      id: conv.id,
-      type: "conversation" as const,
-      title: conv.summary,
-      subtitle: formatRelativeTime(conv.updatedAt),
-      action: () => switchToConversation(conv.id),
-      isActive: conv.id === currentConversationId,
-    }))
-  ];
-
-  // Handle keyboard navigation
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't interfere with input fields, textareas, or contentEditable elements
-      const activeElement = document.activeElement as HTMLElement | null;
-      if (activeElement && (
-        activeElement.tagName === 'INPUT' ||
-        activeElement.tagName === 'TEXTAREA' ||
-        activeElement.isContentEditable
-      )) {
-        return;
-      }
+    setTimeout(() => setIsVisible(true), 100);
+  }, []);
 
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        setSelectedIndex((prev) => (prev - 1 + items.length) % items.length);
-      } else if (e.key === "ArrowDown") {
-        e.preventDefault();
-        setSelectedIndex((prev) => (prev + 1) % items.length);
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        items[selectedIndex]?.action();
-      } else if (e.key === "Escape") {
-        e.preventDefault();
-        items[0]?.action(); // Back action
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedIndex, items]);
-
-  const getItemPosition = (index: number) => {
-    const spacing = 100;
-    const y = (index - selectedIndex) * spacing;
-    return { x: 0, y };
-  };
-
-  const getItemScale = (index: number) => {
-    const distance = Math.abs(index - selectedIndex);
-    if (distance === 0) return 1;
-    if (distance === 1) return 0.9;
-    if (distance === 2) return 0.8;
-    return 0.7;
-  };
-
-  const getItemOpacity = (index: number) => {
-    const distance = Math.abs(index - selectedIndex);
-    let baseOpacity;
-    if (distance === 0) baseOpacity = 1;
-    else if (distance === 1) baseOpacity = 0.6;
-    else if (distance === 2) baseOpacity = 0.3;
-    else baseOpacity = 0.15;
-
-    // Edge fade-out calculation
-    const { y } = getItemPosition(index);
-    const screenHeight = window.innerHeight;
-    const fadeZone = 100;
-    const screenCenter = screenHeight / 2;
-    const itemScreenY = screenCenter + y;
-
-    let edgeFadeMultiplier = 1;
-
-    if (itemScreenY < fadeZone) {
-      edgeFadeMultiplier = Math.max(0, itemScreenY / fadeZone);
-    } else if (itemScreenY > screenHeight - fadeZone) {
-      edgeFadeMultiplier = Math.max(0, (screenHeight - itemScreenY) / fadeZone);
-    }
-
-    return baseOpacity * edgeFadeMultiplier;
+  const handleBackToMenu = () => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      exitChatMode();
+      onBackToMenu();
+    }, 300);
   };
 
   return (
-    <div className={cn("relative flex items-center justify-start h-full", className)}>
+    <div className={cn("relative flex items-start justify-start h-full pt-16", className)}>
       <div
         className={cn(
-          "relative flex flex-col items-start justify-center h-full max-h-screen py-20 transition-all duration-300 ease-out",
-          isTransitioning && "transform translate-x-[-100px] opacity-0"
+          "w-full max-w-md transition-all duration-500 ease-out",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+          isTransitioning && "opacity-0 translate-x-[-50px]"
         )}
       >
-        {items.map((item, index) => {
-          const { x, y } = getItemPosition(index);
-          const scale = getItemScale(index);
-          const opacity = getItemOpacity(index);
-          const isSelected = index === selectedIndex;
-          const isHovered = hoveredIndex === index;
+        {/* Header with Back Button */}
+        <div className="mb-8">
+          <button
+            onClick={handleBackToMenu}
+            className="group flex items-center space-x-2 text-slate-500 hover:text-slate-700 transition-all duration-200 mb-4"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-sm font-light">Back to menu</span>
+          </button>
 
-          return (
-            <div
-              key={item.id}
-              className={cn(
-                "absolute transition-all duration-500 ease-out cursor-pointer",
-                "transform-gpu will-change-transform text-left group"
-              )}
-              style={{
-                transform: `translate(${x}px, ${y}px) scale(${scale})`,
-                opacity: isHovered ? Math.min(opacity + 0.3, 1) : opacity,
-              }}
-              onMouseEnter={() => {
-                setHoveredIndex(index);
-                if (Math.abs(index - selectedIndex) === 1) {
-                  setSelectedIndex(index);
-                }
-              }}
-              onMouseLeave={() => setHoveredIndex(null)}
-              onClick={item.action}
-            >
-              <div className="flex items-center space-x-3">
-                {/* Icon */}
-                <div
-                  className={cn(
-                    "w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300",
-                    item.type === "back"
-                      ? "bg-slate-100 text-slate-500"
-                      : item.type === "new-chat"
-                      ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] text-white shadow-lg"
-                      : item.isActive
-                      ? "bg-gradient-to-br from-[#99C0F0] to-[#C1D9F6] text-white shadow-lg"
-                      : "bg-white/70 text-[#0E315C]/60 border border-[#C1D9F6]/30",
-                    isSelected && "shadow-lg transform scale-110"
-                  )}
-                >
-                  {item.type === "back" ? (
-                    <ArrowLeft className="w-4 h-4" />
-                  ) : item.type === "new-chat" ? (
-                    <Plus className="w-4 h-4" />
-                  ) : (
-                    <MessageCircle className="w-4 h-4" />
-                  )}
-                </div>
+          <h2 className="text-2xl font-light text-slate-700 mb-2">Conversations</h2>
+          <p className="text-sm text-slate-500 font-light">Recent chat history</p>
+        </div>
 
-                {/* Content */}
-                <div className="min-w-0">
-                  <h3
-                    className={cn(
-                      "font-light tracking-wide transition-all duration-300 whitespace-nowrap",
-                      isSelected
-                        ? "text-slate-800 drop-shadow-md"
-                        : "text-slate-600 hover:text-slate-700",
-                      item.type === "back" || item.type === "new-chat"
-                        ? "text-2xl md:text-3xl"
-                        : "text-xl md:text-2xl"
-                    )}
-                  >
-                    {item.title}
-                  </h3>
-                  
-                  {/* Subtitle for context */}
-                  <p
-                    className={cn(
-                      "text-xs font-light transition-all duration-300 mt-1",
-                      isSelected
-                        ? "text-slate-500"
-                        : "text-slate-400",
-                      item.type === "conversation" && "flex items-center space-x-2"
-                    )}
-                  >
-                    {item.type === "conversation" && (
-                      <>
-                        <Clock className="w-3 h-3" />
-                        <span>{item.subtitle}</span>
-                      </>
-                    )}
-                    {item.type !== "conversation" && item.subtitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Glow effect for selected item */}
-              {isSelected && item.type !== "back" && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-300/20 to-purple-300/20 blur-xl -z-10 scale-125" />
-              )}
-
-              {/* Active conversation indicator */}
-              {item.isActive && item.type === "conversation" && (
-                <div className="absolute -left-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-gradient-to-b from-[#99C0F0] to-[#C5BFEE] rounded-full shadow-lg" />
-              )}
+        {/* New Chat Button */}
+        <div className={cn(
+          "mb-6 transition-all duration-700 ease-out delay-100",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+        )}>
+          <button
+            onClick={() => {
+              // Clear current conversation to start fresh
+              // This will be handled by the chat component
+            }}
+            className="w-full flex items-center space-x-3 p-3 rounded-xl border border-[#C1D9F6]/40 bg-gradient-to-r from-[#99C0F0]/10 to-[#C5BFEE]/10 hover:from-[#99C0F0]/20 hover:to-[#C5BFEE]/20 transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10"
+          >
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
+              <Plus className="w-4 h-4 text-white" />
             </div>
-          );
-        })}
+            <div className="text-left">
+              <h3 className="text-sm font-medium text-slate-700">New Chat</h3>
+              <p className="text-xs text-slate-500 font-light">Start a fresh conversation</p>
+            </div>
+          </button>
+        </div>
+
+        {/* Conversations List */}
+        {conversations.length > 0 ? (
+          <div className="space-y-2">
+            {conversations.map((conversation, index) => {
+              const isActive = conversation.id === currentConversationId;
+
+              return (
+                <div
+                  key={conversation.id}
+                  className={cn(
+                    "transition-all duration-700 ease-out",
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-2"
+                  )}
+                  style={{
+                    transitionDelay: `${200 + index * 100}ms`
+                  }}
+                >
+                  <button
+                    onClick={() => switchToConversation(conversation.id)}
+                    className={cn(
+                      "w-full flex items-start space-x-3 p-3 rounded-lg transition-all duration-200 text-left group",
+                      isActive
+                        ? "bg-gradient-to-r from-[#99C0F0]/20 to-[#C1D9F6]/20 border border-[#99C0F0]/30 shadow-sm"
+                        : "hover:bg-white/50 border border-transparent hover:border-[#C1D9F6]/20 hover:shadow-sm"
+                    )}
+                  >
+                    {/* Conversation Icon */}
+                    <div
+                      className={cn(
+                        "w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-all",
+                        isActive
+                          ? "bg-gradient-to-br from-[#99C0F0] to-[#C1D9F6] text-white shadow-sm"
+                          : "bg-slate-100 text-slate-400 group-hover:bg-slate-200"
+                      )}
+                    >
+                      <MessageCircle className="w-3 h-3" />
+                    </div>
+
+                    {/* Conversation Content */}
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className={cn(
+                          "text-sm font-light leading-snug mb-1 truncate transition-colors",
+                          isActive
+                            ? "text-slate-800"
+                            : "text-slate-600 group-hover:text-slate-700"
+                        )}
+                      >
+                        {conversation.summary}
+                      </h3>
+
+                      <div className="flex items-center space-x-1 text-xs text-slate-400">
+                        <Clock className="w-3 h-3 flex-shrink-0" />
+                        <span className="font-light">
+                          {formatRelativeTime(conversation.updatedAt)}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Active Indicator */}
+                    {isActive && (
+                      <div className="w-2 h-2 rounded-full bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] flex-shrink-0 mt-2" />
+                    )}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div
+            className={cn(
+              "text-center py-8 transition-all duration-700 ease-out delay-300",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+            )}
+          >
+            <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mx-auto mb-3">
+              <MessageCircle className="w-6 h-6 text-slate-400" />
+            </div>
+            <p className="text-sm text-slate-500 font-light">No conversations yet</p>
+            <p className="text-xs text-slate-400 font-light mt-1">Start a new chat to begin</p>
+          </div>
+        )}
       </div>
     </div>
   );
