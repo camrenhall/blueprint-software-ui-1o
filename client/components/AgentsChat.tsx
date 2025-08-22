@@ -127,15 +127,85 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
             </div>
           </div>
 
-          {/* Subtle Status Indicator */}
-          <div className={`mt-4 text-center transition-all duration-1000 ease-out delay-700 ${
-            isVisible 
-              ? "opacity-100 transform translate-y-0" 
-              : "opacity-0 transform translate-y-2"
+          {/* Recent Activity Section */}
+          <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-4"
           }`}>
-            <p className="text-xs text-[#0E315C]/40 font-light">
-              AI Assistant • Ready to help • Powered by advanced legal intelligence
-            </p>
+            <div className="text-center mb-6">
+              <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
+                Recent Activity
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {/* Activity Card 1 */}
+              <div className="group bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80">
+                <div className="flex items-start space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C1D9F6] rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
+                      Case Review Completed
+                    </h3>
+                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
+                      Rosen, Claire (#BTYREV50101) ready for final approval
+                    </p>
+                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light">
+                      16 minutes ago
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Activity Card 2 */}
+              <div className="group bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80">
+                <div className="flex items-start space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#C5BFEE] to-[#99C0F0] rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
+                      New Case Created
+                    </h3>
+                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
+                      Martinez, Elena employment case initiated
+                    </p>
+                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light">
+                      2 hours ago
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Activity Card 3 */}
+              <div className="group bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80">
+                <div className="flex items-start space-x-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#C1D9F6] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-sm flex-shrink-0">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
+                      Documents Received
+                    </h3>
+                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
+                      Thompson, David submitted medical records
+                    </p>
+                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light">
+                      5 hours ago
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
