@@ -171,7 +171,10 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                     {message.role === "user" && (
                       <User className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
                     )}
-                    <p className="text-sm leading-relaxed break-words whitespace-pre-wrap min-w-0 flex-1">{message.content}</p>
+                    <MessageContent
+                      content={message.content}
+                      className="min-w-0 flex-1"
+                    />
                   </div>
                 </div>
               </div>
