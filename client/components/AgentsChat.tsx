@@ -209,7 +209,7 @@ How can I best support your current priorities?`,
                 key={message.id}
                 className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fadeInUp`}
               >
-                {message.isThinking !== undefined ? (
+                {message.thinkingSteps !== undefined ? (
                   // Thinking message (both active and completed)
                   <div className="bg-gradient-to-r from-[#99C0F0]/5 to-[#C5BFEE]/5 backdrop-blur-sm border border-[#C1D9F6]/20 px-4 py-3 rounded-2xl shadow-sm max-w-lg">
                     <div className="flex items-start space-x-3">
