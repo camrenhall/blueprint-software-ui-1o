@@ -162,7 +162,7 @@ export default function Index() {
               }`}
             >
               {activeRightContent === "agents" && (
-                <div className="absolute inset-0">
+                <div className="w-full h-full relative flex-shrink-0">
                   <AgentsChat onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
