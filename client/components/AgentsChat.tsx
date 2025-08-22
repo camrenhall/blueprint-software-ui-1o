@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useConversationContext } from "@/contexts/ConversationContext";
-import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus, Bot, User } from "lucide-react";
+import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus, User } from "lucide-react";
 
 interface AgentsChatProps {
   onClose: () => void;
@@ -167,9 +167,6 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                   }`}
                 >
                   <div className="flex items-start space-x-2 mb-2">
-                    {message.role === "assistant" && (
-                      <Bot className="w-4 h-4 text-[#0E315C]/60 mt-0.5 flex-shrink-0" />
-                    )}
                     {message.role === "user" && (
                       <User className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
                     )}
@@ -183,7 +180,6 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
               <div className="flex justify-start animate-fadeInUp">
                 <div className="bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 px-4 py-3 rounded-2xl shadow-sm">
                   <div className="flex items-center space-x-2">
-                    <Bot className="w-4 h-4 text-[#0E315C]/60" />
                     <div className="flex space-x-1">
                       <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse"></div>
                       <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
