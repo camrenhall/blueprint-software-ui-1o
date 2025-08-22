@@ -10,7 +10,6 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const [inputValue, setInputValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [layoutVariant, setLayoutVariant] = useState<"thin-strips" | "floating-bars" | "notification-pills">("thin-strips");
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Animation entrance effect
@@ -45,7 +44,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       type: "review",
       icon: CheckCircle,
       title: "Case Review Completed",
-      description: "Rosen, Claire (#BTYREV50101)",
+      description: "Rosen, Claire (#BTYREV50101) ready for final approval",
       time: "16m ago",
       color: "from-[#99C0F0] to-[#C1D9F6]"
     },
@@ -54,8 +53,8 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       type: "create",
       icon: UserPlus,
       title: "New Case Created",
-      description: "Martinez, Elena employment case",
-      time: "2h ago",
+      description: "Martinez, Elena employment case initiated",
+      time: "2h ago", 
       color: "from-[#C5BFEE] to-[#99C0F0]"
     },
     {
@@ -63,215 +62,16 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       type: "document",
       icon: FileText,
       title: "Documents Received",
-      description: "Thompson, David medical records",
+      description: "Thompson, David submitted medical records",
       time: "5h ago",
       color: "from-[#C1D9F6] to-[#C5BFEE]"
     }
   ];
 
-  // Variant 1: Ultra-thin horizontal strips
-  const renderThinStrips = () => (
-    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
-      isVisible 
-        ? "opacity-100 transform translate-y-0" 
-        : "opacity-0 transform translate-y-4"
-    }`}>
-      <div className="text-center mb-8">
-        <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
-          Recent Activity
-        </h2>
-      </div>
-      
-      <div className="space-y-3 max-w-4xl mx-auto">
-        {recentActivities.map((activity, index) => {
-          const IconComponent = activity.icon;
-          return (
-            <div
-              key={activity.id}
-              className={`group bg-white/30 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-full shadow-sm hover:shadow-md transition-all duration-500 p-3 hover:bg-white/40 cursor-pointer transform hover:scale-[1.01] ${
-                index === 0 ? "animate-fadeInUp" : ""
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex items-center space-x-4">
-                {/* Icon */}
-                <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-sm flex-shrink-0`}>
-                  <IconComponent className="w-4 h-4 text-white" />
-                </div>
-                
-                {/* Content - Horizontal flow */}
-                <div className="flex-1 flex items-center justify-between min-w-0">
-                  <div className="flex items-center space-x-6 flex-1">
-                    <h3 className="text-sm font-medium text-[#0E315C]/90 truncate">
-                      {activity.title}
-                    </h3>
-                    <span className="hidden sm:block w-1 h-1 bg-[#0E315C]/20 rounded-full flex-shrink-0"></span>
-                    <p className="text-sm text-[#0E315C]/60 truncate flex-1">
-                      {activity.description}
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-center space-x-2 text-xs text-[#0E315C]/40 font-light flex-shrink-0">
-                    <Clock className="w-3 h-3" />
-                    <span>{activity.time}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-
-  // Variant 2: Floating horizontal bars
-  const renderFloatingBars = () => (
-    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
-      isVisible 
-        ? "opacity-100 transform translate-y-0" 
-        : "opacity-0 transform translate-y-4"
-    }`}>
-      <div className="text-center mb-8">
-        <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
-          Recent Activity
-        </h2>
-      </div>
-      
-      <div className="relative max-w-5xl mx-auto">
-        <div className="flex justify-between items-center space-x-4">
-          {recentActivities.map((activity, index) => {
-            const IconComponent = activity.icon;
-            return (
-              <div
-                key={activity.id}
-                className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/20 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-700 p-4 hover:bg-white/35 cursor-pointer transform hover:scale-105 hover:-translate-y-1 flex-1 ${
-                  index === 1 ? "animate-pulse" : ""
-                }`}
-                style={{ 
-                  animationDelay: `${index * 0.2}s`,
-                  animationDuration: "2s"
-                }}
-              >
-                <div className="flex items-center space-x-3">
-                  {/* Icon */}
-                  <div className={`w-10 h-10 bg-gradient-to-br ${activity.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0`}>
-                    <IconComponent className="w-5 h-5 text-white" />
-                  </div>
-                  
-                  {/* Content - Stacked for better fit */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-[#0E315C]/90 truncate mb-1">
-                      {activity.title}
-                    </h3>
-                    <p className="text-xs text-[#0E315C]/60 truncate mb-2">
-                      {activity.description}
-                    </p>
-                    <div className="flex items-center space-x-1 text-xs text-[#0E315C]/40 font-light">
-                      <Clock className="w-3 h-3" />
-                      <span>{activity.time}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* Subtle connecting line */}
-        <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C1D9F6]/30 to-transparent -z-10"></div>
-      </div>
-    </div>
-  );
-
-  // Variant 3: Notification-style horizontal pills
-  const renderNotificationPills = () => (
-    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
-      isVisible 
-        ? "opacity-100 transform translate-y-0" 
-        : "opacity-0 transform translate-y-4"
-    }`}>
-      <div className="text-center mb-8">
-        <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
-          Recent Activity
-        </h2>
-      </div>
-      
-      <div className="max-w-3xl mx-auto">
-        <div className="flex flex-wrap justify-center gap-3">
-          {recentActivities.map((activity, index) => {
-            const IconComponent = activity.icon;
-            return (
-              <div
-                key={activity.id}
-                className={`group bg-white/20 backdrop-blur-sm border border-[#C1D9F6]/20 rounded-full shadow-sm hover:shadow-md transition-all duration-500 px-5 py-3 hover:bg-white/30 cursor-pointer transform hover:scale-105 ${
-                  index === 0 ? "order-2" : index === 1 ? "order-1" : "order-3"
-                }`}
-                style={{ animationDelay: `${index * 0.15}s` }}
-              >
-                <div className="flex items-center space-x-3">
-                  {/* Compact Icon */}
-                  <div className={`w-6 h-6 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-sm flex-shrink-0`}>
-                    <IconComponent className="w-3 h-3 text-white" />
-                  </div>
-                  
-                  {/* Minimal Content */}
-                  <div className="flex items-center space-x-3">
-                    <span className="text-sm font-medium text-[#0E315C]/90 whitespace-nowrap">
-                      {activity.title}
-                    </span>
-                    <span className="w-1 h-1 bg-[#0E315C]/20 rounded-full"></span>
-                    <span className="text-xs text-[#0E315C]/50 whitespace-nowrap">
-                      {activity.time}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* Expandable details on hover (placeholder for future) */}
-        <div className="mt-6 text-center">
-          <p className="text-xs text-[#0E315C]/30 font-light italic">
-            Hover for details • Click to view case
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="h-full flex items-center justify-center px-8">
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
         
-        {/* Layout Variant Selector */}
-        <div className={`mb-4 transition-all duration-1000 ease-out ${
-          isVisible 
-            ? "opacity-100 transform translate-y-0" 
-            : "opacity-0 transform translate-y-4"
-        }`}>
-          <div className="flex items-center gap-2 bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-xl p-1">
-            {[
-              { key: "thin-strips", label: "Thin Strips" },
-              { key: "floating-bars", label: "Floating Bars" },
-              { key: "notification-pills", label: "Notification Pills" }
-            ].map((variant) => (
-              <button
-                key={variant.key}
-                onClick={() => setLayoutVariant(variant.key as any)}
-                className={cn(
-                  "px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200",
-                  layoutVariant === variant.key
-                    ? "bg-white/80 text-[#0E315C] shadow-sm"
-                    : "text-[#0E315C]/60 hover:text-[#0E315C]/80 hover:bg-white/20"
-                )}
-              >
-                {variant.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* Welcome Header */}
         <div className={`text-center mb-12 transition-all duration-1000 ease-out ${
           isVisible 
@@ -357,16 +157,79 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
             </div>
           </div>
 
-          {/* Dynamic Recent Activity Layout */}
-          {layoutVariant === "thin-strips" && renderThinStrips()}
-          {layoutVariant === "floating-bars" && renderFloatingBars()}
-          {layoutVariant === "notification-pills" && renderNotificationPills()}
+          {/* Perfect Balance: Recent Activity */}
+          <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+            isVisible 
+              ? "opacity-100 transform translate-y-0" 
+              : "opacity-0 transform translate-y-4"
+          }`}>
+            <div className="text-center mb-8">
+              <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
+                Recent Activity
+              </h2>
+            </div>
+            
+            <div className="space-y-4 max-w-3xl mx-auto">
+              {recentActivities.map((activity, index) => {
+                const IconComponent = activity.icon;
+                return (
+                  <div
+                    key={activity.id}
+                    className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 p-4 hover:bg-white/35 cursor-pointer transform hover:scale-[1.015] hover:-translate-y-0.5 ${
+                      index === 0 ? "animate-fadeInUp" : ""
+                    }`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <div className="flex items-center space-x-4">
+                      {/* Icon - Perfect size and styling */}
+                      <div className={`w-10 h-10 bg-gradient-to-br ${activity.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}>
+                        <IconComponent className="w-5 h-5 text-white" />
+                      </div>
+                      
+                      {/* Content - Balanced horizontal flow */}
+                      <div className="flex-1 flex items-center justify-between min-w-0">
+                        <div className="flex flex-col space-y-1 flex-1 min-w-0">
+                          <div className="flex items-center space-x-3">
+                            <h3 className="text-sm font-medium text-[#0E315C]/90 truncate">
+                              {activity.title}
+                            </h3>
+                            <span className="hidden sm:block w-1 h-1 bg-[#0E315C]/20 rounded-full flex-shrink-0"></span>
+                            <div className="flex items-center space-x-1.5 text-xs text-[#0E315C]/40 font-light flex-shrink-0">
+                              <Clock className="w-3 h-3" />
+                              <span>{activity.time}</span>
+                            </div>
+                          </div>
+                          <p className="text-xs text-[#0E315C]/60 truncate">
+                            {activity.description}
+                          </p>
+                        </div>
+                        
+                        {/* Subtle interaction indicator */}
+                        <div className="opacity-0 group-hover:opacity-60 transition-opacity duration-300 flex-shrink-0 ml-3">
+                          <svg className="w-4 h-4 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Subtle footer hint */}
+            <div className="mt-6 text-center">
+              <p className="text-xs text-[#0E315C]/25 font-light italic">
+                Click any activity to view details
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Floating ambient elements */}
-        <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-[#99C0F0]/20 rounded-full blur-sm animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-[#C5BFEE]/25 rounded-full blur-sm animate-pulse" style={{ animationDelay: "1s" }}></div>
-        <div className="absolute top-1/2 right-1/6 w-2.5 h-2.5 bg-[#C1D9F6]/30 rounded-full blur-sm animate-pulse" style={{ animationDelay: "2s" }}></div>
+        {/* Floating ambient elements - More subtle */}
+        <div className="absolute top-1/4 right-1/4 w-2.5 h-2.5 bg-[#99C0F0]/15 rounded-full blur-sm animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-[#C5BFEE]/20 rounded-full blur-sm animate-pulse" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute top-1/2 right-1/6 w-2 h-2 bg-[#C1D9F6]/20 rounded-full blur-sm animate-pulse" style={{ animationDelay: "2s" }}></div>
       </div>
     </div>
   );
