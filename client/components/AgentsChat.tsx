@@ -31,7 +31,13 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
 
   // Auto scroll to bottom when new messages are added
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesEndRef.current) {
+      // Use scrollTop instead of scrollIntoView to avoid viewport interference
+      const container = messagesEndRef.current.parentElement;
+      if (container) {
+        container.scrollTop = container.scrollHeight;
+      }
+    }
   }, [messages]);
 
   const handleInputFocus = () => {
