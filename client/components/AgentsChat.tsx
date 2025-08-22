@@ -255,7 +255,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   onFocus={handleInputFocus}
-                  placeholder="Start a new conversation..."
+                  placeholder={currentConversation?.messages.length === 0 ? "Type your message..." : "Start a new conversation..."}
                   className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
                 />
               </div>
