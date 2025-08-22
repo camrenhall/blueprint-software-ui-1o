@@ -36,10 +36,13 @@ export default function ConversationHistory({
   };
 
   return (
-    <div className={cn("relative flex items-start justify-start h-full pt-16 pr-6", className)}>
+    <div className={cn("relative flex items-start justify-start h-full pt-16", className)}>
       <div
         className={cn(
-          "w-full max-w-sm transition-all duration-500 ease-out",
+          "w-full transition-all duration-500 ease-out",
+          // Match the divider positioning: left-80 lg:left-96 xl:left-[30rem]
+          "max-w-[280px] lg:max-w-[344px] xl:max-w-[440px]",
+          "pr-4 lg:pr-6 xl:pr-8",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
           isTransitioning && "opacity-0 translate-x-[-50px]"
         )}
