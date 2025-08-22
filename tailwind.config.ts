@@ -164,6 +164,7 @@ export default {
         fadeIn: "fadeIn 0.8s ease-out",
         fadeOut: "fadeOut 1s ease-out",
         fadeInUp: "fadeInUp 0.4s ease-out",
+        orbit: "orbit 2s ease-in-out infinite",
       },
     },
   },
