@@ -42,7 +42,19 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   useEffect(() => {
     setTimeout(() => setIsVisible(true), 100);
     setTimeout(() => inputRef.current?.focus(), 600);
-  }, []);
+
+    // Ensure we start at bottom when entering chat mode
+    if (chatStarted && messagesEndRef.current) {
+      setTimeout(() => {
+        if (messagesEndRef.current) {
+          messagesEndRef.current.scrollIntoView({
+            behavior: 'auto', // Instant for initial positioning
+            block: 'end'
+          });
+        }
+      }, 200);
+    }
+  }, [chatStarted]);
 
   // Track scroll position to determine if we should auto-scroll
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
