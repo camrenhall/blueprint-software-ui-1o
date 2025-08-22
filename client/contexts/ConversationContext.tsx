@@ -234,15 +234,44 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     }));
   };
 
-  const addFinalResponseMessage = (conversationId: string, finalContent: string) => {
+  const addStreamingResponseMessage = (conversationId: string, fullContent: string): string => {
+    const messageId = Date.now().toString() + "_response";
     const responseMessage: Message = {
-      id: Date.now().toString() + "_response",
-      content: finalContent,
+      id: messageId,
+      content: "", // Start with empty content
       role: "assistant",
-      timestamp: new Date()
+      timestamp: new Date(),
+      isStreamingText: true,
+      fullContent: fullContent
     };
 
     addMessageToConversationById(conversationId, responseMessage);
+    return messageId;
+  };
+
+  const completeStreamingMessage = (conversationId: string, messageId: string) => {
+    setConversations(prev => prev.map(conv => {
+      if (conv.id === conversationId) {
+        const updatedMessages = conv.messages.map(msg => {
+          if (msg.id === messageId && msg.isStreamingText) {
+            return {
+              ...msg,
+              content: msg.fullContent || "",
+              isStreamingText: false,
+              fullContent: undefined
+            };
+          }
+          return msg;
+        });
+        return {
+          ...conv,
+          messages: updatedMessages,
+          summary: generateConversationSummary(updatedMessages),
+          updatedAt: new Date(),
+        };
+      }
+      return conv;
+    }));
   };
 
   const exitChatMode = () => {
