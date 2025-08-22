@@ -65,11 +65,15 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     // Capture the conversation ID for the AI response
     let conversationId: string;
 
-    // If no current conversation, create a new one
     if (!currentConversation) {
+      // No conversation exists, create a new one
       conversationId = createNewConversation(userMessage);
+    } else if (currentConversation.messages.length === 0) {
+      // Eager conversation exists but is empty, add first message to it
+      conversationId = currentConversation.id;
+      addMessageToConversation(userMessage);
     } else {
-      // Add message to existing conversation
+      // Existing conversation with messages, add to it
       conversationId = currentConversation.id;
       addMessageToConversation(userMessage);
     }
