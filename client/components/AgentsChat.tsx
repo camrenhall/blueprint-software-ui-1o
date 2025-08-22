@@ -86,7 +86,25 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     setTimeout(() => {
       const responses = [
         "I understand you need assistance with legal case management. I'm analyzing your request and can help you review cases, draft documents, or provide strategic guidance. What specific area would you like me to focus on?",
-        "I'm here to help streamline your legal workflow. I can assist with case reviews, document analysis, scheduling consultations, or strategic planning. How can I best support your current priorities?",
+        `# Legal Workflow Assistance
+
+I'm here to help **streamline your legal workflow**. Here's how I can assist:
+
+## Core Services
+- **Case Reviews** - Comprehensive analysis and recommendations
+- **Document Analysis** - Review contracts, briefs, and legal documents
+- **Scheduling Consultations** - Calendar management and client coordination
+- **Strategic Planning** - Long-term case strategy development
+
+## Quick Actions
+> *Ready to get started?* Choose from these common tasks:
+
+1. Review pending cases requiring attention
+2. Draft legal documents from templates
+3. Analyze case precedents and research
+4. Schedule upcoming client meetings
+
+How can I best support your current priorities?`,
         "Thank you for reaching out. I specialize in legal case management and can help you with document reviews, case analysis, client communications, and strategic legal guidance. What would you like to work on first?",
         "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?"
       ];
