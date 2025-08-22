@@ -29,6 +29,7 @@ interface ConversationContextType {
   addMessageToConversation: (message: Message) => void;
   addMessageToConversationById: (conversationId: string, message: Message) => void;
   generateConversationSummary: (messages: Message[]) => string;
+  startNewConversation: () => void;
   exitChatMode: () => void;
   enterChatMode: () => void;
 }
