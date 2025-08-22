@@ -11,6 +11,7 @@ interface Message {
   currentStepIndex?: number;
   isStreamingText?: boolean;
   fullContent?: string;
+  rating?: "up" | "down" | null;
 }
 
 interface Conversation {
