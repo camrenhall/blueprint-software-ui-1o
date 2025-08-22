@@ -28,6 +28,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const [currentThinkingId, setCurrentThinkingId] = useState<string | null>(null);
+  const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
   const [responseIndex, setResponseIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
