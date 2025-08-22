@@ -112,7 +112,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                   onKeyPress={handleKeyPress}
                   onFocus={handleInputFocus}
                   placeholder="Ask about cases, documents, or legal strategies..."
-                  className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-white/50 transition-colors"
+                  className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
                 />
               </div>
 
