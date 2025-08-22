@@ -123,35 +123,26 @@ export default function RadialScroller({
     else if (distance === 2) baseOpacity = 0.3;
     else baseOpacity = 0.15;
 
-    // Add edge fade-out effect
+    // Simple edge fade-out only when items reach screen boundaries
     const { y } = getItemPosition(index);
     const screenHeight = window.innerHeight;
-    const paddingArea = screenHeight * 0.15; // 15% padding at top and bottom
-    const fadeZone = screenHeight * 0.25; // 25% fade zone
+    const fadeZone = 100; // 100px fade zone at edges
 
     // Calculate position relative to screen center
     const screenCenter = screenHeight / 2;
     const itemScreenY = screenCenter + y;
 
-    // Calculate fade multiplier based on distance from edges
+    // Calculate fade multiplier for items near screen edges
     let edgeFadeMultiplier = 1;
 
-    // Top edge fade
-    if (itemScreenY < paddingArea + fadeZone) {
-      if (itemScreenY <= paddingArea) {
-        edgeFadeMultiplier = 0; // Completely hidden in padding area
-      } else {
-        edgeFadeMultiplier = (itemScreenY - paddingArea) / fadeZone;
-      }
+    // Top edge fade - only fade items that would be off-screen
+    if (itemScreenY < fadeZone) {
+      edgeFadeMultiplier = Math.max(0, itemScreenY / fadeZone);
     }
 
-    // Bottom edge fade
-    else if (itemScreenY > screenHeight - paddingArea - fadeZone) {
-      if (itemScreenY >= screenHeight - paddingArea) {
-        edgeFadeMultiplier = 0; // Completely hidden in padding area
-      } else {
-        edgeFadeMultiplier = (screenHeight - paddingArea - itemScreenY) / fadeZone;
-      }
+    // Bottom edge fade - only fade items that would be off-screen
+    else if (itemScreenY > screenHeight - fadeZone) {
+      edgeFadeMultiplier = Math.max(0, (screenHeight - itemScreenY) / fadeZone);
     }
 
     return baseOpacity * edgeFadeMultiplier;
