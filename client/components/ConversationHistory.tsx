@@ -64,10 +64,7 @@ export default function ConversationHistory({
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         )}>
           <button
-            onClick={() => {
-              // Clear current conversation to start fresh
-              // This will be handled by the chat component
-            }}
+            onClick={startNewConversation}
             className="w-full flex items-center space-x-3 p-3 rounded-xl border border-[#C1D9F6]/40 bg-gradient-to-r from-[#99C0F0]/10 to-[#C5BFEE]/10 hover:from-[#99C0F0]/20 hover:to-[#C5BFEE]/20 transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10"
           >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] flex items-center justify-center shadow-sm group-hover:shadow-md transition-all">
