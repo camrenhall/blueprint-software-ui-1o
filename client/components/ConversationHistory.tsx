@@ -17,7 +17,7 @@ export default function ConversationHistory({
     currentConversationId,
     switchToConversation,
     exitChatMode,
-    startNewConversation
+    startNewConversation,
   } = useConversationContext();
 
   const [isVisible, setIsVisible] = useState(false);
@@ -36,7 +36,12 @@ export default function ConversationHistory({
   };
 
   return (
-    <div className={cn("relative flex items-start justify-start h-full pt-16", className)}>
+    <div
+      className={cn(
+        "relative flex items-start justify-start h-full pt-16",
+        className,
+      )}
+    >
       <div
         className={cn(
           "w-full transition-all duration-500 ease-out",
@@ -46,7 +51,7 @@ export default function ConversationHistory({
           // XL: 480px (xl:left-[30rem]) - 160px (lg:pl-40) - 28px buffer = 292px
           "max-w-[220px] lg:max-w-[200px] xl:max-w-[292px]",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
-          isTransitioning && "opacity-0 translate-x-[-50px]"
+          isTransitioning && "opacity-0 translate-x-[-50px]",
         )}
       >
         {/* Header with Back Button */}
@@ -59,15 +64,21 @@ export default function ConversationHistory({
             <span className="text-sm font-light">Back to menu</span>
           </button>
 
-          <h2 className="text-2xl font-light text-slate-700 mb-2">Conversations</h2>
-          <p className="text-sm text-slate-500 font-light">Recent chat history</p>
+          <h2 className="text-2xl font-light text-slate-700 mb-2">
+            Conversations
+          </h2>
+          <p className="text-sm text-slate-500 font-light">
+            Recent chat history
+          </p>
         </div>
 
         {/* New Chat Button */}
-        <div className={cn(
-          "mb-6 transition-all duration-700 ease-out delay-100",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
-        )}>
+        <div
+          className={cn(
+            "mb-6 transition-all duration-700 ease-out delay-100",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
+          )}
+        >
           <button
             onClick={startNewConversation}
             className="w-full flex items-center space-x-3 p-3 rounded-xl border border-[#C1D9F6]/40 bg-gradient-to-r from-[#99C0F0]/10 to-[#C5BFEE]/10 hover:from-[#99C0F0]/20 hover:to-[#C5BFEE]/20 transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10"
@@ -77,7 +88,9 @@ export default function ConversationHistory({
             </div>
             <div className="text-left">
               <h3 className="text-sm font-medium text-slate-700">New Chat</h3>
-              <p className="text-xs text-slate-500 font-light">Start a fresh conversation</p>
+              <p className="text-xs text-slate-500 font-light">
+                Start a fresh conversation
+              </p>
             </div>
           </button>
         </div>
@@ -95,10 +108,10 @@ export default function ConversationHistory({
                     "transition-all duration-700 ease-out",
                     isVisible
                       ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-2"
+                      : "opacity-0 translate-y-2",
                   )}
                   style={{
-                    transitionDelay: `${200 + index * 100}ms`
+                    transitionDelay: `${200 + index * 100}ms`,
                   }}
                 >
                   <button
@@ -107,7 +120,7 @@ export default function ConversationHistory({
                       "w-full flex items-start space-x-3 p-3 rounded-lg transition-all duration-200 text-left group",
                       isActive
                         ? "bg-gradient-to-r from-[#99C0F0]/20 to-[#C1D9F6]/20 border border-[#99C0F0]/30 shadow-sm"
-                        : "hover:bg-white/50 border border-transparent hover:border-[#C1D9F6]/20 hover:shadow-sm"
+                        : "hover:bg-white/50 border border-transparent hover:border-[#C1D9F6]/20 hover:shadow-sm",
                     )}
                   >
                     {/* Conversation Icon */}
@@ -116,7 +129,7 @@ export default function ConversationHistory({
                         "w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 transition-all",
                         isActive
                           ? "bg-gradient-to-br from-[#99C0F0] to-[#C1D9F6] text-white shadow-sm"
-                          : "bg-slate-100 text-slate-400 group-hover:bg-slate-200"
+                          : "bg-slate-100 text-slate-400 group-hover:bg-slate-200",
                       )}
                     >
                       <MessageCircle className="w-3 h-3" />
@@ -129,14 +142,14 @@ export default function ConversationHistory({
                           "text-sm font-light leading-snug mb-1 transition-colors break-words overflow-hidden",
                           isActive
                             ? "text-slate-800"
-                            : "text-slate-600 group-hover:text-slate-700"
+                            : "text-slate-600 group-hover:text-slate-700",
                         )}
                         style={{
-                          display: '-webkit-box',
+                          display: "-webkit-box",
                           WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical',
-                          maxHeight: '2.5em', // Fallback for non-webkit browsers
-                          lineHeight: '1.25em'
+                          WebkitBoxOrient: "vertical",
+                          maxHeight: "2.5em", // Fallback for non-webkit browsers
+                          lineHeight: "1.25em",
                         }}
                       >
                         {conversation.summary}
@@ -163,14 +176,20 @@ export default function ConversationHistory({
           <div
             className={cn(
               "text-center py-8 transition-all duration-700 ease-out delay-300",
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-2",
             )}
           >
             <div className="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mx-auto mb-3">
               <MessageCircle className="w-6 h-6 text-slate-400" />
             </div>
-            <p className="text-sm text-slate-500 font-light">No conversations yet</p>
-            <p className="text-xs text-slate-400 font-light mt-1">Start a new chat to begin</p>
+            <p className="text-sm text-slate-500 font-light">
+              No conversations yet
+            </p>
+            <p className="text-xs text-slate-400 font-light mt-1">
+              Start a new chat to begin
+            </p>
           </div>
         )}
       </div>
@@ -180,16 +199,18 @@ export default function ConversationHistory({
 
 function formatRelativeTime(date: Date): string {
   const now = new Date();
-  const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
-  
+  const diffInMinutes = Math.floor(
+    (now.getTime() - date.getTime()) / (1000 * 60),
+  );
+
   if (diffInMinutes < 1) return "Just now";
   if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
-  
+
   const diffInHours = Math.floor(diffInMinutes / 60);
   if (diffInHours < 24) return `${diffInHours}h ago`;
-  
+
   const diffInDays = Math.floor(diffInHours / 24);
   if (diffInDays < 7) return `${diffInDays}d ago`;
-  
+
   return date.toLocaleDateString();
 }

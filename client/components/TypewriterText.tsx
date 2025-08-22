@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import MessageContent from './MessageContent';
+import { useState, useEffect } from "react";
+import MessageContent from "./MessageContent";
 
 interface TypewriterTextProps {
   text: string;
@@ -16,7 +16,7 @@ export default function TypewriterText({
   onComplete,
   onProgressUpdate,
   initialProgress = 0,
-  className
+  className,
 }: TypewriterTextProps) {
   const [currentIndex, setCurrentIndex] = useState(initialProgress);
   const [isComplete, setIsComplete] = useState(initialProgress >= text.length);
@@ -43,16 +43,16 @@ export default function TypewriterText({
       let delay = 1000 / speed;
 
       // Slower for punctuation and line breaks
-      if (['.', '!', '?', '\n'].includes(char)) {
+      if ([".", "!", "?", "\n"].includes(char)) {
         delay *= 2;
-      } else if ([',', ';', ':'].includes(char)) {
+      } else if ([",", ";", ":"].includes(char)) {
         delay *= 1.5;
-      } else if (char === ' ') {
+      } else if (char === " ") {
         delay *= 0.5;
       }
 
       // Add small random variance (±20%)
-      delay *= (0.8 + Math.random() * 0.4);
+      delay *= 0.8 + Math.random() * 0.4;
 
       const timeoutId = setTimeout(() => {
         const newIndex = currentIndex + 1;

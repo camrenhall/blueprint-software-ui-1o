@@ -330,7 +330,6 @@ export function SearchFilterBar({
             )}
           </div>
         )}
-
       </div>
     </div>
   );

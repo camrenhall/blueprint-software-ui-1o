@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       backgroundSize: {
-        '300%': '300% 100%',
+        "300%": "300% 100%",
       },
       colors: {
         border: "hsl(var(--border))",

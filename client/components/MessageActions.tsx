@@ -10,12 +10,12 @@ interface MessageActionsProps {
   className?: string;
 }
 
-export default function MessageActions({ 
-  messageId, 
-  content, 
-  rating, 
-  onRating, 
-  className 
+export default function MessageActions({
+  messageId,
+  content,
+  rating,
+  onRating,
+  className,
 }: MessageActionsProps) {
   const [copied, setCopied] = useState(false);
 
@@ -30,31 +30,31 @@ export default function MessageActions({
       }
     } catch (err) {
       // Modern API failed, fall back to execCommand
-      console.log('Clipboard API blocked, using fallback method');
+      console.log("Clipboard API blocked, using fallback method");
     }
 
     try {
       // Fallback to document.execCommand method
-      const textArea = document.createElement('textarea');
+      const textArea = document.createElement("textarea");
       textArea.value = content;
-      textArea.style.position = 'fixed';
-      textArea.style.left = '-999999px';
-      textArea.style.top = '-999999px';
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
 
-      const successful = document.execCommand('copy');
+      const successful = document.execCommand("copy");
       document.body.removeChild(textArea);
 
       if (successful) {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       } else {
-        throw new Error('Copy command failed');
+        throw new Error("Copy command failed");
       }
     } catch (fallbackErr) {
-      console.error('Both clipboard methods failed: ', fallbackErr);
+      console.error("Both clipboard methods failed: ", fallbackErr);
       // You could show a user-friendly error message here
     }
   };
@@ -69,7 +69,12 @@ export default function MessageActions({
   };
 
   return (
-    <div className={cn("flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200", className)}>
+    <div
+      className={cn(
+        "flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200",
+        className,
+      )}
+    >
       {/* Copy button */}
       <button
         onClick={handleCopy}
@@ -94,7 +99,7 @@ export default function MessageActions({
             "w-3.5 h-3.5 transition-colors duration-200",
             rating === "up"
               ? "text-[#0E315C] fill-current"
-              : "text-[#0E315C]/60 group-hover/up:text-[#0E315C]/80"
+              : "text-[#0E315C]/60 group-hover/up:text-[#0E315C]/80",
           )}
         />
       </button>
@@ -110,7 +115,7 @@ export default function MessageActions({
             "w-3.5 h-3.5 transition-colors duration-200",
             rating === "down"
               ? "text-[#0E315C] fill-current"
-              : "text-[#0E315C]/60 group-hover/down:text-[#0E315C]/80"
+              : "text-[#0E315C]/60 group-hover/down:text-[#0E315C]/80",
           )}
         />
       </button>

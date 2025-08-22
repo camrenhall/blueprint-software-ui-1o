@@ -5,7 +5,10 @@ import Dashboard from "@/components/Dashboard";
 import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
 import AgentsChat from "@/components/AgentsChat";
-import { ConversationProvider, useConversationContext } from "@/contexts/ConversationContext";
+import {
+  ConversationProvider,
+  useConversationContext,
+} from "@/contexts/ConversationContext";
 
 function IndexContent() {
   const { isInChatMode } = useConversationContext();
@@ -173,8 +176,8 @@ function IndexContent() {
                 activeRightContent === "agents"
                   ? "opacity-100"
                   : activeRightContent
-                  ? "opacity-100 flex items-center justify-center transform translate-y-0 scale-100"
-                  : "opacity-0 transform translate-y-6 scale-95"
+                    ? "opacity-100 flex items-center justify-center transform translate-y-0 scale-100"
+                    : "opacity-0 transform translate-y-6 scale-95"
               }`}
             >
               {activeRightContent === "agents" && (

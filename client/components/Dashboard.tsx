@@ -1181,7 +1181,6 @@ export default function Dashboard({
 
   const renderContent = () => {
     switch (activeTab) {
-
       case "review":
         if (selectedCase) {
           return (

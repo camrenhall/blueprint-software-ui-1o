@@ -35,11 +35,12 @@ export default function RadialScroller({
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't interfere with input fields, textareas, or contentEditable elements
       const activeElement = document.activeElement as HTMLElement | null;
-      if (activeElement && (
-        activeElement.tagName === 'INPUT' ||
-        activeElement.tagName === 'TEXTAREA' ||
-        activeElement.isContentEditable
-      )) {
+      if (
+        activeElement &&
+        (activeElement.tagName === "INPUT" ||
+          activeElement.tagName === "TEXTAREA" ||
+          activeElement.isContentEditable)
+      ) {
         return;
       }
 

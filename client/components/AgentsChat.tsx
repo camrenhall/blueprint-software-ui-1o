@@ -1,7 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useConversationContext } from "@/contexts/ConversationContext";
-import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus, User } from "lucide-react";
+import {
+  Send,
+  Sparkles,
+  Clock,
+  CheckCircle,
+  FileText,
+  UserPlus,
+  User,
+} from "lucide-react";
 import MessageContent from "./MessageContent";
 import MessageActions from "./MessageActions";
 import SimpleThinkingAnimation from "./SimpleThinkingAnimation";
@@ -32,7 +40,9 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const [currentThinkingId, setCurrentThinkingId] = useState<string | null>(null);
+  const [currentThinkingId, setCurrentThinkingId] = useState<string | null>(
+    null,
+  );
   const [shouldAutoScroll, setShouldAutoScroll] = useState(true);
   const [responseIndex, setResponseIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -40,8 +50,10 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
 
   // Derive state from conversation context
   const messages = currentConversation?.messages || [];
-  const chatStarted = isInChatMode && currentConversation !== null && messages.length > 0;
-  const isNewChatMode = isInChatMode && (currentConversation === null || messages.length === 0);
+  const chatStarted =
+    isInChatMode && currentConversation !== null && messages.length > 0;
+  const isNewChatMode =
+    isInChatMode && (currentConversation === null || messages.length === 0);
 
   // Animation entrance effect
   useEffect(() => {
@@ -53,8 +65,8 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       setTimeout(() => {
         if (messagesEndRef.current) {
           messagesEndRef.current.scrollIntoView({
-            behavior: 'auto', // Instant for initial positioning
-            block: 'end'
+            behavior: "auto", // Instant for initial positioning
+            block: "end",
           });
         }
       }, 200);
@@ -80,9 +92,9 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       setTimeout(() => {
         if (messagesEndRef.current) {
           messagesEndRef.current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end',
-            inline: 'nearest'
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest",
           });
         }
       }, 150);
@@ -91,15 +103,15 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
 
   // Also scroll when streaming text is growing (for typewriter effect)
   useEffect(() => {
-    const hasStreamingText = messages.some(msg => msg.isStreamingText);
+    const hasStreamingText = messages.some((msg) => msg.isStreamingText);
     if (hasStreamingText && shouldAutoScroll) {
       // More frequent but gentle scrolling during text streaming
       const scrollInterval = setInterval(() => {
         if (messagesEndRef.current && shouldAutoScroll) {
           messagesEndRef.current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end',
-            inline: 'nearest'
+            behavior: "smooth",
+            block: "end",
+            inline: "nearest",
           });
         }
       }, 500); // Scroll every 500ms during streaming
@@ -151,7 +163,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       "Reviewing relevant case data...",
       "Considering legal precedents...",
       "Formulating comprehensive response...",
-      "Finalizing recommendations..."
+      "Finalizing recommendations...",
     ];
 
     const thinkingMessageId = addThinkingMessage(conversationId, []);
@@ -161,7 +173,11 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     let stepIndex = 0;
     const thinkingInterval = setInterval(() => {
       if (stepIndex < thinkingSteps.length) {
-        updateThinkingMessage(conversationId, thinkingMessageId, thinkingSteps[stepIndex]);
+        updateThinkingMessage(
+          conversationId,
+          thinkingMessageId,
+          thinkingSteps[stepIndex],
+        );
         stepIndex++;
       } else {
         clearInterval(thinkingInterval);
@@ -190,11 +206,11 @@ I'm here to help **streamline your legal workflow**. Here's how I can assist:
 
 How can I best support your current priorities?`,
             "Thank you for reaching out. I specialize in legal case management and can help you with document reviews, case analysis, client communications, and strategic legal guidance. What would you like to work on first?",
-            "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?"
+            "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?",
           ];
 
           const selectedResponse = responses[responseIndex % responses.length];
-          setResponseIndex(prev => prev + 1);
+          setResponseIndex((prev) => prev + 1);
 
           // Finalize the thinking message (keep it visible)
           finalizeThinkingMessage(conversationId, thinkingMessageId);
@@ -228,7 +244,7 @@ How can I best support your current priorities?`,
       title: "Case Review Completed",
       description: "Rosen, Claire (#BTYREV50101) ready for final approval",
       time: "16m ago",
-      color: "from-[#99C0F0] to-[#C1D9F6]"
+      color: "from-[#99C0F0] to-[#C1D9F6]",
     },
     {
       id: 2,
@@ -236,8 +252,8 @@ How can I best support your current priorities?`,
       icon: UserPlus,
       title: "New Case Created",
       description: "Martinez, Elena employment case initiated",
-      time: "2h ago", 
-      color: "from-[#C5BFEE] to-[#99C0F0]"
+      time: "2h ago",
+      color: "from-[#C5BFEE] to-[#99C0F0]",
     },
     {
       id: 3,
@@ -246,15 +262,17 @@ How can I best support your current priorities?`,
       title: "Documents Received",
       description: "Thompson, David submitted medical records",
       time: "5h ago",
-      color: "from-[#C1D9F6] to-[#C5BFEE]"
-    }
+      color: "from-[#C1D9F6] to-[#C5BFEE]",
+    },
   ];
 
   if (chatStarted) {
     // Chat Mode - Slides to bottom
     return (
-      <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
-
+      <div
+        className="absolute inset-0 top-[12.5vh] flex flex-col"
+        style={{ transform: "translateZ(0)" }}
+      >
         {/* Messages Area */}
         <div
           className="flex-1 overflow-y-auto px-6 py-4 border border-[#C1D9F6]/80 hover:border-[#99C0F0] rounded-2xl transition-colors duration-300 mb-0"
@@ -276,46 +294,61 @@ How can I best support your current priorities?`,
                           <SimpleThinkingAnimation size="sm" />
                         ) : (
                           <div className="w-6 h-6 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center shadow-sm">
-                            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            <svg
+                              className="w-3 h-3 text-white"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
                             </svg>
                           </div>
                         )}
                       </div>
                       <div className="flex-1">
-                        {message.thinkingSteps && message.thinkingSteps.length > 0 && (
-                          <div className="space-y-2">
-                            {message.thinkingSteps.map((step, index) => {
-                              const isActiveStep = message.isStreaming && index === message.currentStepIndex;
-                              return (
-                                <div
-                                  key={index}
-                                  className="text-xs animate-slideInLeft flex items-center space-x-2"
-                                  style={{
-                                    animationDelay: `${index * 200}ms`,
-                                    animationFillMode: 'both'
-                                  }}
-                                >
-                                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-[#99C0F0]/80" />
-                                  <span
-                                    className={cn(
-                                      "leading-relaxed transition-all duration-500",
-                                      isActiveStep ? [
-                                        "text-[#0E315C]/80 font-medium",
-                                        "animate-pulse",
-                                        "shadow-sm shadow-[#99C0F0]/20",
-                                        "px-1 py-0.5 rounded-sm",
-                                        "bg-gradient-to-r from-[#99C0F0]/5 to-[#C5BFEE]/5"
-                                      ] : "text-[#0E315C]/60"
-                                    )}
+                        {message.thinkingSteps &&
+                          message.thinkingSteps.length > 0 && (
+                            <div className="space-y-2">
+                              {message.thinkingSteps.map((step, index) => {
+                                const isActiveStep =
+                                  message.isStreaming &&
+                                  index === message.currentStepIndex;
+                                return (
+                                  <div
+                                    key={index}
+                                    className="text-xs animate-slideInLeft flex items-center space-x-2"
+                                    style={{
+                                      animationDelay: `${index * 200}ms`,
+                                      animationFillMode: "both",
+                                    }}
                                   >
-                                    {step}
-                                  </span>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
+                                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-[#99C0F0]/80" />
+                                    <span
+                                      className={cn(
+                                        "leading-relaxed transition-all duration-500",
+                                        isActiveStep
+                                          ? [
+                                              "text-[#0E315C]/80 font-medium",
+                                              "animate-pulse",
+                                              "shadow-sm shadow-[#99C0F0]/20",
+                                              "px-1 py-0.5 rounded-sm",
+                                              "bg-gradient-to-r from-[#99C0F0]/5 to-[#C5BFEE]/5",
+                                            ]
+                                          : "text-[#0E315C]/60",
+                                      )}
+                                    >
+                                      {step}
+                                    </span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>
@@ -337,8 +370,19 @@ How can I best support your current priorities?`,
                           text={message.fullContent}
                           speed={75}
                           initialProgress={message.typewriterProgress || 0}
-                          onProgressUpdate={(progress) => updateTypewriterProgress(currentConversation?.id || '', message.id, progress)}
-                          onComplete={() => completeStreamingMessage(currentConversation?.id || '', message.id)}
+                          onProgressUpdate={(progress) =>
+                            updateTypewriterProgress(
+                              currentConversation?.id || "",
+                              message.id,
+                              progress,
+                            )
+                          }
+                          onComplete={() =>
+                            completeStreamingMessage(
+                              currentConversation?.id || "",
+                              message.id,
+                            )
+                          }
                           className="min-w-0 flex-1"
                         />
                       ) : (
@@ -349,15 +393,22 @@ How can I best support your current priorities?`,
                       )}
                     </div>
                     {/* Add MessageActions for AI messages only */}
-                    {message.role === "assistant" && !message.isStreamingText && (
-                      <MessageActions
-                        messageId={message.id}
-                        content={message.content}
-                        rating={message.rating}
-                        onRating={(rating) => updateMessageRating(currentConversation?.id || '', message.id, rating)}
-                        className="mt-2 justify-end"
-                      />
-                    )}
+                    {message.role === "assistant" &&
+                      !message.isStreamingText && (
+                        <MessageActions
+                          messageId={message.id}
+                          content={message.content}
+                          rating={message.rating}
+                          onRating={(rating) =>
+                            updateMessageRating(
+                              currentConversation?.id || "",
+                              message.id,
+                              rating,
+                            )
+                          }
+                          className="mt-2 justify-end"
+                        />
+                      )}
                   </div>
                 )}
               </div>
@@ -407,7 +458,10 @@ How can I best support your current priorities?`,
   if (isNewChatMode) {
     // Minimal New Chat Mode - Just input at bottom
     return (
-      <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
+      <div
+        className="absolute inset-0 top-[12.5vh] flex flex-col"
+        style={{ transform: "translateZ(0)" }}
+      >
         {/* Empty space for messages */}
         <div className="flex-1 border border-[#C1D9F6]/80 hover:border-[#99C0F0] rounded-2xl transition-colors duration-300 mb-0"></div>
 
@@ -424,7 +478,11 @@ How can I best support your current priorities?`,
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyDown={handleKeyDown}
                   onFocus={handleInputFocus}
-                  placeholder={currentConversation?.messages.length === 0 ? "Type your message..." : "Start a new conversation..."}
+                  placeholder={
+                    currentConversation?.messages.length === 0
+                      ? "Type your message..."
+                      : "Start a new conversation..."
+                  }
                   className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
                 />
               </div>
@@ -452,13 +510,14 @@ How can I best support your current priorities?`,
   return (
     <div className="h-full flex items-center justify-center px-8">
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
-        
         {/* Welcome Header */}
-        <div className={`text-center mb-12 transition-all duration-1000 ease-out ${
-          isVisible 
-            ? "opacity-100 transform translate-y-0" 
-            : "opacity-0 transform translate-y-8"
-        }`}>
+        <div
+          className={`text-center mb-12 transition-all duration-1000 ease-out ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-8"
+          }`}
+        >
           <div className="flex items-center justify-center mb-4">
             <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-2xl flex items-center justify-center shadow-lg shadow-[#99C0F0]/20">
               <Sparkles className="w-6 h-6 text-white" />
@@ -468,20 +527,22 @@ How can I best support your current priorities?`,
             What's on the agenda today?
           </h1>
           <p className="text-[#0E315C]/60 text-lg font-light max-w-lg mx-auto leading-relaxed">
-            Your AI assistant is ready to help with case management, document reviews, and strategic legal guidance.
+            Your AI assistant is ready to help with case management, document
+            reviews, and strategic legal guidance.
           </p>
         </div>
 
         {/* Elegant Chat Input Bar */}
-        <div className={`w-full max-w-2xl transition-all duration-1200 ease-out delay-300 ${
-          isVisible 
-            ? "opacity-100 transform translate-y-0" 
-            : "opacity-0 transform translate-y-6"
-        }`}>
+        <div
+          className={`w-full max-w-2xl transition-all duration-1200 ease-out delay-300 ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-6"
+          }`}
+        >
           <div className="relative">
             {/* Main Chat Bar */}
             <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
-              
               {/* Chat Input */}
               <div className="flex-1 relative">
                 <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" />
@@ -514,16 +575,18 @@ How can I best support your current priorities?`,
             </div>
 
             {/* Quick Action Suggestions */}
-            <div className={`mt-6 flex items-center justify-center gap-3 transition-all duration-1000 ease-out delay-500 ${
-              isVisible 
-                ? "opacity-100 transform translate-y-0" 
-                : "opacity-0 transform translate-y-4"
-            }`}>
+            <div
+              className={`mt-6 flex items-center justify-center gap-3 transition-all duration-1000 ease-out delay-500 ${
+                isVisible
+                  ? "opacity-100 transform translate-y-0"
+                  : "opacity-0 transform translate-y-4"
+              }`}
+            >
               {[
                 "Review pending cases",
                 "Draft legal document",
                 "Schedule consultation",
-                "Analyze case strategy"
+                "Analyze case strategy",
               ].map((suggestion, index) => (
                 <button
                   key={suggestion}
@@ -539,17 +602,19 @@ How can I best support your current priorities?`,
           </div>
 
           {/* Recent Activity */}
-          <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
-            isVisible 
-              ? "opacity-100 transform translate-y-0" 
-              : "opacity-0 transform translate-y-4"
-          }`}>
+          <div
+            className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+              isVisible
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-4"
+            }`}
+          >
             <div className="text-center mb-8">
               <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
                 Recent Activity
               </h2>
             </div>
-            
+
             <div className="space-y-3 max-w-2xl mx-auto">
               {recentActivities.map((activity, index) => {
                 const IconComponent = activity.icon;
@@ -563,10 +628,12 @@ How can I best support your current priorities?`,
                   >
                     <div className="flex items-center space-x-3">
                       {/* Icon - Compact size for pill design */}
-                      <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}>
+                      <div
+                        className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}
+                      >
                         <IconComponent className="w-4 h-4 text-white" />
                       </div>
-                      
+
                       {/* Content - Compact horizontal flow */}
                       <div className="flex-1 flex items-center justify-between min-w-0">
                         <div className="flex items-center space-x-3 flex-1 min-w-0">
@@ -578,17 +645,27 @@ How can I best support your current priorities?`,
                             {activity.description}
                           </p>
                         </div>
-                        
+
                         <div className="flex items-center space-x-2 flex-shrink-0">
                           <div className="flex items-center space-x-1 text-xs text-[#0E315C]/40 font-light">
                             <Clock className="w-3 h-3" />
                             <span>{activity.time}</span>
                           </div>
-                          
+
                           {/* Subtle interaction indicator */}
                           <div className="opacity-0 group-hover:opacity-60 transition-opacity duration-300">
-                            <svg className="w-3 h-3 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                            <svg
+                              className="w-3 h-3 text-[#0E315C]/40"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={1.5}
+                                d="M9 5l7 7-7 7"
+                              />
                             </svg>
                           </div>
                         </div>
@@ -605,8 +682,14 @@ How can I best support your current priorities?`,
 
         {/* Floating ambient elements - More subtle */}
         <div className="absolute top-1/4 right-1/4 w-2.5 h-2.5 bg-[#99C0F0]/15 rounded-full blur-sm animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-[#C5BFEE]/20 rounded-full blur-sm animate-pulse" style={{ animationDelay: "1s" }}></div>
-        <div className="absolute top-1/2 right-1/6 w-2 h-2 bg-[#C1D9F6]/20 rounded-full blur-sm animate-pulse" style={{ animationDelay: "2s" }}></div>
+        <div
+          className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-[#C5BFEE]/20 rounded-full blur-sm animate-pulse"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 right-1/6 w-2 h-2 bg-[#C1D9F6]/20 rounded-full blur-sm animate-pulse"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </div>
     </div>
   );
