@@ -172,10 +172,10 @@ How can I best support your current priorities?`,
   if (chatStarted) {
     // Chat Mode - Slides to bottom
     return (
-      <div className="absolute inset-0 top-[12.5vh] flex flex-col border border-[#C1D9F6]/60 hover:border-[#C1D9F6]/80 rounded-2xl transition-colors duration-300" style={{ transform: 'translateZ(0)' }}>
+      <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-6 py-4">
+        <div className="flex-1 overflow-y-auto px-6 py-4 border border-[#C1D9F6]/80 hover:border-[#C1D9F6] rounded-2xl rounded-b-none transition-colors duration-300 mb-0">
           <div className="max-w-4xl mx-auto space-y-4">
             {messages.map((message) => (
               <div
@@ -260,9 +260,9 @@ How can I best support your current priorities?`,
   if (isNewChatMode) {
     // Minimal New Chat Mode - Just input at bottom
     return (
-      <div className="absolute inset-0 top-[12.5vh] flex flex-col border border-[#C1D9F6]/60 hover:border-[#C1D9F6]/80 rounded-2xl transition-colors duration-300" style={{ transform: 'translateZ(0)' }}>
+      <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
         {/* Empty space for messages */}
-        <div className="flex-1"></div>
+        <div className="flex-1 border border-[#C1D9F6]/80 hover:border-[#C1D9F6] rounded-2xl rounded-b-none transition-colors duration-300 mb-0"></div>
 
         {/* Chat Input - Fixed at bottom */}
         <div className="flex-shrink-0 p-6">
