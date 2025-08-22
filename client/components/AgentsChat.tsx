@@ -115,7 +115,7 @@ How can I best support your current priorities?`,
 
       const assistantMessage = {
         id: (Date.now() + 1).toString(),
-        content: randomResponse,
+        content: selectedResponse,
         role: "assistant" as const,
         timestamp: new Date(),
       };
