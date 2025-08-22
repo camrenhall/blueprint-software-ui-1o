@@ -51,20 +51,22 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
-    
-    const userMessage: Message = {
+
+    const userMessage = {
       id: Date.now().toString(),
       content: inputValue.trim(),
-      role: "user",
+      role: "user" as const,
       timestamp: new Date(),
     };
 
-    // Start chat mode if not already started
-    if (!chatStarted) {
-      setChatStarted(true);
+    // If no current conversation, create a new one
+    if (!currentConversation) {
+      createNewConversation(userMessage);
+    } else {
+      // Add message to existing conversation
+      addMessageToConversation(userMessage);
     }
 
-    setMessages(prev => [...prev, userMessage]);
     setInputValue("");
     setIsTyping(true);
 
@@ -76,17 +78,17 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
         "Thank you for reaching out. I specialize in legal case management and can help you with document reviews, case analysis, client communications, and strategic legal guidance. What would you like to work on first?",
         "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?"
       ];
-      
+
       const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-      
-      const assistantMessage: Message = {
+
+      const assistantMessage = {
         id: (Date.now() + 1).toString(),
         content: randomResponse,
-        role: "assistant",
+        role: "assistant" as const,
         timestamp: new Date(),
       };
-      
-      setMessages(prev => [...prev, assistantMessage]);
+
+      addMessageToConversation(assistantMessage);
       setIsTyping(false);
     }, 1500 + Math.random() * 1000); // 1.5-2.5 second delay
   };
