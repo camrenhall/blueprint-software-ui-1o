@@ -19,15 +19,6 @@ export default function Index() {
   }, []);
   const menuItems = [
     {
-      id: "overview",
-      title: "Overview",
-      action: () => {
-        setDashboardPage("overview");
-        setDashboardTitle("");
-        setDashboardOpen(true);
-      },
-    },
-    {
       id: "agents",
       title: "Agents",
       action: () => {
