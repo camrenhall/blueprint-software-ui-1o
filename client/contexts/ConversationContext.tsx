@@ -86,7 +86,7 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     return content.substring(0, 45) + (content.length > 45 ? '...' : '');
   };
 
-  const createNewConversation = (firstMessage: Message) => {
+  const createNewConversation = (firstMessage: Message): string => {
     const now = new Date();
     const newConversation: Conversation = {
       id: Date.now().toString(),
@@ -100,6 +100,8 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     setConversations(prev => [newConversation, ...prev]);
     setCurrentConversationId(newConversation.id);
     setIsInChatMode(true);
+
+    return newConversation.id;
   };
 
   const switchToConversation = (conversationId: string) => {
