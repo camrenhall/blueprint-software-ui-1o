@@ -108,6 +108,32 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     return newConversation.id;
   };
 
+  const createEagerConversation = (): string => {
+    const now = new Date();
+    const newConversation: Conversation = {
+      id: Date.now().toString(),
+      title: `Conversation ${conversations.length + 1}`,
+      summary: "New Conversation",
+      messages: [],
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    setConversations(prev => [newConversation, ...prev]);
+    setCurrentConversationId(newConversation.id);
+    setIsInChatMode(true);
+
+    return newConversation.id;
+  };
+
+  const removeConversation = (conversationId: string) => {
+    setConversations(prev => prev.filter(conv => conv.id !== conversationId));
+    // If we're removing the current conversation, clear the current ID
+    if (currentConversationId === conversationId) {
+      setCurrentConversationId(null);
+    }
+  };
+
   const switchToConversation = (conversationId: string) => {
     setCurrentConversationId(conversationId);
     setIsInChatMode(true);
