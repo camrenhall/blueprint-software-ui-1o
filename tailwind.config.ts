@@ -154,6 +154,26 @@ export default {
             transform: "translate(-50%, -50%) scale(1.2)",
           },
         },
+        slideInLeft: {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(-20px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0px)",
+          },
+        },
+        gentlePulse: {
+          "0%, 100%": {
+            opacity: "0.4",
+            transform: "scale(1)",
+          },
+          "50%": {
+            opacity: "0.8",
+            transform: "scale(1.05)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
