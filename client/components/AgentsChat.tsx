@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useConversationContext } from "@/contexts/ConversationContext";
 import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus, User } from "lucide-react";
 import MessageContent from "./MessageContent";
+import ThinkingAnimation from "./ThinkingAnimation";
 
 interface AgentsChatProps {
   onClose: () => void;
@@ -14,6 +15,9 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     createNewConversation,
     addMessageToConversation,
     addMessageToConversationById,
+    addThinkingMessage,
+    updateThinkingMessage,
+    finalizeThinkingMessage,
     removeConversation,
     isInChatMode,
   } = useConversationContext();
@@ -22,6 +26,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [currentThinkingId, setCurrentThinkingId] = useState<string | null>(null);
   const [responseIndex, setResponseIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -85,11 +90,32 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     setInputValue("");
     setIsTyping(true);
 
-    // Simulate AI response with realistic delay
-    setTimeout(() => {
-      const responses = [
-        "I understand you need assistance with legal case management. I'm analyzing your request and can help you review cases, draft documents, or provide strategic guidance. What specific area would you like me to focus on?",
-        `# Legal Workflow Assistance
+    // Start thinking animation with placeholder thinking steps
+    const thinkingSteps = [
+      "Analyzing your request...",
+      "Reviewing relevant case data...",
+      "Considering legal precedents...",
+      "Formulating comprehensive response...",
+      "Finalizing recommendations..."
+    ];
+
+    const thinkingMessageId = addThinkingMessage(conversationId, []);
+    setCurrentThinkingId(thinkingMessageId);
+
+    // Simulate thinking steps streaming in
+    let stepIndex = 0;
+    const thinkingInterval = setInterval(() => {
+      if (stepIndex < thinkingSteps.length) {
+        updateThinkingMessage(conversationId, thinkingMessageId, thinkingSteps[stepIndex]);
+        stepIndex++;
+      } else {
+        clearInterval(thinkingInterval);
+
+        // After thinking, provide the final response
+        setTimeout(() => {
+          const responses = [
+            "I understand you need assistance with legal case management. I'm analyzing your request and can help you review cases, draft documents, or provide strategic guidance. What specific area would you like me to focus on?",
+            `# Legal Workflow Assistance
 
 I'm here to help **streamline your legal workflow**. Here's how I can assist:
 
@@ -108,24 +134,20 @@ I'm here to help **streamline your legal workflow**. Here's how I can assist:
 4. Schedule upcoming client meetings
 
 How can I best support your current priorities?`,
-        "Thank you for reaching out. I specialize in legal case management and can help you with document reviews, case analysis, client communications, and strategic legal guidance. What would you like to work on first?",
-        "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?"
-      ];
+            "Thank you for reaching out. I specialize in legal case management and can help you with document reviews, case analysis, client communications, and strategic legal guidance. What would you like to work on first?",
+            "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?"
+          ];
 
-      const selectedResponse = responses[responseIndex % responses.length];
-      setResponseIndex(prev => prev + 1);
+          const selectedResponse = responses[responseIndex % responses.length];
+          setResponseIndex(prev => prev + 1);
 
-      const assistantMessage = {
-        id: (Date.now() + 1).toString(),
-        content: selectedResponse,
-        role: "assistant" as const,
-        timestamp: new Date(),
-      };
-
-      // Use the captured conversation ID to ensure the message is added correctly
-      addMessageToConversationById(conversationId, assistantMessage);
-      setIsTyping(false);
-    }, 1500 + Math.random() * 1000); // 1.5-2.5 second delay
+          // Finalize the thinking message with the actual response
+          finalizeThinkingMessage(conversationId, thinkingMessageId, selectedResponse);
+          setIsTyping(false);
+          setCurrentThinkingId(null);
+        }, 800); // Brief pause before final response
+      }
+    }, 600); // Stream thinking steps every 600ms
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -182,40 +204,53 @@ How can I best support your current priorities?`,
                 key={message.id}
                 className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fadeInUp`}
               >
-                <div
-                  className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm break-words ${
-                    message.role === "user"
-                      ? "bg-[#99C0F0] text-white"
-                      : "bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 text-[#0E315C]"
-                  }`}
-                >
-                  <div className="flex items-start space-x-2 mb-2">
-                    {message.role === "user" && (
-                      <User className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
-                    )}
-                    <MessageContent
-                      content={message.content}
-                      className="min-w-0 flex-1"
-                    />
+                {message.isThinking ? (
+                  // Thinking message with animation and streaming steps
+                  <div className="bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 px-4 py-3 rounded-2xl shadow-sm max-w-lg">
+                    <div className="flex items-start space-x-3">
+                      <ThinkingAnimation size="sm" showText={false} className="mt-1" />
+                      <div className="flex-1">
+                        <div className="text-sm text-[#0E315C]/70 mb-2 font-medium">AI is thinking...</div>
+                        {message.thinkingSteps && message.thinkingSteps.length > 0 && (
+                          <div className="space-y-1">
+                            {message.thinkingSteps.map((step, index) => (
+                              <div
+                                key={index}
+                                className="text-xs text-[#0E315C]/60 animate-fadeInUp flex items-center space-x-2"
+                                style={{ animationDelay: `${index * 100}ms` }}
+                              >
+                                <div className="w-1 h-1 bg-[#99C0F0]/60 rounded-full flex-shrink-0" />
+                                <span>{step}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  // Regular message
+                  <div
+                    className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm break-words ${
+                      message.role === "user"
+                        ? "bg-[#99C0F0] text-white"
+                        : "bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 text-[#0E315C]"
+                    }`}
+                  >
+                    <div className="flex items-start space-x-2 mb-2">
+                      {message.role === "user" && (
+                        <User className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
+                      )}
+                      <MessageContent
+                        content={message.content}
+                        className="min-w-0 flex-1"
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
 
-            {isTyping && (
-              <div className="flex justify-start animate-fadeInUp">
-                <div className="bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 px-4 py-3 rounded-2xl shadow-sm">
-                  <div className="flex items-center space-x-2">
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse"></div>
-                      <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-                      <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
-                    </div>
-                    <span className="text-xs text-[#0E315C]/50">AI is thinking...</span>
-                  </div>
-                </div>
-              </div>
-            )}
             <div ref={messagesEndRef} />
           </div>
         </div>
