@@ -148,12 +148,10 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     setConversations(prev => prev.map(conv => {
       if (conv.id === conversationId) {
         const updatedMessages = [...conv.messages, message];
-        const isFirstMessage = conv.messages.length === 0 && message.role === "user";
-
         return {
           ...conv,
           messages: updatedMessages,
-          summary: isFirstMessage ? generateConversationSummary(updatedMessages) : generateConversationSummary(updatedMessages),
+          summary: generateConversationSummary(updatedMessages),
           updatedAt: new Date(),
         };
       }
