@@ -35,7 +35,8 @@ interface ConversationContextType {
   addMessageToConversationById: (conversationId: string, message: Message) => void;
   addThinkingMessage: (conversationId: string, thinkingSteps: string[]) => string;
   updateThinkingMessage: (conversationId: string, messageId: string, step: string) => void;
-  finalizeThinkingMessage: (conversationId: string, messageId: string, finalContent: string) => void;
+  finalizeThinkingMessage: (conversationId: string, messageId: string) => void;
+  addFinalResponseMessage: (conversationId: string, finalContent: string) => void;
   generateConversationSummary: (messages: Message[]) => string;
   startNewConversation: () => void;
   exitChatMode: () => void;
