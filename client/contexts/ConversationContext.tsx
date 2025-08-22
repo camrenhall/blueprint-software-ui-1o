@@ -136,6 +136,11 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     setCurrentConversationId(null);
   };
 
+  const startNewConversation = () => {
+    setCurrentConversationId(null);
+    setIsInChatMode(true);
+  };
+
   const enterChatMode = () => {
     setIsInChatMode(true);
   };
