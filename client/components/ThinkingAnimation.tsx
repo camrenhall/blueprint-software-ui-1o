@@ -90,8 +90,8 @@ export default function ThinkingAnimation({
                 dotSizes[size]
               )}
               style={{
-                top: `${30 + i * 20}%`,
-                left: `${20 + i * 30}%`,
+                top: `${25 + i * 25}%`,
+                left: `${15 + i * 35}%`,
                 animationDelay: `${i * 0.4}s`
               }}
             />
