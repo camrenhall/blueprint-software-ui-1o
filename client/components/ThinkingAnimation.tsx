@@ -93,13 +93,13 @@ export default function ThinkingAnimation({
                 top: '50%',
                 left: '50%',
                 transform: `
-                  translate(-50%, -50%) 
-                  rotate(${i * 120 + animationPhase * 30}deg) 
+                  translate(-50%, -50%)
+                  rotate(${i * 120 + animationPhase * 30}deg)
                   translateY(-${size === "sm" ? "12" : size === "md" ? "16" : "20"}px)
                 `,
-                animation: `orbit 2s ease-in-out infinite`,
                 animationDelay: `${i * 0.3}s`
               }}
+              className="animate-orbit"
             />
           ))}
         </div>
