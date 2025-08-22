@@ -9,6 +9,8 @@ interface Message {
   isStreaming?: boolean;
   thinkingSteps?: string[];
   currentStepIndex?: number;
+  isStreamingText?: boolean;
+  fullContent?: string;
 }
 
 interface Conversation {
