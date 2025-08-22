@@ -169,46 +169,47 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
               </h2>
             </div>
             
-            <div className="space-y-4 max-w-3xl mx-auto">
+            <div className="space-y-3 max-w-2xl mx-auto">
               {recentActivities.map((activity, index) => {
                 const IconComponent = activity.icon;
                 return (
                   <div
                     key={activity.id}
-                    className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-500 p-4 hover:bg-white/35 cursor-pointer transform hover:scale-[1.015] hover:-translate-y-0.5 ${
+                    className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-full shadow-sm hover:shadow-lg transition-all duration-500 px-5 py-3 hover:bg-white/35 cursor-pointer transform hover:scale-[1.015] hover:-translate-y-0.5 ${
                       index === 0 ? "animate-fadeInUp" : ""
                     }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="flex items-center space-x-4">
-                      {/* Icon - Perfect size and styling */}
-                      <div className={`w-10 h-10 bg-gradient-to-br ${activity.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}>
-                        <IconComponent className="w-5 h-5 text-white" />
+                    <div className="flex items-center space-x-3">
+                      {/* Icon - Compact size for pill design */}
+                      <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}>
+                        <IconComponent className="w-4 h-4 text-white" />
                       </div>
-                      
-                      {/* Content - Balanced horizontal flow */}
+
+                      {/* Content - Compact horizontal flow */}
                       <div className="flex-1 flex items-center justify-between min-w-0">
-                        <div className="flex flex-col space-y-1 flex-1 min-w-0">
-                          <div className="flex items-center space-x-3">
-                            <h3 className="text-sm font-medium text-[#0E315C]/90 truncate">
-                              {activity.title}
-                            </h3>
-                            <span className="hidden sm:block w-1 h-1 bg-[#0E315C]/20 rounded-full flex-shrink-0"></span>
-                            <div className="flex items-center space-x-1.5 text-xs text-[#0E315C]/40 font-light flex-shrink-0">
-                              <Clock className="w-3 h-3" />
-                              <span>{activity.time}</span>
-                            </div>
-                          </div>
-                          <p className="text-xs text-[#0E315C]/60 truncate">
+                        <div className="flex items-center space-x-3 flex-1 min-w-0">
+                          <h3 className="text-sm font-medium text-[#0E315C]/90 truncate">
+                            {activity.title}
+                          </h3>
+                          <span className="hidden sm:block w-1 h-1 bg-[#0E315C]/20 rounded-full flex-shrink-0"></span>
+                          <p className="text-xs text-[#0E315C]/60 truncate flex-1">
                             {activity.description}
                           </p>
                         </div>
-                        
-                        {/* Subtle interaction indicator */}
-                        <div className="opacity-0 group-hover:opacity-60 transition-opacity duration-300 flex-shrink-0 ml-3">
-                          <svg className="w-4 h-4 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                          </svg>
+
+                        <div className="flex items-center space-x-2 flex-shrink-0">
+                          <div className="flex items-center space-x-1 text-xs text-[#0E315C]/40 font-light">
+                            <Clock className="w-3 h-3" />
+                            <span>{activity.time}</span>
+                          </div>
+
+                          {/* Subtle interaction indicator */}
+                          <div className="opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                            <svg className="w-3 h-3 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
                         </div>
                       </div>
                     </div>
