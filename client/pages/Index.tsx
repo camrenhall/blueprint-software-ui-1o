@@ -28,6 +28,15 @@ export default function Index() {
       },
     },
     {
+      id: "agents",
+      title: "Agents",
+      action: () => {
+        setDashboardPage("agents");
+        setDashboardTitle("");
+        setDashboardOpen(true);
+      },
+    },
+    {
       id: "create",
       title: "Create",
       action: () => {
