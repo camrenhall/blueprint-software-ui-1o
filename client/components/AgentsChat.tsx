@@ -43,14 +43,19 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     setTimeout(() => inputRef.current?.focus(), 600);
   }, []);
 
-  // Auto scroll to bottom when new messages are added
+  // Gentle auto scroll to bottom when new messages are added
   useEffect(() => {
     if (messagesEndRef.current) {
-      // Use scrollTop instead of scrollIntoView to avoid viewport interference
-      const container = messagesEndRef.current.parentElement;
-      if (container) {
-        container.scrollTop = container.scrollHeight;
-      }
+      // Small delay to let the message render first
+      setTimeout(() => {
+        if (messagesEndRef.current) {
+          messagesEndRef.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
+          });
+        }
+      }, 100);
     }
   }, [messages]);
 
