@@ -18,6 +18,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     addThinkingMessage,
     updateThinkingMessage,
     finalizeThinkingMessage,
+    addFinalResponseMessage,
     removeConversation,
     isInChatMode,
   } = useConversationContext();
