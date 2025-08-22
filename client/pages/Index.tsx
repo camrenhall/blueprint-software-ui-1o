@@ -162,7 +162,7 @@ export default function Index() {
               }`}
             >
               {activeRightContent === "agents" && (
-                <div className="w-full h-full">
+                <div className="w-full h-full relative">
                   <AgentsChat onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
