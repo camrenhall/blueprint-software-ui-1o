@@ -102,12 +102,9 @@ export default function RadialScroller({
   };
 
   const getItemPosition = (index: number) => {
-    const spacing = 80; // Reduced spacing to fit better in viewport
+    const spacing = 100; // Back to original spacing
     const y = (index - selectedIndex) * spacing;
-    // Clamp y position to keep items within reasonable bounds
-    const maxOffset = window.innerHeight * 0.3; // 30% of viewport height
-    const clampedY = Math.max(-maxOffset, Math.min(maxOffset, y));
-    return { x: 0, y: clampedY };
+    return { x: 0, y };
   };
 
   const getItemScale = (index: number) => {
