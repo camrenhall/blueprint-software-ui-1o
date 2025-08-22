@@ -152,17 +152,19 @@ export default function Index() {
               : "opacity-0 transform translate-x-8 pointer-events-none"
           }`}
         >
-          <div className="h-full flex items-center justify-center relative px-8">
+          <div className="h-full relative px-8">
             {/* Content Container */}
             <div
-              className={`w-full h-full flex items-center justify-center transition-all duration-1200 ease-out delay-200 ${
-                activeRightContent
-                  ? "opacity-100 transform translate-y-0 scale-100"
+              className={`w-full h-full transition-all duration-1200 ease-out delay-200 ${
+                activeRightContent === "agents"
+                  ? "opacity-100"
+                  : activeRightContent
+                  ? "opacity-100 flex items-center justify-center transform translate-y-0 scale-100"
                   : "opacity-0 transform translate-y-6 scale-95"
               }`}
             >
               {activeRightContent === "agents" && (
-                <div className="w-full h-full relative flex-shrink-0">
+                <div className="w-full h-full relative">
                   <AgentsChat onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
