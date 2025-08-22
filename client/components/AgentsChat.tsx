@@ -332,7 +332,7 @@ How can I best support your current priorities?`,
                       {message.isStreamingText && message.fullContent ? (
                         <TypewriterText
                           text={message.fullContent}
-                          speed={60}
+                          speed={75}
                           onComplete={() => completeStreamingMessage(currentConversation?.id || '', message.id)}
                           className="min-w-0 flex-1"
                         />
