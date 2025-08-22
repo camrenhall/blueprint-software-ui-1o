@@ -209,13 +209,28 @@ How can I best support your current priorities?`,
                 key={message.id}
                 className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fadeInUp`}
               >
-                {message.isThinking ? (
-                  // Thinking message with animation and streaming steps
-                  <div className="bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 px-4 py-3 rounded-2xl shadow-sm max-w-lg">
+                {message.isThinking !== undefined ? (
+                  // Thinking message (both active and completed)
+                  <div className="bg-gradient-to-r from-[#99C0F0]/5 to-[#C5BFEE]/5 backdrop-blur-sm border border-[#C1D9F6]/20 px-4 py-3 rounded-2xl shadow-sm max-w-lg">
                     <div className="flex items-start space-x-3">
-                      <ThinkingAnimation size="sm" showText={false} className="mt-1" />
+                      {message.isStreaming ? (
+                        <ThinkingAnimation size="sm" showText={false} className="mt-1" />
+                      ) : (
+                        <div className="w-6 h-6 mt-1 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center shadow-sm">
+                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
+                      )}
                       <div className="flex-1">
-                        <div className="text-sm text-[#0E315C]/70 mb-2 font-medium">AI is thinking...</div>
+                        <div className="text-sm text-[#0E315C]/70 mb-2 font-medium flex items-center space-x-2">
+                          <span>{message.isStreaming ? "AI is thinking..." : "AI Thought Process"}</span>
+                          {!message.isStreaming && (
+                            <div className="text-xs text-[#0E315C]/50 bg-[#99C0F0]/10 px-2 py-0.5 rounded-full">
+                              Completed
+                            </div>
+                          )}
+                        </div>
                         {message.thinkingSteps && message.thinkingSteps.length > 0 && (
                           <div className="space-y-1">
                             {message.thinkingSteps.map((step, index) => (
@@ -224,7 +239,10 @@ How can I best support your current priorities?`,
                                 className="text-xs text-[#0E315C]/60 animate-fadeInUp flex items-center space-x-2"
                                 style={{ animationDelay: `${index * 100}ms` }}
                               >
-                                <div className="w-1 h-1 bg-[#99C0F0]/60 rounded-full flex-shrink-0" />
+                                <div className={cn(
+                                  "w-1 h-1 rounded-full flex-shrink-0",
+                                  message.isStreaming ? "bg-[#99C0F0]/60" : "bg-[#99C0F0]/80"
+                                )} />
                                 <span>{step}</span>
                               </div>
                             ))}
