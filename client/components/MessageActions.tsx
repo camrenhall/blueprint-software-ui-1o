@@ -21,14 +21,19 @@ export default function MessageActions({
 
   const handleCopy = async () => {
     try {
-      // Try modern Clipboard API first
-      if (navigator.clipboard && window.isSecureContext) {
+      // Try modern Clipboard API first (will throw if blocked by permissions policy)
+      if (navigator.clipboard) {
         await navigator.clipboard.writeText(content);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
         return;
       }
+    } catch (err) {
+      // Modern API failed, fall back to execCommand
+      console.log('Clipboard API blocked, using fallback method');
+    }
 
+    try {
       // Fallback to document.execCommand method
       const textArea = document.createElement('textarea');
       textArea.value = content;
@@ -48,8 +53,8 @@ export default function MessageActions({
       } else {
         throw new Error('Copy command failed');
       }
-    } catch (err) {
-      console.error('Failed to copy text: ', err);
+    } catch (fallbackErr) {
+      console.error('Both clipboard methods failed: ', fallbackErr);
       // You could show a user-friendly error message here
     }
   };
