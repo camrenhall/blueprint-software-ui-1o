@@ -147,6 +147,7 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     createNewConversation,
     switchToConversation,
     addMessageToConversation,
+    addMessageToConversationById,
     generateConversationSummary,
     exitChatMode,
     enterChatMode,
