@@ -54,13 +54,13 @@ export default function ThinkingAnimation({
       <div className="relative flex items-center justify-center">
         {/* Outer rotating ring */}
         <div className={cn(
-          "absolute border-2 border-transparent rounded-full animate-spin",
+          "absolute border-2 border-transparent rounded-full",
           sizeClasses[size]
-        )} 
+        )}
         style={{
           background: `conic-gradient(from 0deg, transparent, #99C0F0, #C1D9F6, #C5BFEE, transparent)`,
           borderRadius: '50%',
-          animation: 'spin 3s linear infinite'
+          animation: 'spin 2s linear infinite'
         }} />
         
         {/* Middle pulsing ring */}
