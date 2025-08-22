@@ -5,6 +5,9 @@ interface Message {
   content: string;
   role: "user" | "assistant";
   timestamp: Date;
+  isThinking?: boolean;
+  isStreaming?: boolean;
+  thinkingSteps?: string[];
 }
 
 interface Conversation {
