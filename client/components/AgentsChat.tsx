@@ -321,7 +321,7 @@ How can I best support your current priorities?`,
                 ) : (
                   // Regular message
                   <div
-                    className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm break-words ${
+                    className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm break-words group ${
                       message.role === "user"
                         ? "bg-[#99C0F0] text-white"
                         : "bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 text-[#0E315C]"
@@ -345,6 +345,16 @@ How can I best support your current priorities?`,
                         />
                       )}
                     </div>
+                    {/* Add MessageActions for AI messages only */}
+                    {message.role === "assistant" && !message.isStreamingText && (
+                      <MessageActions
+                        messageId={message.id}
+                        content={message.content}
+                        rating={message.rating}
+                        onRating={(rating) => updateMessageRating(currentConversation?.id || '', message.id, rating)}
+                        className="mt-2 justify-end"
+                      />
+                    )}
                   </div>
                 )}
               </div>
