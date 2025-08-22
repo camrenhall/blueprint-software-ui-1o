@@ -155,7 +155,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                 className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fadeInUp`}
               >
                 <div
-                  className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm ${
+                  className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm break-words ${
                     message.role === "user"
                       ? "bg-[#99C0F0] text-white"
                       : "bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 text-[#0E315C]"
@@ -168,7 +168,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                     {message.role === "user" && (
                       <User className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
                     )}
-                    <p className="text-sm leading-relaxed">{message.content}</p>
+                    <p className="text-sm leading-relaxed break-words whitespace-pre-wrap min-w-0 flex-1">{message.content}</p>
                   </div>
                 </div>
               </div>
