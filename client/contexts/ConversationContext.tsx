@@ -25,6 +25,8 @@ interface ConversationContextType {
   
   // Actions
   createNewConversation: (firstMessage: Message) => string;
+  createEagerConversation: () => string;
+  removeConversation: (conversationId: string) => void;
   switchToConversation: (conversationId: string) => void;
   addMessageToConversation: (message: Message) => void;
   addMessageToConversationById: (conversationId: string, message: Message) => void;
