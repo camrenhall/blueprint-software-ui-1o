@@ -300,6 +300,27 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     }));
   };
 
+  const updateTypewriterProgress = (conversationId: string, messageId: string, progress: number) => {
+    setConversations(prev => prev.map(conv => {
+      if (conv.id === conversationId) {
+        const updatedMessages = conv.messages.map(msg => {
+          if (msg.id === messageId) {
+            return {
+              ...msg,
+              typewriterProgress: progress
+            };
+          }
+          return msg;
+        });
+        return {
+          ...conv,
+          messages: updatedMessages,
+        };
+      }
+      return conv;
+    }));
+  };
+
   const exitChatMode = () => {
     // Clean up empty conversations before exiting
     if (currentConversationId) {
