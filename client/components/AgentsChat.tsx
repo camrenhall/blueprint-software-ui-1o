@@ -171,7 +171,7 @@ How can I best support your current priorities?`,
       <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-6 pt-24 pb-4">
+        <div className="flex-1 overflow-y-auto px-6 py-4">
           <div className="max-w-4xl mx-auto space-y-4">
             {messages.map((message) => (
               <div
