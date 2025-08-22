@@ -88,9 +88,13 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     }, 1500 + Math.random() * 1000); // 1.5-2.5 second delay
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Prevent interference from global event listeners
+    if (e.nativeEvent.isComposing) return; // Handle IME composition properly
+
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
+      e.stopPropagation(); // Prevent event bubbling to global handlers
       handleSendMessage();
     }
   };
@@ -188,7 +192,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   onFocus={handleInputFocus}
                   placeholder="Continue the conversation..."
                   className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
@@ -256,7 +260,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   onFocus={handleInputFocus}
                   placeholder="Ask about cases, documents, or legal strategies..."
                   className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
