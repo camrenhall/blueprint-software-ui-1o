@@ -177,12 +177,18 @@ export default {
             transform: "scale(1.05)",
           },
         },
-        textShimmer: {
-          "0%": {
+        textWave: {
+          "0%, 80%": {
             backgroundPosition: "-200% 0",
+            opacity: "1",
           },
-          "100%": {
+          "10%": {
             backgroundPosition: "200% 0",
+            opacity: "1",
+          },
+          "20%, 100%": {
+            backgroundPosition: "-200% 0",
+            opacity: "1",
           },
         },
       },
