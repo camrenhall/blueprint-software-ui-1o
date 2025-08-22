@@ -168,7 +168,7 @@ How can I best support your current priorities?`,
   if (chatStarted) {
     // Chat Mode - Slides to bottom
     return (
-      <div className="absolute inset-0 flex flex-col" style={{ transform: 'translateZ(0)' }}>
+      <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
 
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto px-6 pt-24 pb-4">
@@ -256,7 +256,7 @@ How can I best support your current priorities?`,
   if (isNewChatMode) {
     // Minimal New Chat Mode - Just input at bottom
     return (
-      <div className="absolute inset-0 flex flex-col" style={{ transform: 'translateZ(0)' }}>
+      <div className="absolute inset-0 top-[12.5vh] flex flex-col" style={{ transform: 'translateZ(0)' }}>
         {/* Empty space for messages */}
         <div className="flex-1"></div>
 
