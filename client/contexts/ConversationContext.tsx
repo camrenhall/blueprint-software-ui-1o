@@ -29,7 +29,7 @@ interface ConversationContextType {
   currentConversationId: string | null;
   currentConversation: Conversation | null;
   isInChatMode: boolean;
-  
+
   // Actions
   createNewConversation: (firstMessage: Message) => string;
   createEagerConversation: () => string;
@@ -42,6 +42,7 @@ interface ConversationContextType {
   finalizeThinkingMessage: (conversationId: string, messageId: string) => void;
   addStreamingResponseMessage: (conversationId: string, fullContent: string) => string;
   completeStreamingMessage: (conversationId: string, messageId: string) => void;
+  updateMessageRating: (conversationId: string, messageId: string, rating: "up" | "down" | null) => void;
   generateConversationSummary: (messages: Message[]) => string;
   startNewConversation: () => void;
   exitChatMode: () => void;
