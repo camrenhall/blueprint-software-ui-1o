@@ -12,6 +12,7 @@ interface Message {
   isStreamingText?: boolean;
   fullContent?: string;
   rating?: "up" | "down" | null;
+  typewriterProgress?: number;
 }
 
 interface Conversation {
