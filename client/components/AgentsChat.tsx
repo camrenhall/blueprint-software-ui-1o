@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useConversationContext } from "@/contexts/ConversationContext";
 import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus, User } from "lucide-react";
 import MessageContent from "./MessageContent";
+import MessageActions from "./MessageActions";
 import SimpleThinkingAnimation from "./SimpleThinkingAnimation";
 import TypewriterText from "./TypewriterText";
 
