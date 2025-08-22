@@ -36,7 +36,7 @@ export default function ConversationHistory({
   };
 
   return (
-    <div className={cn("relative flex items-start justify-start h-full pt-16 pr-8", className)}>
+    <div className={cn("relative flex items-start justify-start h-full pt-16 pr-6", className)}>
       <div
         className={cn(
           "w-full max-w-sm transition-all duration-500 ease-out",
