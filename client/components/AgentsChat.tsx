@@ -122,36 +122,10 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   if (chatStarted) {
     // Chat Mode - Slides to bottom
     return (
-      <div className="h-full flex flex-col">
-        {/* Chat Header */}
-        <div className={`flex-shrink-0 px-6 py-4 transition-all duration-1000 ease-out ${
-          chatStarted 
-            ? "opacity-100 transform translate-y-0" 
-            : "opacity-0 transform translate-y-4"
-        }`}>
-          <div className="flex items-center justify-between max-w-4xl mx-auto">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-lg">
-                <Bot className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h3 className="font-medium text-[#0E315C]">AI Legal Assistant</h3>
-                <p className="text-xs text-[#0E315C]/60">Online • Ready to help</p>
-              </div>
-            </div>
-            <button
-              onClick={onClose}
-              className="text-[#0E315C]/40 hover:text-[#0E315C]/70 transition-colors p-1"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div className="h-screen flex flex-col">
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-6 py-4">
+        <div className="flex-1 overflow-y-auto px-6 py-6">
           <div className="max-w-4xl mx-auto space-y-4">
             {messages.map((message) => (
               <div
@@ -198,7 +172,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
         </div>
 
         {/* Chat Input - Fixed at bottom */}
-        <div className="flex-shrink-0 p-4">
+        <div className="flex-shrink-0 p-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
               <div className="flex-1 relative">
