@@ -242,21 +242,17 @@ How can I best support your current priorities?`,
                                   <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-[#99C0F0]/80" />
                                   <span
                                     className={cn(
-                                      "leading-relaxed transition-all duration-300 relative",
-                                      isActiveStep ? "text-[#0E315C]/70 font-medium" : "text-[#0E315C]/60"
+                                      "leading-relaxed transition-all duration-500",
+                                      isActiveStep ? [
+                                        "text-[#0E315C]/80 font-medium",
+                                        "animate-pulse",
+                                        "shadow-sm shadow-[#99C0F0]/20",
+                                        "px-1 py-0.5 rounded-sm",
+                                        "bg-gradient-to-r from-[#99C0F0]/5 to-[#C5BFEE]/5"
+                                      ] : "text-[#0E315C]/60"
                                     )}
                                   >
                                     {step}
-                                    {isActiveStep && (
-                                      <span
-                                        className="absolute inset-0 text-transparent bg-gradient-to-r from-transparent via-[#99C0F0]/80 to-transparent bg-clip-text animate-textWave bg-300%"
-                                        style={{
-                                          backgroundSize: "300% 100%"
-                                        }}
-                                      >
-                                        {step}
-                                      </span>
-                                    )}
                                   </span>
                                 </div>
                               );
