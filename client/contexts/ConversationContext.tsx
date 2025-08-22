@@ -359,6 +359,7 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
     addStreamingResponseMessage,
     completeStreamingMessage,
     updateMessageRating,
+    updateTypewriterProgress,
     generateConversationSummary,
     startNewConversation,
     exitChatMode,
