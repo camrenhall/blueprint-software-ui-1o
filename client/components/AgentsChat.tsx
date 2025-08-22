@@ -10,7 +10,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const [inputValue, setInputValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
-  const [layoutVariant, setLayoutVariant] = useState<"horizontal" | "floating" | "timeline">("horizontal");
+  const [layoutVariant, setLayoutVariant] = useState<"thin-strips" | "floating-bars" | "notification-pills">("thin-strips");
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Animation entrance effect
@@ -69,103 +69,52 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     }
   ];
 
-  const renderHorizontalLayout = () => (
-    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
-      isVisible 
-        ? "opacity-100 transform translate-y-0" 
-        : "opacity-0 transform translate-y-4"
-    }`}>
-      <div className="text-center mb-6">
-        <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
-          Recent Activity
-        </h2>
-      </div>
-      
-      {/* Horizontal Scrolling Strip */}
-      <div className="relative">
-        <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-4">
-          {recentActivities.map((activity, index) => {
-            const IconComponent = activity.icon;
-            return (
-              <div
-                key={activity.id}
-                className={`flex-shrink-0 w-72 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80 cursor-pointer transform hover:scale-[1.02] ${
-                  index === 0 ? "ml-4" : ""
-                } ${index === recentActivities.length - 1 ? "mr-4" : ""}`}
-              >
-                <div className="flex items-start space-x-3">
-                  <div className={`w-10 h-10 bg-gradient-to-br ${activity.color} rounded-xl flex items-center justify-center shadow-sm flex-shrink-0`}>
-                    <IconComponent className="w-5 h-5 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-medium text-[#0E315C] truncate">
-                      {activity.title}
-                    </h3>
-                    <p className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
-                      {activity.description}
-                    </p>
-                    <p className="text-xs text-[#0E315C]/40 mt-2 font-light flex items-center">
-                      <Clock className="w-3 h-3 mr-1" />
-                      {activity.time}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        
-        {/* Gradient overlays for scroll indication */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
-      </div>
-    </div>
-  );
-
-  const renderFloatingLayout = () => (
+  // Variant 1: Ultra-thin horizontal strips
+  const renderThinStrips = () => (
     <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
       isVisible 
         ? "opacity-100 transform translate-y-0" 
         : "opacity-0 transform translate-y-4"
     }`}>
       <div className="text-center mb-8">
-        <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
+        <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
           Recent Activity
         </h2>
       </div>
       
-      {/* Floating Bubble Layout */}
-      <div className="relative max-w-4xl mx-auto h-32">
+      <div className="space-y-3 max-w-4xl mx-auto">
         {recentActivities.map((activity, index) => {
           const IconComponent = activity.icon;
-          const positions = [
-            { left: "10%", top: "20%" },
-            { left: "45%", top: "60%" },
-            { left: "75%", top: "15%" }
-          ];
-          
           return (
             <div
               key={activity.id}
-              className={`absolute bg-white/80 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 p-3 hover:bg-white/90 cursor-pointer transform hover:scale-105 animate-pulse`}
-              style={{ 
-                left: positions[index].left, 
-                top: positions[index].top,
-                animationDelay: `${index * 0.5}s`,
-                animationDuration: "3s"
-              }}
+              className={`group bg-white/30 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-full shadow-sm hover:shadow-md transition-all duration-500 p-3 hover:bg-white/40 cursor-pointer transform hover:scale-[1.01] ${
+                index === 0 ? "animate-fadeInUp" : ""
+              }`}
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="flex items-center space-x-2">
-                <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-lg flex items-center justify-center shadow-sm`}>
+              <div className="flex items-center space-x-4">
+                {/* Icon */}
+                <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-sm flex-shrink-0`}>
                   <IconComponent className="w-4 h-4 text-white" />
                 </div>
-                <div className="min-w-0">
-                  <p className="text-xs font-medium text-[#0E315C] truncate max-w-32">
-                    {activity.title}
-                  </p>
-                  <p className="text-xs text-[#0E315C]/40 font-light">
-                    {activity.time}
-                  </p>
+                
+                {/* Content - Horizontal flow */}
+                <div className="flex-1 flex items-center justify-between min-w-0">
+                  <div className="flex items-center space-x-6 flex-1">
+                    <h3 className="text-sm font-medium text-[#0E315C]/90 truncate">
+                      {activity.title}
+                    </h3>
+                    <span className="hidden sm:block w-1 h-1 bg-[#0E315C]/20 rounded-full flex-shrink-0"></span>
+                    <p className="text-sm text-[#0E315C]/60 truncate flex-1">
+                      {activity.description}
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center space-x-2 text-xs text-[#0E315C]/40 font-light flex-shrink-0">
+                    <Clock className="w-3 h-3" />
+                    <span>{activity.time}</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -175,57 +124,117 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     </div>
   );
 
-  const renderTimelineLayout = () => (
+  // Variant 2: Floating horizontal bars
+  const renderFloatingBars = () => (
     <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
       isVisible 
         ? "opacity-100 transform translate-y-0" 
         : "opacity-0 transform translate-y-4"
     }`}>
       <div className="text-center mb-8">
-        <h2 className="text-lg font-light text-[#0E315C]/80 tracking-wide">
+        <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
           Recent Activity
         </h2>
       </div>
       
-      {/* Minimalist Timeline */}
-      <div className="max-w-2xl mx-auto">
-        <div className="relative">
-          {/* Central timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-gradient-to-b from-[#C1D9F6]/60 via-[#99C0F0]/40 to-[#C5BFEE]/60"></div>
-          
-          <div className="space-y-8">
-            {recentActivities.map((activity, index) => {
-              const IconComponent = activity.icon;
-              const isLeft = index % 2 === 0;
-              
-              return (
-                <div key={activity.id} className="relative">
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2">
-                    <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg border-2 border-white`}>
-                      <IconComponent className="w-4 h-4 text-white" />
-                    </div>
+      <div className="relative max-w-5xl mx-auto">
+        <div className="flex justify-between items-center space-x-4">
+          {recentActivities.map((activity, index) => {
+            const IconComponent = activity.icon;
+            return (
+              <div
+                key={activity.id}
+                className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/20 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-700 p-4 hover:bg-white/35 cursor-pointer transform hover:scale-105 hover:-translate-y-1 flex-1 ${
+                  index === 1 ? "animate-pulse" : ""
+                }`}
+                style={{ 
+                  animationDelay: `${index * 0.2}s`,
+                  animationDuration: "2s"
+                }}
+              >
+                <div className="flex items-center space-x-3">
+                  {/* Icon */}
+                  <div className={`w-10 h-10 bg-gradient-to-br ${activity.color} rounded-xl flex items-center justify-center shadow-lg flex-shrink-0`}>
+                    <IconComponent className="w-5 h-5 text-white" />
                   </div>
                   
-                  {/* Content card */}
-                  <div className={`flex ${isLeft ? "justify-start pr-8" : "justify-end pl-8"}`}>
-                    <div className={`w-64 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-4 hover:bg-white/80 cursor-pointer ${isLeft ? "mr-8" : "ml-8"}`}>
-                      <h3 className="text-sm font-medium text-[#0E315C] mb-1">
-                        {activity.title}
-                      </h3>
-                      <p className="text-xs text-[#0E315C]/60 mb-2">
-                        {activity.description}
-                      </p>
-                      <p className="text-xs text-[#0E315C]/40 font-light flex items-center">
-                        <Clock className="w-3 h-3 mr-1" />
-                        {activity.time}
-                      </p>
+                  {/* Content - Stacked for better fit */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-[#0E315C]/90 truncate mb-1">
+                      {activity.title}
+                    </h3>
+                    <p className="text-xs text-[#0E315C]/60 truncate mb-2">
+                      {activity.description}
+                    </p>
+                    <div className="flex items-center space-x-1 text-xs text-[#0E315C]/40 font-light">
+                      <Clock className="w-3 h-3" />
+                      <span>{activity.time}</span>
                     </div>
                   </div>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Subtle connecting line */}
+        <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C1D9F6]/30 to-transparent -z-10"></div>
+      </div>
+    </div>
+  );
+
+  // Variant 3: Notification-style horizontal pills
+  const renderNotificationPills = () => (
+    <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+      isVisible 
+        ? "opacity-100 transform translate-y-0" 
+        : "opacity-0 transform translate-y-4"
+    }`}>
+      <div className="text-center mb-8">
+        <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
+          Recent Activity
+        </h2>
+      </div>
+      
+      <div className="max-w-3xl mx-auto">
+        <div className="flex flex-wrap justify-center gap-3">
+          {recentActivities.map((activity, index) => {
+            const IconComponent = activity.icon;
+            return (
+              <div
+                key={activity.id}
+                className={`group bg-white/20 backdrop-blur-sm border border-[#C1D9F6]/20 rounded-full shadow-sm hover:shadow-md transition-all duration-500 px-5 py-3 hover:bg-white/30 cursor-pointer transform hover:scale-105 ${
+                  index === 0 ? "order-2" : index === 1 ? "order-1" : "order-3"
+                }`}
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
+                <div className="flex items-center space-x-3">
+                  {/* Compact Icon */}
+                  <div className={`w-6 h-6 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-sm flex-shrink-0`}>
+                    <IconComponent className="w-3 h-3 text-white" />
+                  </div>
+                  
+                  {/* Minimal Content */}
+                  <div className="flex items-center space-x-3">
+                    <span className="text-sm font-medium text-[#0E315C]/90 whitespace-nowrap">
+                      {activity.title}
+                    </span>
+                    <span className="w-1 h-1 bg-[#0E315C]/20 rounded-full"></span>
+                    <span className="text-xs text-[#0E315C]/50 whitespace-nowrap">
+                      {activity.time}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Expandable details on hover (placeholder for future) */}
+        <div className="mt-6 text-center">
+          <p className="text-xs text-[#0E315C]/30 font-light italic">
+            Hover for details • Click to view case
+          </p>
         </div>
       </div>
     </div>
@@ -235,25 +244,29 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     <div className="h-full flex items-center justify-center px-8">
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
         
-        {/* Layout Variant Selector (for demo purposes) */}
+        {/* Layout Variant Selector */}
         <div className={`mb-4 transition-all duration-1000 ease-out ${
           isVisible 
             ? "opacity-100 transform translate-y-0" 
             : "opacity-0 transform translate-y-4"
         }`}>
-          <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/30 rounded-xl p-1">
-            {["horizontal", "floating", "timeline"].map((variant) => (
+          <div className="flex items-center gap-2 bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-xl p-1">
+            {[
+              { key: "thin-strips", label: "Thin Strips" },
+              { key: "floating-bars", label: "Floating Bars" },
+              { key: "notification-pills", label: "Notification Pills" }
+            ].map((variant) => (
               <button
-                key={variant}
-                onClick={() => setLayoutVariant(variant as any)}
+                key={variant.key}
+                onClick={() => setLayoutVariant(variant.key as any)}
                 className={cn(
                   "px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200",
-                  layoutVariant === variant
-                    ? "bg-white text-[#0E315C] shadow-sm"
-                    : "text-[#0E315C]/60 hover:text-[#0E315C]/80"
+                  layoutVariant === variant.key
+                    ? "bg-white/80 text-[#0E315C] shadow-sm"
+                    : "text-[#0E315C]/60 hover:text-[#0E315C]/80 hover:bg-white/20"
                 )}
               >
-                {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                {variant.label}
               </button>
             ))}
           </div>
@@ -345,15 +358,15 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
           </div>
 
           {/* Dynamic Recent Activity Layout */}
-          {layoutVariant === "horizontal" && renderHorizontalLayout()}
-          {layoutVariant === "floating" && renderFloatingLayout()}
-          {layoutVariant === "timeline" && renderTimelineLayout()}
+          {layoutVariant === "thin-strips" && renderThinStrips()}
+          {layoutVariant === "floating-bars" && renderFloatingBars()}
+          {layoutVariant === "notification-pills" && renderNotificationPills()}
         </div>
 
         {/* Floating ambient elements */}
-        <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-[#99C0F0]/30 rounded-full blur-sm animate-pulse"></div>
-        <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-[#C5BFEE]/40 rounded-full blur-sm animate-pulse" style={{ animationDelay: "1s" }}></div>
-        <div className="absolute top-1/2 right-1/6 w-2.5 h-2.5 bg-[#C1D9F6]/50 rounded-full blur-sm animate-pulse" style={{ animationDelay: "2s" }}></div>
+        <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-[#99C0F0]/20 rounded-full blur-sm animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-1/5 w-2 h-2 bg-[#C5BFEE]/25 rounded-full blur-sm animate-pulse" style={{ animationDelay: "1s" }}></div>
+        <div className="absolute top-1/2 right-1/6 w-2.5 h-2.5 bg-[#C1D9F6]/30 rounded-full blur-sm animate-pulse" style={{ animationDelay: "2s" }}></div>
       </div>
     </div>
   );
