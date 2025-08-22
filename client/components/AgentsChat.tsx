@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus } from "lucide-react";
+import { Send, Sparkles, Clock, CheckCircle, FileText, UserPlus, Bot, User } from "lucide-react";
+
+interface Message {
+  id: string;
+  content: string;
+  role: "user" | "assistant";
+  timestamp: Date;
+}
 
 interface AgentsChatProps {
   onClose: () => void;
@@ -10,7 +17,11 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const [inputValue, setInputValue] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const [chatStarted, setChatStarted] = useState(false);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isTyping, setIsTyping] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Animation entrance effect
   useEffect(() => {
@@ -18,17 +29,57 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     setTimeout(() => inputRef.current?.focus(), 600);
   }, []);
 
+  // Auto scroll to bottom when new messages are added
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   const handleInputFocus = () => {
     if (!hasInteracted) {
       setHasInteracted(true);
     }
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
     
-    // Here we'll implement the conversation functionality in the next step
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      content: inputValue.trim(),
+      role: "user",
+      timestamp: new Date(),
+    };
+
+    // Start chat mode if not already started
+    if (!chatStarted) {
+      setChatStarted(true);
+    }
+
+    setMessages(prev => [...prev, userMessage]);
     setInputValue("");
+    setIsTyping(true);
+
+    // Simulate AI response with realistic delay
+    setTimeout(() => {
+      const responses = [
+        "I understand you need assistance with legal case management. I'm analyzing your request and can help you review cases, draft documents, or provide strategic guidance. What specific area would you like me to focus on?",
+        "I'm here to help streamline your legal workflow. I can assist with case reviews, document analysis, scheduling consultations, or strategic planning. How can I best support your current priorities?",
+        "Thank you for reaching out. I specialize in legal case management and can help you with document reviews, case analysis, client communications, and strategic legal guidance. What would you like to work on first?",
+        "I'm ready to assist with your legal case management needs. Whether you need help with pending cases, document preparation, client consultations, or strategic analysis, I'm here to support you. What's your priority today?"
+      ];
+      
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      
+      const assistantMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        content: randomResponse,
+        role: "assistant",
+        timestamp: new Date(),
+      };
+      
+      setMessages(prev => [...prev, assistantMessage]);
+      setIsTyping(false);
+    }, 1500 + Math.random() * 1000); // 1.5-2.5 second delay
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -68,6 +119,127 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
     }
   ];
 
+  if (chatStarted) {
+    // Chat Mode - Slides to bottom
+    return (
+      <div className="h-full flex flex-col">
+        {/* Chat Header */}
+        <div className={`flex-shrink-0 bg-white/60 backdrop-blur-sm border-b border-[#C1D9F6]/30 px-6 py-4 transition-all duration-1000 ease-out ${
+          chatStarted 
+            ? "opacity-100 transform translate-y-0" 
+            : "opacity-0 transform translate-y-4"
+        }`}>
+          <div className="flex items-center justify-between max-w-4xl mx-auto">
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-lg">
+                <Bot className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <h3 className="font-medium text-[#0E315C]">AI Legal Assistant</h3>
+                <p className="text-xs text-[#0E315C]/60">Online • Ready to help</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-[#0E315C]/40 hover:text-[#0E315C]/70 transition-colors p-1"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Messages Area */}
+        <div className="flex-1 overflow-y-auto px-6 py-4">
+          <div className="max-w-4xl mx-auto space-y-4">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex ${message.role === "user" ? "justify-end" : "justify-start"} animate-fadeInUp`}
+              >
+                <div
+                  className={`max-w-lg px-4 py-3 rounded-2xl shadow-sm ${
+                    message.role === "user"
+                      ? "bg-gradient-to-r from-[#99C0F0] to-[#C1D9F6] text-white"
+                      : "bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 text-[#0E315C]"
+                  }`}
+                >
+                  <div className="flex items-start space-x-2 mb-2">
+                    {message.role === "assistant" && (
+                      <Bot className="w-4 h-4 text-[#0E315C]/60 mt-0.5 flex-shrink-0" />
+                    )}
+                    {message.role === "user" && (
+                      <User className="w-4 h-4 text-white/80 mt-0.5 flex-shrink-0" />
+                    )}
+                    <p className="text-sm leading-relaxed">{message.content}</p>
+                  </div>
+                  <p className={`text-xs ${
+                    message.role === "user" ? "text-white/70" : "text-[#0E315C]/40"
+                  }`}>
+                    {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </p>
+                </div>
+              </div>
+            ))}
+            
+            {isTyping && (
+              <div className="flex justify-start animate-fadeInUp">
+                <div className="bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/30 px-4 py-3 rounded-2xl shadow-sm">
+                  <div className="flex items-center space-x-2">
+                    <Bot className="w-4 h-4 text-[#0E315C]/60" />
+                    <div className="flex space-x-1">
+                      <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
+                      <div className="w-2 h-2 bg-[#0E315C]/40 rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
+                    </div>
+                    <span className="text-xs text-[#0E315C]/50">AI is thinking...</span>
+                  </div>
+                </div>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+        </div>
+
+        {/* Chat Input - Fixed at bottom */}
+        <div className="flex-shrink-0 bg-white/60 backdrop-blur-sm border-t border-[#C1D9F6]/30 p-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
+              <div className="flex-1 relative">
+                <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" />
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  onFocus={handleInputFocus}
+                  placeholder="Continue the conversation..."
+                  className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
+                />
+              </div>
+              <button
+                onClick={handleSendMessage}
+                disabled={!inputValue.trim()}
+                className={cn(
+                  "flex items-center gap-2 px-5 py-4 rounded-xl text-sm font-medium transition-all duration-200 border",
+                  inputValue.trim()
+                    ? "bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/40 shadow-sm hover:bg-[#99C0F0]/30 hover:shadow-md"
+                    : "bg-white/40 text-[#0E315C]/40 border-[#C1D9F6]/40 cursor-not-allowed",
+                )}
+              >
+                <Send className="w-4 h-4" />
+                <span className="hidden sm:inline">Send</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Initial Landing Mode - Centered
   return (
     <div className="h-full flex items-center justify-center px-8">
       <div className="w-full max-w-3xl mx-auto flex flex-col items-center">
@@ -157,7 +329,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
             </div>
           </div>
 
-          {/* Perfect Balance: Recent Activity */}
+          {/* Recent Activity */}
           <div className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
             isVisible 
               ? "opacity-100 transform translate-y-0" 
@@ -185,7 +357,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                       <div className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}>
                         <IconComponent className="w-4 h-4 text-white" />
                       </div>
-
+                      
                       {/* Content - Compact horizontal flow */}
                       <div className="flex-1 flex items-center justify-between min-w-0">
                         <div className="flex items-center space-x-3 flex-1 min-w-0">
@@ -197,13 +369,13 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
                             {activity.description}
                           </p>
                         </div>
-
+                        
                         <div className="flex items-center space-x-2 flex-shrink-0">
                           <div className="flex items-center space-x-1 text-xs text-[#0E315C]/40 font-light">
                             <Clock className="w-3 h-3" />
                             <span>{activity.time}</span>
                           </div>
-
+                          
                           {/* Subtle interaction indicator */}
                           <div className="opacity-0 group-hover:opacity-60 transition-opacity duration-300">
                             <svg className="w-3 h-3 text-[#0E315C]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
