@@ -125,7 +125,7 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       <div className="h-screen flex flex-col">
 
         {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto px-6 py-6">
+        <div className="flex-1 overflow-y-auto px-6 pt-24 pb-6">
           <div className="max-w-4xl mx-auto space-y-4">
             {messages.map((message) => (
               <div
