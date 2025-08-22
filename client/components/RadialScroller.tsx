@@ -128,14 +128,14 @@ export default function RadialScroller({
   return (
     <div
       className={cn(
-        "relative flex items-center justify-start h-full overflow-hidden",
+        "relative flex items-center justify-start h-full",
         className,
       )}
     >
-      {/* Vertical container */}
+      {/* Vertical container with constrained height */}
       <div
         className={cn(
-          "relative flex flex-col items-start justify-center h-full py-20 transition-all duration-300 ease-out overflow-hidden",
+          "relative flex flex-col items-start justify-center h-full max-h-screen py-20 transition-all duration-300 ease-out",
           isTransitioning &&
             currentLevel === "main" &&
             "transform translate-x-[-100px] opacity-0",
