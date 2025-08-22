@@ -59,7 +59,7 @@ export default function TypewriterText({
     <div className={className}>
       <MessageContent content={displayedText} />
       {!isComplete && (
-        <span className="inline-block w-0.5 h-4 bg-[#99C0F0] animate-pulse ml-0.5 align-middle" />
+        <span className="inline-block w-0.5 h-4 bg-[#99C0F0]/80 animate-pulse ml-1 align-middle rounded-full" />
       )}
     </div>
   );
