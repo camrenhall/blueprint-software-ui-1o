@@ -8,6 +8,7 @@ import AgentsChat from "@/components/AgentsChat";
 import { ConversationProvider, useConversationContext } from "@/contexts/ConversationContext";
 
 function IndexContent() {
+  const { isInChatMode } = useConversationContext();
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [dashboardTitle, setDashboardTitle] = useState("");
   const [dashboardPage, setDashboardPage] = useState("overview");
