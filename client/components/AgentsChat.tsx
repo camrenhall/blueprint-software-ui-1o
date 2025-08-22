@@ -60,11 +60,15 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
       timestamp: new Date(),
     };
 
+    // Capture the conversation ID for the AI response
+    let conversationId: string;
+
     // If no current conversation, create a new one
     if (!currentConversation) {
-      createNewConversation(userMessage);
+      conversationId = createNewConversation(userMessage);
     } else {
       // Add message to existing conversation
+      conversationId = currentConversation.id;
       addMessageToConversation(userMessage);
     }
 
@@ -89,7 +93,8 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
         timestamp: new Date(),
       };
 
-      addMessageToConversation(assistantMessage);
+      // Use the captured conversation ID to ensure the message is added correctly
+      addMessageToConversationById(conversationId, assistantMessage);
       setIsTyping(false);
     }, 1500 + Math.random() * 1000); // 1.5-2.5 second delay
   };
