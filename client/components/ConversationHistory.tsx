@@ -17,7 +17,7 @@ export default function ConversationHistory({
     currentConversationId,
     switchToConversation,
     exitChatMode,
-    enterChatMode
+    startNewConversation
   } = useConversationContext();
 
   const [isVisible, setIsVisible] = useState(false);
