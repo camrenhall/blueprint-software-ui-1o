@@ -22,6 +22,10 @@ export default function AgentsChat({ onClose }: AgentsChatProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Derive state from conversation context
+  const messages = currentConversation?.messages || [];
+  const chatStarted = isInChatMode && currentConversation !== null;
+
   // Animation entrance effect
   useEffect(() => {
     setTimeout(() => setIsVisible(true), 100);
