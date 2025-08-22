@@ -33,6 +33,16 @@ export default function RadialScroller({
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't interfere with input fields, textareas, or contentEditable elements
+      const activeElement = document.activeElement as HTMLElement | null;
+      if (activeElement && (
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.isContentEditable
+      )) {
+        return;
+      }
+
       const currentItems = currentLevel === "main" ? items : currentSubItems;
 
       if (e.key === "ArrowUp") {
