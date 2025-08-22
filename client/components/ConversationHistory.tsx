@@ -121,8 +121,7 @@ export default function ConversationHistory({
                     <div className="flex-1 min-w-0">
                       <h3
                         className={cn(
-                          "text-sm font-light leading-snug mb-1 transition-colors break-words",
-                          "line-clamp-2 overflow-hidden",
+                          "text-sm font-light leading-snug mb-1 transition-colors break-words overflow-hidden",
                           isActive
                             ? "text-slate-800"
                             : "text-slate-600 group-hover:text-slate-700"
@@ -130,7 +129,9 @@ export default function ConversationHistory({
                         style={{
                           display: '-webkit-box',
                           WebkitLineClamp: 2,
-                          WebkitBoxOrient: 'vertical'
+                          WebkitBoxOrient: 'vertical',
+                          maxHeight: '2.5em', // Fallback for non-webkit browsers
+                          lineHeight: '1.25em'
                         }}
                       >
                         {conversation.summary}
