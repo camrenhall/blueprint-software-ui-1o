@@ -185,6 +185,8 @@ export default {
         fadeOut: "fadeOut 1s ease-out",
         fadeInUp: "fadeInUp 0.4s ease-out",
         orbit: "orbit 2s ease-in-out infinite",
+        slideInLeft: "slideInLeft 0.6s ease-out",
+        gentlePulse: "gentlePulse 2s ease-in-out infinite",
       },
     },
   },
