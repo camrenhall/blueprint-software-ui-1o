@@ -112,9 +112,12 @@ export function ConversationProvider({ children }: ConversationProviderProps) {
 
   const addMessageToConversation = (message: Message) => {
     if (!currentConversationId) return;
+    addMessageToConversationById(currentConversationId, message);
+  };
 
+  const addMessageToConversationById = (conversationId: string, message: Message) => {
     setConversations(prev => prev.map(conv => {
-      if (conv.id === currentConversationId) {
+      if (conv.id === conversationId) {
         const updatedMessages = [...conv.messages, message];
         return {
           ...conv,
