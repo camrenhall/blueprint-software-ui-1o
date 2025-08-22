@@ -195,6 +195,7 @@ export default {
         orbit: "orbit 2s ease-in-out infinite",
         slideInLeft: "slideInLeft 0.6s ease-out",
         gentlePulse: "gentlePulse 2s ease-in-out infinite",
+        textShimmer: "textShimmer 2s ease-in-out infinite",
       },
     },
   },
