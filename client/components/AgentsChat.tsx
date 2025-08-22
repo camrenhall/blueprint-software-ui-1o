@@ -228,22 +228,35 @@ How can I best support your current priorities?`,
                       <div className="flex-1">
                         {message.thinkingSteps && message.thinkingSteps.length > 0 && (
                           <div className="space-y-2">
-                            {message.thinkingSteps.map((step, index) => (
-                              <div
-                                key={index}
-                                className="text-xs text-[#0E315C]/60 animate-slideInLeft flex items-center space-x-2"
-                                style={{
-                                  animationDelay: `${index * 200}ms`,
-                                  animationFillMode: 'both'
-                                }}
-                              >
-                                <div className={cn(
-                                  "w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-300",
-                                  message.isStreaming ? "bg-[#99C0F0]/60 animate-gentlePulse" : "bg-[#99C0F0]/80"
-                                )} />
-                                <span className="leading-relaxed">{step}</span>
-                              </div>
-                            ))}
+                            {message.thinkingSteps.map((step, index) => {
+                              const isActiveStep = message.isStreaming && index === message.currentStepIndex;
+                              return (
+                                <div
+                                  key={index}
+                                  className="text-xs animate-slideInLeft flex items-center space-x-2"
+                                  style={{
+                                    animationDelay: `${index * 200}ms`,
+                                    animationFillMode: 'both'
+                                  }}
+                                >
+                                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 bg-[#99C0F0]/80" />
+                                  <span
+                                    className={cn(
+                                      "leading-relaxed transition-all duration-300",
+                                      isActiveStep ? [
+                                        "text-transparent bg-gradient-to-r from-[#0E315C]/40 via-[#99C0F0] to-[#0E315C]/40",
+                                        "bg-clip-text animate-textShimmer bg-300% font-medium"
+                                      ] : "text-[#0E315C]/60"
+                                    )}
+                                    style={isActiveStep ? {
+                                      backgroundSize: "300% 100%"
+                                    } : {}}
+                                  >
+                                    {step}
+                                  </span>
+                                </div>
+                              );
+                            })}
                           </div>
                         )}
                       </div>
