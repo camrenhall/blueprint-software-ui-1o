@@ -158,7 +158,7 @@ export default function Login() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`w-full py-4 px-6 rounded-2xl text-white font-medium transition-all duration-700 transform hover:scale-[1.02] relative overflow-hidden group ${
+                  className={`w-full py-4 lg:py-5 px-6 lg:px-8 rounded-2xl text-white font-medium lg:font-semibold lg:text-lg transition-all duration-700 transform hover:scale-[1.02] relative overflow-hidden group ${
                     isFormComplete
                       ? "bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] shadow-xl shadow-[#99C0F0]/25"
                       : "bg-gradient-to-r from-[#99C0F0]/80 to-[#C5BFEE]/70 shadow-lg shadow-[#99C0F0]/15"
