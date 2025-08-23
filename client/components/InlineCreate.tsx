@@ -47,8 +47,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
   return (
     <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-visible px-8 py-8 relative flex flex-col rounded-3xl">
       {/* Enhanced Background Gradient */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
-      <div className="absolute inset-0 rounded-3xl bg-white/20 backdrop-blur-sm" />
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/60 via-[#C1D9F6]/20 to-[#99C0F0]/15" />
 
       {/* Header */}
       <div className="relative z-10 text-center mb-8 flex-shrink-0">
@@ -259,20 +258,12 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         {/* Step 2: Document Selection */}
         {createStep === 2 && (
           <div className="space-y-6 h-full flex flex-col">
-            <div className="flex items-center justify-between flex-shrink-0">
-              <div>
-                <h2 className="text-lg font-medium text-[#0E315C] mb-1">
-                  Select Documents
-                </h2>
-                <p className="text-[#0E315C]/70 text-sm">
-                  Choose documents to request from your client
-                </p>
-              </div>
+            <div className="flex items-center justify-end flex-shrink-0">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => handleStepTransition(1)}
-                className="flex items-center space-x-2 text-[#0E315C]/80 hover:text-[#0E315C] bg-white/80 hover:bg-white/90 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 shadow-sm backdrop-blur-sm"
+                className="flex items-center space-x-2 text-[#0E315C]/80 hover:text-[#0E315C] bg-white/90 hover:bg-white border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 shadow-sm"
               >
                 <svg
                   className="w-4 h-4"
