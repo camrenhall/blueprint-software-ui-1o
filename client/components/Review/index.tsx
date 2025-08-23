@@ -21,6 +21,7 @@ export default function Review({ onClose }: ReviewProps) {
   const [sortBy, setSortBy] = useState<SortOption>("priority");
   const [viewMode, setViewMode] = useState<ViewMode>("detailed");
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Mock case data (in real app, this would come from props or API)
   const allCases: Case[] = useMemo(
@@ -148,7 +149,13 @@ export default function Review({ onClose }: ReviewProps) {
   };
 
   const handleViewModeChange = (mode: ViewMode) => {
-    setViewMode(mode);
+    if (mode !== viewMode) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setViewMode(mode);
+        setTimeout(() => setIsTransitioning(false), 100);
+      }, 150);
+    }
   };
 
   const handleCaseSelect = (caseItem: Case) => {
@@ -212,20 +219,25 @@ export default function Review({ onClose }: ReviewProps) {
       />
 
       {/* Cases Content */}
-      {viewMode === "kanban" ? (
-        <KanbanView
-          cases={processedCases}
-          onCaseSelect={handleCaseSelect}
-          className="transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0"
-        />
-      ) : (
-        <CaseList
-          cases={processedCases}
-          onCaseSelect={handleCaseSelect}
-          isCompact={viewMode === "compact"}
-          className="transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0"
-        />
-      )}
+      <div className={cn(
+        "transition-all duration-300 ease-out",
+        isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"
+      )}>
+        {viewMode === "kanban" ? (
+          <KanbanView
+            cases={processedCases}
+            onCaseSelect={handleCaseSelect}
+            className="transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
+          />
+        ) : (
+          <CaseList
+            cases={processedCases}
+            onCaseSelect={handleCaseSelect}
+            isCompact={viewMode === "compact"}
+            className="transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
+          />
+        )}
+      </div>
 
       {/* Case Modal */}
       <CaseModal case={selectedCase} onClose={closeModal} />
