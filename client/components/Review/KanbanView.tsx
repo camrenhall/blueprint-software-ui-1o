@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Case, CaseStatus } from "./types";
 import { KanbanColumn } from "./KanbanColumn";
@@ -14,6 +14,12 @@ export function KanbanView({
   onCaseSelect,
   className,
 }: KanbanViewProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
   // Group cases by status
   const columnData = useMemo(() => {
     const columns: {
@@ -43,8 +49,11 @@ export function KanbanView({
 
   return (
     <div className={cn("relative z-10 flex-1 overflow-hidden", className)}>
-      <div className="h-full px-2">
-        <div className="h-full flex gap-6">
+      {/* Background enhancement */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#C1D9F6]/5 via-transparent to-[#99C0F0]/5 pointer-events-none" />
+
+      <div className="h-full px-4">
+        <div className="h-full flex gap-8 lg:gap-6 md:gap-4 sm:gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-[#C1D9F6]/40 scrollbar-track-transparent">
           {columnData.map((column, index) => (
             <KanbanColumn
               key={column.status}
@@ -53,14 +62,20 @@ export function KanbanView({
               cases={column.cases}
               onCaseSelect={onCaseSelect}
               className={cn(
-                "transition-all duration-1000 ease-out opacity-100 transform translate-y-0",
+                "transition-all duration-1200 ease-out opacity-100 transform translate-y-0",
+                "animate-fadeInUp",
               )}
               style={{
-                animationDelay: `${index * 200}ms`,
+                animationDelay: `${index * 300}ms`,
               }}
             />
           ))}
         </div>
+
+        {/* Floating elements for visual enhancement */}
+        <div className="absolute top-10 left-10 w-32 h-32 bg-[#C1D9F6]/10 rounded-full blur-3xl animate-float pointer-events-none" />
+        <div className="absolute bottom-20 right-20 w-24 h-24 bg-[#99C0F0]/10 rounded-full blur-2xl animate-float-slow pointer-events-none" />
+        <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-[#C5BFEE]/10 rounded-full blur-xl animate-drift pointer-events-none" />
       </div>
     </div>
   );
