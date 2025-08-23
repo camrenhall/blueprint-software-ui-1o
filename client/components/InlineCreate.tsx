@@ -560,6 +560,16 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             </div>
           </div>
         )}
+
+        {/* Template Conflict Modal */}
+        <TemplateConflictModal
+          isOpen={documentSelection.showTemplateConflictModal}
+          template={documentSelection.pendingTemplate}
+          selectedCount={documentSelection.selectedDocuments.length}
+          onReplace={documentSelection.handleConfirmTemplateReplace}
+          onAdd={documentSelection.handleConfirmTemplateAdd}
+          onCancel={documentSelection.handleCancelTemplate}
+        />
       </div>
     </div>
   );
