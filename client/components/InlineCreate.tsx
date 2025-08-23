@@ -544,6 +544,12 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       <span className="text-[#0E315C]">{caseInfo.phone}</span>
                     </div>
                   )}
+                  <div className="flex justify-between">
+                    <span className="text-[#0E315C]/70">Documents:</span>
+                    <span className="text-[#0E315C]">
+                      {documentSelection.getDocumentCounts().total} selected
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -562,6 +568,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     phone: "",
                     caseType: "",
                   });
+                  documentSelection.setSelectedDocuments([]);
                 }}
                 className="bg-[#C5BFEE] hover:bg-[#0E315C] text-white px-6 py-2 rounded-xl transition-all flex items-center space-x-2 shadow-lg shadow-[#C5BFEE]/20"
               >
