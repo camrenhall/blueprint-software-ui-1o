@@ -132,9 +132,10 @@ export default function Login() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-0 py-4 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] transition-all duration-500 text-lg font-light group-hover:border-[#C1D9F6]/50"
+                      className="w-full px-0 py-4 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg font-light group-hover:border-[#C1D9F6]/50"
                       placeholder="Email address"
                       required
+                      style={{ outline: 'none', boxShadow: 'none' }}
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] transition-all duration-500 group-focus-within:w-full"></div>
                   </div>
