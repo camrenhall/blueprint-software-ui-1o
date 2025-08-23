@@ -260,7 +260,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
           <div className="space-y-6 h-full flex flex-col">
 
             {/* Document Library Interface */}
-            <div className="h-[45vh] flex-shrink-0">
+            <div className="h-[40vh] flex-shrink-0">
               <DocumentLibrary
                 availableDocuments={documentSelection.availableDocuments}
                 selectedDocuments={documentSelection.selectedDocuments}
@@ -274,40 +274,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               />
             </div>
 
-            {/* Status and Navigation */}
-            <div className="space-y-4 pt-4 flex-shrink-0">
-              {/* Document Selection Status */}
-              <div className="flex items-center justify-center">
-                <div className="flex items-center space-x-4">
-                  {documentSelection.selectedDocuments.length > 0 && (
-                    <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm backdrop-blur-sm">
-                      <div className="flex items-center space-x-3 text-sm">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
-                          <span className="text-[#0E315C]/70">
-                            {documentSelection.getDocumentCounts().required} required
-                          </span>
-                        </div>
-                        {documentSelection.getDocumentCounts().optional > 0 && (
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
-                            <span className="text-[#0E315C]/70">
-                              {documentSelection.getDocumentCounts().optional} optional
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  )}
-                  {createMethod === "ai" && documentSelection.selectedDocuments.length === 0 && (
-                    <p className="text-[#0E315C]/50 text-sm font-light">
-                      AI suggestions will appear here based on your case description
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              {/* Navigation Buttons */}
+            {/* Compact Navigation Bar */}
+            <div className="pt-3 flex-shrink-0">
               <div className="flex items-center justify-between">
                 {/* Back Button */}
                 <button
@@ -332,14 +300,34 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   </span>
                 </button>
 
-                {/* Document Count Indicator */}
-                {documentSelection.selectedDocuments.length > 0 && (
-                  <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light">
-                    <div className="w-1.5 h-1.5 bg-[#99C0F0]/60 rounded-full animate-pulse" />
-                    <span>
-                      {documentSelection.selectedDocuments.length} document{documentSelection.selectedDocuments.length !== 1 ? 's' : ''} selected
-                    </span>
+                {/* Document Status Indicator - Center */}
+                {documentSelection.selectedDocuments.length > 0 ? (
+                  <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm backdrop-blur-sm">
+                    <div className="flex items-center space-x-3 text-sm">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
+                        <span className="text-[#0E315C]/70">
+                          {documentSelection.getDocumentCounts().required} required
+                        </span>
+                      </div>
+                      {documentSelection.getDocumentCounts().optional > 0 && (
+                        <div className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                          <span className="text-[#0E315C]/70">
+                            {documentSelection.getDocumentCounts().optional} optional
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
+                ) : createMethod === "ai" ? (
+                  <p className="text-[#0E315C]/50 text-sm font-light">
+                    AI suggestions will appear here
+                  </p>
+                ) : (
+                  <p className="text-[#0E315C]/40 text-xs font-light">
+                    Select at least one document to continue
+                  </p>
                 )}
 
                 {/* Next Button */}
@@ -366,15 +354,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   </svg>
                 </button>
               </div>
-
-              {/* Helpful Message when no documents selected */}
-              {documentSelection.selectedDocuments.length === 0 && createMethod !== "ai" && (
-                <div className="text-center py-2">
-                  <p className="text-[#0E315C]/40 text-xs font-light">
-                    Select at least one document to continue
-                  </p>
-                </div>
-              )}
             </div>
           </div>
         )}
