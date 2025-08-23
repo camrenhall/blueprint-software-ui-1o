@@ -194,7 +194,11 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full relative overflow-hidden bg-gradient-to-r from-[#99C0F0]/80 to-[#C5BFEE]/70 backdrop-blur-md border border-[#99C0F0]/60 hover:border-[#99C0F0]/90 hover:from-[#99C0F0]/90 hover:to-[#C5BFEE]/80 hover:shadow-xl hover:shadow-[#99C0F0]/25 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:transform-none disabled:hover:from-[#99C0F0]/80 disabled:hover:to-[#C5BFEE]/70 disabled:hover:border-[#99C0F0]/60 disabled:hover:shadow-none disabled:hover:scale-100"
+                className={`w-full relative overflow-hidden bg-gradient-to-r ${
+                  isFormComplete
+                    ? "from-[#99C0F0]/95 to-[#C5BFEE]/90 border-[#99C0F0]/80 shadow-lg shadow-[#99C0F0]/20"
+                    : "from-[#99C0F0]/80 to-[#C5BFEE]/70 border-[#99C0F0]/60"
+                } backdrop-blur-md border hover:border-[#99C0F0]/90 hover:from-[#99C0F0]/95 hover:to-[#C5BFEE]/90 hover:shadow-xl hover:shadow-[#99C0F0]/25 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:transform-none disabled:hover:from-[#99C0F0]/80 disabled:hover:to-[#C5BFEE]/70 disabled:hover:border-[#99C0F0]/60 disabled:hover:shadow-none disabled:hover:scale-100`}
               >
                 <div className="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
                 <div className="relative z-10">
