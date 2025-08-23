@@ -55,7 +55,7 @@ export default function DocumentLibrary({
   );
 
   return (
-    <div className="grid grid-cols-12 gap-6 h-full">
+    <div className="grid grid-cols-12 gap-6 h-full max-h-full">
       {/* Document Library Panel - Left Side */}
       <div className="col-span-7 flex flex-col">
         <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-full overflow-hidden">
