@@ -51,7 +51,7 @@ export default function Login() {
 
       <div className="relative z-10 min-h-screen flex items-center">
         {/* Hero section - Left side */}
-        <div className="flex-1 pl-16 md:pl-24 lg:pl-32 pr-8 max-w-2xl">
+        <div className="flex-1 pl-8 sm:pl-12 md:pl-16 lg:pl-24 xl:pl-32 2xl:pl-40 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
           <div
             className={`space-y-12 transition-all duration-1000 ease-out ${
               isAnimated
