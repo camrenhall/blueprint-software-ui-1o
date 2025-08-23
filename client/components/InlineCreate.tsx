@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import DocumentLibrary from "./DocumentLibrary";
 import TemplateConflictModal from "./TemplateConflictModal";
 import { useDocumentSelection } from "../hooks/useDocumentSelection";
+import { Button } from "@/components/ui/button";
 
 interface InlineCreateProps {
   onClose?: () => void;
@@ -267,9 +268,11 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   Choose documents to request from your client
                 </p>
               </div>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleStepTransition(1)}
-                className="flex items-center space-x-2 px-3 py-2 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-[#C1D9F6]/20 rounded-lg transition-all text-sm"
+                className="flex items-center space-x-2 text-[#0E315C]/80 hover:text-[#0E315C] bg-white/80 hover:bg-white/90 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 shadow-sm backdrop-blur-sm"
               >
                 <svg
                   className="w-4 h-4"
@@ -284,8 +287,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     d="M15 19l-7-7 7-7"
                   />
                 </svg>
-                <span>Back</span>
-              </button>
+                <span className="font-light">Back</span>
+              </Button>
             </div>
 
             {/* Document Library Interface */}
@@ -307,7 +310,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             <div className="flex items-center justify-between pt-4 flex-shrink-0">
               <div className="flex items-center space-x-4">
                 {documentSelection.selectedDocuments.length > 0 && (
-                  <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-xl px-4 py-2">
+                  <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm">
                     <div className="flex items-center space-x-3 text-sm">
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
