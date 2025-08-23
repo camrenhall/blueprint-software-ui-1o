@@ -221,21 +221,21 @@ export default function Review({ onClose }: ReviewProps) {
 
       {/* Cases Content */}
       <div className={cn(
-        "transition-all duration-300 ease-out",
+        "flex-1 min-h-0 transition-all duration-300 ease-out",
         isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"
       )}>
         {viewMode === "kanban" ? (
           <KanbanView
             cases={processedCases}
             onCaseSelect={handleCaseSelect}
-            className="transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
+            className="h-full transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
           />
         ) : (
           <CaseList
             cases={processedCases}
             onCaseSelect={handleCaseSelect}
             isCompact={viewMode === "compact"}
-            className="transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
+            className="h-full transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
           />
         )}
       </div>
