@@ -60,8 +60,8 @@ export function KanbanView({
       <div className="h-full mx-2">
         <div className="h-full border border-[#C1D9F6]/50 rounded-3xl overflow-hidden relative">
           <div className="h-full overflow-y-auto document-scroll">
-            <div className="px-6 lg:px-4 md:px-3 py-6">
-              <div className="flex gap-8 lg:gap-6 md:gap-4 sm:gap-3">
+            <div className="px-6 lg:px-4 md:px-3 py-6 pb-8">
+              <div className="flex gap-8 lg:gap-6 md:gap-4 sm:gap-3 items-start">
                 {columnData.map((column, index) => (
                   <KanbanColumn
                     key={column.status}
