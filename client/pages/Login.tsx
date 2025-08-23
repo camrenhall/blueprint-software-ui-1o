@@ -117,7 +117,7 @@ export default function Login() {
             }`}
           >
             {/* Enhanced floating card */}
-            <div className="bg-white/95 backdrop-blur-2xl rounded-3xl border border-white/50 shadow-2xl shadow-[#99C0F0]/8 p-12 transform hover:scale-[1.01] transition-all duration-700 hover:shadow-[#99C0F0]/12">
+            <div className="bg-white/95 backdrop-blur-2xl rounded-3xl border border-white/50 shadow-2xl shadow-[#99C0F0]/8 p-8 sm:p-10 md:p-12 lg:p-14 xl:p-16 transform hover:scale-[1.01] transition-all duration-700 hover:shadow-[#99C0F0]/12">
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Header */}
                 <div className="text-center mb-8">
