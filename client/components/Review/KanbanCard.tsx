@@ -97,17 +97,6 @@ export function KanbanCard({
         </div>
       </div>
 
-      {/* Enhanced Hover Effects */}
-      <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-        {/* Shimmer effect */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-
-        {/* Pulse indicator */}
-        <div className="absolute top-3 right-3 w-2 h-2 bg-[#99C0F0] rounded-full animate-gentlePulse shadow-lg" />
-
-        {/* Corner glow */}
-        <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#99C0F0]/20 to-transparent rounded-3xl" />
-      </div>
     </button>
   );
 }
