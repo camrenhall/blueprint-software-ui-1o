@@ -47,7 +47,7 @@ export function CaseList({
       >
         <div
           className={cn(
-            "h-full overflow-y-auto px-4 pt-3 pb-4",
+            "h-full overflow-y-auto px-6 py-6",
             isCompact ? "space-y-2" : "space-y-5",
           )}
         >
