@@ -96,43 +96,47 @@ export function KanbanColumn({
       </div>
 
       {/* Cases Container */}
-      <div className="flex-1 min-h-0 overflow-y-auto document-scroll">
-        <div className="space-y-5 pb-6">
-          {cases.length === 0 ? (
-            <div className="bg-white/20 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-10 text-center group hover:bg-white/25 transition-all duration-500">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#C1D9F6]/20 to-[#99C0F0]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <div
-                  className={cn(
-                    "w-8 h-8 rounded-full animate-gentlePulse",
-                    statusColors.dot,
-                    "opacity-40",
-                  )}
-                />
-              </div>
-              <p className="text-[#0E315C]/60 text-base font-medium mb-2">
-                No cases in this status
-              </p>
-              <p className="text-[#0E315C]/40 text-sm font-light">
-                Cases will appear here when they reach this stage
-              </p>
+      <div className="flex-1 min-h-0">
+        <div className="h-full border border-[#C1D9F6]/50 rounded-3xl overflow-hidden">
+          <div className="h-full overflow-y-auto document-scroll px-4 pt-4 pb-6">
+            <div className="space-y-5">
+              {cases.length === 0 ? (
+                <div className="bg-white/20 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-10 text-center group hover:bg-white/25 transition-all duration-500">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#C1D9F6]/20 to-[#99C0F0]/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div
+                      className={cn(
+                        "w-8 h-8 rounded-full animate-gentlePulse",
+                        statusColors.dot,
+                        "opacity-40",
+                      )}
+                    />
+                  </div>
+                  <p className="text-[#0E315C]/60 text-base font-medium mb-2">
+                    No cases in this status
+                  </p>
+                  <p className="text-[#0E315C]/40 text-sm font-light">
+                    Cases will appear here when they reach this stage
+                  </p>
 
-              {/* Dashed drop zone indicator */}
-              <div className="mt-6 border-2 border-dashed border-[#C1D9F6]/30 rounded-2xl p-6 group-hover:border-[#C1D9F6]/50 transition-colors duration-300">
-                <div className="text-xs text-[#0E315C]/30 font-medium uppercase tracking-wider">
-                  Drop Zone
+                  {/* Dashed drop zone indicator */}
+                  <div className="mt-6 border-2 border-dashed border-[#C1D9F6]/30 rounded-2xl p-6 group-hover:border-[#C1D9F6]/50 transition-colors duration-300">
+                    <div className="text-xs text-[#0E315C]/30 font-medium uppercase tracking-wider">
+                      Drop Zone
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                cases.map((caseItem, index) => (
+                  <KanbanCard
+                    key={caseItem.id}
+                    case={caseItem}
+                    index={index}
+                    onClick={onCaseSelect}
+                  />
+                ))
+              )}
             </div>
-          ) : (
-            cases.map((caseItem, index) => (
-              <KanbanCard
-                key={caseItem.id}
-                case={caseItem}
-                index={index}
-                onClick={onCaseSelect}
-              />
-            ))
-          )}
+          </div>
         </div>
       </div>
     </div>
