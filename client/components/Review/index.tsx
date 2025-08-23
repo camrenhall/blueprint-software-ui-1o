@@ -6,7 +6,7 @@ import { filterCases, sortCases, convertLegacyCase } from "./utils";
 import { SearchFilterBar, SortOption, ViewMode } from "./SearchFilterBar";
 import { CaseList } from "./CaseList";
 import { KanbanView } from "./KanbanView";
-import { CaseModal } from "./CaseModal";
+import CaseDetailsNew from "../CaseDetailsNew";
 
 interface ReviewProps {
   onClose?: () => void;
