@@ -54,15 +54,17 @@ export function SearchFilterBar({
   onClearFilters,
   sortBy,
   onSortChange,
-  isCompact,
-  onCompactToggle,
+  viewMode,
+  onViewModeChange,
   className,
 }: SearchFilterBarProps) {
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const [viewDropdownOpen, setViewDropdownOpen] = useState(false);
 
   const filterDropdownRef = useRef<HTMLDivElement>(null);
   const sortDropdownRef = useRef<HTMLDivElement>(null);
+  const viewDropdownRef = useRef<HTMLDivElement>(null);
 
   const hasActiveFilters = activeFilters.length > 0;
   const hasActiveSearch = searchValue.trim().length > 0;
@@ -83,6 +85,12 @@ export function SearchFilterBar({
       ) {
         setSortDropdownOpen(false);
       }
+      if (
+        viewDropdownRef.current &&
+        !viewDropdownRef.current.contains(event.target as Node)
+      ) {
+        setViewDropdownOpen(false);
+      }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -92,12 +100,20 @@ export function SearchFilterBar({
   // Ensure only one dropdown is open at a time
   const handleFilterDropdownToggle = () => {
     if (sortDropdownOpen) setSortDropdownOpen(false);
+    if (viewDropdownOpen) setViewDropdownOpen(false);
     setFilterDropdownOpen(!filterDropdownOpen);
   };
 
   const handleSortDropdownToggle = () => {
     if (filterDropdownOpen) setFilterDropdownOpen(false);
+    if (viewDropdownOpen) setViewDropdownOpen(false);
     setSortDropdownOpen(!sortDropdownOpen);
+  };
+
+  const handleViewDropdownToggle = () => {
+    if (filterDropdownOpen) setFilterDropdownOpen(false);
+    if (sortDropdownOpen) setSortDropdownOpen(false);
+    setViewDropdownOpen(!viewDropdownOpen);
   };
 
   const clearAllFilters = () => {
