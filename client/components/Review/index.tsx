@@ -2,8 +2,9 @@ import { useState, useMemo } from "react";
 import { X } from "lucide-react";
 import { Case } from "./types";
 import { filterCases, sortCases, convertLegacyCase } from "./utils";
-import { SearchFilterBar, SortOption } from "./SearchFilterBar";
+import { SearchFilterBar, SortOption, ViewMode } from "./SearchFilterBar";
 import { CaseList } from "./CaseList";
+import { KanbanView } from "./KanbanView";
 import { CaseModal } from "./CaseModal";
 
 interface ReviewProps {
@@ -14,7 +15,7 @@ export default function Review({ onClose }: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("priority");
-  const [isCompact, setIsCompact] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>("detailed");
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
 
   // Mock case data (in real app, this would come from props or API)
@@ -142,8 +143,8 @@ export default function Review({ onClose }: ReviewProps) {
     setActiveFilters([]);
   };
 
-  const toggleCompactView = () => {
-    setIsCompact(!isCompact);
+  const handleViewModeChange = (mode: ViewMode) => {
+    setViewMode(mode);
   };
 
   const handleCaseSelect = (caseItem: Case) => {
@@ -167,17 +168,17 @@ export default function Review({ onClose }: ReviewProps) {
             <h1 className="text-4xl font-light text-[#0E315C] tracking-wide">
               Case Management
             </h1>
-            {isCompact && (
+            {viewMode !== "detailed" && (
               <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
-                Compact View
+                {viewMode === "compact" ? "Compact View" : "Kanban Board"}
               </div>
             )}
           </div>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">
             Comprehensive case tracking and management across all status types
-            {isCompact && (
+            {viewMode !== "detailed" && (
               <span className="block text-sm text-[#0E315C]/50 mt-1">
-                Viewing {processedCases.length} cases in compact layout
+                Viewing {processedCases.length} cases in {viewMode} {viewMode === "kanban" ? "board" : "layout"}
               </span>
             )}
           </p>
@@ -201,18 +202,26 @@ export default function Review({ onClose }: ReviewProps) {
         onClearFilters={clearFilters}
         sortBy={sortBy}
         onSortChange={setSortBy}
-        isCompact={isCompact}
-        onCompactToggle={toggleCompactView}
+        viewMode={viewMode}
+        onViewModeChange={handleViewModeChange}
         className="mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
       />
 
-      {/* Cases List */}
-      <CaseList
-        cases={processedCases}
-        onCaseSelect={handleCaseSelect}
-        isCompact={isCompact}
-        className="transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0"
-      />
+      {/* Cases Content */}
+      {viewMode === "kanban" ? (
+        <KanbanView
+          cases={processedCases}
+          onCaseSelect={handleCaseSelect}
+          className="transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0"
+        />
+      ) : (
+        <CaseList
+          cases={processedCases}
+          onCaseSelect={handleCaseSelect}
+          isCompact={viewMode === "compact"}
+          className="transition-all duration-1000 ease-out delay-700 opacity-100 transform translate-y-0"
+        />
+      )}
 
       {/* Case Modal */}
       <CaseModal case={selectedCase} onClose={closeModal} />
