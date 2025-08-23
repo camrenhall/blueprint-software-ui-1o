@@ -11,9 +11,6 @@ import {
 
 function IndexContent() {
   const { isInChatMode } = useConversationContext();
-  const [dashboardOpen, setDashboardOpen] = useState(false);
-  const [dashboardTitle, setDashboardTitle] = useState("");
-  const [dashboardPage, setDashboardPage] = useState("overview");
   const [isVisible, setIsVisible] = useState(false);
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
     "agents",
