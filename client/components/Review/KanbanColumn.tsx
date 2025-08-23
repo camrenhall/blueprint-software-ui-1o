@@ -23,7 +23,7 @@ export function KanbanColumn({
   return (
     <div
       className={cn(
-        "flex-1 min-h-0 flex flex-col min-w-[320px] lg:min-w-[280px] md:min-w-[260px] snap-start",
+        "flex flex-col min-w-[320px] lg:min-w-[280px] md:min-w-[260px] snap-start",
         className,
       )}
     >
@@ -96,9 +96,9 @@ export function KanbanColumn({
       </div>
 
       {/* Cases Container */}
-      <div className="flex-1 min-h-0">
-        <div className="h-full border border-[#C1D9F6]/50 rounded-3xl overflow-hidden">
-          <div className="h-full overflow-y-auto document-scroll px-6 py-6">
+      <div className="">
+        <div className="border border-[#C1D9F6]/50 rounded-3xl">
+          <div className="px-6 py-6">
             <div className="space-y-5">
               {cases.length === 0 ? (
                 <div className="bg-white/20 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-10 text-center group hover:bg-white/25 transition-all duration-500">
