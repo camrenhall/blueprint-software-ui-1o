@@ -262,7 +262,7 @@ export default function CaseDetailsNew({
     <div className="fixed inset-0 bg-gradient-to-br from-[#C1D9F6]/30 via-white/50 to-[#99C0F0]/20 backdrop-blur-sm z-50 overflow-hidden animate-fadeIn">
       <div className="h-full flex flex-col">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-xl border-b border-[#C1D9F6]/30 p-6 flex-shrink-0">
+        <div className="bg-white/90 backdrop-blur-xl border-b border-[#C1D9F6]/30 p-6 flex-shrink-0 animate-slideInLeft">
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={onBack}
@@ -321,7 +321,7 @@ export default function CaseDetailsNew({
             {/* Left Column - Main Content */}
             <div className="col-span-8 space-y-6 overflow-y-auto">
               {/* Case Progress */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{animationDelay: '200ms'}}>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-xl font-light text-[#0E315C] flex items-center space-x-3">
                     <CheckCircle2 className="w-6 h-6 text-emerald-500" />
@@ -360,7 +360,7 @@ export default function CaseDetailsNew({
               </div>
 
               {/* Documents Section */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{animationDelay: '400ms'}}>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-xl font-light text-[#0E315C] flex items-center space-x-3">
                     <FileText className="w-6 h-6 text-[#99C0F0]" />
@@ -402,7 +402,7 @@ export default function CaseDetailsNew({
               </div>
 
               {/* Recent Activity */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{animationDelay: '600ms'}}>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-xl font-light text-[#0E315C] flex items-center space-x-3">
                     <Clock className="w-6 h-6 text-[#C5BFEE]" />
@@ -438,7 +438,7 @@ export default function CaseDetailsNew({
             {/* Right Column - Sidebar */}
             <div className="col-span-4 space-y-6">
               {/* Case Overview */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 animate-fadeInUp" style={{animationDelay: '300ms'}}>
                 <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
                   <Users className="w-5 h-5 text-[#99C0F0]" />
                   <span>Case Overview</span>
@@ -464,7 +464,7 @@ export default function CaseDetailsNew({
               </div>
 
               {/* Communications */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 animate-fadeInUp" style={{animationDelay: '500ms'}}>
                 <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
                   <MessageSquare className="w-5 h-5 text-[#C5BFEE]" />
                   <span>Communications</span>
@@ -491,7 +491,7 @@ export default function CaseDetailsNew({
               </div>
 
               {/* Quick Actions */}
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30">
+              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 shadow-xl border border-[#C1D9F6]/30 animate-fadeInUp" style={{animationDelay: '700ms'}}>
                 <h3 className="text-lg font-light text-[#0E315C] mb-4">Quick Actions</h3>
                 <div className="space-y-3">
                   <button className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#0E315C] text-white py-3 px-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-light">
