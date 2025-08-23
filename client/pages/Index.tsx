@@ -186,12 +186,12 @@ function IndexContent() {
                 </div>
               )}
               {activeRightContent === "create" && (
-                <div className="w-full max-w-[calc(100vw-20rem)] sm:max-w-[calc(100vw-22rem)] md:max-w-4xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto">
+                <div className="w-full max-w-[calc(100vw-24rem)] sm:max-w-[calc(100vw-26rem)] md:max-w-3xl lg:max-w-4xl xl:max-w-4xl 2xl:max-w-5xl mx-auto">
                   <InlineCreate onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
               {activeRightContent === "review" && (
-                <div className="w-full max-w-[calc(100vw-20rem)] sm:max-w-[calc(100vw-22rem)] md:max-w-4xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto">
+                <div className="w-full max-w-[calc(100vw-24rem)] sm:max-w-[calc(100vw-26rem)] md:max-w-3xl lg:max-w-4xl xl:max-w-4xl 2xl:max-w-5xl mx-auto">
                   <InlineReview onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
