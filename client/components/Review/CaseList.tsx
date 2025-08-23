@@ -39,30 +39,36 @@ export function CaseList({
   }
 
   return (
-    <div className={cn("relative z-10 h-full overflow-y-auto", className)}>
+    <div className={cn("relative z-10 h-full", className)}>
       <div
         className={cn(
-          "px-4 pt-3 pb-4 transition-all duration-300 border border-[#C1D9F6]/50 rounded-3xl mx-2",
-          isCompact ? "space-y-2" : "space-y-5",
+          "h-full transition-all duration-300 border border-[#C1D9F6]/50 rounded-3xl mx-2 overflow-hidden",
         )}
       >
-        {cases.map((caseItem, index) =>
-          isCompact ? (
-            <CaseRowCompact
-              key={caseItem.id}
-              case={caseItem}
-              index={index}
-              onClick={onCaseSelect}
-            />
-          ) : (
-            <CaseRow
-              key={caseItem.id}
-              case={caseItem}
-              index={index}
-              onClick={onCaseSelect}
-            />
-          ),
-        )}
+        <div
+          className={cn(
+            "h-full overflow-y-auto px-4 pt-3 pb-4",
+            isCompact ? "space-y-2" : "space-y-5",
+          )}
+        >
+          {cases.map((caseItem, index) =>
+            isCompact ? (
+              <CaseRowCompact
+                key={caseItem.id}
+                case={caseItem}
+                index={index}
+                onClick={onCaseSelect}
+              />
+            ) : (
+              <CaseRow
+                key={caseItem.id}
+                case={caseItem}
+                index={index}
+                onClick={onCaseSelect}
+              />
+            ),
+          )}
+        </div>
       </div>
     </div>
   );
