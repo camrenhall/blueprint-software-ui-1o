@@ -168,7 +168,7 @@ export default function Review({ onClose }: ReviewProps) {
   };
 
   return (
-    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-hidden px-8 lg:px-6 md:px-4 py-8 lg:py-6 md:py-4 relative flex flex-col rounded-3xl lg:rounded-2xl md:rounded-xl">
+    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] px-8 lg:px-6 md:px-4 py-8 lg:py-6 md:py-4 relative flex flex-col rounded-3xl lg:rounded-2xl md:rounded-xl">
       {/* Enhanced Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl" />
       <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
