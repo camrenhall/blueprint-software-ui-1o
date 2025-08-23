@@ -259,23 +259,23 @@ export default function CaseDetailsNew({
   }
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-[#C1D9F6]/30 via-white/50 to-[#99C0F0]/20 backdrop-blur-sm z-50 overflow-hidden animate-fadeIn">
-      <div className="h-full flex flex-col">
+    <div className="fixed inset-0 bg-gradient-to-br from-[#C1D9F6]/30 via-white/50 to-[#99C0F0]/20 backdrop-blur-sm z-50 animate-fadeIn">
+      <div className="h-full max-h-screen flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-xl border-b border-[#C1D9F6]/30 p-6 flex-shrink-0 animate-slideInLeft">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white/90 backdrop-blur-xl border-b border-[#C1D9F6]/30 p-4 flex-shrink-0 animate-slideInLeft">
+          <div className="flex items-center justify-between mb-3">
             <button
               onClick={onBack}
               className="flex items-center space-x-3 text-[#0E315C]/70 hover:text-[#0E315C] transition-all duration-300 hover:scale-105"
             >
               <ArrowLeft className="w-5 h-5" />
-              <span className="font-light">Back to Review</span>
+              <span className="font-light text-sm">Back to Review</span>
             </button>
             <button
               onClick={onBack}
-              className="w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110"
+              className="w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
