@@ -58,7 +58,7 @@ export default function DocumentLibrary({
     <div className="grid grid-cols-12 gap-6 h-full max-h-full">
       {/* Document Library Panel - Left Side */}
       <div className="col-span-7 flex flex-col">
-        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-full overflow-hidden">
+        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-[46vh] mb-4 overflow-hidden">
           {/* Header */}
           <div className="px-6 py-5 border-b border-[#C1D9F6]/20 flex-shrink-0">
             <div className="flex items-center justify-between">
@@ -164,7 +164,7 @@ export default function DocumentLibrary({
           )}
 
           {/* Document List */}
-          <div className="h-[400px] max-h-[400px] overflow-y-auto document-scroll px-6 py-4">
+          <div className="flex-1 overflow-y-auto document-scroll px-6 py-4 rounded-b-3xl">
             <div className="space-y-2">
               {filteredAvailableDocuments.length > 0 ? (
                 filteredAvailableDocuments.map((doc, index) => (
@@ -200,7 +200,7 @@ export default function DocumentLibrary({
 
       {/* Selected Documents Panel - Right Side */}
       <div className="col-span-5 flex flex-col">
-        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-full overflow-hidden">
+        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-[46vh] mb-4 overflow-hidden">
           {/* Header */}
           <div className="px-6 py-5 border-b border-[#C1D9F6]/20 flex-shrink-0">
             <div className="flex items-center justify-between">
