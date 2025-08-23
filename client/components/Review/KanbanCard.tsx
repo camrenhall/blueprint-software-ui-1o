@@ -26,8 +26,8 @@ export function KanbanCard({
         statusColors.border,
         "hover:bg-white/60 hover:shadow-xl hover:shadow-[#99C0F0]/10",
         statusColors.hover,
-        "hover:border-opacity-90 transition-all duration-700 ease-out p-6 lg:p-5 md:p-4 rounded-3xl lg:rounded-2xl md:rounded-xl text-left group hover:scale-[1.03] md:hover:scale-[1.02] transform",
-        "animate-fadeInUp min-h-[220px] lg:min-h-[200px] md:min-h-[180px] flex flex-col relative overflow-hidden",
+        "hover:border-opacity-90 transition-all duration-700 ease-out p-4 lg:p-3.5 md:p-3 rounded-2xl lg:rounded-xl md:rounded-lg text-left group hover:scale-[1.02] md:hover:scale-[1.01] transform",
+        "animate-fadeInUp min-h-[180px] lg:min-h-[160px] md:min-h-[140px] flex flex-col relative overflow-hidden",
         "hover:-translate-y-1 active:scale-[0.99] active:duration-150",
         className,
       )}
@@ -37,16 +37,16 @@ export function KanbanCard({
       }}
     >
       {/* Header with Avatar and Status */}
-      <div className="flex items-start justify-between mb-5">
-        <div className="w-14 h-14 lg:w-12 lg:h-12 md:w-10 md:h-10 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-2xl lg:rounded-xl md:rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 flex-shrink-0 shadow-lg group-hover:shadow-xl">
-          <span className="text-white font-semibold text-base lg:text-sm md:text-xs group-hover:scale-110 transition-transform duration-300">
+      <div className="flex items-start justify-between mb-4">
+        <div className="w-10 h-10 lg:w-9 lg:h-9 md:w-8 md:h-8 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-xl lg:rounded-lg md:rounded-md flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 flex-shrink-0 shadow-lg group-hover:shadow-xl">
+          <span className="text-white font-semibold text-sm lg:text-xs md:text-xs group-hover:scale-110 transition-transform duration-300">
             {caseItem.avatar}
           </span>
         </div>
         <div className="flex items-center space-x-2">
           <div
             className={cn(
-              "w-3.5 h-3.5 rounded-full shadow-md animate-gentlePulse",
+              "w-2.5 h-2.5 rounded-full shadow-md animate-gentlePulse",
               statusColors.dot,
             )}
           />
@@ -55,27 +55,27 @@ export function KanbanCard({
 
       {/* Case Information */}
       <div className="flex-1">
-        <h3 className="text-xl lg:text-lg md:text-base font-semibold text-[#0E315C] mb-2 leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300">
+        <h3 className="text-lg lg:text-base md:text-sm font-semibold text-[#0E315C] mb-2 leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300 truncate">
           {caseItem.name}
         </h3>
-        <p className="text-[#0E315C]/60 text-sm font-medium mb-5 bg-[#C1D9F6]/10 px-3 py-1.5 rounded-lg border border-[#C1D9F6]/20">
+        <p className="text-[#0E315C]/60 text-sm font-medium mb-3 bg-[#C1D9F6]/10 px-2.5 py-1 rounded-lg border border-[#C1D9F6]/20 truncate">
           {caseItem.caseId}
         </p>
 
         {/* Progress Section */}
-        <div className="mb-5">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-xs text-[#0E315C]/70 font-semibold uppercase tracking-wide">
+        <div className="mb-3">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs text-[#0E315C]/70 font-semibold uppercase tracking-wide truncate">
               {caseItem.progress}
             </span>
-            <span className="text-lg font-bold text-[#0E315C] bg-[#C1D9F6]/15 px-2 py-1 rounded-lg">
+            <span className="text-sm font-bold text-[#0E315C] bg-[#C1D9F6]/15 px-1.5 py-0.5 rounded-md flex-shrink-0">
               {caseItem.progressPercent}%
             </span>
           </div>
-          <div className="w-full bg-[#C1D9F6]/25 rounded-full h-3 overflow-hidden shadow-inner">
+          <div className="w-full bg-[#C1D9F6]/25 rounded-full h-2 overflow-hidden shadow-inner">
             <div
               className={cn(
-                "h-3 rounded-full transition-all duration-1000 ease-out shadow-sm relative overflow-hidden",
+                "h-2 rounded-full transition-all duration-1000 ease-out shadow-sm relative overflow-hidden",
                 statusColors.progress,
                 "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent",
                 "before:transform before:-skew-x-12 before:translate-x-[-100%] group-hover:before:translate-x-[100%] before:transition-transform before:duration-700",
@@ -87,14 +87,14 @@ export function KanbanCard({
       </div>
 
       {/* Footer with Stats */}
-      <div className="space-y-3 pt-4 border-t border-[#C1D9F6]/30">
-        <div className="flex items-center space-x-3 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-3 py-2 rounded-lg">
-          <Clock className="w-4 h-4 text-[#99C0F0]" />
-          <span className="font-medium">{caseItem.lastActivity}</span>
+      <div className="space-y-2 pt-3 border-t border-[#C1D9F6]/30">
+        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-2.5 py-1.5 rounded-lg">
+          <Clock className="w-3 h-3 text-[#99C0F0] flex-shrink-0" />
+          <span className="font-medium truncate">{caseItem.lastActivity}</span>
         </div>
-        <div className="flex items-center space-x-3 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-3 py-2 rounded-lg">
-          <Calendar className="w-4 h-4 text-[#C5BFEE]" />
-          <span className="font-medium">{caseItem.queueDays} days in queue</span>
+        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-2.5 py-1.5 rounded-lg">
+          <Calendar className="w-3 h-3 text-[#C5BFEE] flex-shrink-0" />
+          <span className="font-medium truncate">{caseItem.queueDays} days in queue</span>
         </div>
       </div>
 
@@ -104,7 +104,7 @@ export function KanbanCard({
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
 
         {/* Pulse indicator */}
-        <div className="absolute top-4 right-4 w-3 h-3 bg-[#99C0F0] rounded-full animate-gentlePulse shadow-lg" />
+        <div className="absolute top-3 right-3 w-2 h-2 bg-[#99C0F0] rounded-full animate-gentlePulse shadow-lg" />
 
         {/* Corner glow */}
         <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#99C0F0]/20 to-transparent rounded-3xl" />
