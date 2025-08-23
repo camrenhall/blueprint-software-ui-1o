@@ -303,26 +303,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   </p>
                 )}
               </div>
-              <button
-                onClick={() => handleStepTransition(3)}
-                disabled={documentSelection.selectedDocuments.length === 0}
-                className="bg-[#99C0F0] hover:bg-[#0E315C] disabled:bg-[#C1D9F6]/50 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all flex items-center space-x-2 shadow-lg shadow-[#99C0F0]/20 disabled:shadow-none"
-              >
-                <span>Continue</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
             </div>
           </div>
         )}
