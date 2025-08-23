@@ -132,7 +132,7 @@ export default function Login() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-0 py-4 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg font-light group-hover:border-[#C1D9F6]/50"
+                      className="w-full px-0 py-4 lg:py-5 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg lg:text-xl font-light group-hover:border-[#C1D9F6]/50"
                       placeholder="Email address"
                       required
                       style={{ outline: 'none', boxShadow: 'none' }}
@@ -145,7 +145,7 @@ export default function Login() {
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full px-0 py-4 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg font-light group-hover:border-[#C1D9F6]/50"
+                      className="w-full px-0 py-4 lg:py-5 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg lg:text-xl font-light group-hover:border-[#C1D9F6]/50"
                       placeholder="Password"
                       required
                       style={{ outline: 'none', boxShadow: 'none' }}
