@@ -26,8 +26,8 @@ export function KanbanCard({
         statusColors.border,
         "hover:bg-white/60 hover:shadow-xl hover:shadow-[#99C0F0]/10",
         statusColors.hover,
-        "hover:border-opacity-90 transition-all duration-700 ease-out p-6 rounded-3xl text-left group hover:scale-[1.03] transform",
-        "animate-fadeInUp min-h-[220px] flex flex-col relative overflow-hidden",
+        "hover:border-opacity-90 transition-all duration-700 ease-out p-6 lg:p-5 md:p-4 rounded-3xl lg:rounded-2xl md:rounded-xl text-left group hover:scale-[1.03] md:hover:scale-[1.02] transform",
+        "animate-fadeInUp min-h-[220px] lg:min-h-[200px] md:min-h-[180px] flex flex-col relative overflow-hidden",
         "hover:-translate-y-1 active:scale-[0.99] active:duration-150",
         className,
       )}
@@ -38,8 +38,8 @@ export function KanbanCard({
     >
       {/* Header with Avatar and Status */}
       <div className="flex items-start justify-between mb-5">
-        <div className="w-14 h-14 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 flex-shrink-0 shadow-lg group-hover:shadow-xl">
-          <span className="text-white font-semibold text-base group-hover:scale-110 transition-transform duration-300">
+        <div className="w-14 h-14 lg:w-12 lg:h-12 md:w-10 md:h-10 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-2xl lg:rounded-xl md:rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 flex-shrink-0 shadow-lg group-hover:shadow-xl">
+          <span className="text-white font-semibold text-base lg:text-sm md:text-xs group-hover:scale-110 transition-transform duration-300">
             {caseItem.avatar}
           </span>
         </div>
@@ -55,7 +55,7 @@ export function KanbanCard({
 
       {/* Case Information */}
       <div className="flex-1">
-        <h3 className="text-xl font-semibold text-[#0E315C] mb-2 leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300">
+        <h3 className="text-xl lg:text-lg md:text-base font-semibold text-[#0E315C] mb-2 leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300">
           {caseItem.name}
         </h3>
         <p className="text-[#0E315C]/60 text-sm font-medium mb-5 bg-[#C1D9F6]/10 px-3 py-1.5 rounded-lg border border-[#C1D9F6]/20">

@@ -52,8 +52,8 @@ export function KanbanView({
       {/* Background enhancement */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#C1D9F6]/5 via-transparent to-[#99C0F0]/5 pointer-events-none" />
 
-      <div className="h-full px-4">
-        <div className="h-full flex gap-8 lg:gap-6 md:gap-4 sm:gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-[#C1D9F6]/40 scrollbar-track-transparent">
+      <div className="h-full px-4 lg:px-3 md:px-2">
+        <div className="h-full flex gap-8 lg:gap-6 md:gap-4 sm:gap-3 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[#C1D9F6]/40 scrollbar-track-transparent snap-x snap-mandatory md:snap-none">
           {columnData.map((column, index) => (
             <KanbanColumn
               key={column.status}
