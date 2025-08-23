@@ -108,7 +108,7 @@ export default function Login() {
         </div>
 
         {/* Login form - Right side */}
-        <div className="flex-shrink-0 w-full max-w-md pr-16 md:pr-24 lg:pr-32">
+        <div className="flex-shrink-0 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl pr-8 sm:pr-12 md:pr-16 lg:pr-24 xl:pr-32 2xl:pr-40">
           <div
             className={`relative transition-all duration-1000 ease-out delay-200 ${
               isAnimated
