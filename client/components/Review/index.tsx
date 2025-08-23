@@ -180,11 +180,9 @@ export default function Review({ onClose }: ReviewProps) {
             <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
               Case Management
             </h1>
-            {viewMode !== "detailed" && (
-              <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
-                {viewMode === "compact" ? "Compact View" : "Kanban Board"}
-              </div>
-            )}
+            <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
+              {viewMode === "detailed" ? "Detailed View" : viewMode === "compact" ? "Compact View" : "Kanban Board"}
+            </div>
           </div>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">
             Comprehensive case tracking and management across all status types
