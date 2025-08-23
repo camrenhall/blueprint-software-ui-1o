@@ -191,10 +191,12 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-white/40 backdrop-blur-md border border-[#99C0F0]/50 hover:border-[#99C0F0]/80 hover:bg-white/60 hover:shadow-xl hover:shadow-[#99C0F0]/15 text-[#0E315C] font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:transform-none disabled:hover:bg-white/40 disabled:hover:border-[#99C0F0]/50 disabled:hover:shadow-none disabled:hover:scale-100"
+                className="w-full relative overflow-hidden bg-gradient-to-r from-[#99C0F0]/80 to-[#C5BFEE]/70 backdrop-blur-md border border-[#99C0F0]/60 hover:border-[#99C0F0]/90 hover:from-[#99C0F0]/90 hover:to-[#C5BFEE]/80 hover:shadow-xl hover:shadow-[#99C0F0]/25 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:transform-none disabled:hover:from-[#99C0F0]/80 disabled:hover:to-[#C5BFEE]/70 disabled:hover:border-[#99C0F0]/60 disabled:hover:shadow-none disabled:hover:scale-100"
               >
-                {isLoading ? (
-                  <div className="flex items-center justify-center space-x-2">
+                <div className="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
+                <div className="relative z-10">
+                  {isLoading ? (
+                    <div className="flex items-center justify-center space-x-2">
                     <svg
                       className="animate-spin w-5 h-5"
                       fill="none"
@@ -208,11 +210,12 @@ export default function Login() {
                         d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                       />
                     </svg>
-                    <span>Signing in...</span>
-                  </div>
-                ) : (
-                  "Sign In"
-                )}
+                      <span>Signing in...</span>
+                    </div>
+                  ) : (
+                    "Sign In"
+                  )}
+                </div>
               </button>
             </form>
           </div>
