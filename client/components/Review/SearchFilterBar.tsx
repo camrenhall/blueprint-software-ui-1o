@@ -6,10 +6,13 @@ import {
   ChevronDown,
   LayoutGrid,
   List,
+  Kanban,
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { filterOptions, SortOption } from "./utils";
+
+export type ViewMode = "detailed" | "compact" | "kanban";
 
 interface SearchFilterBarProps {
   searchValue: string;
@@ -19,8 +22,8 @@ interface SearchFilterBarProps {
   onClearFilters: () => void;
   sortBy: SortOption;
   onSortChange: (sortBy: SortOption) => void;
-  isCompact: boolean;
-  onCompactToggle: () => void;
+  viewMode: ViewMode;
+  onViewModeChange: (mode: ViewMode) => void;
   className?: string;
 }
 
