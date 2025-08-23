@@ -55,12 +55,9 @@ export function KanbanCard({
 
       {/* Case Information */}
       <div className="flex-1">
-        <h3 className="text-lg lg:text-base md:text-sm font-semibold text-[#0E315C] mb-2 leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300 truncate">
+        <h3 className="text-lg lg:text-base md:text-sm font-semibold text-[#0E315C] mb-3 leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300 truncate">
           {caseItem.name}
         </h3>
-        <p className="text-[#0E315C]/60 text-sm font-medium mb-3 bg-[#C1D9F6]/10 px-2.5 py-1 rounded-lg border border-[#C1D9F6]/20 truncate">
-          {caseItem.caseId}
-        </p>
 
         {/* Progress Section */}
         <div className="mb-3">
