@@ -24,10 +24,10 @@ export const getStatusColors = (status: CaseStatus): StatusColors => {
       };
     case "Complete":
       return {
-        dot: "bg-[#C1D9F6]",
-        progress: "bg-gradient-to-r from-[#C1D9F6]/80 to-[#C1D9F6]/60",
-        hover: "hover:shadow-[#C1D9F6]/5",
-        border: "hover:border-[#C1D9F6]/60",
+        dot: "bg-[#4ade80]",
+        progress: "bg-gradient-to-r from-[#4ade80]/80 to-[#4ade80]/60",
+        hover: "hover:shadow-[#4ade80]/5",
+        border: "hover:border-[#4ade80]/60",
       };
   }
 };
@@ -57,6 +57,19 @@ export const filterOptions: FilterOption[] = [
       border: "hover:border-[#99C0F0]/60",
       active:
         "bg-[#99C0F0]/80 text-white shadow-lg shadow-[#99C0F0]/20 border-[#99C0F0]/60",
+    },
+  },
+  {
+    id: "complete",
+    label: "Complete",
+    status: "Complete",
+    color: {
+      dot: "bg-[#4ade80]",
+      progress: "bg-gradient-to-r from-[#4ade80]/80 to-[#4ade80]/60",
+      hover: "hover:shadow-[#4ade80]/5",
+      border: "hover:border-[#4ade80]/60",
+      active:
+        "bg-[#4ade80]/80 text-white shadow-lg shadow-[#4ade80]/20 border-[#4ade80]/60",
     },
   },
 ];
@@ -102,14 +115,16 @@ export const sortCases = (
   return [...cases].sort((a, b) => {
     switch (sortBy) {
       case "priority":
-        // Priority 1: Needs Review first
+        // Priority 1: Status-based priority (Needs Review > Awaiting Documents > Complete)
         if (a.status !== b.status) {
-          if (a.status === "Needs Review") return -1;
-          if (b.status === "Needs Review") return 1;
-          if (a.status === "Awaiting Documents") return -1;
-          if (b.status === "Awaiting Documents") return 1;
+          const statusPriority = {
+            "Needs Review": 3,
+            "Awaiting Documents": 2,
+            "Complete": 1
+          };
+          return (statusPriority[b.status] || 0) - (statusPriority[a.status] || 0);
         }
-        // Priority 2: By queue time (longer first)
+        // Priority 2: Within same status, sort by queue time (longer first)
         return b.queueDays - a.queueDays;
 
       case "alphabetical":
