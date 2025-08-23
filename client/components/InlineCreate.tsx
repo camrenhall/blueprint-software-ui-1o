@@ -257,7 +257,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
         {/* Step 2: Document Selection */}
         {createStep === 2 && (
-          <div className="space-y-6 h-full flex flex-col">
+          <div className="h-full flex flex-col relative">
 
             {/* Document Library Interface */}
             <div className="h-[36vh] flex-shrink-0">
@@ -274,8 +274,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               />
             </div>
 
-            {/* Compact Navigation Bar */}
-            <div className="pt-6 flex-shrink-0">
+            {/* Compact Navigation Bar - Anchored to Bottom */}
+            <div className="absolute bottom-6 left-0 right-0">
               <div className="flex items-center justify-between">
                 {/* Back Button */}
                 <button
