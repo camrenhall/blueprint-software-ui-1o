@@ -274,35 +274,107 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               />
             </div>
 
-            {/* Status and Continue */}
-            <div className="flex items-center justify-between pt-4 flex-shrink-0">
-              <div className="flex items-center space-x-4">
-                {documentSelection.selectedDocuments.length > 0 && (
-                  <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm">
-                    <div className="flex items-center space-x-3 text-sm">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
-                        <span className="text-[#0E315C]/70">
-                          {documentSelection.getDocumentCounts().required} required
-                        </span>
-                      </div>
-                      {documentSelection.getDocumentCounts().optional > 0 && (
+            {/* Status and Navigation */}
+            <div className="space-y-4 pt-4 flex-shrink-0">
+              {/* Document Selection Status */}
+              <div className="flex items-center justify-center">
+                <div className="flex items-center space-x-4">
+                  {documentSelection.selectedDocuments.length > 0 && (
+                    <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm backdrop-blur-sm">
+                      <div className="flex items-center space-x-3 text-sm">
                         <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                          <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
                           <span className="text-[#0E315C]/70">
-                            {documentSelection.getDocumentCounts().optional} optional
+                            {documentSelection.getDocumentCounts().required} required
                           </span>
                         </div>
-                      )}
+                        {documentSelection.getDocumentCounts().optional > 0 && (
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                            <span className="text-[#0E315C]/70">
+                              {documentSelection.getDocumentCounts().optional} optional
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
+                  )}
+                  {createMethod === "ai" && documentSelection.selectedDocuments.length === 0 && (
+                    <p className="text-[#0E315C]/50 text-sm font-light">
+                      AI suggestions will appear here based on your case description
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <div className="flex items-center justify-between">
+                {/* Back Button */}
+                <button
+                  onClick={() => handleStepTransition(1)}
+                  className="group flex items-center space-x-3 px-6 py-3 bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/60 hover:border-[#C1D9F6]/80 hover:bg-white/60 rounded-2xl transition-all duration-300 hover:scale-105 transform hover:shadow-lg shadow-[#C1D9F6]/10"
+                >
+                  <svg
+                    className="w-4 h-4 text-[#0E315C]/60 group-hover:text-[#0E315C] transition-colors duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                  <span className="text-[#0E315C]/70 group-hover:text-[#0E315C] font-light transition-colors duration-300">
+                    Back
+                  </span>
+                </button>
+
+                {/* Document Count Indicator */}
+                {documentSelection.selectedDocuments.length > 0 && (
+                  <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light">
+                    <div className="w-1.5 h-1.5 bg-[#99C0F0]/60 rounded-full animate-pulse" />
+                    <span>
+                      {documentSelection.selectedDocuments.length} document{documentSelection.selectedDocuments.length !== 1 ? 's' : ''} selected
+                    </span>
                   </div>
                 )}
-                {createMethod === "ai" && documentSelection.selectedDocuments.length === 0 && (
-                  <p className="text-[#0E315C]/50 text-sm">
-                    AI suggestions will appear here based on your case description
-                  </p>
-                )}
+
+                {/* Next Button */}
+                <button
+                  onClick={() => handleStepTransition(3)}
+                  disabled={documentSelection.selectedDocuments.length === 0}
+                  className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#99C0F0]/90 to-[#C5BFEE]/90 hover:from-[#99C0F0] hover:to-[#C5BFEE] disabled:from-[#C1D9F6]/40 disabled:to-[#C1D9F6]/40 disabled:cursor-not-allowed text-white rounded-2xl transition-all duration-300 hover:scale-105 transform shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 disabled:shadow-none backdrop-blur-sm"
+                >
+                  <span className="font-light group-disabled:text-white/60">
+                    Next
+                  </span>
+                  <svg
+                    className="w-4 h-4 group-disabled:text-white/60 transition-transform duration-300 group-hover:translate-x-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
               </div>
+
+              {/* Helpful Message when no documents selected */}
+              {documentSelection.selectedDocuments.length === 0 && createMethod !== "ai" && (
+                <div className="text-center py-2">
+                  <p className="text-[#0E315C]/40 text-xs font-light">
+                    Select at least one document to continue
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}
