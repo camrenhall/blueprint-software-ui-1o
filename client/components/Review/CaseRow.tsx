@@ -26,13 +26,16 @@ export function CaseRow({
         statusColors.border,
         "hover:bg-white/50 hover:shadow-lg",
         statusColors.hover,
-        "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform animate-fadeInUp",
+        "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
         className,
       )}
       style={{
-        '--animation-delay': `${index * 100}ms`,
-        animationDelay: `var(--animation-delay)`,
-      } as React.CSSProperties}
+        animationName: 'fadeInUp',
+        animationDuration: '0.6s',
+        animationTimingFunction: 'ease-out',
+        animationFillMode: 'forwards',
+        animationDelay: `${index * 100}ms`,
+      }}
     >
       <div className="flex items-start space-x-5">
         {/* Avatar */}
