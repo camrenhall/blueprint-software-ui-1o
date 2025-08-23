@@ -29,13 +29,6 @@ export function CaseRowCompact({
         "hover:border-opacity-80 transition-all duration-300 px-4 py-3 rounded-xl text-left group hover:scale-[1.02] transform",
         className,
       )}
-      style={{
-        animationName: 'fadeInUp',
-        animationDuration: '0.4s',
-        animationTimingFunction: 'ease-out',
-        animationFillMode: 'forwards',
-        animationDelay: `${index * 50}ms`,
-      }}
     >
       <div className="flex items-center space-x-3">
         {/* Compact Avatar */}
