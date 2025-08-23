@@ -24,6 +24,9 @@ export default function Login() {
     }, 600);
   };
 
+  // Check if both fields are filled for enhanced button styling
+  const isFormComplete = email.trim() !== "" && password.trim() !== "";
+
   return (
     <div
       className={`min-h-screen w-full relative overflow-hidden transition-all duration-500 ease-out ${
