@@ -196,9 +196,9 @@ export default function Login() {
                 disabled={isLoading}
                 className={`w-full relative overflow-hidden bg-gradient-to-r ${
                   isFormComplete
-                    ? "from-[#0E315C] to-[#0E315C]/90 border-[#0E315C] shadow-xl shadow-[#0E315C]/40"
-                    : "from-[#99C0F0]/60 to-[#C5BFEE]/50 border-[#99C0F0]/40"
-                } backdrop-blur-md border hover:border-[#0E315C] hover:from-[#0E315C] hover:to-[#0E315C]/95 hover:shadow-xl hover:shadow-[#0E315C]/50 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:transform-none disabled:hover:from-[#99C0F0]/60 disabled:hover:to-[#C5BFEE]/50 disabled:hover:border-[#99C0F0]/40 disabled:hover:shadow-none disabled:hover:scale-100`}
+                    ? "from-[#99C0F0] to-[#C5BFEE] border-[#99C0F0] shadow-xl shadow-[#99C0F0]/40"
+                    : "from-[#99C0F0]/65 to-[#C5BFEE]/55 border-[#99C0F0]/40"
+                } backdrop-blur-md border hover:border-[#99C0F0] hover:from-[#99C0F0] hover:to-[#C5BFEE] hover:shadow-xl hover:shadow-[#99C0F0]/50 text-white font-medium py-3 px-6 rounded-xl transition-all duration-500 transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:transform-none disabled:hover:from-[#99C0F0]/65 disabled:hover:to-[#C5BFEE]/55 disabled:hover:border-[#99C0F0]/40 disabled:hover:shadow-none disabled:hover:scale-100`}
               >
                 <div className="absolute inset-0 bg-white/20 backdrop-blur-sm"></div>
                 <div className="relative z-10">
