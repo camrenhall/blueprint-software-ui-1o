@@ -258,29 +258,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         {/* Step 2: Document Selection */}
         {createStep === 2 && (
           <div className="space-y-6 h-full flex flex-col">
-            <div className="flex items-center justify-end flex-shrink-0">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleStepTransition(1)}
-                className="flex items-center space-x-2 text-[#0E315C]/80 hover:text-[#0E315C] bg-white/90 hover:bg-white border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 shadow-sm"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-                <span className="font-light">Back</span>
-              </Button>
-            </div>
 
             {/* Document Library Interface */}
             <div className="flex-1 min-h-0">
