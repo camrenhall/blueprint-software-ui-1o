@@ -132,7 +132,7 @@ function IndexContent() {
         )}
 
         {/* Elegant Vertical Divider - Close to Menu */}
-        <div className="absolute left-80 lg:left-96 xl:left-[30rem] top-0 h-full flex items-center z-20">
+        <div className="absolute left-72 md:left-80 lg:left-88 xl:left-96 top-0 h-full flex items-center z-20">
           <div className="relative h-[75vh]">
             {/* Main divider line - more visible */}
             <div className="w-0.5 h-full bg-gradient-to-b from-transparent via-[#99C0F0]/80 to-transparent shadow-sm"></div>
