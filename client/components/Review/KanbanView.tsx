@@ -59,7 +59,7 @@ export function KanbanView({
 
       <div className="h-full mx-2">
         <div className="h-full border border-[#C1D9F6]/50 rounded-3xl overflow-hidden relative">
-          <div className="h-full px-4 lg:px-3 md:px-2 py-4">
+          <div className="h-full px-6 lg:px-4 md:px-3 py-6">
             <div className="h-full flex gap-8 lg:gap-6 md:gap-4 sm:gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-[#C1D9F6]/40 scrollbar-track-transparent snap-x snap-mandatory md:snap-none">
               {columnData.map((column, index) => (
                 <KanbanColumn
