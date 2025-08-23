@@ -274,8 +274,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               />
             </div>
 
-            {/* Spacer to push navigation to bottom */}
-            <div className="flex-1"></div>
+            {/* Spacer to push navigation to bottom with minimum spacing */}
+            <div className="flex-1 min-h-[3rem]"></div>
 
             {/* Compact Navigation Bar */}
             <div className="pb-6 flex-shrink-0">
