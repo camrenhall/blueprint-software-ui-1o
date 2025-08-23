@@ -11,6 +11,10 @@ interface ReviewProps {
   onClose?: () => void;
 }
 
+export { KanbanView } from "./KanbanView";
+export { KanbanCard } from "./KanbanCard";
+export { KanbanColumn } from "./KanbanColumn";
+
 export default function Review({ onClose }: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);

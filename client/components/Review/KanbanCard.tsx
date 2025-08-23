@@ -53,7 +53,7 @@ export function KanbanCard({
 
       {/* Case Information */}
       <div className="flex-1">
-        <h3 className="text-lg font-medium text-[#0E315C] mb-2 line-clamp-2 leading-tight">
+        <h3 className="text-lg font-medium text-[#0E315C] mb-2 leading-tight">
           {caseItem.name}
         </h3>
         <p className="text-[#0E315C]/60 text-sm font-light mb-4">
