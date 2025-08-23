@@ -29,7 +29,7 @@ export function KanbanColumn({
     >
       {/* Column Header */}
       <div className="mb-6 flex-shrink-0 animate-slideInLeft" style={{ animationDelay: `${cases.length * 50}ms` }}>
-        <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-5 shadow-lg hover:shadow-xl transition-all duration-500 group hover:bg-white/40">
+        <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-5 shadow-lg hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 group hover:bg-white/40 hover:border-[#C1D9F6]/60">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="relative">

@@ -50,7 +50,12 @@ export function KanbanView({
   return (
     <div className={cn("relative z-10 flex-1 overflow-hidden", className)}>
       {/* Background enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#C1D9F6]/5 via-transparent to-[#99C0F0]/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#C1D9F6]/8 via-transparent to-[#99C0F0]/8 pointer-events-none" />
+      <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
+        backgroundImage: `radial-gradient(circle at 20% 50%, rgba(193, 217, 246, 0.1) 0%, transparent 50%),
+                         radial-gradient(circle at 80% 20%, rgba(153, 192, 240, 0.1) 0%, transparent 50%),
+                         radial-gradient(circle at 40% 80%, rgba(197, 191, 238, 0.1) 0%, transparent 50%)`
+      }} />
 
       <div className="h-full px-4 lg:px-3 md:px-2">
         <div className="h-full flex gap-8 lg:gap-6 md:gap-4 sm:gap-3 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-[#C1D9F6]/40 scrollbar-track-transparent snap-x snap-mandatory md:snap-none">
