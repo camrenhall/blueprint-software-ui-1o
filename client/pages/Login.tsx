@@ -24,8 +24,8 @@ export default function Login() {
     }, 600);
   };
 
-  // Check if both fields are filled for enhanced button styling
-  const isFormComplete = email.trim() !== "" && password.trim() !== "";
+  // Check if both fields are filled for enhanced button styling with slight delay
+  const isFormComplete = email.trim().length > 0 && password.trim().length > 2;
 
   return (
     <div
