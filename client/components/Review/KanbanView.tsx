@@ -48,7 +48,7 @@ export function KanbanView({
   }, [cases]);
 
   return (
-    <div className={cn("relative z-10 flex-1 overflow-hidden", className)}>
+    <div className={cn("relative z-10 h-full overflow-hidden", className)}>
       {/* Background enhancement */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#C1D9F6]/8 via-transparent to-[#99C0F0]/8 pointer-events-none" />
       <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
