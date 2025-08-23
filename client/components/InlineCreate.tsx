@@ -257,10 +257,10 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
         {/* Step 2: Document Selection */}
         {createStep === 2 && (
-          <div className="h-full flex flex-col">
+          <div className="h-full flex flex-col min-h-0">
 
-            {/* Document Library Interface */}
-            <div className="h-[32vh] flex-shrink-0">
+            {/* Document Library Interface - Flexible with max height */}
+            <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)]">
               <DocumentLibrary
                 availableDocuments={documentSelection.availableDocuments}
                 selectedDocuments={documentSelection.selectedDocuments}
@@ -274,11 +274,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               />
             </div>
 
-            {/* Spacer to push navigation to bottom with minimum spacing */}
-            <div className="flex-1 min-h-[3rem]"></div>
-
-            {/* Compact Navigation Bar */}
-            <div className="pb-6 flex-shrink-0">
+            {/* Compact Navigation Bar - Fixed at bottom */}
+            <div className="mt-4 pb-2 flex-shrink-0">
               <div className="flex items-center justify-between">
                 {/* Back Button */}
                 <button
