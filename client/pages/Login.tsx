@@ -224,9 +224,9 @@ export default function Login() {
             </div>
 
             {/* Enhanced floating accent elements */}
-            <div className="absolute -top-8 -left-8 w-16 h-16 bg-gradient-to-br from-[#99C0F0]/25 to-transparent rounded-full blur-xl opacity-60 animate-float"></div>
-            <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-gradient-to-br from-[#C5BFEE]/20 to-transparent rounded-full blur-lg opacity-50 animate-float-slow"></div>
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-br from-[#C1D9F6]/30 to-transparent rounded-full blur-md opacity-40 animate-drift"></div>
+            <div className="absolute -top-8 lg:-top-12 -left-8 lg:-left-12 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-[#99C0F0]/25 to-transparent rounded-full blur-xl opacity-60 animate-float"></div>
+            <div className="absolute -bottom-6 lg:-bottom-8 -right-6 lg:-right-8 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-[#C5BFEE]/20 to-transparent rounded-full blur-lg opacity-50 animate-float-slow"></div>
+            <div className="absolute -top-4 lg:-top-6 -right-4 lg:-right-6 w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#C1D9F6]/30 to-transparent rounded-full blur-md opacity-40 animate-drift"></div>
           </div>
         </div>
       </div>
