@@ -30,8 +30,8 @@ export function KanbanColumn({
       {/* Column Header */}
       <div className="mb-4 flex-shrink-0 animate-slideInLeft" style={{ animationDelay: `${cases.length * 50}ms` }}>
         <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-2xl p-3 shadow-lg hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 group hover:bg-white/40 hover:border-[#C1D9F6]/60">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center space-x-3 min-w-0 max-w-[60%] overflow-hidden">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center space-x-3 min-w-0 flex-1 overflow-hidden pr-2">
               <div className="relative flex-shrink-0">
                 <div
                   className={cn(
