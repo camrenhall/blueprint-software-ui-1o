@@ -47,57 +47,6 @@ function IndexContent() {
       },
     },
     {
-      id: "reports",
-      title: "Reports",
-      action: () => {
-        setDashboardPage("reports");
-        setDashboardTitle("");
-        setDashboardOpen(true);
-      },
-    },
-    {
-      id: "settings",
-      title: "Settings",
-      subItems: [
-        {
-          id: "settings-profile",
-          title: "User Profile",
-          action: () => {
-            setDashboardPage("settings-profile");
-            setDashboardTitle("");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "settings-preferences",
-          title: "Preferences",
-          action: () => {
-            setDashboardPage("settings-preferences");
-            setDashboardTitle("");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "settings-security",
-          title: "Security",
-          action: () => {
-            setDashboardPage("settings-security");
-            setDashboardTitle("");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "settings-billing",
-          title: "Billing",
-          action: () => {
-            setDashboardPage("settings-billing");
-            setDashboardTitle("");
-            setDashboardOpen(true);
-          },
-        },
-      ],
-    },
-    {
       id: "logout",
       title: "Log Out",
       action: () => {
