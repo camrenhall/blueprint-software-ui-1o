@@ -174,7 +174,7 @@ export default function Review({ onClose }: ReviewProps) {
             )}
           </div>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">
-            Monitor active cases and prioritize critical actions
+            Comprehensive case tracking and management across all status types
             {isCompact && (
               <span className="block text-sm text-[#0E315C]/50 mt-1">
                 Viewing {processedCases.length} cases in compact layout
