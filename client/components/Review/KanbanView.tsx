@@ -59,31 +59,33 @@ export function KanbanView({
 
       <div className="h-full mx-2">
         <div className="h-full border border-[#C1D9F6]/50 rounded-3xl overflow-hidden relative">
-          <div className="h-full px-6 lg:px-4 md:px-3 py-6">
-            <div className="h-full flex gap-8 lg:gap-6 md:gap-4 sm:gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-[#C1D9F6]/40 scrollbar-track-transparent snap-x snap-mandatory md:snap-none">
-              {columnData.map((column, index) => (
-                <KanbanColumn
-                  key={column.status}
-                  title={column.title}
-                  status={column.status}
-                  cases={column.cases}
-                  onCaseSelect={onCaseSelect}
-                  className={cn(
-                    "transition-all duration-1200 ease-out opacity-100 transform translate-y-0",
-                    "animate-fadeInUp",
-                  )}
-                  style={{
-                    animationDelay: `${index * 300}ms`,
-                  }}
-                />
-              ))}
+          <div className="h-full overflow-y-auto document-scroll">
+            <div className="px-6 lg:px-4 md:px-3 py-6">
+              <div className="flex gap-8 lg:gap-6 md:gap-4 sm:gap-3">
+                {columnData.map((column, index) => (
+                  <KanbanColumn
+                    key={column.status}
+                    title={column.title}
+                    status={column.status}
+                    cases={column.cases}
+                    onCaseSelect={onCaseSelect}
+                    className={cn(
+                      "transition-all duration-1200 ease-out opacity-100 transform translate-y-0",
+                      "animate-fadeInUp",
+                    )}
+                    style={{
+                      animationDelay: `${index * 300}ms`,
+                    }}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Floating elements for visual enhancement */}
-          <div className="absolute top-10 left-10 w-32 h-32 bg-[#C1D9F6]/10 rounded-full blur-3xl animate-float pointer-events-none" />
-          <div className="absolute bottom-20 right-20 w-24 h-24 bg-[#99C0F0]/10 rounded-full blur-2xl animate-float-slow pointer-events-none" />
-          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-[#C5BFEE]/10 rounded-full blur-xl animate-drift pointer-events-none" />
+            {/* Floating elements for visual enhancement */}
+            <div className="absolute top-10 left-10 w-32 h-32 bg-[#C1D9F6]/10 rounded-full blur-3xl animate-float pointer-events-none" />
+            <div className="absolute bottom-20 right-20 w-24 h-24 bg-[#99C0F0]/10 rounded-full blur-2xl animate-float-slow pointer-events-none" />
+            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-[#C5BFEE]/10 rounded-full blur-xl animate-drift pointer-events-none" />
+          </div>
         </div>
       </div>
     </div>
