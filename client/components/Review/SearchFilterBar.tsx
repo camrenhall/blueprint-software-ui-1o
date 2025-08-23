@@ -280,31 +280,78 @@ export function SearchFilterBar({
             )}
           </div>
 
-          {/* View Toggle Button */}
-          <button
-            onClick={onCompactToggle}
-            className={cn(
-              "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
-              isCompact
-                ? "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/40 shadow-sm"
-                : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40",
+          {/* View Mode Dropdown */}
+          <div className="relative" ref={viewDropdownRef}>
+            <button
+              onClick={handleViewDropdownToggle}
+              className={cn(
+                "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
+                viewMode !== "detailed"
+                  ? "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/40 shadow-sm"
+                  : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40",
+                viewDropdownOpen && "bg-white/80 border-[#C5BFEE]/60 shadow-md",
+              )}
+            >
+              {viewMode === "detailed" && <LayoutGrid className="w-4 h-4" />}
+              {viewMode === "compact" && <List className="w-4 h-4" />}
+              {viewMode === "kanban" && <Kanban className="w-4 h-4" />}
+              <span className="hidden lg:inline capitalize">{viewMode}</span>
+              {viewMode !== "detailed" && (
+                <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+              )}
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4 transition-transform",
+                  viewDropdownOpen && "rotate-180",
+                )}
+              />
+            </button>
+
+            {/* View Dropdown Content */}
+            {viewDropdownOpen && (
+              <div className="absolute top-full mt-2 right-0 w-48 bg-white/95 backdrop-blur-md border border-[#C1D9F6]/40 rounded-xl shadow-lg py-2 z-30">
+                <div className="px-3 py-2 text-xs font-medium text-[#0E315C]/60 border-b border-[#C1D9F6]/30">
+                  View Mode
+                </div>
+
+                {[
+                  { id: "detailed" as ViewMode, label: "Detailed", icon: LayoutGrid, desc: "Full case information" },
+                  { id: "compact" as ViewMode, label: "Compact", icon: List, desc: "Condensed list view" },
+                  { id: "kanban" as ViewMode, label: "Kanban", icon: Kanban, desc: "Board with columns" },
+                ].map((option) => {
+                  const isActive = viewMode === option.id;
+                  const Icon = option.icon;
+                  return (
+                    <button
+                      key={option.id}
+                      onClick={() => {
+                        onViewModeChange(option.id);
+                        setViewDropdownOpen(false);
+                      }}
+                      className="w-full px-3 py-3 text-left hover:bg-[#C1D9F6]/20 transition-colors"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <Icon className="w-4 h-4 text-[#0E315C]/70" />
+                          <div>
+                            <div className="text-sm font-medium text-[#0E315C]">
+                              {option.label}
+                            </div>
+                            <div className="text-xs text-[#0E315C]/60 mt-0.5">
+                              {option.desc}
+                            </div>
+                          </div>
+                        </div>
+                        {isActive && (
+                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             )}
-            title={
-              isCompact ? "Switch to detailed view" : "Switch to compact view"
-            }
-          >
-            {isCompact ? (
-              <>
-                <LayoutGrid className="w-4 h-4" />
-                <span className="hidden lg:inline">Detailed</span>
-              </>
-            ) : (
-              <>
-                <List className="w-4 h-4" />
-                <span className="hidden lg:inline">Compact</span>
-              </>
-            )}
-          </button>
+          </div>
 
           {/* Clear All Button - Only show when there are active filters or search */}
           {hasAnyActive && (
