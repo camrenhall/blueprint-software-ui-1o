@@ -233,8 +233,10 @@ export default function Review({ onClose }: ReviewProps) {
         )}
       </div>
 
-      {/* Case Modal */}
-      <CaseModal case={selectedCase} onClose={closeModal} />
+      {/* Case Details */}
+      {selectedCase && (
+        <CaseDetailsNew selectedCase={selectedCase} onBack={closeModal} />
+      )}
     </div>
   );
 }
