@@ -260,7 +260,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
           <div className="space-y-6 h-full flex flex-col">
 
             {/* Document Library Interface */}
-            <div className="h-[55vh]">
+            <div className="h-[45vh] flex-shrink-0">
               <DocumentLibrary
                 availableDocuments={documentSelection.availableDocuments}
                 selectedDocuments={documentSelection.selectedDocuments}
