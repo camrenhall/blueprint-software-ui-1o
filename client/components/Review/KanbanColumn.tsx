@@ -23,7 +23,7 @@ export function KanbanColumn({
   return (
     <div
       className={cn(
-        "flex flex-col min-w-[320px] lg:min-w-[280px] md:min-w-[260px] snap-start",
+        "flex flex-col min-w-[320px] lg:min-w-[280px] md:min-w-[260px] snap-start mb-4",
         className,
       )}
     >
