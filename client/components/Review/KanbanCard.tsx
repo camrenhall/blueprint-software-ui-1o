@@ -27,7 +27,7 @@ export function KanbanCard({
         "hover:bg-white/50 hover:shadow-lg",
         statusColors.hover,
         "hover:border-opacity-80 transition-all duration-500 p-5 rounded-2xl text-left group hover:scale-[1.02] transform",
-        "animate-fadeInUp min-h-[200px] flex flex-col",
+        "animate-fadeInUp min-h-[200px] flex flex-col relative",
         className,
       )}
       style={{
