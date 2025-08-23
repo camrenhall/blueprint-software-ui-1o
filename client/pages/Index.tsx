@@ -163,7 +163,7 @@ function IndexContent() {
 
         {/* Expanded Right Side Content Area */}
         <div
-          className={`absolute left-80 lg:left-96 xl:left-[30rem] right-0 top-0 bottom-0 transition-all duration-1000 ease-out ${
+          className={`absolute left-72 md:left-80 lg:left-88 xl:left-96 right-0 top-0 bottom-0 transition-all duration-1000 ease-out ${
             activeRightContent
               ? "opacity-100 transform translate-x-0"
               : "opacity-0 transform translate-x-8 pointer-events-none"
