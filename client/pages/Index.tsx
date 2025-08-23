@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import RadialScroller from "@/components/RadialScroller";
 import ConversationHistory from "@/components/ConversationHistory";
-import Dashboard from "@/components/Dashboard";
 import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
 import AgentsChat from "@/components/AgentsChat";
