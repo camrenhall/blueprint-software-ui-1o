@@ -275,7 +275,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             </div>
 
             {/* Compact Navigation Bar */}
-            <div className="pt-3 flex-shrink-0">
+            <div className="pt-6 flex-shrink-0">
               <div className="flex items-center justify-between">
                 {/* Back Button */}
                 <button
