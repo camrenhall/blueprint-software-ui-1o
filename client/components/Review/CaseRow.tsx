@@ -29,13 +29,6 @@ export function CaseRow({
         "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
         className,
       )}
-      style={{
-        animationName: 'fadeInUp',
-        animationDuration: '0.6s',
-        animationTimingFunction: 'ease-out',
-        animationFillMode: 'forwards',
-        animationDelay: `${index * 100}ms`,
-      }}
     >
       <div className="flex items-start space-x-5">
         {/* Avatar */}
