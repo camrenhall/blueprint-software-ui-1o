@@ -115,7 +115,7 @@ function IndexContent() {
     <div className="h-screen w-full relative overflow-hidden">
       {/* Main content */}
       <div
-        className={`relative z-10 h-screen flex items-center pl-20 md:pl-32 lg:pl-40 transition-all duration-1000 ease-out ${
+        className={`relative z-10 h-screen flex items-center pl-12 md:pl-20 lg:pl-28 xl:pl-32 transition-all duration-1000 ease-out ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-8"
