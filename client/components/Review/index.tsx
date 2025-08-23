@@ -165,7 +165,7 @@ export default function Review({ onClose }: ReviewProps) {
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
           <div className="flex items-center justify-center gap-3 mb-4">
             <h1 className="text-4xl font-light text-[#0E315C] tracking-wide">
-              Case Review
+              Case Management
             </h1>
             {isCompact && (
               <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
