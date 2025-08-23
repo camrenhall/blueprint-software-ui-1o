@@ -26,12 +26,14 @@ export function CaseRowCompact({
         statusColors.border,
         "hover:bg-white/50 hover:shadow-md",
         statusColors.hover,
-        "hover:border-opacity-80 transition-all duration-300 px-4 py-3 rounded-xl text-left group hover:scale-[1.02] transform",
+        "hover:border-opacity-80 transition-all duration-300 px-4 py-3 rounded-xl text-left group hover:scale-[1.02] transform animate-fadeInUp",
         className,
       )}
       style={{
-        animation: `fadeInUp 0.4s ease-out forwards ${index * 50}ms`,
-      }}
+        '--animation-delay': `${index * 50}ms`,
+        animationDelay: `var(--animation-delay)`,
+        animationDuration: '0.4s'
+      } as React.CSSProperties}
     >
       <div className="flex items-center space-x-3">
         {/* Compact Avatar */}
