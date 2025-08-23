@@ -121,8 +121,8 @@ export default function Login() {
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Header */}
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-light text-[#0E315C] mb-2 tracking-wide">Welcome</h3>
-                  <p className="text-[#0E315C]/60 text-sm font-light">Sign in to continue</p>
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-[#0E315C] mb-2 tracking-wide">Welcome</h3>
+                  <p className="text-[#0E315C]/60 text-sm sm:text-base lg:text-lg font-light">Sign in to continue</p>
                 </div>
 
                 {/* Form fields */}
