@@ -186,11 +186,6 @@ export default function Review({ onClose }: ReviewProps) {
           </div>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">
             Comprehensive case tracking and management across all status types
-            {viewMode !== "detailed" && (
-              <span className="block text-sm text-[#0E315C]/50 mt-1">
-                Viewing {processedCases.length} cases in {viewMode} {viewMode === "kanban" ? "board" : "layout"}
-              </span>
-            )}
           </p>
         </div>
         {onClose && (
