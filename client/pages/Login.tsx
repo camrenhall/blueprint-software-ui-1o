@@ -49,7 +49,7 @@ export default function Login() {
       <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-[#99C0F0]/3 rounded-full blur-2xl animate-float"></div>
       <div className="absolute bottom-1/4 left-1/6 w-14 h-14 bg-[#C5BFEE]/4 rounded-full blur-xl animate-drift"></div>
 
-      <div className="relative z-10 min-h-screen flex items-center">
+      <div className="relative z-10 min-h-screen flex items-center max-w-screen-2xl mx-auto">
         {/* Hero section - Left side */}
         <div className="flex-1 pl-8 sm:pl-12 md:pl-16 lg:pl-24 xl:pl-32 2xl:pl-40 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
           <div
