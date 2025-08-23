@@ -280,29 +280,29 @@ export default function CaseDetailsNew({
           </div>
 
           {/* Case Header */}
-          <div className="flex items-center space-x-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-3xl flex items-center justify-center text-white font-light text-xl shadow-lg shadow-[#99C0F0]/20">
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-2xl flex items-center justify-center text-white font-light text-sm shadow-lg shadow-[#99C0F0]/20">
               {selectedCase.avatar}
             </div>
             <div className="flex-1">
-              <div className="flex items-center space-x-4 mb-2">
-                <h1 className="text-3xl font-light text-[#0E315C]">{selectedCase.name}</h1>
-                <span className="text-[#0E315C]/60 font-light font-mono text-sm">{selectedCase.caseId}</span>
+              <div className="flex items-center space-x-3 mb-1">
+                <h1 className="text-xl font-light text-[#0E315C]">{selectedCase.name}</h1>
+                <span className="text-[#0E315C]/60 font-light font-mono text-xs">{selectedCase.caseId}</span>
                 <span className={cn(
-                  "px-3 py-1 rounded-xl text-sm font-light border capitalize",
+                  "px-2 py-1 rounded-lg text-xs font-light border capitalize",
                   getStatusColor(selectedCase.status?.toLowerCase() || "")
                 )}>
                   {selectedCase.status}
                 </span>
               </div>
-              <div className="flex items-center space-x-6 text-sm text-[#0E315C]/60 font-light">
-                <div className="flex items-center space-x-2">
-                  <Calendar className="w-4 h-4" />
+              <div className="flex items-center space-x-4 text-xs text-[#0E315C]/60 font-light">
+                <div className="flex items-center space-x-1">
+                  <Calendar className="w-3 h-3" />
                   <span>Completed: {caseStats.dateCompleted}</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Clock className="w-4 h-4" />
-                  <span>Queue Time: {caseStats.timeInQueue}</span>
+                <div className="flex items-center space-x-1">
+                  <Clock className="w-3 h-3" />
+                  <span>Queue: {caseStats.timeInQueue}</span>
                 </div>
                 <span className={cn(
                   "px-2 py-1 rounded-lg text-xs font-medium border capitalize",
