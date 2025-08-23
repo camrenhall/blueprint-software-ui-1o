@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Case } from "./types";
 import { filterCases, sortCases, convertLegacyCase } from "./utils";
 import { SearchFilterBar, SortOption, ViewMode } from "./SearchFilterBar";
