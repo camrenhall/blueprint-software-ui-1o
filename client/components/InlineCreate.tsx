@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import DocumentLibrary from "./DocumentLibrary";
+import TemplateConflictModal from "./TemplateConflictModal";
+import { useDocumentSelection } from "../hooks/useDocumentSelection";
 
 interface InlineCreateProps {
   onClose?: () => void;
@@ -10,7 +13,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
   const [createMethod, setCreateMethod] = useState<
     "ai" | "manual" | "questionnaire" | null
   >(null);
-  const [selectedDocuments, setSelectedDocuments] = useState<string[]>([]);
+  const documentSelection = useDocumentSelection();
   const [caseInfo, setCaseInfo] = useState({
     firstName: "",
     lastName: "",
