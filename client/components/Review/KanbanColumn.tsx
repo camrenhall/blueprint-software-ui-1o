@@ -28,36 +28,36 @@ export function KanbanColumn({
       )}
     >
       {/* Column Header */}
-      <div className="mb-6 flex-shrink-0 animate-slideInLeft" style={{ animationDelay: `${cases.length * 50}ms` }}>
-        <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-5 shadow-lg hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 group hover:bg-white/40 hover:border-[#C1D9F6]/60">
+      <div className="mb-4 flex-shrink-0 animate-slideInLeft" style={{ animationDelay: `${cases.length * 50}ms` }}>
+        <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-2xl p-3 shadow-lg hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 group hover:bg-white/40 hover:border-[#C1D9F6]/60">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="relative">
+            <div className="flex items-center space-x-3 min-w-0 flex-1">
+              <div className="relative flex-shrink-0">
                 <div
                   className={cn(
-                    "w-5 h-5 rounded-full shadow-lg animate-gentlePulse",
+                    "w-3 h-3 rounded-full shadow-lg animate-gentlePulse",
                     statusColors.dot,
                   )}
                 />
                 <div
                   className={cn(
-                    "absolute inset-0 w-5 h-5 rounded-full opacity-30 animate-ping",
+                    "absolute inset-0 w-3 h-3 rounded-full opacity-30 animate-ping",
                     statusColors.dot,
                   )}
                 />
               </div>
-              <h2 className="text-xl font-semibold text-[#0E315C] group-hover:text-[#0E315C]/90 transition-colors duration-300">
+              <h2 className="text-lg font-semibold text-[#0E315C] group-hover:text-[#0E315C]/90 transition-colors duration-300 truncate">
                 {title}
               </h2>
             </div>
-            <div className="flex items-center space-x-3">
-              <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 flex-shrink-0">
+              <div className="flex items-center space-x-1">
                 <span className="text-xs text-[#0E315C]/60 font-medium uppercase tracking-wide">
                   Cases
                 </span>
                 <span
                   className={cn(
-                    "text-lg font-bold text-white px-4 py-2 rounded-full shadow-lg transition-all duration-300",
+                    "text-sm font-bold text-white px-2 py-1 rounded-full shadow-lg transition-all duration-300",
                     statusColors.progress,
                     "group-hover:scale-110 group-hover:shadow-xl"
                   )}
@@ -70,8 +70,8 @@ export function KanbanColumn({
 
           {/* Progress bar showing completion ratio */}
           {cases.length > 0 && (
-            <div className="mt-4 pt-3 border-t border-[#C1D9F6]/30">
-              <div className="flex items-center justify-between mb-2">
+            <div className="mt-3 pt-2 border-t border-[#C1D9F6]/30">
+              <div className="flex items-center justify-between mb-1">
                 <span className="text-xs text-[#0E315C]/60 font-medium">
                   Progress Overview
                 </span>
@@ -79,10 +79,10 @@ export function KanbanColumn({
                   {Math.round(cases.reduce((sum, c) => sum + c.progressPercent, 0) / cases.length)}% avg
                 </span>
               </div>
-              <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
+              <div className="w-full bg-[#C1D9F6]/20 rounded-full h-1.5 overflow-hidden">
                 <div
                   className={cn(
-                    "h-2 rounded-full transition-all duration-1000 ease-out",
+                    "h-1.5 rounded-full transition-all duration-1000 ease-out",
                     statusColors.progress,
                   )}
                   style={{
