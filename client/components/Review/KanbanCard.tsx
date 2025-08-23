@@ -24,7 +24,7 @@ export function KanbanCard({
       className={cn(
         "w-full bg-white/35 backdrop-blur-md border border-[#C1D9F6]/40",
         statusColors.border,
-        "hover:bg-white/60 hover:shadow-xl hover:shadow-[#99C0F0]/10",
+        "hover:bg-white/60 hover:shadow-xl",
         statusColors.hover,
         "hover:border-opacity-90 transition-all duration-700 ease-out p-4 lg:p-3.5 md:p-3 rounded-2xl lg:rounded-xl md:rounded-lg text-left group hover:scale-[1.02] md:hover:scale-[1.01] transform",
         "animate-fadeInUp min-h-[150px] lg:min-h-[130px] md:min-h-[120px] flex flex-col relative overflow-hidden",
