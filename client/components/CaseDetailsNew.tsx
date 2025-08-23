@@ -259,7 +259,7 @@ export default function CaseDetailsNew({
   }
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-[#C1D9F6]/30 via-white/50 to-[#99C0F0]/20 backdrop-blur-sm z-50 overflow-hidden">
+    <div className="fixed inset-0 bg-gradient-to-br from-[#C1D9F6]/30 via-white/50 to-[#99C0F0]/20 backdrop-blur-sm z-50 overflow-hidden animate-fadeIn">
       <div className="h-full flex flex-col">
         {/* Header */}
         <div className="bg-white/90 backdrop-blur-xl border-b border-[#C1D9F6]/30 p-6 flex-shrink-0">
