@@ -273,7 +273,7 @@ export default function DocumentLibrary({
           </div>
 
           {/* Selected Documents List */}
-          <div className="h-[400px] max-h-[400px] overflow-y-auto document-scroll px-6 py-4">
+          <div className="flex-1 overflow-y-auto document-scroll px-6 py-4 rounded-b-3xl">
             <div className="space-y-3">
               {filteredSelectedDocuments.length > 0 ? (
                 filteredSelectedDocuments.map((doc, index) => (
