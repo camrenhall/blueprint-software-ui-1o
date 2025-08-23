@@ -30,8 +30,7 @@ export function CaseRow({
         className,
       )}
       style={{
-        animationDelay: `${index * 100}ms`,
-        animation: "fadeInUp 0.6s ease-out forwards",
+        animation: `fadeInUp 0.6s ease-out forwards ${index * 100}ms`,
       }}
     >
       <div className="flex items-start space-x-5">
