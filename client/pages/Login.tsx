@@ -191,7 +191,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#99C0F0] text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg hover:shadow-[#99C0F0]/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="w-full bg-white/40 backdrop-blur-md border border-[#99C0F0]/50 hover:border-[#99C0F0]/80 hover:bg-white/60 hover:shadow-xl hover:shadow-[#99C0F0]/15 text-[#0E315C] font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:transform-none disabled:hover:bg-white/40 disabled:hover:border-[#99C0F0]/50 disabled:hover:shadow-none disabled:hover:scale-100"
               >
                 {isLoading ? (
                   <div className="flex items-center justify-center space-x-2">
