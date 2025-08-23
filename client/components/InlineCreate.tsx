@@ -45,7 +45,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
   ];
 
   return (
-    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-visible px-8 py-8 relative flex flex-col rounded-3xl border-2 border-[#C1D9F6]/60 shadow-xl shadow-[#C1D9F6]/15 bg-transparent">
+    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] overflow-visible px-8 pt-8 pb-4 relative flex flex-col rounded-3xl border-2 border-[#C1D9F6]/60 shadow-xl shadow-[#C1D9F6]/15 bg-transparent">
       {/* Enhanced Background Gradient */}
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/60 via-[#C1D9F6]/20 to-[#99C0F0]/15" />
 
