@@ -39,7 +39,7 @@ export function CaseList({
   }
 
   return (
-    <div className={cn("relative z-10 flex-1 overflow-y-auto", className)}>
+    <div className={cn("relative z-10 h-full overflow-y-auto", className)}>
       <div
         className={cn(
           "px-4 pt-3 pb-4 transition-all duration-300 border border-[#C1D9F6]/50 rounded-3xl mx-2",
