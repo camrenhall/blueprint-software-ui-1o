@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Check, X, CheckCircle2, Clock, User, MessageSquare, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { TaskSearchFilterBar, TaskSortOption } from "./TaskSearchFilterBar";
 
 // Types
 interface ProposedTask {
