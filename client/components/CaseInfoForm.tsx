@@ -37,7 +37,6 @@ export type CaseInfoFormData = z.infer<typeof caseInfoSchema>;
 interface CaseInfoFormProps {
   initialData?: Partial<CaseInfoFormData>;
   onSubmit: (data: CaseInfoFormData) => void;
-  onBack: () => void;
   isSubmitting?: boolean;
 }
 
