@@ -214,7 +214,7 @@ export function TaskSearchFilterBar({
             {filterDropdownOpen && (
               <div className="absolute top-full mt-2 right-0 w-72 bg-white/95 backdrop-blur-md border border-[#C1D9F6]/40 rounded-xl shadow-lg py-2 z-30">
                 <div className="px-3 py-2 text-xs font-medium text-[#0E315C]/60 border-b border-[#C1D9F6]/30">
-                  Filter by Priority & Category
+                  Filter by Category
                 </div>
 
                 {filterOptions.map((option) => {
