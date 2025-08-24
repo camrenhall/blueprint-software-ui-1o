@@ -291,12 +291,12 @@ export default function CaseInfoForm({
                       placeholder="Enter phone number"
                       onFocus={() => setFocusedField("phone")}
                       onBlur={() => setFocusedField(null)}
-                      className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                      className={`pl-10 h-12 border-2 transition-all duration-300 ${
                         focusedField === "phone"
-                          ? "border-blue-500 ring-4 ring-blue-100 shadow-lg"
+                          ? "border-[#99C0F0] ring-4 ring-[#99C0F0]/20 shadow-lg scale-[1.02] bg-[#99C0F0]/5"
                           : completedFields.has("phone")
-                            ? "border-emerald-500 bg-emerald-50"
-                            : "border-gray-300 hover:border-gray-400"
+                            ? "border-[#C5BFEE] bg-[#C5BFEE]/10 shadow-md"
+                            : "border-gray-300 hover:border-[#C1D9F6] hover:shadow-sm"
                       }`}
                     />
                   </div>
