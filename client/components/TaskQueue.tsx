@@ -344,14 +344,10 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
       );
     }
 
-    // Apply category and priority filters
+    // Apply category filters
     if (activeFilters.length > 0) {
       filtered = filtered.filter(task => {
-        return activeFilters.some(filter => {
-          if (filter === `${task.priority}-priority`) return true;
-          if (filter === task.category) return true;
-          return false;
-        });
+        return activeFilters.includes(task.category);
       });
     }
 
