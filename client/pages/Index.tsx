@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import RadialScroller from "@/components/RadialScroller";
+import GlassSidePanel from "@/components/GlassSidePanel";
 import ConversationHistory from "@/components/ConversationHistory";
 import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
