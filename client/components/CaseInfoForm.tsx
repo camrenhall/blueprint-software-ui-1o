@@ -65,7 +65,7 @@ export default function CaseInfoForm({
   initialData,
   onSubmit,
   isSubmitting = false,
-}: Omit<CaseInfoFormProps, 'onBack'>) {
+}: CaseInfoFormProps) {
   const form = useForm<CaseInfoFormData>({
     resolver: zodResolver(caseInfoSchema),
     defaultValues: {
