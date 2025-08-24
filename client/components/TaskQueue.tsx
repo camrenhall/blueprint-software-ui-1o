@@ -471,19 +471,19 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         {/* Control panel */}
         {tasks.length > 0 && (
           <div className={cn(
-            "bg-white/25 backdrop-blur-md border border-[#C1D9F6]/40 rounded-2xl p-4 animate-fadeInUp",
+            "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-5 animate-fadeInUp",
             "shadow-lg"
           )} style={{ animationDelay: "300ms" }}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <button
                   onClick={handleSelectAll}
-                  className="flex items-center gap-3 text-[#0E315C] hover:text-[#99C0F0] transition-colors duration-300 font-medium"
+                  className="flex items-center gap-3 text-[#0E315C] hover:text-[#99C0F0] transition-colors duration-300 font-light"
                 >
                   <div className={cn(
                     "w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-300",
-                    selectedTasks.size === tasks.length 
-                      ? "bg-[#99C0F0] border-[#99C0F0] text-white" 
+                    selectedTasks.size === tasks.length
+                      ? "bg-[#99C0F0] border-[#99C0F0] text-white"
                       : selectedTasks.size > 0
                       ? "bg-[#99C0F0]/20 border-[#99C0F0] text-[#99C0F0]"
                       : "border-[#C1D9F6]/60 hover:border-[#99C0F0]/80 bg-white/60 backdrop-blur-sm"
@@ -494,11 +494,11 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
                       <div className="w-2 h-2 bg-current rounded-sm" />
                     ) : null}
                   </div>
-                  <span>
-                    {selectedTasks.size === 0 
-                      ? "Select All" 
-                      : selectedTasks.size === tasks.length 
-                      ? "Deselect All" 
+                  <span className="text-lg">
+                    {selectedTasks.size === 0
+                      ? "Select All"
+                      : selectedTasks.size === tasks.length
+                      ? "Deselect All"
                       : `${selectedTasks.size} Selected`}
                   </span>
                 </button>
@@ -507,7 +507,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
               {selectedTasks.size > 0 && (
                 <button
                   onClick={handleAcceptSelected}
-                  className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-6 py-2.5 rounded-xl transition-all duration-300 font-medium text-sm shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center gap-2 animate-slideInLeft"
+                  className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-6 py-3 rounded-2xl transition-all duration-300 font-light text-base shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center gap-2 animate-slideInLeft"
                 >
                   <CheckCircle2 className="w-4 h-4" />
                   Accept {selectedTasks.size} Task{selectedTasks.size !== 1 ? 's' : ''}
