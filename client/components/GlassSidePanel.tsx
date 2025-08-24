@@ -5,7 +5,7 @@ import { LucideIcon, Users, FileText, Search, LogOut, Sparkles } from "lucide-re
 interface MenuItem {
   id: string;
   title: string;
-  icon: LucideIcon;
+  icon?: LucideIcon;
   action: () => void;
   description?: string;
 }
