@@ -1,6 +1,15 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { LucideIcon, Users, FileText, Search, LogOut, Sparkles, RotateCcw, ArrowRight } from "lucide-react";
+import {
+  LucideIcon,
+  Users,
+  FileText,
+  Search,
+  LogOut,
+  Sparkles,
+  RotateCcw,
+  ArrowRight,
+} from "lucide-react";
 
 interface MenuItem {
   id: string;
@@ -18,13 +27,18 @@ interface GlassSidePanelProps {
 
 type DesignVariant = "enhanced" | "minimal" | "cards";
 
-export default function GlassSidePanel({ items, className, isVisible: externalIsVisible }: GlassSidePanelProps) {
+export default function GlassSidePanel({
+  items,
+  className,
+  isVisible: externalIsVisible,
+}: GlassSidePanelProps) {
   const [internalIsVisible, setInternalIsVisible] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [designVariant, setDesignVariant] = useState<DesignVariant>("enhanced");
 
   // Use external isVisible if provided, otherwise use internal state
-  const isVisible = externalIsVisible !== undefined ? externalIsVisible : internalIsVisible;
+  const isVisible =
+    externalIsVisible !== undefined ? externalIsVisible : internalIsVisible;
 
   useEffect(() => {
     // Staggered fade-in animation when using internal state
@@ -58,7 +72,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
 
   // Cycle through design variants
   const cycleDesign = () => {
-    setDesignVariant(prev => {
+    setDesignVariant((prev) => {
       if (prev === "enhanced") return "minimal";
       if (prev === "minimal") return "cards";
       return "enhanced";
@@ -67,9 +81,12 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
 
   const getDesignName = () => {
     switch (designVariant) {
-      case "enhanced": return "Enhanced";
-      case "minimal": return "Minimal";
-      case "cards": return "Cards";
+      case "enhanced":
+        return "Enhanced";
+      case "minimal":
+        return "Minimal";
+      case "cards":
+        return "Cards";
     }
   };
 
@@ -81,17 +98,17 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
           "fixed left-6 top-20 bottom-6 w-72 transition-all duration-1000 ease-out z-40",
           isVisible
             ? "opacity-100 transform translate-x-0"
-            : "opacity-0 transform -translate-x-8"
+            : "opacity-0 transform -translate-x-8",
         )}
       >
         {/* Glass morphism background */}
         <div className="absolute inset-0 rounded-2xl">
           {/* Primary glass layer */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl" />
-          
+
           {/* Secondary gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-2xl" />
-          
+
           {/* Subtle inner glow */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent via-white/5 to-transparent" />
         </div>
@@ -104,7 +121,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
               "mb-8 transition-all duration-1200 ease-out",
               isVisible
                 ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-4"
+                : "opacity-0 transform translate-y-4",
             )}
           >
             <div className="flex items-center justify-between mb-3">
@@ -121,7 +138,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                   </p>
                 </div>
               </div>
-              
+
               {/* Design switcher */}
               <button
                 onClick={cycleDesign}
@@ -134,7 +151,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                 </div>
               </button>
             </div>
-            
+
             {/* Elegant separator */}
             <div className="w-full h-px bg-gradient-to-r from-transparent via-[#99C0F0]/30 to-transparent" />
           </div>
@@ -173,7 +190,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
               "mt-6 pt-6 border-t border-[#99C0F0]/20 transition-all duration-1200 ease-out",
               isVisible
                 ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-4"
+                : "opacity-0 transform translate-y-4",
             )}
             style={{ transitionDelay: "800ms" }}
           >
@@ -219,7 +236,12 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
 }
 
 // Design Variant 1: Enhanced (refined current design)
-function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
+function EnhancedDesign({
+  items,
+  isVisible,
+  hoveredItem,
+  setHoveredItem,
+}: {
   items: (MenuItem & { icon: LucideIcon; description: string })[];
   isVisible: boolean;
   hoveredItem: string | null;
@@ -238,7 +260,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
               "transition-all duration-700 ease-out",
               isVisible
                 ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-6"
+                : "opacity-0 transform translate-y-6",
             )}
             style={{
               transitionDelay: `${400 + index * 150}ms`,
@@ -254,7 +276,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                 isLogout
                   ? "hover:bg-gradient-to-r hover:from-red-500/10 hover:to-red-400/10 hover:border-red-300/20"
                   : "hover:bg-gradient-to-r hover:from-[#99C0F0]/15 hover:to-[#C1D9F6]/15 hover:border-[#99C0F0]/30",
-                "border border-transparent"
+                "border border-transparent",
               )}
             >
               {/* Background glow effect on hover */}
@@ -264,7 +286,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                     "absolute inset-0 rounded-xl blur-xl transition-opacity duration-300",
                     isLogout
                       ? "bg-gradient-to-r from-red-400/20 to-red-300/20"
-                      : "bg-gradient-to-r from-[#99C0F0]/20 to-[#C1D9F6]/20"
+                      : "bg-gradient-to-r from-[#99C0F0]/20 to-[#C1D9F6]/20",
                   )}
                 />
               )}
@@ -276,7 +298,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                     "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300",
                     isLogout
                       ? "bg-gradient-to-br from-red-400/20 to-red-500/20 group-hover:from-red-400/30 group-hover:to-red-500/30 group-hover:shadow-lg group-hover:shadow-red-400/20"
-                      : "bg-gradient-to-br from-[#99C0F0]/20 to-[#C1D9F6]/20 group-hover:from-[#99C0F0]/30 group-hover:to-[#C1D9F6]/30 group-hover:shadow-lg group-hover:shadow-[#99C0F0]/20"
+                      : "bg-gradient-to-br from-[#99C0F0]/20 to-[#C1D9F6]/20 group-hover:from-[#99C0F0]/30 group-hover:to-[#C1D9F6]/30 group-hover:shadow-lg group-hover:shadow-[#99C0F0]/20",
                   )}
                 >
                   <item.icon
@@ -284,7 +306,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                       "w-5 h-5 transition-all duration-300",
                       isLogout
                         ? "text-red-500/80 group-hover:text-red-500"
-                        : "text-[#0E315C]/70 group-hover:text-[#0E315C]"
+                        : "text-[#0E315C]/70 group-hover:text-[#0E315C]",
                     )}
                   />
                 </div>
@@ -296,7 +318,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                       "font-medium text-base transition-colors duration-300",
                       isLogout
                         ? "text-red-600/80 group-hover:text-red-600"
-                        : "text-[#0E315C]/80 group-hover:text-[#0E315C]"
+                        : "text-[#0E315C]/80 group-hover:text-[#0E315C]",
                     )}
                   >
                     {item.title}
@@ -306,7 +328,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                       "text-sm font-light mt-1 transition-colors duration-300",
                       isLogout
                         ? "text-red-500/60 group-hover:text-red-500/80"
-                        : "text-[#99C0F0]/70 group-hover:text-[#99C0F0]/90"
+                        : "text-[#99C0F0]/70 group-hover:text-[#99C0F0]/90",
                     )}
                   >
                     {item.description}
@@ -321,7 +343,7 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                       ? isLogout
                         ? "bg-red-400/80 scale-100"
                         : "bg-[#99C0F0]/80 scale-100"
-                      : "bg-transparent scale-0"
+                      : "bg-transparent scale-0",
                   )}
                 />
               </div>
@@ -334,7 +356,12 @@ function EnhancedDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
 }
 
 // Design Variant 2: Minimalist Typography
-function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
+function MinimalDesign({
+  items,
+  isVisible,
+  hoveredItem,
+  setHoveredItem,
+}: {
   items: (MenuItem & { icon: LucideIcon; description: string })[];
   isVisible: boolean;
   hoveredItem: string | null;
@@ -353,7 +380,7 @@ function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
               "transition-all duration-700 ease-out",
               isVisible
                 ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-6"
+                : "opacity-0 transform translate-y-6",
             )}
             style={{
               transitionDelay: `${400 + index * 100}ms`,
@@ -368,7 +395,7 @@ function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                 "hover:bg-white/5 rounded-lg",
                 "border-l-2 border-transparent",
                 isHovered && !isLogout && "border-l-[#99C0F0]/60",
-                isHovered && isLogout && "border-l-red-400/60"
+                isHovered && isLogout && "border-l-red-400/60",
               )}
             >
               <div className="relative flex items-center justify-between">
@@ -379,7 +406,7 @@ function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                       "w-4 h-4 transition-all duration-300",
                       isLogout
                         ? "text-red-500/60 group-hover:text-red-500/80"
-                        : "text-[#0E315C]/50 group-hover:text-[#0E315C]/80"
+                        : "text-[#0E315C]/50 group-hover:text-[#0E315C]/80",
                     )}
                   />
 
@@ -390,7 +417,7 @@ function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                         "font-light text-lg tracking-wide transition-colors duration-300",
                         isLogout
                           ? "text-red-600/70 group-hover:text-red-600"
-                          : "text-[#0E315C]/70 group-hover:text-[#0E315C]"
+                          : "text-[#0E315C]/70 group-hover:text-[#0E315C]",
                       )}
                     >
                       {item.title}
@@ -398,9 +425,7 @@ function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                     <p
                       className={cn(
                         "text-xs font-light opacity-0 group-hover:opacity-100 transition-all duration-300 mt-1",
-                        isLogout
-                          ? "text-red-500/60"
-                          : "text-[#99C0F0]/70"
+                        isLogout ? "text-red-500/60" : "text-[#99C0F0]/70",
                       )}
                     >
                       {item.description}
@@ -416,7 +441,7 @@ function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                       ? isLogout
                         ? "text-red-400/80 opacity-100 translate-x-0"
                         : "text-[#99C0F0]/80 opacity-100 translate-x-0"
-                      : "opacity-0 -translate-x-2"
+                      : "opacity-0 -translate-x-2",
                   )}
                 />
               </div>
@@ -429,7 +454,12 @@ function MinimalDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
 }
 
 // Design Variant 3: Card-based
-function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
+function CardsDesign({
+  items,
+  isVisible,
+  hoveredItem,
+  setHoveredItem,
+}: {
   items: (MenuItem & { icon: LucideIcon; description: string })[];
   isVisible: boolean;
   hoveredItem: string | null;
@@ -448,7 +478,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
               "transition-all duration-700 ease-out",
               isVisible
                 ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-6"
+                : "opacity-0 transform translate-y-6",
             )}
             style={{
               transitionDelay: `${400 + index * 120}ms`,
@@ -461,7 +491,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
               className={cn(
                 "w-full group relative transition-all duration-300 text-left",
                 "transform hover:scale-[1.03] hover:-translate-y-1",
-                "rounded-xl overflow-hidden"
+                "rounded-xl overflow-hidden",
               )}
             >
               {/* Card background */}
@@ -470,7 +500,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                   "relative p-5 rounded-xl border transition-all duration-300",
                   isLogout
                     ? "bg-gradient-to-br from-red-500/5 to-red-400/10 border-red-300/20 group-hover:from-red-500/10 group-hover:to-red-400/15 group-hover:border-red-300/40"
-                    : "bg-gradient-to-br from-white/10 to-[#C1D9F6]/10 border-white/20 group-hover:from-[#99C0F0]/15 group-hover:to-[#C1D9F6]/20 group-hover:border-[#99C0F0]/40"
+                    : "bg-gradient-to-br from-white/10 to-[#C1D9F6]/10 border-white/20 group-hover:from-[#99C0F0]/15 group-hover:to-[#C1D9F6]/20 group-hover:border-[#99C0F0]/40",
                 )}
               >
                 {/* Card glow effect */}
@@ -480,7 +510,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                       "absolute inset-0 rounded-xl blur-lg transition-opacity duration-300",
                       isLogout
                         ? "bg-gradient-to-br from-red-400/20 to-red-300/10"
-                        : "bg-gradient-to-br from-[#99C0F0]/20 to-[#C1D9F6]/10"
+                        : "bg-gradient-to-br from-[#99C0F0]/20 to-[#C1D9F6]/10",
                     )}
                   />
                 )}
@@ -493,7 +523,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                         "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300",
                         isLogout
                           ? "bg-red-500/20 group-hover:bg-red-500/30"
-                          : "bg-[#99C0F0]/20 group-hover:bg-[#99C0F0]/30"
+                          : "bg-[#99C0F0]/20 group-hover:bg-[#99C0F0]/30",
                       )}
                     >
                       <item.icon
@@ -501,7 +531,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                           "w-4 h-4 transition-all duration-300",
                           isLogout
                             ? "text-red-500/80 group-hover:text-red-500"
-                            : "text-[#0E315C]/70 group-hover:text-[#0E315C]"
+                            : "text-[#0E315C]/70 group-hover:text-[#0E315C]",
                         )}
                       />
                     </div>
@@ -514,7 +544,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                           ? isLogout
                             ? "bg-red-400/80"
                             : "bg-[#99C0F0]/80"
-                          : "bg-[#99C0F0]/30"
+                          : "bg-[#99C0F0]/30",
                       )}
                     />
                   </div>
@@ -526,7 +556,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                         "font-medium text-base mb-2 transition-colors duration-300",
                         isLogout
                           ? "text-red-600/80 group-hover:text-red-600"
-                          : "text-[#0E315C]/80 group-hover:text-[#0E315C]"
+                          : "text-[#0E315C]/80 group-hover:text-[#0E315C]",
                       )}
                     >
                       {item.title}
@@ -536,7 +566,7 @@ function CardsDesign({ items, isVisible, hoveredItem, setHoveredItem }: {
                         "text-sm font-light leading-relaxed transition-colors duration-300",
                         isLogout
                           ? "text-red-500/60 group-hover:text-red-500/80"
-                          : "text-[#99C0F0]/70 group-hover:text-[#99C0F0]/90"
+                          : "text-[#99C0F0]/70 group-hover:text-[#99C0F0]/90",
                       )}
                     >
                       {item.description}

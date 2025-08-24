@@ -16,9 +16,18 @@ import { useEffect, useState } from "react";
 import { User, Mail, Phone, Check } from "lucide-react";
 
 const caseInfoSchema = z.object({
-  firstName: z.string().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
-  lastName: z.string().min(1, "Last name is required").max(50, "Last name must be less than 50 characters"),
-  email: z.string().min(1, "Email is required").email("Please enter a valid email address"),
+  firstName: z
+    .string()
+    .min(1, "First name is required")
+    .max(50, "First name must be less than 50 characters"),
+  lastName: z
+    .string()
+    .min(1, "Last name is required")
+    .max(50, "Last name must be less than 50 characters"),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Please enter a valid email address"),
   phone: z.string().optional(),
   // Keep these for compatibility but make them optional with defaults
   caseType: z.string().default("general"),
@@ -40,7 +49,9 @@ export default function CaseInfoForm({
   isSubmitting = false,
 }: CaseInfoFormProps) {
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const [completedFields, setCompletedFields] = useState<Set<string>>(new Set());
+  const [completedFields, setCompletedFields] = useState<Set<string>>(
+    new Set(),
+  );
 
   const form = useForm<CaseInfoFormData>({
     resolver: zodResolver(caseInfoSchema),
@@ -71,18 +82,21 @@ export default function CaseInfoForm({
     if (phone?.trim()) newCompleted.add("phone");
 
     // Only update if the set actually changed
-    setCompletedFields(prev => {
+    setCompletedFields((prev) => {
       const prevArray = Array.from(prev).sort();
       const newArray = Array.from(newCompleted).sort();
-      const hasChanged = prevArray.length !== newArray.length ||
-                        prevArray.some((item, index) => item !== newArray[index]);
+      const hasChanged =
+        prevArray.length !== newArray.length ||
+        prevArray.some((item, index) => item !== newArray[index]);
       return hasChanged ? newCompleted : prev;
     });
   }, [firstName, lastName, email, phone, emailError]);
 
   // Auto-focus the first input when component mounts
   useEffect(() => {
-    const firstInput = document.querySelector('input[name="firstName"]') as HTMLInputElement;
+    const firstInput = document.querySelector(
+      'input[name="firstName"]',
+    ) as HTMLInputElement;
     if (firstInput) {
       setTimeout(() => firstInput.focus(), 100);
     }
@@ -113,10 +127,8 @@ export default function CaseInfoForm({
     }
   };
 
-  const isFormValid = firstName?.trim() &&
-                     lastName?.trim() &&
-                     email?.trim() &&
-                     !emailError;
+  const isFormValid =
+    firstName?.trim() && lastName?.trim() && email?.trim() && !emailError;
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -125,15 +137,19 @@ export default function CaseInfoForm({
         <div className="w-full bg-[#C1D9F6]/30 rounded-full h-2">
           <div
             className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-2 rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${Math.min((completedFields.size / 3) * 100, 100)}%` }}
+            style={{
+              width: `${Math.min((completedFields.size / 3) * 100, 100)}%`,
+            }}
           />
         </div>
       </div>
 
       {/* Form */}
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
-          
+        <form
+          onSubmit={form.handleSubmit(handleFormSubmit)}
+          className="space-y-6"
+        >
           {/* Name Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <FormField
@@ -147,14 +163,20 @@ export default function CaseInfoForm({
                   <FormControl>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <div className={`transition-colors duration-200 ${
-                          focusedField === "firstName"
-                            ? "text-[#99C0F0]"
-                            : completedFields.has("firstName")
-                              ? "text-[#C5BFEE]"
-                              : "text-gray-400"
-                        }`}>
-                          {completedFields.has("firstName") ? <Check className="w-5 h-5" /> : getFieldIcon("firstName")}
+                        <div
+                          className={`transition-colors duration-200 ${
+                            focusedField === "firstName"
+                              ? "text-[#99C0F0]"
+                              : completedFields.has("firstName")
+                                ? "text-[#C5BFEE]"
+                                : "text-gray-400"
+                          }`}
+                        >
+                          {completedFields.has("firstName") ? (
+                            <Check className="w-5 h-5" />
+                          ) : (
+                            getFieldIcon("firstName")
+                          )}
                         </div>
                       </div>
                       <Input
@@ -188,14 +210,20 @@ export default function CaseInfoForm({
                   <FormControl>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <div className={`transition-colors duration-200 ${
-                          focusedField === "lastName"
-                            ? "text-[#99C0F0]"
-                            : completedFields.has("lastName")
-                              ? "text-[#C5BFEE]"
-                              : "text-gray-400"
-                        }`}>
-                          {completedFields.has("lastName") ? <Check className="w-5 h-5" /> : getFieldIcon("lastName")}
+                        <div
+                          className={`transition-colors duration-200 ${
+                            focusedField === "lastName"
+                              ? "text-[#99C0F0]"
+                              : completedFields.has("lastName")
+                                ? "text-[#C5BFEE]"
+                                : "text-gray-400"
+                          }`}
+                        >
+                          {completedFields.has("lastName") ? (
+                            <Check className="w-5 h-5" />
+                          ) : (
+                            getFieldIcon("lastName")
+                          )}
                         </div>
                       </div>
                       <Input
@@ -231,14 +259,20 @@ export default function CaseInfoForm({
                 <FormControl>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <div className={`transition-colors duration-200 ${
-                        focusedField === "email"
-                          ? "text-[#99C0F0]"
-                          : completedFields.has("email")
-                            ? "text-[#C5BFEE]"
-                            : "text-gray-400"
-                      }`}>
-                        {completedFields.has("email") ? <Check className="w-5 h-5" /> : getFieldIcon("email")}
+                      <div
+                        className={`transition-colors duration-200 ${
+                          focusedField === "email"
+                            ? "text-[#99C0F0]"
+                            : completedFields.has("email")
+                              ? "text-[#C5BFEE]"
+                              : "text-gray-400"
+                        }`}
+                      >
+                        {completedFields.has("email") ? (
+                          <Check className="w-5 h-5" />
+                        ) : (
+                          getFieldIcon("email")
+                        )}
                       </div>
                     </div>
                     <Input
@@ -269,20 +303,28 @@ export default function CaseInfoForm({
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="text-gray-700 font-medium">
-                  Phone Number 
-                  <span className="text-gray-400 font-normal ml-1">(optional)</span>
+                  Phone Number
+                  <span className="text-gray-400 font-normal ml-1">
+                    (optional)
+                  </span>
                 </FormLabel>
                 <FormControl>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <div className={`transition-colors duration-200 ${
-                        focusedField === "phone"
-                          ? "text-[#99C0F0]"
-                          : completedFields.has("phone")
-                            ? "text-[#C5BFEE]"
-                            : "text-gray-400"
-                      }`}>
-                        {completedFields.has("phone") ? <Check className="w-5 h-5" /> : getFieldIcon("phone")}
+                      <div
+                        className={`transition-colors duration-200 ${
+                          focusedField === "phone"
+                            ? "text-[#99C0F0]"
+                            : completedFields.has("phone")
+                              ? "text-[#C5BFEE]"
+                              : "text-gray-400"
+                        }`}
+                      >
+                        {completedFields.has("phone") ? (
+                          <Check className="w-5 h-5" />
+                        ) : (
+                          getFieldIcon("phone")
+                        )}
                       </div>
                     </div>
                     <Input
@@ -305,7 +347,6 @@ export default function CaseInfoForm({
               </FormItem>
             )}
           />
-
 
           {/* Hidden submit button - form will be submitted via external button */}
           <button type="submit" className="hidden" />

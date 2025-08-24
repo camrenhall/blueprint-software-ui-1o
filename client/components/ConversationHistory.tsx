@@ -26,7 +26,8 @@ export default function ConversationHistory({
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Use external isVisible if provided, otherwise use internal state
-  const isVisible = externalIsVisible !== undefined ? externalIsVisible : internalIsVisible;
+  const isVisible =
+    externalIsVisible !== undefined ? externalIsVisible : internalIsVisible;
 
   useEffect(() => {
     // Staggered fade-in animation when using internal state
@@ -59,10 +60,10 @@ export default function ConversationHistory({
         <div className="absolute inset-0 rounded-2xl">
           {/* Primary glass layer */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl" />
-          
+
           {/* Secondary gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-2xl" />
-          
+
           {/* Subtle inner glow */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-transparent via-white/5 to-transparent" />
         </div>
@@ -75,7 +76,7 @@ export default function ConversationHistory({
               "mb-8 transition-all duration-1200 ease-out",
               isVisible
                 ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-4"
+                : "opacity-0 transform translate-y-4",
             )}
           >
             <button
@@ -99,7 +100,7 @@ export default function ConversationHistory({
                 </p>
               </div>
             </div>
-            
+
             {/* Elegant separator */}
             <div className="w-full h-px bg-gradient-to-r from-transparent via-[#99C0F0]/30 to-transparent" />
           </div>
@@ -108,7 +109,9 @@ export default function ConversationHistory({
           <div
             className={cn(
               "mb-6 transition-all duration-700 ease-out",
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-2",
             )}
             style={{ transitionDelay: "200ms" }}
           >
@@ -120,7 +123,9 @@ export default function ConversationHistory({
                 <Plus className="w-4 h-4 text-white" />
               </div>
               <div className="text-left">
-                <h3 className="text-sm font-medium text-[#0E315C]/80">New Chat</h3>
+                <h3 className="text-sm font-medium text-[#0E315C]/80">
+                  New Chat
+                </h3>
                 <p className="text-xs text-[#99C0F0]/70 font-light">
                   Start a fresh conversation
                 </p>

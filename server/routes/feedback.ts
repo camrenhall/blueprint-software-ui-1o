@@ -4,7 +4,7 @@ import { FeedbackRequest, FeedbackResponse } from "@shared/api";
 export const handleFeedback: RequestHandler = (req, res) => {
   try {
     const feedbackData: FeedbackRequest = req.body;
-    
+
     // Validate the feedback data
     if (!feedbackData.sentiment || !feedbackData.comment) {
       const response: FeedbackResponse = {
@@ -14,7 +14,7 @@ export const handleFeedback: RequestHandler = (req, res) => {
       return res.status(400).json(response);
     }
 
-    if (!['happy', 'unhappy'].includes(feedbackData.sentiment)) {
+    if (!["happy", "unhappy"].includes(feedbackData.sentiment)) {
       const response: FeedbackResponse = {
         success: false,
         message: "Invalid sentiment value. Must be 'happy' or 'unhappy'",
@@ -23,12 +23,12 @@ export const handleFeedback: RequestHandler = (req, res) => {
     }
 
     // Log the feedback for now (in production, you'd save to database)
-    console.log('📝 Feedback received:', {
+    console.log("📝 Feedback received:", {
       sentiment: feedbackData.sentiment,
       comment: feedbackData.comment,
       page: feedbackData.page,
       timestamp: new Date().toISOString(),
-      userAgent: req.headers['user-agent'],
+      userAgent: req.headers["user-agent"],
       ip: req.ip || req.connection.remoteAddress,
     });
 
@@ -43,13 +43,13 @@ export const handleFeedback: RequestHandler = (req, res) => {
 
     res.json(response);
   } catch (error) {
-    console.error('Error processing feedback:', error);
-    
+    console.error("Error processing feedback:", error);
+
     const response: FeedbackResponse = {
       success: false,
       message: "Internal server error",
     };
-    
+
     res.status(500).json(response);
   }
 };

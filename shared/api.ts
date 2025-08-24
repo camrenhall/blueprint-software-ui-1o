@@ -15,7 +15,7 @@ export interface DemoResponse {
  * Feedback submission types
  */
 export interface FeedbackRequest {
-  sentiment: 'happy' | 'unhappy';
+  sentiment: "happy" | "unhappy";
   comment: string;
   page?: string;
 }

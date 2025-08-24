@@ -65,18 +65,20 @@ export default function TopNavBar({ className }: TopNavBarProps) {
     <div
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-1000 ease-out",
-        isVisible ? "opacity-100 transform translate-y-0" : "opacity-0 transform -translate-y-4",
-        className
+        isVisible
+          ? "opacity-100 transform translate-y-0"
+          : "opacity-0 transform -translate-y-4",
+        className,
       )}
     >
       {/* Glass morphism container */}
       <div className="relative">
         {/* Background blur layer */}
         <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl border-b border-white/20" />
-        
+
         {/* Subtle glow effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#99C0F0]/10 to-transparent" />
-        
+
         {/* Main navigation content */}
         <div className="relative px-6 py-3">
           <div className="flex items-center justify-between">
@@ -92,7 +94,9 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400/80 rounded-full border-2 border-white/50 animate-pulse" />
                 </div>
                 <div className="hidden sm:block">
-                  <div className="text-sm font-medium text-[#0E315C]/80">Fusion OS</div>
+                  <div className="text-sm font-medium text-[#0E315C]/80">
+                    Fusion OS
+                  </div>
                   <div className="text-xs text-[#99C0F0]/70">v2.1.3</div>
                 </div>
               </div>
@@ -101,11 +105,15 @@ export default function TopNavBar({ className }: TopNavBarProps) {
               <div className="hidden lg:flex items-center space-x-4 ml-8">
                 <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                   <Wifi className="w-3 h-3 text-[#99C0F0]/80" />
-                  <span className="text-xs text-[#0E315C]/70 font-medium">Online</span>
+                  <span className="text-xs text-[#0E315C]/70 font-medium">
+                    Online
+                  </span>
                 </div>
                 <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                   <Activity className="w-3 h-3 text-green-500/80" />
-                  <span className="text-xs text-[#0E315C]/70 font-medium">Active</span>
+                  <span className="text-xs text-[#0E315C]/70 font-medium">
+                    Active
+                  </span>
                 </div>
               </div>
             </div>
@@ -114,8 +122,12 @@ export default function TopNavBar({ className }: TopNavBarProps) {
             <div className="flex items-center space-x-6">
               {/* Time and date display */}
               <div className="hidden sm:block text-right">
-                <div className="text-sm font-medium text-[#0E315C]/80">{formatTime(currentTime)}</div>
-                <div className="text-xs text-[#99C0F0]/70">{formatDate(currentTime)}</div>
+                <div className="text-sm font-medium text-[#0E315C]/80">
+                  {formatTime(currentTime)}
+                </div>
+                <div className="text-xs text-[#99C0F0]/70">
+                  {formatDate(currentTime)}
+                </div>
               </div>
 
               {/* Notifications */}
@@ -169,17 +181,23 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                       </AvatarFallback>
                     </Avatar>
                     <div className="hidden sm:block text-left">
-                      <div className="text-sm font-medium text-[#0E315C]/80">Camren Hall</div>
-                      <div className="text-xs text-[#99C0F0]/70">Administrator</div>
+                      <div className="text-sm font-medium text-[#0E315C]/80">
+                        Camren Hall
+                      </div>
+                      <div className="text-xs text-[#99C0F0]/70">
+                        Administrator
+                      </div>
                     </div>
                     <ChevronDown className="w-3 h-3 text-[#99C0F0]/60" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent 
+                <DropdownMenuContent
                   className="w-56 bg-white/90 backdrop-blur-xl border border-white/20 shadow-xl"
                   align="end"
                 >
-                  <DropdownMenuLabel className="text-[#0E315C]/80">My Account</DropdownMenuLabel>
+                  <DropdownMenuLabel className="text-[#0E315C]/80">
+                    My Account
+                  </DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-[#99C0F0]/20" />
                   <DropdownMenuItem className="text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20">
                     <User className="mr-2 h-4 w-4" />
@@ -203,8 +221,14 @@ export default function TopNavBar({ className }: TopNavBarProps) {
         {/* Floating ambient particles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-2 left-1/4 w-1 h-1 bg-[#C5BFEE]/60 rounded-full animate-float" />
-          <div className="absolute top-4 right-1/3 w-1.5 h-1.5 bg-[#99C0F0]/40 rounded-full animate-float-slow" style={{ animationDelay: "1s" }} />
-          <div className="absolute top-1 left-2/3 w-1 h-1 bg-[#C1D9F6]/50 rounded-full animate-float" style={{ animationDelay: "2s" }} />
+          <div
+            className="absolute top-4 right-1/3 w-1.5 h-1.5 bg-[#99C0F0]/40 rounded-full animate-float-slow"
+            style={{ animationDelay: "1s" }}
+          />
+          <div
+            className="absolute top-1 left-2/3 w-1 h-1 bg-[#C1D9F6]/50 rounded-full animate-float"
+            style={{ animationDelay: "2s" }}
+          />
         </div>
       </div>
     </div>

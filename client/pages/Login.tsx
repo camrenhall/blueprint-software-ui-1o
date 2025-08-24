@@ -64,20 +64,23 @@ export default function Login() {
               <h1 className="text-6xl md:text-8xl font-extralight text-[#0E315C] leading-none tracking-tight">
                 Luceron
               </h1>
-              
+
               <div className="space-y-6">
                 <h2 className="text-2xl md:text-3xl font-light text-[#0E315C]/90 leading-relaxed">
                   Legal Discovery, Simplified
                 </h2>
                 <p className="text-lg text-[#0E315C]/70 leading-relaxed max-w-xl font-light">
-                  Transform your legal workflow with AI-powered document discovery and intelligent client communication.
+                  Transform your legal workflow with AI-powered document
+                  discovery and intelligent client communication.
                 </p>
               </div>
 
               {/* Elegant divider */}
               <div className="flex items-center space-x-8 pt-4">
                 <div className="w-16 h-px bg-gradient-to-r from-[#99C0F0] to-transparent"></div>
-                <span className="text-sm text-[#0E315C]/50 font-medium">Trusted by Legal Professionals</span>
+                <span className="text-sm text-[#0E315C]/50 font-medium">
+                  Trusted by Legal Professionals
+                </span>
               </div>
             </div>
 
@@ -92,15 +95,21 @@ export default function Login() {
               <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-green-400 rounded-full shadow-sm shadow-green-400/30"></div>
-                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">SSL SECURED</span>
+                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">
+                    SSL SECURED
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-blue-400 rounded-full shadow-sm shadow-blue-400/30"></div>
-                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">SOC 2 COMPLIANT</span>
+                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">
+                    SOC 2 COMPLIANT
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-2 h-2 bg-[#99C0F0] rounded-full shadow-sm shadow-[#99C0F0]/30"></div>
-                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">ENTERPRISE READY</span>
+                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">
+                    ENTERPRISE READY
+                  </span>
                 </div>
               </div>
             </div>
@@ -121,8 +130,12 @@ export default function Login() {
               <form onSubmit={handleSubmit} className="space-y-8">
                 {/* Header */}
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-[#0E315C] mb-2 tracking-wide">Welcome</h3>
-                  <p className="text-[#0E315C]/60 text-sm sm:text-base lg:text-lg font-light">Sign in to continue</p>
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-[#0E315C] mb-2 tracking-wide">
+                    Welcome
+                  </h3>
+                  <p className="text-[#0E315C]/60 text-sm sm:text-base lg:text-lg font-light">
+                    Sign in to continue
+                  </p>
                 </div>
 
                 {/* Form fields */}
@@ -135,7 +148,7 @@ export default function Login() {
                       className="w-full px-0 py-4 lg:py-5 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg lg:text-xl font-light group-hover:border-[#C1D9F6]/50"
                       placeholder="Email address"
                       required
-                      style={{ outline: 'none', boxShadow: 'none' }}
+                      style={{ outline: "none", boxShadow: "none" }}
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] transition-all duration-500 group-focus-within:w-full"></div>
                   </div>
@@ -148,7 +161,7 @@ export default function Login() {
                       className="w-full px-0 py-4 lg:py-5 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg lg:text-xl font-light group-hover:border-[#C1D9F6]/50"
                       placeholder="Password"
                       required
-                      style={{ outline: 'none', boxShadow: 'none' }}
+                      style={{ outline: "none", boxShadow: "none" }}
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] transition-all duration-500 group-focus-within:w-full"></div>
                   </div>
@@ -191,8 +204,8 @@ export default function Login() {
 
                 {/* Forgot password */}
                 <div className="text-center">
-                  <button 
-                    type="button" 
+                  <button
+                    type="button"
                     className="text-[#99C0F0] hover:text-[#0E315C] transition-all duration-300 text-sm font-medium hover:scale-105 transform"
                   >
                     Forgot password?
@@ -207,17 +220,37 @@ export default function Login() {
                 </p>
                 <div className="flex items-center justify-center space-x-4">
                   <div className="flex items-center space-x-1.5">
-                    <svg className="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    <svg
+                      className="w-3 h-3 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
                     </svg>
-                    <span className="text-xs text-[#0E315C]/60 font-medium">256-bit SSL</span>
+                    <span className="text-xs text-[#0E315C]/60 font-medium">
+                      256-bit SSL
+                    </span>
                   </div>
                   <div className="w-px h-3 bg-[#C1D9F6]/30"></div>
                   <div className="flex items-center space-x-1.5">
-                    <svg className="w-3 h-3 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    <svg
+                      className="w-3 h-3 text-blue-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
                     </svg>
-                    <span className="text-xs text-[#0E315C]/60 font-medium">SOC 2 Type II</span>
+                    <span className="text-xs text-[#0E315C]/60 font-medium">
+                      SOC 2 Type II
+                    </span>
                   </div>
                 </div>
               </div>

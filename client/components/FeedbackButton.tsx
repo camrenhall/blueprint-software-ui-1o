@@ -16,11 +16,8 @@ export function FeedbackButton() {
         <MessageCircle className="h-4 w-4 mr-2" />
         Send Feedback
       </Button>
-      
-      <FeedbackDialog 
-        open={dialogOpen} 
-        onOpenChange={setDialogOpen} 
-      />
+
+      <FeedbackDialog open={dialogOpen} onOpenChange={setDialogOpen} />
     </>
   );
 }

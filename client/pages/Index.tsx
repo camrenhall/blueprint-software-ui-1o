@@ -67,22 +67,18 @@ function IndexContent() {
           isVisible={isVisible}
         />
       ) : (
-        <GlassSidePanel
-          items={menuItems}
-          isVisible={isVisible}
-        />
+        <GlassSidePanel items={menuItems} isVisible={isVisible} />
       )}
 
       {/* Main content area */}
       <div className="relative z-10 h-screen">
-
         {/* Right Side Content Area - Adjusted for fixed glass panel */}
         <div
           className={cn(
             "absolute left-80 right-6 top-6 bottom-6 transition-all duration-1000 ease-out",
             activeRightContent && isVisible
               ? "opacity-100"
-              : "opacity-0 pointer-events-none"
+              : "opacity-0 pointer-events-none",
           )}
         >
           {/* Glass morphism content background */}
@@ -93,7 +89,7 @@ function IndexContent() {
             <div
               className={cn(
                 "w-full h-full transition-opacity duration-800 ease-out delay-200",
-                activeRightContent && isVisible ? "opacity-100" : "opacity-0"
+                activeRightContent && isVisible ? "opacity-100" : "opacity-0",
               )}
             >
               {activeRightContent === "agents" && (

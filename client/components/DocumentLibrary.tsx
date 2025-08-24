@@ -38,20 +38,22 @@ export default function DocumentLibrary({
 }: DocumentLibraryProps) {
   const [documentSearch, setDocumentSearch] = useState("");
   const [selectedDocumentSearch, setSelectedDocumentSearch] = useState("");
-  const [isDocLibrarySearchVisible, setIsDocLibrarySearchVisible] = useState(false);
-  const [isSelectedDocsSearchVisible, setIsSelectedDocsSearchVisible] = useState(false);
+  const [isDocLibrarySearchVisible, setIsDocLibrarySearchVisible] =
+    useState(false);
+  const [isSelectedDocsSearchVisible, setIsSelectedDocsSearchVisible] =
+    useState(false);
   const [showTemplatesInline, setShowTemplatesInline] = useState(false);
 
   // Filter available documents (exclude already selected and apply search)
   const filteredAvailableDocuments = availableDocuments.filter(
     (doc) =>
       doc.toLowerCase().includes(documentSearch.toLowerCase()) &&
-      !selectedDocuments.find((selectedDoc) => selectedDoc.name === doc)
+      !selectedDocuments.find((selectedDoc) => selectedDoc.name === doc),
   );
 
   // Filter selected documents by search
   const filteredSelectedDocuments = selectedDocuments.filter((doc) =>
-    doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase())
+    doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase()),
   );
 
   return (
@@ -84,12 +86,32 @@ export default function DocumentLibrary({
                   className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/80 border border-[#C1D9F6]/30 backdrop-blur-sm shadow-sm"
                 >
                   {isDocLibrarySearchVisible && documentSearch ? (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   ) : (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
                     </svg>
                   )}
                 </button>
@@ -97,11 +119,23 @@ export default function DocumentLibrary({
                   <button
                     onClick={() => setShowTemplatesInline(!showTemplatesInline)}
                     className={`text-[#0E315C]/60 hover:text-[#0E315C] flex items-center space-x-2 text-sm font-light border border-[#C1D9F6]/30 hover:border-[#C5BFEE]/50 rounded-xl px-3 py-2 transition-all duration-300 backdrop-blur-sm shadow-sm ${
-                      showTemplatesInline ? "bg-[#C5BFEE]/20 border-[#C5BFEE]/50 text-[#0E315C]" : "bg-white/60 hover:bg-white/80"
+                      showTemplatesInline
+                        ? "bg-[#C5BFEE]/20 border-[#C5BFEE]/50 text-[#0E315C]"
+                        : "bg-white/60 hover:bg-white/80"
                     }`}
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                      />
                     </svg>
                     <span>Templates</span>
                   </button>
@@ -111,7 +145,9 @@ export default function DocumentLibrary({
           </div>
 
           {/* Search Bar */}
-          <div className={`overflow-hidden transition-all duration-500 ease-out border-b border-[#C1D9F6]/20 ${isDocLibrarySearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
+          <div
+            className={`overflow-hidden transition-all duration-500 ease-out border-b border-[#C1D9F6]/20 ${isDocLibrarySearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}
+          >
             <div className="px-6 py-4">
               <input
                 type="text"
@@ -127,13 +163,25 @@ export default function DocumentLibrary({
           {showTemplatesInline && showTemplates && (
             <div className="border-b border-[#C1D9F6]/20 px-6 py-4 bg-[#C5BFEE]/5 backdrop-blur-sm">
               <div className="flex items-center justify-between mb-3">
-                <h4 className="text-sm font-medium text-[#0E315C]/80">Quick Templates</h4>
+                <h4 className="text-sm font-medium text-[#0E315C]/80">
+                  Quick Templates
+                </h4>
                 <button
                   onClick={() => setShowTemplatesInline(false)}
                   className="text-[#0E315C]/50 hover:text-[#0E315C] transition-colors"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -153,8 +201,18 @@ export default function DocumentLibrary({
                           {template.documents.length} documents
                         </div>
                       </div>
-                      <svg className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#C5BFEE] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      <svg
+                        className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#C5BFEE] transition-colors"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
                       </svg>
                     </div>
                   </button>
@@ -177,19 +235,41 @@ export default function DocumentLibrary({
                       <span className="text-sm font-light text-[#0E315C] group-hover:text-[#0E315C]">
                         {doc}
                       </span>
-                      <svg className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      <svg
+                        className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] transition-colors"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        />
                       </svg>
                     </div>
                   </button>
                 ))
               ) : (
                 <div className="text-center py-8">
-                  <svg className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <svg
+                    className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/20"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
                   </svg>
                   <p className="text-[#0E315C]/50 text-sm">
-                    {documentSearch ? "No documents match your search" : "All documents have been selected"}
+                    {documentSearch
+                      ? "No documents match your search"
+                      : "All documents have been selected"}
                   </p>
                 </div>
               )}
@@ -209,7 +289,8 @@ export default function DocumentLibrary({
                   Selected Documents
                 </h3>
                 <p className="text-sm text-[#0E315C]/60">
-                  {selectedDocuments.length} document{selectedDocuments.length !== 1 ? "s" : ""} selected
+                  {selectedDocuments.length} document
+                  {selectedDocuments.length !== 1 ? "s" : ""} selected
                 </p>
               </div>
               <div className="flex items-center space-x-2">
@@ -218,18 +299,40 @@ export default function DocumentLibrary({
                     if (isSelectedDocsSearchVisible && selectedDocumentSearch) {
                       setSelectedDocumentSearch("");
                     } else {
-                      setIsSelectedDocsSearchVisible(!isSelectedDocsSearchVisible);
+                      setIsSelectedDocsSearchVisible(
+                        !isSelectedDocsSearchVisible,
+                      );
                     }
                   }}
                   className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/80 border border-[#C1D9F6]/30 backdrop-blur-sm shadow-sm"
                 >
                   {isSelectedDocsSearchVisible && selectedDocumentSearch ? (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
                     </svg>
                   ) : (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
                     </svg>
                   )}
                 </button>
@@ -239,8 +342,18 @@ export default function DocumentLibrary({
                     className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/80 border border-[#C1D9F6]/30 backdrop-blur-sm shadow-sm"
                     title="Save as template"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
+                      />
                     </svg>
                   </button>
                 )}
@@ -250,8 +363,18 @@ export default function DocumentLibrary({
                     className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-red-500 hover:bg-red-50/80 border border-[#C1D9F6]/30 hover:border-red-200 backdrop-blur-sm shadow-sm"
                     title="Clear all selected documents"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
                     </svg>
                   </button>
                 )}
@@ -260,7 +383,9 @@ export default function DocumentLibrary({
           </div>
 
           {/* Search Bar */}
-          <div className={`overflow-hidden transition-all duration-500 ease-out border-b border-[#C1D9F6]/20 ${isSelectedDocsSearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
+          <div
+            className={`overflow-hidden transition-all duration-500 ease-out border-b border-[#C1D9F6]/20 ${isSelectedDocsSearchVisible ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}
+          >
             <div className="px-6 py-4">
               <input
                 type="text"
@@ -295,8 +420,12 @@ export default function DocumentLibrary({
                                 : "bg-[#99C0F0]/20 text-[#99C0F0] border border-[#99C0F0]/30"
                             }`}
                           >
-                            <span className={`w-2 h-2 rounded-full ${doc.optional ? "bg-[#C5BFEE]" : "bg-[#99C0F0]"}`} />
-                            <span>{doc.optional ? "Optional" : "Required"}</span>
+                            <span
+                              className={`w-2 h-2 rounded-full ${doc.optional ? "bg-[#C5BFEE]" : "bg-[#99C0F0]"}`}
+                            />
+                            <span>
+                              {doc.optional ? "Optional" : "Required"}
+                            </span>
                           </button>
                         </div>
                       </div>
@@ -304,8 +433,18 @@ export default function DocumentLibrary({
                         onClick={() => onRemoveDocument(doc.name)}
                         className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-red-500 hover:bg-red-50/80 border border-[#C1D9F6]/30 hover:border-red-200 backdrop-blur-sm"
                       >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
                         </svg>
                       </button>
                     </div>
@@ -313,11 +452,23 @@ export default function DocumentLibrary({
                 ))
               ) : (
                 <div className="text-center py-8">
-                  <svg className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  <svg
+                    className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/20"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
                   </svg>
                   <p className="text-[#0E315C]/50 text-sm">
-                    {selectedDocumentSearch ? "No selected documents match your search" : "No documents selected yet"}
+                    {selectedDocumentSearch
+                      ? "No selected documents match your search"
+                      : "No documents selected yet"}
                   </p>
                   {!selectedDocumentSearch && (
                     <p className="text-[#0E315C]/40 text-xs mt-2">

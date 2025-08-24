@@ -17,7 +17,7 @@ interface FeedbackDialogProps {
 }
 
 export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
-  const [sentiment, setSentiment] = useState<'happy' | 'unhappy' | null>(null);
+  const [sentiment, setSentiment] = useState<"happy" | "unhappy" | null>(null);
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -26,7 +26,8 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
     if (!sentiment) {
       toast({
         title: "Please select your sentiment",
-        description: "Choose whether you're happy or unhappy with the experience.",
+        description:
+          "Choose whether you're happy or unhappy with the experience.",
         variant: "destructive",
       });
       return;
@@ -50,10 +51,10 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
         page: window.location.pathname,
       };
 
-      const response = await fetch('/api/feedback', {
-        method: 'POST',
+      const response = await fetch("/api/feedback", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(feedbackData),
       });
@@ -65,13 +66,13 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
           title: "Feedback sent!",
           description: "Thank you for helping us improve our platform.",
         });
-        
+
         // Reset form and close dialog
         setSentiment(null);
         setComment("");
         onOpenChange(false);
       } else {
-        throw new Error(result.message || 'Failed to send feedback');
+        throw new Error(result.message || "Failed to send feedback");
       }
     } catch (error) {
       toast({
@@ -99,19 +100,21 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
             Help us improve our platform by sharing your experience.
           </DialogDescription>
         </DialogHeader>
-        
+
         <div className="space-y-4">
           <div>
-            <h4 className="text-sm font-medium mb-3 text-[#0E315C]">How was your experience?</h4>
+            <h4 className="text-sm font-medium mb-3 text-[#0E315C]">
+              How was your experience?
+            </h4>
             <div className="flex gap-3">
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setSentiment('happy')}
+                onClick={() => setSentiment("happy")}
                 className={`flex-1 transition-all ${
-                  sentiment === 'happy'
-                    ? 'bg-[#C1D9F6] border-[#99C0F0] text-[#0E315C] hover:bg-[#C1D9F6]/90'
-                    : 'hover:bg-[#C1D9F6]/20 hover:border-[#99C0F0]'
+                  sentiment === "happy"
+                    ? "bg-[#C1D9F6] border-[#99C0F0] text-[#0E315C] hover:bg-[#C1D9F6]/90"
+                    : "hover:bg-[#C1D9F6]/20 hover:border-[#99C0F0]"
                 }`}
               >
                 😊 Happy
@@ -119,11 +122,11 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setSentiment('unhappy')}
+                onClick={() => setSentiment("unhappy")}
                 className={`flex-1 transition-all ${
-                  sentiment === 'unhappy'
-                    ? 'bg-[#C5BFEE] border-[#C5BFEE] text-[#0E315C] hover:bg-[#C5BFEE]/90'
-                    : 'hover:bg-[#C5BFEE]/20 hover:border-[#C5BFEE]'
+                  sentiment === "unhappy"
+                    ? "bg-[#C5BFEE] border-[#C5BFEE] text-[#0E315C] hover:bg-[#C5BFEE]/90"
+                    : "hover:bg-[#C5BFEE]/20 hover:border-[#C5BFEE]"
                 }`}
               >
                 😞 Unhappy
@@ -132,7 +135,9 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
           </div>
 
           <div>
-            <h4 className="text-sm font-medium mb-2 text-[#0E315C]">Tell us more</h4>
+            <h4 className="text-sm font-medium mb-2 text-[#0E315C]">
+              Tell us more
+            </h4>
             <Textarea
               placeholder="What can we do better? Your feedback is valuable to us..."
               value={comment}

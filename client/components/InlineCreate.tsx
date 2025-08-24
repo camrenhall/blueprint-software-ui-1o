@@ -261,7 +261,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         {/* Step 2: Document Selection */}
         {createStep === 2 && (
           <div className="h-full flex flex-col min-h-0">
-
             {/* Document Library Interface - Flexible with max height */}
             <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)]">
               <DocumentLibrary
@@ -310,14 +309,16 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
                         <span className="text-[#0E315C]/70">
-                          {documentSelection.getDocumentCounts().required} required
+                          {documentSelection.getDocumentCounts().required}{" "}
+                          required
                         </span>
                       </div>
                       {documentSelection.getDocumentCounts().optional > 0 && (
                         <div className="flex items-center space-x-2">
                           <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
                           <span className="text-[#0E315C]/70">
-                            {documentSelection.getDocumentCounts().optional} optional
+                            {documentSelection.getDocumentCounts().optional}{" "}
+                            optional
                           </span>
                         </div>
                       )}
@@ -403,7 +404,11 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                 </button>
 
                 {/* Form Status Indicator - Center */}
-                {!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email || !caseInfo.caseType || !caseInfo.priority ? (
+                {!caseInfo.firstName ||
+                !caseInfo.lastName ||
+                !caseInfo.email ||
+                !caseInfo.caseType ||
+                !caseInfo.priority ? (
                   <p className="text-[#0E315C]/40 text-xs font-light">
                     Fill in required fields to continue
                   </p>
@@ -420,12 +425,20 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                 <button
                   onClick={() => {
                     // Trigger form submission
-                    const form = document.querySelector('form') as HTMLFormElement;
+                    const form = document.querySelector(
+                      "form",
+                    ) as HTMLFormElement;
                     if (form) {
                       form.requestSubmit();
                     }
                   }}
-                  disabled={!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email || !caseInfo.caseType || !caseInfo.priority}
+                  disabled={
+                    !caseInfo.firstName ||
+                    !caseInfo.lastName ||
+                    !caseInfo.email ||
+                    !caseInfo.caseType ||
+                    !caseInfo.priority
+                  }
                   className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#99C0F0]/90 to-[#C5BFEE]/90 hover:from-[#99C0F0] hover:to-[#C5BFEE] disabled:from-[#C1D9F6]/40 disabled:to-[#C1D9F6]/40 disabled:cursor-not-allowed text-white rounded-2xl transition-all duration-300 hover:scale-105 transform shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 disabled:shadow-none backdrop-blur-sm"
                 >
                   <span className="font-light group-disabled:text-white/60">
@@ -496,12 +509,15 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     <div className="flex justify-between">
                       <span className="text-[#0E315C]/70">Case Type:</span>
                       <span className="text-[#0E315C] capitalize">
-                        {caseInfo.caseType?.replace('_', ' ') || 'Not specified'}
+                        {caseInfo.caseType?.replace("_", " ") ||
+                          "Not specified"}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#0E315C]/70">Priority:</span>
-                      <span className="text-[#0E315C] capitalize">{caseInfo.priority}</span>
+                      <span className="text-[#0E315C] capitalize">
+                        {caseInfo.priority}
+                      </span>
                     </div>
                     {caseInfo.description && (
                       <div className="flex justify-between">
