@@ -462,130 +462,148 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
         {/* Step 4: Review & Create */}
         {createStep === 4 && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-medium text-[#0E315C] mb-1">
-                  Review & Create
-                </h2>
-                <p className="text-[#0E315C]/70 text-sm">
-                  Review all details before creating the case
-                </p>
-              </div>
-              <button
-                onClick={() => handleStepTransition(3)}
-                className="flex items-center space-x-2 px-3 py-2 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-[#C1D9F6]/20 rounded-lg transition-all text-sm"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-                <span>Back</span>
-              </button>
+          <div className="h-full flex flex-col min-h-0">
+            {/* Header */}
+            <div className="mb-6 flex-shrink-0">
+              <h2 className="text-lg font-medium text-[#0E315C] mb-1">
+                Review & Create
+              </h2>
+              <p className="text-[#0E315C]/70 text-sm">
+                Review all details before creating the case
+              </p>
             </div>
 
-            <div className="space-y-4">
-              <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
-                <h3 className="text-sm font-medium text-[#0E315C] mb-3">
-                  Case Summary
-                </h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-[#0E315C]/70">Method:</span>
-                    <span className="text-[#0E315C] capitalize">
-                      {createMethod}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#0E315C]/70">Client:</span>
-                    <span className="text-[#0E315C]">
-                      {caseInfo.firstName} {caseInfo.lastName}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#0E315C]/70">Email:</span>
-                    <span className="text-[#0E315C]">{caseInfo.email}</span>
-                  </div>
-                  {caseInfo.phone && (
+            {/* Review Content - Flexible with max height */}
+            <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)]">
+              <div className="space-y-4">
+                <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
+                  <h3 className="text-sm font-medium text-[#0E315C] mb-3">
+                    Case Summary
+                  </h3>
+                  <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-[#0E315C]/70">Phone:</span>
-                      <span className="text-[#0E315C]">{caseInfo.phone}</span>
-                    </div>
-                  )}
-                  <div className="flex justify-between">
-                    <span className="text-[#0E315C]/70">Case Type:</span>
-                    <span className="text-[#0E315C] capitalize">
-                      {caseInfo.caseType?.replace('_', ' ') || 'Not specified'}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#0E315C]/70">Priority:</span>
-                    <span className="text-[#0E315C] capitalize">{caseInfo.priority}</span>
-                  </div>
-                  {caseInfo.description && (
-                    <div className="flex justify-between">
-                      <span className="text-[#0E315C]/70">Description:</span>
-                      <span className="text-[#0E315C] max-w-xs text-right">
-                        {caseInfo.description.length > 50
-                          ? `${caseInfo.description.substring(0, 50)}...`
-                          : caseInfo.description}
+                      <span className="text-[#0E315C]/70">Method:</span>
+                      <span className="text-[#0E315C] capitalize">
+                        {createMethod}
                       </span>
                     </div>
-                  )}
-                  <div className="flex justify-between">
-                    <span className="text-[#0E315C]/70">Documents:</span>
-                    <span className="text-[#0E315C]">
-                      {documentSelection.getDocumentCounts().total} selected
-                    </span>
+                    <div className="flex justify-between">
+                      <span className="text-[#0E315C]/70">Client:</span>
+                      <span className="text-[#0E315C]">
+                        {caseInfo.firstName} {caseInfo.lastName}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#0E315C]/70">Email:</span>
+                      <span className="text-[#0E315C]">{caseInfo.email}</span>
+                    </div>
+                    {caseInfo.phone && (
+                      <div className="flex justify-between">
+                        <span className="text-[#0E315C]/70">Phone:</span>
+                        <span className="text-[#0E315C]">{caseInfo.phone}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between">
+                      <span className="text-[#0E315C]/70">Case Type:</span>
+                      <span className="text-[#0E315C] capitalize">
+                        {caseInfo.caseType?.replace('_', ' ') || 'Not specified'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-[#0E315C]/70">Priority:</span>
+                      <span className="text-[#0E315C] capitalize">{caseInfo.priority}</span>
+                    </div>
+                    {caseInfo.description && (
+                      <div className="flex justify-between">
+                        <span className="text-[#0E315C]/70">Description:</span>
+                        <span className="text-[#0E315C] max-w-xs text-right">
+                          {caseInfo.description.length > 50
+                            ? `${caseInfo.description.substring(0, 50)}...`
+                            : caseInfo.description}
+                        </span>
+                      </div>
+                    )}
+                    <div className="flex justify-between">
+                      <span className="text-[#0E315C]/70">Documents:</span>
+                      <span className="text-[#0E315C]">
+                        {documentSelection.getDocumentCounts().total} selected
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="flex justify-end">
-              <button
-                onClick={() => {
-                  alert("Case created successfully!");
-                  // Reset form or navigate away
-                  setCreateStep(1);
-                  setCreateMethod(null);
-                  setCaseInfo({
-                    firstName: "",
-                    lastName: "",
-                    email: "",
-                    phone: "",
-                    caseType: "",
-                    priority: "medium",
-                    description: "",
-                  });
-                  documentSelection.setSelectedDocuments([]);
-                }}
-                className="bg-[#C5BFEE] hover:bg-[#0E315C] text-white px-6 py-2 rounded-xl transition-all flex items-center space-x-2 shadow-lg shadow-[#C5BFEE]/20"
-              >
-                <span>Create Case</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            {/* Compact Navigation Bar - Fixed at bottom */}
+            <div className="mt-4 pb-2 flex-shrink-0">
+              <div className="flex items-center justify-between">
+                {/* Back Button */}
+                <button
+                  onClick={() => handleStepTransition(3)}
+                  className="group flex items-center space-x-3 px-6 py-3 bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/60 hover:border-[#C1D9F6]/80 hover:bg-white/60 rounded-2xl transition-all duration-300 hover:scale-105 transform hover:shadow-lg shadow-[#C1D9F6]/10"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    className="w-4 h-4 text-[#0E315C]/60 group-hover:text-[#0E315C] transition-colors duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                  <span className="text-[#0E315C]/70 group-hover:text-[#0E315C] font-light transition-colors duration-300">
+                    Back
+                  </span>
+                </button>
+
+                {/* Ready Status Indicator - Center */}
+                <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm backdrop-blur-sm">
+                  <div className="flex items-center space-x-2 text-sm">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <span className="text-[#0E315C]/70">Ready to create</span>
+                  </div>
+                </div>
+
+                {/* Create Case Button */}
+                <button
+                  onClick={() => {
+                    alert("Case created successfully!");
+                    // Reset form or navigate away
+                    setCreateStep(1);
+                    setCreateMethod(null);
+                    setCaseInfo({
+                      firstName: "",
+                      lastName: "",
+                      email: "",
+                      phone: "",
+                      caseType: "",
+                      priority: "medium",
+                      description: "",
+                    });
+                    documentSelection.setSelectedDocuments([]);
+                  }}
+                  className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#C5BFEE]/90 to-[#99C0F0]/90 hover:from-[#C5BFEE] hover:to-[#99C0F0] text-white rounded-2xl transition-all duration-300 hover:scale-105 transform shadow-lg shadow-[#C5BFEE]/20 hover:shadow-xl hover:shadow-[#C5BFEE]/30 backdrop-blur-sm"
+                >
+                  <span className="font-light">Create Case</span>
+                  <svg
+                    className="w-4 h-4 transition-transform duration-300 group-hover:scale-110"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         )}
