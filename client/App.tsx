@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import CloudBackground from "./components/CloudBackground";
+import { FeedbackButton } from "./components/FeedbackButton";
 
 // Extend HTMLElement to include our custom property
 declare global {
