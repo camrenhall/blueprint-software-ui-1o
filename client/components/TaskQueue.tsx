@@ -380,11 +380,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<TaskSortOption>("priority");
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setIsVisible(true), 100);
-  }, []);
 
   // Filter and sort tasks
   const filteredAndSortedTasks = useMemo(() => {
