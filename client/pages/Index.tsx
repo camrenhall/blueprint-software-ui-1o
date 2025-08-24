@@ -58,7 +58,7 @@ function IndexContent() {
 
   return (
     <div className="h-screen w-full relative overflow-hidden pt-16">
-      {/* Conditional Menu - GlassSidePanel or ConversationHistory */}
+      {/* Fixed positioned panels - outside of transformed containers */}
       {isInChatMode ? (
         <ConversationHistory
           className="h-full"
@@ -67,22 +67,12 @@ function IndexContent() {
       ) : (
         <GlassSidePanel
           items={menuItems}
-          className={`transition-all duration-1000 ease-out ${
-            isVisible
-              ? "opacity-100 transform translate-y-0"
-              : "opacity-0 transform translate-y-8"
-          }`}
+          isVisible={isVisible}
         />
       )}
 
       {/* Main content area */}
-      <div
-        className={`relative z-10 h-screen transition-all duration-1000 ease-out ${
-          isVisible
-            ? "opacity-100 transform translate-y-0"
-            : "opacity-0 transform translate-y-8"
-        }`}
-      >
+      <div className="relative z-10 h-screen">
 
         {/* Right Side Content Area - Adjusted for fixed glass panel */}
         <div
