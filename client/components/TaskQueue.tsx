@@ -327,7 +327,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
   const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<TaskSortOption>("priority");
+  const [sortBy, setSortBy] = useState<TaskSortOption>("createdAt");
 
   // Filter and sort tasks
   const filteredAndSortedTasks = useMemo(() => {
