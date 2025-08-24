@@ -559,20 +559,29 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
 
       {/* Task list */}
       <div className="relative z-10 h-full">
-        {tasks.length === 0 ? (
+        {filteredAndSortedTasks.length === 0 ? (
           <div className="relative z-10 flex-1 flex items-center justify-center h-full">
             <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center max-w-md mx-4">
               <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-gentlePulse">
                 <CheckCircle2 className="w-12 h-12 text-[#99C0F0]" />
               </div>
-              <h3 className="text-xl font-light text-[#0E315C] mb-2">All caught up!</h3>
-              <p className="text-[#0E315C]/60 text-sm font-light">No pending tasks from your agents at the moment.</p>
+              {tasks.length === 0 ? (
+                <>
+                  <h3 className="text-xl font-light text-[#0E315C] mb-2">All caught up!</h3>
+                  <p className="text-[#0E315C]/60 text-sm font-light">No pending tasks from your agents at the moment.</p>
+                </>
+              ) : (
+                <>
+                  <h3 className="text-xl font-light text-[#0E315C] mb-2">No tasks found</h3>
+                  <p className="text-[#0E315C]/60 text-sm font-light">Try adjusting your search or clearing filters.</p>
+                </>
+              )}
             </div>
           </div>
         ) : (
           <div className="h-full transition-all duration-300 border border-[#C1D9F6]/50 rounded-3xl mx-2 overflow-hidden">
             <div className="h-full overflow-y-auto px-6 py-6 space-y-5">
-              {tasks.map((task, index) => (
+              {filteredAndSortedTasks.map((task, index) => (
                 <TaskCard
                   key={task.id}
                   task={task}
