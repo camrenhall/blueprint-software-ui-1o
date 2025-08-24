@@ -5,6 +5,7 @@ import ConversationHistory from "@/components/ConversationHistory";
 import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
 import AgentsChat from "@/components/AgentsChat";
+import TaskQueue from "@/components/TaskQueue";
 import {
   ConversationProvider,
   useConversationContext,
