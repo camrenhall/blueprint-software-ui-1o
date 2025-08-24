@@ -55,17 +55,30 @@ export default function CaseInfoForm({
     },
   });
 
-  const watchedValues = form.watch();
+  // Watch specific fields instead of all values
+  const firstName = form.watch("firstName");
+  const lastName = form.watch("lastName");
+  const email = form.watch("email");
+  const phone = form.watch("phone");
+  const emailError = form.formState.errors.email;
 
   // Track completed fields
   useEffect(() => {
     const newCompleted = new Set<string>();
-    if (watchedValues.firstName?.trim()) newCompleted.add("firstName");
-    if (watchedValues.lastName?.trim()) newCompleted.add("lastName");
-    if (watchedValues.email?.trim() && !form.formState.errors.email) newCompleted.add("email");
-    if (watchedValues.phone?.trim()) newCompleted.add("phone");
-    setCompletedFields(newCompleted);
-  }, [watchedValues, form.formState.errors]);
+    if (firstName?.trim()) newCompleted.add("firstName");
+    if (lastName?.trim()) newCompleted.add("lastName");
+    if (email?.trim() && !emailError) newCompleted.add("email");
+    if (phone?.trim()) newCompleted.add("phone");
+
+    // Only update if the set actually changed
+    setCompletedFields(prev => {
+      const prevArray = Array.from(prev).sort();
+      const newArray = Array.from(newCompleted).sort();
+      const hasChanged = prevArray.length !== newArray.length ||
+                        prevArray.some((item, index) => item !== newArray[index]);
+      return hasChanged ? newCompleted : prev;
+    });
+  }, [firstName, lastName, email, phone, emailError]);
 
   // Auto-focus the first input when component mounts
   useEffect(() => {
