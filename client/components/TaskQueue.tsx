@@ -377,6 +377,9 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
   const [selectedTasks, setSelectedTasks] = useState<Set<string>>(new Set());
   const [expandedTasks, setExpandedTasks] = useState<Set<string>>(new Set());
   const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
+  const [searchValue, setSearchValue] = useState("");
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<TaskSortOption>("priority");
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
