@@ -114,21 +114,11 @@ function IndexContent() {
             </div>
 
             {/* Subtle ambient elements */}
-            {activeRightContent && (
+            {activeRightContent && isVisible && (
               <>
+                <div className="absolute top-8 right-8 w-2 h-2 bg-[#99C0F0]/40 rounded-full opacity-60 animate-float" />
                 <div
-                  className={`absolute top-8 right-8 w-2 h-2 bg-[#99C0F0]/40 rounded-full transition-all duration-2000 ease-out delay-500 ${
-                    activeRightContent
-                      ? "opacity-60 animate-float"
-                      : "opacity-0"
-                  }`}
-                />
-                <div
-                  className={`absolute bottom-12 left-8 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full transition-all duration-2000 ease-out delay-700 ${
-                    activeRightContent
-                      ? "opacity-50 animate-float-slow"
-                      : "opacity-0"
-                  }`}
+                  className="absolute bottom-12 left-8 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full opacity-50 animate-float-slow"
                   style={{ animationDelay: "1s" }}
                 />
               </>
