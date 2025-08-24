@@ -232,10 +232,10 @@ export default function CaseInfoForm({
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <div className={`transition-colors duration-200 ${
-                        focusedField === "email" 
-                          ? "text-blue-500" 
+                        focusedField === "email"
+                          ? "text-[#99C0F0]"
                           : completedFields.has("email")
-                            ? "text-emerald-500"
+                            ? "text-[#C5BFEE]"
                             : "text-gray-400"
                       }`}>
                         {completedFields.has("email") ? <Check className="w-5 h-5" /> : getFieldIcon("email")}
