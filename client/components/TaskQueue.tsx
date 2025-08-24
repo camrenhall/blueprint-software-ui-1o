@@ -163,14 +163,14 @@ function FeedbackModal({ task, onClose, onSubmit }: FeedbackModalProps) {
 // Priority badge component
 function PriorityBadge({ priority }: { priority: ProposedTask["priority"] }) {
   const colors = {
-    high: "bg-gradient-to-r from-red-400/80 to-red-500/80 text-white",
-    medium: "bg-gradient-to-r from-yellow-400/80 to-yellow-500/80 text-white", 
-    low: "bg-gradient-to-r from-green-400/80 to-green-500/80 text-white",
+    high: "bg-red-100/80 text-red-700 border-red-200",
+    medium: "bg-yellow-100/80 text-yellow-700 border-yellow-200",
+    low: "bg-green-100/80 text-green-700 border-green-200",
   };
 
   return (
     <span className={cn(
-      "px-2 py-1 rounded-full text-xs font-medium capitalize backdrop-blur-sm",
+      "px-2 py-0.5 rounded-lg text-xs font-medium capitalize backdrop-blur-sm border",
       colors[priority]
     )}>
       {priority}
