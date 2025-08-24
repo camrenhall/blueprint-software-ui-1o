@@ -201,17 +201,6 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
             )}
             style={{ transitionDelay: "800ms" }}
           >
-            <div className="text-center">
-              <p className="text-xs text-[#99C0F0]/60 font-light">
-                Welcome back, Camren
-              </p>
-              <div className="flex items-center justify-center space-x-2 mt-2">
-                <div className="w-2 h-2 bg-green-400/60 rounded-full animate-pulse" />
-                <span className="text-xs text-[#0E315C]/60 font-light">
-                  System Online
-                </span>
-              </div>
-            </div>
           </div>
         </div>
 
