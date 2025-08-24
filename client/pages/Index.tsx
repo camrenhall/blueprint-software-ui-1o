@@ -77,11 +77,12 @@ function IndexContent() {
 
         {/* Right Side Content Area - Adjusted for fixed glass panel */}
         <div
-          className={`absolute left-80 right-6 top-6 bottom-6 transition-all duration-1000 ease-out ${
-            activeRightContent
-              ? "opacity-100 transform translate-x-0"
-              : "opacity-0 transform translate-x-8 pointer-events-none"
-          }`}
+          className={cn(
+            "absolute left-80 right-6 top-6 bottom-6 transition-all duration-1000 ease-out",
+            activeRightContent && isVisible
+              ? "opacity-100"
+              : "opacity-0 pointer-events-none"
+          )}
         >
           {/* Glass morphism content background */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-[#C1D9F6]/5 to-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl" />
