@@ -178,22 +178,6 @@ function PriorityBadge({ priority }: { priority: ProposedTask["priority"] }) {
   );
 }
 
-// Category icon component
-function CategoryIcon({ category }: { category: ProposedTask["category"] }) {
-  const iconMap = {
-    email: "📧",
-    reminder: "⏰", 
-    analysis: "📊",
-    action: "⚡",
-    "follow-up": "🔄"
-  };
-
-  return (
-    <span className="w-8 h-8 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-lg flex items-center justify-center text-sm">
-      {iconMap[category]}
-    </span>
-  );
-}
 
 // Individual task card component
 interface TaskCardProps {
