@@ -98,7 +98,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
               </div>
 
               {/* System status indicators */}
-              <div className="hidden lg:flex items-center space-x-3 ml-6">
+              <div className="hidden lg:flex items-center space-x-4 ml-8">
                 <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                   <Wifi className="w-3 h-3 text-[#99C0F0]/80" />
                   <span className="text-xs text-[#0E315C]/70 font-medium">Online</span>
