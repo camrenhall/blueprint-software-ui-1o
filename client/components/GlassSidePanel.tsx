@@ -13,16 +13,22 @@ interface MenuItem {
 interface GlassSidePanelProps {
   items: MenuItem[];
   className?: string;
+  isVisible?: boolean;
 }
 
-export default function GlassSidePanel({ items, className }: GlassSidePanelProps) {
-  const [isVisible, setIsVisible] = useState(false);
+export default function GlassSidePanel({ items, className, isVisible: externalIsVisible }: GlassSidePanelProps) {
+  const [internalIsVisible, setInternalIsVisible] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
+  // Use external isVisible if provided, otherwise use internal state
+  const isVisible = externalIsVisible !== undefined ? externalIsVisible : internalIsVisible;
+
   useEffect(() => {
-    // Staggered fade-in animation
-    setTimeout(() => setIsVisible(true), 300);
-  }, []);
+    // Staggered fade-in animation when using internal state
+    if (externalIsVisible === undefined) {
+      setTimeout(() => setInternalIsVisible(true), 300);
+    }
+  }, [externalIsVisible]);
 
   // Map menu items to icons for better visual hierarchy
   const getMenuIcon = (id: string): LucideIcon => {
