@@ -57,7 +57,7 @@ function IndexContent() {
   ];
 
   return (
-    <div className="h-screen w-full relative overflow-hidden">
+    <div className="h-screen w-full relative overflow-hidden pt-16">
       {/* Main content */}
       <div
         className={`relative z-10 h-screen flex items-center pl-12 md:pl-20 lg:pl-28 xl:pl-32 transition-all duration-1000 ease-out ${
