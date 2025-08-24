@@ -435,6 +435,26 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     </div>
                   )}
                   <div className="flex justify-between">
+                    <span className="text-[#0E315C]/70">Case Type:</span>
+                    <span className="text-[#0E315C] capitalize">
+                      {caseInfo.caseType?.replace('_', ' ') || 'Not specified'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-[#0E315C]/70">Priority:</span>
+                    <span className="text-[#0E315C] capitalize">{caseInfo.priority}</span>
+                  </div>
+                  {caseInfo.description && (
+                    <div className="flex justify-between">
+                      <span className="text-[#0E315C]/70">Description:</span>
+                      <span className="text-[#0E315C] max-w-xs text-right">
+                        {caseInfo.description.length > 50
+                          ? `${caseInfo.description.substring(0, 50)}...`
+                          : caseInfo.description}
+                      </span>
+                    </div>
+                  )}
+                  <div className="flex justify-between">
                     <span className="text-[#0E315C]/70">Documents:</span>
                     <span className="text-[#0E315C]">
                       {documentSelection.getDocumentCounts().total} selected
