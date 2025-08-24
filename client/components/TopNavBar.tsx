@@ -81,7 +81,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
         <div className="relative px-6 py-3">
           <div className="flex items-center justify-between">
             {/* Left section - Logo/Brand area */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               {/* Floating OS indicator */}
               <div className="flex items-center space-x-2">
                 <div className="relative">
