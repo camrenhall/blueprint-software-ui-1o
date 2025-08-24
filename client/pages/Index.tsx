@@ -122,6 +122,11 @@ function IndexContent() {
                   <InlineReview onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
+              {activeRightContent === "taskqueue" && (
+                <div className="w-full h-full mx-auto">
+                  <TaskQueue onClose={() => setActiveRightContent(null)} />
+                </div>
+              )}
             </div>
 
             {/* Subtle ambient elements */}
