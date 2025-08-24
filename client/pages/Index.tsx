@@ -75,7 +75,7 @@ function IndexContent() {
         {/* Right Side Content Area - Adjusted for fixed glass panel */}
         <div
           className={cn(
-            "absolute left-80 right-6 top-6 bottom-6 transition-all duration-1000 ease-out",
+            "absolute left-96 right-6 top-6 bottom-6 transition-all duration-1000 ease-out",
             activeRightContent && isVisible
               ? "opacity-100"
               : "opacity-0 pointer-events-none",
