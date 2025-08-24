@@ -446,34 +446,37 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
   };
 
   return (
-    <div className={cn(
-      "w-full h-full flex flex-col transition-all duration-800 ease-out",
-      isVisible ? "opacity-100" : "opacity-0"
-    )}>
+    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] px-8 lg:px-6 md:px-4 py-8 lg:py-6 md:py-4 relative flex flex-col rounded-[2rem] lg:rounded-[1.5rem] md:rounded-[1.25rem]">
+      {/* Enhanced Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl rounded-[2rem] lg:rounded-[1.5rem] md:rounded-[1.25rem]" />
+      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm rounded-[2rem] lg:rounded-[1.5rem] md:rounded-[1.25rem]" />
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <h1 className="text-4xl font-light text-[#0E315C] tracking-wide animate-slideInLeft">
-                Task Queue
-              </h1>
-              <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
-                Agent Proposals
-              </div>
+      <div className="relative z-10 text-center mb-8 flex-shrink-0">
+        <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
+              Task Queue
+            </h1>
+            <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
+              Agent Proposals
             </div>
-            <p className="text-[#0E315C]/70 text-base leading-relaxed font-light animate-slideInLeft" style={{ animationDelay: "200ms" }}>
-              Review and manage proposed actions from your AI agents
-            </p>
           </div>
-          <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-2xl flex items-center justify-center animate-float shadow-lg">
-            <span className="text-white font-light text-xl">
-              {tasks.length}
-            </span>
-          </div>
+          <p className="text-[#0E315C]/70 text-base leading-relaxed">
+            Review and manage proposed actions from your AI agents
+          </p>
         </div>
+        {onClose && (
+          <button
+            onClick={onClose}
+            className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        )}
+      </div>
 
-        {/* Control panel */}
+      {/* Control panel */}
+      <div className="relative z-10 mb-6">
         {tasks.length > 0 && (
           <div className={cn(
             "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-5 animate-fadeInUp",
@@ -524,7 +527,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
       </div>
 
       {/* Task list */}
-      <div className="flex-1 overflow-auto">
+      <div className="relative z-10 flex-1 min-h-0">
         {tasks.length === 0 ? (
           <div className="bg-white/20 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-16 text-center">
             <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-gentlePulse">
@@ -559,16 +562,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         onSubmit={handleFeedbackSubmit}
       />
 
-      {/* Ambient elements */}
-      {isVisible && (
-        <>
-          <div className="absolute top-8 right-8 w-2 h-2 bg-[#99C0F0]/40 rounded-full opacity-60 animate-float" />
-          <div
-            className="absolute bottom-12 left-8 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full opacity-50 animate-float-slow"
-            style={{ animationDelay: "1s" }}
-          />
-        </>
-      )}
     </div>
   );
 }
