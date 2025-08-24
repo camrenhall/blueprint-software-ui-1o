@@ -63,6 +63,7 @@ function IndexContent() {
         <ConversationHistory
           className="h-full"
           onBackToMenu={handleBackToMenu}
+          isVisible={isVisible}
         />
       ) : (
         <GlassSidePanel
