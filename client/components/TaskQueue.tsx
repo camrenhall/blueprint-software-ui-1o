@@ -541,56 +541,21 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         )}
       </div>
 
-      {/* Control panel */}
-      <div className="relative z-10 mb-6">
-        {tasks.length > 0 && (
-          <div className={cn(
-            "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-5 animate-fadeInUp",
-            "shadow-lg"
-          )} style={{ animationDelay: "300ms" }}>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={handleSelectAll}
-                  className="flex items-center gap-3 text-[#0E315C] hover:text-[#99C0F0] transition-colors duration-300 font-light"
-                >
-                  <div className={cn(
-                    "w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-300",
-                    selectedTasks.size === tasks.length
-                      ? "bg-[#99C0F0] border-[#99C0F0] text-white"
-                      : selectedTasks.size > 0
-                      ? "bg-[#99C0F0]/20 border-[#99C0F0] text-[#99C0F0]"
-                      : "border-[#C1D9F6]/60 hover:border-[#99C0F0]/80 bg-white/60 backdrop-blur-sm"
-                  )}>
-                    {selectedTasks.size === tasks.length ? (
-                      <Check className="w-3 h-3" />
-                    ) : selectedTasks.size > 0 ? (
-                      <div className="w-2 h-2 bg-current rounded-sm" />
-                    ) : null}
-                  </div>
-                  <span className="text-lg">
-                    {selectedTasks.size === 0
-                      ? "Select All"
-                      : selectedTasks.size === tasks.length
-                      ? "Deselect All"
-                      : `${selectedTasks.size} Selected`}
-                  </span>
-                </button>
-              </div>
-
-              {selectedTasks.size > 0 && (
-                <button
-                  onClick={handleAcceptSelected}
-                  className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-6 py-3 rounded-2xl transition-all duration-300 font-light text-base shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center gap-2 animate-slideInLeft"
-                >
-                  <CheckCircle2 className="w-4 h-4" />
-                  Accept {selectedTasks.size} Task{selectedTasks.size !== 1 ? 's' : ''}
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
+      {/* Search, Filter, Sort and Selection Bar */}
+      <TaskSearchFilterBar
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        activeFilters={activeFilters}
+        onFilterToggle={toggleFilter}
+        onClearFilters={clearFilters}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+        selectedCount={selectedTasks.size}
+        totalCount={filteredAndSortedTasks.length}
+        onSelectAll={handleSelectAll}
+        onAcceptSelected={handleAcceptSelected}
+        className="relative z-10 mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
+      />
 
       {/* Task list */}
       <div className="relative z-10 h-full">
