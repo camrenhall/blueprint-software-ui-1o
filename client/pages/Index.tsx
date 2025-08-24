@@ -91,13 +91,10 @@ function IndexContent() {
           <div className="h-full relative p-8">
             {/* Content Container */}
             <div
-              className={`w-full h-full transition-all duration-1200 ease-out delay-200 ${
-                activeRightContent === "agents"
-                  ? "opacity-100"
-                  : activeRightContent
-                    ? "opacity-100 flex items-center justify-center transform translate-y-0 scale-100"
-                    : "opacity-0 transform translate-y-6 scale-95"
-              }`}
+              className={cn(
+                "w-full h-full transition-opacity duration-800 ease-out delay-200",
+                activeRightContent && isVisible ? "opacity-100" : "opacity-0"
+              )}
             >
               {activeRightContent === "agents" && (
                 <div className="w-full h-full relative">
