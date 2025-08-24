@@ -447,11 +447,23 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
   };
 
   const handleSelectAll = () => {
-    if (selectedTasks.size === tasks.length) {
+    if (selectedTasks.size === filteredAndSortedTasks.length) {
       setSelectedTasks(new Set());
     } else {
-      setSelectedTasks(new Set(tasks.map(t => t.id)));
+      setSelectedTasks(new Set(filteredAndSortedTasks.map(t => t.id)));
     }
+  };
+
+  const toggleFilter = (filterId: string) => {
+    setActiveFilters(prev =>
+      prev.includes(filterId)
+        ? prev.filter(f => f !== filterId)
+        : [...prev, filterId]
+    );
+  };
+
+  const clearFilters = () => {
+    setActiveFilters([]);
   };
 
   const handleAcceptTask = (taskId: string) => {
