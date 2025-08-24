@@ -306,24 +306,6 @@ export default function CaseInfoForm({
             )}
           />
 
-          {/* Form Status Indicator */}
-          {isFormValid && (
-            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
-              <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <Check className="h-5 w-5 text-emerald-400" />
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-emerald-800">
-                    All required information completed!
-                  </p>
-                  <p className="text-sm text-emerald-700">
-                    Ready to proceed to the next step.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Hidden submit button - form will be submitted via external button */}
           <button type="submit" className="hidden" />
