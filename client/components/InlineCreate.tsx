@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import DocumentLibrary from "./DocumentLibrary";
 import TemplateConflictModal from "./TemplateConflictModal";
+import CaseInfoForm, { CaseInfoFormData } from "./CaseInfoForm";
 import { useDocumentSelection } from "../hooks/useDocumentSelection";
 import { Button } from "@/components/ui/button";
 
@@ -15,12 +16,14 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     "ai" | "manual" | "questionnaire" | null
   >(null);
   const documentSelection = useDocumentSelection();
-  const [caseInfo, setCaseInfo] = useState({
+  const [caseInfo, setCaseInfo] = useState<CaseInfoFormData>({
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     caseType: "",
+    priority: "medium",
+    description: "",
   });
 
   const handleMethodSelect = (method: "ai" | "manual" | "questionnaire") => {
@@ -360,129 +363,14 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
         {/* Step 3: Case Information */}
         {createStep === 3 && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-medium text-[#0E315C] mb-1">
-                  Case Information
-                </h2>
-                <p className="text-[#0E315C]/70 text-sm">
-                  Enter basic information for this case
-                </p>
-              </div>
-              <button
-                onClick={() => handleStepTransition(2)}
-                className="flex items-center space-x-2 px-3 py-2 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-[#C1D9F6]/20 rounded-lg transition-all text-sm"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
-                <span>Back</span>
-              </button>
-            </div>
-
-            <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6 space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-[#0E315C] mb-2">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    value={caseInfo.firstName}
-                    onChange={(e) =>
-                      setCaseInfo((prev) => ({
-                        ...prev,
-                        firstName: e.target.value,
-                      }))
-                    }
-                    className="w-full px-3 py-2 bg-white/80 border border-[#C1D9F6] rounded-lg text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all"
-                    placeholder="Enter first name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-[#0E315C] mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    value={caseInfo.lastName}
-                    onChange={(e) =>
-                      setCaseInfo((prev) => ({
-                        ...prev,
-                        lastName: e.target.value,
-                      }))
-                    }
-                    className="w-full px-3 py-2 bg-white/80 border border-[#C1D9F6] rounded-lg text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all"
-                    placeholder="Enter last name"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#0E315C] mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  value={caseInfo.email}
-                  onChange={(e) =>
-                    setCaseInfo((prev) => ({ ...prev, email: e.target.value }))
-                  }
-                  className="w-full px-3 py-2 bg-white/80 border border-[#C1D9F6] rounded-lg text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all"
-                  placeholder="Enter email address"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#0E315C] mb-2">
-                  Phone (Optional)
-                </label>
-                <input
-                  type="tel"
-                  value={caseInfo.phone}
-                  onChange={(e) =>
-                    setCaseInfo((prev) => ({ ...prev, phone: e.target.value }))
-                  }
-                  className="w-full px-3 py-2 bg-white/80 border border-[#C1D9F6] rounded-lg text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] transition-all"
-                  placeholder="Enter phone number"
-                />
-              </div>
-            </div>
-
-            <div className="flex justify-end">
-              <button
-                onClick={() => handleStepTransition(4)}
-                disabled={
-                  !caseInfo.firstName || !caseInfo.lastName || !caseInfo.email
-                }
-                className="bg-[#99C0F0] hover:bg-[#0E315C] disabled:bg-[#C1D9F6]/50 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all flex items-center space-x-2 shadow-lg shadow-[#99C0F0]/20 disabled:shadow-none"
-              >
-                <span>Continue</span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+          <CaseInfoForm
+            initialData={caseInfo}
+            onSubmit={(data) => {
+              setCaseInfo(data);
+              handleStepTransition(4);
+            }}
+            onBack={() => handleStepTransition(2)}
+          />
         )}
 
         {/* Step 4: Review & Create */}
