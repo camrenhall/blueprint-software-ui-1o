@@ -12,7 +12,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import {
   Bell,
-  Search,
   Settings,
   User,
   LogOut,
@@ -107,23 +106,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                   <Activity className="w-3 h-3 text-green-500/80" />
                   <span className="text-xs text-[#0E315C]/70 font-medium">Active</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Center section - Search */}
-            <div className="hidden md:flex flex-1 max-w-md mx-8">
-              <div className="relative w-full">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#99C0F0]/60" />
-                <input
-                  type="text"
-                  placeholder="Search across system..."
-                  className="w-full pl-10 pr-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm text-[#0E315C]/80 placeholder-[#99C0F0]/50 focus:outline-none focus:ring-2 focus:ring-[#C5BFEE]/30 focus:border-white/30 transition-all duration-300"
-                />
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                  <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-[#C5BFEE]/20 text-[#0E315C]/60 border-none">
-                    ⌘K
-                  </Badge>
                 </div>
               </div>
             </div>
