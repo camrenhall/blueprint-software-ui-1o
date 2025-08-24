@@ -268,7 +268,7 @@ export function TaskSearchFilterBar({
               onClick={handleSortDropdownToggle}
               className={cn(
                 "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
-                sortBy !== "priority"
+                sortBy !== "createdAt"
                   ? "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/40 shadow-sm"
                   : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40",
                 sortDropdownOpen && "bg-white/80 border-[#C5BFEE]/60 shadow-md",
