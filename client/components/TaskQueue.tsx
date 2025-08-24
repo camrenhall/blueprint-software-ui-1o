@@ -454,15 +454,20 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-3xl font-light text-[#0E315C] mb-2 animate-slideInLeft">
-              Task Queue
-            </h1>
-            <p className="text-[#0E315C]/60 text-sm font-light animate-slideInLeft" style={{ animationDelay: "200ms" }}>
+            <div className="flex items-center gap-3 mb-4">
+              <h1 className="text-4xl font-light text-[#0E315C] tracking-wide animate-slideInLeft">
+                Task Queue
+              </h1>
+              <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
+                Agent Proposals
+              </div>
+            </div>
+            <p className="text-[#0E315C]/70 text-base leading-relaxed font-light animate-slideInLeft" style={{ animationDelay: "200ms" }}>
               Review and manage proposed actions from your AI agents
             </p>
           </div>
-          <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-2xl flex items-center justify-center animate-float">
-            <span className="text-white font-bold text-xl">
+          <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-2xl flex items-center justify-center animate-float shadow-lg">
+            <span className="text-white font-light text-xl">
               {tasks.length}
             </span>
           </div>
