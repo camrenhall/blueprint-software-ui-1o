@@ -122,9 +122,9 @@ export default function CaseInfoForm({
     <div className="max-w-2xl mx-auto">
       {/* Progress Indicator */}
       <div className="mb-8">
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-[#C1D9F6]/30 rounded-full h-2">
           <div
-            className="bg-gradient-to-r from-emerald-400 to-blue-500 h-2 rounded-full transition-all duration-500 ease-out"
+            className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-2 rounded-full transition-all duration-500 ease-out"
             style={{ width: `${Math.min((completedFields.size / 3) * 100, 100)}%` }}
           />
         </div>
