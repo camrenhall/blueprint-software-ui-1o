@@ -43,7 +43,7 @@ export default function Login() {
       }`}
     >
       {/* Ethereal floating elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-[#99C0F0]/4 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute top-28 left-10 w-32 h-32 bg-[#99C0F0]/4 rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-32 right-20 w-24 h-24 bg-[#C5BFEE]/6 rounded-full blur-2xl animate-float-slow"></div>
       <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#C1D9F6]/5 rounded-full blur-xl animate-drift"></div>
       <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-[#99C0F0]/3 rounded-full blur-2xl animate-float"></div>
