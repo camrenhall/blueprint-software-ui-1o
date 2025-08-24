@@ -207,125 +207,174 @@ interface TaskCardProps {
   onToggleExpand: (taskId: string) => void;
 }
 
-function TaskCard({ 
-  task, 
-  index, 
-  isSelected, 
-  onToggleSelect, 
-  onAccept, 
+function TaskCard({
+  task,
+  index,
+  isSelected,
+  onToggleSelect,
+  onAccept,
   onDecline,
   isExpanded,
-  onToggleExpand 
+  onToggleExpand
 }: TaskCardProps) {
   const timeAgo = (date: Date) => {
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffMinutes = Math.floor(diffMs / (1000 * 60));
-    
+
     if (diffHours > 0) return `${diffHours}h ago`;
     return `${diffMinutes}m ago`;
   };
 
+  const getPriorityColors = (priority: ProposedTask["priority"]) => {
+    switch (priority) {
+      case "high":
+        return {
+          dot: "bg-red-400 shadow-red-400/40",
+          border: "border-red-300/50"
+        };
+      case "medium":
+        return {
+          dot: "bg-yellow-400 shadow-yellow-400/40",
+          border: "border-yellow-300/50"
+        };
+      case "low":
+        return {
+          dot: "bg-green-400 shadow-green-400/40",
+          border: "border-green-300/50"
+        };
+    }
+  };
+
+  const priorityColors = getPriorityColors(task.priority);
+
   return (
     <div
       className={cn(
-        "bg-white/35 backdrop-blur-md border border-[#C1D9F6]/40",
-        "hover:bg-white/50 hover:shadow-xl hover:border-[#99C0F0]/60",
-        "transition-all duration-500 ease-out p-5 rounded-2xl group",
-        "animate-fadeInUp hover:-translate-y-1 hover:scale-[1.01]",
+        "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40",
+        priorityColors.border,
+        "hover:bg-white/50 hover:shadow-lg hover:border-opacity-80",
+        "transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
+        "animate-fadeInUp",
         isSelected && "ring-2 ring-[#99C0F0]/60 bg-white/50"
       )}
-      style={{ 
+      style={{
         animationDelay: `${index * 100}ms`,
         boxShadow: "0 4px 20px rgba(193, 217, 246, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1)"
       }}
     >
-      {/* Header with selection checkbox, category, and priority */}
-      <div className="flex items-start gap-4 mb-4">
+      <div className="flex items-start space-x-5">
+        {/* Selection Checkbox */}
         <button
           onClick={() => onToggleSelect(task.id)}
           className={cn(
-            "w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-300 flex-shrink-0 mt-0.5",
-            isSelected 
-              ? "bg-[#99C0F0] border-[#99C0F0] text-white" 
+            "w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-300 flex-shrink-0 mt-1",
+            isSelected
+              ? "bg-[#99C0F0] border-[#99C0F0] text-white"
               : "border-[#C1D9F6]/60 hover:border-[#99C0F0]/80 bg-white/60 backdrop-blur-sm"
           )}
         >
           {isSelected && <Check className="w-3 h-3" />}
         </button>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between gap-3 mb-3">
-            <div className="flex items-center gap-3">
-              <CategoryIcon category={task.category} />
-              <div className="flex-1 min-w-0">
-                <h3 className="font-semibold text-[#0E315C] text-lg leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300">
+        {/* Category Icon (Avatar-like) */}
+        <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
+          <span className="text-white font-light text-lg">
+            {task.category === "email" ? "📧" : task.category === "reminder" ? "⏰" : task.category === "analysis" ? "📊" : task.category === "action" ? "⚡" : "🔄"}
+          </span>
+        </div>
+
+        {/* Main Task Information */}
+        <div className="flex-1 min-w-0 relative">
+          <div className="flex items-start justify-between">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-3 mb-1">
+                <h3 className="text-lg font-light text-[#0E315C] truncate pr-24">
                   {task.title}
                 </h3>
-                {task.targetPerson && (
-                  <div className="flex items-center gap-1 mt-1">
-                    <User className="w-3 h-3 text-[#99C0F0]" />
-                    <span className="text-xs text-[#0E315C]/70 font-medium">{task.targetPerson}</span>
-                  </div>
-                )}
+                <PriorityBadge priority={task.priority} />
+              </div>
+              {task.targetPerson && (
+                <div className="flex items-center gap-1 mb-3">
+                  <User className="w-3 h-3 text-[#99C0F0]" />
+                  <span className="text-sm text-[#0E315C]/60 font-light">{task.targetPerson}</span>
+                </div>
+              )}
+              {task.description && (
+                <p className={cn(
+                  "text-[#0E315C]/60 text-sm font-light mb-3 pr-24 leading-relaxed",
+                  !isExpanded && task.description.length > 100 && "line-clamp-2"
+                )}>
+                  {task.description}
+                </p>
+              )}
+              {task.description.length > 100 && (
+                <button
+                  onClick={() => onToggleExpand(task.id)}
+                  className="text-[#99C0F0] hover:text-[#0E315C] text-xs font-medium mb-3 flex items-center gap-1 transition-colors duration-300"
+                >
+                  {isExpanded ? (
+                    <>Show less <ChevronUp className="w-3 h-3" /></>
+                  ) : (
+                    <>Show more <ChevronDown className="w-3 h-3" /></>
+                  )}
+                </button>
+              )}
+            </div>
+
+            {/* Right Side - Priority Status */}
+            <div className="absolute top-0 right-0 text-right flex-shrink-0">
+              <div className="flex items-center gap-2 mb-1">
+                <div
+                  className={cn(
+                    "w-2.5 h-2.5 rounded-full shadow-sm animate-gentlePulse",
+                    priorityColors.dot
+                  )}
+                />
+                <span className="text-sm text-[#0E315C]/70 font-medium capitalize">
+                  {task.priority}
+                </span>
+              </div>
+              <div className="text-xs text-[#0E315C]/60 font-light">
+                Est. {task.estimatedTime}
               </div>
             </div>
-            <div className="flex items-center gap-2 flex-shrink-0">
-              <PriorityBadge priority={task.priority} />
-            </div>
           </div>
 
-          {/* Description - collapsible */}
-          <div className="mb-4">
-            <p className={cn(
-              "text-[#0E315C]/70 text-sm leading-relaxed transition-all duration-300",
-              !isExpanded && "line-clamp-2"
-            )}>
-              {task.description}
-            </p>
-            {task.description.length > 100 && (
+          {/* Task Metadata Row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden pr-6">
+              <span className="text-[#0E315C]/70 font-medium flex-shrink-0">
+                {task.agent}
+              </span>
+              <span className="flex-shrink-0">•</span>
+              <span className="whitespace-nowrap flex-shrink-0">
+                Proposed {timeAgo(task.createdAt)}
+              </span>
+              <span className="flex-shrink-0">•</span>
+              <span className="whitespace-nowrap flex-shrink-0 capitalize">
+                {task.category}
+              </span>
+            </div>
+
+            {/* Action buttons */}
+            <div className="flex gap-2 flex-shrink-0">
               <button
-                onClick={() => onToggleExpand(task.id)}
-                className="text-[#99C0F0] hover:text-[#0E315C] text-xs font-medium mt-1 flex items-center gap-1 transition-colors duration-300"
+                onClick={() => onAccept(task.id)}
+                className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-4 py-2 rounded-xl transition-all duration-300 font-medium text-sm shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center gap-1.5"
               >
-                {isExpanded ? (
-                  <>Show less <ChevronUp className="w-3 h-3" /></>
-                ) : (
-                  <>Show more <ChevronDown className="w-3 h-3" /></>
-                )}
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                Accept
               </button>
-            )}
-          </div>
-
-          {/* Task metadata */}
-          <div className="flex items-center gap-4 mb-4 text-xs text-[#0E315C]/60">
-            <div className="flex items-center gap-1">
-              <Clock className="w-3 h-3 text-[#C5BFEE]" />
-              <span>Est. {task.estimatedTime}</span>
+              <button
+                onClick={() => onDecline(task.id)}
+                className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-xl hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 font-medium text-sm flex items-center gap-1.5"
+              >
+                <X className="w-3.5 h-3.5" />
+                Decline
+              </button>
             </div>
-            <span>•</span>
-            <span>Proposed {timeAgo(task.createdAt)}</span>
-            <span>•</span>
-            <span className="font-medium text-[#99C0F0]">{task.agent}</span>
-          </div>
-
-          {/* Action buttons */}
-          <div className="flex gap-3">
-            <button
-              onClick={() => onAccept(task.id)}
-              className="flex-1 bg-[#99C0F0] hover:bg-[#0E315C] text-white px-4 py-2.5 rounded-xl transition-all duration-300 font-medium text-sm shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
-            >
-              <CheckCircle2 className="w-4 h-4" />
-              Accept Task
-            </button>
-            <button
-              onClick={() => onDecline(task.id)}
-              className="px-4 py-2.5 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-xl hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 font-medium text-sm flex items-center justify-center gap-2"
-            >
-              <X className="w-4 h-4" />
-              Decline
-            </button>
           </div>
         </div>
       </div>
