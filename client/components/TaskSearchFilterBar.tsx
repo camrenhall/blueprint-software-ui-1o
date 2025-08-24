@@ -67,10 +67,10 @@ const filterOptions = [
 ];
 
 const sortOptions: { id: TaskSortOption; label: string; description: string }[] = [
-  { id: "priority", label: "Priority", description: "High priority tasks first" },
   { id: "createdAt", label: "Recently Proposed", description: "Newest proposals first" },
   { id: "estimatedTime", label: "Time Required", description: "Quickest tasks first" },
   { id: "alphabetical", label: "Alphabetical", description: "Sort by task title A-Z" },
+  { id: "priority", label: "Priority", description: "High priority tasks first" },
 ];
 
 export function TaskSearchFilterBar({
