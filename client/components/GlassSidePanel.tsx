@@ -58,7 +58,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
       {/* Main glass panel container */}
       <div
         className={cn(
-          "fixed left-6 top-20 bottom-6 w-72 transition-all duration-1000 ease-out z-40",
+          "fixed left-6 top-20 bottom-6 w-80 transition-all duration-1000 ease-out z-40",
           isVisible
             ? "opacity-100 transform translate-x-0"
             : "opacity-0 transform -translate-x-8"
