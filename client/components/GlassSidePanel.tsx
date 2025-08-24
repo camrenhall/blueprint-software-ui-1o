@@ -43,7 +43,7 @@ export default function GlassSidePanel({ items, className }: GlassSidePanelProps
   // Enhanced menu items with icons and descriptions
   const enhancedItems = items.map((item) => ({
     ...item,
-    icon: getMenuIcon(item.id),
+    icon: item.icon || getMenuIcon(item.id),
     description: item.description || getDefaultDescription(item.id),
   }));
 
