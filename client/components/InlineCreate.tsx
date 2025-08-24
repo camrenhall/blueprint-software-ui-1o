@@ -364,16 +364,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         {/* Step 3: Case Information */}
         {createStep === 3 && (
           <div className="h-full flex flex-col min-h-0">
-            {/* Header */}
-            <div className="mb-6 flex-shrink-0">
-              <h2 className="text-lg font-medium text-[#0E315C] mb-1">
-                Case Information
-              </h2>
-              <p className="text-[#0E315C]/70 text-sm">
-                Enter basic information for this case
-              </p>
-            </div>
-
             {/* Form Content - Flexible with max height */}
             <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)]">
               <CaseInfoForm
