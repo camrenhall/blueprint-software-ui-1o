@@ -276,7 +276,7 @@ export function TaskSearchFilterBar({
             >
               <SortAsc className="w-4 h-4" />
               <span>Sort</span>
-              {sortBy !== "priority" && (
+              {sortBy !== "createdAt" && (
                 <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
               )}
               <ChevronDown
