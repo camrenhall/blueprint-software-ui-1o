@@ -12,23 +12,17 @@ import {
   FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { User, Mail, Phone, Check } from "lucide-react";
 
 const caseInfoSchema = z.object({
   firstName: z.string().min(1, "First name is required").max(50, "First name must be less than 50 characters"),
   lastName: z.string().min(1, "Last name is required").max(50, "Last name must be less than 50 characters"),
   email: z.string().min(1, "Email is required").email("Please enter a valid email address"),
   phone: z.string().optional(),
-  caseType: z.string().min(1, "Case type is required"),
-  priority: z.string().min(1, "Priority is required"),
+  // Keep these for compatibility but make them optional with defaults
+  caseType: z.string().default("general"),
+  priority: z.string().default("medium"),
   description: z.string().optional(),
 });
 
@@ -40,32 +34,14 @@ interface CaseInfoFormProps {
   isSubmitting?: boolean;
 }
 
-const caseTypes = [
-  { value: "personal_injury", label: "Personal Injury" },
-  { value: "family_law", label: "Family Law" },
-  { value: "criminal_defense", label: "Criminal Defense" },
-  { value: "corporate", label: "Corporate Law" },
-  { value: "real_estate", label: "Real Estate" },
-  { value: "employment", label: "Employment Law" },
-  { value: "immigration", label: "Immigration" },
-  { value: "intellectual_property", label: "Intellectual Property" },
-  { value: "tax", label: "Tax Law" },
-  { value: "bankruptcy", label: "Bankruptcy" },
-  { value: "other", label: "Other" },
-];
-
-const priorityLevels = [
-  { value: "low", label: "Low" },
-  { value: "medium", label: "Medium" },
-  { value: "high", label: "High" },
-  { value: "urgent", label: "Urgent" },
-];
-
 export default function CaseInfoForm({
   initialData,
   onSubmit,
   isSubmitting = false,
 }: CaseInfoFormProps) {
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [completedFields, setCompletedFields] = useState<Set<string>>(new Set());
+
   const form = useForm<CaseInfoFormData>({
     resolver: zodResolver(caseInfoSchema),
     defaultValues: {
@@ -73,198 +49,289 @@ export default function CaseInfoForm({
       lastName: initialData?.lastName || "",
       email: initialData?.email || "",
       phone: initialData?.phone || "",
-      caseType: initialData?.caseType || "",
-      priority: initialData?.priority || "medium",
-      description: initialData?.description || "",
+      caseType: "general", // Default value for compatibility
+      priority: "medium", // Default value for compatibility
+      description: "", // Default value for compatibility
     },
   });
+
+  const watchedValues = form.watch();
+
+  // Track completed fields
+  useEffect(() => {
+    const newCompleted = new Set<string>();
+    if (watchedValues.firstName?.trim()) newCompleted.add("firstName");
+    if (watchedValues.lastName?.trim()) newCompleted.add("lastName");
+    if (watchedValues.email?.trim() && !form.formState.errors.email) newCompleted.add("email");
+    if (watchedValues.phone?.trim()) newCompleted.add("phone");
+    setCompletedFields(newCompleted);
+  }, [watchedValues, form.formState.errors]);
 
   // Auto-focus the first input when component mounts
   useEffect(() => {
     const firstInput = document.querySelector('input[name="firstName"]') as HTMLInputElement;
     if (firstInput) {
-      firstInput.focus();
+      setTimeout(() => firstInput.focus(), 100);
     }
   }, []);
 
   const handleFormSubmit = (data: CaseInfoFormData) => {
-    onSubmit(data);
+    // Add default values for compatibility
+    const submitData = {
+      ...data,
+      caseType: "general",
+      priority: "medium",
+      description: "",
+    };
+    onSubmit(submitData);
   };
 
+  const getFieldIcon = (fieldName: string) => {
+    switch (fieldName) {
+      case "firstName":
+      case "lastName":
+        return <User className="w-5 h-5" />;
+      case "email":
+        return <Mail className="w-5 h-5" />;
+      case "phone":
+        return <Phone className="w-5 h-5" />;
+      default:
+        return null;
+    }
+  };
+
+  const isFormValid = watchedValues.firstName?.trim() && 
+                     watchedValues.lastName?.trim() && 
+                     watchedValues.email?.trim() && 
+                     !form.formState.errors.email;
+
   return (
-    <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
-            {/* Client Information */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-medium text-[#0E315C]/80 uppercase tracking-wide">
-                Client Information
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="firstName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>First Name *</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          placeholder="Enter first name"
-                          className="bg-white/80 border-[#C1D9F6] focus:ring-[#99C0F0]/50 focus:border-[#99C0F0]"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+    <div className="max-w-2xl mx-auto">
+      {/* Header Section */}
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-400 to-blue-500 rounded-full mb-4 shadow-lg">
+          <User className="w-8 h-8 text-white" />
+        </div>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Client Information</h2>
+        <p className="text-gray-600">Let's start with the basic details for your new case</p>
+      </div>
 
-                <FormField
-                  control={form.control}
-                  name="lastName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Last Name *</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          placeholder="Enter last name"
-                          className="bg-white/80 border-[#C1D9F6] focus:ring-[#99C0F0]/50 focus:border-[#99C0F0]"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+      {/* Progress Indicator */}
+      <div className="mb-8">
+        <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
+          <span>Progress</span>
+          <span>{completedFields.size}/3 required fields</span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-2">
+          <div 
+            className="bg-gradient-to-r from-emerald-400 to-blue-500 h-2 rounded-full transition-all duration-500 ease-out"
+            style={{ width: `${Math.min((completedFields.size / 3) * 100, 100)}%` }}
+          />
+        </div>
+      </div>
 
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email Address *</FormLabel>
-                    <FormControl>
+      {/* Form */}
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+          
+          {/* Name Fields */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-gray-700 font-medium">
+                    First Name *
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <div className={`transition-colors duration-200 ${
+                          focusedField === "firstName" 
+                            ? "text-blue-500" 
+                            : completedFields.has("firstName")
+                              ? "text-emerald-500"
+                              : "text-gray-400"
+                        }`}>
+                          {completedFields.has("firstName") ? <Check className="w-5 h-5" /> : getFieldIcon("firstName")}
+                        </div>
+                      </div>
                       <Input
                         {...field}
-                        type="email"
-                        placeholder="Enter email address"
-                        className="bg-white/80 border-[#C1D9F6] focus:ring-[#99C0F0]/50 focus:border-[#99C0F0]"
+                        placeholder="Enter first name"
+                        onFocus={() => setFocusedField("firstName")}
+                        onBlur={() => setFocusedField(null)}
+                        className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                          focusedField === "firstName"
+                            ? "border-blue-500 ring-4 ring-blue-100 shadow-lg"
+                            : completedFields.has("firstName")
+                              ? "border-emerald-500 bg-emerald-50"
+                              : "border-gray-300 hover:border-gray-400"
+                        }`}
                       />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-gray-700 font-medium">
+                    Last Name *
+                  </FormLabel>
+                  <FormControl>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <div className={`transition-colors duration-200 ${
+                          focusedField === "lastName" 
+                            ? "text-blue-500" 
+                            : completedFields.has("lastName")
+                              ? "text-emerald-500"
+                              : "text-gray-400"
+                        }`}>
+                          {completedFields.has("lastName") ? <Check className="w-5 h-5" /> : getFieldIcon("lastName")}
+                        </div>
+                      </div>
                       <Input
                         {...field}
-                        type="tel"
-                        placeholder="Enter phone number (optional)"
-                        className="bg-white/80 border-[#C1D9F6] focus:ring-[#99C0F0]/50 focus:border-[#99C0F0]"
+                        placeholder="Enter last name"
+                        onFocus={() => setFocusedField("lastName")}
+                        onBlur={() => setFocusedField(null)}
+                        className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                          focusedField === "lastName"
+                            ? "border-blue-500 ring-4 ring-blue-100 shadow-lg"
+                            : completedFields.has("lastName")
+                              ? "border-emerald-500 bg-emerald-50"
+                              : "border-gray-300 hover:border-gray-400"
+                        }`}
                       />
-                    </FormControl>
-                    <FormDescription>
-                      Optional - We'll use this for urgent communications
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
 
-            {/* Case Details */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-medium text-[#0E315C]/80 uppercase tracking-wide border-t border-[#C1D9F6]/30 pt-4">
-                Case Details
-              </h3>
+          {/* Email Field */}
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-700 font-medium">
+                  Email Address *
+                </FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <div className={`transition-colors duration-200 ${
+                        focusedField === "email" 
+                          ? "text-blue-500" 
+                          : completedFields.has("email")
+                            ? "text-emerald-500"
+                            : "text-gray-400"
+                      }`}>
+                        {completedFields.has("email") ? <Check className="w-5 h-5" /> : getFieldIcon("email")}
+                      </div>
+                    </div>
+                    <Input
+                      {...field}
+                      type="email"
+                      placeholder="Enter email address"
+                      onFocus={() => setFocusedField("email")}
+                      onBlur={() => setFocusedField(null)}
+                      className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                        focusedField === "email"
+                          ? "border-blue-500 ring-4 ring-blue-100 shadow-lg"
+                          : completedFields.has("email")
+                            ? "border-emerald-500 bg-emerald-50"
+                            : "border-gray-300 hover:border-gray-400"
+                      }`}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="caseType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Case Type *</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="bg-white/80 border-[#C1D9F6] focus:ring-[#99C0F0]/50 focus:border-[#99C0F0]">
-                            <SelectValue placeholder="Select case type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {caseTypes.map((type) => (
-                            <SelectItem key={type.value} value={type.value}>
-                              {type.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+          {/* Phone Field */}
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-700 font-medium">
+                  Phone Number 
+                  <span className="text-gray-400 font-normal ml-1">(optional)</span>
+                </FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <div className={`transition-colors duration-200 ${
+                        focusedField === "phone" 
+                          ? "text-blue-500" 
+                          : completedFields.has("phone")
+                            ? "text-emerald-500"
+                            : "text-gray-400"
+                      }`}>
+                        {completedFields.has("phone") ? <Check className="w-5 h-5" /> : getFieldIcon("phone")}
+                      </div>
+                    </div>
+                    <Input
+                      {...field}
+                      type="tel"
+                      placeholder="Enter phone number"
+                      onFocus={() => setFocusedField("phone")}
+                      onBlur={() => setFocusedField(null)}
+                      className={`pl-10 h-12 border-2 transition-all duration-200 ${
+                        focusedField === "phone"
+                          ? "border-blue-500 ring-4 ring-blue-100 shadow-lg"
+                          : completedFields.has("phone")
+                            ? "border-emerald-500 bg-emerald-50"
+                            : "border-gray-300 hover:border-gray-400"
+                      }`}
+                    />
+                  </div>
+                </FormControl>
+                <FormDescription className="text-gray-500">
+                  We'll use this for urgent communications about your case
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-                <FormField
-                  control={form.control}
-                  name="priority"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Priority Level *</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="bg-white/80 border-[#C1D9F6] focus:ring-[#99C0F0]/50 focus:border-[#99C0F0]">
-                            <SelectValue placeholder="Select priority" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          {priorityLevels.map((priority) => (
-                            <SelectItem key={priority.value} value={priority.value}>
-                              {priority.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+          {/* Form Status Indicator */}
+          {isFormValid && (
+            <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-4">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <Check className="h-5 w-5 text-emerald-400" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-emerald-800">
+                    All required information completed!
+                  </p>
+                  <p className="text-sm text-emerald-700">
+                    Ready to proceed to the next step.
+                  </p>
+                </div>
               </div>
-
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Case Description</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        {...field}
-                        placeholder="Provide a brief description of the case (optional)"
-                        className="bg-white/80 border-[#C1D9F6] focus:ring-[#99C0F0]/50 focus:border-[#99C0F0] min-h-[100px] resize-none"
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      A brief overview to help organize and identify this case
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
             </div>
+          )}
 
-            {/* Hidden submit button - form will be submitted via external button */}
-            <button type="submit" className="hidden" />
-          </form>
-        </Form>
+          {/* Hidden submit button - form will be submitted via external button */}
+          <button type="submit" className="hidden" />
+        </form>
+      </Form>
     </div>
   );
 }
