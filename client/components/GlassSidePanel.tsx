@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { LucideIcon, Users, FileText, Search, LogOut, Sparkles, ArrowRight } from "lucide-react";
+import { LucideIcon, Users, FileText, Search, LogOut, Sparkles, ArrowRight, ClipboardList, Settings } from "lucide-react";
 
 interface MenuItem {
   id: string;
@@ -39,6 +39,10 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
         return FileText;
       case "review":
         return Search;
+      case "taskqueue":
+        return ClipboardList;
+      case "settings":
+        return Settings;
       case "logout":
         return LogOut;
       default:
@@ -133,7 +137,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                       "hover:bg-white/5 rounded-lg",
                       "border-l-2 border-transparent",
                       isHovered && !isLogout && "border-l-[#99C0F0]/60",
-                      isHovered && isLogout && "border-l-red-400/60"
+                      isHovered && isLogout && "border-l-[#99C0F0]/40"
                     )}
                   >
                     <div className="relative flex items-center justify-between">
@@ -143,7 +147,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                           className={cn(
                             "w-4 h-4 transition-all duration-300",
                             isLogout
-                              ? "text-red-500/60 group-hover:text-red-500/80"
+                              ? "text-[#0E315C]/40 group-hover:text-[#0E315C]/60"
                               : "text-[#0E315C]/50 group-hover:text-[#0E315C]/80"
                           )}
                         />
@@ -154,7 +158,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                             className={cn(
                               "font-light text-lg tracking-wide transition-colors duration-300",
                               isLogout
-                                ? "text-red-600/70 group-hover:text-red-600"
+                                ? "text-[#0E315C]/60 group-hover:text-[#0E315C]/80"
                                 : "text-[#0E315C]/70 group-hover:text-[#0E315C]"
                             )}
                           >
@@ -164,7 +168,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                             className={cn(
                               "text-xs font-light opacity-0 group-hover:opacity-100 transition-all duration-300 mt-1",
                               isLogout
-                                ? "text-red-500/60"
+                                ? "text-[#99C0F0]/60"
                                 : "text-[#99C0F0]/70"
                             )}
                           >
@@ -179,7 +183,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                           "w-3 h-3 transition-all duration-300",
                           isHovered
                             ? isLogout
-                              ? "text-red-400/80 opacity-100 translate-x-0"
+                              ? "text-[#99C0F0]/60 opacity-100 translate-x-0"
                               : "text-[#99C0F0]/80 opacity-100 translate-x-0"
                             : "opacity-0 -translate-x-2"
                         )}
@@ -240,6 +244,10 @@ function getDefaultDescription(id: string): string {
       return "Build new projects";
     case "review":
       return "Analyze and audit";
+    case "taskqueue":
+      return "Manage your tasks";
+    case "settings":
+      return "Configure preferences";
     case "logout":
       return "Sign out securely";
     default:
