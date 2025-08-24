@@ -521,12 +521,12 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
       {/* Task list */}
       <div className="flex-1 overflow-auto">
         {tasks.length === 0 ? (
-          <div className="text-center py-16">
+          <div className="bg-white/20 backdrop-blur-md border border-[#C1D9F6]/30 rounded-3xl p-16 text-center">
             <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-gentlePulse">
               <CheckCircle2 className="w-12 h-12 text-[#99C0F0]" />
             </div>
             <h3 className="text-xl font-light text-[#0E315C] mb-2">All caught up!</h3>
-            <p className="text-[#0E315C]/60 text-sm">No pending tasks from your agents at the moment.</p>
+            <p className="text-[#0E315C]/60 text-sm font-light">No pending tasks from your agents at the moment.</p>
           </div>
         ) : (
           <div className="space-y-4">
