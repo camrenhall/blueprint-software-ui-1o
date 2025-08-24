@@ -120,23 +120,10 @@ export default function CaseInfoForm({
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Header Section */}
-      <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-400 to-blue-500 rounded-full mb-4 shadow-lg">
-          <User className="w-8 h-8 text-white" />
-        </div>
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Client Information</h2>
-        <p className="text-gray-600">Let's start with the basic details for your new case</p>
-      </div>
-
       {/* Progress Indicator */}
       <div className="mb-8">
-        <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
-          <span>Progress</span>
-          <span>{completedFields.size}/3 required fields</span>
-        </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <div 
+          <div
             className="bg-gradient-to-r from-emerald-400 to-blue-500 h-2 rounded-full transition-all duration-500 ease-out"
             style={{ width: `${Math.min((completedFields.size / 3) * 100, 100)}%` }}
           />
