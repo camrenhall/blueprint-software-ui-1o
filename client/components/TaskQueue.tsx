@@ -212,41 +212,17 @@ function TaskCard({
     return `${diffMinutes}m ago`;
   };
 
-  const getPriorityColors = (priority: ProposedTask["priority"]) => {
-    switch (priority) {
-      case "high":
-        return {
-          dot: "bg-red-400 shadow-red-400/40",
-          border: "border-red-300/50"
-        };
-      case "medium":
-        return {
-          dot: "bg-yellow-400 shadow-yellow-400/40",
-          border: "border-yellow-300/50"
-        };
-      case "low":
-        return {
-          dot: "bg-green-400 shadow-green-400/40",
-          border: "border-green-300/50"
-        };
-    }
-  };
-
-  const priorityColors = getPriorityColors(task.priority);
-
   return (
     <div
       className={cn(
         "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40",
-        priorityColors.border,
-        "hover:bg-white/50 hover:shadow-lg hover:border-opacity-80",
-        "transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
+        "hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/5 hover:border-[#99C0F0]/60",
+        "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
         "animate-fadeInUp",
         isSelected && "ring-2 ring-[#99C0F0]/60 bg-white/50"
       )}
       style={{
-        animationDelay: `${index * 100}ms`,
-        boxShadow: "0 4px 20px rgba(193, 217, 246, 0.15), 0 1px 3px rgba(0, 0, 0, 0.1)"
+        animationDelay: `${index * 100}ms`
       }}
     >
       <div className="flex items-start space-x-5">
@@ -265,7 +241,7 @@ function TaskCard({
 
         {/* Category Icon (Avatar-like) */}
         <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
-          <span className="text-white font-light text-lg">
+          <span className="text-white font-light text-sm">
             {task.category === "email" ? "📧" : task.category === "reminder" ? "⏰" : task.category === "analysis" ? "📊" : task.category === "action" ? "⚡" : "🔄"}
           </span>
         </div>
@@ -274,17 +250,14 @@ function TaskCard({
         <div className="flex-1 min-w-0 relative">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-1">
-                <h3 className="text-lg font-light text-[#0E315C] truncate pr-24">
-                  {task.title}
-                </h3>
-                <PriorityBadge priority={task.priority} />
-              </div>
+              <h3 className="text-lg font-light text-[#0E315C] mb-1 truncate pr-24">
+                {task.title}
+              </h3>
               {task.targetPerson && (
-                <div className="flex items-center gap-1 mb-3">
+                <p className="text-[#0E315C]/60 text-sm font-light mb-3 pr-24 flex items-center gap-1">
                   <User className="w-3 h-3 text-[#99C0F0]" />
-                  <span className="text-sm text-[#0E315C]/60 font-light">{task.targetPerson}</span>
-                </div>
+                  {task.targetPerson}
+                </p>
               )}
               {task.description && (
                 <p className={cn(
@@ -308,21 +281,13 @@ function TaskCard({
               )}
             </div>
 
-            {/* Right Side - Priority Status */}
+            {/* Right Side - Time Estimate */}
             <div className="absolute top-0 right-0 text-right flex-shrink-0">
-              <div className="flex items-center gap-2 mb-1">
-                <div
-                  className={cn(
-                    "w-2.5 h-2.5 rounded-full shadow-sm animate-gentlePulse",
-                    priorityColors.dot
-                  )}
-                />
-                <span className="text-sm text-[#0E315C]/70 font-medium capitalize">
-                  {task.priority}
-                </span>
+              <div className="text-xl font-light text-[#0E315C] mb-1">
+                {task.estimatedTime}
               </div>
-              <div className="text-xs text-[#0E315C]/60 font-light">
-                Est. {task.estimatedTime}
+              <div className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">
+                Est. time
               </div>
             </div>
           </div>
