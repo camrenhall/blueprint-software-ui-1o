@@ -457,6 +457,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     email: "",
                     phone: "",
                     caseType: "",
+                    priority: "medium",
+                    description: "",
                   });
                   documentSelection.setSelectedDocuments([]);
                 }}
