@@ -143,7 +143,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
             </div>
 
             {/* Right section - System controls and profile */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-6">
               {/* Time and date display */}
               <div className="hidden sm:block text-right">
                 <div className="text-sm font-medium text-[#0E315C]/80">{formatTime(currentTime)}</div>
