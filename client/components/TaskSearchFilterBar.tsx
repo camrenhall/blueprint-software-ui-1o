@@ -30,59 +30,38 @@ interface TaskSearchFilterBarProps {
 
 const filterOptions = [
   {
-    id: "high-priority",
-    label: "High Priority",
-    color: {
-      dot: "bg-red-400 shadow-red-400/40",
-    },
-  },
-  {
-    id: "medium-priority", 
-    label: "Medium Priority",
-    color: {
-      dot: "bg-yellow-400 shadow-yellow-400/40",
-    },
-  },
-  {
-    id: "low-priority",
-    label: "Low Priority", 
-    color: {
-      dot: "bg-green-400 shadow-green-400/40",
-    },
-  },
-  {
     id: "email",
     label: "Email Tasks",
     color: {
-      dot: "bg-blue-400 shadow-blue-400/40",
+      dot: "bg-[#99C0F0]",
     },
   },
   {
     id: "reminder",
     label: "Reminder Tasks",
     color: {
-      dot: "bg-purple-400 shadow-purple-400/40", 
+      dot: "bg-[#C5BFEE]",
     },
   },
   {
     id: "analysis",
     label: "Analysis Tasks",
     color: {
-      dot: "bg-cyan-400 shadow-cyan-400/40",
+      dot: "bg-[#99C0F0]",
     },
   },
   {
-    id: "action", 
+    id: "action",
     label: "Action Tasks",
     color: {
-      dot: "bg-orange-400 shadow-orange-400/40",
+      dot: "bg-[#C5BFEE]",
     },
   },
   {
     id: "follow-up",
     label: "Follow-up Tasks",
     color: {
-      dot: "bg-pink-400 shadow-pink-400/40",
+      dot: "bg-[#99C0F0]",
     },
   },
 ];
