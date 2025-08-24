@@ -377,7 +377,7 @@ export function TaskSearchFilterBar({
                 </span>
               ) : null;
             })}
-            {sortBy !== "priority" && (
+            {sortBy !== "createdAt" && (
               <span className="px-2 py-1 bg-[#C5BFEE]/20 rounded-md">
                 Sort: {sortOptions.find((s) => s.id === sortBy)?.label}
               </span>
