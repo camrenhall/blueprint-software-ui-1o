@@ -301,9 +301,6 @@ export default function CaseInfoForm({
                     />
                   </div>
                 </FormControl>
-                <FormDescription className="text-gray-500">
-                  We'll use this for urgent communications about your case
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
