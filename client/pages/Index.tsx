@@ -84,39 +84,9 @@ function IndexContent() {
         }`}
       >
 
-        {/* Elegant Vertical Divider - Close to Menu */}
-        <div className="absolute left-72 md:left-80 lg:left-88 xl:left-96 top-0 h-full flex items-center z-20">
-          <div className="relative h-[75vh]">
-            {/* Main divider line - more visible */}
-            <div className="w-0.5 h-full bg-gradient-to-b from-transparent via-[#99C0F0]/80 to-transparent shadow-sm"></div>
-
-            {/* Floating accent dots */}
-            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#C5BFEE]/70 rounded-full animate-pulse shadow-lg"></div>
-            <div
-              className="absolute top-[20%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#99C0F0]/60 rounded-full animate-pulse"
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute top-[45%] left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#C1D9F6]/80 rounded-full animate-pulse"
-              style={{ animationDelay: "2s" }}
-            ></div>
-            <div
-              className="absolute top-[70%] left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-[#C5BFEE]/60 rounded-full animate-pulse"
-              style={{ animationDelay: "0.5s" }}
-            ></div>
-            <div
-              className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[#99C0F0]/70 rounded-full animate-pulse"
-              style={{ animationDelay: "1.5s" }}
-            ></div>
-
-            {/* Subtle glow effect */}
-            <div className="absolute inset-0 w-0.5 bg-gradient-to-b from-transparent via-[#C1D9F6]/30 to-transparent blur-[1px]"></div>
-          </div>
-        </div>
-
-        {/* Expanded Right Side Content Area */}
+        {/* Right Side Content Area - Adjusted for fixed glass panel */}
         <div
-          className={`absolute left-72 md:left-80 lg:left-88 xl:left-96 right-0 top-0 bottom-0 transition-all duration-1000 ease-out ${
+          className={`absolute left-80 right-6 top-6 bottom-6 transition-all duration-1000 ease-out ${
             activeRightContent
               ? "opacity-100 transform translate-x-0"
               : "opacity-0 transform translate-x-8 pointer-events-none"
