@@ -10,11 +10,11 @@ export function FeedbackButton() {
     <>
       <Button
         onClick={() => setDialogOpen(true)}
-        className="fixed bottom-6 left-6 z-50 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-        size="icon"
+        className="fixed bottom-6 left-6 z-50 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 bg-[#0E315C] hover:bg-[#0E315C]/90 text-white px-6 py-3 h-auto"
         title="Send Feedback"
       >
-        <MessageCircle className="h-5 w-5" />
+        <MessageCircle className="h-4 w-4 mr-2" />
+        Send Feedback
       </Button>
       
       <FeedbackDialog 

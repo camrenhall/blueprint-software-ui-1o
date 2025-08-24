@@ -102,21 +102,29 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
         
         <div className="space-y-4">
           <div>
-            <h4 className="text-sm font-medium mb-3">How was your experience?</h4>
+            <h4 className="text-sm font-medium mb-3 text-[#0E315C]">How was your experience?</h4>
             <div className="flex gap-3">
               <Button
-                variant={sentiment === 'happy' ? 'default' : 'outline'}
+                variant="outline"
                 size="sm"
                 onClick={() => setSentiment('happy')}
-                className="flex-1"
+                className={`flex-1 transition-all ${
+                  sentiment === 'happy'
+                    ? 'bg-[#C1D9F6] border-[#99C0F0] text-[#0E315C] hover:bg-[#C1D9F6]/90'
+                    : 'hover:bg-[#C1D9F6]/20 hover:border-[#99C0F0]'
+                }`}
               >
                 😊 Happy
               </Button>
               <Button
-                variant={sentiment === 'unhappy' ? 'default' : 'outline'}
+                variant="outline"
                 size="sm"
                 onClick={() => setSentiment('unhappy')}
-                className="flex-1"
+                className={`flex-1 transition-all ${
+                  sentiment === 'unhappy'
+                    ? 'bg-[#C5BFEE] border-[#C5BFEE] text-[#0E315C] hover:bg-[#C5BFEE]/90'
+                    : 'hover:bg-[#C5BFEE]/20 hover:border-[#C5BFEE]'
+                }`}
               >
                 😞 Unhappy
               </Button>
@@ -124,20 +132,29 @@ export function FeedbackDialog({ open, onOpenChange }: FeedbackDialogProps) {
           </div>
 
           <div>
-            <h4 className="text-sm font-medium mb-2">Tell us more</h4>
+            <h4 className="text-sm font-medium mb-2 text-[#0E315C]">Tell us more</h4>
             <Textarea
               placeholder="What can we do better? Your feedback is valuable to us..."
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              className="min-h-[100px]"
+              className="min-h-[100px] border-[#99C0F0]/30 focus:border-[#99C0F0] focus:ring-[#99C0F0]/20"
             />
           </div>
 
           <div className="flex gap-2 justify-end">
-            <Button variant="outline" onClick={handleClose} disabled={isSubmitting}>
+            <Button
+              variant="outline"
+              onClick={handleClose}
+              disabled={isSubmitting}
+              className="border-[#99C0F0]/50 text-[#0E315C] hover:bg-[#C1D9F6]/20 hover:border-[#99C0F0]"
+            >
               Cancel
             </Button>
-            <Button onClick={handleSubmit} disabled={isSubmitting}>
+            <Button
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+              className="bg-[#0E315C] hover:bg-[#0E315C]/90 text-white"
+            >
               {isSubmitting ? "Sending..." : "Send Feedback"}
             </Button>
           </div>
