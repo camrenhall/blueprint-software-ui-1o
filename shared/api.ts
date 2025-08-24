@@ -10,3 +10,17 @@
 export interface DemoResponse {
   message: string;
 }
+
+/**
+ * Feedback submission types
+ */
+export interface FeedbackRequest {
+  sentiment: 'happy' | 'unhappy';
+  comment: string;
+  page?: string;
+}
+
+export interface FeedbackResponse {
+  success: boolean;
+  message: string;
+}
