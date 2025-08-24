@@ -93,7 +93,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
               </div>
               <div>
                 <h2 className="text-xl font-light text-[#0E315C] tracking-wide">
-                  Fusion OS
+                  Luceron AI
                 </h2>
                 <p className="text-xs text-[#99C0F0]/70 font-light">
                   Control Center
