@@ -365,7 +365,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         {createStep === 3 && (
           <div className="h-full flex flex-col min-h-0">
             {/* Form Content - Flexible with max height */}
-            <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)]">
+            <div className="flex-1 min-h-0 max-h-[calc(100%-4rem)]">
               <CaseInfoForm
                 initialData={caseInfo}
                 onSubmit={(data) => {
