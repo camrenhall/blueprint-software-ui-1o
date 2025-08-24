@@ -121,11 +121,8 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                     <div className="absolute inset-0 w-3 h-3 bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] rounded-full animate-ping opacity-20"></div>
                   </div>
 
-                  {/* Activity text */}
-                  <div className="text-center">
-                    <div className="text-sm font-medium text-[#0E315C]/80">System Active</div>
-                    <div className="text-xs text-[#99C0F0]/70">3 agents running</div>
-                  </div>
+                  {/* Simple ethereal separator */}
+                  <div className="w-px h-6 bg-gradient-to-b from-transparent via-[#99C0F0]/40 to-transparent"></div>
 
                   {/* Secondary indicators */}
                   <div className="flex items-center space-x-2">
