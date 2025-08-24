@@ -48,6 +48,20 @@ function IndexContent() {
       },
     },
     {
+      id: "taskqueue",
+      title: "Task Queue",
+      action: () => {
+        setActiveRightContent("taskqueue");
+      },
+    },
+    {
+      id: "settings",
+      title: "Settings",
+      action: () => {
+        setActiveRightContent("settings");
+      },
+    },
+    {
       id: "logout",
       title: "Log Out",
       action: () => {
