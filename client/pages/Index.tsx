@@ -92,7 +92,10 @@ function IndexContent() {
               : "opacity-0 transform translate-x-8 pointer-events-none"
           }`}
         >
-          <div className="h-full relative px-8">
+          {/* Glass morphism content background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-[#C1D9F6]/5 to-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl" />
+
+          <div className="h-full relative p-8">
             {/* Content Container */}
             <div
               className={`w-full h-full transition-all duration-1200 ease-out delay-200 ${
