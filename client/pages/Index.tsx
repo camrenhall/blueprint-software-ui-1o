@@ -58,23 +58,31 @@ function IndexContent() {
 
   return (
     <div className="h-screen w-full relative overflow-hidden pt-16">
-      {/* Main content */}
+      {/* Conditional Menu - GlassSidePanel or ConversationHistory */}
+      {isInChatMode ? (
+        <ConversationHistory
+          className="h-full"
+          onBackToMenu={handleBackToMenu}
+        />
+      ) : (
+        <GlassSidePanel
+          items={menuItems}
+          className={`transition-all duration-1000 ease-out ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-8"
+          }`}
+        />
+      )}
+
+      {/* Main content area */}
       <div
-        className={`relative z-10 h-screen flex items-center pl-12 md:pl-20 lg:pl-28 xl:pl-32 transition-all duration-1000 ease-out ${
+        className={`relative z-10 h-screen transition-all duration-1000 ease-out ${
           isVisible
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-8"
         }`}
       >
-        {/* Conditional Menu - RadialScroller or ConversationHistory */}
-        {isInChatMode ? (
-          <ConversationHistory
-            className="h-full"
-            onBackToMenu={handleBackToMenu}
-          />
-        ) : (
-          <RadialScroller items={menuItems} className="h-full" />
-        )}
 
         {/* Elegant Vertical Divider - Close to Menu */}
         <div className="absolute left-72 md:left-80 lg:left-88 xl:left-96 top-0 h-full flex items-center z-20">
