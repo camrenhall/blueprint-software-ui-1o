@@ -524,7 +524,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
               Task Queue
             </h1>
             <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
-              Agent Proposals
+              {filteredAndSortedTasks.length} {filteredAndSortedTasks.length === 1 ? 'Task' : 'Tasks'}
             </div>
           </div>
           <p className="text-[#0E315C]/70 text-base leading-relaxed">
