@@ -28,7 +28,6 @@ function IndexContent() {
     {
       id: "agents",
       title: "Agents",
-      icon: null, // Will be set by GlassSidePanel based on id
       action: () => {
         setActiveRightContent("agents");
       },
@@ -36,7 +35,6 @@ function IndexContent() {
     {
       id: "create",
       title: "Create",
-      icon: null, // Will be set by GlassSidePanel based on id
       action: () => {
         setActiveRightContent("create");
       },
@@ -44,7 +42,6 @@ function IndexContent() {
     {
       id: "review",
       title: "Review",
-      icon: null, // Will be set by GlassSidePanel based on id
       action: () => {
         setActiveRightContent("review");
       },
@@ -52,7 +49,6 @@ function IndexContent() {
     {
       id: "logout",
       title: "Log Out",
-      icon: null, // Will be set by GlassSidePanel based on id
       action: () => {
         // Navigate back to login page
         window.location.href = "/";
