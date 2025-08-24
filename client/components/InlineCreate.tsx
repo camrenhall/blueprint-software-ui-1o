@@ -363,14 +363,101 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
         {/* Step 3: Case Information */}
         {createStep === 3 && (
-          <CaseInfoForm
-            initialData={caseInfo}
-            onSubmit={(data) => {
-              setCaseInfo(data);
-              handleStepTransition(4);
-            }}
-            onBack={() => handleStepTransition(2)}
-          />
+          <div className="h-full flex flex-col min-h-0">
+            {/* Header */}
+            <div className="mb-6 flex-shrink-0">
+              <h2 className="text-lg font-medium text-[#0E315C] mb-1">
+                Case Information
+              </h2>
+              <p className="text-[#0E315C]/70 text-sm">
+                Enter basic information for this case
+              </p>
+            </div>
+
+            {/* Form Content - Flexible with max height */}
+            <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)]">
+              <CaseInfoForm
+                initialData={caseInfo}
+                onSubmit={(data) => {
+                  setCaseInfo(data);
+                  handleStepTransition(4);
+                }}
+                isSubmitting={false}
+              />
+            </div>
+
+            {/* Compact Navigation Bar - Fixed at bottom */}
+            <div className="mt-4 pb-2 flex-shrink-0">
+              <div className="flex items-center justify-between">
+                {/* Back Button */}
+                <button
+                  onClick={() => handleStepTransition(2)}
+                  className="group flex items-center space-x-3 px-6 py-3 bg-white/40 backdrop-blur-sm border border-[#C1D9F6]/60 hover:border-[#C1D9F6]/80 hover:bg-white/60 rounded-2xl transition-all duration-300 hover:scale-105 transform hover:shadow-lg shadow-[#C1D9F6]/10"
+                >
+                  <svg
+                    className="w-4 h-4 text-[#0E315C]/60 group-hover:text-[#0E315C] transition-colors duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 19l-7-7 7-7"
+                    />
+                  </svg>
+                  <span className="text-[#0E315C]/70 group-hover:text-[#0E315C] font-light transition-colors duration-300">
+                    Back
+                  </span>
+                </button>
+
+                {/* Form Status Indicator - Center */}
+                {!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email || !caseInfo.caseType ? (
+                  <p className="text-[#0E315C]/40 text-xs font-light">
+                    Fill in required fields to continue
+                  </p>
+                ) : (
+                  <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm backdrop-blur-sm">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
+                      <span className="text-[#0E315C]/70">Form completed</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Next Button */}
+                <button
+                  onClick={() => {
+                    // Trigger form submission
+                    const form = document.querySelector('form') as HTMLFormElement;
+                    if (form) {
+                      form.requestSubmit();
+                    }
+                  }}
+                  disabled={!caseInfo.firstName || !caseInfo.lastName || !caseInfo.email || !caseInfo.caseType}
+                  className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#99C0F0]/90 to-[#C5BFEE]/90 hover:from-[#99C0F0] hover:to-[#C5BFEE] disabled:from-[#C1D9F6]/40 disabled:to-[#C1D9F6]/40 disabled:cursor-not-allowed text-white rounded-2xl transition-all duration-300 hover:scale-105 transform shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 disabled:shadow-none backdrop-blur-sm"
+                >
+                  <span className="font-light group-disabled:text-white/60">
+                    Next
+                  </span>
+                  <svg
+                    className="w-4 h-4 group-disabled:text-white/60 transition-transform duration-300 group-hover:translate-x-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
         )}
 
         {/* Step 4: Review & Create */}
