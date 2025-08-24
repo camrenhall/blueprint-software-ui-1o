@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -22,15 +22,27 @@ declare global {
 
 const queryClient = new QueryClient();
 
+// Component to conditionally render TopNavBar based on route
+const ConditionalTopNavBar = () => {
+  const location = useLocation();
+
+  // Hide TopNavBar on login page
+  if (location.pathname === "/") {
+    return null;
+  }
+
+  return <TopNavBar />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <CloudBackground />
-      <TopNavBar />
-      <Toaster />
-      <Sonner />
-      <FeedbackButton />
       <BrowserRouter>
+        <ConditionalTopNavBar />
+        <Toaster />
+        <Sonner />
+        <FeedbackButton />
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/menu" element={<Index />} />
