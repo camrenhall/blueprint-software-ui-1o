@@ -113,10 +113,10 @@ export default function CaseInfoForm({
     }
   };
 
-  const isFormValid = watchedValues.firstName?.trim() && 
-                     watchedValues.lastName?.trim() && 
-                     watchedValues.email?.trim() && 
-                     !form.formState.errors.email;
+  const isFormValid = firstName?.trim() &&
+                     lastName?.trim() &&
+                     email?.trim() &&
+                     !emailError;
 
   return (
     <div className="max-w-2xl mx-auto">
