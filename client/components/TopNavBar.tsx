@@ -110,35 +110,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
               </div>
             </div>
 
-            {/* Center section - System Activity Display */}
-            <div className="hidden lg:flex items-center justify-center flex-1 max-w-md mx-8">
-              <div className="relative">
-                {/* Main activity orb */}
-                <div className="flex items-center space-x-4 px-6 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10">
-                  {/* Pulse indicator */}
-                  <div className="relative">
-                    <div className="w-3 h-3 bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] rounded-full animate-pulse"></div>
-                    <div className="absolute inset-0 w-3 h-3 bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] rounded-full animate-ping opacity-20"></div>
-                  </div>
-
-                  {/* Simple ethereal separator */}
-                  <div className="w-px h-6 bg-gradient-to-b from-transparent via-[#99C0F0]/40 to-transparent"></div>
-
-                  {/* Secondary indicators */}
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-400/80 rounded-full animate-pulse" style={{ animationDelay: "0.5s" }}></div>
-                    <div className="w-2 h-2 bg-[#C5BFEE]/80 rounded-full animate-pulse" style={{ animationDelay: "1s" }}></div>
-                    <div className="w-2 h-2 bg-[#C1D9F6]/80 rounded-full animate-pulse" style={{ animationDelay: "1.5s" }}></div>
-                  </div>
-                </div>
-
-                {/* Floating ambient elements around the center */}
-                <div className="absolute -top-2 -left-2 w-1 h-1 bg-[#99C0F0]/60 rounded-full animate-float"></div>
-                <div className="absolute -bottom-2 -right-2 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full animate-float-slow" style={{ animationDelay: "1s" }}></div>
-                <div className="absolute top-1 -right-3 w-1 h-1 bg-[#C1D9F6]/70 rounded-full animate-drift" style={{ animationDelay: "2s" }}></div>
-              </div>
-            </div>
-
             {/* Right section - System controls and profile */}
             <div className="flex items-center space-x-6">
               {/* Time and date display */}
