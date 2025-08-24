@@ -20,7 +20,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect } from "react";
 
 const caseInfoSchema = z.object({
@@ -66,9 +65,8 @@ const priorityLevels = [
 export default function CaseInfoForm({
   initialData,
   onSubmit,
-  onBack,
   isSubmitting = false,
-}: CaseInfoFormProps) {
+}: Omit<CaseInfoFormProps, 'onBack'>) {
   const form = useForm<CaseInfoFormData>({
     resolver: zodResolver(caseInfoSchema),
     defaultValues: {
@@ -95,30 +93,7 @@ export default function CaseInfoForm({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-lg font-medium text-[#0E315C] mb-1">
-            Case Information
-          </h2>
-          <p className="text-[#0E315C]/70 text-sm">
-            Enter basic information for this case
-          </p>
-        </div>
-        <Button
-          type="button"
-          variant="ghost"
-          onClick={onBack}
-          className="flex items-center space-x-2 px-3 py-2 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-[#C1D9F6]/20 transition-all text-sm"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back</span>
-        </Button>
-      </div>
-
-      {/* Form */}
-      <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
+    <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
             {/* Client Information */}
@@ -287,20 +262,10 @@ export default function CaseInfoForm({
               />
             </div>
 
-            {/* Submit Button */}
-            <div className="flex justify-end pt-4">
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-[#99C0F0] hover:bg-[#0E315C] disabled:bg-[#C1D9F6]/50 disabled:cursor-not-allowed text-white px-6 py-2 rounded-xl transition-all flex items-center space-x-2 shadow-lg shadow-[#99C0F0]/20 disabled:shadow-none"
-              >
-                <span>{isSubmitting ? "Processing..." : "Continue"}</span>
-                {!isSubmitting && <ArrowRight className="w-4 h-4" />}
-              </Button>
-            </div>
+            {/* Hidden submit button - form will be submitted via external button */}
+            <button type="submit" className="hidden" />
           </form>
         </Form>
-      </div>
     </div>
   );
 }
