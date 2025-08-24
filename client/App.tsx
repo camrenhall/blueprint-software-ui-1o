@@ -26,6 +26,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <CloudBackground />
+      <TopNavBar />
       <Toaster />
       <Sonner />
       <FeedbackButton />
