@@ -6,11 +6,13 @@ import { ArrowLeft, MessageCircle, Plus, Clock } from "lucide-react";
 interface ConversationHistoryProps {
   className?: string;
   onBackToMenu: () => void;
+  isVisible?: boolean;
 }
 
 export default function ConversationHistory({
   className,
   onBackToMenu,
+  isVisible: externalIsVisible,
 }: ConversationHistoryProps) {
   const {
     conversations,
@@ -20,12 +22,18 @@ export default function ConversationHistory({
     startNewConversation,
   } = useConversationContext();
 
-  const [isVisible, setIsVisible] = useState(false);
+  const [internalIsVisible, setInternalIsVisible] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // Use external isVisible if provided, otherwise use internal state
+  const isVisible = externalIsVisible !== undefined ? externalIsVisible : internalIsVisible;
+
   useEffect(() => {
-    setTimeout(() => setIsVisible(true), 300);
-  }, []);
+    // Staggered fade-in animation when using internal state
+    if (externalIsVisible === undefined) {
+      setTimeout(() => setInternalIsVisible(true), 300);
+    }
+  }, [externalIsVisible]);
 
   const handleBackToMenu = () => {
     setIsTransitioning(true);
