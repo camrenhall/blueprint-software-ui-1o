@@ -27,6 +27,7 @@ const App = () => (
       <CloudBackground />
       <Toaster />
       <Sonner />
+      <FeedbackButton />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
