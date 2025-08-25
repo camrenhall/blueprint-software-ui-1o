@@ -17,7 +17,7 @@ interface GlassSidePanelProps {
   taskQueueCount?: number;
 }
 
-export default function GlassSidePanel({ items, className, isVisible: externalIsVisible }: GlassSidePanelProps) {
+export default function GlassSidePanel({ items, className, isVisible: externalIsVisible, taskQueueCount = 0 }: GlassSidePanelProps) {
   const [internalIsVisible, setInternalIsVisible] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
