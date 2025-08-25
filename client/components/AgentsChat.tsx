@@ -532,8 +532,10 @@ How can I best support your current priorities?`,
             What's on the agenda today?
           </h1>
           <p className="text-[#0E315C]/60 text-lg font-light max-w-lg mx-auto leading-relaxed">
-            Your AI assistant is ready to help with case management, document
-            reviews, and strategic legal guidance.
+            {isAIAgentEnabled
+              ? "Your AI assistant is ready to help with case management, document reviews, and strategic legal guidance."
+              : "Review your recent activity and manage your legal workflow. Enable the AI assistant in the navigation bar to get conversational help."
+            }
           </p>
         </div>
 
