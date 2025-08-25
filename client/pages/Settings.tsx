@@ -194,37 +194,7 @@ export default function Settings() {
 
           {/* Settings Content */}
           <div className="flex-1 overflow-auto">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-7 bg-white/10 backdrop-blur-sm border border-white/20">
-                <TabsTrigger value="general" className="text-xs">
-                  <User className="w-3 h-3 mr-1" />
-                  General
-                </TabsTrigger>
-                <TabsTrigger value="security" className="text-xs">
-                  <Shield className="w-3 h-3 mr-1" />
-                  Security
-                </TabsTrigger>
-                <TabsTrigger value="discovery" className="text-xs">
-                  <Search className="w-3 h-3 mr-1" />
-                  Discovery
-                </TabsTrigger>
-                <TabsTrigger value="automation" className="text-xs">
-                  <Bot className="w-3 h-3 mr-1" />
-                  AI & Auto
-                </TabsTrigger>
-                <TabsTrigger value="integration" className="text-xs">
-                  <Link className="w-3 h-3 mr-1" />
-                  Integration
-                </TabsTrigger>
-                <TabsTrigger value="team" className="text-xs">
-                  <Users className="w-3 h-3 mr-1" />
-                  Team
-                </TabsTrigger>
-                <TabsTrigger value="billing" className="text-xs">
-                  <CreditCard className="w-3 h-3 mr-1" />
-                  Billing
-                </TabsTrigger>
-              </TabsList>
+            <div className="w-full">
 
               {/* General Settings */}
               <TabsContent value="general" className="space-y-6 mt-8">
@@ -692,7 +662,7 @@ export default function Settings() {
                   </CardContent>
                 </Card>
               </TabsContent>
-            </Tabs>
+            </div>
           </div>
 
           {/* Save Button */}
