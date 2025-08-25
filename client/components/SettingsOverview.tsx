@@ -216,40 +216,6 @@ export default function SettingsOverview() {
               })}
             </div>
 
-            {/* Quick Actions Footer */}
-            <div className={cn(
-              "mt-8 pt-8 border-t border-white/10 transition-all duration-1000 ease-out",
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            )}
-            style={{ transitionDelay: "1200ms" }}
-            >
-              <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-                <div>
-                  <h3 className="text-lg font-light text-[#0E315C]/80">Quick Actions</h3>
-                  <p className="text-sm text-[#0E315C]/60 font-light">Common settings shortcuts</p>
-                </div>
-                <div className="flex space-x-3">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => navigate("/settings/security")}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 hover:border-[#C5BFEE]/40 rounded-xl px-4 py-2 transition-all duration-300"
-                  >
-                    <Shield className="w-4 h-4 mr-2 text-[#0E315C]/70" />
-                    <span className="font-light text-[#0E315C]/80">Security</span>
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => navigate("/settings/general")}
-                    className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 hover:border-[#99C0F0]/40 rounded-xl px-4 py-2 transition-all duration-300"
-                  >
-                    <User className="w-4 h-4 mr-2 text-[#0E315C]/70" />
-                    <span className="font-light text-[#0E315C]/80">Profile</span>
-                  </Button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
