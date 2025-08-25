@@ -451,12 +451,12 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
   };
 
   return (
-    <div className="h-[85vh] max-h-[85vh] min-h-[85vh] px-8 lg:px-6 md:px-4 py-8 lg:py-6 md:py-4 relative flex flex-col rounded-[2rem] lg:rounded-[1.5rem] md:rounded-[1.25rem]">
-      {/* Enhanced Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/15 to-[#99C0F0]/10 blur-2xl rounded-[2rem] lg:rounded-[1.5rem] md:rounded-[1.25rem]" />
-      <div className="absolute inset-0 bg-white/20 backdrop-blur-sm rounded-[2rem] lg:rounded-[1.5rem] md:rounded-[1.25rem]" />
+    <div
+      className="absolute inset-0 flex flex-col px-8 py-8 lg:px-6 lg:py-6 md:px-4 md:py-4"
+      style={{ transform: "translateZ(0)" }}
+    >
       {/* Header */}
-      <div className="relative z-10 text-center mb-8 flex-shrink-0">
+      <div className="text-center mb-8 flex-shrink-0">
         <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
           <div className="flex items-center justify-center gap-3 mb-4">
             <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
