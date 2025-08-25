@@ -137,23 +137,13 @@ export default function SettingsOverview() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
           {/* Header */}
-          <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate("/menu")}
-                className="p-2 hover:bg-white/10 rounded-full transition-all duration-300"
-              >
-                <ArrowLeft className="w-4 h-4 text-[#0E315C]/70" />
-              </Button>
-              <div className="p-4 rounded-2xl bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm border border-white/20 shadow-lg">
-                <SettingsIcon className="w-8 h-8 text-[#0E315C]/80" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-light text-[#0E315C]/90 tracking-wide">Settings</h1>
-                <p className="text-[#0E315C]/60 font-light">Configure your Luceron AI experience</p>
-              </div>
+          <div className="flex items-center mb-8">
+            <div className="p-3 rounded-2xl bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm border border-white/20 shadow-lg">
+              <SettingsIcon className="w-6 h-6 text-[#0E315C]/80" />
+            </div>
+            <div className="ml-4">
+              <h1 className="text-2xl font-light text-[#0E315C]/90 tracking-wide">Settings</h1>
+              <p className="text-[#0E315C]/60 font-light">Configure your Luceron AI experience</p>
             </div>
           </div>
 
