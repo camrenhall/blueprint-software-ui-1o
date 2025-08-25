@@ -10,6 +10,7 @@ import {
   ConversationProvider,
   useConversationContext,
 } from "@/contexts/ConversationContext";
+import { useTaskQueue } from "@/hooks/useTaskQueue";
 
 function IndexContent() {
   const { isInChatMode } = useConversationContext();
