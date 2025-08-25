@@ -49,7 +49,7 @@ const App = () => (
           <Route path="/" element={<Login />} />
           <Route path="/menu" element={<Index />} />
           <Route path="/settings" element={<SettingsOverview />} />
-          <Route path="/settings/:category" element={<Settings />} />
+          <Route path="/settings/:category" element={<SettingsCategory />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
