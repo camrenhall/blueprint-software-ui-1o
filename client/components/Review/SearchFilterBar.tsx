@@ -177,7 +177,10 @@ export function SearchFilterBar({
                   return (
                     <button
                       key={option.id}
-                      onClick={() => onFilterToggle(option.id)}
+                      onClick={() => {
+                        onFilterToggle(option.id);
+                        setFilterDropdownOpen(false);
+                      }}
                       className="w-full px-3 py-2.5 text-left hover:bg-[#C1D9F6]/20 transition-colors flex items-center gap-3"
                     >
                       <div className="flex items-center gap-2 flex-1">
