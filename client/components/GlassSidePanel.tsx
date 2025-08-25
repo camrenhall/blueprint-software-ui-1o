@@ -154,7 +154,7 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                         />
 
                         {/* Typography focus */}
-                        <div>
+                        <div className="relative">
                           <h3
                             className={cn(
                               "font-light text-lg tracking-wide transition-colors duration-300",
@@ -175,6 +175,13 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
                           >
                             {item.description}
                           </p>
+
+                          {/* Task Queue notification bubble - positioned relative to text */}
+                          {item.id === "taskqueue" && taskQueueCount > 0 && (
+                            <div className="absolute -top-1 -right-2 min-w-5 h-5 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] text-white text-xs font-medium rounded-full flex items-center justify-center px-1 shadow-lg shadow-[#99C0F0]/20 animate-fadeIn">
+                              {taskQueueCount}
+                            </div>
+                          )}
                         </div>
                       </div>
 
