@@ -214,7 +214,7 @@ export default function CaseDetailsNew({
 
             {/* Document Content */}
             <div className="flex-1 overflow-y-auto min-h-0 p-8 flex items-center justify-center">
-              <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-[#C1D9F6]/30 text-center max-w-lg">
+              <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-12 shadow-2xl border border-white/20 text-center max-w-lg">
                 <div className="w-20 h-20 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
                   <FileText className="w-10 h-10 text-white" />
                 </div>
@@ -484,7 +484,7 @@ export default function CaseDetailsNew({
                   </div>
 
                   {/* Quick Actions */}
-                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-[#C1D9F6]/30 animate-fadeInUp" style={{ animationDelay: '700ms' }}>
+                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 animate-fadeInUp" style={{ animationDelay: '700ms' }}>
                     <h3 className="text-lg font-light text-[#0E315C] mb-4">Quick Actions</h3>
                     <div className="space-y-3">
                       <button className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#0E315C] text-white py-3 px-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-light text-sm">
