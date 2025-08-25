@@ -7,6 +7,7 @@ import InlineReview from "@/components/InlineReview";
 import AgentsChat from "@/components/AgentsChat";
 import TaskQueue from "@/components/TaskQueue";
 import UnifiedSettings from "@/components/UnifiedSettings";
+import CommunicationsPanel from "@/components/CommunicationsPanel";
 import {
   ConversationProvider,
   useConversationContext,
@@ -66,6 +67,13 @@ function IndexContent() {
       title: "Task Queue",
       action: () => {
         setActiveRightContent("taskqueue");
+      },
+    },
+    {
+      id: "communications",
+      title: "Communications",
+      action: () => {
+        setActiveRightContent("communications");
       },
     },
     {
@@ -148,6 +156,11 @@ function IndexContent() {
                     onCategorySelect={handleSettingsCategorySelect}
                     onBack={handleSettingsBack}
                   />
+                </div>
+              )}
+              {activeRightContent === "communications" && (
+                <div className="w-full h-full mx-auto">
+                  <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
             </div>
