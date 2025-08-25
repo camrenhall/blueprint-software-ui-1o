@@ -353,49 +353,8 @@ export function SearchFilterBar({
             )}
           </div>
 
-          {/* Clear All Button - Only show when there are active filters or search */}
-          {hasAnyActive && (
-            <button
-              onClick={clearAllFilters}
-              className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 border border-red-200 hover:border-red-300 transition-all duration-200"
-              title="Clear all filters and search"
-            >
-              <X className="w-4 h-4" />
-              <span className="hidden sm:inline">Clear All</span>
-            </button>
-          )}
         </div>
 
-        {/* Active Filters Summary */}
-        {(hasActiveFilters || hasActiveSearch) && (
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-[#0E315C]/60">
-            <span>Active:</span>
-            {hasActiveSearch && (
-              <span className="px-2 py-1 bg-[#99C0F0]/20 rounded-md">
-                Search: "{searchValue}"
-              </span>
-            )}
-            {activeFilters.map((filterId) => {
-              const option = filterOptions.find((f) => f.id === filterId);
-              return option ? (
-                <span
-                  key={filterId}
-                  className="px-2 py-1 bg-[#99C0F0]/20 rounded-md flex items-center gap-1"
-                >
-                  <div
-                    className={cn("w-2 h-2 rounded-full", option.color.dot)}
-                  />
-                  {option.label}
-                </span>
-              ) : null;
-            })}
-            {sortBy !== "priority" && (
-              <span className="px-2 py-1 bg-[#C5BFEE]/20 rounded-md">
-                Sort: {sortOptions.find((s) => s.id === sortBy)?.label}
-              </span>
-            )}
-          </div>
-        )}
       </div>
     </div>
   );
