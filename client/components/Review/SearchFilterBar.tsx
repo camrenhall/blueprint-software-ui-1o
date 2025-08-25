@@ -155,7 +155,26 @@ export function SearchFilterBar({
               <Filter className="w-4 h-4" />
               <span>Filter</span>
               {hasActiveFilters && (
-                <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
+                <div className="flex items-center -space-x-1">
+                  {activeFilters.slice(0, 3).map((filterId, index) => {
+                    const option = filterOptions.find((f) => f.id === filterId);
+                    return option ? (
+                      <div
+                        key={filterId}
+                        className={cn(
+                          "w-2 h-2 rounded-full border border-white/50",
+                          option.color.dot,
+                        )}
+                        style={{ zIndex: 10 - index }}
+                      />
+                    ) : null;
+                  })}
+                  {activeFilters.length > 3 && (
+                    <div className="w-2 h-2 rounded-full bg-[#0E315C]/60 border border-white/50 flex items-center justify-center">
+                      <span className="text-[6px] text-white font-bold">+</span>
+                    </div>
+                  )}
+                </div>
               )}
               <ChevronDown
                 className={cn(
