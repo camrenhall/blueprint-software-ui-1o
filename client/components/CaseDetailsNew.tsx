@@ -195,7 +195,7 @@ export default function CaseDetailsNew({
   if (selectedDocument) {
     const doc = documents.find(d => d.name === selectedDocument);
     return (
-      <div className="fixed top-6 right-6 bottom-6 left-96 z-50 p-6">
+      <div className="fixed top-20 right-6 bottom-6 left-96 z-50 p-6">
         <div className="w-full h-full bg-[#C1D9F6]/15 border border-[#C1D9F6]/40 rounded-3xl shadow-2xl backdrop-blur-sm">
           <div className="h-full max-h-full flex flex-col overflow-hidden rounded-3xl">
             {/* Document Header */}
@@ -261,7 +261,7 @@ export default function CaseDetailsNew({
   }
 
   return (
-    <div className="fixed top-6 right-6 bottom-6 left-96 z-50 animate-fadeIn p-6">
+    <div className="fixed top-20 right-6 bottom-6 left-96 z-50 animate-fadeIn p-6">
       <div className="w-full h-full bg-[#C1D9F6]/15 border border-[#C1D9F6]/40 rounded-3xl shadow-2xl backdrop-blur-sm">
         <div className="h-full max-h-full flex flex-col overflow-hidden rounded-3xl">
           {/* Compact Header */}
