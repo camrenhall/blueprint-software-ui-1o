@@ -188,7 +188,7 @@ export default function Settings() {
               <TabsContent value="general" className="space-y-6 mt-8">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Bell className="w-5 h-5 mr-2" />
                       Notifications
                     </CardTitle>
@@ -222,7 +222,7 @@ export default function Settings() {
 
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Globe className="w-5 h-5 mr-2" />
                       Preferences
                     </CardTitle>
@@ -271,7 +271,7 @@ export default function Settings() {
               <TabsContent value="security" className="space-y-6 mt-8">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Lock className="w-5 h-5 mr-2" />
                       Authentication
                     </CardTitle>
@@ -321,7 +321,7 @@ export default function Settings() {
 
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Database className="w-5 h-5 mr-2" />
                       Data Protection
                     </CardTitle>
@@ -369,7 +369,7 @@ export default function Settings() {
               <TabsContent value="discovery" className="space-y-6 mt-8">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Search className="w-5 h-5 mr-2" />
                       Search & Analysis
                     </CardTitle>
@@ -432,7 +432,7 @@ export default function Settings() {
               <TabsContent value="automation" className="space-y-6 mt-8">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Bot className="w-5 h-5 mr-2" />
                       AI Assistant
                     </CardTitle>
@@ -488,7 +488,7 @@ export default function Settings() {
               <TabsContent value="integration" className="space-y-6 mt-8">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Link className="w-5 h-5 mr-2" />
                       External Systems
                     </CardTitle>
@@ -549,7 +549,7 @@ export default function Settings() {
               <TabsContent value="team" className="space-y-6 mt-8">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <Users className="w-5 h-5 mr-2" />
                       Collaboration
                     </CardTitle>
@@ -599,7 +599,7 @@ export default function Settings() {
               <TabsContent value="billing" className="space-y-6 mt-8">
                 <Card className="bg-white/5 backdrop-blur-sm border-white/10">
                   <CardHeader>
-                    <CardTitle className="text-[#0E315C]/90 flex items-center">
+                    <CardTitle className="text-[#0E315C]/90 flex items-center text-lg font-light tracking-wide">
                       <CreditCard className="w-5 h-5 mr-2" />
                       Usage & Billing
                     </CardTitle>
