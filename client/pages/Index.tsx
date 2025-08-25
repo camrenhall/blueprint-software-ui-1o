@@ -6,7 +6,7 @@ import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
 import AgentsChat from "@/components/AgentsChat";
 import TaskQueue from "@/components/TaskQueue";
-import Settings from "@/components/Settings";
+import SettingsOverview from "@/components/SettingsOverview";
 import {
   ConversationProvider,
   useConversationContext,
