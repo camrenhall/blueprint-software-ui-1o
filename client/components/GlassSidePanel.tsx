@@ -248,11 +248,11 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
 function getDefaultDescription(id: string): string {
   switch (id) {
     case "agents":
-      return "Chat with AI assistants";
+      return "Dashboard and insights";
     case "create":
       return "Build new projects";
     case "review":
-      return "Analyze and audit";
+      return "Manage cases and workflows";
     case "taskqueue":
       return "Manage your tasks";
     case "settings":

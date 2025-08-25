@@ -42,7 +42,7 @@ function IndexContent() {
   const menuItems = [
     {
       id: "agents",
-      title: "Agents",
+      title: "Overview",
       action: () => {
         setActiveRightContent("agents");
       },
@@ -56,7 +56,7 @@ function IndexContent() {
     },
     {
       id: "review",
-      title: "Review",
+      title: "Case Management",
       action: () => {
         setActiveRightContent("review");
       },
