@@ -270,33 +270,6 @@ How can I best support your current priorities?`,
     },
   ];
 
-  // If AI agent is disabled, show disabled state
-  if (!isAIAgentEnabled) {
-    return (
-      <div className="h-full flex items-center justify-center px-8">
-        <div className="w-full max-w-2xl mx-auto flex flex-col items-center text-center">
-          <div className="w-16 h-16 bg-gradient-to-br from-[#0E315C]/20 to-[#99C0F0]/20 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-            <Bot className="w-8 h-8 text-[#0E315C]/40" />
-          </div>
-
-          <h2 className="text-2xl font-light text-[#0E315C]/60 mb-3 tracking-wide">
-            AI Agent Disabled
-          </h2>
-
-          <p className="text-[#0E315C]/50 text-lg font-light max-w-md mx-auto leading-relaxed mb-6">
-            The conversational AI agent is currently turned off. Enable it in the top navigation bar to start chatting.
-          </p>
-
-          <div className="flex items-center space-x-2 px-4 py-2 bg-white/30 backdrop-blur-sm rounded-full border border-[#C1D9F6]/30">
-            <Settings className="w-4 h-4 text-[#0E315C]/50" />
-            <span className="text-sm text-[#0E315C]/60 font-light">
-              Toggle the AI Agent switch to enable
-            </span>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (chatStarted) {
     // Chat Mode - Slides to bottom
