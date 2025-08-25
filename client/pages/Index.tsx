@@ -84,7 +84,7 @@ function IndexContent() {
           isVisible={isVisible}
         />
       ) : (
-        <GlassSidePanel items={menuItems} isVisible={isVisible} />
+        <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
       )}
 
       {/* Main content area */}
