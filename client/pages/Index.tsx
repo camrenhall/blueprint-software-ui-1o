@@ -20,6 +20,7 @@ function IndexContent() {
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
     "agents",
   );
+  const [selectedSettingsCategory, setSelectedSettingsCategory] = useState<string | null>(null);
 
   useEffect(() => {
     // Fade in the menu after a short delay
@@ -28,6 +29,15 @@ function IndexContent() {
 
   const handleBackToMenu = () => {
     setActiveRightContent("agents");
+    setSelectedSettingsCategory(null);
+  };
+
+  const handleSettingsCategorySelect = (categoryId: string) => {
+    setSelectedSettingsCategory(categoryId);
+  };
+
+  const handleSettingsBack = () => {
+    setSelectedSettingsCategory(null);
   };
   const menuItems = [
     {
