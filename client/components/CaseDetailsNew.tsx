@@ -190,7 +190,7 @@ export default function CaseDetailsNew({
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-white/5 to-transparent" />
           <div className="h-full max-h-full flex flex-col overflow-hidden rounded-3xl">
             {/* Document Header */}
-            <div className="bg-[#C1D9F6]/25 backdrop-blur-xl border-b border-[#C1D9F6]/40 p-4 flex-shrink-0 rounded-t-3xl">
+            <div className="bg-white/10 backdrop-blur-xl border-b border-white/20 p-4 flex-shrink-0 rounded-t-3xl">
               <div className="flex items-center justify-between">
                 <button
                   onClick={() => setSelectedDocument(null)}
