@@ -125,7 +125,7 @@ export default function Settings({ onClose }: SettingsProps) {
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
           <div className="p-3 rounded-xl bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm border border-white/20">
-            <Settings className="w-6 h-6 text-[#0E315C]/80" />
+            <SettingsIcon className="w-6 h-6 text-[#0E315C]/80" />
           </div>
           <div>
             <h1 className="text-2xl font-bold text-[#0E315C]/90">Settings</h1>
