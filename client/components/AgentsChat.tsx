@@ -610,23 +610,6 @@ How can I best support your current priorities?`,
           </div>
         )}
 
-        {/* Show a subtle hint when AI agent is disabled */}
-        {!isAIAgentEnabled && (
-          <div
-            className={`w-full max-w-2xl transition-all duration-1200 ease-out delay-300 ${
-              isVisible
-                ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-6"
-            }`}
-          >
-            <div className="flex items-center justify-center space-x-2 px-4 py-3 bg-white/20 backdrop-blur-sm rounded-full border border-[#C1D9F6]/30">
-              <Bot className="w-4 h-4 text-[#0E315C]/50" />
-              <span className="text-sm text-[#0E315C]/60 font-light">
-                AI Assistant is disabled - Enable it in the navigation bar to chat
-              </span>
-            </div>
-          </div>
-        )}
 
         {/* Recent Activity - Always show */}
         <div
