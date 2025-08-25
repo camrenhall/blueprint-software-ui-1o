@@ -132,7 +132,7 @@ function IndexContent() {
               )}
               {activeRightContent === "settings" && (
                 <div className="w-full h-full mx-auto">
-                  <Settings onClose={() => setActiveRightContent(null)} />
+                  <SettingsOverview />
                 </div>
               )}
             </div>
