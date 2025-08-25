@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { useConversationContext } from "@/contexts/ConversationContext";
+import { useAIAgent } from "@/contexts/AIAgentContext";
 import {
   Send,
   Sparkles,
@@ -9,6 +10,8 @@ import {
   FileText,
   UserPlus,
   User,
+  Bot,
+  Settings,
 } from "lucide-react";
 import MessageContent from "./MessageContent";
 import MessageActions from "./MessageActions";
