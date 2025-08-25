@@ -270,7 +270,6 @@ How can I best support your current priorities?`,
     },
   ];
 
-
   if (chatStarted) {
     // Chat Mode - Slides to bottom
     return (
@@ -539,151 +538,169 @@ How can I best support your current priorities?`,
           </p>
         </div>
 
-        {/* Elegant Chat Input Bar */}
-        <div
-          className={`w-full max-w-2xl transition-all duration-1200 ease-out delay-300 ${
-            isVisible
-              ? "opacity-100 transform translate-y-0"
-              : "opacity-0 transform translate-y-6"
-          }`}
-        >
-          <div className="relative">
-            {/* Main Chat Bar */}
-            <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
-              {/* Chat Input */}
-              <div className="flex-1 relative">
-                <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" />
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  onFocus={handleInputFocus}
-                  placeholder="Ask about cases, documents, or legal strategies..."
-                  className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
-                />
-              </div>
-
-              {/* Send Button */}
-              <button
-                onClick={handleSendMessage}
-                disabled={!inputValue.trim()}
-                className={cn(
-                  "flex items-center gap-2 px-5 py-4 rounded-xl text-sm font-medium transition-all duration-200 border",
-                  inputValue.trim()
-                    ? "bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/40 shadow-sm hover:bg-[#99C0F0]/30 hover:shadow-md"
-                    : "bg-white/40 text-[#0E315C]/40 border-[#C1D9F6]/40 cursor-not-allowed",
-                )}
-              >
-                <Send className="w-4 h-4" />
-                <span className="hidden sm:inline">Send</span>
-              </button>
-            </div>
-
-            {/* Quick Action Suggestions */}
-            <div
-              className={`mt-6 flex items-center justify-center gap-3 transition-all duration-1000 ease-out delay-500 ${
-                isVisible
-                  ? "opacity-100 transform translate-y-0"
-                  : "opacity-0 transform translate-y-4"
-              }`}
-            >
-              {[
-                "Review pending cases",
-                "Draft legal document",
-                "Schedule consultation",
-                "Analyze case strategy",
-              ].map((suggestion, index) => (
-                <button
-                  key={suggestion}
-                  onClick={() => setInputValue(suggestion)}
-                  className={`px-4 py-2 text-xs font-light text-[#0E315C]/60 hover:text-[#0E315C] bg-white/40 hover:bg-white/60 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/40 rounded-xl transition-all duration-200 hover:shadow-sm ${
-                    index > 1 ? "hidden lg:block" : ""
-                  }`}
-                >
-                  {suggestion}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Recent Activity */}
+        {/* Elegant Chat Input Bar - Only show when AI agent is enabled */}
+        {isAIAgentEnabled && (
           <div
-            className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+            className={`w-full max-w-2xl transition-all duration-1200 ease-out delay-300 ${
               isVisible
                 ? "opacity-100 transform translate-y-0"
-                : "opacity-0 transform translate-y-4"
+                : "opacity-0 transform translate-y-6"
             }`}
           >
-            <div className="text-center mb-8">
-              <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
-                Recent Activity
-              </h2>
-            </div>
+            <div className="relative">
+              {/* Main Chat Bar */}
+              <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
+                {/* Chat Input */}
+                <div className="flex-1 relative">
+                  <Sparkles className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" />
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    onFocus={handleInputFocus}
+                    placeholder="Ask about cases, documents, or legal strategies..."
+                    className="w-full px-5 py-4 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-transparent transition-colors"
+                  />
+                </div>
 
-            <div className="space-y-3 max-w-2xl mx-auto">
-              {recentActivities.map((activity, index) => {
-                const IconComponent = activity.icon;
-                return (
-                  <div
-                    key={activity.id}
-                    className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-full shadow-sm hover:shadow-lg transition-all duration-500 px-5 py-3 hover:bg-white/35 cursor-pointer transform hover:scale-[1.015] hover:-translate-y-0.5 ${
-                      index === 0 ? "animate-fadeInUp" : ""
+                {/* Send Button */}
+                <button
+                  onClick={handleSendMessage}
+                  disabled={!inputValue.trim()}
+                  className={cn(
+                    "flex items-center gap-2 px-5 py-4 rounded-xl text-sm font-medium transition-all duration-200 border",
+                    inputValue.trim()
+                      ? "bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/40 shadow-sm hover:bg-[#99C0F0]/30 hover:shadow-md"
+                      : "bg-white/40 text-[#0E315C]/40 border-[#C1D9F6]/40 cursor-not-allowed",
+                  )}
+                >
+                  <Send className="w-4 h-4" />
+                  <span className="hidden sm:inline">Send</span>
+                </button>
+              </div>
+
+              {/* Quick Action Suggestions */}
+              <div
+                className={`mt-6 flex items-center justify-center gap-3 transition-all duration-1000 ease-out delay-500 ${
+                  isVisible
+                    ? "opacity-100 transform translate-y-0"
+                    : "opacity-0 transform translate-y-4"
+                }`}
+              >
+                {[
+                  "Review pending cases",
+                  "Draft legal document",
+                  "Schedule consultation",
+                  "Analyze case strategy",
+                ].map((suggestion, index) => (
+                  <button
+                    key={suggestion}
+                    onClick={() => setInputValue(suggestion)}
+                    className={`px-4 py-2 text-xs font-light text-[#0E315C]/60 hover:text-[#0E315C] bg-white/40 hover:bg-white/60 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/40 rounded-xl transition-all duration-200 hover:shadow-sm ${
+                      index > 1 ? "hidden lg:block" : ""
                     }`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
-                    <div className="flex items-center space-x-3">
-                      {/* Icon - Compact size for pill design */}
-                      <div
-                        className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}
-                      >
-                        <IconComponent className="w-4 h-4 text-white" />
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Show a subtle hint when AI agent is disabled */}
+        {!isAIAgentEnabled && (
+          <div
+            className={`w-full max-w-2xl transition-all duration-1200 ease-out delay-300 ${
+              isVisible
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-6"
+            }`}
+          >
+            <div className="flex items-center justify-center space-x-2 px-4 py-3 bg-white/20 backdrop-blur-sm rounded-full border border-[#C1D9F6]/30">
+              <Bot className="w-4 h-4 text-[#0E315C]/50" />
+              <span className="text-sm text-[#0E315C]/60 font-light">
+                AI Assistant is disabled - Enable it in the navigation bar to chat
+              </span>
+            </div>
+          </div>
+        )}
+
+        {/* Recent Activity - Always show */}
+        <div
+          className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-4"
+          }`}
+        >
+          <div className="text-center mb-8">
+            <h2 className="text-lg font-light text-[#0E315C]/70 tracking-wide">
+              Recent Activity
+            </h2>
+          </div>
+
+          <div className="space-y-3 max-w-2xl mx-auto">
+            {recentActivities.map((activity, index) => {
+              const IconComponent = activity.icon;
+              return (
+                <div
+                  key={activity.id}
+                  className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-full shadow-sm hover:shadow-lg transition-all duration-500 px-5 py-3 hover:bg-white/35 cursor-pointer transform hover:scale-[1.015] hover:-translate-y-0.5 ${
+                    index === 0 ? "animate-fadeInUp" : ""
+                  }`}
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex items-center space-x-3">
+                    {/* Icon - Compact size for pill design */}
+                    <div
+                      className={`w-8 h-8 bg-gradient-to-br ${activity.color} rounded-full flex items-center justify-center shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform duration-300`}
+                    >
+                      <IconComponent className="w-4 h-4 text-white" />
+                    </div>
+
+                    {/* Content - Compact horizontal flow */}
+                    <div className="flex-1 flex items-center justify-between min-w-0">
+                      <div className="flex items-center space-x-3 flex-1 min-w-0">
+                        <h3 className="text-sm font-medium text-[#0E315C]/90 truncate">
+                          {activity.title}
+                        </h3>
+                        <span className="hidden sm:block w-1 h-1 bg-[#0E315C]/20 rounded-full flex-shrink-0"></span>
+                        <p className="text-xs text-[#0E315C]/60 truncate flex-1">
+                          {activity.description}
+                        </p>
                       </div>
 
-                      {/* Content - Compact horizontal flow */}
-                      <div className="flex-1 flex items-center justify-between min-w-0">
-                        <div className="flex items-center space-x-3 flex-1 min-w-0">
-                          <h3 className="text-sm font-medium text-[#0E315C]/90 truncate">
-                            {activity.title}
-                          </h3>
-                          <span className="hidden sm:block w-1 h-1 bg-[#0E315C]/20 rounded-full flex-shrink-0"></span>
-                          <p className="text-xs text-[#0E315C]/60 truncate flex-1">
-                            {activity.description}
-                          </p>
+                      <div className="flex items-center space-x-2 flex-shrink-0">
+                        <div className="flex items-center space-x-1 text-xs text-[#0E315C]/40 font-light">
+                          <Clock className="w-3 h-3" />
+                          <span>{activity.time}</span>
                         </div>
 
-                        <div className="flex items-center space-x-2 flex-shrink-0">
-                          <div className="flex items-center space-x-1 text-xs text-[#0E315C]/40 font-light">
-                            <Clock className="w-3 h-3" />
-                            <span>{activity.time}</span>
-                          </div>
-
-                          {/* Subtle interaction indicator */}
-                          <div className="opacity-0 group-hover:opacity-60 transition-opacity duration-300">
-                            <svg
-                              className="w-3 h-3 text-[#0E315C]/40"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={1.5}
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
-                          </div>
+                        {/* Subtle interaction indicator */}
+                        <div className="opacity-0 group-hover:opacity-60 transition-opacity duration-300">
+                          <svg
+                            className="w-3 h-3 text-[#0E315C]/40"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1.5}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
                         </div>
                       </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Subtle footer hint removed */}
+                </div>
+              );
+            })}
           </div>
         </div>
 
