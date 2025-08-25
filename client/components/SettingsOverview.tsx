@@ -172,7 +172,7 @@ export default function SettingsOverview() {
                       onMouseEnter={() => setHoveredCategory(category.id)}
                       onMouseLeave={() => setHoveredCategory(null)}
                       className={cn(
-                        "w-full h-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-xl transition-all duration-500 p-8 rounded-3xl text-left group hover:scale-[1.02] transform",
+                        "w-full h-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-xl transition-all duration-500 p-5 rounded-2xl text-left group hover:scale-[1.02] transform",
                         category.color.hover
                       )}
                     >
