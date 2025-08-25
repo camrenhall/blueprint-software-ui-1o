@@ -150,6 +150,24 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 )}
               </Button>
 
+              {/* AI Agent toggle */}
+              <div className="flex items-center space-x-3 px-3 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                <Bot
+                  className={cn(
+                    "w-4 h-4 transition-colors duration-200",
+                    isAIAgentEnabled ? "text-[#99C0F0]" : "text-[#0E315C]/40"
+                  )}
+                />
+                <Switch
+                  checked={isAIAgentEnabled}
+                  onCheckedChange={toggleAIAgent}
+                  className="data-[state=checked]:bg-[#99C0F0] data-[state=unchecked]:bg-[#0E315C]/20"
+                />
+                <span className="text-xs text-[#0E315C]/70 font-medium hidden lg:inline">
+                  AI Agent
+                </span>
+              </div>
+
               {/* Theme toggle */}
               <Button
                 variant="ghost"
