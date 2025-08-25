@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,7 +23,6 @@ interface SettingsCategory {
     to: string;
     hover: string;
   };
-  route: string;
 }
 
 const settingsCategories: SettingsCategory[] = [
