@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { LucideIcon, Users, FileText, Search, LogOut, Sparkles, ArrowRight, ClipboardList, Settings } from "lucide-react";
+import { LucideIcon, Users, FileText, Search, LogOut, Sparkles, ArrowRight, ClipboardList, Settings, MessageSquare } from "lucide-react";
 
 interface MenuItem {
   id: string;
@@ -44,6 +44,8 @@ export default function GlassSidePanel({ items, className, isVisible: externalIs
         return ClipboardList;
       case "settings":
         return Settings;
+      case "communications":
+        return MessageSquare;
       case "logout":
         return LogOut;
       default:
@@ -257,6 +259,8 @@ function getDefaultDescription(id: string): string {
       return "Manage your tasks";
     case "settings":
       return "Configure preferences";
+    case "communications":
+      return "View and manage messages";
     case "logout":
       return "Sign out securely";
     default:
