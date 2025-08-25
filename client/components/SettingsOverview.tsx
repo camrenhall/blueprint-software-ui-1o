@@ -179,11 +179,11 @@ export default function SettingsOverview() {
                       <div className="flex flex-col space-y-4 h-full">
                         {/* Icon */}
                         <div className={cn(
-                          "w-16 h-16 bg-gradient-to-br rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg",
+                          "w-12 h-12 bg-gradient-to-br rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg",
                           category.color.from,
                           category.color.to
                         )}>
-                          <IconComponent className="w-8 h-8 text-white" />
+                          <IconComponent className="w-6 h-6 text-white" />
                         </div>
 
                         {/* Content */}
