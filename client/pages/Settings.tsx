@@ -111,7 +111,7 @@ export default function Settings() {
           <Icon className="w-4 h-4 text-[#0E315C]/80" />
         </div>
         <div className="flex-1 space-y-1">
-          <h4 className="text-sm font-medium text-[#0E315C]/90">{title}</h4>
+          <h4 className="text-sm font-light text-[#0E315C]/90">{title}</h4>
           <p className="text-xs text-[#0E315C]/60">{description}</p>
         </div>
       </div>
@@ -144,7 +144,7 @@ export default function Settings() {
                 <SettingsIcon className="w-8 h-8 text-[#0E315C]/80" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-[#0E315C]/90">Settings</h1>
+                <h1 className="text-2xl font-light text-[#0E315C]/90 tracking-wide">Settings</h1>
                 <p className="text-[#0E315C]/60">Manage your Luceron AI preferences and configuration</p>
               </div>
             </div>
