@@ -314,7 +314,7 @@ export default function CaseDetailsNew({
                 {/* Left Column - Main Content */}
                 <div className="col-span-8 space-y-5">
                   {/* Case Progress */}
-                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{ animationDelay: '200ms' }}>
+                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{ animationDelay: '200ms' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
                         <CheckCircle2 className="w-5 h-5 text-emerald-500" />
@@ -337,17 +337,17 @@ export default function CaseDetailsNew({
                     </div>
 
                     <div className="grid grid-cols-3 gap-3 mt-4">
-                      <div className="text-center p-3 bg-emerald-50/50 rounded-xl border border-emerald-200/50">
-                        <div className="text-lg font-light text-emerald-600 mb-1">{caseStats.approvedDocuments}</div>
-                        <div className="text-xs text-emerald-600/70 font-light">Approved</div>
+                      <div className="text-center p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+                        <div className="text-lg font-light text-emerald-700 mb-1">{caseStats.approvedDocuments}</div>
+                        <div className="text-xs text-emerald-700/70 font-light">Approved</div>
                       </div>
-                      <div className="text-center p-3 bg-purple-50/50 rounded-xl border border-purple-200/50">
-                        <div className="text-lg font-light text-purple-600 mb-1">{caseStats.reviewDocuments}</div>
-                        <div className="text-xs text-purple-600/70 font-light">In Review</div>
+                      <div className="text-center p-3 bg-purple-500/10 rounded-xl border border-purple-500/20">
+                        <div className="text-lg font-light text-purple-700 mb-1">{caseStats.reviewDocuments}</div>
+                        <div className="text-xs text-purple-700/70 font-light">In Review</div>
                       </div>
-                      <div className="text-center p-3 bg-blue-50/50 rounded-xl border border-blue-200/50">
-                        <div className="text-lg font-light text-blue-600 mb-1">{caseStats.timeInQueue}</div>
-                        <div className="text-xs text-blue-600/70 font-light">Total Time</div>
+                      <div className="text-center p-3 bg-[#99C0F0]/20 rounded-xl border border-[#99C0F0]/30">
+                        <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.timeInQueue}</div>
+                        <div className="text-xs text-[#0E315C]/70 font-light">Total Time</div>
                       </div>
                     </div>
                   </div>
