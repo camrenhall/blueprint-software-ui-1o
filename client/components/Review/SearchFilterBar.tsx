@@ -156,15 +156,21 @@ export function SearchFilterBar({
               <span>Filter</span>
               {hasActiveFilters && (
                 <div className="flex items-center -space-x-1">
-                  {activeFilters.slice(0, 3).map((filterId, index) => (
-                    <div
-                      key={filterId}
-                      className="w-2 h-2 rounded-full border border-white/50 bg-[#C5BFEE]"
-                      style={{ zIndex: 10 - index }}
-                    />
-                  ))}
+                  {activeFilters.slice(0, 3).map((filterId, index) => {
+                    const option = filterOptions.find((f) => f.id === filterId);
+                    return option ? (
+                      <div
+                        key={filterId}
+                        className={cn(
+                          "w-2 h-2 rounded-full",
+                          option.color.dot,
+                        )}
+                        style={{ zIndex: 10 - index }}
+                      />
+                    ) : null;
+                  })}
                   {activeFilters.length > 3 && (
-                    <div className="w-2 h-2 rounded-full bg-[#C5BFEE] border border-white/50 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-[#0E315C] flex items-center justify-center">
                       <span className="text-[6px] text-white font-bold">+</span>
                     </div>
                   )}
