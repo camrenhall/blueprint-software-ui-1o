@@ -224,9 +224,10 @@ export default function Review({ onClose }: ReviewProps) {
         )}
       />
 
-      {/* Cases Content */}
+      {/* Cases Content - Fade out when case details are shown */}
       <div className={cn(
-        "flex-1 min-h-0 transition-all duration-300 ease-out",
+        "flex-1 min-h-0 transition-all duration-500 ease-out",
+        selectedCase ? "opacity-0" :
         isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"
       )}>
         {viewMode === "kanban" ? (
