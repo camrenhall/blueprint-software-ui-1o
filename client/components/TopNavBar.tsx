@@ -29,6 +29,7 @@ interface TopNavBarProps {
 }
 
 export default function TopNavBar({ className }: TopNavBarProps) {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [notifications, setNotifications] = useState(3);
