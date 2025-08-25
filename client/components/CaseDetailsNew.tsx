@@ -183,7 +183,11 @@ export default function CaseDetailsNew({
     const doc = documents.find(d => d.name === selectedDocument);
     return (
       <div className="fixed top-20 right-6 bottom-6 left-96 z-50 p-6">
-        <div className="w-full h-full bg-[#C1D9F6]/15 border border-[#C1D9F6]/40 rounded-3xl shadow-2xl backdrop-blur-sm">
+        <div className="w-full h-full relative rounded-3xl shadow-2xl">
+          {/* Glass morphism background layers - matching site design */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-3xl" />
+          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-white/5 to-transparent" />
           <div className="h-full max-h-full flex flex-col overflow-hidden rounded-3xl">
             {/* Document Header */}
             <div className="bg-[#C1D9F6]/25 backdrop-blur-xl border-b border-[#C1D9F6]/40 p-4 flex-shrink-0 rounded-t-3xl">
@@ -249,7 +253,11 @@ export default function CaseDetailsNew({
 
   return (
     <div className="fixed top-20 right-6 bottom-6 left-96 z-50 animate-fadeIn p-6">
-      <div className="w-full h-full bg-[#C1D9F6]/15 border border-[#C1D9F6]/40 rounded-3xl shadow-2xl backdrop-blur-sm">
+      <div className="w-full h-full relative rounded-3xl shadow-2xl">
+        {/* Glass morphism background layers - matching site design */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-3xl" />
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-white/5 to-transparent" />
         <div className="h-full max-h-full flex flex-col overflow-hidden rounded-3xl">
           {/* Compact Header */}
           <div className="bg-[#C1D9F6]/25 backdrop-blur-xl border-b border-[#C1D9F6]/40 p-4 flex-shrink-0 animate-slideInLeft rounded-t-3xl">
