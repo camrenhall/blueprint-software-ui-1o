@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,8 +22,10 @@ import {
   Wifi,
   Activity,
   ChevronDown,
+  Bot,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAIAgent } from "@/contexts/AIAgentContext";
 
 interface TopNavBarProps {
   className?: string;
