@@ -258,9 +258,9 @@ export default function CaseDetailsNew({
         <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
         <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-3xl" />
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-transparent via-white/5 to-transparent" />
-        <div className="h-full max-h-full flex flex-col overflow-hidden rounded-3xl">
+        <div className="relative h-full max-h-full flex flex-col overflow-hidden rounded-3xl">
           {/* Compact Header */}
-          <div className="bg-[#C1D9F6]/25 backdrop-blur-xl border-b border-[#C1D9F6]/40 p-4 flex-shrink-0 animate-slideInLeft rounded-t-3xl">
+          <div className="bg-white/10 backdrop-blur-xl border-b border-white/20 p-4 flex-shrink-0 animate-slideInLeft rounded-t-3xl">
             <div className="flex items-center justify-between mb-3">
               <button
                 onClick={onBack}
@@ -271,7 +271,7 @@ export default function CaseDetailsNew({
               </button>
               <button
                 onClick={onBack}
-                className="w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/20 transition-all duration-300 hover:scale-110"
               >
                 <X className="w-4 h-4" />
               </button>
