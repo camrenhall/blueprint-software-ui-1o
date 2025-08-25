@@ -137,13 +137,13 @@ export default function Settings() {
           "w-full h-full flex flex-col transition-all duration-1000",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
-          {/* Header */}
+          {/* Header with Breadcrumb */}
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => navigate("/menu")}
+                onClick={() => navigate("/settings")}
                 className="p-2 hover:bg-white/10 rounded-full"
               >
                 <ArrowLeft className="w-4 h-4 text-[#0E315C]/70" />
@@ -152,8 +152,42 @@ export default function Settings() {
                 <SettingsIcon className="w-8 h-8 text-[#0E315C]/80" />
               </div>
               <div>
-                <h1 className="text-2xl font-light text-[#0E315C]/90 tracking-wide">Settings</h1>
-                <p className="text-[#0E315C]/60">Manage your Luceron AI preferences and configuration</p>
+                {/* Breadcrumb */}
+                <div className="flex items-center space-x-2 mb-1">
+                  <button
+                    onClick={() => navigate("/settings")}
+                    className="text-sm font-light text-[#0E315C]/60 hover:text-[#0E315C]/80 transition-colors"
+                  >
+                    Settings
+                  </button>
+                  <span className="text-[#0E315C]/40 text-sm">/</span>
+                  <span className="text-sm font-light text-[#0E315C]/80 capitalize">
+                    {category === "automation" ? "AI & Automation" :
+                     category === "integration" ? "Integration" :
+                     category === "team" ? "Team & Collaboration" :
+                     category === "billing" ? "Usage & Billing" :
+                     category === "security" ? "Security & Privacy" :
+                     category || "General"}
+                  </span>
+                </div>
+                <h1 className="text-2xl font-light text-[#0E315C]/90 tracking-wide">
+                  {category === "automation" ? "AI & Automation" :
+                   category === "integration" ? "Integration" :
+                   category === "team" ? "Team & Collaboration" :
+                   category === "billing" ? "Usage & Billing" :
+                   category === "security" ? "Security & Privacy" :
+                   category || "General"} Settings
+                </h1>
+                <p className="text-[#0E315C]/60">
+                  {category === "general" ? "Account preferences, notifications, and basic settings" :
+                   category === "security" ? "Authentication, data protection, and audit settings" :
+                   category === "discovery" ? "Search algorithms, document analysis, and classification" :
+                   category === "automation" ? "AI assistant behavior and automated processing settings" :
+                   category === "integration" ? "External systems, exports, and third-party connections" :
+                   category === "team" ? "User roles, permissions, and collaboration settings" :
+                   category === "billing" ? "Subscription management, usage monitoring, and billing" :
+                   "Manage your Luceron AI preferences and configuration"}
+                </p>
               </div>
             </div>
           </div>
