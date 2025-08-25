@@ -129,7 +129,6 @@ export default function CaseDetailsNew({
     approvedDocuments: documents.filter((doc) => doc.status === "approved").length,
     reviewDocuments: documents.filter((doc) => doc.status === "review").length,
     caseType: selectedCase.caseType || "Employment",
-    priority: selectedCase.priority || "high",
     dateCompleted: selectedCase.dateCompleted || "Jun 28, 2025",
     tasksComplete: selectedCase.tasksComplete || "7",
   };
@@ -149,18 +148,6 @@ export default function CaseDetailsNew({
     }
   };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case "high":
-        return "bg-gradient-to-r from-red-500/20 to-pink-500/20 text-red-700 border-red-200";
-      case "medium":
-        return "bg-gradient-to-r from-amber-500/20 to-yellow-500/20 text-amber-700 border-amber-200";
-      case "low":
-        return "bg-gradient-to-r from-emerald-500/20 to-green-500/20 text-emerald-700 border-emerald-200";
-      default:
-        return "bg-gradient-to-r from-slate-500/20 to-gray-500/20 text-slate-700 border-slate-200";
-    }
-  };
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -307,12 +294,6 @@ export default function CaseDetailsNew({
                     <Clock className="w-3 h-3" />
                     <span>Queue: {caseStats.timeInQueue}</span>
                   </div>
-                  <span className={cn(
-                    "px-2 py-1 rounded-lg text-xs font-medium border capitalize",
-                    getPriorityColor(caseStats.priority)
-                  )}>
-                    {caseStats.priority} Priority
-                  </span>
                 </div>
               </div>
             </div>
