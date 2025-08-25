@@ -14,6 +14,7 @@ interface GlassSidePanelProps {
   items: MenuItem[];
   className?: string;
   isVisible?: boolean;
+  taskQueueCount?: number;
 }
 
 export default function GlassSidePanel({ items, className, isVisible: externalIsVisible }: GlassSidePanelProps) {
