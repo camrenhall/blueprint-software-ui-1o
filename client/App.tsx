@@ -40,21 +40,23 @@ const ConditionalTopNavBar = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <CloudBackground />
-      <BrowserRouter>
-        <ConditionalTopNavBar />
-        <Toaster />
-        <Sonner />
-        <FeedbackButton />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/menu" element={<Index />} />
-          <Route path="/settings" element={<SettingsOverview />} />
-          <Route path="/settings/:category" element={<SettingsCategory />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AIAgentProvider>
+        <CloudBackground />
+        <BrowserRouter>
+          <ConditionalTopNavBar />
+          <Toaster />
+          <Sonner />
+          <FeedbackButton />
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/menu" element={<Index />} />
+            <Route path="/settings" element={<SettingsOverview />} />
+            <Route path="/settings/:category" element={<SettingsCategory />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </AIAgentProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
