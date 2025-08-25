@@ -108,7 +108,7 @@ export default function Settings({ onClose }: SettingsProps) {
           <Icon className="w-4 h-4 text-[#0E315C]/80" />
         </div>
         <div className="flex-1 space-y-1">
-          <h4 className="text-sm font-medium text-[#0E315C]/90">{title}</h4>
+          <h4 className="text-sm font-light text-[#0E315C]/90">{title}</h4>
           <p className="text-xs text-[#0E315C]/60">{description}</p>
         </div>
       </div>
@@ -128,7 +128,7 @@ export default function Settings({ onClose }: SettingsProps) {
             <SettingsIcon className="w-6 h-6 text-[#0E315C]/80" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-[#0E315C]/90">Settings</h1>
+            <h1 className="text-xl font-light text-[#0E315C]/90 tracking-wide">Settings</h1>
             <p className="text-sm text-[#0E315C]/60">Manage your Luceron AI preferences</p>
           </div>
         </div>
