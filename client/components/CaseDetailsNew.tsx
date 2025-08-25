@@ -138,13 +138,16 @@ export default function CaseDetailsNew({
   const getStatusColor = (status: string) => {
     switch (status) {
       case "approved":
-        return "bg-gradient-to-r from-emerald-500/20 to-green-500/20 text-emerald-700 border-emerald-200";
+      case "complete":
+        return "bg-emerald-500/20 text-emerald-700 border-emerald-500/30";
       case "review":
-        return "bg-gradient-to-r from-purple-500/20 to-violet-500/20 text-purple-700 border-purple-200";
+      case "needs review":
+        return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
       case "pending":
-        return "bg-gradient-to-r from-amber-500/20 to-orange-500/20 text-amber-700 border-amber-200";
+      case "awaiting documents":
+        return "bg-[#99C0F0]/30 text-[#0E315C] border-[#99C0F0]/40";
       default:
-        return "bg-gradient-to-r from-slate-500/20 to-gray-500/20 text-slate-700 border-slate-200";
+        return "bg-white/20 text-[#0E315C]/70 border-white/30";
     }
   };
 
