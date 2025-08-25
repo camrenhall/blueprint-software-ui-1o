@@ -11,7 +11,6 @@ import {
   Link,
   Users,
   CreditCard,
-  ArrowLeft,
   ChevronRight,
 } from "lucide-react";
 
