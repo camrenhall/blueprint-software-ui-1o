@@ -130,6 +130,11 @@ function IndexContent() {
                   <TaskQueue onClose={() => setActiveRightContent(null)} />
                 </div>
               )}
+              {activeRightContent === "settings" && (
+                <div className="w-full h-full mx-auto">
+                  <Settings onClose={() => setActiveRightContent(null)} />
+                </div>
+              )}
             </div>
 
             {/* Subtle ambient elements */}
