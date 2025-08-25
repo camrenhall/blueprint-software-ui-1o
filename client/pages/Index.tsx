@@ -143,7 +143,11 @@ function IndexContent() {
               )}
               {activeRightContent === "settings" && (
                 <div className="w-full h-full mx-auto">
-                  <SettingsOverview />
+                  <UnifiedSettings
+                    selectedCategory={selectedSettingsCategory}
+                    onCategorySelect={handleSettingsCategorySelect}
+                    onBack={handleSettingsBack}
+                  />
                 </div>
               )}
             </div>
