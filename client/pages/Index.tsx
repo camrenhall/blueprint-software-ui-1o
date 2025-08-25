@@ -14,6 +14,7 @@ import { useTaskQueue } from "@/hooks/useTaskQueue";
 
 function IndexContent() {
   const { isInChatMode } = useConversationContext();
+  const { taskCount } = useTaskQueue();
   const [isVisible, setIsVisible] = useState(false);
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
     "agents",
