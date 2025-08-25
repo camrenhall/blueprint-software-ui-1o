@@ -207,7 +207,7 @@ export default function Review({ onClose }: ReviewProps) {
         )}
       </div>
 
-      {/* Enhanced Search, Filter and Sort Bar */}
+      {/* Enhanced Search, Filter and Sort Bar - Fade out when case details are shown */}
       <SearchFilterBar
         searchValue={searchValue}
         onSearchChange={setSearchValue}
@@ -218,7 +218,10 @@ export default function Review({ onClose }: ReviewProps) {
         onSortChange={setSortBy}
         viewMode={viewMode}
         onViewModeChange={handleViewModeChange}
-        className="mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
+        className={cn(
+          "mb-6 transition-all duration-500 ease-out",
+          selectedCase ? "opacity-0" : "opacity-100 transform translate-y-0"
+        )}
       />
 
       {/* Cases Content */}
