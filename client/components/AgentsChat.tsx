@@ -23,6 +23,7 @@ interface AgentsChatProps {
 }
 
 export default function AgentsChat({ onClose }: AgentsChatProps) {
+  const { isAIAgentEnabled } = useAIAgent();
   const {
     currentConversation,
     createNewConversation,
