@@ -187,17 +187,17 @@ export default function SettingsOverview() {
                         </div>
 
                         {/* Content */}
-                        <div className="flex-1 flex flex-col space-y-3">
+                        <div className="flex-1 flex flex-col space-y-2">
                           <div className="flex items-center justify-between">
-                            <h3 className="text-xl font-light text-[#0E315C] group-hover:text-[#0E315C]/90 transition-colors">
+                            <h3 className="text-lg font-light text-[#0E315C] group-hover:text-[#0E315C]/90 transition-colors">
                               {category.title}
                             </h3>
                             <ChevronRight className={cn(
-                              "w-5 h-5 text-[#0E315C]/40 transition-all duration-300",
+                              "w-4 h-4 text-[#0E315C]/40 transition-all duration-300",
                               isHovered ? "text-[#0E315C]/70 translate-x-1" : ""
                             )} />
                           </div>
-                          <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
+                          <p className="text-[#0E315C]/60 text-xs leading-relaxed font-light">
                             {category.description}
                           </p>
                         </div>
