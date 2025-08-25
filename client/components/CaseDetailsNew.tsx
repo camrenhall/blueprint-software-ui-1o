@@ -431,7 +431,7 @@ export default function CaseDetailsNew({
                 {/* Right Column - Sidebar */}
                 <div className="col-span-4 space-y-5">
                   {/* Case Overview */}
-                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-[#C1D9F6]/30 animate-fadeInUp" style={{ animationDelay: '300ms' }}>
+                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 animate-fadeInUp" style={{ animationDelay: '300ms' }}>
                     <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
                       <Users className="w-5 h-5 text-[#99C0F0]" />
                       <span>Case Overview</span>
@@ -457,7 +457,7 @@ export default function CaseDetailsNew({
                   </div>
 
                   {/* Communications */}
-                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-[#C1D9F6]/30 animate-fadeInUp" style={{ animationDelay: '500ms' }}>
+                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 animate-fadeInUp" style={{ animationDelay: '500ms' }}>
                     <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
                       <MessageSquare className="w-5 h-5 text-[#C5BFEE]" />
                       <span>Communications</span>
