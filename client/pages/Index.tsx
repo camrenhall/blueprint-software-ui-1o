@@ -73,6 +73,7 @@ function IndexContent() {
       title: "Settings",
       action: () => {
         setActiveRightContent("settings");
+        setSelectedSettingsCategory(null);
       },
     },
     {
