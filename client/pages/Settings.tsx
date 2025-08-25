@@ -91,6 +91,13 @@ export default function Settings() {
     setTimeout(() => setIsVisible(true), 200);
   }, []);
 
+  // Sync activeTab with URL parameter
+  useEffect(() => {
+    if (category) {
+      setActiveTab(category);
+    }
+  }, [category]);
+
   const updateSetting = (key: string, value: any) => {
     setSettings(prev => ({ ...prev, [key]: value }));
   };
