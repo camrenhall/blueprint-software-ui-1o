@@ -353,7 +353,7 @@ export default function CaseDetailsNew({
                   </div>
 
                   {/* Documents Section */}
-                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{ animationDelay: '400ms' }}>
+                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{ animationDelay: '400ms' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
                         <FileText className="w-5 h-5 text-[#99C0F0]" />
@@ -395,7 +395,7 @@ export default function CaseDetailsNew({
                   </div>
 
                   {/* Recent Activity */}
-                  <div className="bg-white/90 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-[#C1D9F6]/30 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{ animationDelay: '600ms' }}>
+                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{ animationDelay: '600ms' }}>
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
                         <Clock className="w-5 h-5 text-[#C5BFEE]" />
