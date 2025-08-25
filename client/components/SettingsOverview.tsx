@@ -219,25 +219,6 @@ export default function SettingsOverview() {
           </div>
         </div>
 
-        {/* Floating ambient particles - matching site design */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-3xl">
-          <div className="absolute top-12 right-12 w-2 h-2 bg-[#99C0F0]/40 rounded-full opacity-60 animate-float" />
-          <div
-            className="absolute bottom-24 left-12 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full opacity-50 animate-float-slow"
-            style={{ animationDelay: "1s" }}
-          />
-          <div
-            className="absolute top-1/2 right-1/4 w-1 h-1 bg-[#C1D9F6]/50 rounded-full opacity-40 animate-drift"
-            style={{ animationDelay: "2s" }}
-          />
-          <div
-            className="absolute bottom-1/3 left-1/4 w-1.5 h-1.5 bg-[#99C0F0]/30 rounded-full opacity-30 animate-float"
-            style={{ animationDelay: "3s" }}
-          />
-        </div>
-
-        {/* Subtle edge glow */}
-        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#99C0F0]/5 via-transparent to-[#C5BFEE]/5 blur-xl pointer-events-none" />
       </div>
     </div>
   );
