@@ -36,7 +36,6 @@ const settingsCategories: SettingsCategory[] = [
       to: "to-[#C1D9F6]/60",
       hover: "hover:border-[#99C0F0]/60 hover:shadow-[#99C0F0]/5"
     },
-    route: "/settings/general"
   },
   {
     id: "security",
@@ -48,7 +47,6 @@ const settingsCategories: SettingsCategory[] = [
       to: "to-[#99C0F0]/60",
       hover: "hover:border-[#C5BFEE]/60 hover:shadow-[#C5BFEE]/5"
     },
-    route: "/settings/security"
   },
   {
     id: "discovery",
@@ -60,7 +58,6 @@ const settingsCategories: SettingsCategory[] = [
       to: "to-[#C5BFEE]/60",
       hover: "hover:border-[#C1D9F6]/60 hover:shadow-[#C1D9F6]/5"
     },
-    route: "/settings/discovery"
   },
   {
     id: "automation",
@@ -72,7 +69,6 @@ const settingsCategories: SettingsCategory[] = [
       to: "to-[#C5BFEE]/60",
       hover: "hover:border-[#99C0F0]/60 hover:shadow-[#99C0F0]/5"
     },
-    route: "/settings/automation"
   },
   {
     id: "integration",
@@ -84,7 +80,6 @@ const settingsCategories: SettingsCategory[] = [
       to: "to-[#C1D9F6]/60",
       hover: "hover:border-[#C5BFEE]/60 hover:shadow-[#C5BFEE]/5"
     },
-    route: "/settings/integration"
   },
   {
     id: "team",
@@ -96,7 +91,6 @@ const settingsCategories: SettingsCategory[] = [
       to: "to-[#99C0F0]/60",
       hover: "hover:border-[#C1D9F6]/60 hover:shadow-[#C1D9F6]/5"
     },
-    route: "/settings/team"
   },
   {
     id: "billing",
@@ -108,12 +102,15 @@ const settingsCategories: SettingsCategory[] = [
       to: "to-[#C1D9F6]/60",
       hover: "hover:border-[#99C0F0]/60 hover:shadow-[#99C0F0]/5"
     },
-    route: "/settings/billing"
   }
 ];
 
-export default function SettingsOverview() {
-  const navigate = useNavigate();
+interface SettingsOverviewProps {
+  onCategorySelect?: (categoryId: string) => void;
+  onBack?: () => void;
+}
+
+export default function SettingsOverview({ onCategorySelect, onBack }: SettingsOverviewProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
 
@@ -123,7 +120,7 @@ export default function SettingsOverview() {
   }, []);
 
   const handleCategorySelect = (category: SettingsCategory) => {
-    navigate(category.route);
+    onCategorySelect?.(category.id);
   };
 
   return (
