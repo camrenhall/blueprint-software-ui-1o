@@ -14,6 +14,7 @@ import SettingsCategory from "./components/SettingsCategory";
 import CloudBackground from "./components/CloudBackground";
 import TopNavBar from "./components/TopNavBar";
 import { FeedbackButton } from "./components/FeedbackButton";
+import { AIAgentProvider } from "./contexts/AIAgentContext";
 
 // Extend HTMLElement to include our custom property
 declare global {
