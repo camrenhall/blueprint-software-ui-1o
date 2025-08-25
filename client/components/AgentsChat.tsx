@@ -613,7 +613,7 @@ How can I best support your current priorities?`,
 
         {/* Recent Activity - Always show */}
         <div
-          className={`mt-12 w-full transition-all duration-1200 ease-out delay-700 ${
+          className={`${isAIAgentEnabled ? 'mt-12' : 'mt-8'} w-full transition-all duration-1200 ease-out delay-700 ${
             isVisible
               ? "opacity-100 transform translate-y-0"
               : "opacity-0 transform translate-y-4"
