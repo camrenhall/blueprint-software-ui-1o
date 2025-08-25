@@ -33,7 +33,8 @@ import {
 
 export default function Settings() {
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("general");
+  const { category } = useParams<{ category: string }>();
+  const [activeTab, setActiveTab] = useState(category || "general");
   const [isVisible, setIsVisible] = useState(false);
 
   // Settings state
