@@ -493,13 +493,13 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         totalCount={filteredAndSortedTasks.length}
         onSelectAll={handleSelectAll}
         onAcceptSelected={handleAcceptSelected}
-        className="relative z-10 mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
+        className="mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
       />
 
       {/* Task list */}
-      <div className="relative z-10 h-full">
+      <div className="h-full">
         {filteredAndSortedTasks.length === 0 ? (
-          <div className="relative z-10 flex-1 flex items-center justify-center h-full">
+          <div className="flex-1 flex items-center justify-center h-full">
             <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center max-w-md mx-4">
               <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-gentlePulse">
                 <CheckCircle2 className="w-12 h-12 text-[#99C0F0]" />
