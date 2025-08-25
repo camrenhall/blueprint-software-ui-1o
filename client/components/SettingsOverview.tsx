@@ -176,7 +176,7 @@ export default function SettingsOverview() {
                         category.color.hover
                       )}
                     >
-                      <div className="flex flex-col space-y-6 h-full">
+                      <div className="flex flex-col space-y-4 h-full">
                         {/* Icon */}
                         <div className={cn(
                           "w-16 h-16 bg-gradient-to-br rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg",
