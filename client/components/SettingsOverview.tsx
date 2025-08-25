@@ -131,12 +131,7 @@ export default function SettingsOverview() {
 
   return (
     <div className="h-screen w-full relative overflow-hidden pt-16">
-      {/* Glass morphism content background - matching site design */}
-      <div className="absolute inset-6 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
-      <div className="absolute inset-6 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-3xl" />
-      <div className="absolute inset-6 rounded-3xl bg-gradient-to-br from-transparent via-white/5 to-transparent" />
-
-      <div className="relative z-10 h-full p-12">
+      <div className="h-full p-8">
         <div className={cn(
           "w-full h-full flex flex-col transition-all duration-1000",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
