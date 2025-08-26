@@ -17,8 +17,6 @@ import {
   Settings,
   User,
   LogOut,
-  Moon,
-  Sun,
   Wifi,
   Activity,
   ChevronDown,
