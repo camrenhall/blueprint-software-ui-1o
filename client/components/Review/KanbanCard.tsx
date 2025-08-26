@@ -50,7 +50,7 @@ export function KanbanCard({
         <div className="flex items-center space-x-2 flex-shrink-0">
           <div
             className={cn(
-              "w-2.5 h-2.5 rounded-full shadow-md animate-gentlePulse",
+              "w-2.5 h-2.5 rounded-full shadow-md",
               statusColors.dot,
             )}
           />
