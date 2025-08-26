@@ -221,8 +221,8 @@ export default function Review({ onClose }: ReviewProps) {
         viewMode={viewMode}
         onViewModeChange={handleViewModeChange}
         className={cn(
-          "mb-6 transition-all duration-500 ease-out",
-          selectedCase ? "opacity-0" : "opacity-100 transform translate-y-0"
+          "mb-6 transition-all duration-1000",
+          selectedCase ? "opacity-0" : isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}
       />
 
