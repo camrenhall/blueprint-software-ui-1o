@@ -1,27 +1,26 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { 
-  Mail, 
-  X, 
-  Clock, 
-  CheckCircle, 
-  AlertCircle, 
-  Eye, 
+import {
+  Mail,
+  X,
+  Clock,
+  CheckCircle,
+  AlertCircle,
+  Eye,
   Download,
   Calendar,
   User,
   FileText,
-  Search,
   ChevronDown,
   ChevronRight,
   Bot,
   Reply
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { CommunicationsSearchFilterBar, CommunicationsSortOption } from "@/components/CommunicationsSearchFilterBar";
 
 interface CommunicationsPanelProps {
   onClose: () => void;
