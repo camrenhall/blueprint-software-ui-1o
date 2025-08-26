@@ -317,7 +317,7 @@ export default function CaseDetailsNew({
                 {/* Left Column - Main Content */}
                 <div className="col-span-8 space-y-5">
                   {/* Case Progress */}
-                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 transition-all duration-300 hover:shadow-2xl animate-fadeInUp" style={{ animationDelay: '200ms' }}>
+                  <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-5 shadow-xl border border-white/20 transition-all duration-300 hover:shadow-2xl">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
                         <CheckCircle2 className="w-5 h-5 text-emerald-500" />
