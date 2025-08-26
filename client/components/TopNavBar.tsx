@@ -165,20 +165,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 </span>
               </div>
 
-              {/* Theme toggle */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsDarkMode(!isDarkMode)}
-                className="p-2 hover:bg-white/10 transition-all duration-300 rounded-full"
-              >
-                {isDarkMode ? (
-                  <Sun className="w-4 h-4 text-[#0E315C]/70" />
-                ) : (
-                  <Moon className="w-4 h-4 text-[#0E315C]/70" />
-                )}
-              </Button>
-
               {/* Settings */}
               <Button
                 variant="ghost"
