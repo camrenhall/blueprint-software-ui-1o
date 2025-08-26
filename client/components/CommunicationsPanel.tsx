@@ -206,14 +206,76 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
     return date.toLocaleDateString();
   };
 
-  const filteredConversations = mockConversations.filter(conversation => {
-    const matchesSearch =
-      conversation.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      conversation.clientEmail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      conversation.caseNumber.toLowerCase().includes(searchTerm.toLowerCase());
+  // Filter toggle function
+  const toggleFilter = (filterId: string) => {
+    setActiveFilters(prev =>
+      prev.includes(filterId)
+        ? prev.filter(id => id !== filterId)
+        : [...prev, filterId]
+    );
+  };
 
-    return matchesSearch;
-  });
+  // Clear filters function
+  const clearFilters = () => {
+    setActiveFilters([]);
+  };
+
+  // Filter and sort conversations
+  const filteredAndSortedConversations = useMemo(() => {
+    let filtered = mockConversations;
+
+    // Apply search filter
+    if (searchValue.trim()) {
+      const search = searchValue.toLowerCase();
+      filtered = filtered.filter(conversation =>
+        conversation.clientName.toLowerCase().includes(search) ||
+        conversation.clientEmail.toLowerCase().includes(search) ||
+        conversation.caseNumber.toLowerCase().includes(search) ||
+        conversation.messages.some(msg =>
+          msg.subject.toLowerCase().includes(search) ||
+          msg.content.toLowerCase().includes(search)
+        )
+      );
+    }
+
+    // Apply status filters
+    if (activeFilters.length > 0) {
+      filtered = filtered.filter(conversation => {
+        return activeFilters.some(filter => {
+          switch (filter) {
+            case "unread":
+              return conversation.unreadCount > 0;
+            case "responded":
+              return conversation.responseReceived;
+            case "pending":
+              return !conversation.responseReceived;
+            case "failed":
+              return conversation.messages.some(msg => msg.status === "failed");
+            default:
+              return false;
+          }
+        });
+      });
+    }
+
+    // Apply sorting
+    const sorted = [...filtered].sort((a, b) => {
+      switch (sortBy) {
+        case "lastActivity":
+          return new Date(b.lastActivity).getTime() - new Date(a.lastActivity).getTime();
+        case "clientName":
+          return a.clientName.localeCompare(b.clientName);
+        case "emailCount":
+          return b.messages.length - a.messages.length;
+        case "caseNumber":
+          return a.caseNumber.localeCompare(b.caseNumber);
+        default:
+          return 0;
+      }
+    });
+
+    return sorted;
+  }, [searchValue, activeFilters, sortBy]);
 
   return (
     <div className="h-full flex flex-col">
