@@ -327,74 +327,86 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
             </Badge>
           </div>
 
-          <div className="space-y-3 max-h-[calc(100vh-280px)] overflow-y-auto pr-2">
-            {filteredConversations.map((conversation) => (
-              <div
-                key={conversation.id}
-                onClick={() => setSelectedConversation(conversation)}
-                className={cn(
-                  "relative p-3 rounded-xl cursor-pointer transition-all duration-300 border",
-                  "hover:shadow-xl hover:scale-[1.02] transform",
-                  selectedConversation?.id === conversation.id
-                    ? "bg-white/70 border-[#99C0F0]/60 shadow-xl scale-[1.02]"
-                    : "bg-white/50 border-white/40 hover:bg-white/60 hover:border-[#99C0F0]/50",
-                  "backdrop-blur-md shadow-lg"
-                )}
-              >
-                {/* Glass effect layers */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl" />
-                <div className="absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl" />
+          <div className="space-y-3 max-h-[calc(100vh-350px)] overflow-y-auto pr-2">
+            {filteredAndSortedConversations.length === 0 ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <Mail className="w-12 h-12 text-[#99C0F0]/50 mb-4" />
+                <p className="text-[#0E315C]/60 mb-2">
+                  No conversations found
+                </p>
+                <p className="text-sm text-[#0E315C]/40">
+                  Try adjusting your search or filters
+                </p>
+              </div>
+            ) : (
+              filteredAndSortedConversations.map((conversation) => (
+                <div
+                  key={conversation.id}
+                  onClick={() => setSelectedConversation(conversation)}
+                  className={cn(
+                    "relative p-3 rounded-xl cursor-pointer transition-all duration-300 border",
+                    "hover:shadow-xl hover:scale-[1.02] transform",
+                    selectedConversation?.id === conversation.id
+                      ? "bg-white/70 border-[#99C0F0]/60 shadow-xl scale-[1.02]"
+                      : "bg-white/50 border-white/40 hover:bg-white/60 hover:border-[#99C0F0]/50",
+                    "backdrop-blur-md shadow-lg"
+                  )}
+                >
+                  {/* Glass effect layers */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl" />
+                  <div className="absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl" />
 
-                <div className="relative space-y-2">
-                  {/* Compact header */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center shadow-md">
-                        <User className="w-3 h-3 text-white" />
+                  <div className="relative space-y-2">
+                    {/* Compact header */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-6 h-6 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center shadow-md">
+                          <User className="w-3 h-3 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-[#0E315C] text-sm leading-tight">
+                            {conversation.clientName}
+                          </h4>
+                          <p className="text-xs text-[#0E315C]/70 leading-tight">
+                            {conversation.caseNumber}
+                          </p>
+                        </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-[#0E315C] text-sm leading-tight">
-                          {conversation.clientName}
-                        </h4>
-                        <p className="text-xs text-[#0E315C]/70 leading-tight">
-                          {conversation.caseNumber}
-                        </p>
+                        {conversation.unreadCount > 0 && (
+                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse shadow-sm" />
+                        )}
                       </div>
                     </div>
-                    <div>
-                      {conversation.unreadCount > 0 && (
-                        <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse shadow-sm" />
-                      )}
-                    </div>
-                  </div>
 
-                  {/* Compact stats */}
-                  <div className="flex items-center justify-between text-xs">
-                    <div className="flex items-center space-x-2">
+                    {/* Compact stats */}
+                    <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-1">
+                          <Mail className="w-3 h-3 text-[#0E315C]/60" />
+                          <span className="text-[#0E315C]/80 font-medium">
+                            {conversation.messages.length}
+                          </span>
+                        </div>
+                        {conversation.responseReceived && (
+                          <div className="w-1.5 h-1.5 bg-[#C1D9F6] rounded-full" />
+                        )}
+                      </div>
+                      <span className="text-[#0E315C]/60">
+                        {formatDate(conversation.lastActivity)}
+                      </span>
+                    </div>
+
+                    {/* Status indicator */}
+                    <div className="flex items-center justify-end">
                       <div className="flex items-center space-x-1">
-                        <Mail className="w-3 h-3 text-[#0E315C]/60" />
-                        <span className="text-[#0E315C]/80 font-medium">
-                          {conversation.messages.length}
-                        </span>
+                        {getStatusIcon(conversation.messages[conversation.messages.length - 1].status)}
                       </div>
-                      {conversation.responseReceived && (
-                        <div className="w-1.5 h-1.5 bg-[#C1D9F6] rounded-full" />
-                      )}
-                    </div>
-                    <span className="text-[#0E315C]/60">
-                      {formatDate(conversation.lastActivity)}
-                    </span>
-                  </div>
-
-                  {/* Status indicator */}
-                  <div className="flex items-center justify-end">
-                    <div className="flex items-center space-x-1">
-                      {getStatusIcon(conversation.messages[conversation.messages.length - 1].status)}
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
