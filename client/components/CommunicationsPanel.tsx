@@ -294,103 +294,98 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
         </select>
       </div>
 
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Client Conversations List */}
-        <div className="relative">
-          {/* Enhanced glassmorphism background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl" />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-2xl" />
-          
-          <div className="relative p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-light text-[#0E315C]">Client Conversations</h2>
-              <Badge variant="secondary" className="bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/30">
-                {filteredConversations.length} active
-              </Badge>
-            </div>
-            
-            <div className="space-y-3 max-h-[calc(100vh-300px)] overflow-y-auto">
-              {filteredConversations.map((conversation) => (
-                <div
-                  key={conversation.id}
-                  onClick={() => setSelectedConversation(conversation)}
-                  className={cn(
-                    "p-4 rounded-xl cursor-pointer transition-all duration-300 border",
-                    "hover:bg-white/30 hover:border-[#99C0F0]/40 hover:shadow-lg",
-                    selectedConversation?.id === conversation.id
-                      ? "bg-white/40 border-[#99C0F0]/50 shadow-lg"
-                      : "bg-white/20 border-white/20",
-                    "backdrop-blur-sm"
-                  )}
-                >
-                  <div className="space-y-3">
-                    {/* Header with client info and priority */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center">
-                          <User className="w-4 h-4 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium text-[#0E315C] text-sm">
-                            {conversation.clientName}
-                          </h4>
-                          <p className="text-xs text-[#0E315C]/60">
-                            {conversation.caseNumber}
-                          </p>
-                        </div>
+      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Client Conversations List - Floating Glass Tiles */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-lg font-light text-[#0E315C]">Conversations</h2>
+            <Badge variant="secondary" className="bg-white/60 text-[#0E315C] border-white/40 backdrop-blur-sm">
+              {filteredConversations.length}
+            </Badge>
+          </div>
+
+          <div className="space-y-3 max-h-[calc(100vh-280px)] overflow-y-auto pr-2">
+            {filteredConversations.map((conversation) => (
+              <div
+                key={conversation.id}
+                onClick={() => setSelectedConversation(conversation)}
+                className={cn(
+                  "relative p-3 rounded-xl cursor-pointer transition-all duration-300 border",
+                  "hover:shadow-xl hover:scale-[1.02] transform",
+                  selectedConversation?.id === conversation.id
+                    ? "bg-white/70 border-[#99C0F0]/60 shadow-xl scale-[1.02]"
+                    : "bg-white/50 border-white/40 hover:bg-white/60 hover:border-[#99C0F0]/50",
+                  "backdrop-blur-md shadow-lg"
+                )}
+              >
+                {/* Glass effect layers */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl" />
+                <div className="absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl" />
+
+                <div className="relative space-y-2">
+                  {/* Compact header */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center shadow-md">
+                        <User className="w-3 h-3 text-white" />
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <Badge className={cn("text-xs border", getPriorityColor(conversation.priority))}>
-                          {conversation.priority}
-                        </Badge>
-                        {conversation.unreadCount > 0 && (
-                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse" />
-                        )}
+                      <div>
+                        <h4 className="font-semibold text-[#0E315C] text-sm leading-tight">
+                          {conversation.clientName}
+                        </h4>
+                        <p className="text-xs text-[#0E315C]/70 leading-tight">
+                          {conversation.caseNumber}
+                        </p>
                       </div>
                     </div>
-
-                    {/* Email preview and stats */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <Mail className="w-3 h-3 text-[#0E315C]/50" />
-                        <span className="text-sm text-[#0E315C]/70">
-                          {conversation.messages.length} emails
-                        </span>
-                        {conversation.responseReceived && (
-                          <Badge variant="outline" className="text-xs bg-[#C1D9F6]/20 text-[#0E315C] border-[#C1D9F6]/30">
-                            Client Responded
-                          </Badge>
-                        )}
-                      </div>
-                      <span className="text-xs text-[#0E315C]/50">
-                        {formatDate(conversation.lastActivity)}
-                      </span>
-                    </div>
-
-                    {/* Purpose and latest status */}
-                    <div className="flex items-center justify-between">
-                      <Badge className={cn("text-xs border", getPurposeColor(conversation.purpose))}>
-                        {conversation.purpose.replace('_', ' ')}
+                    <div className="flex items-center space-x-1">
+                      <Badge className={cn("text-xs border px-1.5 py-0.5", getPriorityColor(conversation.priority))}>
+                        {conversation.priority}
                       </Badge>
+                      {conversation.unreadCount > 0 && (
+                        <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse shadow-sm" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Compact stats */}
+                  <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center space-x-2">
                       <div className="flex items-center space-x-1">
-                        {getStatusIcon(conversation.messages[conversation.messages.length - 1].status)}
-                        <span className="text-xs text-[#0E315C]/60">
-                          {conversation.messages[conversation.messages.length - 1].status}
+                        <Mail className="w-3 h-3 text-[#0E315C]/60" />
+                        <span className="text-[#0E315C]/80 font-medium">
+                          {conversation.messages.length}
                         </span>
                       </div>
+                      {conversation.responseReceived && (
+                        <div className="w-1.5 h-1.5 bg-[#C1D9F6] rounded-full" />
+                      )}
+                    </div>
+                    <span className="text-[#0E315C]/60">
+                      {formatDate(conversation.lastActivity)}
+                    </span>
+                  </div>
+
+                  {/* Status indicator */}
+                  <div className="flex items-center justify-between">
+                    <Badge className={cn("text-xs border px-1.5 py-0.5", getPurposeColor(conversation.purpose))}>
+                      {conversation.purpose.replace('_', ' ')}
+                    </Badge>
+                    <div className="flex items-center space-x-1">
+                      {getStatusIcon(conversation.messages[conversation.messages.length - 1].status)}
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Full Email History */}
-        <div className="relative">
+        {/* Full Email History - 2 columns */}
+        <div className="col-span-2 relative">
           {/* Enhanced glassmorphism background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl" />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/10 via-transparent to-[#C5BFEE]/10 rounded-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/25 to-white/30 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/15 via-transparent to-[#C5BFEE]/15 rounded-2xl" />
           
           <div className="relative p-6">
             <h2 className="text-lg font-light text-[#0E315C] mb-4">
@@ -400,100 +395,117 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
             {selectedConversation ? (
               <div className="space-y-4 max-h-[calc(100vh-300px)] overflow-y-auto">
                 {/* Conversation header */}
-                <div className="p-4 bg-white/30 backdrop-blur-sm rounded-xl border border-white/30">
-                  <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="p-5 bg-white/50 backdrop-blur-sm rounded-xl border border-white/50 shadow-lg">
+                  <div className="grid grid-cols-2 gap-6 text-sm">
                     <div>
-                      <label className="font-medium text-[#0E315C]">Client:</label>
-                      <p className="text-[#0E315C]/80">{selectedConversation.clientEmail}</p>
+                      <label className="font-semibold text-[#0E315C]">Client:</label>
+                      <p className="text-[#0E315C] mt-1">{selectedConversation.clientEmail}</p>
                     </div>
                     <div>
-                      <label className="font-medium text-[#0E315C]">Case:</label>
-                      <p className="text-[#0E315C]/80">{selectedConversation.caseNumber}</p>
+                      <label className="font-semibold text-[#0E315C]">Case:</label>
+                      <p className="text-[#0E315C] mt-1">{selectedConversation.caseNumber}</p>
                     </div>
                     <div>
-                      <label className="font-medium text-[#0E315C]">Total Emails:</label>
-                      <p className="text-[#0E315C]/80">{selectedConversation.messages.length}</p>
+                      <label className="font-semibold text-[#0E315C]">Total Emails:</label>
+                      <p className="text-[#0E315C] mt-1">{selectedConversation.messages.length}</p>
                     </div>
                     <div>
-                      <label className="font-medium text-[#0E315C]">Last Activity:</label>
-                      <p className="text-[#0E315C]/80">{formatDate(selectedConversation.lastActivity)}</p>
+                      <label className="font-semibold text-[#0E315C]">Last Activity:</label>
+                      <p className="text-[#0E315C] mt-1">{formatDate(selectedConversation.lastActivity)}</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Email timeline */}
-                <div className="space-y-3">
+                <div className="space-y-4">
                   {selectedConversation.messages.map((message, index) => (
                     <div
                       key={message.id}
                       className={cn(
-                        "relative p-4 rounded-xl border transition-all duration-200",
-                        message.sender === "ai" 
-                          ? "bg-white/20 border-white/30 ml-0 mr-8" 
-                          : "bg-[#C1D9F6]/20 border-[#C1D9F6]/40 ml-8 mr-0",
-                        "backdrop-blur-sm hover:bg-white/30"
+                        "flex w-full",
+                        message.sender === "ai" ? "justify-end" : "justify-start"
                       )}
                     >
-                      {/* Timeline connector */}
-                      {index < selectedConversation.messages.length - 1 && (
-                        <div className="absolute left-6 bottom-0 w-px h-3 bg-gradient-to-b from-[#99C0F0]/50 to-transparent transform translate-y-full" />
-                      )}
-                      
-                      <div className="space-y-3">
-                        {/* Message header */}
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
-                            <div className={cn(
-                              "w-6 h-6 rounded-lg flex items-center justify-center",
-                              message.sender === "ai" 
-                                ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE]" 
-                                : "bg-gradient-to-br from-[#C1D9F6] to-[#C5BFEE]"
-                            )}>
-                              {message.sender === "ai" ? (
-                                <Bot className="w-3 h-3 text-white" />
-                              ) : (
-                                <User className="w-3 h-3 text-white" />
-                              )}
-                            </div>
-                            <div>
-                              <div className="flex items-center space-x-2">
-                                <span className="text-sm font-medium text-[#0E315C]">
-                                  {message.sender === "ai" ? message.aiAgent : selectedConversation.clientName}
-                                </span>
-                                <Badge className={cn("text-xs border", getStatusColor(message.status))}>
-                                  {message.status}
-                                </Badge>
+                      <div
+                        className={cn(
+                          "relative max-w-[75%] p-4 rounded-2xl border transition-all duration-200 shadow-lg",
+                          message.sender === "ai"
+                            ? "bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/20 border-[#99C0F0]/50 backdrop-blur-md"
+                            : "bg-white/60 border-white/60 backdrop-blur-md",
+                          "hover:shadow-xl transform hover:scale-[1.01]"
+                        )}
+                      >
+                        {/* Timeline connector */}
+                        {index < selectedConversation.messages.length - 1 && (
+                          <div className={cn(
+                            "absolute bottom-0 w-px h-4 bg-gradient-to-b from-[#99C0F0]/50 to-transparent transform translate-y-full",
+                            message.sender === "ai" ? "right-6" : "left-6"
+                          )} />
+                        )}
+
+                        <div className="space-y-3">
+                          {/* Message header */}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3">
+                              <div className={cn(
+                                "w-7 h-7 rounded-xl flex items-center justify-center shadow-md",
+                                message.sender === "ai"
+                                  ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE]"
+                                  : "bg-gradient-to-br from-[#C1D9F6] to-white"
+                              )}>
+                                {message.sender === "ai" ? (
+                                  <Bot className="w-4 h-4 text-white" />
+                                ) : (
+                                  <User className="w-4 h-4 text-[#0E315C]" />
+                                )}
                               </div>
-                              <p className="text-xs text-[#0E315C]/60">
-                                {new Date(message.sentAt).toLocaleString()}
-                              </p>
+                              <div>
+                                <div className="flex items-center space-x-2">
+                                  <span className={cn(
+                                    "text-sm font-semibold",
+                                    message.sender === "ai" ? "text-[#0E315C]" : "text-[#0E315C]"
+                                  )}>
+                                    {message.sender === "ai" ? message.aiAgent : selectedConversation.clientName}
+                                  </span>
+                                  <Badge className={cn("text-xs border", getStatusColor(message.status))}>
+                                    {message.status}
+                                  </Badge>
+                                </div>
+                                <p className="text-xs text-[#0E315C]/70 font-medium">
+                                  {new Date(message.sentAt).toLocaleString()}
+                                </p>
+                              </div>
                             </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => setExpandedMessage(expandedMessage === message.id ? null : message.id)}
+                              className="p-1 hover:bg-white/30 rounded-full"
+                            >
+                              {expandedMessage === message.id ? (
+                                <ChevronDown className="w-4 h-4 text-[#0E315C]/70" />
+                              ) : (
+                                <ChevronRight className="w-4 h-4 text-[#0E315C]/70" />
+                              )}
+                            </Button>
                           </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setExpandedMessage(expandedMessage === message.id ? null : message.id)}
-                            className="p-1 hover:bg-white/20 rounded-full"
-                          >
-                            {expandedMessage === message.id ? (
-                              <ChevronDown className="w-4 h-4 text-[#0E315C]/60" />
-                            ) : (
-                              <ChevronRight className="w-4 h-4 text-[#0E315C]/60" />
-                            )}
-                          </Button>
-                        </div>
 
-                        {/* Subject */}
-                        <p className="font-medium text-sm text-[#0E315C]">
-                          {message.subject}
-                        </p>
+                          {/* Subject */}
+                          <p className={cn(
+                            "font-semibold text-sm",
+                            message.sender === "ai" ? "text-[#0E315C]" : "text-[#0E315C]"
+                          )}>
+                            {message.subject}
+                          </p>
 
-                        {/* Content preview or full content */}
-                        <div className={cn(
-                          "text-sm text-[#0E315C]/80 leading-relaxed",
-                          expandedMessage === message.id ? "" : "line-clamp-2"
-                        )}>
-                          {message.content}
+                          {/* Content preview or full content */}
+                          <div className={cn(
+                            "text-sm leading-relaxed",
+                            message.sender === "ai" ? "text-[#0E315C]/90" : "text-[#0E315C]/90",
+                            expandedMessage === message.id ? "" : "line-clamp-3"
+                          )}>
+                            {message.content}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -501,32 +513,32 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                 </div>
 
                 {/* Action buttons */}
-                <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                <div className="flex items-center justify-between pt-6 border-t border-white/40">
                   <div className="flex items-center space-x-3">
-                    <Button 
+                    <Button
                       variant="outline"
                       size="sm"
-                      className="bg-white/20 border-white/30 text-[#0E315C] hover:bg-white/40"
+                      className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Export Thread
                     </Button>
-                    <Button 
+                    <Button
                       variant="outline"
                       size="sm"
-                      className="bg-white/20 border-white/30 text-[#0E315C] hover:bg-white/40"
+                      className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
                     >
                       <Calendar className="w-4 h-4 mr-2" />
                       Schedule Follow-up
                     </Button>
                   </div>
-                  <Badge 
-                    variant="outline" 
+                  <Badge
+                    variant="outline"
                     className={cn(
-                      "border",
-                      selectedConversation.responseReceived 
-                        ? "bg-[#C1D9F6]/20 text-[#0E315C] border-[#C1D9F6]/30" 
-                        : "bg-orange-100/80 text-orange-800 border-orange-200"
+                      "border shadow-sm",
+                      selectedConversation.responseReceived
+                        ? "bg-[#C1D9F6]/30 text-[#0E315C] border-[#C1D9F6]/50"
+                        : "bg-orange-100 text-orange-800 border-orange-300"
                     )}
                   >
                     {selectedConversation.responseReceived ? "Client Responded" : "Awaiting Response"}
