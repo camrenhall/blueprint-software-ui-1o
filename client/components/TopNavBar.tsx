@@ -183,9 +183,8 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                     className="flex items-center space-x-2 px-3 py-2 hover:bg-white/10 transition-all duration-300 rounded-full"
                   >
                     <Avatar className="w-8 h-8 border-2 border-white/30">
-                      <AvatarImage src="/placeholder.svg" alt="Camren Hall" />
-                      <AvatarFallback className="bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] text-white text-sm font-medium">
-                        CH
+                      <AvatarFallback className="bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] text-white text-sm font-medium flex items-center justify-center">
+                        <User className="w-4 h-4" />
                       </AvatarFallback>
                     </Avatar>
                     <div className="hidden sm:block text-left">
