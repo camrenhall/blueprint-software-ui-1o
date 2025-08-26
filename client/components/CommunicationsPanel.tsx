@@ -304,18 +304,18 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
         </Button>
       </div>
 
-      {/* Enhanced Search */}
-      <div className="mb-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/50" />
-          <Input
-            placeholder="Search by client, email, or case number..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-white/40 backdrop-blur-sm border border-white/30 text-[#0E315C] placeholder:text-[#0E315C]/50 focus:bg-white/60 focus:border-[#99C0F0]/50"
-          />
-        </div>
-      </div>
+      {/* Unified Search Bar */}
+      <CommunicationsSearchFilterBar
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        activeFilters={activeFilters}
+        onFilterToggle={toggleFilter}
+        onClearFilters={clearFilters}
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+        totalCount={filteredAndSortedConversations.length}
+        className="mb-6"
+      />
 
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Client Conversations List - Floating Glass Tiles */}
