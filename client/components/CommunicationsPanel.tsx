@@ -323,7 +323,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-light text-[#0E315C]">Conversations</h2>
             <Badge variant="secondary" className="bg-white/60 text-[#0E315C] border-white/40 backdrop-blur-sm">
-              {filteredConversations.length}
+              {filteredAndSortedConversations.length}
             </Badge>
           </div>
 
