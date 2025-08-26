@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Case } from "./types";
@@ -23,6 +23,12 @@ export default function Review({ onClose }: ReviewProps) {
   const [viewMode, setViewMode] = useState<ViewMode>("detailed");
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Fade in animation
+    setTimeout(() => setIsVisible(true), 200);
+  }, []);
 
   // Mock case data (in real app, this would come from props or API)
   const allCases: Case[] = useMemo(
@@ -177,12 +183,15 @@ export default function Review({ onClose }: ReviewProps) {
         "text-center mb-8 flex-shrink-0 transition-opacity duration-500 ease-out",
         selectedCase ? "opacity-0" : "opacity-100"
       )}>
-        <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
+        <div className={cn(
+          "transition-all duration-1000",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
           <div className="flex items-center justify-center gap-3 mb-4">
             <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
               Case Management
             </h1>
-            <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
+            <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30">
               {viewMode === "detailed" ? "Detailed View" : viewMode === "compact" ? "Compact View" : "Kanban Board"}
             </div>
           </div>
@@ -227,14 +236,20 @@ export default function Review({ onClose }: ReviewProps) {
           <KanbanView
             cases={processedCases}
             onCaseSelect={handleCaseSelect}
-            className="h-full transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
+            className={cn(
+              "h-full transition-all duration-1000",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}
           />
         ) : (
           <CaseList
             cases={processedCases}
             onCaseSelect={handleCaseSelect}
             isCompact={viewMode === "compact"}
-            className="h-full transition-all duration-1000 ease-out delay-100 opacity-100 transform translate-y-0"
+            className={cn(
+              "h-full transition-all duration-1000",
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            )}
           />
         )}
       </div>
