@@ -157,7 +157,6 @@ const mockConversations: ClientConversation[] = [
 export default function CommunicationsPanel({ onClose }: CommunicationsPanelProps) {
   const [selectedConversation, setSelectedConversation] = useState<ClientConversation | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [priorityFilter, setPriorityFilter] = useState<string>("all");
   const [expandedMessage, setExpandedMessage] = useState<string | null>(null);
 
   const getStatusIcon = (status: EmailMessage["status"]) => {
@@ -194,33 +193,6 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
     }
   };
 
-  const getPriorityColor = (priority: ClientConversation["priority"]) => {
-    switch (priority) {
-      case "high":
-        return "bg-red-100/80 text-red-800 border-red-200";
-      case "medium":
-        return "bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/30";
-      case "low":
-        return "bg-gray-100/80 text-gray-700 border-gray-200";
-      default:
-        return "bg-gray-100/80 text-gray-700 border-gray-200";
-    }
-  };
-
-  const getPurposeColor = (purpose: ClientConversation["purpose"]) => {
-    switch (purpose) {
-      case "document_request":
-        return "bg-orange-100/80 text-orange-800 border-orange-200";
-      case "follow_up":
-        return "bg-yellow-100/80 text-yellow-800 border-yellow-200";
-      case "case_update":
-        return "bg-[#C1D9F6]/20 text-[#0E315C] border-[#C1D9F6]/30";
-      case "appointment_reminder":
-        return "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/30";
-      default:
-        return "bg-gray-100/80 text-gray-700 border-gray-200";
-    }
-  };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -234,14 +206,12 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
   };
 
   const filteredConversations = mockConversations.filter(conversation => {
-    const matchesSearch = 
+    const matchesSearch =
       conversation.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       conversation.clientEmail.toLowerCase().includes(searchTerm.toLowerCase()) ||
       conversation.caseNumber.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesPriority = priorityFilter === "all" || conversation.priority === priorityFilter;
-    
-    return matchesSearch && matchesPriority;
+
+    return matchesSearch;
   });
 
   return (
@@ -271,9 +241,9 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
         </Button>
       </div>
 
-      {/* Enhanced Filters with better contrast */}
-      <div className="flex items-center space-x-4 mb-6">
-        <div className="relative flex-1">
+      {/* Enhanced Search */}
+      <div className="mb-6">
+        <div className="relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/50" />
           <Input
             placeholder="Search by client, email, or case number..."
@@ -282,16 +252,6 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
             className="pl-10 bg-white/40 backdrop-blur-sm border border-white/30 text-[#0E315C] placeholder:text-[#0E315C]/50 focus:bg-white/60 focus:border-[#99C0F0]/50"
           />
         </div>
-        <select
-          value={priorityFilter}
-          onChange={(e) => setPriorityFilter(e.target.value)}
-          className="px-4 py-2 bg-white/40 backdrop-blur-sm border border-white/30 rounded-lg text-[#0E315C] text-sm focus:bg-white/60 focus:border-[#99C0F0]/50"
-        >
-          <option value="all">All Priorities</option>
-          <option value="high">High Priority</option>
-          <option value="medium">Medium Priority</option>
-          <option value="low">Low Priority</option>
-        </select>
       </div>
 
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -338,10 +298,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <Badge className={cn("text-xs border px-1.5 py-0.5", getPriorityColor(conversation.priority))}>
-                        {conversation.priority}
-                      </Badge>
+                    <div>
                       {conversation.unreadCount > 0 && (
                         <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse shadow-sm" />
                       )}
@@ -367,10 +324,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                   </div>
 
                   {/* Status indicator */}
-                  <div className="flex items-center justify-between">
-                    <Badge className={cn("text-xs border px-1.5 py-0.5", getPurposeColor(conversation.purpose))}>
-                      {conversation.purpose.replace('_', ' ')}
-                    </Badge>
+                  <div className="flex items-center justify-end">
                     <div className="flex items-center space-x-1">
                       {getStatusIcon(conversation.messages[conversation.messages.length - 1].status)}
                     </div>
