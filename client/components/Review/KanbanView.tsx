@@ -69,22 +69,16 @@ export function KanbanView({
                     status={column.status}
                     cases={column.cases}
                     onCaseSelect={onCaseSelect}
-                    className={cn(
-                      "transition-all duration-1200 ease-out opacity-100 transform translate-y-0",
-                      "animate-fadeInUp",
-                    )}
-                    style={{
-                      animationDelay: `${index * 300}ms`,
-                    }}
+                    className=""
                   />
                 ))}
               </div>
             </div>
 
             {/* Floating elements for visual enhancement */}
-            <div className="absolute top-10 left-10 w-32 h-32 bg-[#C1D9F6]/10 rounded-full blur-3xl animate-float pointer-events-none" />
-            <div className="absolute bottom-20 right-20 w-24 h-24 bg-[#99C0F0]/10 rounded-full blur-2xl animate-float-slow pointer-events-none" />
-            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-[#C5BFEE]/10 rounded-full blur-xl animate-drift pointer-events-none" />
+            <div className="absolute top-10 left-10 w-32 h-32 bg-[#C1D9F6]/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-20 right-20 w-24 h-24 bg-[#99C0F0]/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-[#C5BFEE]/10 rounded-full blur-xl pointer-events-none" />
           </div>
         </div>
       </div>
