@@ -155,7 +155,9 @@ const mockConversations: ClientConversation[] = [
 
 export default function CommunicationsPanel({ onClose }: CommunicationsPanelProps) {
   const [selectedConversation, setSelectedConversation] = useState<ClientConversation | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [activeFilters, setActiveFilters] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<CommunicationsSortOption>("lastActivity");
   const [expandedMessage, setExpandedMessage] = useState<string | null>(null);
 
   const getStatusIcon = (status: EmailMessage["status"]) => {
