@@ -123,12 +123,10 @@ function TaskCard({
         "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40",
         "hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/5 hover:border-[#99C0F0]/60",
         "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
-        "animate-fadeInUp",
+        "",
         isSelected && "ring-2 ring-[#99C0F0]/60 bg-white/50"
       )}
-      style={{
-        animationDelay: `${index * 100}ms`
-      }}
+      style={{}}
     >
       <div className="flex items-start space-x-5">
         {/* Selection Checkbox */}
@@ -250,6 +248,12 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<TaskSortOption>("createdAt");
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Fade in animation
+    setTimeout(() => setIsVisible(true), 200);
+  }, []);
 
   // Filter and sort tasks
   const filteredAndSortedTasks = useMemo(() => {
@@ -338,12 +342,15 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
     >
       {/* Header */}
       <div className="text-center mb-8 flex-shrink-0">
-        <div className="transition-all duration-1000 ease-out delay-300 opacity-100 transform translate-y-0">
+        <div className={cn(
+          "transition-all duration-1000",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
           <div className="flex items-center justify-center gap-3 mb-4">
             <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
               Task Queue
             </h1>
-            <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30 animate-fadeIn">
+            <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30">
               {filteredAndSortedTasks.length} {filteredAndSortedTasks.length === 1 ? 'Task' : 'Tasks'}
             </div>
           </div>
@@ -374,7 +381,10 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         totalCount={filteredAndSortedTasks.length}
         onSelectAll={handleSelectAll}
         onAcceptSelected={handleAcceptSelected}
-        className="mb-6 transition-all duration-800 ease-out delay-500 opacity-100 transform translate-y-0"
+        className={cn(
+          "mb-6 transition-all duration-1000",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}
       />
 
       {/* Task list */}
@@ -382,7 +392,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         {filteredAndSortedTasks.length === 0 ? (
           <div className="flex-1 flex items-center justify-center h-full">
             <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center max-w-md mx-4">
-              <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6 animate-gentlePulse">
+              <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 className="w-12 h-12 text-[#99C0F0]" />
               </div>
               {tasks.length === 0 ? (
@@ -399,7 +409,10 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
             </div>
           </div>
         ) : (
-          <div className="h-full transition-all duration-300 border border-[#C1D9F6]/50 rounded-3xl mx-2 overflow-hidden">
+          <div className={cn(
+            "h-full border border-[#C1D9F6]/50 rounded-3xl mx-2 overflow-hidden transition-all duration-1000",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
             <div className="h-full overflow-y-auto px-6 py-6 space-y-5">
               {filteredAndSortedTasks.map((task, index) => (
                 <TaskCard
