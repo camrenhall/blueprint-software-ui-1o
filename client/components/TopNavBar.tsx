@@ -35,7 +35,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [notifications, setNotifications] = useState(3);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     // Fade in animation
