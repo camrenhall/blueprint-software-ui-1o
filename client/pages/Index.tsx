@@ -108,8 +108,8 @@ function IndexContent() {
         <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
       )}
 
-      {/* Main content area */}
-      <div className="relative z-10 h-screen">
+      {/* Main content area - subtract navbar height from screen height */}
+      <div className="relative z-10 h-[calc(100vh-4rem)]">
         {/* Create Page - Using PageContainer */}
         {activeRightContent === "create" && (
           <PageContainer
