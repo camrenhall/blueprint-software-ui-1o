@@ -96,7 +96,7 @@ function IndexContent() {
   ];
 
   return (
-    <div className="h-screen w-full relative overflow-hidden pt-16">
+    <div className="h-screen w-full relative overflow-hidden">
       {/* Fixed positioned panels - outside of transformed containers */}
       {isInChatMode ? (
         <ConversationHistory
