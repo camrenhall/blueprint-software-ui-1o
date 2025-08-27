@@ -78,30 +78,30 @@ const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(
         {...props}
       >
         {/* Primary glass layer */}
-        <div 
+        <div
           className={cn(
-            "absolute inset-0",
+            "absolute top-0 left-0 right-0 bottom-0",
             radiusClasses[radius],
             glassClasses[glassIntensity]
           )}
         />
-        
+
         {/* Secondary overlay - only for heavy glass when layered */}
         {layered && glassIntensity === "heavy" && (
-          <div 
+          <div
             className={cn(
-              "absolute inset-0",
+              "absolute top-0 left-0 right-0 bottom-0",
               radiusClasses[radius],
               heavyOverlayClasses
             )}
           />
         )}
-        
+
         {/* Inner glow - only for heavy glass when layered */}
         {layered && glassIntensity === "heavy" && (
-          <div 
+          <div
             className={cn(
-              "absolute inset-0",
+              "absolute top-0 left-0 right-0 bottom-0",
               radiusClasses[radius],
               heavyInnerGlowClasses
             )}
