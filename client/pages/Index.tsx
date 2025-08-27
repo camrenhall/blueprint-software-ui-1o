@@ -123,7 +123,8 @@ function IndexContent() {
                 : "opacity-0 pointer-events-none",
             )}
           >
-            <div className="h-full relative p-8">
+            {/* Provide the exact same positioning context as before */}
+            <div className="absolute inset-0 p-8">
               <div
                 className={cn(
                   "w-full h-full transition-opacity duration-800 ease-out delay-200",
