@@ -12,7 +12,6 @@ import NotFound from "./pages/NotFound";
 import SettingsOverview from "./components/SettingsOverview";
 import SettingsCategory from "./components/SettingsCategory";
 import CloudBackground from "./components/CloudBackground";
-import GlassPanelTest from "./components/GlassPanelTest";
 import TopNavBar from "./components/TopNavBar";
 import { FeedbackButton } from "./components/FeedbackButton";
 import { AIAgentProvider } from "./contexts/AIAgentContext";
@@ -53,7 +52,6 @@ const App = () => (
             <Route path="/menu" element={<Index />} />
             <Route path="/settings" element={<SettingsOverview />} />
             <Route path="/settings/:category" element={<SettingsCategory />} />
-            <Route path="/test-glass-panel" element={<GlassPanelTest />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
