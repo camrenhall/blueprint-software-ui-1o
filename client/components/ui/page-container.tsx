@@ -46,8 +46,8 @@ const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(
     
     // Container positioning based on variant
     const containerClasses = {
-      "sidebar-offset": "absolute left-96 right-6 top-6 bottom-6",
-      "inset": "absolute inset-6", 
+      "sidebar-offset": "absolute left-96 right-6 top-6 bottom-12",
+      "inset": "absolute inset-6",
       "fullscreen": "absolute inset-0"
     };
     
