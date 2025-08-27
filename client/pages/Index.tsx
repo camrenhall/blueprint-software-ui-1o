@@ -8,6 +8,7 @@ import AgentsChat from "@/components/AgentsChat";
 import TaskQueue from "@/components/TaskQueue";
 import UnifiedSettings from "@/components/UnifiedSettings";
 import CommunicationsPanel from "@/components/CommunicationsPanel";
+import { GlassPanel } from "@/components/ui/glass-panel";
 import {
   ConversationProvider,
   useConversationContext,
