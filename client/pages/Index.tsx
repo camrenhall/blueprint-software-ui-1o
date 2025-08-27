@@ -110,74 +110,97 @@ function IndexContent() {
 
       {/* Main content area */}
       <div className="relative z-10 h-screen">
-        {/* Right Side Content Area - Adjusted for fixed glass panel */}
-        <div
-          className={cn(
-            "absolute left-96 right-6 top-6 bottom-6 transition-all duration-1000 ease-out",
-            activeRightContent && isVisible
-              ? "opacity-100"
-              : "opacity-0 pointer-events-none",
-          )}
-        >
-          {/* Glass morphism content background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-[#C1D9F6]/5 to-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl" />
-
-          <div className="h-full relative p-8">
-            {/* Content Container */}
-            <div
-              className={cn(
-                "w-full h-full transition-opacity duration-800 ease-out delay-200",
-                activeRightContent && isVisible ? "opacity-100" : "opacity-0",
-              )}
-            >
-              {activeRightContent === "agents" && (
-                <div className="w-full h-full relative">
-                  <AgentsChat onClose={() => setActiveRightContent(null)} />
-                </div>
-              )}
-              {activeRightContent === "create" && (
-                <div className="w-full h-full mx-auto">
-                  <InlineCreate onClose={() => setActiveRightContent(null)} />
-                </div>
-              )}
-              {activeRightContent === "review" && (
-                <div className="w-full h-full mx-auto">
-                  <InlineReview onClose={() => setActiveRightContent(null)} />
-                </div>
-              )}
-              {activeRightContent === "taskqueue" && (
-                <div className="w-full h-full mx-auto">
-                  <TaskQueue onClose={() => setActiveRightContent(null)} />
-                </div>
-              )}
-              {activeRightContent === "settings" && (
-                <div className="w-full h-full mx-auto">
-                  <UnifiedSettings
-                    selectedCategory={selectedSettingsCategory}
-                    onCategorySelect={handleSettingsCategorySelect}
-                    onBack={handleSettingsBack}
-                  />
-                </div>
-              )}
-              {activeRightContent === "communications" && (
-                <div className="w-full h-full mx-auto">
-                  <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
-                </div>
-              )}
-            </div>
-
-            {/* Subtle ambient elements */}
-            {activeRightContent && isVisible && (
-              <>
-                <div className="absolute top-8 right-8 w-2 h-2 bg-[#99C0F0]/40 rounded-full opacity-60 animate-float" />
-                <div
-                  className="absolute bottom-12 left-8 w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full opacity-50 animate-float-slow"
-                  style={{ animationDelay: "1s" }}
-                />
-              </>
+        {/* Create Page - Using PageContainer */}
+        {activeRightContent === "create" && (
+          <PageContainer
+            variant="sidebar-offset"
+            glassIntensity="light"
+            radius="md"
+            className={cn(
+              "transition-all duration-1000 ease-out",
+              activeRightContent && isVisible
+                ? "opacity-100"
+                : "opacity-0 pointer-events-none",
             )}
+          >
+            <div className="h-full relative p-8">
+              <div
+                className={cn(
+                  "w-full h-full transition-opacity duration-800 ease-out delay-200",
+                  activeRightContent && isVisible ? "opacity-100" : "opacity-0",
+                )}
+              >
+                <InlineCreate onClose={() => setActiveRightContent(null)} />
+              </div>
+            </div>
+          </PageContainer>
+        )}
+
+        {/* Other Pages - Keep existing implementation for now */}
+        {activeRightContent && activeRightContent !== "create" && (
+          <div
+            className={cn(
+              "absolute left-96 right-6 top-6 bottom-6 transition-all duration-1000 ease-out",
+              activeRightContent && isVisible
+                ? "opacity-100"
+                : "opacity-0 pointer-events-none",
+            )}
+          >
+            {/* Glass morphism content background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-[#C1D9F6]/5 to-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl" />
+
+            <div className="h-full relative p-8">
+              {/* Content Container */}
+              <div
+                className={cn(
+                  "w-full h-full transition-opacity duration-800 ease-out delay-200",
+                  activeRightContent && isVisible ? "opacity-100" : "opacity-0",
+                )}
+              >
+                {activeRightContent === "agents" && (
+                  <div className="w-full h-full relative">
+                    <AgentsChat onClose={() => setActiveRightContent(null)} />
+                  </div>
+                )}
+                {activeRightContent === "review" && (
+                  <div className="w-full h-full mx-auto">
+                    <InlineReview onClose={() => setActiveRightContent(null)} />
+                  </div>
+                )}
+                {activeRightContent === "taskqueue" && (
+                  <div className="w-full h-full mx-auto">
+                    <TaskQueue onClose={() => setActiveRightContent(null)} />
+                  </div>
+                )}
+                {activeRightContent === "settings" && (
+                  <div className="w-full h-full mx-auto">
+                    <UnifiedSettings
+                      selectedCategory={selectedSettingsCategory}
+                      onCategorySelect={handleSettingsCategorySelect}
+                      onBack={handleSettingsBack}
+                    />
+                  </div>
+                )}
+                {activeRightContent === "communications" && (
+                  <div className="w-full h-full mx-auto">
+                    <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
+
+        {/* Subtle ambient elements */}
+        {activeRightContent && isVisible && (
+          <>
+            <div className="absolute top-24 right-12 w-2 h-2 bg-[#99C0F0]/40 rounded-full opacity-60 animate-float" />
+            <div
+              className="absolute bottom-18 left-[400px] w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full opacity-50 animate-float-slow"
+              style={{ animationDelay: "1s" }}
+            />
+          </>
+        )}
       </div>
 
       {/* Subtle corner accents - adjusted for new layout */}
