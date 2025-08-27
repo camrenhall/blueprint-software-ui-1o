@@ -139,19 +139,18 @@ function IndexContent() {
 
         {/* Other Pages - Keep existing implementation for now */}
         {activeRightContent && activeRightContent !== "create" && (
-          <div
+          <PageContainer
+            variant="sidebar-offset"
+            glassIntensity="light"
+            radius="md"
             className={cn(
-              "absolute left-96 right-6 top-6 bottom-6 transition-all duration-1000 ease-out",
+              "transition-all duration-1000 ease-out",
               activeRightContent && isVisible
                 ? "opacity-100"
                 : "opacity-0 pointer-events-none",
             )}
           >
-            {/* Glass morphism content background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-[#C1D9F6]/5 to-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl" />
-
-            <div className="h-full relative p-8">
-              {/* Content Container */}
+            <div className="absolute top-0 left-0 right-0 bottom-0 p-8">
               <div
                 className={cn(
                   "w-full h-full transition-opacity duration-800 ease-out delay-200",
@@ -189,7 +188,7 @@ function IndexContent() {
                 )}
               </div>
             </div>
-          </div>
+          </PageContainer>
         )}
 
         {/* Subtle ambient elements */}
