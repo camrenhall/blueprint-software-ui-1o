@@ -8,7 +8,6 @@ import AgentsChat from "@/components/AgentsChat";
 import TaskQueue from "@/components/TaskQueue";
 import UnifiedSettings from "@/components/UnifiedSettings";
 import CommunicationsPanel from "@/components/CommunicationsPanel";
-import { GlassPanel } from "@/components/ui/glass-panel";
 import {
   ConversationProvider,
   useConversationContext,
@@ -119,8 +118,10 @@ function IndexContent() {
               : "opacity-0 pointer-events-none",
           )}
         >
-          <GlassPanel variant="light" inset="none" radius="md">
-            <div className="h-full relative p-8">
+          {/* Glass morphism content background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-[#C1D9F6]/5 to-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-xl" />
+
+          <div className="h-full relative p-8">
             {/* Content Container */}
             <div
               className={cn(
@@ -174,8 +175,7 @@ function IndexContent() {
                 />
               </>
             )}
-            </div>
-          </GlassPanel>
+          </div>
         </div>
       </div>
 
