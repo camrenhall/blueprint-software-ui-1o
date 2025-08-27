@@ -123,8 +123,8 @@ function IndexContent() {
                 : "opacity-0 pointer-events-none",
             )}
           >
-            {/* Content that respects container boundaries */}
-            <div className="h-full w-full p-8">
+            {/* Content positioned to respect container boundaries */}
+            <div className="absolute top-0 left-0 right-0 bottom-0 p-8">
               <div
                 className={cn(
                   "w-full h-full transition-opacity duration-800 ease-out delay-200",
