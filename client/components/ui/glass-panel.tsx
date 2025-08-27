@@ -78,17 +78,17 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
     return (
       <div ref={ref} className={cn("relative", className)} {...props}>
         {/* Primary glass layer */}
-        <div 
+        <div
           className={cn(
             positionClasses[inset],
             radiusClasses[radius],
             variantClasses[variant]
           )}
         />
-        
+
         {/* Secondary overlay - only for heavy/enhanced variants when layered is true */}
         {layered && (variant === "heavy" || variant === "enhanced") && (
-          <div 
+          <div
             className={cn(
               positionClasses[inset],
               radiusClasses[radius],
@@ -96,10 +96,10 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
             )}
           />
         )}
-        
+
         {/* Inner glow - only for heavy/enhanced variants when layered is true */}
         {layered && (variant === "heavy" || variant === "enhanced") && (
-          <div 
+          <div
             className={cn(
               positionClasses[inset],
               radiusClasses[radius],
@@ -107,9 +107,11 @@ const GlassPanel = React.forwardRef<HTMLDivElement, GlassPanelProps>(
             )}
           />
         )}
-        
-        {/* Content */}
-        {children}
+
+        {/* Content container with proper positioning context */}
+        <div className="relative h-full w-full">
+          {children}
+        </div>
       </div>
     );
   }
