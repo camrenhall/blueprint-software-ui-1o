@@ -117,6 +117,29 @@ export default function Login() {
                 </div>
               </div>
             </div>
+
+            {/* Demo Button - Temporary for testing */}
+            <div
+              className={`mt-8 transition-all duration-1000 ease-out delay-500 ${
+                isAnimated
+                  ? "opacity-100 transform translate-y-0"
+                  : "opacity-0 transform translate-y-4"
+              }`}
+            >
+              <button
+                onClick={() => navigate('/client/login?email=demo%40example.com')}
+                className="group relative px-6 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                <span className="relative z-10 flex items-center space-x-2">
+                  <span>🧪</span>
+                  <span>Demo: Client Upload Flow</span>
+                </span>
+              </button>
+              <p className="text-xs text-[#0E315C]/50 mt-2 font-light">
+                Temporary demo button - removes after testing
+              </p>
+            </div>
           </div>
         </div>
 
