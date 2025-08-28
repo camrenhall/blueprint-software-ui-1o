@@ -24,9 +24,13 @@ export default function Login() {
       setIsLoading(false);
       setIsTransitioning(true);
 
+      // Check if user has completed onboarding
+      const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
+      const redirectPath = hasCompletedOnboarding ? "/menu" : "/onboarding";
+
       // Brief transition delay for fluid experience
       setTimeout(() => {
-        navigate("/menu");
+        navigate(redirectPath);
       }, 400);
     }, 600);
   };
