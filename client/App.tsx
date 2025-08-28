@@ -12,6 +12,9 @@ import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
 import SettingsOverview from "./components/SettingsOverview";
 import SettingsCategory from "./components/SettingsCategory";
+import ClientLogin from "./pages/ClientLogin";
+import ClientUpload from "./pages/ClientUpload";
+import ClientConfirmation from "./pages/ClientConfirmation";
 import CloudBackground from "./components/CloudBackground";
 import TopNavBar from "./components/TopNavBar";
 import { FeedbackButton } from "./components/FeedbackButton";
@@ -30,8 +33,12 @@ const queryClient = new QueryClient();
 const ConditionalTopNavBar = () => {
   const location = useLocation();
 
-  // Hide TopNavBar on login and onboarding pages
-  if (location.pathname === "/" || location.pathname === "/onboarding") {
+  // Hide TopNavBar on login, onboarding, and client flow pages
+  if (
+    location.pathname === "/" ||
+    location.pathname === "/onboarding" ||
+    location.pathname.startsWith("/client")
+  ) {
     return null;
   }
 
@@ -54,6 +61,10 @@ const App = () => (
             <Route path="/menu" element={<Index />} />
             <Route path="/settings" element={<SettingsOverview />} />
             <Route path="/settings/:category" element={<SettingsCategory />} />
+            {/* Client upload flow routes */}
+            <Route path="/client/login" element={<ClientLogin />} />
+            <Route path="/client/upload" element={<ClientUpload />} />
+            <Route path="/client/confirmation" element={<ClientConfirmation />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
