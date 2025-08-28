@@ -279,7 +279,7 @@ export default function ClientUpload() {
             </GlassPanel>
 
             {/* File List */}
-            <GlassPanel variant="heavy" radius="lg" className="p-6 flex-1">
+            <GlassPanel variant="heavy" radius="lg" className="p-6 min-h-96">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
                   <Folder className="w-5 h-5" />
@@ -312,7 +312,7 @@ export default function ClientUpload() {
                   </div>
                 </div>
               ) : (
-                <div className="space-y-3 max-h-96 overflow-y-auto">
+                <div className="space-y-3 max-h-80 overflow-y-auto">
                   {files.map((file) => (
                     <div key={file.id} className="flex items-center space-x-4 p-4 bg-white/30 rounded-lg border border-white/20 hover:bg-white/40 transition-colors">
                       <div className="text-2xl">{getFileTypeIcon(file.file.name)}</div>
@@ -387,7 +387,7 @@ export default function ClientUpload() {
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                     }`}
                   >
-                    Continue to Review
+                    Submit Documents
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
