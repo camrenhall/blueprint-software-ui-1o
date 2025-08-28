@@ -162,9 +162,9 @@ export default function ClientUpload() {
   };
 
   return (
-    <PageContainer variant="fullscreen" glassIntensity="light" className="p-4 sm:p-6 lg:p-8">
+    <PageContainer variant="fullscreen" glassIntensity="light" className="p-4 sm:p-6 lg:p-8 h-screen overflow-hidden">
       <div
-        className={`max-w-4xl mx-auto transition-all duration-1000 ease-out ${
+        className={`max-w-4xl mx-auto h-full flex flex-col transition-all duration-1000 ease-out ${
           isAnimated
             ? "opacity-100 transform translate-y-0"
             : "opacity-0 transform translate-y-8"
@@ -187,7 +187,7 @@ export default function ClientUpload() {
           </div>
         </div>
 
-        <div className="grid gap-6 lg:gap-8">
+        <div className="flex-1 grid gap-4 lg:gap-6 overflow-hidden">
           {/* Upload Area */}
           <GlassPanel variant="enhanced" radius="lg" className="p-6 sm:p-8">
             <div
