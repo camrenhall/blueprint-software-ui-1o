@@ -50,6 +50,7 @@ const App = () => (
           <FeedbackButton />
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/menu" element={<Index />} />
             <Route path="/settings" element={<SettingsOverview />} />
             <Route path="/settings/:category" element={<SettingsCategory />} />
