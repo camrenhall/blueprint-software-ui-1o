@@ -32,6 +32,7 @@ export default function ClientUpload() {
   const [validationErrors, setValidationErrors] = useState<FileValidationError[]>([]);
   const [isUploading, setIsUploading] = useState(false);
   const [isAnimated, setIsAnimated] = useState(false);
+  const [clientEmail, setClientEmail] = useState('');
 
   // Trigger entrance animation
   useEffect(() => {
@@ -39,11 +40,19 @@ export default function ClientUpload() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Check if user is authenticated
+  // Check if user is authenticated and get email
   useEffect(() => {
     const session = localStorage.getItem('clientSession');
     if (!session) {
       navigate('/client/login');
+    } else {
+      try {
+        const sessionData = JSON.parse(session);
+        setClientEmail(sessionData.email || '');
+      } catch (error) {
+        console.error('Failed to parse session data:', error);
+        navigate('/client/login');
+      }
     }
   }, [navigate]);
 
@@ -170,17 +179,22 @@ export default function ClientUpload() {
             : "opacity-0 transform translate-y-8"
         }`}
       >
-        {/* Header */}
+        {/* Header with User Info */}
         <div className="text-center mb-6 flex-shrink-0">
-          <h1 className="text-3xl sm:text-4xl font-light text-[#0E315C] mb-4 tracking-wide">
-            Upload Your Documents
-          </h1>
+          <div className="flex items-center justify-between mb-4">
+            <div></div>
+            <h1 className="text-3xl sm:text-4xl font-light text-[#0E315C] tracking-wide">
+              Upload Your Documents
+            </h1>
+            <div className="text-right">
+              <p className="text-sm text-[#0E315C]/60">Logged in as:</p>
+              <p className="text-sm font-medium text-[#0E315C]">{clientEmail}</p>
+            </div>
+          </div>
           <p className="text-[#0E315C]/70 text-lg mb-2">
             Securely upload your legal documents for review
           </p>
           <div className="flex items-center justify-center space-x-4 text-sm text-[#0E315C]/60">
-            <span>Max {MAX_FILES} files</span>
-            <span>•</span>
             <span>PDF, PNG, JPG, DOC, DOCX</span>
             <span>•</span>
             <span>50MB per file</span>
@@ -188,8 +202,16 @@ export default function ClientUpload() {
         </div>
 
         <div className="flex-1 grid gap-4 lg:gap-6 overflow-hidden">
-          {/* Upload Area */}
-          <GlassPanel variant="enhanced" radius="lg" className="p-6 sm:p-8">
+          {/* Upload Area - Fades out when files are uploaded */}
+          <GlassPanel
+            variant="enhanced"
+            radius="lg"
+            className={`p-6 sm:p-8 transition-all duration-1000 ${
+              files.length > 0
+                ? "opacity-30 scale-95 pointer-events-none"
+                : "opacity-100 scale-100"
+            }`}
+          >
             <div
               className={`relative border-2 border-dashed rounded-2xl transition-all duration-300 p-6 sm:p-8 text-center ${
                 isDragOver
@@ -269,22 +291,42 @@ export default function ClientUpload() {
             </GlassPanel>
           )}
 
-          {/* File List */}
-          {files.length > 0 && (
-            <GlassPanel variant="heavy" radius="lg" className="p-6 flex-1 min-h-0">
-              <div className="space-y-4 h-full flex flex-col">
-                <div className="flex items-center justify-between">
+          {/* File List - Always visible */}
+          <GlassPanel variant="heavy" radius="lg" className="p-6 flex-1 min-h-0">
+            <div className="space-y-4 h-full flex flex-col">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
                   <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
                     <FileText className="w-5 h-5" />
-                    <span>Uploaded Files ({files.length}/{MAX_FILES})</span>
+                    <span>Your Documents ({files.length} uploaded)</span>
                   </h3>
-                  {completedFiles.length > 0 && (
-                    <div className="text-sm text-[#0E315C]/60">
-                      {completedFiles.length} completed
-                    </div>
+                  {files.length > 0 && (
+                    <Button
+                      onClick={() => fileInputRef.current?.click()}
+                      size="sm"
+                      variant="outline"
+                      className="border-[#99C0F0] text-[#99C0F0] hover:bg-[#99C0F0]/10 text-xs px-3 py-1 h-7"
+                    >
+                      + Add More
+                    </Button>
                   )}
                 </div>
+                {completedFiles.length > 0 && (
+                  <div className="text-sm text-[#0E315C]/60">
+                    {completedFiles.length} completed
+                  </div>
+                )}
+              </div>
 
+              {files.length === 0 ? (
+                <div className="flex-1 flex items-center justify-center text-center py-12">
+                  <div className="space-y-3">
+                    <FileText className="w-12 h-12 text-[#C1D9F6] mx-auto" />
+                    <h4 className="text-lg font-medium text-[#0E315C]/60">No documents uploaded yet</h4>
+                    <p className="text-sm text-[#0E315C]/50">Your uploaded files will appear here</p>
+                  </div>
+                </div>
+              ) : (
                 <div className="space-y-2 flex-1 overflow-y-auto document-scroll">
                   {files.map((uploadFile) => (
                     <div
@@ -364,50 +406,51 @@ export default function ClientUpload() {
                     </div>
                   ))}
                 </div>
-              </div>
-            </GlassPanel>
-          )}
+              )}
 
-          {/* Action Buttons */}
-          {files.length > 0 && (
-            <div className="flex items-center justify-between flex-shrink-0 mt-4">
-              <div className="text-sm text-[#0E315C]/60">
-                {uploadingFiles.length > 0 && (
-                  <span>Uploading {uploadingFiles.length} file(s)...</span>
-                )}
-                {errorFiles.length > 0 && (
-                  <span className="text-red-600">
-                    {errorFiles.length} file(s) failed to upload
-                  </span>
-                )}
-              </div>
-              
-              <div className="flex space-x-4">
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setFiles([]);
-                    setValidationErrors([]);
-                  }}
-                  className="border-[#C1D9F6] text-[#0E315C] hover:bg-[#C1D9F6]/10"
-                >
-                  Clear All
-                </Button>
-                
-                <Button
-                  onClick={handleProceed}
-                  disabled={!canProceed}
-                  className={`px-8 py-2 rounded-xl font-medium transition-all duration-300 ${
-                    canProceed
-                      ? "bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white shadow-lg hover:shadow-xl"
-                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  }`}
-                >
-                  Continue to Review
-                </Button>
-              </div>
+              {/* Action Buttons - Inside the file container */}
+              {files.length > 0 && (
+                <div className="flex items-center justify-between pt-4 border-t border-white/20 flex-shrink-0">
+                  <div className="text-sm text-[#0E315C]/60">
+                    {uploadingFiles.length > 0 && (
+                      <span>Uploading {uploadingFiles.length} file(s)...</span>
+                    )}
+                    {errorFiles.length > 0 && (
+                      <span className="text-red-600">
+                        {errorFiles.length} file(s) failed to upload
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex space-x-3">
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setFiles([]);
+                        setValidationErrors([]);
+                      }}
+                      className="border-[#C1D9F6] text-[#0E315C] hover:bg-[#C1D9F6]/10 text-sm px-4 py-2"
+                    >
+                      Clear All
+                    </Button>
+
+                    <Button
+                      onClick={handleProceed}
+                      disabled={!canProceed}
+                      className={`px-6 py-2 rounded-xl font-medium transition-all duration-300 text-sm ${
+                        canProceed
+                          ? "bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white shadow-lg hover:shadow-xl"
+                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      }`}
+                    >
+                      Continue to Review
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
-          )}
+          </GlassPanel>
+
         </div>
       </div>
     </PageContainer>
