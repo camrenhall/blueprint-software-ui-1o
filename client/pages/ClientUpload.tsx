@@ -279,7 +279,7 @@ export default function ClientUpload() {
             </GlassPanel>
 
             {/* File List */}
-            <GlassPanel variant="heavy" radius="lg" className="p-6 h-96 flex flex-col">
+            <GlassPanel variant="heavy" radius="lg" className="p-6 h-[420px] flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
                   <Folder className="w-5 h-5" />
