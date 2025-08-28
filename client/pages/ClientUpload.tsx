@@ -279,7 +279,7 @@ export default function ClientUpload() {
             </GlassPanel>
 
             {/* File List */}
-            <GlassPanel variant="heavy" radius="lg" className="p-6 min-h-96">
+            <GlassPanel variant="heavy" radius="lg" className="p-6 h-96 flex flex-col">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
                   <Folder className="w-5 h-5" />
@@ -292,89 +292,95 @@ export default function ClientUpload() {
                 )}
               </div>
 
-              {files.length === 0 ? (
-                <div className="h-full flex items-center justify-center">
-                  <div className="text-center space-y-4">
-                    <Folder className="w-20 h-20 text-[#C1D9F6] mx-auto" />
-                    <div>
-                      <h4 className="text-xl font-medium text-[#0E315C]/60 mb-2">No documents uploaded</h4>
-                      <p className="text-sm text-[#0E315C]/50 mb-4">
-                        Upload your first document to get started with the review process
-                      </p>
-                      <Button
-                        onClick={() => fileInputRef.current?.click()}
-                        className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-6 py-2 rounded-lg"
-                      >
-                        <Plus className="w-4 h-4 mr-2" />
-                        Upload Files
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-3 max-h-80 overflow-y-auto">
-                  {files.map((file) => (
-                    <div key={file.id} className="flex items-center space-x-4 p-4 bg-white/30 rounded-lg border border-white/20 hover:bg-white/40 transition-colors">
-                      <div className="text-2xl">{getFileTypeIcon(file.file.name)}</div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-sm font-medium text-[#0E315C] truncate">{file.file.name}</h4>
-                          <div className="flex items-center space-x-2">
-                            <span className="text-xs text-[#0E315C]/60">{formatFileSize(file.file.size)}</span>
-                            {file.status === 'completed' && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
-                                <CheckCircle2 className="w-3 h-3 mr-1" />
-                                Complete
-                              </span>
-                            )}
-                            {file.status === 'error' && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
-                                <AlertCircle className="w-3 h-3 mr-1" />
-                                Error
-                              </span>
-                            )}
-                            {file.status === 'uploading' && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
-                                <Cloud className="w-3 h-3 mr-1" />
-                                {file.progress}%
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        {file.status === 'uploading' && (
-                          <div className="w-full bg-[#C1D9F6]/30 rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-2 rounded-full transition-all duration-300"
-                              style={{ width: `${file.progress}%` }}
-                            />
-                          </div>
-                        )}
-                      </div>
-                      <div className="flex space-x-2">
-                        {file.status === 'error' && (
-                          <Button size="sm" variant="ghost" onClick={() => retryFile(file.id)} className="h-8 w-8 p-0">
-                            <RotateCcw className="w-4 h-4" />
-                          </Button>
-                        )}
-                        <Button size="sm" variant="ghost" onClick={() => removeFile(file.id)} className="h-8 w-8 p-0 text-red-500">
-                          <X className="w-4 h-4" />
+              <div className="flex-1 overflow-hidden">
+                {files.length === 0 ? (
+                  <div className="h-full flex items-center justify-center">
+                    <div className="text-center space-y-4">
+                      <Folder className="w-20 h-20 text-[#C1D9F6] mx-auto" />
+                      <div>
+                        <h4 className="text-xl font-medium text-[#0E315C]/60 mb-2">No documents uploaded</h4>
+                        <p className="text-sm text-[#0E315C]/50 mb-4">
+                          Upload your first document to get started with the review process
+                        </p>
+                        <Button
+                          onClick={() => fileInputRef.current?.click()}
+                          className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-6 py-2 rounded-lg"
+                        >
+                          <Plus className="w-4 h-4 mr-2" />
+                          Upload Files
                         </Button>
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
-            </GlassPanel>
+                  </div>
+                ) : (
+                  <div className="space-y-3 h-full overflow-y-auto">
+                    {files.map((file) => (
+                      <div key={file.id} className="flex items-center space-x-4 p-4 bg-white/30 rounded-lg border border-white/20 hover:bg-white/40 transition-colors">
+                        <div className="text-2xl">{getFileTypeIcon(file.file.name)}</div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between mb-2">
+                            <h4 className="text-sm font-medium text-[#0E315C] truncate">{file.file.name}</h4>
+                            <div className="flex items-center space-x-2">
+                              <span className="text-xs text-[#0E315C]/60">{formatFileSize(file.file.size)}</span>
+                              {file.status === 'completed' && (
+                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                                  <CheckCircle2 className="w-3 h-3 mr-1" />
+                                  Complete
+                                </span>
+                              )}
+                              {file.status === 'error' && (
+                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
+                                  <AlertCircle className="w-3 h-3 mr-1" />
+                                  Error
+                                </span>
+                              )}
+                              {file.status === 'uploading' && (
+                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                                  <Cloud className="w-3 h-3 mr-1" />
+                                  {file.progress}%
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          {file.status === 'uploading' && (
+                            <div className="w-full bg-[#C1D9F6]/30 rounded-full h-2">
+                              <div
+                                className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-2 rounded-full transition-all duration-300"
+                                style={{ width: `${file.progress}%` }}
+                              />
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex space-x-2">
+                          {file.status === 'error' && (
+                            <Button size="sm" variant="ghost" onClick={() => retryFile(file.id)} className="h-8 w-8 p-0">
+                              <RotateCcw className="w-4 h-4" />
+                            </Button>
+                          )}
+                          <Button size="sm" variant="ghost" onClick={() => removeFile(file.id)} className="h-8 w-8 p-0 text-red-500">
+                            <X className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
 
-            {/* Action Buttons */}
-            {files.length > 0 && (
-              <div className="flex justify-between items-center">
+              {/* Action Buttons - Always visible */}
+              <div className="flex justify-between items-center pt-4 border-t border-white/20 mt-4">
                 <div className="text-sm text-[#0E315C]/60">
                   {uploadingFiles.length > 0 && <span>Uploading {uploadingFiles.length} file(s)...</span>}
                   {errorFiles.length > 0 && <span className="text-red-600">{errorFiles.length} file(s) failed</span>}
+                  {files.length === 0 && <span>No files selected</span>}
                 </div>
                 <div className="flex space-x-3">
-                  <Button variant="outline" onClick={clearAllFiles}>
+                  <Button
+                    variant="outline"
+                    onClick={clearAllFiles}
+                    disabled={files.length === 0}
+                    className={files.length === 0 ? "opacity-50 cursor-not-allowed" : ""}
+                  >
                     <Trash2 className="w-4 h-4 mr-2" />
                     Clear All
                   </Button>
@@ -392,7 +398,8 @@ export default function ClientUpload() {
                   </Button>
                 </div>
               </div>
-            )}
+            </GlassPanel>
+
 
             {/* Validation Errors */}
             {validationErrors.length > 0 && (
