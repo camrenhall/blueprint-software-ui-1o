@@ -271,8 +271,8 @@ export default function ClientUpload() {
 
           {/* File List */}
           {files.length > 0 && (
-            <GlassPanel variant="heavy" radius="lg" className="p-6">
-              <div className="space-y-4">
+            <GlassPanel variant="heavy" radius="lg" className="p-6 flex-1 min-h-0">
+              <div className="space-y-4 h-full flex flex-col">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
                     <FileText className="w-5 h-5" />
@@ -285,7 +285,7 @@ export default function ClientUpload() {
                   )}
                 </div>
 
-                <div className="space-y-2 max-h-48 overflow-y-auto document-scroll">
+                <div className="space-y-2 flex-1 overflow-y-auto document-scroll">
                   {files.map((uploadFile) => (
                     <div
                       key={uploadFile.id}
