@@ -106,7 +106,7 @@ export default function ClientLogin() {
 
                 {/* Form Fields */}
                 <div className="space-y-6">
-                  {/* Email Field - Pre-populated and Read-only */}
+                  {/* Email Field */}
                   <div className="relative group">
                     <label className="block text-sm font-medium text-[#0E315C]/70 mb-2">
                       Email Address
@@ -118,13 +118,7 @@ export default function ClientLogin() {
                       className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-2 focus:ring-[#99C0F0]/20 transition-all duration-300 text-sm"
                       placeholder="your.email@example.com"
                       required
-                      readOnly={!!searchParams.get('email')}
                     />
-                    {searchParams.get('email') && (
-                      <div className="absolute right-3 top-9 text-[#99C0F0] text-xs bg-[#99C0F0]/10 px-2 py-1 rounded-full">
-                        Pre-filled
-                      </div>
-                    )}
                   </div>
 
                   {/* Password Field */}
