@@ -171,7 +171,7 @@ export default function ClientUpload() {
         }`}
       >
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6 flex-shrink-0">
           <h1 className="text-3xl sm:text-4xl font-light text-[#0E315C] mb-4 tracking-wide">
             Upload Your Documents
           </h1>
