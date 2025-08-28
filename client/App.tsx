@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Onboarding from "./pages/Onboarding";
 import SettingsOverview from "./components/SettingsOverview";
 import SettingsCategory from "./components/SettingsCategory";
 import CloudBackground from "./components/CloudBackground";
