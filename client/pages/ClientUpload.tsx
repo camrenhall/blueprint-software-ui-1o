@@ -370,7 +370,7 @@ export default function ClientUpload() {
 
           {/* Action Buttons */}
           {files.length > 0 && (
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between flex-shrink-0 mt-4">
               <div className="text-sm text-[#0E315C]/60">
                 {uploadingFiles.length > 0 && (
                   <span>Uploading {uploadingFiles.length} file(s)...</span>
