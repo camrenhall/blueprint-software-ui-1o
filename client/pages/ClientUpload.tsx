@@ -191,7 +191,7 @@ export default function ClientUpload() {
           {/* Upload Area */}
           <GlassPanel variant="enhanced" radius="lg" className="p-6 sm:p-8">
             <div
-              className={`relative border-2 border-dashed rounded-2xl transition-all duration-300 p-8 sm:p-12 text-center ${
+              className={`relative border-2 border-dashed rounded-2xl transition-all duration-300 p-6 sm:p-8 text-center ${
                 isDragOver
                   ? "border-[#99C0F0] bg-[#99C0F0]/10"
                   : files.length > 0
@@ -203,22 +203,22 @@ export default function ClientUpload() {
               onDragOver={handleDragOver}
               onDrop={handleDrop}
             >
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div className="flex justify-center">
-                  <div className={`p-4 rounded-full transition-all duration-300 ${
+                  <div className={`p-3 rounded-full transition-all duration-300 ${
                     isDragOver ? "bg-[#99C0F0]/20" : "bg-[#C1D9F6]/20"
                   }`}>
-                    <Upload className={`w-8 h-8 transition-colors duration-300 ${
+                    <Upload className={`w-6 h-6 transition-colors duration-300 ${
                       isDragOver ? "text-[#99C0F0]" : "text-[#0E315C]/60"
                     }`} />
                   </div>
                 </div>
-                
+
                 <div>
-                  <h3 className="text-xl font-medium text-[#0E315C] mb-2">
+                  <h3 className="text-lg font-medium text-[#0E315C] mb-1">
                     {isDragOver ? "Drop files here" : "Drag & drop your files here"}
                   </h3>
-                  <p className="text-[#0E315C]/60 mb-4">
+                  <p className="text-[#0E315C]/60 mb-3 text-sm">
                     Or click to browse and select files
                   </p>
                 </div>
@@ -285,73 +285,80 @@ export default function ClientUpload() {
                   )}
                 </div>
 
-                <div className="space-y-3 max-h-64 overflow-y-auto document-scroll">
+                <div className="space-y-2 max-h-48 overflow-y-auto document-scroll">
                   {files.map((uploadFile) => (
                     <div
                       key={uploadFile.id}
-                      className="flex items-center space-x-4 p-4 bg-white/30 rounded-xl border border-white/20"
+                      className="flex items-center space-x-3 p-3 bg-white/30 rounded-lg border border-white/20"
                     >
                       {/* File Icon */}
-                      <div className="flex-shrink-0 text-xl">
+                      <div className="flex-shrink-0 text-lg">
                         {getFileTypeIcon(uploadFile.file.name)}
                       </div>
 
                       {/* File Info */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1">
+                      <div className="flex-1 min-w-0 flex items-center justify-between">
+                        <div className="flex-1 min-w-0 mr-3">
                           <p className="text-sm font-medium text-[#0E315C] truncate">
                             {uploadFile.file.name}
                           </p>
-                          <span className="text-xs text-[#0E315C]/60 ml-2">
-                            {formatFileSize(uploadFile.file.size)}
-                          </span>
+                          {/* Progress Bar - inline for uploading status */}
+                          {uploadFile.status === 'uploading' && (
+                            <div className="w-full bg-[#C1D9F6]/30 rounded-full h-1.5 mt-1">
+                              <div
+                                className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-1.5 rounded-full transition-all duration-300"
+                                style={{ width: `${uploadFile.progress}%` }}
+                              />
+                            </div>
+                          )}
                         </div>
 
-                        {/* Progress Bar */}
-                        {uploadFile.status === 'uploading' && (
-                          <div className="w-full bg-[#C1D9F6]/30 rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-2 rounded-full transition-all duration-300"
-                              style={{ width: `${uploadFile.progress}%` }}
-                            />
-                          </div>
-                        )}
+                        {/* File Size */}
+                        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/60">
+                          <span>{formatFileSize(uploadFile.file.size)}</span>
+                        </div>
 
-                        {/* Status Messages */}
-                        {uploadFile.status === 'completed' && (
-                          <div className="flex items-center space-x-2 text-green-600">
-                            <CheckCircle2 className="w-4 h-4" />
-                            <span className="text-xs">Upload complete</span>
-                          </div>
-                        )}
+                        {/* Status Messages - compact */}
+                        <div className="flex items-center space-x-2 ml-3">
+                          {uploadFile.status === 'completed' && (
+                            <div className="flex items-center space-x-1 text-green-600">
+                              <CheckCircle2 className="w-3 h-3" />
+                              <span className="text-xs">Done</span>
+                            </div>
+                          )}
 
-                        {uploadFile.status === 'error' && (
-                          <div className="flex items-center space-x-2 text-red-600">
-                            <AlertCircle className="w-4 h-4" />
-                            <span className="text-xs">{uploadFile.error}</span>
-                          </div>
-                        )}
+                          {uploadFile.status === 'error' && (
+                            <div className="flex items-center space-x-1 text-red-600">
+                              <AlertCircle className="w-3 h-3" />
+                              <span className="text-xs">Error</span>
+                            </div>
+                          )}
+
+                          {uploadFile.status === 'uploading' && (
+                            <span className="text-xs text-[#99C0F0]">{uploadFile.progress}%</span>
+                          )}
+                        </div>
                       </div>
 
                       {/* Actions */}
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-1 ml-2">
                         {uploadFile.status === 'error' && (
                           <Button
                             size="sm"
                             variant="ghost"
                             onClick={() => retryFile(uploadFile.id)}
-                            className="h-8 w-8 p-0 text-[#99C0F0] hover:text-[#0E315C] hover:bg-[#99C0F0]/10"
+                            className="h-6 w-6 p-0 text-[#99C0F0] hover:text-[#0E315C] hover:bg-[#99C0F0]/10"
                           >
-                            <RotateCcw className="w-4 h-4" />
+                            <RotateCcw className="w-3 h-3" />
                           </Button>
                         )}
                         <Button
                           size="sm"
                           variant="ghost"
                           onClick={() => removeFile(uploadFile.id)}
-                          className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+                          className="h-6 w-6 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
                         >
-                          <X className="w-4 h-4" />
+                          <X className="w-3 h-3" />
                         </Button>
                       </div>
                     </div>
