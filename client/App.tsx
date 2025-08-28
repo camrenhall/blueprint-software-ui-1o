@@ -30,8 +30,8 @@ const queryClient = new QueryClient();
 const ConditionalTopNavBar = () => {
   const location = useLocation();
 
-  // Hide TopNavBar on login page
-  if (location.pathname === "/") {
+  // Hide TopNavBar on login and onboarding pages
+  if (location.pathname === "/" || location.pathname === "/onboarding") {
     return null;
   }
 
