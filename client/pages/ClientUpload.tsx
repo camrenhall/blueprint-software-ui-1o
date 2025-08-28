@@ -673,231 +673,251 @@ export default function ClientUpload() {
 
   // Layout 3: Sidebar Dashboard
   const SidebarDashboard = () => (
-    <div className="space-y-6">
-      {/* Top Bar */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-light text-[#0E315C]">Document Upload Portal</h1>
-          <p className="text-sm text-[#0E315C]/60">Secure document submission for legal review</p>
-        </div>
-        <div className="flex items-center space-x-4 text-sm">
-          <div className="flex items-center space-x-2 bg-white/30 px-3 py-2 rounded-lg">
-            <User className="w-4 h-4 text-[#99C0F0]" />
-            <span className="text-[#0E315C]">{clientEmail}</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-4 gap-4">
-        <GlassPanel variant="light" radius="md" className="p-4 text-center">
-          <div className="space-y-2">
-            <FileText className="w-6 h-6 text-[#99C0F0] mx-auto" />
-            <div className="text-lg font-semibold text-[#0E315C]">{files.length}</div>
-            <div className="text-xs text-[#0E315C]/60">Total Files</div>
-          </div>
-        </GlassPanel>
-        <GlassPanel variant="light" radius="md" className="p-4 text-center">
-          <div className="space-y-2">
-            <CheckCircle2 className="w-6 h-6 text-green-500 mx-auto" />
-            <div className="text-lg font-semibold text-[#0E315C]">{completedFiles.length}</div>
-            <div className="text-xs text-[#0E315C]/60">Completed</div>
-          </div>
-        </GlassPanel>
-        <GlassPanel variant="light" radius="md" className="p-4 text-center">
-          <div className="space-y-2">
-            <Cloud className="w-6 h-6 text-[#C5BFEE] mx-auto" />
-            <div className="text-lg font-semibold text-[#0E315C]">{uploadingFiles.length}</div>
-            <div className="text-xs text-[#0E315C]/60">Uploading</div>
-          </div>
-        </GlassPanel>
-        <GlassPanel variant="light" radius="md" className="p-4 text-center">
-          <div className="space-y-2">
-            <AlertCircle className="w-6 h-6 text-red-500 mx-auto" />
-            <div className="text-lg font-semibold text-[#0E315C]">{errorFiles.length}</div>
-            <div className="text-xs text-[#0E315C]/60">Errors</div>
-          </div>
-        </GlassPanel>
-      </div>
-
-      <div className="grid grid-cols-3 gap-6">
-        {/* Upload Area */}
-        <div className="col-span-1">
-          <GlassPanel variant="enhanced" radius="lg" className="p-6 h-80">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-medium text-[#0E315C]">Upload</h3>
-              <Settings className="w-4 h-4 text-[#0E315C]/40" />
+    <div className="max-w-6xl mx-auto grid grid-cols-4 gap-6 h-full">
+      {/* Left Sidebar */}
+      <div className="col-span-1 space-y-4">
+        {/* User Info */}
+        <GlassPanel variant="light" radius="lg" className="p-4">
+          <div className="text-center space-y-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-full flex items-center justify-center mx-auto">
+              <User className="w-6 h-6 text-white" />
             </div>
-            
-            <div
-              className={`border-2 border-dashed rounded-xl h-full transition-all duration-300 flex items-center justify-center ${
-                isDragOver ? "border-[#99C0F0] bg-[#99C0F0]/10" : "border-[#C1D9F6]/60 bg-white/20"
-              }`}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
+            <div>
+              <h3 className="font-medium text-[#0E315C] text-sm">{clientEmail}</h3>
+              <p className="text-xs text-[#0E315C]/60">Client Portal</p>
+            </div>
+          </div>
+        </GlassPanel>
+
+        {/* Quick Stats */}
+        <GlassPanel variant="enhanced" radius="lg" className="p-4">
+          <h3 className="font-medium text-[#0E315C] mb-3 text-sm">Upload Overview</h3>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <FileText className="w-4 h-4 text-[#99C0F0]" />
+                <span className="text-sm text-[#0E315C]">Total</span>
+              </div>
+              <span className="text-sm font-semibold text-[#0E315C]">{files.length}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                <span className="text-sm text-[#0E315C]">Ready</span>
+              </div>
+              <span className="text-sm font-semibold text-[#0E315C]">{completedFiles.length}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Cloud className="w-4 h-4 text-[#C5BFEE]" />
+                <span className="text-sm text-[#0E315C]">Processing</span>
+              </div>
+              <span className="text-sm font-semibold text-[#0E315C]">{uploadingFiles.length}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <AlertCircle className="w-4 h-4 text-red-500" />
+                <span className="text-sm text-[#0E315C]">Errors</span>
+              </div>
+              <span className="text-sm font-semibold text-[#0E315C]">{errorFiles.length}</span>
+            </div>
+          </div>
+        </GlassPanel>
+
+        {/* Upload Actions */}
+        <GlassPanel variant="light" radius="lg" className="p-4">
+          <h3 className="font-medium text-[#0E315C] mb-3 text-sm">Quick Actions</h3>
+          <div className="space-y-2">
+            <Button
+              onClick={() => fileInputRef.current?.click()}
+              size="sm"
+              className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white"
             >
-              <div className="text-center space-y-3">
-                <div className={`p-4 rounded-full mx-auto w-fit ${isDragOver ? "bg-[#99C0F0]/20" : "bg-[#C1D9F6]/20"}`}>
-                  <Upload className={`w-8 h-8 ${isDragOver ? "text-[#99C0F0]" : "text-[#0E315C]/60"}`} />
-                </div>
-                <div>
-                  <h4 className="font-medium text-[#0E315C] mb-1">
-                    {isDragOver ? "Drop here" : "Add Files"}
-                  </h4>
-                  <p className="text-xs text-[#0E315C]/60 mb-3">
-                    PDF, PNG, JPG, DOC, DOCX
-                  </p>
-                  <Button
-                    onClick={() => fileInputRef.current?.click()}
-                    size="sm"
-                    className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-4 py-2 rounded-lg"
-                  >
-                    Browse
-                  </Button>
+              <Plus className="w-4 h-4 mr-2" />
+              Add Files
+            </Button>
+            {files.length > 0 && (
+              <>
+                <Button
+                  variant="outline"
+                  onClick={clearAllFiles}
+                  size="sm"
+                  className="w-full border-red-200 text-red-600 hover:bg-red-50"
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Clear All
+                </Button>
+                <Button
+                  onClick={handleProceed}
+                  disabled={!canProceed}
+                  size="sm"
+                  className={`w-full ${
+                    canProceed
+                      ? "bg-green-600 text-white hover:bg-green-700"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
+                >
+                  <ArrowRight className="w-4 h-4 mr-2" />
+                  Continue
+                </Button>
+              </>
+            )}
+          </div>
+        </GlassPanel>
+      </div>
+
+      {/* Main Content */}
+      <div className="col-span-3 space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-light text-[#0E315C]">Document Upload Portal</h1>
+            <p className="text-sm text-[#0E315C]/60">Secure document submission for legal review</p>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Settings className="w-5 h-5 text-[#0E315C]/40" />
+          </div>
+        </div>
+
+        {/* Upload Area */}
+        <GlassPanel variant="enhanced" radius="lg" className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-medium text-[#0E315C]">Document Upload</h3>
+            <div className="text-sm text-[#0E315C]/60">
+              Supports: PDF, PNG, JPG, DOC, DOCX
+            </div>
+          </div>
+
+          <div
+            className={`border-2 border-dashed rounded-xl h-32 transition-all duration-300 flex items-center justify-center ${
+              isDragOver ? "border-[#99C0F0] bg-[#99C0F0]/10" : "border-[#C1D9F6]/60 bg-white/20"
+            }`}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
+            <div className="text-center">
+              <div className="flex justify-center mb-3">
+                <div className={`p-3 rounded-full ${isDragOver ? "bg-[#99C0F0]/20" : "bg-[#C1D9F6]/20"}`}>
+                  <Upload className={`w-6 h-6 ${isDragOver ? "text-[#99C0F0]" : "text-[#0E315C]/60"}`} />
                 </div>
               </div>
+              <h4 className="font-medium text-[#0E315C] mb-1">
+                {isDragOver ? "Drop your files here" : "Drag & drop files or browse"}
+              </h4>
+              <p className="text-xs text-[#0E315C]/60">Maximum 50MB per file</p>
             </div>
-          </GlassPanel>
-        </div>
+          </div>
+        </GlassPanel>
 
         {/* File List */}
-        <div className="col-span-2">
-          <GlassPanel variant="heavy" radius="lg" className="p-6 h-80">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-medium text-[#0E315C]">Documents</h3>
-              <div className="flex space-x-2">
-                {files.length > 0 && (
-                  <Button
-                    onClick={() => fileInputRef.current?.click()}
-                    size="sm"
-                    variant="outline"
-                    className="border-[#99C0F0] text-[#99C0F0]"
-                  >
-                    <Plus className="w-3 h-3 mr-1" />
-                    Add
-                  </Button>
-                )}
-              </div>
-            </div>
-
-            {files.length === 0 ? (
-              <div className="h-full flex items-center justify-center">
-                <div className="text-center space-y-3">
-                  <Folder className="w-12 h-12 text-[#C1D9F6] mx-auto" />
-                  <div>
-                    <h4 className="font-medium text-[#0E315C]/60">No documents yet</h4>
-                    <p className="text-sm text-[#0E315C]/50">Upload files to get started</p>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="space-y-2 h-full overflow-y-auto">
-                {files.map((file) => (
-                  <div key={file.id} className="flex items-center space-x-3 p-3 bg-white/20 rounded-lg border border-white/20 hover:bg-white/30 transition-colors">
-                    <div className="text-base">{getFileTypeIcon(file.file.name)}</div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium text-[#0E315C] truncate">{file.file.name}</p>
-                        <div className="flex items-center space-x-3">
-                          <span className="text-xs text-[#0E315C]/60">{formatFileSize(file.file.size)}</span>
-                          <div className="flex items-center space-x-1">
-                            {file.status === 'completed' && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
-                                Complete
-                              </span>
-                            )}
-                            {file.status === 'error' && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
-                                Error
-                              </span>
-                            )}
-                            {file.status === 'uploading' && (
-                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
-                                {file.progress}%
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex space-x-1">
-                            {file.status === 'error' && (
-                              <Button size="sm" variant="ghost" onClick={() => retryFile(file.id)} className="h-6 w-6 p-0">
-                                <RotateCcw className="w-3 h-3" />
-                              </Button>
-                            )}
-                            <Button size="sm" variant="ghost" onClick={() => removeFile(file.id)} className="h-6 w-6 p-0 text-red-500">
-                              <X className="w-3 h-3" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                      {file.status === 'uploading' && (
-                        <div className="w-full bg-[#C1D9F6]/30 rounded-full h-1 mt-2">
-                          <div
-                            className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-1 rounded-full transition-all duration-300"
-                            style={{ width: `${file.progress}%` }}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
+        <GlassPanel variant="heavy" radius="lg" className="p-6 flex-1">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
+              <Folder className="w-5 h-5" />
+              <span>Document Library ({files.length})</span>
+            </h3>
+            {completedFiles.length > 0 && (
+              <span className="text-sm text-green-600 bg-green-100 px-2 py-1 rounded-full">
+                {completedFiles.length} ready for review
+              </span>
             )}
-          </GlassPanel>
-        </div>
-      </div>
+          </div>
 
-      {/* Validation Errors */}
-      {validationErrors.length > 0 && (
-        <GlassPanel variant="light" radius="lg" className="p-4">
-          <div className="space-y-3">
-            <div className="flex items-center space-x-2 text-red-600">
-              <AlertCircle className="w-5 h-5" />
-              <h4 className="font-medium">Upload Issues</h4>
+          {files.length === 0 ? (
+            <div className="text-center py-16">
+              <Folder className="w-20 h-20 text-[#C1D9F6] mx-auto mb-4" />
+              <h4 className="text-xl font-medium text-[#0E315C]/60 mb-2">No documents uploaded</h4>
+              <p className="text-sm text-[#0E315C]/50 mb-4">
+                Upload your first document to get started with the review process
+              </p>
+              <Button
+                onClick={() => fileInputRef.current?.click()}
+                className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-6 py-2 rounded-lg"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Upload Files
+              </Button>
             </div>
-            {validationErrors.map((error, index) => (
-              <div key={index} className="flex items-start space-x-3 p-3 bg-red-50/50 rounded-lg border border-red-200/50">
-                <div className="flex-shrink-0 text-red-500 mt-0.5">
-                  {getFileTypeIcon(error.file.name)}
+          ) : (
+            <div className="space-y-3 max-h-96 overflow-y-auto">
+              {files.map((file) => (
+                <div key={file.id} className="flex items-center space-x-4 p-4 bg-white/30 rounded-lg border border-white/20 hover:bg-white/40 transition-colors">
+                  <div className="text-2xl">{getFileTypeIcon(file.file.name)}</div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-sm font-medium text-[#0E315C] truncate">{file.file.name}</h4>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-xs text-[#0E315C]/60">{formatFileSize(file.file.size)}</span>
+                        {file.status === 'completed' && (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                            <CheckCircle2 className="w-3 h-3 mr-1" />
+                            Complete
+                          </span>
+                        )}
+                        {file.status === 'error' && (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
+                            <AlertCircle className="w-3 h-3 mr-1" />
+                            Error
+                          </span>
+                        )}
+                        {file.status === 'uploading' && (
+                          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                            <Cloud className="w-3 h-3 mr-1" />
+                            {file.progress}%
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    {file.status === 'uploading' && (
+                      <div className="w-full bg-[#C1D9F6]/30 rounded-full h-2">
+                        <div
+                          className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] h-2 rounded-full transition-all duration-300"
+                          style={{ width: `${file.progress}%` }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex space-x-2">
+                    {file.status === 'error' && (
+                      <Button size="sm" variant="ghost" onClick={() => retryFile(file.id)} className="h-8 w-8 p-0">
+                        <RotateCcw className="w-4 h-4" />
+                      </Button>
+                    )}
+                    <Button size="sm" variant="ghost" onClick={() => removeFile(file.id)} className="h-8 w-8 p-0 text-red-500">
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-red-800 truncate">{error.file.name}</p>
-                  <p className="text-xs text-red-600 mt-1">{error.error}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </GlassPanel>
-      )}
 
-      {/* Action Bar */}
-      {files.length > 0 && (
-        <div className="flex justify-between items-center">
-          <div className="text-sm text-[#0E315C]/60">
-            {uploadingFiles.length > 0 && <span>Uploading {uploadingFiles.length} file(s)...</span>}
-            {errorFiles.length > 0 && <span className="text-red-600">{errorFiles.length} file(s) failed</span>}
-          </div>
-          <div className="flex space-x-3">
-            <Button variant="outline" onClick={clearAllFiles}>
-              <Trash2 className="w-4 h-4 mr-2" />
-              Clear All
-            </Button>
-            <Button
-              onClick={handleProceed}
-              disabled={!canProceed}
-              className={`px-6 py-2 rounded-xl font-medium transition-all duration-300 ${
-                canProceed
-                  ? "bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white shadow-lg hover:shadow-xl"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              }`}
-            >
-              Continue to Review
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-        </div>
-      )}
+        {/* Validation Errors */}
+        {validationErrors.length > 0 && (
+          <GlassPanel variant="light" radius="lg" className="p-4">
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2 text-red-600">
+                <AlertCircle className="w-5 h-5" />
+                <h4 className="font-medium">Upload Issues</h4>
+              </div>
+              {validationErrors.map((error, index) => (
+                <div key={index} className="flex items-start space-x-3 p-3 bg-red-50/50 rounded-lg border border-red-200/50">
+                  <div className="flex-shrink-0 text-red-500 mt-0.5">
+                    {getFileTypeIcon(error.file.name)}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-red-800 truncate">{error.file.name}</p>
+                    <p className="text-xs text-red-600 mt-1">{error.error}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </GlassPanel>
+        )}
+      </div>
     </div>
   );
 
