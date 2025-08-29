@@ -4,7 +4,7 @@ import GlassSidePanel from "@/components/GlassSidePanel";
 import ConversationHistory from "@/components/ConversationHistory";
 import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
-import AgentsChat from "@/components/AgentsChat";
+import Overview from "@/components/Overview";
 import TaskQueue from "@/components/TaskQueue";
 import UnifiedSettings from "@/components/UnifiedSettings";
 import CommunicationsPanel from "@/components/CommunicationsPanel";
@@ -20,7 +20,7 @@ function IndexContent() {
   const { taskCount } = useTaskQueue();
   const [isVisible, setIsVisible] = useState(false);
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
-    "agents",
+    "overview",
   );
   const [selectedSettingsCategory, setSelectedSettingsCategory] = useState<string | null>(null);
 
@@ -30,7 +30,7 @@ function IndexContent() {
   }, []);
 
   const handleBackToMenu = () => {
-    setActiveRightContent("agents");
+    setActiveRightContent("overview");
     setSelectedSettingsCategory(null);
   };
 
@@ -43,10 +43,10 @@ function IndexContent() {
   };
   const menuItems = [
     {
-      id: "agents",
+      id: "overview",
       title: "Overview",
       action: () => {
-        setActiveRightContent("agents");
+        setActiveRightContent("overview");
       },
     },
     {
@@ -157,9 +157,9 @@ function IndexContent() {
                   activeRightContent && isVisible ? "opacity-100" : "opacity-0",
                 )}
               >
-                {activeRightContent === "agents" && (
+                {activeRightContent === "overview" && (
                   <div className="w-full h-full relative">
-                    <AgentsChat onClose={() => setActiveRightContent(null)} />
+                    <Overview onClose={() => setActiveRightContent(null)} />
                   </div>
                 )}
                 {activeRightContent === "review" && (
