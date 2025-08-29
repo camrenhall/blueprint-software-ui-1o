@@ -144,7 +144,7 @@ export default function CaseDetailsNew({
       case "complete":
         return "bg-[#99C0F0]/30 text-[#0E315C] border-[#99C0F0]/40";
       case "rejected":
-        return "bg-red-500/20 text-red-700 border-red-500/30";
+        return "bg-amber-500/20 text-amber-700 border-amber-500/30";
       case "review":
       case "needs review":
         return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
@@ -357,7 +357,7 @@ export default function CaseDetailsNew({
             )}>
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                  <CheckCircle2 className="w-5 h-5 text-[#99C0F0]" />
                   <h3 className="text-lg font-light text-[#0E315C]">Case Progress</h3>
                   <span className="text-sm text-[#0E315C]/60 font-light">Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Approved</span>
                 </div>
