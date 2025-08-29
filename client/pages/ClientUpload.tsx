@@ -279,8 +279,8 @@ export default function ClientUpload() {
             </GlassPanel>
 
             {/* File List */}
-            <GlassPanel variant="heavy" radius="lg" className="p-6 h-[450px] flex flex-col">
-              <div className="flex items-center justify-between mb-4 flex-shrink-0">
+            <GlassPanel variant="heavy" radius="lg" className="p-6">
+              <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
                   <Folder className="w-5 h-5" />
                   <span>Document Library ({files.length})</span>
@@ -292,8 +292,8 @@ export default function ClientUpload() {
                 )}
               </div>
 
-              {/* Scrollable Content Area */}
-              <div className="flex-1 min-h-0 overflow-hidden">
+              {/* Constrained Document List */}
+              <div className="h-[300px] overflow-hidden">
                 {files.length === 0 ? (
                   <div className="h-full flex items-center justify-center">
                     <div className="text-center space-y-4">
@@ -369,9 +369,11 @@ export default function ClientUpload() {
                   </div>
                 )}
               </div>
+            </GlassPanel>
 
-              {/* Action Buttons - Always visible at bottom */}
-              <div className="flex justify-between items-center pt-4 border-t border-white/20 mt-4 flex-shrink-0">
+            {/* Action Buttons - Outside the Document Library */}
+            <GlassPanel variant="light" radius="lg" className="p-4">
+              <div className="flex justify-between items-center">
                 <div className="text-sm text-[#0E315C]/60">
                   {uploadingFiles.length > 0 && <span>Uploading {uploadingFiles.length} file(s)...</span>}
                   {errorFiles.length > 0 && <span className="text-red-600">{errorFiles.length} file(s) failed</span>}
