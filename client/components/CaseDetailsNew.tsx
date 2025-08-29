@@ -95,6 +95,8 @@ export default function CaseDetailsNew({
     },
   ];
 
+  const hasRejectedDocuments = documents.some(doc => doc.status === "rejected");
+
   const recentActivity = [
     {
       type: "document_approval",
