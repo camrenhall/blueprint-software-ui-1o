@@ -77,6 +77,31 @@ const DEFAULT_SAVED_TEMPLATES: Template[] = [
       "Tax Returns (2023)",
     ],
   },
+  {
+    name: "Comprehensive Litigation Package",
+    documents: [
+      "W2 Tax Form",
+      "1098 Tax Return",
+      "Bank Statements",
+      "Employment Records",
+      "Medical Records",
+      "Insurance Documents",
+      "Property Deeds",
+      "Driver's License",
+      "Social Security Card",
+      "Birth Certificate",
+      "Marriage Certificate",
+      "Financial Statements",
+      "Credit Reports",
+      "Tax Returns (2023)",
+      "Payroll Records",
+      "Employment Verification Letter",
+      "Wage and Hour Records",
+      "Workers Compensation Claims",
+      "Performance Reviews",
+      "Contracts and Agreements",
+    ],
+  },
 ];
 
 export function useDocumentSelection({
