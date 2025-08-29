@@ -31,8 +31,6 @@ export default function CaseDetailsNew({
     setShowCommunicationFilter(false);
   };
 
-  const hasRejectedDocuments = documents.some(doc => doc.status === "rejected");
-
   // Click outside to close dropdowns
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
