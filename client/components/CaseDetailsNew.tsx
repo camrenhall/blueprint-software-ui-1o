@@ -173,7 +173,7 @@ export default function CaseDetailsNew({
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const getCommunicationStatusColor = (status: string) => {
     switch (status) {
       case "incoming":
         return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
