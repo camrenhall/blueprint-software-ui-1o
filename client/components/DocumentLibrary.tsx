@@ -43,8 +43,10 @@ export default function DocumentLibrary({
   const [isSelectedDocsSearchVisible, setIsSelectedDocsSearchVisible] =
     useState(false);
   const [showTemplatesInline, setShowTemplatesInline] = useState(false);
-  const [viewingTemplate, setViewingTemplate] = useState<Template | null>(null);
   const [editingTemplate, setEditingTemplate] = useState<Template | null>(null);
+  const [editingDocuments, setEditingDocuments] = useState<string[]>([]);
+  const [showConflictResolution, setShowConflictResolution] = useState(false);
+  const [pendingTemplate, setPendingTemplate] = useState<Template | null>(null);
 
   // Filter available documents (exclude already selected and apply search)
   const filteredAvailableDocuments = availableDocuments.filter(
