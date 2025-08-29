@@ -140,56 +140,13 @@ export function useDocumentSelection({
     setSelectedDocuments([]);
   }, []);
 
-  // Load template documents
+  // Load template documents (simplified version for direct use)
   const handleLoadTemplate = useCallback((template: Template) => {
-    if (selectedDocuments.length > 0) {
-      setPendingTemplate(template);
-      setShowTemplateConflictModal(true);
-    } else {
-      const templateDocs = template.documents.map(name => ({
-        name,
-        optional: false,
-      }));
-      setSelectedDocuments(templateDocs);
-    }
-  }, [selectedDocuments.length]);
-
-  // Confirm template loading (replace existing)
-  const handleConfirmTemplateReplace = useCallback(() => {
-    if (pendingTemplate) {
-      const templateDocs = pendingTemplate.documents.map(name => ({
-        name,
-        optional: false,
-      }));
-      setSelectedDocuments(templateDocs);
-      setPendingTemplate(null);
-      setShowTemplateConflictModal(false);
-    }
-  }, [pendingTemplate]);
-
-  // Confirm template loading (add to existing)
-  const handleConfirmTemplateAdd = useCallback(() => {
-    if (pendingTemplate) {
-      const templateDocs = pendingTemplate.documents.map(name => ({
-        name,
-        optional: false,
-      }));
-      
-      // Only add documents that aren't already selected
-      const newDocs = templateDocs.filter(
-        templateDoc => !selectedDocuments.find(selected => selected.name === templateDoc.name)
-      );
-      
-      setSelectedDocuments(prev => [...prev, ...newDocs]);
-      setPendingTemplate(null);
-      setShowTemplateConflictModal(false);
-    }
-  }, [pendingTemplate, selectedDocuments]);
-
-  // Cancel template loading
-  const handleCancelTemplate = useCallback(() => {
-    setPendingTemplate(null);
-    setShowTemplateConflictModal(false);
+    const templateDocs = template.documents.map(name => ({
+      name,
+      optional: false,
+    }));
+    setSelectedDocuments(templateDocs);
   }, []);
 
   // Add multiple documents (useful for AI suggestions)
