@@ -333,21 +333,25 @@ export default function ClientUpload() {
               {/* Constrained Document List */}
               <div className="h-[300px] overflow-hidden">
                 {files.length === 0 ? (
-                  <div className="h-full flex items-center justify-center">
-                    <div className="text-center space-y-6 max-w-sm mx-auto">
-                      <Folder className="w-24 h-24 text-[#C1D9F6] mx-auto" />
+                  <div className="h-full flex items-center justify-center px-8">
+                    <div className="text-center space-y-6 w-full max-w-md">
+                      <div className="flex justify-center">
+                        <Folder className="w-24 h-24 text-[#C1D9F6]" />
+                      </div>
                       <div className="space-y-4">
                         <h4 className="text-xl font-medium text-[#0E315C]/60">No documents uploaded</h4>
                         <p className="text-sm text-[#0E315C]/50 leading-relaxed">
                           Upload your first document to get started with the review process
                         </p>
-                        <Button
-                          onClick={() => fileInputRef.current?.click()}
-                          className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-8 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
-                        >
-                          <Plus className="w-4 h-4 mr-2" />
-                          Upload Files
-                        </Button>
+                        <div className="flex justify-center">
+                          <Button
+                            onClick={() => fileInputRef.current?.click()}
+                            className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-8 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
+                          >
+                            <Plus className="w-4 h-4 mr-2" />
+                            Upload Files
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
