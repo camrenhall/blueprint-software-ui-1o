@@ -60,7 +60,7 @@ export default function DocumentLibrary({
     <div className="grid grid-cols-12 gap-6 h-full max-h-full">
       {/* Document Library Panel - Left Side */}
       <div className="col-span-7 flex flex-col">
-        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-[48vh] mb-4 overflow-hidden">
+        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-[43vh] mb-4 overflow-hidden">
           {/* Header */}
           <div className="px-6 py-5 border-b border-[#C1D9F6]/20 flex-shrink-0">
             <div className="flex items-center justify-between">
@@ -280,7 +280,7 @@ export default function DocumentLibrary({
 
       {/* Selected Documents Panel - Right Side */}
       <div className="col-span-5 flex flex-col">
-        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-[48vh] mb-4 overflow-hidden">
+        <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-[43vh] mb-4 overflow-hidden">
           {/* Header */}
           <div className="px-6 py-5 border-b border-[#C1D9F6]/20 flex-shrink-0">
             <div className="flex items-center justify-between">
