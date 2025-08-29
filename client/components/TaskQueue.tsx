@@ -122,13 +122,13 @@ function TaskCard({
       className={cn(
         "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40",
         "hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/5 hover:border-[#99C0F0]/60",
-        "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
+        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform",
         "",
         isSelected && "ring-2 ring-[#99C0F0]/60 bg-white/50"
       )}
       style={{}}
     >
-      <div className="flex items-start space-x-5">
+      <div className="flex items-start space-x-4">
         {/* Selection Checkbox */}
         <button
           onClick={() => onToggleSelect(task.id)}
@@ -143,7 +143,7 @@ function TaskCard({
         </button>
 
         {/* Category Icon (Avatar-like) */}
-        <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
           <span className="text-white font-light text-sm">
             {task.category === "email" ? "📧" : task.category === "reminder" ? "⏰" : task.category === "analysis" ? "📊" : task.category === "action" ? "⚡" : "🔄"}
           </span>
@@ -153,18 +153,18 @@ function TaskCard({
         <div className="flex-1 min-w-0 relative">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-light text-[#0E315C] mb-1 truncate pr-24">
+              <h3 className="text-base font-light text-[#0E315C] mb-1 truncate pr-20">
                 {task.title}
               </h3>
               {task.targetPerson && (
-                <p className="text-[#0E315C]/60 text-sm font-light mb-3 pr-24 flex items-center gap-1">
+                <p className="text-[#0E315C]/60 text-sm font-light mb-2 pr-20 flex items-center gap-1">
                   <User className="w-3 h-3 text-[#99C0F0]" />
                   {task.targetPerson}
                 </p>
               )}
               {task.description && (
                 <p className={cn(
-                  "text-[#0E315C]/60 text-sm font-light mb-3 pr-24 leading-relaxed",
+                  "text-[#0E315C]/60 text-sm font-light mb-2 pr-20 leading-relaxed",
                   !isExpanded && task.description.length > 100 && "line-clamp-2"
                 )}>
                   {task.description}
@@ -173,7 +173,7 @@ function TaskCard({
               {task.description.length > 100 && (
                 <button
                   onClick={() => onToggleExpand(task.id)}
-                  className="text-[#99C0F0] hover:text-[#0E315C] text-xs font-medium mb-3 flex items-center gap-1 transition-colors duration-300"
+                  className="text-[#99C0F0] hover:text-[#0E315C] text-xs font-medium mb-2 flex items-center gap-1 transition-colors duration-300"
                 >
                   {isExpanded ? (
                     <>Show less <ChevronUp className="w-3 h-3" /></>
@@ -186,7 +186,7 @@ function TaskCard({
 
             {/* Right Side - Time Estimate */}
             <div className="absolute top-0 right-0 text-right flex-shrink-0">
-              <div className="text-xl font-light text-[#0E315C] mb-1">
+              <div className="text-lg font-light text-[#0E315C] mb-1">
                 {task.estimatedTime}
               </div>
               <div className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">
@@ -197,7 +197,7 @@ function TaskCard({
 
           {/* Task Metadata Row */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden pr-6">
+            <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden pr-4">
               <span className="text-[#0E315C]/70 font-medium flex-shrink-0">
                 {task.agent}
               </span>
@@ -212,17 +212,17 @@ function TaskCard({
             </div>
 
             {/* Action buttons */}
-            <div className="flex gap-2 flex-shrink-0">
+            <div className="flex gap-1.5 flex-shrink-0">
               <button
                 onClick={() => onAccept(task.id)}
-                className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-4 py-2 rounded-xl transition-all duration-300 font-medium text-sm shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center gap-1.5"
+                className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-3 py-1.5 rounded-lg transition-all duration-300 font-medium text-sm shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center gap-1"
               >
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Accept
               </button>
               <button
                 onClick={() => onDecline(task.id)}
-                className="px-4 py-2 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-xl hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 font-medium text-sm flex items-center gap-1.5"
+                className="px-3 py-1.5 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-lg hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 font-medium text-sm flex items-center gap-1"
               >
                 <X className="w-3.5 h-3.5" />
                 Decline
@@ -410,10 +410,10 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
           </div>
         ) : (
           <div className={cn(
-            "h-full border border-[#C1D9F6]/50 rounded-3xl mx-2 overflow-hidden transition-all duration-1000",
+            "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <div className="h-full overflow-y-auto px-6 py-6 space-y-5">
+            <div className="h-full overflow-y-auto px-4 py-4 space-y-3">
               {filteredAndSortedTasks.map((task, index) => (
                 <TaskCard
                   key={task.id}
