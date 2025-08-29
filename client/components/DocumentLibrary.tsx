@@ -413,22 +413,14 @@ export default function DocumentLibrary({
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => onToggleOptional(doc.name)}
-                          className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 border backdrop-blur-sm ${
+                          className={`w-6 h-6 rounded-lg flex items-center justify-center transition-colors duration-200 hover:scale-105 border backdrop-blur-sm ${
                             doc.optional
                               ? "bg-[#C5BFEE]/20 text-[#C5BFEE] border-[#C5BFEE]/30 hover:bg-[#C5BFEE]/30"
-                              : "bg-white/60 text-[#0E315C]/60 border-[#C1D9F6]/30 hover:bg-white/80"
+                              : "bg-white/60 text-[#0E315C]/60 border-[#C1D9F6]/30 hover:bg-white/80 hover:text-[#0E315C]/80"
                           }`}
                           title={doc.optional ? "Optional - Click to make required" : "Required - Click to make optional"}
                         >
                           {doc.optional ? (
-                            <svg
-                              className="w-3 h-3"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle cx="12" cy="12" r="10"/>
-                            </svg>
-                          ) : (
                             <svg
                               className="w-3 h-3"
                               fill="none"
@@ -436,7 +428,25 @@ export default function DocumentLibrary({
                               strokeWidth="2"
                               viewBox="0 0 24 24"
                             >
-                              <circle cx="12" cy="12" r="10"/>
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M5 12h14"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M12 8v4m0 4h.01"
+                              />
                             </svg>
                           )}
                         </button>
