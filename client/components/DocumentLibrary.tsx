@@ -394,6 +394,8 @@ export default function DocumentLibrary({
                         onClick={handleReplaceSelection}
                         disabled={isLoading}
                         className={`group w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#8AB5ED] hover:to-[#BFB8EB] text-white px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 hover:scale-[1.02] transform ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
+                        aria-label={`Replace current ${selectedDocuments.length} document${selectedDocuments.length !== 1 ? 's' : ''} with ${pendingTemplate.documents.length} template document${pendingTemplate.documents.length !== 1 ? 's' : ''}`}
+                        aria-describedby="replace-description"
                       >
                         {isLoading ? (
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -404,7 +406,7 @@ export default function DocumentLibrary({
                         )}
                         <span>Replace Current Selection</span>
                       </button>
-                      <p className="text-xs text-[#0E315C]/60 mt-2 text-center">
+                      <p className="text-xs text-[#0E315C]/60 mt-2 text-center" id="replace-description">
                         Remove all {selectedDocuments.length} current document{selectedDocuments.length !== 1 ? 's' : ''} and load {pendingTemplate.documents.length} template document{pendingTemplate.documents.length !== 1 ? 's' : ''}
                       </p>
                     </div>
