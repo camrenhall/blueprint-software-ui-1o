@@ -366,21 +366,6 @@ export default function CaseDetailsNew({
                   />
                 </div>
               </div>
-
-              <div className="grid grid-cols-3 gap-3 mt-4">
-                <div className="text-center p-3 bg-[#99C0F0]/15 backdrop-blur-sm rounded-xl border border-[#99C0F0]/30 hover:bg-[#99C0F0]/25 transition-all duration-300">
-                  <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.approvedDocuments}</div>
-                  <div className="text-xs text-[#0E315C]/70 font-light">Approved</div>
-                </div>
-                <div className="text-center p-3 bg-[#C5BFEE]/15 backdrop-blur-sm rounded-xl border border-[#C5BFEE]/30 hover:bg-[#C5BFEE]/25 transition-all duration-300">
-                  <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.reviewDocuments}</div>
-                  <div className="text-xs text-[#0E315C]/70 font-light">In Review</div>
-                </div>
-                <div className="text-center p-3 bg-[#C1D9F6]/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/30 hover:bg-[#C1D9F6]/25 transition-all duration-300">
-                  <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.timeInQueue}</div>
-                  <div className="text-xs text-[#0E315C]/70 font-light">Total Time</div>
-                </div>
-              </div>
             </div>
 
             {/* Row 2: Documents and Communications - Equal Width */}
