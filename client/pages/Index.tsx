@@ -103,28 +103,46 @@ function IndexContent() {
       {/* Main content area */}
       <div className="relative z-10 h-[calc(100vh-4rem)] ml-96 pt-8 pr-8 pb-8">
         {activeRightContent && isVisible && (
-          <div className="w-full h-full bg-white/20 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-8">
+          <div className="w-full h-full bg-white/50 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-8">
             {activeRightContent === "overview" && (
-              <Overview onClose={() => setActiveRightContent(null)} />
+              <div className="text-4xl text-black">
+                OVERVIEW PAGE - activeRightContent: {activeRightContent}
+                <Overview onClose={() => setActiveRightContent(null)} />
+              </div>
             )}
             {activeRightContent === "create" && (
-              <InlineCreate onClose={() => setActiveRightContent(null)} />
+              <div className="text-4xl text-black">
+                CREATE PAGE - activeRightContent: {activeRightContent}
+                <InlineCreate onClose={() => setActiveRightContent(null)} />
+              </div>
             )}
             {activeRightContent === "review" && (
-              <InlineReview onClose={() => setActiveRightContent(null)} />
+              <div className="text-4xl text-black">
+                REVIEW PAGE - activeRightContent: {activeRightContent}
+                <InlineReview onClose={() => setActiveRightContent(null)} />
+              </div>
             )}
             {activeRightContent === "taskqueue" && (
-              <TaskQueue onClose={() => setActiveRightContent(null)} />
+              <div className="text-4xl text-black">
+                TASK QUEUE PAGE - activeRightContent: {activeRightContent}
+                <TaskQueue onClose={() => setActiveRightContent(null)} />
+              </div>
             )}
             {activeRightContent === "settings" && (
-              <UnifiedSettings
-                selectedCategory={selectedSettingsCategory}
-                onCategorySelect={handleSettingsCategorySelect}
-                onBack={handleSettingsBack}
-              />
+              <div className="text-4xl text-black">
+                SETTINGS PAGE - activeRightContent: {activeRightContent}
+                <UnifiedSettings
+                  selectedCategory={selectedSettingsCategory}
+                  onCategorySelect={handleSettingsCategorySelect}
+                  onBack={handleSettingsBack}
+                />
+              </div>
             )}
             {activeRightContent === "communications" && (
-              <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
+              <div className="text-4xl text-black">
+                COMMUNICATIONS PAGE - activeRightContent: {activeRightContent}
+                <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
+              </div>
             )}
           </div>
         )}
