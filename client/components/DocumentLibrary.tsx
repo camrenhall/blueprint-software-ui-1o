@@ -159,15 +159,15 @@ export default function DocumentLibrary({
             </div>
           </div>
 
-          {/* Templates Section */}
-          {showTemplatesInline && showTemplates && (
-            <div className="border-b border-[#C1D9F6]/20 px-6 py-4 bg-[#C5BFEE]/5 backdrop-blur-sm flex-1 overflow-y-auto document-scroll">
+          {/* Document List or Templates */}
+          <div className="flex-1 overflow-y-auto document-scroll px-6 py-4 rounded-b-3xl">
+            {showTemplatesInline && showTemplates ? (
               <div className="space-y-1.5">
                 {savedTemplates.map((template, index) => (
                   <button
                     key={index}
                     onClick={() => onLoadTemplate?.(template)}
-                    className="w-full text-left p-3 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#C5BFEE]/50 rounded-xl transition-all duration-300 group"
+                    className="w-full text-left p-3 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#C5BFEE]/50 rounded-lg transition-all duration-300 group"
                   >
                     <div className="flex items-center justify-between">
                       <div>
@@ -195,62 +195,59 @@ export default function DocumentLibrary({
                   </button>
                 ))}
               </div>
-            </div>
-          )}
-
-          {/* Document List */}
-          <div className="flex-1 overflow-y-auto document-scroll px-6 py-4 rounded-b-3xl">
-            <div className="space-y-2">
-              {filteredAvailableDocuments.length > 0 ? (
-                filteredAvailableDocuments.map((doc, index) => (
-                  <button
-                    key={index}
-                    onClick={() => onAddDocument(doc)}
-                    className="w-full text-left p-3 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 rounded-lg transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10 hover:scale-[1.01] transform"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-light text-[#0E315C] group-hover:text-[#0E315C]">
-                        {doc}
-                      </span>
-                      <svg
-                        className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] transition-colors"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-                ))
-              ) : (
-                <div className="text-center py-8">
-                  <svg
-                    className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/20"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1}
-                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
-                  <p className="text-[#0E315C]/50 text-sm">
-                    {documentSearch
-                      ? "No documents match your search"
-                      : "All documents have been selected"}
-                  </p>
-                </div>
-              )}
-            </div>
+            ) : (
+              <div className="space-y-1.5">
+                {filteredAvailableDocuments.length > 0 ? (
+                  filteredAvailableDocuments.map((doc, index) => (
+                    <button
+                      key={index}
+                      onClick={() => onAddDocument(doc)}
+                      className="w-full text-left p-3 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 rounded-lg transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10 hover:scale-[1.01] transform"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-light text-[#0E315C] group-hover:text-[#0E315C]">
+                          {doc}
+                        </span>
+                        <svg
+                          className="w-4 h-4 text-[#0E315C]/40 group-hover:text-[#99C0F0] transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+                  ))
+                ) : (
+                  <div className="text-center py-8">
+                    <svg
+                      className="w-12 h-12 mx-auto mb-4 text-[#0E315C]/20"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    <p className="text-[#0E315C]/50 text-sm">
+                      {documentSearch
+                        ? "No documents match your search"
+                        : "All documents have been selected"}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
