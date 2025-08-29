@@ -343,48 +343,48 @@ export default function CaseDetailsNew({
       {/* Main Content - Scrollable with proper height containment */}
       <div className="flex-1 overflow-y-auto min-h-0">
         <div className="p-6">
-          <div className="grid grid-cols-12 gap-6">
-            {/* Left Column - Main Content */}
-            <div className="col-span-8 space-y-5">
-              {/* Case Progress */}
-              <div className={sectionClasses}>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500" />
-                    <span>Case Progress</span>
-                  </h3>
-                  <span className="text-2xl font-light text-[#0E315C]">{progressPercent}%</span>
-                </div>
+          <div className="space-y-6">
+            {/* Row 1: Case Progress - Full Width */}
+            <div className={sectionClasses}>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                  <span>Case Progress</span>
+                </h3>
+                <span className="text-2xl font-light text-[#0E315C]">{progressPercent}%</span>
+              </div>
 
-                <div className="mb-4">
-                  <div className="flex justify-between text-sm text-[#0E315C]/60 mb-3 font-light">
-                    <span>Tasks: {caseStats.tasksComplete} Complete</span>
-                    <span>Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Approved</span>
-                  </div>
-                  <div className="w-full h-2 bg-[#C1D9F6]/30 rounded-full overflow-hidden">
-                    <div
-                      className="h-full bg-gradient-to-r from-emerald-500 to-green-500 rounded-full transition-all duration-1000 shadow-lg"
-                      style={{ width: `${progressPercent}%` }}
-                    />
-                  </div>
+              <div className="mb-4">
+                <div className="flex justify-between text-sm text-[#0E315C]/60 mb-3 font-light">
+                  <span>Tasks: {caseStats.tasksComplete} Complete</span>
+                  <span>Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Approved</span>
                 </div>
-
-                <div className="grid grid-cols-3 gap-3 mt-4">
-                  <div className="text-center p-3 bg-[#99C0F0]/15 backdrop-blur-sm rounded-xl border border-[#99C0F0]/30 hover:bg-[#99C0F0]/25 transition-all duration-300">
-                    <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.approvedDocuments}</div>
-                    <div className="text-xs text-[#0E315C]/70 font-light">Approved</div>
-                  </div>
-                  <div className="text-center p-3 bg-[#C5BFEE]/15 backdrop-blur-sm rounded-xl border border-[#C5BFEE]/30 hover:bg-[#C5BFEE]/25 transition-all duration-300">
-                    <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.reviewDocuments}</div>
-                    <div className="text-xs text-[#0E315C]/70 font-light">In Review</div>
-                  </div>
-                  <div className="text-center p-3 bg-[#C1D9F6]/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/30 hover:bg-[#C1D9F6]/25 transition-all duration-300">
-                    <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.timeInQueue}</div>
-                    <div className="text-xs text-[#0E315C]/70 font-light">Total Time</div>
-                  </div>
+                <div className="w-full h-2 bg-[#C1D9F6]/30 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-emerald-500 to-green-500 rounded-full transition-all duration-1000 shadow-lg"
+                    style={{ width: `${progressPercent}%` }}
+                  />
                 </div>
               </div>
 
+              <div className="grid grid-cols-3 gap-3 mt-4">
+                <div className="text-center p-3 bg-[#99C0F0]/15 backdrop-blur-sm rounded-xl border border-[#99C0F0]/30 hover:bg-[#99C0F0]/25 transition-all duration-300">
+                  <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.approvedDocuments}</div>
+                  <div className="text-xs text-[#0E315C]/70 font-light">Approved</div>
+                </div>
+                <div className="text-center p-3 bg-[#C5BFEE]/15 backdrop-blur-sm rounded-xl border border-[#C5BFEE]/30 hover:bg-[#C5BFEE]/25 transition-all duration-300">
+                  <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.reviewDocuments}</div>
+                  <div className="text-xs text-[#0E315C]/70 font-light">In Review</div>
+                </div>
+                <div className="text-center p-3 bg-[#C1D9F6]/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/30 hover:bg-[#C1D9F6]/25 transition-all duration-300">
+                  <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.timeInQueue}</div>
+                  <div className="text-xs text-[#0E315C]/70 font-light">Total Time</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Row 2: Documents and Communications - Equal Width */}
+            <div className="grid grid-cols-2 gap-6">
               {/* Documents Section */}
               <div className={sectionClasses}>
                 <div className="flex items-center justify-between mb-4">
@@ -394,7 +394,7 @@ export default function CaseDetailsNew({
                   </h3>
                   <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
                 </div>
-                
+
                 <div className="space-y-3 max-h-64 overflow-y-auto">
                   {documents.map((doc, index) => (
                     <div
@@ -427,49 +427,13 @@ export default function CaseDetailsNew({
                 </div>
               </div>
 
-              {/* Recent Activity */}
-              <div className={sectionClasses}>
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
-                    <Clock className="w-5 h-5 text-[#C5BFEE]" />
-                    <span>Recent Activity</span>
-                  </h3>
-                  <span className="text-sm text-[#0E315C]/60 font-light">{recentActivity.length} updates</span>
-                </div>
-                
-                <div className="space-y-3 max-h-64 overflow-y-auto">
-                  {recentActivity.map((activity, index) => (
-                    <div
-                      key={index}
-                      className="flex items-start space-x-3 p-3 bg-white/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/25 hover:bg-white/25 transition-all duration-300"
-                    >
-                      <div className={cn(
-                        "w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm",
-                        activity.importance === "high"
-                          ? "bg-gradient-to-br from-[#C5BFEE]/40 to-[#C5BFEE]/60 text-[#0E315C]"
-                          : "bg-gradient-to-br from-[#99C0F0]/30 to-[#C1D9F6]/30 text-[#0E315C]"
-                      )}>
-                        {getActivityIcon(activity.type)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-[#0E315C] mb-1">{activity.message}</p>
-                        <p className="text-xs text-[#0E315C]/60 font-light">{activity.time}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Sidebar */}
-            <div className="col-span-4 space-y-5">
               {/* Communications */}
               <div className={sectionClasses}>
                 <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
                   <MessageSquare className="w-5 h-5 text-[#C5BFEE]" />
                   <span>Communications</span>
                 </h3>
-                <div className="space-y-3 max-h-48 overflow-y-auto">
+                <div className="space-y-3 max-h-64 overflow-y-auto">
                   {communications.map((comm, index) => (
                     <div
                       key={index}
@@ -488,6 +452,39 @@ export default function CaseDetailsNew({
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+
+            {/* Row 3: Recent Activity - Full Width */}
+            <div className={sectionClasses}>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
+                  <Clock className="w-5 h-5 text-[#C5BFEE]" />
+                  <span>Recent Activity</span>
+                </h3>
+                <span className="text-sm text-[#0E315C]/60 font-light">{recentActivity.length} updates</span>
+              </div>
+
+              <div className="space-y-3 max-h-64 overflow-y-auto">
+                {recentActivity.map((activity, index) => (
+                  <div
+                    key={index}
+                    className="flex items-start space-x-3 p-3 bg-white/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/25 hover:bg-white/25 transition-all duration-300"
+                  >
+                    <div className={cn(
+                      "w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm",
+                      activity.importance === "high"
+                        ? "bg-gradient-to-br from-[#C5BFEE]/40 to-[#C5BFEE]/60 text-[#0E315C]"
+                        : "bg-gradient-to-br from-[#99C0F0]/30 to-[#C1D9F6]/30 text-[#0E315C]"
+                    )}>
+                      {getActivityIcon(activity.type)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-[#0E315C] mb-1">{activity.message}</p>
+                      <p className="text-xs text-[#0E315C]/60 font-light">{activity.time}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
