@@ -396,10 +396,10 @@ export default function CaseDetailsNew({
                     <div
                       key={index}
                       onClick={() => setSelectedDocument(doc.name)}
-                      className="flex items-center justify-between p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-xl cursor-pointer transition-all duration-300 hover:scale-[1.02] border border-[#C1D9F6]/30 hover:border-[#C1D9F6]/50 shadow-sm hover:shadow-md"
+                      className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md hover:bg-white/20 rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.01] border border-white/20 hover:border-white/30 shadow-sm hover:shadow-lg"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/30 rounded-xl flex items-center justify-center shadow-sm">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20">
                           <FileText className="w-5 h-5 text-[#0E315C]" />
                         </div>
                         <div>
@@ -433,7 +433,7 @@ export default function CaseDetailsNew({
                   {communications.map((comm, index) => (
                     <div
                       key={index}
-                      className="p-3 bg-white/20 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/30 hover:bg-white/30 hover:border-[#C1D9F6]/50 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-md"
+                      className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-2">
