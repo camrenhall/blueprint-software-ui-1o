@@ -404,49 +404,65 @@ export default function DocumentLibrary({
                 filteredSelectedDocuments.map((doc, index) => (
                   <div
                     key={index}
-                    className="p-3 bg-white/50 border border-[#C1D9F6]/30 rounded-lg backdrop-blur-sm group hover:shadow-lg hover:shadow-[#C5BFEE]/10 transition-all duration-300"
+                    className="p-2.5 bg-white/50 border border-[#C1D9F6]/30 rounded-lg backdrop-blur-sm group hover:shadow-lg hover:shadow-[#C5BFEE]/10 transition-all duration-300"
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex-1 mr-3">
-                        <span className="text-sm font-light text-[#0E315C] block">
-                          {doc.name}
-                        </span>
-                        <div className="flex items-center mt-1.5">
-                          <button
-                            onClick={() => onToggleOptional(doc.name)}
-                            className={`flex items-center space-x-2 text-xs px-3 py-1 rounded-full transition-all duration-300 ${
-                              doc.optional
-                                ? "bg-[#C5BFEE]/20 text-[#C5BFEE] border border-[#C5BFEE]/30"
-                                : "bg-[#99C0F0]/20 text-[#99C0F0] border border-[#99C0F0]/30"
-                            }`}
-                          >
-                            <span
-                              className={`w-2 h-2 rounded-full ${doc.optional ? "bg-[#C5BFEE]" : "bg-[#99C0F0]"}`}
-                            />
-                            <span>
-                              {doc.optional ? "Optional" : "Required"}
-                            </span>
-                          </button>
-                        </div>
-                      </div>
-                      <button
-                        onClick={() => onRemoveDocument(doc.name)}
-                        className="w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-red-500 hover:bg-red-50/80 border border-[#C1D9F6]/30 hover:border-red-200 backdrop-blur-sm"
-                      >
-                        <svg
-                          className="w-4 h-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                      <span className="text-sm font-light text-[#0E315C] flex-1 mr-3">
+                        {doc.name}
+                      </span>
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => onToggleOptional(doc.name)}
+                          className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 border backdrop-blur-sm ${
+                            doc.optional
+                              ? "bg-[#C5BFEE]/20 text-[#C5BFEE] border-[#C5BFEE]/30 hover:bg-[#C5BFEE]/30"
+                              : "bg-[#99C0F0]/20 text-[#99C0F0] border-[#99C0F0]/30 hover:bg-[#99C0F0]/30"
+                          }`}
+                          title={doc.optional ? "Optional - Click to make required" : "Required - Click to make optional"}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      </button>
+                          {doc.optional ? (
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                              />
+                            </svg>
+                          ) : (
+                            <svg
+                              className="w-3 h-3"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                          )}
+                        </button>
+                        <button
+                          onClick={() => onRemoveDocument(doc.name)}
+                          className="w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-red-500 hover:bg-red-50/80 border border-[#C1D9F6]/30 hover:border-red-200 backdrop-blur-sm"
+                        >
+                          <svg
+                            className="w-3 h-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))
