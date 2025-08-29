@@ -58,6 +58,43 @@ export default function DocumentLibrary({
     doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase()),
   );
 
+  // Handle template click
+  const handleTemplateClick = (template: Template) => {
+    if (selectedDocuments.length > 0) {
+      setConflictTemplate(template);
+      setShowTemplateConflict(true);
+    } else {
+      onLoadTemplate?.(template);
+    }
+  };
+
+  // Handle template conflict actions
+  const handleTemplateReplace = () => {
+    if (conflictTemplate) {
+      onLoadTemplate?.(conflictTemplate);
+      setShowTemplateConflict(false);
+      setConflictTemplate(null);
+    }
+  };
+
+  const handleTemplateAdd = () => {
+    if (conflictTemplate) {
+      // Add template documents to current selection
+      conflictTemplate.documents.forEach(docName => {
+        if (!selectedDocuments.find(doc => doc.name === docName)) {
+          onAddDocument(docName);
+        }
+      });
+      setShowTemplateConflict(false);
+      setConflictTemplate(null);
+    }
+  };
+
+  const handleTemplateCancel = () => {
+    setShowTemplateConflict(false);
+    setConflictTemplate(null);
+  };
+
   return (
     <div className="grid grid-cols-12 gap-6 h-full max-h-full">
       {/* Document Library Panel - Left Side */}
