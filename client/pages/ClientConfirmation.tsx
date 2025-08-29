@@ -4,7 +4,7 @@ import { GlassPanel } from "@/components/ui/glass-panel";
 import { PageContainer } from "@/components/ui/page-container";
 import { Button } from "@/components/ui/button";
 import { formatFileSize, getFileTypeIcon } from "@/lib/uploadUtils";
-import { CheckCircle2, FileText, Upload, Download, LogOut, Clock, User } from "lucide-react";
+import { CheckCircle2, FileText, Upload, Download, LogOut, Clock, User, Image, File } from "lucide-react";
 
 interface UploadedFileData {
   name: string;
