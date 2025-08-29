@@ -59,8 +59,7 @@ export default function Overview({ onClose }: OverviewProps) {
             What's on the agenda today?
           </h1>
           <p className="text-[#0E315C]/60 text-lg font-light max-w-lg mx-auto leading-relaxed">
-            Review your recent activity and manage your legal workflow
-            efficiently.
+            Review your recent activity and manage your legal workflow.
           </p>
         </div>
 
