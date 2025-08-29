@@ -186,7 +186,7 @@ export default function ClientConfirmation() {
                     >
                       <div className="flex items-center space-x-3 min-w-0 flex-1">
                         <div className="flex-shrink-0">
-                          {renderFileIcon(file.name)}
+                          {renderFileIcon(file.name, index)}
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-sm text-[#0E315C] truncate">
