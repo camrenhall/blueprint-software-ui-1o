@@ -160,38 +160,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             </div>
 
             <div className="space-y-4 px-2 py-2">
-              <button
-                onClick={() => handleMethodSelect("ai")}
-                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.02] transform"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
-                    <svg
-                      className="w-5 h-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-base font-light text-[#0E315C] mb-1">
-                      AI Assist
-                    </h3>
-                    <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
-                      Describe your case and let AI suggest the most relevant
-                      documents to request
-                    </p>
-                  </div>
-                </div>
-              </button>
-
+              {/* Manual Select - Active */}
               <button
                 onClick={() => handleMethodSelect("manual")}
                 className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C5BFEE]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C5BFEE]/5 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.02] transform"
@@ -224,14 +193,51 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                 </div>
               </button>
 
+              {/* AI Assist - Inactive */}
               <button
-                onClick={() => handleMethodSelect("questionnaire")}
-                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C1D9F6]/70 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C1D9F6]/5 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.02] transform"
+                disabled
+                className="w-full bg-white/10 backdrop-blur-md border border-[#C1D9F6]/20 p-4 rounded-2xl text-left cursor-not-allowed opacity-50"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-gradient-to-br from-[#C1D9F6]/80 to-[#99C0F0]/60 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                  <div className="w-10 h-10 bg-gradient-to-br from-gray-300/50 to-gray-400/40 rounded-xl flex items-center justify-center flex-shrink-0">
                     <svg
-                      className="w-5 h-5 text-white"
+                      className="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-base font-light text-gray-400 mb-1">
+                      AI Assist
+                      <span className="ml-2 text-xs text-gray-400 bg-gray-200/50 px-2 py-0.5 rounded-full">
+                        Coming Soon
+                      </span>
+                    </h3>
+                    <p className="text-gray-400/70 text-sm leading-relaxed font-light">
+                      Describe your case and let AI suggest the most relevant
+                      documents to request
+                    </p>
+                  </div>
+                </div>
+              </button>
+
+              {/* Questionnaire - Inactive */}
+              <button
+                disabled
+                className="w-full bg-white/10 backdrop-blur-md border border-[#C1D9F6]/20 p-4 rounded-2xl text-left cursor-not-allowed opacity-50"
+              >
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-gray-300/50 to-gray-400/40 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <svg
+                      className="w-5 h-5 text-gray-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -245,10 +251,13 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-base font-light text-[#0E315C] mb-1">
+                    <h3 className="text-base font-light text-gray-400 mb-1">
                       Questionnaire
+                      <span className="ml-2 text-xs text-gray-400 bg-gray-200/50 px-2 py-0.5 rounded-full">
+                        Coming Soon
+                      </span>
                     </h3>
-                    <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
+                    <p className="text-gray-400/70 text-sm leading-relaxed font-light">
                       Send a structured questionnaire tailored to your case type
                     </p>
                   </div>
