@@ -56,7 +56,7 @@ export default function Overview({ onClose }: OverviewProps) {
             </div>
           </div>
           <h1 className="text-4xl font-light text-[#0E315C] mb-3 tracking-wide">
-            Welcome to Luceron
+            What's on the agenda today?
           </h1>
           <p className="text-[#0E315C]/60 text-lg font-light max-w-lg mx-auto leading-relaxed">
             Review your recent activity and manage your legal workflow
