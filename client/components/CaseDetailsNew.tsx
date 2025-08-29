@@ -130,6 +130,7 @@ export default function CaseDetailsNew({
     totalDocuments: documents.length,
     approvedDocuments: documents.filter((doc) => doc.status === "approved").length,
     reviewDocuments: documents.filter((doc) => doc.status === "review").length,
+    rejectedDocuments: documents.filter((doc) => doc.status === "rejected").length,
     caseType: selectedCase.caseType || "Employment",
     dateCompleted: selectedCase.dateCompleted || "Jun 28, 2025",
     tasksComplete: selectedCase.tasksComplete || "7",
