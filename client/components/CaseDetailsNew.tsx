@@ -476,7 +476,7 @@ export default function CaseDetailsNew({
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-[#0E315C]/60 font-light">Avg Response</span>
-                    <span className="text-sm font-medium text-emerald-600">{caseStats.avgResponseTime}</span>
+                    <span className="text-sm font-medium text-[#99C0F0]">{caseStats.avgResponseTime}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-[#0E315C]/60 font-light">Total Documents</span>
@@ -484,7 +484,7 @@ export default function CaseDetailsNew({
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-[#0E315C]/60 font-light">Completion Rate</span>
-                    <span className="text-sm font-medium text-emerald-600">{progressPercent}%</span>
+                    <span className="text-sm font-medium text-[#99C0F0]">{progressPercent}%</span>
                   </div>
                 </div>
               </div>
@@ -499,7 +499,7 @@ export default function CaseDetailsNew({
                   {communications.map((comm, index) => (
                     <div
                       key={index}
-                      className="p-3 bg-[#C1D9F6]/10 rounded-xl border border-[#C1D9F6]/20 hover:bg-[#C1D9F6]/20 transition-all duration-300 cursor-pointer"
+                      className="p-3 bg-white/20 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/30 hover:bg-white/30 hover:border-[#C1D9F6]/50 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-md"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-2">
@@ -520,13 +520,13 @@ export default function CaseDetailsNew({
               <div className={sectionClasses}>
                 <h3 className="text-lg font-light text-[#0E315C] mb-4">Quick Actions</h3>
                 <div className="space-y-3">
-                  <button className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#0E315C] text-white py-3 px-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg font-light text-sm">
+                  <button className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#0E315C] text-white py-3 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl font-light text-sm backdrop-blur-sm">
                     Generate Report
                   </button>
-                  <button className="w-full bg-[#C1D9F6]/20 hover:bg-[#C1D9F6]/30 text-[#0E315C] py-3 px-4 rounded-xl transition-all duration-300 hover:scale-105 font-light text-sm">
+                  <button className="w-full bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/40 hover:bg-white/35 hover:border-[#C1D9F6]/60 text-[#0E315C] py-3 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] font-light text-sm shadow-sm hover:shadow-md">
                     Contact Client
                   </button>
-                  <button className="w-full bg-[#C5BFEE]/20 hover:bg-[#C5BFEE]/30 text-[#0E315C] py-3 px-4 rounded-xl transition-all duration-300 hover:scale-105 font-light text-sm">
+                  <button className="w-full bg-white/25 backdrop-blur-sm border border-[#C5BFEE]/40 hover:bg-white/35 hover:border-[#C5BFEE]/60 text-[#0E315C] py-3 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] font-light text-sm shadow-sm hover:shadow-md">
                     Archive Case
                   </button>
                 </div>
