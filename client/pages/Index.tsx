@@ -100,65 +100,33 @@ function IndexContent() {
       {/* Fixed positioned panels - outside of transformed containers */}
       <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
 
-      {/* Main content area - subtract navbar height from screen height */}
-      <div className="relative z-10 h-[calc(100vh-4rem)]">
-        {/* All Pages - Unified PageContainer */}
-        {activeRightContent && (
-          <PageContainer
-            variant="sidebar-offset"
-            glassIntensity="light"
-            radius="md"
-            className={cn(
-              "transition-all duration-1000 ease-out",
-              isVisible
-                ? "opacity-100"
-                : "opacity-0 pointer-events-none",
+      {/* Main content area */}
+      <div className="relative z-10 h-[calc(100vh-4rem)] ml-96 pt-8 pr-8 pb-8">
+        {activeRightContent && isVisible && (
+          <div className="w-full h-full bg-white/20 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-8">
+            {activeRightContent === "overview" && (
+              <Overview onClose={() => setActiveRightContent(null)} />
             )}
-          >
-            <div className="absolute top-0 left-0 right-0 bottom-0 p-8">
-              <div
-                className={cn(
-                  "w-full h-full transition-opacity duration-800 ease-out delay-200",
-                  isVisible ? "opacity-100" : "opacity-0",
-                )}
-              >
-                {activeRightContent === "overview" && (
-                  <div className="w-full h-full relative">
-                    <Overview onClose={() => setActiveRightContent(null)} />
-                  </div>
-                )}
-                {activeRightContent === "create" && (
-                  <div className="w-full h-full relative">
-                    <InlineCreate onClose={() => setActiveRightContent(null)} />
-                  </div>
-                )}
-                {activeRightContent === "review" && (
-                  <div className="w-full h-full mx-auto">
-                    <InlineReview onClose={() => setActiveRightContent(null)} />
-                  </div>
-                )}
-                {activeRightContent === "taskqueue" && (
-                  <div className="w-full h-full mx-auto">
-                    <TaskQueue onClose={() => setActiveRightContent(null)} />
-                  </div>
-                )}
-                {activeRightContent === "settings" && (
-                  <div className="w-full h-full mx-auto">
-                    <UnifiedSettings
-                      selectedCategory={selectedSettingsCategory}
-                      onCategorySelect={handleSettingsCategorySelect}
-                      onBack={handleSettingsBack}
-                    />
-                  </div>
-                )}
-                {activeRightContent === "communications" && (
-                  <div className="w-full h-full mx-auto">
-                    <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
-                  </div>
-                )}
-              </div>
-            </div>
-          </PageContainer>
+            {activeRightContent === "create" && (
+              <InlineCreate onClose={() => setActiveRightContent(null)} />
+            )}
+            {activeRightContent === "review" && (
+              <InlineReview onClose={() => setActiveRightContent(null)} />
+            )}
+            {activeRightContent === "taskqueue" && (
+              <TaskQueue onClose={() => setActiveRightContent(null)} />
+            )}
+            {activeRightContent === "settings" && (
+              <UnifiedSettings
+                selectedCategory={selectedSettingsCategory}
+                onCategorySelect={handleSettingsCategorySelect}
+                onBack={handleSettingsBack}
+              />
+            )}
+            {activeRightContent === "communications" && (
+              <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
+            )}
+          </div>
         )}
 
         {/* Subtle ambient elements */}
