@@ -15,7 +15,9 @@ function IndexContent() {
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
     "overview",
   );
-  const [selectedSettingsCategory, setSelectedSettingsCategory] = useState<string | null>(null);
+  const [selectedSettingsCategory, setSelectedSettingsCategory] = useState<
+    string | null
+  >(null);
 
   useEffect(() => {
     // Fade in the menu after a short delay
@@ -92,7 +94,11 @@ function IndexContent() {
     <div className="h-screen w-full grid grid-cols-[400px_1fr] overflow-hidden">
       {/* Sidebar */}
       <div className="relative">
-        <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
+        <GlassSidePanel
+          items={menuItems}
+          isVisible={isVisible}
+          taskQueueCount={taskCount}
+        />
       </div>
 
       {/* Main Content */}
@@ -120,7 +126,9 @@ function IndexContent() {
                 />
               )}
               {activeRightContent === "communications" && (
-                <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
+                <CommunicationsPanel
+                  onClose={() => setActiveRightContent(null)}
+                />
               )}
             </div>
           </div>

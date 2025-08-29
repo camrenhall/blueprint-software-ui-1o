@@ -22,7 +22,7 @@ export default function Overview({ onClose }: OverviewProps) {
       color: "from-[#99C0F0] to-[#C5BFEE]",
     },
     {
-      id: "2", 
+      id: "2",
       title: "Client Meeting - Sarah Wilson",
       description: "Initial consultation completed",
       time: "4 hours ago",
@@ -59,7 +59,8 @@ export default function Overview({ onClose }: OverviewProps) {
             Welcome to Luceron
           </h1>
           <p className="text-[#0E315C]/60 text-lg font-light max-w-lg mx-auto leading-relaxed">
-            Review your recent activity and manage your legal workflow efficiently.
+            Review your recent activity and manage your legal workflow
+            efficiently.
           </p>
         </div>
 

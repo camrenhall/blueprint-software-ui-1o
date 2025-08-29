@@ -4,7 +4,17 @@ import { GlassPanel } from "@/components/ui/glass-panel";
 import { PageContainer } from "@/components/ui/page-container";
 import { Button } from "@/components/ui/button";
 import { formatFileSize, getFileTypeIcon } from "@/lib/uploadUtils";
-import { CheckCircle2, FileText, Upload, Download, LogOut, Clock, User, Image, File } from "lucide-react";
+import {
+  CheckCircle2,
+  FileText,
+  Upload,
+  Download,
+  LogOut,
+  Clock,
+  User,
+  Image,
+  File,
+} from "lucide-react";
 
 interface UploadedFileData {
   name: string;
@@ -26,16 +36,16 @@ export default function ClientConfirmation() {
 
   // Load uploaded files and client info
   useEffect(() => {
-    const session = localStorage.getItem('clientSession');
-    const files = localStorage.getItem('uploadedFiles');
-    
+    const session = localStorage.getItem("clientSession");
+    const files = localStorage.getItem("uploadedFiles");
+
     if (!session) {
-      navigate('/client/login');
+      navigate("/client/login");
       return;
     }
 
     if (!files) {
-      navigate('/client/upload');
+      navigate("/client/upload");
       return;
     }
 
@@ -45,22 +55,22 @@ export default function ClientConfirmation() {
       setClientEmail(sessionData.email);
       setUploadedFiles(filesData);
     } catch (error) {
-      console.error('Failed to parse stored data:', error);
-      navigate('/client/upload');
+      console.error("Failed to parse stored data:", error);
+      navigate("/client/upload");
     }
   }, [navigate]);
 
   const handleUploadMore = () => {
     // Clear the uploaded files from storage so they don't interfere
-    localStorage.removeItem('uploadedFiles');
-    navigate('/client/upload');
+    localStorage.removeItem("uploadedFiles");
+    navigate("/client/upload");
   };
 
   const handleLogout = () => {
     // Clear all client session data
-    localStorage.removeItem('clientSession');
-    localStorage.removeItem('uploadedFiles');
-    navigate('/client/login');
+    localStorage.removeItem("clientSession");
+    localStorage.removeItem("uploadedFiles");
+    navigate("/client/login");
   };
 
   const renderFileIcon = (filename: string, index: number) => {
@@ -68,18 +78,18 @@ export default function ClientConfirmation() {
 
     // Color palette rotation
     const colors = [
-      "text-[#99C0F0]",  // Blue
-      "text-[#C5BFEE]",  // Purple
+      "text-[#99C0F0]", // Blue
+      "text-[#C5BFEE]", // Purple
     ];
 
     const iconClass = `w-5 h-5 ${colors[index % colors.length]}`;
 
     switch (iconType) {
-      case 'pdf':
+      case "pdf":
         return <FileText className={iconClass} />;
-      case 'image':
+      case "image":
         return <Image className={iconClass} />;
-      case 'document':
+      case "document":
         return <FileText className={iconClass} />;
       default:
         return <File className={iconClass} />;
@@ -87,16 +97,20 @@ export default function ClientConfirmation() {
   };
 
   const totalSize = uploadedFiles.reduce((sum, file) => sum + file.size, 0);
-  const uploadTime = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
+  const uploadTime = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 
   return (
-    <PageContainer variant="fullscreen" glassIntensity="light" className="p-4 sm:p-6 lg:p-8">
+    <PageContainer
+      variant="fullscreen"
+      glassIntensity="light"
+      className="p-4 sm:p-6 lg:p-8"
+    >
       <div
         className={`max-w-4xl mx-auto transition-all duration-1000 ease-out ${
           isAnimated
@@ -142,9 +156,7 @@ export default function ClientConfirmation() {
                     <div className="text-xl font-semibold text-[#0E315C]">
                       {formatFileSize(totalSize)}
                     </div>
-                    <div className="text-xs text-[#0E315C]/60">
-                      Total Size
-                    </div>
+                    <div className="text-xs text-[#0E315C]/60">Total Size</div>
                   </div>
                 </div>
 
@@ -213,7 +225,7 @@ export default function ClientConfirmation() {
               <h3 className="text-lg font-medium text-[#0E315C]">
                 What happens next?
               </h3>
-              
+
               <div className="space-y-3">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-6 h-6 bg-[#99C0F0]/20 rounded-full flex items-center justify-center text-xs text-[#0E315C] font-medium mt-0.5">
@@ -224,11 +236,12 @@ export default function ClientConfirmation() {
                       Document Review
                     </p>
                     <p className="text-xs text-[#0E315C]/60">
-                      Your legal team will review all uploaded documents within 2-3 business days.
+                      Your legal team will review all uploaded documents within
+                      2-3 business days.
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-6 h-6 bg-[#C5BFEE]/20 rounded-full flex items-center justify-center text-xs text-[#0E315C] font-medium mt-0.5">
                     2
@@ -238,11 +251,12 @@ export default function ClientConfirmation() {
                       Follow-up Communication
                     </p>
                     <p className="text-xs text-[#0E315C]/60">
-                      You'll receive an email confirmation and any follow-up questions if needed.
+                      You'll receive an email confirmation and any follow-up
+                      questions if needed.
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-6 h-6 bg-[#C1D9F6]/20 rounded-full flex items-center justify-center text-xs text-[#0E315C] font-medium mt-0.5">
                     3
@@ -252,7 +266,8 @@ export default function ClientConfirmation() {
                       Case Progression
                     </p>
                     <p className="text-xs text-[#0E315C]/60">
-                      Your documents will be incorporated into your case file and next steps will be communicated.
+                      Your documents will be incorporated into your case file
+                      and next steps will be communicated.
                     </p>
                   </div>
                 </div>
@@ -263,9 +278,10 @@ export default function ClientConfirmation() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4">
             <div className="text-sm text-[#0E315C]/60 text-center sm:text-left">
-              Need to upload additional documents? You can add more files or logout when finished.
+              Need to upload additional documents? You can add more files or
+              logout when finished.
             </div>
-            
+
             <div className="flex space-x-4">
               <Button
                 variant="outline"
@@ -275,7 +291,7 @@ export default function ClientConfirmation() {
                 <LogOut className="w-4 h-4" />
                 <span>Logout</span>
               </Button>
-              
+
               <Button
                 onClick={handleUploadMore}
                 className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-6 py-2 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2"
@@ -285,7 +301,6 @@ export default function ClientConfirmation() {
               </Button>
             </div>
           </div>
-
         </div>
       </div>
     </PageContainer>

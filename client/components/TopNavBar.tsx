@@ -138,8 +138,8 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 <Bell className="w-4 h-4 text-[#0E315C]/70" />
                 {notifications > 0 && (
                   <Badge className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs bg-[#C5BFEE]/80 text-white border border-white/30 animate-pulse">
-                  {notifications}
-                </Badge>
+                    {notifications}
+                  </Badge>
                 )}
               </Button>
 

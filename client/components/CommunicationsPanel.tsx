@@ -14,13 +14,16 @@ import {
   ChevronDown,
   ChevronRight,
   Building,
-  Reply
+  Reply,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { CommunicationsSearchFilterBar, CommunicationsSortOption } from "@/components/CommunicationsSearchFilterBar";
+import {
+  CommunicationsSearchFilterBar,
+  CommunicationsSortOption,
+} from "@/components/CommunicationsSearchFilterBar";
 
 interface CommunicationsPanelProps {
   onClose: () => void;
@@ -43,7 +46,11 @@ interface ClientConversation {
   lastActivity: string;
   unreadCount: number;
   priority: "high" | "medium" | "low";
-  purpose: "document_request" | "follow_up" | "case_update" | "appointment_reminder";
+  purpose:
+    | "document_request"
+    | "follow_up"
+    | "case_update"
+    | "appointment_reminder";
   messages: EmailMessage[];
   responseReceived: boolean;
 }
@@ -63,24 +70,26 @@ const mockConversations: ClientConversation[] = [
       {
         id: "1a",
         subject: "Document Request - Medical Records Required",
-        content: "Dear Ms. Johnson, I hope this email finds you well. We need your medical records from St. Mary's Hospital for your personal injury case. Please provide records from January 2024 to present. You can upload them securely through our client portal or email them directly. If you have any questions, please don't hesitate to reach out.",
+        content:
+          "Dear Ms. Johnson, I hope this email finds you well. We need your medical records from St. Mary's Hospital for your personal injury case. Please provide records from January 2024 to present. You can upload them securely through our client portal or email them directly. If you have any questions, please don't hesitate to reach out.",
         sentAt: "2024-01-15T10:30:00Z",
         status: "opened",
-        sender: "firm"
+        sender: "firm",
       },
       {
-        id: "1b", 
+        id: "1b",
         subject: "Follow-up: Medical Records Still Needed",
-        content: "Dear Ms. Johnson, This is a follow-up regarding the medical records we requested. We understand gathering documents can take time, but we need these records to proceed with your case effectively. Please let us know if you need assistance or have any questions about the process.",
+        content:
+          "Dear Ms. Johnson, This is a follow-up regarding the medical records we requested. We understand gathering documents can take time, but we need these records to proceed with your case effectively. Please let us know if you need assistance or have any questions about the process.",
         sentAt: "2024-01-16T09:15:00Z",
         status: "delivered",
-        sender: "firm"
-      }
-    ]
+        sender: "firm",
+      },
+    ],
   },
   {
     id: "2",
-    clientEmail: "mike.chen@email.com", 
+    clientEmail: "mike.chen@email.com",
     clientName: "Mike Chen",
     caseNumber: "CASE-2024-002",
     lastActivity: "2024-01-14T18:30:00Z",
@@ -92,25 +101,27 @@ const mockConversations: ClientConversation[] = [
       {
         id: "2a",
         subject: "Case Update - Deposition Scheduled",
-        content: "Dear Mr. Chen, Your deposition has been scheduled for February 12th at 10:00 AM at our office. Please arrive 15 minutes early and bring a valid ID. We will prepare you beforehand with a preparation session scheduled for February 8th. Please confirm your availability.",
+        content:
+          "Dear Mr. Chen, Your deposition has been scheduled for February 12th at 10:00 AM at our office. Please arrive 15 minutes early and bring a valid ID. We will prepare you beforehand with a preparation session scheduled for February 8th. Please confirm your availability.",
         sentAt: "2024-01-14T15:45:00Z",
         status: "replied",
-        sender: "firm"
+        sender: "firm",
       },
       {
         id: "2b",
         subject: "Re: Case Update - Deposition Scheduled",
-        content: "Thank you for the update. I can confirm my availability for both the preparation session on February 8th and the deposition on February 12th. I'll make sure to arrive early and bring my ID. Looking forward to moving this case forward.",
+        content:
+          "Thank you for the update. I can confirm my availability for both the preparation session on February 8th and the deposition on February 12th. I'll make sure to arrive early and bring my ID. Looking forward to moving this case forward.",
         sentAt: "2024-01-14T18:30:00Z",
         status: "delivered",
-        sender: "client"
-      }
-    ]
+        sender: "client",
+      },
+    ],
   },
   {
     id: "3",
     clientEmail: "alex.rivera@email.com",
-    clientName: "Alex Rivera", 
+    clientName: "Alex Rivera",
     caseNumber: "CASE-2024-003",
     lastActivity: "2024-01-13T12:45:00Z",
     unreadCount: 0,
@@ -121,36 +132,43 @@ const mockConversations: ClientConversation[] = [
       {
         id: "3a",
         subject: "Insurance Documentation Required",
-        content: "Dear Mr. Rivera, To proceed with your case, we need your insurance policy details and claim numbers. Please provide: 1) Your insurance policy number, 2) Claim reference numbers, 3) Insurance company contact information. You can reply to this email or upload documents through our secure portal.",
+        content:
+          "Dear Mr. Rivera, To proceed with your case, we need your insurance policy details and claim numbers. Please provide: 1) Your insurance policy number, 2) Claim reference numbers, 3) Insurance company contact information. You can reply to this email or upload documents through our secure portal.",
         sentAt: "2024-01-12T09:15:00Z",
         status: "opened",
-        sender: "firm"
+        sender: "firm",
       },
       {
         id: "3b",
         subject: "Follow-up - Insurance Documentation Still Needed",
-        content: "Dear Mr. Rivera, Following up on our previous request for insurance documentation. We still need your insurance policy details and claim numbers to proceed with your case. This is the second request - please respond within 5 business days to avoid delays in your case processing.",
+        content:
+          "Dear Mr. Rivera, Following up on our previous request for insurance documentation. We still need your insurance policy details and claim numbers to proceed with your case. This is the second request - please respond within 5 business days to avoid delays in your case processing.",
         sentAt: "2024-01-13T09:15:00Z",
         status: "delivered",
-        sender: "firm"
+        sender: "firm",
       },
       {
         id: "3c",
         subject: "Urgent: Final Notice - Insurance Documentation Required",
-        content: "Dear Mr. Rivera, This is our final notice regarding the insurance documentation required for your case. Without this information, we cannot proceed and may need to pause case activities. Please respond immediately or contact our office directly. We're here to help if you need assistance gathering these documents.",
+        content:
+          "Dear Mr. Rivera, This is our final notice regarding the insurance documentation required for your case. Without this information, we cannot proceed and may need to pause case activities. Please respond immediately or contact our office directly. We're here to help if you need assistance gathering these documents.",
         sentAt: "2024-01-13T12:45:00Z",
         status: "sent",
-        sender: "firm"
-      }
-    ]
-  }
+        sender: "firm",
+      },
+    ],
+  },
 ];
 
-export default function CommunicationsPanel({ onClose }: CommunicationsPanelProps) {
-  const [selectedConversation, setSelectedConversation] = useState<ClientConversation | null>(null);
+export default function CommunicationsPanel({
+  onClose,
+}: CommunicationsPanelProps) {
+  const [selectedConversation, setSelectedConversation] =
+    useState<ClientConversation | null>(null);
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState<CommunicationsSortOption>("lastActivity");
+  const [sortBy, setSortBy] =
+    useState<CommunicationsSortOption>("lastActivity");
   const [expandedMessage, setExpandedMessage] = useState<string | null>(null);
 
   const getStatusIcon = (status: EmailMessage["status"]) => {
@@ -186,8 +204,10 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
-    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60));
-    
+    const diffInHours = Math.floor(
+      (now.getTime() - date.getTime()) / (1000 * 60 * 60),
+    );
+
     if (diffInHours < 1) return "Just now";
     if (diffInHours < 24) return `${diffInHours}h ago`;
     if (diffInHours < 48) return "Yesterday";
@@ -196,10 +216,10 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
 
   // Filter toggle function
   const toggleFilter = (filterId: string) => {
-    setActiveFilters(prev =>
+    setActiveFilters((prev) =>
       prev.includes(filterId)
-        ? prev.filter(id => id !== filterId)
-        : [...prev, filterId]
+        ? prev.filter((id) => id !== filterId)
+        : [...prev, filterId],
     );
   };
 
@@ -215,21 +235,23 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
     // Apply search filter
     if (searchValue.trim()) {
       const search = searchValue.toLowerCase();
-      filtered = filtered.filter(conversation =>
-        conversation.clientName.toLowerCase().includes(search) ||
-        conversation.clientEmail.toLowerCase().includes(search) ||
-        conversation.caseNumber.toLowerCase().includes(search) ||
-        conversation.messages.some(msg =>
-          msg.subject.toLowerCase().includes(search) ||
-          msg.content.toLowerCase().includes(search)
-        )
+      filtered = filtered.filter(
+        (conversation) =>
+          conversation.clientName.toLowerCase().includes(search) ||
+          conversation.clientEmail.toLowerCase().includes(search) ||
+          conversation.caseNumber.toLowerCase().includes(search) ||
+          conversation.messages.some(
+            (msg) =>
+              msg.subject.toLowerCase().includes(search) ||
+              msg.content.toLowerCase().includes(search),
+          ),
       );
     }
 
     // Apply status filters
     if (activeFilters.length > 0) {
-      filtered = filtered.filter(conversation => {
-        return activeFilters.some(filter => {
+      filtered = filtered.filter((conversation) => {
+        return activeFilters.some((filter) => {
           switch (filter) {
             case "unread":
               return conversation.unreadCount > 0;
@@ -248,7 +270,10 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
     const sorted = [...filtered].sort((a, b) => {
       switch (sortBy) {
         case "lastActivity":
-          return new Date(b.lastActivity).getTime() - new Date(a.lastActivity).getTime();
+          return (
+            new Date(b.lastActivity).getTime() -
+            new Date(a.lastActivity).getTime()
+          );
         case "clientName":
           return a.clientName.localeCompare(b.clientName);
         case "emailCount":
@@ -280,9 +305,9 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
             </p>
           </div>
         </div>
-        <Button 
-          variant="ghost" 
-          size="sm" 
+        <Button
+          variant="ghost"
+          size="sm"
           onClick={onClose}
           className="text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/20 rounded-full"
         >
@@ -308,7 +333,10 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-light text-[#0E315C]">Conversations</h2>
-            <Badge variant="secondary" className="bg-white/60 text-[#0E315C] border-white/40 backdrop-blur-sm">
+            <Badge
+              variant="secondary"
+              className="bg-white/60 text-[#0E315C] border-white/40 backdrop-blur-sm"
+            >
               {filteredAndSortedConversations.length}
             </Badge>
           </div>
@@ -317,9 +345,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
             {filteredAndSortedConversations.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <Mail className="w-12 h-12 text-[#99C0F0]/50 mb-4" />
-                <p className="text-[#0E315C]/60 mb-2">
-                  No conversations found
-                </p>
+                <p className="text-[#0E315C]/60 mb-2">No conversations found</p>
                 <p className="text-sm text-[#0E315C]/40">
                   Try adjusting your search or filters
                 </p>
@@ -335,7 +361,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                     selectedConversation?.id === conversation.id
                       ? "bg-white/70 border-[#99C0F0]/60 shadow-xl scale-[1.02]"
                       : "bg-white/50 border-white/40 hover:bg-white/60 hover:border-[#99C0F0]/50",
-                    "backdrop-blur-md shadow-lg"
+                    "backdrop-blur-md shadow-lg",
                   )}
                 >
                   {/* Glass effect layers */}
@@ -386,7 +412,11 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                     {/* Status indicator */}
                     <div className="flex items-center justify-end">
                       <div className="flex items-center space-x-1">
-                        {getStatusIcon(conversation.messages[conversation.messages.length - 1].status)}
+                        {getStatusIcon(
+                          conversation.messages[
+                            conversation.messages.length - 1
+                          ].status,
+                        )}
                       </div>
                     </div>
                   </div>
@@ -401,32 +431,50 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
           {/* Enhanced glassmorphism background */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-[#C1D9F6]/25 to-white/30 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl" />
           <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/15 via-transparent to-[#C5BFEE]/15 rounded-2xl" />
-          
+
           <div className="relative p-6">
             <h2 className="text-lg font-light text-[#0E315C] mb-4">
-              {selectedConversation ? `Email History - ${selectedConversation.clientName}` : "Select a conversation to view emails"}
+              {selectedConversation
+                ? `Email History - ${selectedConversation.clientName}`
+                : "Select a conversation to view emails"}
             </h2>
-            
+
             {selectedConversation ? (
               <div className="space-y-4 max-h-[calc(100vh-300px)] overflow-y-auto">
                 {/* Conversation header */}
                 <div className="p-5 bg-white/50 backdrop-blur-sm rounded-xl border border-white/50 shadow-lg">
                   <div className="grid grid-cols-2 gap-6 text-sm">
                     <div>
-                      <label className="font-semibold text-[#0E315C]">Client:</label>
-                      <p className="text-[#0E315C] mt-1">{selectedConversation.clientEmail}</p>
+                      <label className="font-semibold text-[#0E315C]">
+                        Client:
+                      </label>
+                      <p className="text-[#0E315C] mt-1">
+                        {selectedConversation.clientEmail}
+                      </p>
                     </div>
                     <div>
-                      <label className="font-semibold text-[#0E315C]">Case:</label>
-                      <p className="text-[#0E315C] mt-1">{selectedConversation.caseNumber}</p>
+                      <label className="font-semibold text-[#0E315C]">
+                        Case:
+                      </label>
+                      <p className="text-[#0E315C] mt-1">
+                        {selectedConversation.caseNumber}
+                      </p>
                     </div>
                     <div>
-                      <label className="font-semibold text-[#0E315C]">Total Emails:</label>
-                      <p className="text-[#0E315C] mt-1">{selectedConversation.messages.length}</p>
+                      <label className="font-semibold text-[#0E315C]">
+                        Total Emails:
+                      </label>
+                      <p className="text-[#0E315C] mt-1">
+                        {selectedConversation.messages.length}
+                      </p>
                     </div>
                     <div>
-                      <label className="font-semibold text-[#0E315C]">Last Activity:</label>
-                      <p className="text-[#0E315C] mt-1">{formatDate(selectedConversation.lastActivity)}</p>
+                      <label className="font-semibold text-[#0E315C]">
+                        Last Activity:
+                      </label>
+                      <p className="text-[#0E315C] mt-1">
+                        {formatDate(selectedConversation.lastActivity)}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -438,7 +486,9 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                       key={message.id}
                       className={cn(
                         "flex w-full",
-                        message.sender === "firm" ? "justify-end" : "justify-start"
+                        message.sender === "firm"
+                          ? "justify-end"
+                          : "justify-start",
                       )}
                     >
                       <div
@@ -447,27 +497,31 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                           message.sender === "firm"
                             ? "bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/20 border-[#99C0F0]/50 backdrop-blur-md"
                             : "bg-white/60 border-white/60 backdrop-blur-md",
-                          "hover:shadow-xl transform hover:scale-[1.01]"
+                          "hover:shadow-xl transform hover:scale-[1.01]",
                         )}
                       >
                         {/* Timeline connector */}
                         {index < selectedConversation.messages.length - 1 && (
-                          <div className={cn(
-                            "absolute bottom-0 w-px h-4 bg-gradient-to-b from-[#99C0F0]/50 to-transparent transform translate-y-full",
-                            message.sender === "firm" ? "right-6" : "left-6"
-                          )} />
+                          <div
+                            className={cn(
+                              "absolute bottom-0 w-px h-4 bg-gradient-to-b from-[#99C0F0]/50 to-transparent transform translate-y-full",
+                              message.sender === "firm" ? "right-6" : "left-6",
+                            )}
+                          />
                         )}
 
                         <div className="space-y-3">
                           {/* Message header */}
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-3">
-                              <div className={cn(
-                                "w-7 h-7 rounded-xl flex items-center justify-center shadow-md",
-                                message.sender === "firm"
-                                  ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE]"
-                                  : "bg-gradient-to-br from-[#C1D9F6] to-white"
-                              )}>
+                              <div
+                                className={cn(
+                                  "w-7 h-7 rounded-xl flex items-center justify-center shadow-md",
+                                  message.sender === "firm"
+                                    ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE]"
+                                    : "bg-gradient-to-br from-[#C1D9F6] to-white",
+                                )}
+                              >
                                 {message.sender === "firm" ? (
                                   <Building className="w-4 h-4 text-white" />
                                 ) : (
@@ -476,13 +530,24 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                               </div>
                               <div>
                                 <div className="flex items-center space-x-2">
-                                  <span className={cn(
-                                    "text-sm font-semibold",
-                                    message.sender === "firm" ? "text-[#0E315C]" : "text-[#0E315C]"
-                                  )}>
-                                    {message.sender === "firm" ? "Luceron Legal" : selectedConversation.clientName}
+                                  <span
+                                    className={cn(
+                                      "text-sm font-semibold",
+                                      message.sender === "firm"
+                                        ? "text-[#0E315C]"
+                                        : "text-[#0E315C]",
+                                    )}
+                                  >
+                                    {message.sender === "firm"
+                                      ? "Luceron Legal"
+                                      : selectedConversation.clientName}
                                   </span>
-                                  <Badge className={cn("text-xs border", getStatusColor(message.status))}>
+                                  <Badge
+                                    className={cn(
+                                      "text-xs border",
+                                      getStatusColor(message.status),
+                                    )}
+                                  >
                                     {message.status}
                                   </Badge>
                                 </div>
@@ -494,7 +559,13 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => setExpandedMessage(expandedMessage === message.id ? null : message.id)}
+                              onClick={() =>
+                                setExpandedMessage(
+                                  expandedMessage === message.id
+                                    ? null
+                                    : message.id,
+                                )
+                              }
                               className="p-1 hover:bg-white/30 rounded-full"
                             >
                               {expandedMessage === message.id ? (
@@ -506,19 +577,29 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                           </div>
 
                           {/* Subject */}
-                          <p className={cn(
-                            "font-semibold text-sm",
-                            message.sender === "firm" ? "text-[#0E315C]" : "text-[#0E315C]"
-                          )}>
+                          <p
+                            className={cn(
+                              "font-semibold text-sm",
+                              message.sender === "firm"
+                                ? "text-[#0E315C]"
+                                : "text-[#0E315C]",
+                            )}
+                          >
                             {message.subject}
                           </p>
 
                           {/* Content preview or full content */}
-                          <div className={cn(
-                            "text-sm leading-relaxed",
-                            message.sender === "firm" ? "text-[#0E315C]/90" : "text-[#0E315C]/90",
-                            expandedMessage === message.id ? "" : "line-clamp-3"
-                          )}>
+                          <div
+                            className={cn(
+                              "text-sm leading-relaxed",
+                              message.sender === "firm"
+                                ? "text-[#0E315C]/90"
+                                : "text-[#0E315C]/90",
+                              expandedMessage === message.id
+                                ? ""
+                                : "line-clamp-3",
+                            )}
+                          >
                             {message.content}
                           </div>
                         </div>
@@ -553,10 +634,12 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                       "border shadow-sm",
                       selectedConversation.responseReceived
                         ? "bg-[#C1D9F6]/30 text-[#0E315C] border-[#C1D9F6]/50"
-                        : "bg-orange-100 text-orange-800 border-orange-300"
+                        : "bg-orange-100 text-orange-800 border-orange-300",
                     )}
                   >
-                    {selectedConversation.responseReceived ? "Client Responded" : "Awaiting Response"}
+                    {selectedConversation.responseReceived
+                      ? "Client Responded"
+                      : "Awaiting Response"}
                   </Badge>
                 </div>
               </div>
@@ -564,10 +647,12 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
               <div className="flex flex-col items-center justify-center h-64 text-center">
                 <Mail className="w-12 h-12 text-[#99C0F0]/50 mb-4" />
                 <p className="text-[#0E315C]/60 mb-2">
-                  Select a client conversation to view the complete email history
+                  Select a client conversation to view the complete email
+                  history
                 </p>
                 <p className="text-sm text-[#0E315C]/40">
-                  Click on any conversation from the list to see emails and client responses
+                  Click on any conversation from the list to see emails and
+                  client responses
                 </p>
               </div>
             )}
