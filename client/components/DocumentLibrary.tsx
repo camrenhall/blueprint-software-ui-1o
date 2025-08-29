@@ -261,27 +261,57 @@ export default function DocumentLibrary({
                   </div>
                 </div>
 
-                {/* Template preview card */}
-                <div className="bg-gradient-to-br from-white/90 to-white/70 border border-[#C1D9F6]/40 rounded-2xl p-6 shadow-lg shadow-[#C1D9F6]/10">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h4 className="text-lg font-semibold text-[#0E315C] mb-1">{pendingTemplate.name}</h4>
-                      <p className="text-sm text-[#0E315C]/60">Template to be loaded</p>
+                {/* Current vs Template comparison */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Current selection */}
+                  <div className="bg-gradient-to-br from-amber-50/90 to-orange-50/70 border border-amber-200/40 rounded-2xl p-5 shadow-lg shadow-amber-100/20">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                      <h4 className="text-lg font-semibold text-amber-800">Current Selection</h4>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-xs font-medium text-[#99C0F0] bg-[#99C0F0]/15 px-3 py-1.5 rounded-full border border-[#99C0F0]/20">
-                        {pendingTemplate.documents.length} documents
-                      </span>
+                    <p className="text-sm text-amber-700/80 mb-3">{selectedDocuments.length} documents currently selected</p>
+                    <div className="bg-white/60 rounded-xl p-3 max-h-32 overflow-y-auto">
+                      {selectedDocuments.length > 0 ? (
+                        <div className="space-y-2">
+                          {selectedDocuments.slice(0, 5).map((doc, index) => (
+                            <div key={index} className="flex items-center space-x-2">
+                              <div className="w-1.5 h-1.5 bg-amber-400 rounded-full flex-shrink-0" />
+                              <span className="text-sm text-amber-800/80">{doc.name}</span>
+                            </div>
+                          ))}
+                          {selectedDocuments.length > 5 && (
+                            <div className="text-xs text-amber-700/60 mt-2">
+                              +{selectedDocuments.length - 5} more documents
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="text-sm text-amber-700/60 italic">No documents selected</div>
+                      )}
                     </div>
                   </div>
-                  <div className="bg-white/60 rounded-xl p-4 max-h-36 overflow-y-auto">
-                    <div className="space-y-2.5">
-                      {pendingTemplate.documents.map((doc, index) => (
-                        <div key={index} className="flex items-center space-x-3 group">
-                          <div className="w-2 h-2 bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] rounded-full flex-shrink-0" />
-                          <span className="text-sm text-[#0E315C]/80 group-hover:text-[#0E315C] transition-colors">{doc}</span>
-                        </div>
-                      ))}
+
+                  {/* Template preview */}
+                  <div className="bg-gradient-to-br from-blue-50/90 to-indigo-50/70 border border-blue-200/40 rounded-2xl p-5 shadow-lg shadow-blue-100/20">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <div className="w-2 h-2 bg-[#99C0F0] rounded-full"></div>
+                      <h4 className="text-lg font-semibold text-[#0E315C]">{pendingTemplate.name}</h4>
+                    </div>
+                    <p className="text-sm text-[#0E315C]/70 mb-3">Template with {pendingTemplate.documents.length} documents</p>
+                    <div className="bg-white/60 rounded-xl p-3 max-h-32 overflow-y-auto">
+                      <div className="space-y-2">
+                        {pendingTemplate.documents.slice(0, 5).map((doc, index) => (
+                          <div key={index} className="flex items-center space-x-2">
+                            <div className="w-1.5 h-1.5 bg-[#99C0F0] rounded-full flex-shrink-0" />
+                            <span className="text-sm text-[#0E315C]/80">{doc}</span>
+                          </div>
+                        ))}
+                        {pendingTemplate.documents.length > 5 && (
+                          <div className="text-xs text-[#0E315C]/60 mt-2">
+                            +{pendingTemplate.documents.length - 5} more documents
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
