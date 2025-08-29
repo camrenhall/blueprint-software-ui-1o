@@ -58,41 +58,42 @@ export default function DocumentLibrary({
     doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase()),
   );
 
-  // Handle template click
-  const handleTemplateClick = (template: Template) => {
+  // Handle template view action
+  const handleViewTemplate = (template: Template) => {
+    setViewingTemplate(template);
+  };
+
+  // Handle template load action
+  const handleLoadTemplate = (template: Template) => {
     if (selectedDocuments.length > 0) {
-      setConflictTemplate(template);
-      setShowTemplateConflict(true);
+      // Show inline conflict resolution
+      const confirmed = window.confirm(
+        `You have ${selectedDocuments.length} document${selectedDocuments.length !== 1 ? 's' : ''} selected. Would you like to replace them with this template?\n\nClick OK to replace, Cancel to add to current selection.`
+      );
+      if (confirmed) {
+        onLoadTemplate?.(template);
+      } else {
+        // Add template documents to current selection
+        template.documents.forEach(docName => {
+          if (!selectedDocuments.find(doc => doc.name === docName)) {
+            onAddDocument(docName);
+          }
+        });
+      }
     } else {
       onLoadTemplate?.(template);
     }
   };
 
-  // Handle template conflict actions
-  const handleTemplateReplace = () => {
-    if (conflictTemplate) {
-      onLoadTemplate?.(conflictTemplate);
-      setShowTemplateConflict(false);
-      setConflictTemplate(null);
-    }
+  // Handle template edit action
+  const handleEditTemplate = (template: Template) => {
+    setEditingTemplate(template);
   };
 
-  const handleTemplateAdd = () => {
-    if (conflictTemplate) {
-      // Add template documents to current selection
-      conflictTemplate.documents.forEach(docName => {
-        if (!selectedDocuments.find(doc => doc.name === docName)) {
-          onAddDocument(docName);
-        }
-      });
-      setShowTemplateConflict(false);
-      setConflictTemplate(null);
-    }
-  };
-
-  const handleTemplateCancel = () => {
-    setShowTemplateConflict(false);
-    setConflictTemplate(null);
+  // Close template views
+  const closeTemplateViews = () => {
+    setViewingTemplate(null);
+    setEditingTemplate(null);
   };
 
   return (
