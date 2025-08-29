@@ -495,10 +495,10 @@ export default function DocumentLibrary({
                       return (
                         <div
                           key={index}
-                          className={`group flex items-center justify-between p-4 border-2 rounded-xl transition-all duration-200 cursor-pointer hover:shadow-md ${
+                          className={`group flex items-center justify-between p-4 border-2 rounded-xl transition-all duration-200 cursor-pointer hover:shadow-lg active:scale-[0.98] ${
                             isSelected
-                              ? 'bg-gradient-to-r from-[#99C0F0]/15 to-[#C5BFEE]/10 border-[#99C0F0]/40 shadow-sm'
-                              : 'bg-white/60 border-[#C1D9F6]/25 hover:bg-white/80 hover:border-[#C1D9F6]/40'
+                              ? 'bg-gradient-to-r from-[#99C0F0]/15 to-[#C5BFEE]/10 border-[#99C0F0]/40 shadow-md hover:shadow-xl hover:shadow-[#99C0F0]/10'
+                              : 'bg-white/60 border-[#C1D9F6]/25 hover:bg-white/80 hover:border-[#C1D9F6]/40 hover:shadow-[#C1D9F6]/10'
                           }`}
                           onClick={() => handleToggleDocumentInTemplate(doc)}
                         >
