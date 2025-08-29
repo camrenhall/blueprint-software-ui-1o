@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import GlassSidePanel from "@/components/GlassSidePanel";
-import ConversationHistory from "@/components/ConversationHistory";
 import InlineCreate from "@/components/InlineCreate";
 import InlineReview from "@/components/InlineReview";
 import Overview from "@/components/Overview";
