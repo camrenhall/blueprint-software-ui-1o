@@ -102,42 +102,15 @@ function IndexContent() {
 
       {/* Main content area - subtract navbar height from screen height */}
       <div className="relative z-10 h-[calc(100vh-4rem)]">
-        {/* Create Page - Using PageContainer */}
-        {activeRightContent === "create" && (
+        {/* All Pages - Unified PageContainer */}
+        {activeRightContent && (
           <PageContainer
             variant="sidebar-offset"
             glassIntensity="light"
             radius="md"
             className={cn(
               "transition-all duration-1000 ease-out",
-              activeRightContent && isVisible
-                ? "opacity-100"
-                : "opacity-0 pointer-events-none",
-            )}
-          >
-            {/* Content positioned to respect container boundaries */}
-            <div className="absolute top-0 left-0 right-0 bottom-0 p-8">
-              <div
-                className={cn(
-                  "w-full h-full transition-opacity duration-800 ease-out delay-200",
-                  activeRightContent && isVisible ? "opacity-100" : "opacity-0",
-                )}
-              >
-                <InlineCreate onClose={() => setActiveRightContent(null)} />
-              </div>
-            </div>
-          </PageContainer>
-        )}
-
-        {/* Other Pages - Keep existing implementation for now */}
-        {activeRightContent && activeRightContent !== "create" && (
-          <PageContainer
-            variant="sidebar-offset"
-            glassIntensity="light"
-            radius="md"
-            className={cn(
-              "transition-all duration-1000 ease-out",
-              activeRightContent && isVisible
+              isVisible
                 ? "opacity-100"
                 : "opacity-0 pointer-events-none",
             )}
@@ -146,12 +119,17 @@ function IndexContent() {
               <div
                 className={cn(
                   "w-full h-full transition-opacity duration-800 ease-out delay-200",
-                  activeRightContent && isVisible ? "opacity-100" : "opacity-0",
+                  isVisible ? "opacity-100" : "opacity-0",
                 )}
               >
                 {activeRightContent === "overview" && (
                   <div className="w-full h-full relative">
                     <Overview onClose={() => setActiveRightContent(null)} />
+                  </div>
+                )}
+                {activeRightContent === "create" && (
+                  <div className="w-full h-full relative">
+                    <InlineCreate onClose={() => setActiveRightContent(null)} />
                   </div>
                 )}
                 {activeRightContent === "review" && (
