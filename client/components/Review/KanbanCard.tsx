@@ -26,8 +26,8 @@ export function KanbanCard({
         statusColors.border,
         "hover:bg-white/60 hover:shadow-xl",
         statusColors.hover,
-        "hover:border-opacity-90 transition-all duration-700 ease-out p-4 lg:p-3.5 md:p-3 rounded-2xl lg:rounded-xl md:rounded-lg text-left group hover:scale-[1.02] md:hover:scale-[1.01] transform",
-        "min-h-[150px] lg:min-h-[130px] md:min-h-[120px] flex flex-col relative overflow-hidden",
+        "hover:border-opacity-90 transition-all duration-700 ease-out p-3 lg:p-2.5 md:p-2 rounded-xl lg:rounded-lg md:rounded-md text-left group hover:scale-[1.015] md:hover:scale-[1.01] transform",
+        "min-h-[120px] lg:min-h-[110px] md:min-h-[100px] flex flex-col relative overflow-hidden",
         "hover:-translate-y-1 active:scale-[0.99] active:duration-150",
         className,
       )}
@@ -36,14 +36,14 @@ export function KanbanCard({
       }}
     >
       {/* Header with Avatar, Name and Status */}
-      <div className="flex items-center justify-between mb-4 gap-3">
+      <div className="flex items-center justify-between mb-3 gap-2.5">
         <div className="flex items-center space-x-3 min-w-0 flex-1">
-          <div className="w-10 h-10 lg:w-9 lg:h-9 md:w-8 md:h-8 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-xl lg:rounded-lg md:rounded-md flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 flex-shrink-0 shadow-lg group-hover:shadow-xl">
+          <div className="w-8 h-8 lg:w-7 lg:h-7 md:w-6 md:h-6 bg-gradient-to-br from-[#99C0F0]/90 to-[#C5BFEE]/70 rounded-lg lg:rounded-md md:rounded flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 flex-shrink-0 shadow-lg group-hover:shadow-xl">
             <span className="text-white font-semibold text-sm lg:text-xs md:text-xs group-hover:scale-110 transition-transform duration-300">
               {caseItem.avatar}
             </span>
           </div>
-          <h3 className="text-lg lg:text-base md:text-sm font-semibold text-[#0E315C] leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300 truncate min-w-0" title={caseItem.name}>
+          <h3 className="text-base lg:text-sm md:text-xs font-semibold text-[#0E315C] leading-tight group-hover:text-[#0E315C]/90 transition-colors duration-300 truncate min-w-0" title={caseItem.name}>
             {caseItem.name}
           </h3>
         </div>
@@ -61,8 +61,8 @@ export function KanbanCard({
       <div className="flex-1">
 
         {/* Progress Section */}
-        <div className="mb-3">
-          <div className="flex items-center justify-between mb-2">
+        <div className="mb-2.5">
+          <div className="flex items-center justify-between mb-1.5">
             <span className="text-xs text-[#0E315C]/70 font-semibold uppercase tracking-wide truncate">
               {caseItem.progress}
             </span>
@@ -85,7 +85,7 @@ export function KanbanCard({
       </div>
 
       {/* Footer with Stats */}
-      <div className="space-y-2 pt-3 border-t border-[#C1D9F6]/30">
+      <div className="space-y-1.5 pt-2.5 border-t border-[#C1D9F6]/30">
         <div className="flex items-center space-x-2 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-2.5 py-1.5 rounded-lg">
           <Clock className="w-3 h-3 text-[#99C0F0] flex-shrink-0" />
           <span className="font-medium truncate">{caseItem.lastActivity}</span>
