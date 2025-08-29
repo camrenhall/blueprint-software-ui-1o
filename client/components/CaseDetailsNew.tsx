@@ -517,7 +517,7 @@ export default function CaseDetailsNew({
                     <MessageSquare className="w-5 h-5 text-[#C5BFEE]" />
                     <span>Communications</span>
                   </h3>
-                  <div className="relative">
+                  <div className="relative dropdown-container">
                     <button
                       onClick={() => setShowCommunicationFilter(!showCommunicationFilter)}
                       className="flex items-center space-x-2 bg-[#C5BFEE]/20 hover:bg-[#C5BFEE]/30 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
