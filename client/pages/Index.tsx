@@ -7,7 +7,6 @@ import Overview from "@/components/Overview";
 import TaskQueue from "@/components/TaskQueue";
 import UnifiedSettings from "@/components/UnifiedSettings";
 import CommunicationsPanel from "@/components/CommunicationsPanel";
-import { PageContainer } from "@/components/ui/page-container";
 import { useTaskQueue } from "@/hooks/useTaskQueue";
 
 function IndexContent() {
