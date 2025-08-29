@@ -362,7 +362,7 @@ export default function CaseDetailsNew({
 
               <div className="w-full h-2 bg-[#C1D9F6]/20 backdrop-blur-sm rounded-full overflow-hidden mb-3 border border-[#C1D9F6]/30">
                 <div
-                  className="h-full bg-gradient-to-r from-[#99C0F0] via-[#C5BFEE] to-[#0E315C] rounded-full transition-all duration-1000 shadow-lg backdrop-blur-sm relative"
+                  className="h-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] rounded-full transition-all duration-1000 shadow-lg backdrop-blur-sm relative"
                   style={{ width: `${progressPercent}%` }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full"></div>
