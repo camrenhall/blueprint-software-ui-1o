@@ -47,6 +47,8 @@ export default function DocumentLibrary({
   const [editingDocuments, setEditingDocuments] = useState<string[]>([]);
   const [showConflictResolution, setShowConflictResolution] = useState(false);
   const [pendingTemplate, setPendingTemplate] = useState<Template | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [actionFeedback, setActionFeedback] = useState<{message: string, type: 'success' | 'info'} | null>(null);
 
   // Filter available documents (exclude already selected and apply search)
   const filteredAvailableDocuments = availableDocuments.filter(
