@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import DocumentLibrary from "./DocumentLibrary";
-import TemplateConflictModal from "./TemplateConflictModal";
 import CaseInfoForm, { CaseInfoFormData } from "./CaseInfoForm";
 import { useDocumentSelection } from "../hooks/useDocumentSelection";
 import { Button } from "@/components/ui/button";
@@ -623,15 +622,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
           </div>
         )}
 
-        {/* Template Conflict Modal */}
-        <TemplateConflictModal
-          isOpen={documentSelection.showTemplateConflictModal}
-          template={documentSelection.pendingTemplate}
-          selectedCount={documentSelection.selectedDocuments.length}
-          onReplace={documentSelection.handleConfirmTemplateReplace}
-          onAdd={documentSelection.handleConfirmTemplateAdd}
-          onCancel={documentSelection.handleCancelTemplate}
-        />
       </div>
     </div>
   );
