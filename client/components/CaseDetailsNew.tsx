@@ -469,10 +469,40 @@ export default function CaseDetailsNew({
 
               {/* Communications */}
               <div className={sectionClasses}>
-                <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
-                  <MessageSquare className="w-5 h-5 text-[#C5BFEE]" />
-                  <span>Communications</span>
-                </h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
+                    <MessageSquare className="w-5 h-5 text-[#C5BFEE]" />
+                    <span>Communications</span>
+                  </h3>
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowCommunicationFilter(!showCommunicationFilter)}
+                      className="flex items-center space-x-2 bg-[#C5BFEE]/20 hover:bg-[#C5BFEE]/30 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
+                    >
+                      <Filter className="w-4 h-4" />
+                      <span className="text-sm font-light">{communicationFilter}</span>
+                      <ChevronDown className="w-3 h-3" />
+                    </button>
+                    {showCommunicationFilter && (
+                      <div className="absolute top-full right-0 mt-2 w-40 bg-white/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 py-2 z-50">
+                        {["Most Recent", "Queued First", "Outbound Only", "Inbound Only"].map((filter) => (
+                          <button
+                            key={filter}
+                            onClick={() => handleFilterCommunications(filter)}
+                            className={cn(
+                              "w-full text-left px-4 py-2 text-sm transition-colors",
+                              communicationFilter === filter
+                                ? "bg-[#C5BFEE]/30 text-[#0E315C] font-medium"
+                                : "text-[#0E315C] hover:bg-[#C5BFEE]/20"
+                            )}
+                          >
+                            {filter}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
                 <div className="space-y-3 max-h-80 overflow-y-auto">
                   {communications.map((comm, index) => (
                     <div
