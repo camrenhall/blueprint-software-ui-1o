@@ -116,23 +116,23 @@ export function formatFileSize(bytes: number): string {
 }
 
 /**
- * Get file type icon name based on extension (for use with lucide-react)
+ * Get file type identifier based on extension
  */
 export function getFileTypeIcon(filename: string): string {
   const extension = getFileExtension(filename).toLowerCase();
 
   switch (extension) {
     case '.pdf':
-      return 'FileText';
+      return 'pdf';
     case '.png':
     case '.jpg':
     case '.jpeg':
-      return 'Image';
+      return 'image';
     case '.doc':
     case '.docx':
-      return 'FileText';
+      return 'document';
     default:
-      return 'File';
+      return 'file';
   }
 }
 
