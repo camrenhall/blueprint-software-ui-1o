@@ -454,6 +454,8 @@ export default function DocumentLibrary({
                     <button
                       onClick={closeTemplateViews}
                       className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/80 hover:bg-white border border-[#C1D9F6]/40 hover:border-[#99C0F0]/50 transition-all duration-200 hover:shadow-lg shadow-sm flex-shrink-0"
+                      aria-label="Close template editor and return to templates list"
+                      title="Close template editor"
                     >
                       <svg className="w-5 h-5 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -464,7 +466,7 @@ export default function DocumentLibrary({
                         <svg className="w-5 h-5 text-[#C5BFEE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
-                        <h3 className="text-xl font-semibold text-[#0E315C]">{editingTemplate.name}</h3>
+                        <h3 className="text-xl font-semibold text-[#0E315C]" id="editing-template-heading">{editingTemplate.name}</h3>
                       </div>
                       <p className="text-[#0E315C]/70">
                         <span className="font-medium text-[#0E315C]">{editingDocuments.length}</span> of {availableDocuments.length} documents selected
@@ -475,6 +477,8 @@ export default function DocumentLibrary({
                     onClick={handleSaveTemplate}
                     disabled={isLoading}
                     className={`px-6 py-3 bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#8AB5ED] hover:to-[#BFB8EB] text-white rounded-xl font-medium transition-all duration-200 shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 hover:scale-105 transform flex items-center space-x-2 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
+                    aria-label={`Save changes to ${editingTemplate.name} template with ${editingDocuments.length} documents`}
+                    aria-describedby="editing-template-heading"
                   >
                     {isLoading ? (
                       <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
