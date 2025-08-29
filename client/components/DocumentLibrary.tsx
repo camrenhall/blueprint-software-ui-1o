@@ -311,6 +311,8 @@ export default function DocumentLibrary({
                   <button
                     onClick={handleCancelConflict}
                     className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/80 hover:bg-white border border-[#C1D9F6]/40 hover:border-[#99C0F0]/50 transition-all duration-200 hover:shadow-lg shadow-sm"
+                    aria-label="Cancel and go back to templates list"
+                    title="Cancel and go back to templates list"
                   >
                     <svg className="w-5 h-5 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -318,10 +320,10 @@ export default function DocumentLibrary({
                   </button>
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">
-                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                      <h3 className="text-xl font-medium text-[#0E315C]">Template Conflict</h3>
+                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" role="status" aria-label="Warning indicator"></div>
+                      <h3 className="text-xl font-medium text-[#0E315C]" id="conflict-heading">Template Conflict</h3>
                     </div>
-                    <p className="text-[#0E315C]/70 leading-relaxed">
+                    <p className="text-[#0E315C]/70 leading-relaxed" aria-describedby="conflict-heading">
                       You have <span className="font-semibold text-[#0E315C]">{selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''}</span> already selected.
                       Choose how to handle the template documents.
                     </p>
@@ -333,8 +335,8 @@ export default function DocumentLibrary({
                   {/* Current selection */}
                   <div className="bg-gradient-to-br from-amber-50/90 to-orange-50/70 border border-amber-200/40 rounded-2xl p-5 shadow-lg shadow-amber-100/20">
                     <div className="flex items-center space-x-2 mb-3">
-                      <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
-                      <h4 className="text-lg font-semibold text-amber-800">Current Selection</h4>
+                      <div className="w-2 h-2 bg-amber-400 rounded-full" aria-hidden="true"></div>
+                      <h4 className="text-lg font-semibold text-amber-800" id="current-selection-heading">Current Selection</h4>
                     </div>
                     <p className="text-sm text-amber-700/80 mb-3">{selectedDocuments.length} documents currently selected</p>
                     <div className="bg-white/60 rounded-xl p-3 max-h-32 overflow-y-auto">
@@ -361,8 +363,8 @@ export default function DocumentLibrary({
                   {/* Template preview */}
                   <div className="bg-gradient-to-br from-blue-50/90 to-indigo-50/70 border border-blue-200/40 rounded-2xl p-5 shadow-lg shadow-blue-100/20">
                     <div className="flex items-center space-x-2 mb-3">
-                      <div className="w-2 h-2 bg-[#99C0F0] rounded-full"></div>
-                      <h4 className="text-lg font-semibold text-[#0E315C]">{pendingTemplate.name}</h4>
+                      <div className="w-2 h-2 bg-[#99C0F0] rounded-full" aria-hidden="true"></div>
+                      <h4 className="text-lg font-semibold text-[#0E315C]" id="template-heading">{pendingTemplate.name}</h4>
                     </div>
                     <p className="text-sm text-[#0E315C]/70 mb-3">Template with {pendingTemplate.documents.length} documents</p>
                     <div className="bg-white/60 rounded-xl p-3 max-h-32 overflow-y-auto">
