@@ -33,6 +33,21 @@ export default function CaseDetailsNew({
 
   const hasRejectedDocuments = documents.some(doc => doc.status === "rejected");
 
+  // Click outside to close dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.dropdown-container')) {
+        setShowDocumentDownloadDropdown(false);
+        setShowPageDownloadDropdown(false);
+        setShowCommunicationFilter(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   // Enhanced mock data for documents with more realistic details
   const documents = [
     {
