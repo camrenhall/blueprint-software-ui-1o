@@ -1,0 +1,166 @@
+import { Case, CaseStatus, StatusColors, FilterOption } from "./types";
+
+export type SortOption =
+  | "priority"
+  | "alphabetical"
+  | "queueTime"
+  | "lastActivity";
+
+export const getStatusColors = (status: CaseStatus): StatusColors => {
+  switch (status) {
+    case "Needs Review":
+      return {
+        dot: "bg-[#C5BFEE]",
+        progress: "bg-gradient-to-r from-[#C5BFEE]/80 to-[#C5BFEE]/60",
+        hover: "hover:shadow-[#C5BFEE]/5",
+        border: "hover:border-[#C5BFEE]/60",
+      };
+    case "Awaiting Documents":
+      return {
+        dot: "bg-[#99C0F0]",
+        progress: "bg-gradient-to-r from-[#99C0F0]/80 to-[#99C0F0]/60",
+        hover: "hover:shadow-[#99C0F0]/5",
+        border: "hover:border-[#99C0F0]/60",
+      };
+    case "Complete":
+      return {
+        dot: "bg-[#4ade80]",
+        progress: "bg-gradient-to-r from-[#4ade80]/80 to-[#4ade80]/60",
+        hover: "hover:shadow-[#4ade80]/5",
+        border: "hover:border-[#4ade80]/60",
+      };
+  }
+};
+
+export const filterOptions: FilterOption[] = [
+  {
+    id: "needs-review",
+    label: "Needs Review",
+    status: "Needs Review",
+    color: {
+      dot: "bg-[#C5BFEE]",
+      progress: "bg-gradient-to-r from-[#C5BFEE]/80 to-[#C5BFEE]/60",
+      hover: "hover:shadow-[#C5BFEE]/5",
+      border: "hover:border-[#C5BFEE]/60",
+      active:
+        "bg-[#C5BFEE]/80 text-white shadow-lg shadow-[#C5BFEE]/20 border-[#C5BFEE]/60",
+    },
+  },
+  {
+    id: "awaiting-docs",
+    label: "Awaiting Documents",
+    status: "Awaiting Documents",
+    color: {
+      dot: "bg-[#99C0F0]",
+      progress: "bg-gradient-to-r from-[#99C0F0]/80 to-[#99C0F0]/60",
+      hover: "hover:shadow-[#99C0F0]/5",
+      border: "hover:border-[#99C0F0]/60",
+      active:
+        "bg-[#99C0F0]/80 text-white shadow-lg shadow-[#99C0F0]/20 border-[#99C0F0]/60",
+    },
+  },
+  {
+    id: "complete",
+    label: "Complete",
+    status: "Complete",
+    color: {
+      dot: "bg-[#4ade80]",
+      progress: "bg-gradient-to-r from-[#4ade80]/80 to-[#4ade80]/60",
+      hover: "hover:shadow-[#4ade80]/5",
+      border: "hover:border-[#4ade80]/60",
+      active:
+        "bg-[#4ade80]/80 text-white shadow-lg shadow-[#4ade80]/20 border-[#4ade80]/60",
+    },
+  },
+];
+
+export const filterCases = (
+  cases: Case[],
+  query: string,
+  activeFilters: string[],
+): Case[] => {
+  let filtered = cases;
+
+  // Apply search filter
+  if (query.trim()) {
+    const lowercaseQuery = query.toLowerCase();
+    filtered = filtered.filter(
+      (caseItem) =>
+        caseItem.name.toLowerCase().includes(lowercaseQuery) ||
+        caseItem.caseId.toLowerCase().includes(lowercaseQuery),
+    );
+  }
+
+  // Apply status filters
+  if (activeFilters.length > 0) {
+    filtered = filtered.filter((caseItem) => {
+      return activeFilters.some((filterId) => {
+        const filterOption = filterOptions.find((f) => f.id === filterId);
+        return filterOption ? caseItem.status === filterOption.status : false;
+      });
+    });
+  }
+
+  return filtered;
+};
+
+export const sortCases = (
+  cases: Case[],
+  sortBy:
+    | "priority"
+    | "alphabetical"
+    | "queueTime"
+    | "lastActivity" = "priority",
+): Case[] => {
+  return [...cases].sort((a, b) => {
+    switch (sortBy) {
+      case "priority":
+        // Priority 1: Status-based priority (Needs Review > Awaiting Documents > Complete)
+        if (a.status !== b.status) {
+          const statusPriority = {
+            "Needs Review": 3,
+            "Awaiting Documents": 2,
+            "Complete": 1
+          };
+          return (statusPriority[b.status] || 0) - (statusPriority[a.status] || 0);
+        }
+        // Priority 2: Within same status, sort by queue time (longer first)
+        return b.queueDays - a.queueDays;
+
+      case "alphabetical":
+        return a.name.localeCompare(b.name);
+
+      case "queueTime":
+        return b.queueDays - a.queueDays;
+
+      case "lastActivity":
+        // Convert lastActivity to comparable format (this is a simplified version)
+        const getActivityScore = (activity: string): number => {
+          if (activity.includes("Minutes")) return parseInt(activity) || 0;
+          if (activity.includes("Hours")) return (parseInt(activity) || 0) * 60;
+          if (activity.includes("Day"))
+            return (parseInt(activity) || 0) * 60 * 24;
+          return 999999; // Default for unrecognized format
+        };
+        return (
+          getActivityScore(a.lastActivity) - getActivityScore(b.lastActivity)
+        );
+
+      default:
+        return 0;
+    }
+  });
+};
+
+// Convert legacy data format to new format
+export const convertLegacyCase = (legacyCase: any): Case => ({
+  id: legacyCase.caseId,
+  name: legacyCase.name,
+  caseId: legacyCase.caseId,
+  status: legacyCase.status as CaseStatus,
+  progress: legacyCase.progress,
+  progressPercent: legacyCase.progressPercent,
+  lastActivity: legacyCase.lastActivity,
+  queueDays: parseInt(legacyCase.queueTime || "0"),
+  avatar: legacyCase.avatar,
+});

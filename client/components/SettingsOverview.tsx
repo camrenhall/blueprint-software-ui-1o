@@ -1,0 +1,219 @@
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import {
+  Settings as SettingsIcon,
+  User,
+  Shield,
+  Search,
+  Bot,
+  Link,
+  Users,
+  CreditCard,
+  ChevronRight,
+} from "lucide-react";
+
+interface SettingsCategory {
+  id: string;
+  title: string;
+  description: string;
+  icon: any;
+  color: {
+    from: string;
+    to: string;
+    hover: string;
+  };
+}
+
+const settingsCategories: SettingsCategory[] = [
+  {
+    id: "general",
+    title: "General",
+    description: "Account preferences, notifications, and basic settings",
+    icon: User,
+    color: {
+      from: "from-[#99C0F0]/80",
+      to: "to-[#C1D9F6]/60",
+      hover: "hover:border-[#99C0F0]/60 hover:shadow-[#99C0F0]/5"
+    },
+  },
+  {
+    id: "security",
+    title: "Security & Privacy",
+    description: "Authentication, data protection, and audit settings",
+    icon: Shield,
+    color: {
+      from: "from-[#C5BFEE]/80",
+      to: "to-[#99C0F0]/60",
+      hover: "hover:border-[#C5BFEE]/60 hover:shadow-[#C5BFEE]/5"
+    },
+  },
+  {
+    id: "discovery",
+    title: "Discovery",
+    description: "Search algorithms, document analysis, and classification",
+    icon: Search,
+    color: {
+      from: "from-[#C1D9F6]/80",
+      to: "to-[#C5BFEE]/60",
+      hover: "hover:border-[#C1D9F6]/60 hover:shadow-[#C1D9F6]/5"
+    },
+  },
+  {
+    id: "automation",
+    title: "AI & Automation",
+    description: "AI assistant behavior and automated processing settings",
+    icon: Bot,
+    color: {
+      from: "from-[#99C0F0]/80",
+      to: "to-[#C5BFEE]/60",
+      hover: "hover:border-[#99C0F0]/60 hover:shadow-[#99C0F0]/5"
+    },
+  },
+  {
+    id: "integration",
+    title: "Integration",
+    description: "External systems, exports, and third-party connections",
+    icon: Link,
+    color: {
+      from: "from-[#C5BFEE]/80",
+      to: "to-[#C1D9F6]/60",
+      hover: "hover:border-[#C5BFEE]/60 hover:shadow-[#C5BFEE]/5"
+    },
+  },
+  {
+    id: "team",
+    title: "Team & Collaboration",
+    description: "User roles, permissions, and collaboration settings",
+    icon: Users,
+    color: {
+      from: "from-[#C1D9F6]/80",
+      to: "to-[#99C0F0]/60",
+      hover: "hover:border-[#C1D9F6]/60 hover:shadow-[#C1D9F6]/5"
+    },
+  },
+  {
+    id: "billing",
+    title: "Usage & Billing",
+    description: "Subscription management, usage monitoring, and billing",
+    icon: CreditCard,
+    color: {
+      from: "from-[#99C0F0]/80",
+      to: "to-[#C1D9F6]/60",
+      hover: "hover:border-[#99C0F0]/60 hover:shadow-[#99C0F0]/5"
+    },
+  }
+];
+
+interface SettingsOverviewProps {
+  onCategorySelect?: (categoryId: string) => void;
+  onBack?: () => void;
+}
+
+export default function SettingsOverview({ onCategorySelect, onBack }: SettingsOverviewProps) {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Staggered animation entrance
+    setTimeout(() => setIsVisible(true), 200);
+  }, []);
+
+  const handleCategorySelect = (category: SettingsCategory) => {
+    onCategorySelect?.(category.id);
+  };
+
+  return (
+    <div className="h-screen w-full relative overflow-hidden pt-16">
+      <div className="h-full p-8">
+        <div className={cn(
+          "w-full h-full flex flex-col transition-all duration-1000",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
+          {/* Header */}
+          <div className="flex items-center mb-8">
+            <div className="p-3 rounded-2xl bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm border border-white/20 shadow-lg">
+              <SettingsIcon className="w-6 h-6 text-[#0E315C]/80" />
+            </div>
+            <div className="ml-4">
+              <h1 className="text-2xl font-light text-[#0E315C]/90 tracking-wide">Settings</h1>
+              <p className="text-[#0E315C]/60 font-light">Configure your Luceron AI experience</p>
+            </div>
+          </div>
+
+          {/* Settings Categories Grid */}
+          <div className="flex-1 overflow-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 pb-6">
+              {settingsCategories.map((category, index) => {
+                const isHovered = hoveredCategory === category.id;
+                const IconComponent = category.icon;
+                
+                return (
+                  <div
+                    key={category.id}
+                    className={cn(
+                      "transition-all duration-700 ease-out",
+                      isVisible
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-4"
+                    )}
+                    style={{
+                      transitionDelay: `${400 + index * 100}ms`,
+                    }}
+                  >
+                    <button
+                      onClick={() => handleCategorySelect(category)}
+                      onMouseEnter={() => setHoveredCategory(category.id)}
+                      onMouseLeave={() => setHoveredCategory(null)}
+                      className={cn(
+                        "w-full h-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-xl transition-all duration-500 p-5 rounded-2xl text-left group hover:scale-[1.02] transform",
+                        category.color.hover
+                      )}
+                    >
+                      <div className="flex flex-col space-y-4 h-full">
+                        {/* Icon */}
+                        <div className={cn(
+                          "w-12 h-12 bg-gradient-to-br rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg",
+                          category.color.from,
+                          category.color.to
+                        )}>
+                          <IconComponent className="w-6 h-6 text-white" />
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 flex flex-col space-y-2">
+                          <div className="flex items-center justify-between">
+                            <h3 className="text-lg font-light text-[#0E315C] group-hover:text-[#0E315C]/90 transition-colors">
+                              {category.title}
+                            </h3>
+                            <ChevronRight className={cn(
+                              "w-4 h-4 text-[#0E315C]/40 transition-all duration-300",
+                              isHovered ? "text-[#0E315C]/70 translate-x-1" : ""
+                            )} />
+                          </div>
+                          <p className="text-[#0E315C]/60 text-xs leading-relaxed font-light">
+                            {category.description}
+                          </p>
+                        </div>
+
+                        {/* Hover indicator */}
+                        <div className={cn(
+                          "h-1 bg-gradient-to-r rounded-full transition-all duration-300",
+                          category.color.from,
+                          category.color.to,
+                          isHovered ? "opacity-60 scale-x-100" : "opacity-0 scale-x-0"
+                        )} />
+                      </div>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}

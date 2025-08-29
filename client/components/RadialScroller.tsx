@@ -11,6 +11,7 @@ interface MenuItem {
   id: string;
   title: string;
   subItems?: SubMenuItem[];
+  action?: () => void;
 }
 
 interface RadialScrollerProps {
@@ -32,6 +33,17 @@ export default function RadialScroller({
   // Handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't interfere with input fields, textareas, or contentEditable elements
+      const activeElement = document.activeElement as HTMLElement | null;
+      if (
+        activeElement &&
+        (activeElement.tagName === "INPUT" ||
+          activeElement.tagName === "TEXTAREA" ||
+          activeElement.isContentEditable)
+      ) {
+        return;
+      }
+
       const currentItems = currentLevel === "main" ? items : currentSubItems;
 
       if (e.key === "ArrowUp") {
@@ -73,6 +85,9 @@ export default function RadialScroller({
           setSelectedIndex(0);
           setIsTransitioning(false);
         }, 300);
+      } else if (selectedItem?.action) {
+        // Execute direct action for items without subitems
+        selectedItem.action();
       }
     } else {
       const selectedSubItem = currentSubItems[selectedIndex];
@@ -98,7 +113,7 @@ export default function RadialScroller({
   };
 
   const getItemPosition = (index: number) => {
-    const spacing = 100; // Increased vertical spacing between items
+    const spacing = 100; // Back to original spacing
     const y = (index - selectedIndex) * spacing;
     return { x: 0, y };
   };
@@ -113,10 +128,35 @@ export default function RadialScroller({
 
   const getItemOpacity = (index: number) => {
     const distance = Math.abs(index - selectedIndex);
-    if (distance === 0) return 1;
-    if (distance === 1) return 0.6;
-    if (distance === 2) return 0.3;
-    return 0.15;
+    let baseOpacity;
+    if (distance === 0) baseOpacity = 1;
+    else if (distance === 1) baseOpacity = 0.6;
+    else if (distance === 2) baseOpacity = 0.3;
+    else baseOpacity = 0.15;
+
+    // Simple edge fade-out only when items reach screen boundaries
+    const { y } = getItemPosition(index);
+    const screenHeight = window.innerHeight;
+    const fadeZone = 100; // 100px fade zone at edges
+
+    // Calculate position relative to screen center
+    const screenCenter = screenHeight / 2;
+    const itemScreenY = screenCenter + y;
+
+    // Calculate fade multiplier for items near screen edges
+    let edgeFadeMultiplier = 1;
+
+    // Top edge fade - only fade items that would be off-screen
+    if (itemScreenY < fadeZone) {
+      edgeFadeMultiplier = Math.max(0, itemScreenY / fadeZone);
+    }
+
+    // Bottom edge fade - only fade items that would be off-screen
+    else if (itemScreenY > screenHeight - fadeZone) {
+      edgeFadeMultiplier = Math.max(0, (screenHeight - itemScreenY) / fadeZone);
+    }
+
+    return baseOpacity * edgeFadeMultiplier;
   };
 
   const currentItems = currentLevel === "main" ? items : currentSubItems;
@@ -128,10 +168,10 @@ export default function RadialScroller({
         className,
       )}
     >
-      {/* Vertical container */}
+      {/* Vertical container with constrained height */}
       <div
         className={cn(
-          "relative flex flex-col items-start justify-center h-full py-20 transition-all duration-300 ease-out",
+          "relative flex flex-col items-start justify-center h-full max-h-screen py-20 transition-all duration-300 ease-out",
           isTransitioning &&
             currentLevel === "main" &&
             "transform translate-x-[-100px] opacity-0",
@@ -172,12 +212,12 @@ export default function RadialScroller({
                 className={cn(
                   "font-light tracking-wide transition-all duration-300 whitespace-nowrap",
                   isSelected
-                    ? "text-white drop-shadow-lg"
-                    : "text-white/60 hover:text-white/80",
+                    ? "text-slate-800 drop-shadow-md"
+                    : "text-slate-600 hover:text-slate-700",
                   currentLevel === "main"
                     ? "text-4xl md:text-5xl"
                     : "text-3xl md:text-4xl",
-                  isBackItem && "text-white/50",
+                  isBackItem && "text-slate-500",
                 )}
               >
                 {item.title}
@@ -185,7 +225,7 @@ export default function RadialScroller({
 
               {/* Subtle glow effect for selected item */}
               {isSelected && !isBackItem && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/10 to-purple-400/10 blur-xl -z-10 scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-300/20 to-purple-300/20 blur-xl -z-10 scale-110" />
               )}
             </div>
           );

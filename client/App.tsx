@@ -5,10 +5,19 @@ import { createRoot } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Onboarding from "./pages/Onboarding";
+import SettingsOverview from "./components/SettingsOverview";
+import SettingsCategory from "./components/SettingsCategory";
+import ClientLogin from "./pages/ClientLogin";
+import ClientUpload from "./pages/ClientUpload";
+import ClientConfirmation from "./pages/ClientConfirmation";
+import CloudBackground from "./components/CloudBackground";
+import TopNavBar from "./components/TopNavBar";
+import { FeedbackButton } from "./components/FeedbackButton";
 
 // Extend HTMLElement to include our custom property
 declare global {
@@ -19,15 +28,41 @@ declare global {
 
 const queryClient = new QueryClient();
 
+// Component to conditionally render TopNavBar based on route
+const ConditionalTopNavBar = () => {
+  const location = useLocation();
+
+  // Hide TopNavBar on login, onboarding, and client flow pages
+  if (
+    location.pathname === "/" ||
+    location.pathname === "/onboarding" ||
+    location.pathname.startsWith("/client")
+  ) {
+    return null;
+  }
+
+  return <TopNavBar />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
+      <CloudBackground />
       <BrowserRouter>
+        <ConditionalTopNavBar />
+        <Toaster />
+        <Sonner />
+        <FeedbackButton />
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/menu" element={<Index />} />
+          <Route path="/settings" element={<SettingsOverview />} />
+          <Route path="/settings/:category" element={<SettingsCategory />} />
+          {/* Client upload flow routes */}
+          <Route path="/client/login" element={<ClientLogin />} />
+          <Route path="/client/upload" element={<ClientUpload />} />
+          <Route path="/client/confirmation" element={<ClientConfirmation />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

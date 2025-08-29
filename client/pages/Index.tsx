@@ -1,184 +1,143 @@
-import { useState } from "react";
-import CloudBackground from "@/components/CloudBackground";
-import RadialScroller from "@/components/RadialScroller";
-import Dashboard from "@/components/Dashboard";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import GlassSidePanel from "@/components/GlassSidePanel";
+import InlineCreate from "@/components/InlineCreate";
+import InlineReview from "@/components/InlineReview";
+import Overview from "@/components/Overview";
+import TaskQueue from "@/components/TaskQueue";
+import UnifiedSettings from "@/components/UnifiedSettings";
+import CommunicationsPanel from "@/components/CommunicationsPanel";
+import { useTaskQueue } from "@/hooks/useTaskQueue";
 
-export default function Index() {
-  const [dashboardOpen, setDashboardOpen] = useState(false);
-  const [dashboardTitle, setDashboardTitle] = useState("");
+function IndexContent() {
+  const { taskCount } = useTaskQueue();
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeRightContent, setActiveRightContent] = useState<string | null>(
+    "overview",
+  );
+  const [selectedSettingsCategory, setSelectedSettingsCategory] = useState<
+    string | null
+  >(null);
+
+  useEffect(() => {
+    // Fade in the menu after a short delay
+    setTimeout(() => setIsVisible(true), 200);
+  }, []);
+
+  const handleBackToMenu = () => {
+    setActiveRightContent("overview");
+    setSelectedSettingsCategory(null);
+  };
+
+  const handleSettingsCategorySelect = (categoryId: string) => {
+    setSelectedSettingsCategory(categoryId);
+  };
+
+  const handleSettingsBack = () => {
+    setSelectedSettingsCategory(null);
+  };
   const menuItems = [
     {
-      id: "explore",
-      title: "Explore",
-      subItems: [
-        {
-          id: "explore-worlds",
-          title: "New Worlds",
-          action: () => {
-            setDashboardTitle("New Worlds");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "explore-galaxies",
-          title: "Distant Galaxies",
-          action: () => {
-            setDashboardTitle("Distant Galaxies");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "explore-dimensions",
-          title: "Other Dimensions",
-          action: () => {
-            setDashboardTitle("Other Dimensions");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      id: "overview",
+      title: "Overview",
+      action: () => {
+        setActiveRightContent("overview");
+      },
     },
     {
       id: "create",
       title: "Create",
-      subItems: [
-        {
-          id: "create-project",
-          title: "New Project",
-          action: () => {
-            setDashboardTitle("New Project");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "create-design",
-          title: "Dashboard",
-          action: () => {
-            setDashboardTitle("Dashboard");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "create-experiment",
-          title: "Experiment Lab",
-          action: () => {
-            setDashboardTitle("Experiment Lab");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      action: () => {
+        setActiveRightContent("create");
+      },
     },
     {
-      id: "connect",
-      title: "Connect",
-      subItems: [
-        {
-          id: "connect-community",
-          title: "Community Hub",
-          action: () => {
-            setDashboardTitle("Community Hub");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "connect-collaborate",
-          title: "Collaborate",
-          action: () => {
-            setDashboardTitle("Collaborate");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "connect-network",
-          title: "Network",
-          action: () => {
-            setDashboardTitle("Network");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      id: "review",
+      title: "Case Management",
+      action: () => {
+        setActiveRightContent("review");
+      },
     },
     {
-      id: "learn",
-      title: "Learn",
-      subItems: [
-        {
-          id: "learn-tutorials",
-          title: "Tutorials",
-          action: () => {
-            setDashboardTitle("Tutorials");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "learn-courses",
-          title: "Courses",
-          action: () => {
-            setDashboardTitle("Courses");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "learn-documentation",
-          title: "Documentation",
-          action: () => {
-            setDashboardTitle("Documentation");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      id: "taskqueue",
+      title: "Task Queue",
+      action: () => {
+        setActiveRightContent("taskqueue");
+      },
+    },
+    {
+      id: "communications",
+      title: "Communications",
+      action: () => {
+        setActiveRightContent("communications");
+      },
     },
     {
       id: "settings",
       title: "Settings",
-      subItems: [
-        {
-          id: "settings-profile",
-          title: "Profile",
-          action: () => {
-            setDashboardTitle("Profile");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "settings-preferences",
-          title: "Preferences",
-          action: () => {
-            setDashboardTitle("Preferences");
-            setDashboardOpen(true);
-          },
-        },
-        {
-          id: "settings-security",
-          title: "Security",
-          action: () => {
-            setDashboardTitle("Security");
-            setDashboardOpen(true);
-          },
-        },
-      ],
+      action: () => {
+        setActiveRightContent("settings");
+        setSelectedSettingsCategory(null);
+      },
+    },
+    {
+      id: "logout",
+      title: "Log Out",
+      action: () => {
+        // Navigate back to login page
+        window.location.href = "/";
+      },
     },
   ];
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden">
-      <CloudBackground />
-
-      {/* Main content */}
-      <div className="relative z-10 min-h-screen flex items-center pl-20 md:pl-32 lg:pl-40">
-        {/* Radial Scroller anchored to left but more centered */}
-        <RadialScroller items={menuItems} className="h-full" />
+    <div className="h-screen w-full grid grid-cols-[400px_1fr] overflow-hidden">
+      {/* Sidebar */}
+      <div className="relative">
+        <GlassSidePanel
+          items={menuItems}
+          isVisible={isVisible}
+          taskQueueCount={taskCount}
+        />
       </div>
 
-      {/* Subtle corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-br-full" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-400/10 to-transparent rounded-tl-full" />
-
-      {/* Dashboard Component */}
-      <Dashboard
-        isOpen={dashboardOpen}
-        title={dashboardTitle}
-        onClose={() => setDashboardOpen(false)}
-      />
+      {/* Main Content */}
+      <div className="p-8 pt-24">
+        {activeRightContent && isVisible && (
+          <div className="w-full h-full bg-gradient-to-br from-white/40 via-[#C1D9F6]/25 to-white/30 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl">
+            <div className="w-full h-full p-8 overflow-auto">
+              {activeRightContent === "overview" && (
+                <Overview onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "create" && (
+                <InlineCreate onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "review" && (
+                <InlineReview onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "taskqueue" && (
+                <TaskQueue onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "settings" && (
+                <UnifiedSettings
+                  selectedCategory={selectedSettingsCategory}
+                  onCategorySelect={handleSettingsCategorySelect}
+                  onBack={handleSettingsBack}
+                />
+              )}
+              {activeRightContent === "communications" && (
+                <CommunicationsPanel
+                  onClose={() => setActiveRightContent(null)}
+                />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
+}
+
+export default function Index() {
+  return <IndexContent />;
 }

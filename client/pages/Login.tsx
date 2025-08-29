@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CloudBackground from "@/components/CloudBackground";
 
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(false);
+
+  // Trigger entrance animation
+  useEffect(() => {
+    const timer = setTimeout(() => setIsAnimated(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -15,203 +22,274 @@ export default function Login() {
     // Demo: Allow any login to work
     setTimeout(() => {
       setIsLoading(false);
-      navigate("/menu");
-    }, 800);
+      setIsTransitioning(true);
+
+      // Check if user has completed onboarding
+      const hasCompletedOnboarding = localStorage.getItem('hasCompletedOnboarding');
+      const redirectPath = hasCompletedOnboarding ? "/menu" : "/onboarding";
+
+      // Brief transition delay for fluid experience
+      setTimeout(() => {
+        navigate(redirectPath);
+      }, 400);
+    }, 600);
   };
 
-  return (
-    <div className="min-h-screen w-full relative overflow-hidden">
-      <CloudBackground />
+  // Check if both fields are filled for enhanced button styling
+  const isFormComplete = email.trim().length > 0 && password.trim().length > 2;
 
-      {/* Main content */}
-      <div className="relative z-10 min-h-screen flex items-center">
+  return (
+    <div
+      className={`min-h-screen w-full relative overflow-hidden bg-gradient-to-br from-white via-[#C1D9F6]/8 to-[#99C0F0]/4 transition-all duration-700 ease-out ${
+        isTransitioning
+          ? "opacity-0 transform scale-105"
+          : "opacity-100 transform scale-100"
+      }`}
+    >
+      {/* Ethereal floating elements */}
+      <div className="absolute top-28 left-10 w-32 h-32 bg-[#99C0F0]/4 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-32 right-20 w-24 h-24 bg-[#C5BFEE]/6 rounded-full blur-2xl animate-float-slow"></div>
+      <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#C1D9F6]/5 rounded-full blur-xl animate-drift"></div>
+      <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-[#99C0F0]/3 rounded-full blur-2xl animate-float"></div>
+      <div className="absolute bottom-1/4 left-1/6 w-14 h-14 bg-[#C5BFEE]/4 rounded-full blur-xl animate-drift"></div>
+
+      <div className="relative z-10 min-h-screen flex items-center max-w-screen-2xl mx-auto">
         {/* Hero section - Left side */}
-        <div className="flex-1 pl-20 md:pl-32 lg:pl-40 pr-8">
-          <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-7xl font-light text-white mb-6 tracking-wide leading-tight">
-              <span className="bg-gradient-to-r from-blue-300 via-white to-purple-300 bg-clip-text text-transparent">
-                Welcome Back
-              </span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white/70 mb-8 leading-relaxed">
-              Step into a world of infinite possibilities. Your journey through
-              space and time continues here.
-            </p>
-            <div className="space-y-4 text-white/60">
-              <div className="flex items-center space-x-3">
-                <svg
-                  className="w-5 h-5 text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-                <span>Seamless cloud synchronization</span>
+        <div className="flex-1 pl-8 sm:pl-12 md:pl-16 lg:pl-24 xl:pl-32 2xl:pl-40 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 max-w-lg sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl">
+          <div
+            className={`space-y-12 transition-all duration-1000 ease-out ${
+              isAnimated
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-8"
+            }`}
+          >
+            {/* Main heading */}
+            <div className="space-y-8">
+              <h1 className="text-6xl md:text-8xl font-extralight text-[#0E315C] leading-none tracking-tight">
+                Luceron
+              </h1>
+
+              <div className="space-y-6">
+                <h2 className="text-2xl md:text-3xl font-light text-[#0E315C]/90 leading-relaxed">
+                  Legal Discovery, Simplified
+                </h2>
+                <p className="text-lg text-[#0E315C]/70 leading-relaxed max-w-xl font-light">
+                  Transform your legal workflow with AI-powered document
+                  discovery and intelligent client communication.
+                </p>
               </div>
-              <div className="flex items-center space-x-3">
-                <svg
-                  className="w-5 h-5 text-purple-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  />
-                </svg>
-                <span>Enterprise-grade security</span>
+
+              {/* Elegant divider */}
+              <div className="flex items-center space-x-8 pt-4">
+                <div className="w-16 h-px bg-gradient-to-r from-[#99C0F0] to-transparent"></div>
+                <span className="text-sm text-[#0E315C]/50 font-medium">
+                  Trusted by Legal Professionals
+                </span>
               </div>
-              <div className="flex items-center space-x-3">
-                <svg
-                  className="w-5 h-5 text-emerald-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-                <span>Lightning-fast performance</span>
+            </div>
+
+            {/* Security badges - subtly integrated */}
+            <div
+              className={`space-y-4 transition-all duration-1000 ease-out delay-300 ${
+                isAnimated
+                  ? "opacity-100 transform translate-y-0"
+                  : "opacity-0 transform translate-y-4"
+              }`}
+            >
+              <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full shadow-sm shadow-green-400/30"></div>
+                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">
+                    SSL SECURED
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full shadow-sm shadow-blue-400/30"></div>
+                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">
+                    SOC 2 COMPLIANT
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-[#99C0F0] rounded-full shadow-sm shadow-[#99C0F0]/30"></div>
+                  <span className="text-xs text-[#0E315C]/60 font-medium tracking-wide">
+                    ENTERPRISE READY
+                  </span>
+                </div>
               </div>
+            </div>
+
+            {/* Demo Button - Temporary for testing */}
+            <div
+              className={`mt-8 transition-all duration-1000 ease-out delay-500 ${
+                isAnimated
+                  ? "opacity-100 transform translate-y-0"
+                  : "opacity-0 transform translate-y-4"
+              }`}
+            >
+              <button
+                onClick={() => navigate('/client/login?email=demo%40example.com')}
+                className="group relative px-6 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                <span className="relative z-10 flex items-center space-x-2">
+                  <span>🧪</span>
+                  <span>Demo: Client Upload Flow</span>
+                </span>
+              </button>
+              <p className="text-xs text-[#0E315C]/50 mt-2 font-light">
+                Temporary demo button - removes after testing
+              </p>
             </div>
           </div>
         </div>
 
         {/* Login form - Right side */}
-        <div className="flex-shrink-0 w-full max-w-lg pr-20 md:pr-32 lg:pr-40">
-          <div className="bg-white/10 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-10">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-light text-white mb-2">Sign In</h2>
-              <p className="text-white/60">Access your account</p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Email field */}
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-white/80 mb-2"
-                >
-                  Email
-                </label>
-                <div className="relative">
-                  <input
-                    id="email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent transition-all duration-200"
-                    placeholder="Enter your email"
-                    required
-                  />
-                  <svg
-                    className="absolute right-3 top-3.5 w-5 h-5 text-white/40"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                    />
-                  </svg>
+        <div className="flex-shrink-0 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl pr-8 sm:pr-12 md:pr-16 lg:pr-24 xl:pr-32 2xl:pr-40">
+          <div
+            className={`relative transition-all duration-1000 ease-out delay-200 ${
+              isAnimated
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-8"
+            }`}
+          >
+            {/* Enhanced floating card */}
+            <div className="bg-white/95 backdrop-blur-2xl rounded-3xl border border-white/50 shadow-2xl shadow-[#99C0F0]/8 p-8 sm:p-10 md:p-12 lg:p-14 xl:p-16 transform hover:scale-[1.01] transition-all duration-700 hover:shadow-[#99C0F0]/12">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Header */}
+                <div className="text-center mb-8">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-[#0E315C] mb-2 tracking-wide">
+                    Welcome
+                  </h3>
+                  <p className="text-[#0E315C]/60 text-sm sm:text-base lg:text-lg font-light">
+                    Sign in to continue
+                  </p>
                 </div>
-              </div>
 
-              {/* Password field */}
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-white/80 mb-2"
-                >
-                  Password
-                </label>
-                <div className="relative">
-                  <input
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-transparent transition-all duration-200"
-                    placeholder="Enter your password"
-                    required
-                  />
-                  <svg
-                    className="absolute right-3 top-3.5 w-5 h-5 text-white/40"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                {/* Form fields */}
+                <div className="space-y-8">
+                  <div className="relative group">
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full px-0 py-4 lg:py-5 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg lg:text-xl font-light group-hover:border-[#C1D9F6]/50"
+                      placeholder="Email address"
+                      required
+                      style={{ outline: "none", boxShadow: "none" }}
                     />
-                  </svg>
-                </div>
-              </div>
+                    <div className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] transition-all duration-500 group-focus-within:w-full"></div>
+                  </div>
 
-              {/* Forgot password */}
-              <div className="flex justify-end text-sm">
+                  <div className="relative group">
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      className="w-full px-0 py-4 lg:py-5 bg-transparent border-0 border-b border-[#C1D9F6]/30 text-[#0E315C] placeholder-[#0E315C]/40 focus:outline-none focus:border-[#99C0F0] focus:ring-0 focus:shadow-none transition-all duration-500 text-lg lg:text-xl font-light group-hover:border-[#C1D9F6]/50"
+                      placeholder="Password"
+                      required
+                      style={{ outline: "none", boxShadow: "none" }}
+                    />
+                    <div className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] transition-all duration-500 group-focus-within:w-full"></div>
+                  </div>
+                </div>
+
+                {/* Enhanced submit button */}
                 <button
-                  type="button"
-                  className="text-blue-300 hover:text-blue-200 transition-colors duration-200"
+                  type="submit"
+                  disabled={isLoading}
+                  className={`w-full py-4 lg:py-5 px-6 lg:px-8 rounded-2xl text-white font-medium lg:font-semibold lg:text-lg transition-all duration-700 transform hover:scale-[1.02] relative overflow-hidden group ${
+                    isFormComplete
+                      ? "bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] shadow-xl shadow-[#99C0F0]/25"
+                      : "bg-gradient-to-r from-[#99C0F0]/80 to-[#C5BFEE]/70 shadow-lg shadow-[#99C0F0]/15"
+                  }`}
                 >
-                  Forgot password?
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="relative z-10">
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-2">
+                        <svg
+                          className="animate-spin w-5 h-5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                          />
+                        </svg>
+                        <span>Signing In...</span>
+                      </div>
+                    ) : (
+                      "Continue"
+                    )}
+                  </span>
                 </button>
-              </div>
 
-              {/* Submit button */}
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-              >
-                {isLoading ? (
-                  <div className="flex items-center justify-center space-x-2">
+                {/* Forgot password */}
+                <div className="text-center">
+                  <button
+                    type="button"
+                    className="text-[#99C0F0] hover:text-[#0E315C] transition-all duration-300 text-sm font-medium hover:scale-105 transform"
+                  >
+                    Forgot password?
+                  </button>
+                </div>
+              </form>
+
+              {/* Security footer - elegantly integrated */}
+              <div className="mt-8 pt-6 border-t border-[#C1D9F6]/20 text-center">
+                <p className="text-xs text-[#0E315C]/50 mb-3 font-light">
+                  Protected by enterprise-grade security
+                </p>
+                <div className="flex items-center justify-center space-x-4">
+                  <div className="flex items-center space-x-1.5">
                     <svg
-                      className="animate-spin w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                      className="w-3 h-3 text-green-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
                     >
                       <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        fillRule="evenodd"
+                        d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
                       />
                     </svg>
-                    <span>Signing in...</span>
+                    <span className="text-xs text-[#0E315C]/60 font-medium">
+                      256-bit SSL
+                    </span>
                   </div>
-                ) : (
-                  "Sign In"
-                )}
-              </button>
-            </form>
+                  <div className="w-px h-3 bg-[#C1D9F6]/30"></div>
+                  <div className="flex items-center space-x-1.5">
+                    <svg
+                      className="w-3 h-3 text-blue-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span className="text-xs text-[#0E315C]/60 font-medium">
+                      SOC 2 Type II
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced floating accent elements */}
+            <div className="absolute -top-8 lg:-top-12 -left-8 lg:-left-12 w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-[#99C0F0]/25 to-transparent rounded-full blur-xl opacity-60 animate-float"></div>
+            <div className="absolute -bottom-6 lg:-bottom-8 -right-6 lg:-right-8 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-[#C5BFEE]/20 to-transparent rounded-full blur-lg opacity-50 animate-float-slow"></div>
+            <div className="absolute -top-4 lg:-top-6 -right-4 lg:-right-6 w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#C1D9F6]/30 to-transparent rounded-full blur-md opacity-40 animate-drift"></div>
           </div>
         </div>
       </div>
-
-      {/* Subtle corner accents */}
-      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-br-full" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-400/10 to-transparent rounded-tl-full" />
     </div>
   );
 }
