@@ -236,12 +236,12 @@ export default function DocumentLibrary({
 
           {/* Document List, Templates with Actions, or Template Detail View */}
           <div className="flex-1 overflow-y-auto document-scroll px-6 py-4 rounded-b-3xl">
-            {viewingTemplate ? (
-              // Template Detail View
+            {showConflictResolution && pendingTemplate ? (
+              // Conflict Resolution UI
               <div className="space-y-4">
                 <div className="flex items-center space-x-3 mb-6">
                   <button
-                    onClick={closeTemplateViews}
+                    onClick={handleCancelConflict}
                     className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/60 hover:bg-white/80 border border-[#C1D9F6]/30 transition-all duration-200"
                   >
                     <svg className="w-4 h-4 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -249,62 +249,131 @@ export default function DocumentLibrary({
                     </svg>
                   </button>
                   <div>
-                    <h3 className="text-lg font-light text-[#0E315C]">{viewingTemplate.name}</h3>
+                    <h3 className="text-lg font-light text-[#0E315C]">Load Template</h3>
                     <p className="text-sm text-[#0E315C]/60">
-                      {viewingTemplate.documents.length} documents in template
+                      You have {selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} selected
                     </p>
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  {viewingTemplate.documents.map((doc, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-white/50 border border-[#C1D9F6]/30 rounded-lg">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-[#99C0F0] rounded-full flex-shrink-0" />
-                        <span className="text-sm text-[#0E315C]">{doc}</span>
+                <div className="bg-white/60 border border-[#C1D9F6]/30 rounded-xl p-4 mb-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-medium text-[#0E315C]">{pendingTemplate.name}</h4>
+                    <span className="text-xs text-[#0E315C]/60 bg-[#C1D9F6]/20 px-2 py-1 rounded-full">
+                      {pendingTemplate.documents.length} docs
+                    </span>
+                  </div>
+                  <div className="space-y-2 max-h-32 overflow-y-auto">
+                    {pendingTemplate.documents.map((doc, index) => (
+                      <div key={index} className="flex items-center space-x-2">
+                        <div className="w-1.5 h-1.5 bg-[#99C0F0] rounded-full flex-shrink-0" />
+                        <span className="text-sm text-[#0E315C]/70">{doc}</span>
                       </div>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-xs text-[#0E315C]/50 bg-[#C1D9F6]/20 px-2 py-1 rounded-full">
-                          {availableDocuments.includes(doc) ? 'Available' : 'Custom'}
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <button
+                    onClick={handleReplaceSelection}
+                    className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 font-light"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    <span>Replace Current Selection</span>
+                  </button>
+
+                  <button
+                    onClick={handleAddToSelection}
+                    className="w-full bg-white/60 hover:bg-white/80 text-[#0E315C] px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 border border-[#C1D9F6]/40 font-light"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    <span>Add to Current Selection</span>
+                  </button>
+                </div>
+              </div>
+            ) : editingTemplate ? (
+              // Template Edit/View Interface
+              <div className="space-y-4">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center space-x-3">
+                    <button
+                      onClick={closeTemplateViews}
+                      className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/60 hover:bg-white/80 border border-[#C1D9F6]/30 transition-all duration-200"
+                    >
+                      <svg className="w-4 h-4 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <div>
+                      <h3 className="text-lg font-light text-[#0E315C]">{editingTemplate.name}</h3>
+                      <p className="text-sm text-[#0E315C]/60">
+                        {editingDocuments.length} documents selected
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleSaveTemplate}
+                    className="px-4 py-2 bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white rounded-lg text-sm font-light transition-all duration-200 hover:shadow-lg"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {availableDocuments.map((doc, index) => {
+                    const isSelected = editingDocuments.includes(doc);
+                    return (
+                      <div key={index} className={`flex items-center justify-between p-3 border rounded-lg transition-all duration-200 cursor-pointer hover:shadow-sm ${
+                        isSelected
+                          ? 'bg-[#99C0F0]/10 border-[#99C0F0]/30'
+                          : 'bg-white/50 border-[#C1D9F6]/30 hover:bg-white/70'
+                      }`}
+                      onClick={() => handleToggleDocumentInTemplate(doc)}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div className={`w-4 h-4 rounded border-2 flex items-center justify-center transition-all duration-200 ${
+                            isSelected
+                              ? 'bg-[#99C0F0] border-[#99C0F0]'
+                              : 'border-[#C1D9F6]/50'
+                          }`}>
+                            {isSelected && (
+                              <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                            )}
+                          </div>
+                          <span className={`text-sm transition-colors ${
+                            isSelected ? 'text-[#0E315C] font-medium' : 'text-[#0E315C]/70'
+                          }`}>
+                            {doc}
+                          </span>
+                        </div>
+                        <span className={`text-xs px-2 py-1 rounded-full ${
+                          isSelected
+                            ? 'bg-[#99C0F0]/20 text-[#99C0F0]'
+                            : 'bg-[#C1D9F6]/20 text-[#0E315C]/50'
+                        }`}>
+                          {isSelected ? 'Included' : 'Available'}
                         </span>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-[#C1D9F6]/20">
                   <button
-                    onClick={() => handleLoadTemplate(viewingTemplate)}
-                    className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 font-light"
+                    onClick={() => handleLoadTemplate({ name: editingTemplate.name, documents: editingDocuments })}
+                    className="w-full bg-white/60 hover:bg-white/80 text-[#0E315C] px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 border border-[#C1D9F6]/40 font-light"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                     <span>Load Template</span>
                   </button>
-                </div>
-              </div>
-            ) : editingTemplate ? (
-              // Template Edit View (placeholder for future functionality)
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3 mb-6">
-                  <button
-                    onClick={closeTemplateViews}
-                    className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/60 hover:bg-white/80 border border-[#C1D9F6]/30 transition-all duration-200"
-                  >
-                    <svg className="w-4 h-4 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  <div>
-                    <h3 className="text-lg font-light text-[#0E315C]">Edit {editingTemplate.name}</h3>
-                    <p className="text-sm text-[#0E315C]/60">
-                      Template editing functionality coming soon
-                    </p>
-                  </div>
-                </div>
-                <div className="text-center py-8">
-                  <p className="text-[#0E315C]/50 text-sm">Template editing feature will be implemented here</p>
                 </div>
               </div>
             ) : showTemplatesInline && showTemplates ? (
@@ -325,23 +394,11 @@ export default function DocumentLibrary({
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        {/* View Template Documents */}
-                        <button
-                          onClick={() => handleViewTemplate(template)}
-                          className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/60 hover:bg-[#C1D9F6]/20 border border-[#C1D9F6]/30 hover:border-[#C1D9F6]/50 transition-all duration-200"
-                          title="View template documents"
-                        >
-                          <svg className="w-4 h-4 text-[#0E315C]/60 hover:text-[#0E315C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                          </svg>
-                        </button>
-
-                        {/* Edit Template */}
+                        {/* Edit/View Template (Combined) */}
                         <button
                           onClick={() => handleEditTemplate(template)}
                           className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/60 hover:bg-[#C5BFEE]/20 border border-[#C1D9F6]/30 hover:border-[#C5BFEE]/50 transition-all duration-200"
-                          title="Edit template"
+                          title="View and edit template"
                         >
                           <svg className="w-4 h-4 text-[#0E315C]/60 hover:text-[#C5BFEE]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
