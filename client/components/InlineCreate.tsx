@@ -258,7 +258,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       </span>
                     </h3>
                     <p className="text-gray-400/70 text-sm leading-relaxed font-light">
-                      Send a structured questionnaire tailored to your case type
+                      Send one of your firm's own questionnaires to a client and automatically monitor its completion
                     </p>
                   </div>
                 </div>
