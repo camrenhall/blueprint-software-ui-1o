@@ -444,23 +444,24 @@ export default function CaseDetailsNew({
                   {communications.map((comm, index) => (
                     <div
                       key={index}
-                      className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg"
+                      className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg min-w-0"
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="flex items-center space-x-2">
-                          <Mail className="w-4 h-4 text-[#0E315C]" />
-                          <span className={cn(
-                            "px-2 py-1 rounded-lg text-xs font-medium border flex items-center space-x-1",
-                            getCommunicationStatusColor(comm.status)
-                          )}>
-                            <span>{getStatusIndicator(comm.status)}</span>
-                            <span className="capitalize">{comm.status}</span>
-                          </span>
+                      <div className="flex items-start space-x-3 min-w-0 flex-1">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20 flex-shrink-0">
+                          <Mail className="w-5 h-5 text-[#0E315C]" />
                         </div>
-                        <span className="text-xs text-[#0E315C]/50 font-light">{comm.time}</span>
+                        <div className="min-w-0 flex-1">
+                          <p className="text-sm font-medium text-[#0E315C] mb-1 truncate">{comm.subject}</p>
+                          <div className="text-xs text-[#0E315C]/50 font-light mb-1">{comm.time}</div>
+                          <p className="text-xs text-[#0E315C]/60 font-light line-clamp-2">{comm.preview}</p>
+                        </div>
                       </div>
-                      <p className="text-sm font-medium text-[#0E315C] mb-1 truncate">{comm.subject}</p>
-                      <p className="text-xs text-[#0E315C]/60 font-light line-clamp-2">{comm.preview}</p>
+                      <span className={cn(
+                        "px-2 py-1 rounded-lg text-xs font-medium border capitalize flex-shrink-0",
+                        getCommunicationStatusColor(comm.status)
+                      )}>
+                        {comm.status}
+                      </span>
                     </div>
                   ))}
                 </div>
