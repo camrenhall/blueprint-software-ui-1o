@@ -23,6 +23,12 @@ function IndexContent() {
     setTimeout(() => setIsVisible(true), 200);
   }, []);
 
+  // Debug logging
+  useEffect(() => {
+    console.log('Index.tsx - activeRightContent:', activeRightContent);
+    console.log('Index.tsx - isVisible:', isVisible);
+  }, [activeRightContent, isVisible]);
+
   const handleBackToMenu = () => {
     setActiveRightContent("overview");
     setSelectedSettingsCategory(null);
