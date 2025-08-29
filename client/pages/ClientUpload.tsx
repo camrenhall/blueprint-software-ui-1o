@@ -230,9 +230,6 @@ export default function ClientUpload() {
               <h1 className="text-2xl font-light text-[#0E315C]">Document Upload Portal</h1>
               <p className="text-sm text-[#0E315C]/60">Secure document submission for legal review</p>
             </div>
-            <div className="flex items-center space-x-2">
-              <Settings className="w-5 h-5 text-[#0E315C]/40" />
-            </div>
           </div>
 
           <div className="grid grid-cols-4 gap-6 h-full">
@@ -337,16 +334,16 @@ export default function ClientUpload() {
               <div className="h-[300px] overflow-hidden">
                 {files.length === 0 ? (
                   <div className="h-full flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                      <Folder className="w-20 h-20 text-[#C1D9F6] mx-auto" />
-                      <div>
-                        <h4 className="text-xl font-medium text-[#0E315C]/60 mb-2">No documents uploaded</h4>
-                        <p className="text-sm text-[#0E315C]/50 mb-4">
+                    <div className="text-center space-y-6 max-w-sm mx-auto">
+                      <Folder className="w-24 h-24 text-[#C1D9F6] mx-auto" />
+                      <div className="space-y-4">
+                        <h4 className="text-xl font-medium text-[#0E315C]/60">No documents uploaded</h4>
+                        <p className="text-sm text-[#0E315C]/50 leading-relaxed">
                           Upload your first document to get started with the review process
                         </p>
                         <Button
                           onClick={() => fileInputRef.current?.click()}
-                          className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-6 py-2 rounded-lg"
+                          className="bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-8 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200"
                         >
                           <Plus className="w-4 h-4 mr-2" />
                           Upload Files
