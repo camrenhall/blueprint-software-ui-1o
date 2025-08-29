@@ -395,7 +395,7 @@ export default function CaseDetailsNew({
                   <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
                 </div>
 
-                <div className="space-y-3 max-h-64 overflow-y-auto">
+                <div className="space-y-3 max-h-80 overflow-y-auto">
                   {documents.map((doc, index) => (
                     <div
                       key={index}
