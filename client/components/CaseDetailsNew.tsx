@@ -186,18 +186,6 @@ export default function CaseDetailsNew({
     }
   };
 
-  const getStatusIndicator = (status: string) => {
-    switch (status) {
-      case "incoming":
-        return "↓";
-      case "outgoing":
-        return "↑";
-      case "queued":
-        return "⏸";
-      default:
-        return "";
-    }
-  };
 
   // Define content sections styling based on inline mode - consistent glassmorphism design
   const sectionClasses = cn(
