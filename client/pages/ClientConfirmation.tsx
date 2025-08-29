@@ -103,7 +103,7 @@ export default function ClientConfirmation() {
             <GlassPanel variant="enhanced" radius="lg" className="p-3 sm:p-4">
               <div className="space-y-3">
                 {/* Summary Stats */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <div className="text-center p-2 bg-white/30 rounded-lg border border-white/20">
                     <FileText className="w-6 h-6 text-[#99C0F0] mx-auto mb-1" />
                     <div className="text-xl font-semibold text-[#0E315C]">
@@ -121,16 +121,6 @@ export default function ClientConfirmation() {
                     </div>
                     <div className="text-xs text-[#0E315C]/60">
                       Total Size
-                    </div>
-                  </div>
-
-                  <div className="text-center p-2 bg-white/30 rounded-lg border border-white/20">
-                    <Clock className="w-6 h-6 text-[#C1D9F6] mx-auto mb-1" />
-                    <div className="text-base font-semibold text-[#0E315C]">
-                      {uploadTime.split(',')[0]}
-                    </div>
-                    <div className="text-xs text-[#0E315C]/60">
-                      Upload Date
                     </div>
                   </div>
                 </div>
