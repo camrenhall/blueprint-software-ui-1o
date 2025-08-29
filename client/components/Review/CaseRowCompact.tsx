@@ -26,13 +26,13 @@ export function CaseRowCompact({
         statusColors.border,
         "hover:bg-white/50 hover:shadow-md",
         statusColors.hover,
-        "hover:border-opacity-80 transition-all duration-300 px-4 py-3 rounded-xl text-left group hover:scale-[1.02] transform",
+        "hover:border-opacity-80 transition-all duration-300 px-3 py-2.5 rounded-lg text-left group hover:scale-[1.01] transform",
         className,
       )}
     >
       <div className="flex items-center space-x-3">
         {/* Compact Avatar */}
-        <div className="w-8 h-8 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200 flex-shrink-0 shadow-sm">
+        <div className="w-7 h-7 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-md flex items-center justify-center group-hover:scale-105 transition-transform duration-200 flex-shrink-0 shadow-sm">
           <span className="text-white font-medium text-xs">
             {caseItem.avatar}
           </span>
@@ -42,7 +42,7 @@ export function CaseRowCompact({
         <div className="flex items-center flex-shrink-0">
           <div
             className={cn(
-              "w-2.5 h-2.5 rounded-full shadow-sm",
+              "w-2 h-2 rounded-full shadow-sm",
               statusColors.dot,
             )}
           />
@@ -77,7 +77,7 @@ export function CaseRowCompact({
                 {caseItem.progressPercent}%
               </div>
               {/* Mini Progress Bar */}
-              <div className="w-12 h-1.5 bg-[#C1D9F6]/30 rounded-full overflow-hidden">
+              <div className="w-10 h-1.5 bg-[#C1D9F6]/30 rounded-full overflow-hidden">
                 <div
                   className={cn(
                     "h-full rounded-full transition-all duration-500 ease-out",
