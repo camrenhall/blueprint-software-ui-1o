@@ -70,7 +70,6 @@ export default function ClientConfirmation() {
     const colors = [
       "text-[#99C0F0]",  // Blue
       "text-[#C5BFEE]",  // Purple
-      "text-[#C1D9F6]",  // Light blue
     ];
 
     const iconClass = `w-5 h-5 ${colors[index % colors.length]}`;
