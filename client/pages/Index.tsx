@@ -9,14 +9,9 @@ import TaskQueue from "@/components/TaskQueue";
 import UnifiedSettings from "@/components/UnifiedSettings";
 import CommunicationsPanel from "@/components/CommunicationsPanel";
 import { PageContainer } from "@/components/ui/page-container";
-import {
-  ConversationProvider,
-  useConversationContext,
-} from "@/contexts/ConversationContext";
 import { useTaskQueue } from "@/hooks/useTaskQueue";
 
 function IndexContent() {
-  const { isInChatMode } = useConversationContext();
   const { taskCount } = useTaskQueue();
   const [isVisible, setIsVisible] = useState(false);
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
@@ -98,15 +93,7 @@ function IndexContent() {
   return (
     <div className="h-screen w-full relative overflow-hidden">
       {/* Fixed positioned panels - outside of transformed containers */}
-      {isInChatMode ? (
-        <ConversationHistory
-          className="h-full"
-          onBackToMenu={handleBackToMenu}
-          isVisible={isVisible}
-        />
-      ) : (
-        <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
-      )}
+      <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
 
       {/* Main content area - subtract navbar height from screen height */}
       <div className="relative z-10 h-[calc(100vh-4rem)]">
@@ -211,9 +198,5 @@ function IndexContent() {
 }
 
 export default function Index() {
-  return (
-    <ConversationProvider>
-      <IndexContent />
-    </ConversationProvider>
-  );
+  return <IndexContent />;
 }
