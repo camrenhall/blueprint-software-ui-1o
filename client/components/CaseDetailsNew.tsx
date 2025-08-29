@@ -5,11 +5,13 @@ import { cn } from "@/lib/utils";
 interface CaseDetailsNewProps {
   selectedCase: any;
   onBack: () => void;
+  inline?: boolean;
 }
 
 export default function CaseDetailsNew({
   selectedCase,
   onBack,
+  inline = false,
 }: CaseDetailsNewProps) {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
 
@@ -185,7 +187,9 @@ export default function CaseDetailsNew({
   if (selectedDocument) {
     const doc = documents.find(d => d.name === selectedDocument);
     return (
-      <div className="fixed top-20 right-6 bottom-6 left-96 z-50 p-6">
+      <div className={cn(
+        inline ? "h-full p-6" : "fixed top-20 right-6 bottom-6 left-96 z-50 p-6"
+      )}>
         <div className="w-full h-full relative rounded-3xl shadow-2xl">
           {/* Glass morphism background layers - matching site design */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
@@ -255,7 +259,10 @@ export default function CaseDetailsNew({
   }
 
   return (
-    <div className="fixed top-20 right-6 bottom-6 left-96 z-50 animate-fadeIn p-6">
+    <div className={cn(
+      "animate-fadeIn",
+      inline ? "h-full p-6" : "fixed top-20 right-6 bottom-6 left-96 z-50 p-6"
+    )}>
       <div className="w-full h-full relative rounded-3xl shadow-2xl">
         {/* Glass morphism background layers - matching site design */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-[#C1D9F6]/15 to-white/20 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
