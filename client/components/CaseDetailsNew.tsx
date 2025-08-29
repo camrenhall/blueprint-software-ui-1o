@@ -451,7 +451,7 @@ export default function CaseDetailsNew({
                           <Mail className="w-4 h-4 text-[#0E315C]" />
                           <span className={cn(
                             "px-2 py-1 rounded-lg text-xs font-medium border flex items-center space-x-1",
-                            getStatusColor(comm.status)
+                            getCommunicationStatusColor(comm.status)
                           )}>
                             <span>{getStatusIndicator(comm.status)}</span>
                             <span className="capitalize">{comm.status}</span>
