@@ -104,55 +104,34 @@ function IndexContent() {
 
       {/* Main Content */}
       <div className="p-8 pt-24">
-        <div className="w-full h-full bg-red-200 rounded-2xl p-8">
-          <h1 className="text-4xl text-black mb-4">
-            Current Page: {activeRightContent || "none"}
-          </h1>
-          <p className="text-2xl text-black">
-            isVisible: {isVisible ? "true" : "false"}
-          </p>
-
-          {activeRightContent === "overview" && (
-            <div>
-              <h2 className="text-2xl text-blue-600 mb-4">OVERVIEW PAGE</h2>
-              <Overview onClose={() => setActiveRightContent(null)} />
+        {activeRightContent && isVisible && (
+          <div className="w-full h-full bg-gradient-to-br from-white/40 via-[#C1D9F6]/25 to-white/30 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl">
+            <div className="w-full h-full p-8 overflow-auto">
+              {activeRightContent === "overview" && (
+                <Overview onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "create" && (
+                <InlineCreate onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "review" && (
+                <InlineReview onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "taskqueue" && (
+                <TaskQueue onClose={() => setActiveRightContent(null)} />
+              )}
+              {activeRightContent === "settings" && (
+                <UnifiedSettings
+                  selectedCategory={selectedSettingsCategory}
+                  onCategorySelect={handleSettingsCategorySelect}
+                  onBack={handleSettingsBack}
+                />
+              )}
+              {activeRightContent === "communications" && (
+                <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
+              )}
             </div>
-          )}
-          {activeRightContent === "create" && (
-            <div>
-              <h2 className="text-2xl text-blue-600 mb-4">CREATE PAGE</h2>
-              <InlineCreate onClose={() => setActiveRightContent(null)} />
-            </div>
-          )}
-          {activeRightContent === "review" && (
-            <div>
-              <h2 className="text-2xl text-blue-600 mb-4">REVIEW PAGE</h2>
-              <InlineReview onClose={() => setActiveRightContent(null)} />
-            </div>
-          )}
-          {activeRightContent === "taskqueue" && (
-            <div>
-              <h2 className="text-2xl text-blue-600 mb-4">TASK QUEUE PAGE</h2>
-              <TaskQueue onClose={() => setActiveRightContent(null)} />
-            </div>
-          )}
-          {activeRightContent === "settings" && (
-            <div>
-              <h2 className="text-2xl text-blue-600 mb-4">SETTINGS PAGE</h2>
-              <UnifiedSettings
-                selectedCategory={selectedSettingsCategory}
-                onCategorySelect={handleSettingsCategorySelect}
-                onBack={handleSettingsBack}
-              />
-            </div>
-          )}
-          {activeRightContent === "communications" && (
-            <div>
-              <h2 className="text-2xl text-blue-600 mb-4">COMMUNICATIONS PAGE</h2>
-              <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
