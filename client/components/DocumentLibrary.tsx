@@ -156,7 +156,11 @@ export default function DocumentLibrary({
                 </button>
                 {showTemplates && (
                   <button
-                    onClick={() => setShowTemplatesInline(!showTemplatesInline)}
+                    onClick={() => {
+                      setShowTemplatesInline(!showTemplatesInline);
+                      setShowTemplateConflict(false);
+                      setConflictTemplate(null);
+                    }}
                     className={`text-[#0E315C]/60 hover:text-[#0E315C] flex items-center space-x-2 text-sm font-light border border-[#C1D9F6]/30 hover:border-[#C5BFEE]/50 rounded-xl px-3 py-2 transition-all duration-300 backdrop-blur-sm shadow-sm ${
                       showTemplatesInline
                         ? "bg-[#C5BFEE]/20 border-[#C5BFEE]/50 text-[#0E315C]"
