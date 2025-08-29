@@ -390,11 +390,16 @@ export default function DocumentLibrary({
                     <div className="bg-white/50 rounded-2xl p-4 border border-[#C1D9F6]/30">
                       <button
                         onClick={handleReplaceSelection}
-                        className="group w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#8AB5ED] hover:to-[#BFB8EB] text-white px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 hover:scale-[1.02] transform"
+                        disabled={isLoading}
+                        className={`group w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#8AB5ED] hover:to-[#BFB8EB] text-white px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 hover:scale-[1.02] transform ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
                       >
-                        <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                        </svg>
+                        {isLoading ? (
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                          </svg>
+                        )}
                         <span>Replace Current Selection</span>
                       </button>
                       <p className="text-xs text-[#0E315C]/60 mt-2 text-center">
@@ -406,11 +411,16 @@ export default function DocumentLibrary({
                     <div className="bg-white/50 rounded-2xl p-4 border border-[#C1D9F6]/30">
                       <button
                         onClick={handleAddToSelection}
-                        className="group w-full bg-white/80 hover:bg-white text-[#0E315C] px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 border border-[#C1D9F6]/50 hover:border-[#99C0F0]/50 font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transform"
+                        disabled={isLoading}
+                        className={`group w-full bg-white/80 hover:bg-white text-[#0E315C] px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 border border-[#C1D9F6]/50 hover:border-[#99C0F0]/50 font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transform ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
                       >
-                        <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                        </svg>
+                        {isLoading ? (
+                          <div className="w-5 h-5 border-2 border-[#0E315C] border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                          </svg>
+                        )}
                         <span>Add to Current Selection</span>
                       </button>
                       <p className="text-xs text-[#0E315C]/60 mt-2 text-center">
