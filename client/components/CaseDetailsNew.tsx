@@ -346,31 +346,31 @@ export default function CaseDetailsNew({
           <div className="space-y-6">
             {/* Row 1: Case Progress - Full Width */}
             <div className={cn(
-              "rounded-2xl p-3 transition-all duration-300",
+              "rounded-2xl p-4 transition-all duration-300",
               inline
                 ? "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform"
                 : "bg-white/20 backdrop-blur-xl shadow-xl border border-white/20 hover:shadow-2xl"
             )}>
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                  <h3 className="text-base font-light text-[#0E315C]">Case Progress</h3>
-                  <span className="text-xs text-[#0E315C]/60 font-light">Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Approved</span>
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-500" />
+                  <h3 className="text-lg font-light text-[#0E315C]">Case Progress</h3>
+                  <span className="text-sm text-[#0E315C]/60 font-light">Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Approved</span>
                 </div>
-                <span className="text-xl font-light text-[#0E315C]">{progressPercent}%</span>
+                <span className="text-2xl font-light text-[#0E315C]">{progressPercent}%</span>
               </div>
 
-              <div className="w-full h-1.5 bg-[#C1D9F6]/30 rounded-full overflow-hidden mb-2">
+              <div className="w-full h-2 bg-[#C1D9F6]/30 rounded-full overflow-hidden mb-3">
                 <div
-                  className="h-full bg-gradient-to-r from-emerald-500 to-green-500 rounded-full transition-all duration-1000 shadow-sm"
+                  className="h-full bg-gradient-to-r from-emerald-500 to-green-500 rounded-full transition-all duration-1000 shadow-lg"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>
 
               {/* Most Recent Activity - Inline */}
-              <div className="flex items-center justify-between text-xs border-t border-[#C1D9F6]/15 pt-2">
+              <div className="flex items-center justify-between text-sm border-t border-[#C1D9F6]/20 pt-2">
                 <span className="text-[#0E315C]/60 font-light">{recentActivity[0]?.message}</span>
-                <span className="text-[#0E315C]/50 font-light">{recentActivity[0]?.time}</span>
+                <span className="text-[#0E315C]/50 font-light text-xs">{recentActivity[0]?.time}</span>
               </div>
             </div>
 
