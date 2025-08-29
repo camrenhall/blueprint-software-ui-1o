@@ -13,7 +13,7 @@ import {
   FileText,
   ChevronDown,
   ChevronRight,
-  Bot,
+  Building,
   Reply
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,9 +31,8 @@ interface EmailMessage {
   subject: string;
   content: string;
   sentAt: string;
-  status: "sent" | "delivered" | "opened" | "replied" | "failed";
-  sender: "ai" | "client";
-  aiAgent?: string;
+  status: "sent" | "delivered" | "opened" | "replied";
+  sender: "firm" | "client";
 }
 
 interface ClientConversation {
@@ -67,8 +66,7 @@ const mockConversations: ClientConversation[] = [
         content: "Dear Ms. Johnson, I hope this email finds you well. We need your medical records from St. Mary's Hospital for your personal injury case. Please provide records from January 2024 to present. You can upload them securely through our client portal or email them directly. If you have any questions, please don't hesitate to reach out.",
         sentAt: "2024-01-15T10:30:00Z",
         status: "opened",
-        sender: "ai",
-        aiAgent: "DocumentCollector AI"
+        sender: "firm"
       },
       {
         id: "1b", 
@@ -76,8 +74,7 @@ const mockConversations: ClientConversation[] = [
         content: "Dear Ms. Johnson, This is a follow-up regarding the medical records we requested. We understand gathering documents can take time, but we need these records to proceed with your case effectively. Please let us know if you need assistance or have any questions about the process.",
         sentAt: "2024-01-16T09:15:00Z",
         status: "delivered",
-        sender: "ai",
-        aiAgent: "FollowUp AI"
+        sender: "firm"
       }
     ]
   },
@@ -98,8 +95,7 @@ const mockConversations: ClientConversation[] = [
         content: "Dear Mr. Chen, Your deposition has been scheduled for February 12th at 10:00 AM at our office. Please arrive 15 minutes early and bring a valid ID. We will prepare you beforehand with a preparation session scheduled for February 8th. Please confirm your availability.",
         sentAt: "2024-01-14T15:45:00Z",
         status: "replied",
-        sender: "ai",
-        aiAgent: "CaseManager AI"
+        sender: "firm"
       },
       {
         id: "2b",
@@ -128,8 +124,7 @@ const mockConversations: ClientConversation[] = [
         content: "Dear Mr. Rivera, To proceed with your case, we need your insurance policy details and claim numbers. Please provide: 1) Your insurance policy number, 2) Claim reference numbers, 3) Insurance company contact information. You can reply to this email or upload documents through our secure portal.",
         sentAt: "2024-01-12T09:15:00Z",
         status: "opened",
-        sender: "ai",
-        aiAgent: "DocumentCollector AI"
+        sender: "firm"
       },
       {
         id: "3b",
@@ -137,8 +132,7 @@ const mockConversations: ClientConversation[] = [
         content: "Dear Mr. Rivera, Following up on our previous request for insurance documentation. We still need your insurance policy details and claim numbers to proceed with your case. This is the second request - please respond within 5 business days to avoid delays in your case processing.",
         sentAt: "2024-01-13T09:15:00Z",
         status: "delivered",
-        sender: "ai",
-        aiAgent: "FollowUp AI"
+        sender: "firm"
       },
       {
         id: "3c",
@@ -146,8 +140,7 @@ const mockConversations: ClientConversation[] = [
         content: "Dear Mr. Rivera, This is our final notice regarding the insurance documentation required for your case. Without this information, we cannot proceed and may need to pause case activities. Please respond immediately or contact our office directly. We're here to help if you need assistance gathering these documents.",
         sentAt: "2024-01-13T12:45:00Z",
         status: "sent",
-        sender: "ai",
-        aiAgent: "UrgentFollow AI"
+        sender: "firm"
       }
     ]
   }
@@ -170,8 +163,6 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
         return <Eye className="w-3 h-3 text-[#C5BFEE]" />;
       case "replied":
         return <Reply className="w-3 h-3 text-[#C1D9F6]" />;
-      case "failed":
-        return <AlertCircle className="w-3 h-3 text-red-500" />;
       default:
         return <Clock className="w-3 h-3 text-gray-500" />;
     }
@@ -187,13 +178,10 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
         return "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/30";
       case "replied":
         return "bg-[#C1D9F6]/20 text-[#0E315C] border-[#C1D9F6]/30";
-      case "failed":
-        return "bg-red-100/50 text-red-800 border-red-200";
       default:
         return "bg-gray-100/50 text-gray-800 border-gray-200";
     }
   };
-
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -249,8 +237,6 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
               return conversation.responseReceived;
             case "pending":
               return !conversation.responseReceived;
-            case "failed":
-              return conversation.messages.some(msg => msg.status === "failed");
             default:
               return false;
           }
@@ -287,10 +273,10 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
           </div>
           <div>
             <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
-              AI Communications Audit
+              Communications
             </h1>
             <p className="text-sm text-[#0E315C]/60 font-light">
-              Track AI email conversations with clients
+              Track email conversations with clients
             </p>
           </div>
         </div>
@@ -452,13 +438,13 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                       key={message.id}
                       className={cn(
                         "flex w-full",
-                        message.sender === "ai" ? "justify-end" : "justify-start"
+                        message.sender === "firm" ? "justify-end" : "justify-start"
                       )}
                     >
                       <div
                         className={cn(
                           "relative max-w-[75%] p-4 rounded-2xl border transition-all duration-200 shadow-lg",
-                          message.sender === "ai"
+                          message.sender === "firm"
                             ? "bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/20 border-[#99C0F0]/50 backdrop-blur-md"
                             : "bg-white/60 border-white/60 backdrop-blur-md",
                           "hover:shadow-xl transform hover:scale-[1.01]"
@@ -468,7 +454,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                         {index < selectedConversation.messages.length - 1 && (
                           <div className={cn(
                             "absolute bottom-0 w-px h-4 bg-gradient-to-b from-[#99C0F0]/50 to-transparent transform translate-y-full",
-                            message.sender === "ai" ? "right-6" : "left-6"
+                            message.sender === "firm" ? "right-6" : "left-6"
                           )} />
                         )}
 
@@ -478,12 +464,12 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                             <div className="flex items-center space-x-3">
                               <div className={cn(
                                 "w-7 h-7 rounded-xl flex items-center justify-center shadow-md",
-                                message.sender === "ai"
+                                message.sender === "firm"
                                   ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE]"
                                   : "bg-gradient-to-br from-[#C1D9F6] to-white"
                               )}>
-                                {message.sender === "ai" ? (
-                                  <Bot className="w-4 h-4 text-white" />
+                                {message.sender === "firm" ? (
+                                  <Building className="w-4 h-4 text-white" />
                                 ) : (
                                   <User className="w-4 h-4 text-[#0E315C]" />
                                 )}
@@ -492,9 +478,9 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                                 <div className="flex items-center space-x-2">
                                   <span className={cn(
                                     "text-sm font-semibold",
-                                    message.sender === "ai" ? "text-[#0E315C]" : "text-[#0E315C]"
+                                    message.sender === "firm" ? "text-[#0E315C]" : "text-[#0E315C]"
                                   )}>
-                                    {message.sender === "ai" ? message.aiAgent : selectedConversation.clientName}
+                                    {message.sender === "firm" ? "Luceron Legal" : selectedConversation.clientName}
                                   </span>
                                   <Badge className={cn("text-xs border", getStatusColor(message.status))}>
                                     {message.status}
@@ -522,7 +508,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                           {/* Subject */}
                           <p className={cn(
                             "font-semibold text-sm",
-                            message.sender === "ai" ? "text-[#0E315C]" : "text-[#0E315C]"
+                            message.sender === "firm" ? "text-[#0E315C]" : "text-[#0E315C]"
                           )}>
                             {message.subject}
                           </p>
@@ -530,7 +516,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                           {/* Content preview or full content */}
                           <div className={cn(
                             "text-sm leading-relaxed",
-                            message.sender === "ai" ? "text-[#0E315C]/90" : "text-[#0E315C]/90",
+                            message.sender === "firm" ? "text-[#0E315C]/90" : "text-[#0E315C]/90",
                             expandedMessage === message.id ? "" : "line-clamp-3"
                           )}>
                             {message.content}
@@ -581,7 +567,7 @@ export default function CommunicationsPanel({ onClose }: CommunicationsPanelProp
                   Select a client conversation to view the complete email history
                 </p>
                 <p className="text-sm text-[#0E315C]/40">
-                  Click on any conversation from the list to see all AI-generated emails and client responses
+                  Click on any conversation from the list to see emails and client responses
                 </p>
               </div>
             )}
