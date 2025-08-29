@@ -463,32 +463,6 @@ export default function CaseDetailsNew({
 
             {/* Right Column - Sidebar */}
             <div className="col-span-4 space-y-5">
-              {/* Case Overview */}
-              <div className={sectionClasses}>
-                <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-[#99C0F0]" />
-                  <span>Case Overview</span>
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-[#0E315C]/60 font-light">Case Type</span>
-                    <span className="text-sm font-medium text-[#0E315C]">{caseStats.caseType}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-[#0E315C]/60 font-light">Avg Response</span>
-                    <span className="text-sm font-medium text-[#99C0F0]">{caseStats.avgResponseTime}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-[#0E315C]/60 font-light">Total Documents</span>
-                    <span className="text-sm font-medium text-[#0E315C]">{caseStats.totalDocuments}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-[#0E315C]/60 font-light">Completion Rate</span>
-                    <span className="text-sm font-medium text-[#99C0F0]">{progressPercent}%</span>
-                  </div>
-                </div>
-              </div>
-
               {/* Communications */}
               <div className={sectionClasses}>
                 <h3 className="text-lg font-light text-[#0E315C] mb-4 flex items-center space-x-3">
