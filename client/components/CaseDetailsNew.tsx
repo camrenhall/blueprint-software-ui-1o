@@ -428,7 +428,7 @@ export default function CaseDetailsNew({
                   <MessageSquare className="w-5 h-5 text-[#C5BFEE]" />
                   <span>Communications</span>
                 </h3>
-                <div className="space-y-3 max-h-64 overflow-y-auto">
+                <div className="space-y-3 max-h-80 overflow-y-auto">
                   {communications.map((comm, index) => (
                     <div
                       key={index}
