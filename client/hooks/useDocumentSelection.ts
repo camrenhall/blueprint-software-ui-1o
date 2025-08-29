@@ -110,8 +110,6 @@ export function useDocumentSelection({
   savedTemplates = DEFAULT_SAVED_TEMPLATES,
 }: UseDocumentSelectionProps = {}) {
   const [selectedDocuments, setSelectedDocuments] = useState<Document[]>(initialSelectedDocuments);
-  const [showTemplateConflictModal, setShowTemplateConflictModal] = useState(false);
-  const [pendingTemplate, setPendingTemplate] = useState<Template | null>(null);
 
   // Add document to selection
   const handleAddDocument = useCallback((docName: string) => {
