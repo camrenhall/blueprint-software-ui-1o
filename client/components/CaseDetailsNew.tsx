@@ -455,7 +455,7 @@ export default function CaseDetailsNew({
                   </h3>
                   <div className="flex items-center space-x-3">
                     <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
-                    <div className="relative">
+                    <div className="relative dropdown-container">
                       <button
                         onClick={() => hasRejectedDocuments ? setShowDocumentDownloadDropdown(!showDocumentDownloadDropdown) : handleDownloadAll(false)}
                         className="flex items-center space-x-2 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
