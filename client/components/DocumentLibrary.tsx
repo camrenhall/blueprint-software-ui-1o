@@ -60,42 +60,72 @@ export default function DocumentLibrary({
     doc.name.toLowerCase().includes(selectedDocumentSearch.toLowerCase()),
   );
 
-  // Handle template view action
-  const handleViewTemplate = (template: Template) => {
-    setViewingTemplate(template);
+  // Handle template edit/view action (combined)
+  const handleEditTemplate = (template: Template) => {
+    setEditingTemplate(template);
+    setEditingDocuments([...template.documents]);
   };
 
   // Handle template load action
   const handleLoadTemplate = (template: Template) => {
     if (selectedDocuments.length > 0) {
-      // Show inline conflict resolution
-      const confirmed = window.confirm(
-        `You have ${selectedDocuments.length} document${selectedDocuments.length !== 1 ? 's' : ''} selected. Would you like to replace them with this template?\n\nClick OK to replace, Cancel to add to current selection.`
-      );
-      if (confirmed) {
-        onLoadTemplate?.(template);
-      } else {
-        // Add template documents to current selection
-        template.documents.forEach(docName => {
-          if (!selectedDocuments.find(doc => doc.name === docName)) {
-            onAddDocument(docName);
-          }
-        });
-      }
+      setPendingTemplate(template);
+      setShowConflictResolution(true);
     } else {
       onLoadTemplate?.(template);
     }
   };
 
-  // Handle template edit action
-  const handleEditTemplate = (template: Template) => {
-    setEditingTemplate(template);
+  // Handle conflict resolution actions
+  const handleReplaceSelection = () => {
+    if (pendingTemplate) {
+      onLoadTemplate?.(pendingTemplate);
+      setShowConflictResolution(false);
+      setPendingTemplate(null);
+    }
+  };
+
+  const handleAddToSelection = () => {
+    if (pendingTemplate) {
+      pendingTemplate.documents.forEach(docName => {
+        if (!selectedDocuments.find(doc => doc.name === docName)) {
+          onAddDocument(docName);
+        }
+      });
+      setShowConflictResolution(false);
+      setPendingTemplate(null);
+    }
+  };
+
+  const handleCancelConflict = () => {
+    setShowConflictResolution(false);
+    setPendingTemplate(null);
+  };
+
+  // Handle adding/removing documents in template editing
+  const handleToggleDocumentInTemplate = (docName: string) => {
+    setEditingDocuments(prev => {
+      if (prev.includes(docName)) {
+        return prev.filter(name => name !== docName);
+      } else {
+        return [...prev, docName];
+      }
+    });
+  };
+
+  // Save template changes
+  const handleSaveTemplate = () => {
+    // In a real app, this would save to backend
+    console.log('Saving template:', editingTemplate?.name, 'with documents:', editingDocuments);
+    closeTemplateViews();
   };
 
   // Close template views
   const closeTemplateViews = () => {
-    setViewingTemplate(null);
     setEditingTemplate(null);
+    setEditingDocuments([]);
+    setShowConflictResolution(false);
+    setPendingTemplate(null);
   };
 
   return (
