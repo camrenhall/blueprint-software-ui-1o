@@ -494,12 +494,12 @@ export default function DocumentLibrary({
                 {/* Document selection grid */}
                 <div className="bg-gradient-to-br from-white/60 to-white/40 rounded-2xl p-5 border border-[#C1D9F6]/30">
                   <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-medium text-[#0E315C]">Documents</h4>
-                    <div className="text-sm text-[#0E315C]/60">
+                    <h4 className="text-lg font-medium text-[#0E315C]" id="documents-list-heading">Documents</h4>
+                    <div className="text-sm text-[#0E315C]/60" aria-live="polite">
                       {editingDocuments.length} selected
                     </div>
                   </div>
-                  <div className="space-y-2 max-h-80 overflow-y-auto pr-2">
+                  <div className="space-y-2 max-h-80 overflow-y-auto pr-2" role="list" aria-labelledby="documents-list-heading">
                     {availableDocuments.map((doc, index) => {
                       const isSelected = editingDocuments.includes(doc);
                       return (
@@ -511,13 +511,22 @@ export default function DocumentLibrary({
                               : 'bg-white/60 border-[#C1D9F6]/25 hover:bg-white/80 hover:border-[#C1D9F6]/40 hover:shadow-[#C1D9F6]/10'
                           }`}
                           onClick={() => handleToggleDocumentInTemplate(doc)}
+                          role="listitem"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              handleToggleDocumentInTemplate(doc);
+                            }
+                          }}
+                          aria-label={`${isSelected ? 'Remove' : 'Add'} ${doc} ${isSelected ? 'from' : 'to'} template`}
                         >
                           <div className="flex items-center space-x-4">
                             <div className={`relative w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all duration-200 ${
                               isSelected
                                 ? 'bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] border-[#99C0F0] shadow-sm'
                                 : 'border-[#C1D9F6]/50 group-hover:border-[#99C0F0]/30'
-                            }`}>
+                            }`} role="checkbox" aria-checked={isSelected} aria-hidden="true">
                               {isSelected && (
                                 <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
