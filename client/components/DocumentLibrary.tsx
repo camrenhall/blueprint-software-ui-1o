@@ -166,7 +166,37 @@ export default function DocumentLibrary({
   };
 
   return (
-    <div className="grid grid-cols-12 gap-6 h-full max-h-full">
+    <div className="grid grid-cols-12 gap-6 h-full max-h-full relative">
+      {/* Loading overlay */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-50 flex items-center justify-center rounded-3xl">
+          <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-2xl p-6 shadow-xl shadow-[#C1D9F6]/20 flex items-center space-x-4">
+            <div className="w-6 h-6 border-2 border-[#99C0F0] border-t-transparent rounded-full animate-spin"></div>
+            <span className="text-[#0E315C] font-medium">Processing...</span>
+          </div>
+        </div>
+      )}
+
+      {/* Action feedback notification */}
+      {actionFeedback && (
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-40">
+          <div className={`px-6 py-3 rounded-xl shadow-lg border flex items-center space-x-3 animate-in slide-in-from-top-4 duration-300 ${
+            actionFeedback.type === 'success'
+              ? 'bg-green-50 border-green-200 text-green-800'
+              : 'bg-blue-50 border-blue-200 text-blue-800'
+          }`}>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {actionFeedback.type === 'success' ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              )}
+            </svg>
+            <span className="font-medium">{actionFeedback.message}</span>
+          </div>
+        </div>
+      )}
+
       {/* Document Library Panel - Left Side */}
       <div className="col-span-7 flex flex-col">
         <div className="bg-white/80 border border-[#C1D9F6]/40 rounded-3xl shadow-lg shadow-[#C1D9F6]/10 flex flex-col h-[43vh] mb-4 overflow-hidden">
