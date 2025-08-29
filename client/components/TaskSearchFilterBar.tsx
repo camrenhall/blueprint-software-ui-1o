@@ -200,11 +200,11 @@ export function TaskSearchFilterBar({
               <Filter className="w-3.5 h-3.5" />
               <span>Filter</span>
               {hasActiveFilters && (
-                <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
+                <div className="w-1.5 h-1.5 bg-[#99C0F0] rounded-full" />
               )}
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-3.5 h-3.5 transition-transform",
                   filterDropdownOpen && "rotate-180",
                 )}
               />
@@ -228,7 +228,7 @@ export function TaskSearchFilterBar({
                       <div className="flex items-center gap-2 flex-1">
                         <div
                           className={cn(
-                            "w-3 h-3 rounded-full",
+                            "w-2.5 h-2.5 rounded-full",
                             option.color.dot,
                           )}
                         />
@@ -237,7 +237,7 @@ export function TaskSearchFilterBar({
                         </span>
                       </div>
                       {isActive && (
-                        <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
+                        <div className="w-1.5 h-1.5 bg-[#99C0F0] rounded-full" />
                       )}
                     </button>
                   );
@@ -277,11 +277,11 @@ export function TaskSearchFilterBar({
               <SortAsc className="w-3.5 h-3.5" />
               <span>Sort</span>
               {sortBy !== "createdAt" && (
-                <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                <div className="w-1.5 h-1.5 bg-[#C5BFEE] rounded-full" />
               )}
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-3.5 h-3.5 transition-transform",
                   sortDropdownOpen && "rotate-180",
                 )}
               />
@@ -315,7 +315,7 @@ export function TaskSearchFilterBar({
                           </div>
                         </div>
                         {isActive && (
-                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-[#C5BFEE] rounded-full" />
                         )}
                       </div>
                     </button>
@@ -371,7 +371,7 @@ export function TaskSearchFilterBar({
                   className="px-2 py-1 bg-[#99C0F0]/20 rounded-md flex items-center gap-1"
                 >
                   <div
-                    className={cn("w-2 h-2 rounded-full", option.color.dot)}
+                    className={cn("w-1.5 h-1.5 rounded-full", option.color.dot)}
                   />
                   {option.label}
                 </span>
