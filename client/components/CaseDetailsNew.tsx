@@ -515,22 +515,6 @@ export default function CaseDetailsNew({
                   ))}
                 </div>
               </div>
-
-              {/* Quick Actions */}
-              <div className={sectionClasses}>
-                <h3 className="text-lg font-light text-[#0E315C] mb-4">Quick Actions</h3>
-                <div className="space-y-3">
-                  <button className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#0E315C] hover:to-[#0E315C] text-white py-3 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] shadow-lg hover:shadow-xl font-light text-sm backdrop-blur-sm">
-                    Generate Report
-                  </button>
-                  <button className="w-full bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/40 hover:bg-white/35 hover:border-[#C1D9F6]/60 text-[#0E315C] py-3 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] font-light text-sm shadow-sm hover:shadow-md">
-                    Contact Client
-                  </button>
-                  <button className="w-full bg-white/25 backdrop-blur-sm border border-[#C5BFEE]/40 hover:bg-white/35 hover:border-[#C5BFEE]/60 text-[#0E315C] py-3 px-4 rounded-xl transition-all duration-300 hover:scale-[1.02] font-light text-sm shadow-sm hover:shadow-md">
-                    Archive Case
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
