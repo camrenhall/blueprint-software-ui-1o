@@ -285,11 +285,6 @@ export default function ClientUpload() {
                   <Folder className="w-5 h-5" />
                   <span>Document Library ({files.length})</span>
                 </h3>
-                {completedFiles.length > 0 && (
-                  <span className="text-sm text-green-600 bg-green-100 px-2 py-1 rounded-full">
-                    {completedFiles.length} ready for review
-                  </span>
-                )}
               </div>
 
               {/* Constrained Document List */}
@@ -318,15 +313,15 @@ export default function ClientUpload() {
                     <div className="space-y-3">
                       {files.map((file) => (
                         <div key={file.id} className="flex items-center space-x-4 p-4 bg-white/30 rounded-lg border border-white/20 hover:bg-white/40 transition-colors">
-                          <div className="text-2xl">{getFileTypeIcon(file.file.name)}</div>
+                          <div className="flex-shrink-0">{getFileTypeIconSvg(file.file.name)}</div>
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between mb-2">
                               <h4 className="text-sm font-medium text-[#0E315C] truncate">{file.file.name}</h4>
                               <div className="flex items-center space-x-2">
                                 <span className="text-xs text-[#0E315C]/60">{formatFileSize(file.file.size)}</span>
                                 {file.status === 'completed' && (
-                                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
-                                    <CheckCircle2 className="w-3 h-3 mr-1" />
+                                  <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-[#99C0F0]/20 text-[#0E315C] border border-[#99C0F0]/30">
+                                    <CheckCircle2 className="w-3 h-3 mr-1 text-[#99C0F0]" />
                                     Complete
                                   </span>
                                 )}
