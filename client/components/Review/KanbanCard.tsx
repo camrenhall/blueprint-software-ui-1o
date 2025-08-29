@@ -86,11 +86,11 @@ export function KanbanCard({
 
       {/* Footer with Stats */}
       <div className="space-y-1.5 pt-2.5 border-t border-[#C1D9F6]/30">
-        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-2.5 py-1.5 rounded-lg">
+        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-2 py-1 rounded">
           <Clock className="w-3 h-3 text-[#99C0F0] flex-shrink-0" />
           <span className="font-medium truncate">{caseItem.lastActivity}</span>
         </div>
-        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-2.5 py-1.5 rounded-lg">
+        <div className="flex items-center space-x-2 text-xs text-[#0E315C]/70 bg-[#C1D9F6]/10 px-2 py-1 rounded">
           <Calendar className="w-3 h-3 text-[#C5BFEE] flex-shrink-0" />
           <span className="font-medium truncate">{caseItem.queueDays} days in queue</span>
         </div>
