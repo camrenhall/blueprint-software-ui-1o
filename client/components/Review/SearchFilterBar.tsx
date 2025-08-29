@@ -126,16 +126,16 @@ export function SearchFilterBar({
     <div className={cn("relative z-20 flex-shrink-0", className)}>
       <div className="max-w-4xl mx-auto">
         {/* Main Control Bar */}
-        <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
+        <div className="flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-1.5">
           {/* Search Input - Takes up most of the space */}
           <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/40" />
             <input
               type="text"
               value={searchValue}
               onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Search cases or clients..."
-              className="w-full px-5 py-3 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-white/50 transition-colors"
+              className="w-full px-4 py-2 pl-10 pr-3 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-lg focus:bg-white/50 transition-colors"
             />
           </div>
 
@@ -144,7 +144,7 @@ export function SearchFilterBar({
             <button
               onClick={handleFilterDropdownToggle}
               className={cn(
-                "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
+                "flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 border",
                 hasActiveFilters
                   ? "bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/40 shadow-sm"
                   : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#99C0F0]/40",
@@ -152,7 +152,7 @@ export function SearchFilterBar({
                   "bg-white/80 border-[#99C0F0]/60 shadow-md",
               )}
             >
-              <Filter className="w-4 h-4" />
+              <Filter className="w-3.5 h-3.5" />
               <span>Filter</span>
               {hasActiveFilters && (
                 <div className="flex items-center -space-x-1">
@@ -244,14 +244,14 @@ export function SearchFilterBar({
             <button
               onClick={handleSortDropdownToggle}
               className={cn(
-                "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
+                "flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 border",
                 sortBy !== "priority"
                   ? "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/40 shadow-sm"
                   : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40",
                 sortDropdownOpen && "bg-white/80 border-[#C5BFEE]/60 shadow-md",
               )}
             >
-              <SortAsc className="w-4 h-4" />
+              <SortAsc className="w-3.5 h-3.5" />
               <span>Sort</span>
               {sortBy !== "priority" && (
                 <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
@@ -307,16 +307,16 @@ export function SearchFilterBar({
             <button
               onClick={handleViewDropdownToggle}
               className={cn(
-                "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
+                "flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 border",
                 viewMode !== "detailed"
                   ? "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/40 shadow-sm"
                   : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40",
                 viewDropdownOpen && "bg-white/80 border-[#C5BFEE]/60 shadow-md",
               )}
             >
-              {viewMode === "detailed" && <LayoutGrid className="w-4 h-4" />}
-              {viewMode === "compact" && <List className="w-4 h-4" />}
-              {viewMode === "kanban" && <Kanban className="w-4 h-4" />}
+              {viewMode === "detailed" && <LayoutGrid className="w-3.5 h-3.5" />}
+              {viewMode === "compact" && <List className="w-3.5 h-3.5" />}
+              {viewMode === "kanban" && <Kanban className="w-3.5 h-3.5" />}
               <span className="hidden lg:inline capitalize">{viewMode}</span>
               {viewMode !== "detailed" && (
                 <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
