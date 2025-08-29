@@ -416,31 +416,27 @@ export default function DocumentLibrary({
                           className={`w-6 h-6 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 border backdrop-blur-sm ${
                             doc.optional
                               ? "bg-[#C5BFEE]/20 text-[#C5BFEE] border-[#C5BFEE]/30 hover:bg-[#C5BFEE]/30"
-                              : "bg-[#99C0F0]/20 text-[#99C0F0] border-[#99C0F0]/30 hover:bg-[#99C0F0]/30"
+                              : "bg-white/60 text-[#0E315C]/60 border-[#C1D9F6]/30 hover:bg-white/80"
                           }`}
                           title={doc.optional ? "Optional - Click to make required" : "Required - Click to make optional"}
                         >
                           {doc.optional ? (
                             <svg
                               className="w-3 h-3"
-                              fill="none"
-                              stroke="currentColor"
+                              fill="currentColor"
                               viewBox="0 0 24 24"
                             >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                              />
+                              <circle cx="12" cy="12" r="10"/>
                             </svg>
                           ) : (
                             <svg
                               className="w-3 h-3"
-                              fill="currentColor"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
                               viewBox="0 0 24 24"
                             >
-                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                              <circle cx="12" cy="12" r="10"/>
                             </svg>
                           )}
                         </button>
