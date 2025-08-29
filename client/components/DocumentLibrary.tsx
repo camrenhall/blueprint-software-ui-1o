@@ -185,7 +185,7 @@ export default function DocumentLibrary({
                   </svg>
                 </button>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 {savedTemplates.map((template, index) => (
                   <button
                     key={index}
@@ -229,7 +229,7 @@ export default function DocumentLibrary({
                   <button
                     key={index}
                     onClick={() => onAddDocument(doc)}
-                    className="w-full text-left p-4 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 rounded-xl transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10 hover:scale-[1.01] transform"
+                    className="w-full text-left p-3 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 rounded-lg transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10 hover:scale-[1.01] transform"
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-light text-[#0E315C] group-hover:text-[#0E315C]">
@@ -399,19 +399,19 @@ export default function DocumentLibrary({
 
           {/* Selected Documents List */}
           <div className="flex-1 overflow-y-auto document-scroll px-6 py-4 rounded-b-3xl">
-            <div className="space-y-3">
+            <div className="space-y-2">
               {filteredSelectedDocuments.length > 0 ? (
                 filteredSelectedDocuments.map((doc, index) => (
                   <div
                     key={index}
-                    className="p-4 bg-white/50 border border-[#C1D9F6]/30 rounded-xl backdrop-blur-sm group hover:shadow-lg hover:shadow-[#C5BFEE]/10 transition-all duration-300"
+                    className="p-3 bg-white/50 border border-[#C1D9F6]/30 rounded-lg backdrop-blur-sm group hover:shadow-lg hover:shadow-[#C5BFEE]/10 transition-all duration-300"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1 mr-3">
                         <span className="text-sm font-light text-[#0E315C] block">
                           {doc.name}
                         </span>
-                        <div className="flex items-center mt-2">
+                        <div className="flex items-center mt-1.5">
                           <button
                             onClick={() => onToggleOptional(doc.name)}
                             className={`flex items-center space-x-2 text-xs px-3 py-1 rounded-full transition-all duration-300 ${
@@ -431,7 +431,7 @@ export default function DocumentLibrary({
                       </div>
                       <button
                         onClick={() => onRemoveDocument(doc.name)}
-                        className="w-8 h-8 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-red-500 hover:bg-red-50/80 border border-[#C1D9F6]/30 hover:border-red-200 backdrop-blur-sm"
+                        className="w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-105 bg-white/60 text-[#0E315C]/60 hover:text-red-500 hover:bg-red-50/80 border border-[#C1D9F6]/30 hover:border-red-200 backdrop-blur-sm"
                       >
                         <svg
                           className="w-4 h-4"
