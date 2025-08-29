@@ -159,15 +159,15 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
               </p>
             </div>
 
-            <div className="space-y-5 px-2 py-2">
+            <div className="space-y-4 px-2 py-2">
               <button
                 onClick={() => handleMethodSelect("ai")}
-                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform"
+                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#99C0F0]/5 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.02] transform"
               >
-                <div className="flex items-start space-x-5">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
                     <svg
-                      className="w-6 h-6 text-white"
+                      className="w-5 h-5 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -181,7 +181,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-light text-[#0E315C] mb-2">
+                    <h3 className="text-base font-light text-[#0E315C] mb-1">
                       AI Assist
                     </h3>
                     <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
@@ -194,12 +194,12 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
               <button
                 onClick={() => handleMethodSelect("manual")}
-                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C5BFEE]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C5BFEE]/5 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform"
+                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C5BFEE]/60 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C5BFEE]/5 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.02] transform"
               >
-                <div className="flex items-start space-x-5">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#C5BFEE]/80 to-[#C1D9F6]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#C5BFEE]/80 to-[#C1D9F6]/60 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
                     <svg
-                      className="w-6 h-6 text-white"
+                      className="w-5 h-5 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -213,7 +213,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-light text-[#0E315C] mb-2">
+                    <h3 className="text-base font-light text-[#0E315C] mb-1">
                       Manual Select
                     </h3>
                     <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
@@ -226,12 +226,12 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
 
               <button
                 onClick={() => handleMethodSelect("questionnaire")}
-                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C1D9F6]/70 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C1D9F6]/5 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform"
+                className="w-full bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:border-[#C1D9F6]/70 hover:bg-white/50 hover:shadow-xl hover:shadow-[#C1D9F6]/5 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.02] transform"
               >
-                <div className="flex items-start space-x-5">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#C1D9F6]/80 to-[#99C0F0]/60 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
+                <div className="flex items-start space-x-4">
+                  <div className="w-10 h-10 bg-gradient-to-br from-[#C1D9F6]/80 to-[#99C0F0]/60 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-500 flex-shrink-0 shadow-lg">
                     <svg
-                      className="w-6 h-6 text-white"
+                      className="w-5 h-5 text-white"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -245,7 +245,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-light text-[#0E315C] mb-2">
+                    <h3 className="text-base font-light text-[#0E315C] mb-1">
                       Questionnaire
                     </h3>
                     <p className="text-[#0E315C]/60 text-sm leading-relaxed font-light">
