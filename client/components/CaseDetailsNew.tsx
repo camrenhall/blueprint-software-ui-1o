@@ -434,7 +434,7 @@ export default function CaseDetailsNew({
                       key={index}
                       className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg min-w-0"
                     >
-                      <div className="flex items-start space-x-3 min-w-0 flex-1">
+                      <div className="flex items-start space-x-3 min-w-0 flex-1 mr-4">
                         <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20 flex-shrink-0">
                           <Mail className="w-5 h-5 text-[#0E315C]" />
                         </div>
