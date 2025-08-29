@@ -19,6 +19,20 @@ export default function CaseDetailsNew({
   const [showCommunicationFilter, setShowCommunicationFilter] = useState(false);
   const [communicationFilter, setCommunicationFilter] = useState("Most Recent");
 
+  // Handler functions
+  const handleDownloadAll = (includeRejected: boolean = false) => {
+    console.log(`Downloading ${includeRejected ? 'all' : 'approved only'} documents`);
+    setShowDocumentDownloadDropdown(false);
+    setShowPageDownloadDropdown(false);
+  };
+
+  const handleFilterCommunications = (filter: string) => {
+    setCommunicationFilter(filter);
+    setShowCommunicationFilter(false);
+  };
+
+  const hasRejectedDocuments = documents.some(doc => doc.status === "rejected");
+
   // Enhanced mock data for documents with more realistic details
   const documents = [
     {
