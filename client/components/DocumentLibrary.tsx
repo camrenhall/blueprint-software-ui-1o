@@ -316,34 +316,46 @@ export default function DocumentLibrary({
                   </div>
                 </div>
 
-                {/* Action buttons */}
+                {/* Action buttons with clear outcomes */}
                 <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-3">
-                    <button
-                      onClick={handleReplaceSelection}
-                      className="group w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#8AB5ED] hover:to-[#BFB8EB] text-white px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 hover:scale-[1.02] transform"
-                    >
-                      <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                      <span>Replace Current Selection</span>
-                    </button>
+                  <div className="grid grid-cols-1 gap-4">
+                    {/* Replace action */}
+                    <div className="bg-white/50 rounded-2xl p-4 border border-[#C1D9F6]/30">
+                      <button
+                        onClick={handleReplaceSelection}
+                        className="group w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#8AB5ED] hover:to-[#BFB8EB] text-white px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 hover:scale-[1.02] transform"
+                      >
+                        <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        <span>Replace Current Selection</span>
+                      </button>
+                      <p className="text-xs text-[#0E315C]/60 mt-2 text-center">
+                        Remove all {selectedDocuments.length} current document{selectedDocuments.length !== 1 ? 's' : ''} and load {pendingTemplate.documents.length} template document{pendingTemplate.documents.length !== 1 ? 's' : ''}
+                      </p>
+                    </div>
 
-                    <button
-                      onClick={handleAddToSelection}
-                      className="group w-full bg-white/80 hover:bg-white text-[#0E315C] px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 border border-[#C1D9F6]/50 hover:border-[#99C0F0]/50 font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transform"
-                    >
-                      <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                      </svg>
-                      <span>Add to Current Selection</span>
-                    </button>
+                    {/* Add action */}
+                    <div className="bg-white/50 rounded-2xl p-4 border border-[#C1D9F6]/30">
+                      <button
+                        onClick={handleAddToSelection}
+                        className="group w-full bg-white/80 hover:bg-white text-[#0E315C] px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 border border-[#C1D9F6]/50 hover:border-[#99C0F0]/50 font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transform"
+                      >
+                        <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        <span>Add to Current Selection</span>
+                      </button>
+                      <p className="text-xs text-[#0E315C]/60 mt-2 text-center">
+                        Keep current {selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} and add {pendingTemplate.documents.filter(doc => !selectedDocuments.find(selected => selected.name === doc)).length} new document{pendingTemplate.documents.filter(doc => !selectedDocuments.find(selected => selected.name === doc)).length !== 1 ? 's' : ''} from template
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="text-center">
+                  <div className="text-center pt-2">
                     <button
                       onClick={handleCancelConflict}
-                      className="text-sm text-[#0E315C]/60 hover:text-[#0E315C] transition-colors font-medium"
+                      className="text-sm text-[#0E315C]/60 hover:text-[#0E315C] transition-colors font-medium px-4 py-2 rounded-lg hover:bg-white/40"
                     >
                       Cancel and go back
                     </button>
