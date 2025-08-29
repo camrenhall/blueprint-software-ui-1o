@@ -130,9 +130,7 @@ export default function ClientConfirmation() {
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0">
                       <div className="w-8 h-8 bg-[#99C0F0]/20 rounded-full flex items-center justify-center">
-                        <span className="text-[#0E315C] font-medium text-sm">
-                          {clientEmail.charAt(0).toUpperCase()}
-                        </span>
+                        <User className="w-4 h-4 text-[#0E315C]" />
                       </div>
                     </div>
                     <div>
