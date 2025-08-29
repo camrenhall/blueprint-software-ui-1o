@@ -449,38 +449,6 @@ export default function CaseDetailsNew({
               </div>
             </div>
 
-            {/* Row 3: Recent Activity - Full Width */}
-            <div className={sectionClasses}>
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-[#C5BFEE]" />
-                  <span>Recent Activity</span>
-                </h3>
-                <span className="text-sm text-[#0E315C]/60 font-light">{recentActivity.length} updates</span>
-              </div>
-
-              <div className="space-y-3 max-h-64 overflow-y-auto">
-                {recentActivity.map((activity, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start space-x-3 p-3 bg-white/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/25 hover:bg-white/25 transition-all duration-300"
-                  >
-                    <div className={cn(
-                      "w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm",
-                      activity.importance === "high"
-                        ? "bg-gradient-to-br from-[#C5BFEE]/40 to-[#C5BFEE]/60 text-[#0E315C]"
-                        : "bg-gradient-to-br from-[#99C0F0]/30 to-[#C1D9F6]/30 text-[#0E315C]"
-                    )}>
-                      {getActivityIcon(activity.type)}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-[#0E315C] mb-1">{activity.message}</p>
-                      <p className="text-xs text-[#0E315C]/60 font-light">{activity.time}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>
