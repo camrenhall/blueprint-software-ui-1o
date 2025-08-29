@@ -254,7 +254,7 @@ export function SearchFilterBar({
               <SortAsc className="w-3.5 h-3.5" />
               <span>Sort</span>
               {sortBy !== "priority" && (
-                <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                <div className="w-1.5 h-1.5 bg-[#C5BFEE] rounded-full" />
               )}
               <ChevronDown
                 className={cn(
@@ -319,7 +319,7 @@ export function SearchFilterBar({
               {viewMode === "kanban" && <Kanban className="w-3.5 h-3.5" />}
               <span className="hidden lg:inline capitalize">{viewMode}</span>
               {viewMode !== "detailed" && (
-                <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                <div className="w-1.5 h-1.5 bg-[#C5BFEE] rounded-full" />
               )}
               <ChevronDown
                 className={cn(
