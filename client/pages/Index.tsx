@@ -96,44 +96,49 @@ function IndexContent() {
   ];
 
   return (
-    <div className="h-screen w-full relative overflow-hidden">
-      {/* Fixed positioned panels - outside of transformed containers */}
-      <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
+    <div className="h-screen w-full grid grid-cols-[400px_1fr] overflow-hidden">
+      {/* Sidebar */}
+      <div className="relative">
+        <GlassSidePanel items={menuItems} isVisible={isVisible} taskQueueCount={taskCount} />
+      </div>
 
-      {/* Main content area */}
-      <div className="relative z-10 h-[calc(100vh-4rem)] ml-96 pt-8 pr-8 pb-8">
-        <div className="w-full h-full bg-white/50 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-8">
-          <div className="text-4xl text-black mb-4">
-            DEBUG: activeRightContent = "{activeRightContent}", isVisible = {isVisible ? "true" : "false"}
-          </div>
+      {/* Main Content */}
+      <div className="p-8 pt-24">
+        <div className="w-full h-full bg-red-200 rounded-2xl p-8">
+          <h1 className="text-4xl text-black mb-4">
+            Current Page: {activeRightContent || "none"}
+          </h1>
+          <p className="text-2xl text-black">
+            isVisible: {isVisible ? "true" : "false"}
+          </p>
 
           {activeRightContent === "overview" && (
-            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
-              OVERVIEW PAGE CONTENT
+            <div>
+              <h2 className="text-2xl text-blue-600 mb-4">OVERVIEW PAGE</h2>
               <Overview onClose={() => setActiveRightContent(null)} />
             </div>
           )}
           {activeRightContent === "create" && (
-            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
-              CREATE PAGE CONTENT
+            <div>
+              <h2 className="text-2xl text-blue-600 mb-4">CREATE PAGE</h2>
               <InlineCreate onClose={() => setActiveRightContent(null)} />
             </div>
           )}
           {activeRightContent === "review" && (
-            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
-              REVIEW PAGE CONTENT
+            <div>
+              <h2 className="text-2xl text-blue-600 mb-4">REVIEW PAGE</h2>
               <InlineReview onClose={() => setActiveRightContent(null)} />
             </div>
           )}
           {activeRightContent === "taskqueue" && (
-            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
-              TASK QUEUE PAGE CONTENT
+            <div>
+              <h2 className="text-2xl text-blue-600 mb-4">TASK QUEUE PAGE</h2>
               <TaskQueue onClose={() => setActiveRightContent(null)} />
             </div>
           )}
           {activeRightContent === "settings" && (
-            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
-              SETTINGS PAGE CONTENT
+            <div>
+              <h2 className="text-2xl text-blue-600 mb-4">SETTINGS PAGE</h2>
               <UnifiedSettings
                 selectedCategory={selectedSettingsCategory}
                 onCategorySelect={handleSettingsCategorySelect}
@@ -142,34 +147,13 @@ function IndexContent() {
             </div>
           )}
           {activeRightContent === "communications" && (
-            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
-              COMMUNICATIONS PAGE CONTENT
+            <div>
+              <h2 className="text-2xl text-blue-600 mb-4">COMMUNICATIONS PAGE</h2>
               <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
             </div>
           )}
-
-          {!activeRightContent && (
-            <div className="text-2xl text-red-500 bg-red-200 p-4">
-              NO ACTIVE CONTENT SET
-            </div>
-          )}
         </div>
-
-        {/* Subtle ambient elements */}
-        {activeRightContent && isVisible && (
-          <>
-            <div className="absolute top-24 right-12 w-2 h-2 bg-[#99C0F0]/40 rounded-full opacity-60 animate-float" />
-            <div
-              className="absolute bottom-18 left-[400px] w-1.5 h-1.5 bg-[#C5BFEE]/50 rounded-full opacity-50 animate-float-slow"
-              style={{ animationDelay: "1s" }}
-            />
-          </>
-        )}
       </div>
-
-      {/* Subtle corner accents - adjusted for new layout */}
-      <div className="absolute top-16 right-6 w-24 h-24 bg-gradient-to-bl from-[#99C0F0]/10 to-transparent rounded-bl-full pointer-events-none" />
-      <div className="absolute bottom-6 right-6 w-32 h-32 bg-gradient-to-tl from-[#C5BFEE]/10 to-transparent rounded-tl-full pointer-events-none" />
     </div>
   );
 }
