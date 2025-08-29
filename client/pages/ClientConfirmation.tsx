@@ -165,7 +165,7 @@ export default function ClientConfirmation() {
                           {getFileTypeIcon(file.name)}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-[#0E315C] truncate">
+                          <p className="text-sm text-[#0E315C] truncate">
                             {file.name}
                           </p>
                         </div>
