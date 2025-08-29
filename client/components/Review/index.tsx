@@ -178,11 +178,12 @@ export default function Review({ onClose }: ReviewProps) {
       className="absolute inset-0 flex flex-col px-8 py-8 lg:px-6 lg:py-6 md:px-4 md:py-4"
       style={{ transform: "translateZ(0)" }}
     >
-      {/* Header - Fade out when case details are shown */}
-      <div className={cn(
-        "text-center mb-8 flex-shrink-0 transition-opacity duration-500 ease-out",
-        selectedCase ? "opacity-0" : "opacity-100"
-      )}>
+      {/* Header - Hide when case details are shown */}
+      {!selectedCase && (
+        <div className={cn(
+          "text-center mb-8 flex-shrink-0 transition-all duration-500 ease-out",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}>
         <div className={cn(
           "transition-all duration-1000",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -207,57 +208,66 @@ export default function Review({ onClose }: ReviewProps) {
             <X className="w-5 h-5" />
           </button>
         )}
-      </div>
-
-      {/* Enhanced Search, Filter and Sort Bar - Fade out when case details are shown */}
-      <SearchFilterBar
-        searchValue={searchValue}
-        onSearchChange={setSearchValue}
-        activeFilters={activeFilters}
-        onFilterToggle={toggleFilter}
-        onClearFilters={clearFilters}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        viewMode={viewMode}
-        onViewModeChange={handleViewModeChange}
-        className={cn(
-          "mb-6 transition-all duration-1000",
-          selectedCase ? "opacity-0" : isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}
-      />
-
-      {/* Cases Content - Fade out when case details are shown */}
-      <div className={cn(
-        "flex-1 min-h-0 transition-all duration-500 ease-out",
-        selectedCase ? "opacity-0" :
-        isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"
-      )}>
-        {viewMode === "kanban" ? (
-          <KanbanView
-            cases={processedCases}
-            onCaseSelect={handleCaseSelect}
-            className={cn(
-              "h-full transition-all duration-1000",
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            )}
-          />
-        ) : (
-          <CaseList
-            cases={processedCases}
-            onCaseSelect={handleCaseSelect}
-            isCompact={viewMode === "compact"}
-            className={cn(
-              "h-full transition-all duration-1000",
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            )}
-          />
-        )}
-      </div>
-
-      {/* Case Details */}
-      {selectedCase && (
-        <CaseDetailsNew selectedCase={selectedCase} onBack={closeModal} />
+        </div>
       )}
+
+      {/* Enhanced Search, Filter and Sort Bar - Hide when case details are shown */}
+      {!selectedCase && (
+        <SearchFilterBar
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+          activeFilters={activeFilters}
+          onFilterToggle={toggleFilter}
+          onClearFilters={clearFilters}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+          viewMode={viewMode}
+          onViewModeChange={handleViewModeChange}
+          className={cn(
+            "mb-6 transition-all duration-1000",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}
+        />
+      )}
+
+      {/* Main Content Area - Either Cases or Case Details */}
+      <div className="flex-1 min-h-0">
+        {selectedCase ? (
+          /* Case Details View - Inline */
+          <div className={cn(
+            "h-full transition-all duration-500 ease-out animate-fadeIn"
+          )}>
+            <CaseDetailsNew selectedCase={selectedCase} onBack={closeModal} inline={true} />
+          </div>
+        ) : (
+          /* Cases Content */
+          <div className={cn(
+            "h-full transition-all duration-500 ease-out",
+            isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"
+          )}>
+            {viewMode === "kanban" ? (
+              <KanbanView
+                cases={processedCases}
+                onCaseSelect={handleCaseSelect}
+                className={cn(
+                  "h-full transition-all duration-1000",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                )}
+              />
+            ) : (
+              <CaseList
+                cases={processedCases}
+                onCaseSelect={handleCaseSelect}
+                isCompact={viewMode === "compact"}
+                className={cn(
+                  "h-full transition-all duration-1000",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                )}
+              />
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
