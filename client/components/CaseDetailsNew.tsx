@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X, ArrowLeft, FileText, Clock, Users, CheckCircle2, AlertCircle, Calendar, Mail, MessageSquare, Download, ExternalLink } from "lucide-react";
+import { X, ArrowLeft, FileText, Clock, Users, CheckCircle2, AlertCircle, Calendar, Mail, MessageSquare, Download, ExternalLink, ChevronDown, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CaseDetailsNewProps {
@@ -14,6 +14,10 @@ export default function CaseDetailsNew({
   inline = false,
 }: CaseDetailsNewProps) {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
+  const [showDocumentDownloadDropdown, setShowDocumentDownloadDropdown] = useState(false);
+  const [showPageDownloadDropdown, setShowPageDownloadDropdown] = useState(false);
+  const [showCommunicationFilter, setShowCommunicationFilter] = useState(false);
+  const [communicationFilter, setCommunicationFilter] = useState("Most Recent");
 
   // Enhanced mock data for documents with more realistic details
   const documents = [
