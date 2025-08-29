@@ -417,6 +417,8 @@ export default function DocumentLibrary({
                         onClick={handleAddToSelection}
                         disabled={isLoading}
                         className={`group w-full bg-white/80 hover:bg-white text-[#0E315C] px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 border border-[#C1D9F6]/50 hover:border-[#99C0F0]/50 font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transform ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
+                        aria-label={`Add ${pendingTemplate.documents.filter(doc => !selectedDocuments.find(selected => selected.name === doc)).length} new document${pendingTemplate.documents.filter(doc => !selectedDocuments.find(selected => selected.name === doc)).length !== 1 ? 's' : ''} to current selection`}
+                        aria-describedby="add-description"
                       >
                         {isLoading ? (
                           <div className="w-5 h-5 border-2 border-[#0E315C] border-t-transparent rounded-full animate-spin"></div>
@@ -427,7 +429,7 @@ export default function DocumentLibrary({
                         )}
                         <span>Add to Current Selection</span>
                       </button>
-                      <p className="text-xs text-[#0E315C]/60 mt-2 text-center">
+                      <p className="text-xs text-[#0E315C]/60 mt-2 text-center" id="add-description">
                         Keep current {selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} and add {pendingTemplate.documents.filter(doc => !selectedDocuments.find(selected => selected.name === doc)).length} new document{pendingTemplate.documents.filter(doc => !selectedDocuments.find(selected => selected.name === doc)).length !== 1 ? 's' : ''} from template
                       </p>
                     </div>
