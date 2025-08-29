@@ -63,9 +63,17 @@ export default function ClientConfirmation() {
     navigate('/client/login');
   };
 
-  const renderFileIcon = (filename: string) => {
+  const renderFileIcon = (filename: string, index: number) => {
     const iconType = getFileTypeIcon(filename);
-    const iconClass = "w-5 h-5 text-[#C5BFEE]"; // Using purple color from the palette
+
+    // Color palette rotation
+    const colors = [
+      "text-[#99C0F0]",  // Blue
+      "text-[#C5BFEE]",  // Purple
+      "text-[#C1D9F6]",  // Light blue
+    ];
+
+    const iconClass = `w-5 h-5 ${colors[index % colors.length]}`;
 
     switch (iconType) {
       case 'pdf':
