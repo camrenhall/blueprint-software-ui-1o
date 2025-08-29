@@ -12,9 +12,9 @@ import {
   ALLOWED_EXTENSIONS,
   type FileValidationError 
 } from "@/lib/uploadUtils";
-import { 
-  X, Upload, FileText, AlertCircle, CheckCircle2, RotateCcw, 
-  User, Plus, Trash2, ArrowRight, Cloud, Folder, Settings
+import {
+  X, Upload, FileText, AlertCircle, CheckCircle2, RotateCcw,
+  User, Plus, Trash2, ArrowRight, Cloud, Folder
 } from "lucide-react";
 
 interface UploadedFile {
