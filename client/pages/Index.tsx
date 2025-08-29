@@ -102,50 +102,58 @@ function IndexContent() {
 
       {/* Main content area */}
       <div className="relative z-10 h-[calc(100vh-4rem)] ml-96 pt-8 pr-8 pb-8">
-        {activeRightContent && isVisible && (
-          <div className="w-full h-full bg-white/50 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-8">
-            {activeRightContent === "overview" && (
-              <div className="text-4xl text-black">
-                OVERVIEW PAGE - activeRightContent: {activeRightContent}
-                <Overview onClose={() => setActiveRightContent(null)} />
-              </div>
-            )}
-            {activeRightContent === "create" && (
-              <div className="text-4xl text-black">
-                CREATE PAGE - activeRightContent: {activeRightContent}
-                <InlineCreate onClose={() => setActiveRightContent(null)} />
-              </div>
-            )}
-            {activeRightContent === "review" && (
-              <div className="text-4xl text-black">
-                REVIEW PAGE - activeRightContent: {activeRightContent}
-                <InlineReview onClose={() => setActiveRightContent(null)} />
-              </div>
-            )}
-            {activeRightContent === "taskqueue" && (
-              <div className="text-4xl text-black">
-                TASK QUEUE PAGE - activeRightContent: {activeRightContent}
-                <TaskQueue onClose={() => setActiveRightContent(null)} />
-              </div>
-            )}
-            {activeRightContent === "settings" && (
-              <div className="text-4xl text-black">
-                SETTINGS PAGE - activeRightContent: {activeRightContent}
-                <UnifiedSettings
-                  selectedCategory={selectedSettingsCategory}
-                  onCategorySelect={handleSettingsCategorySelect}
-                  onBack={handleSettingsBack}
-                />
-              </div>
-            )}
-            {activeRightContent === "communications" && (
-              <div className="text-4xl text-black">
-                COMMUNICATIONS PAGE - activeRightContent: {activeRightContent}
-                <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
-              </div>
-            )}
+        <div className="w-full h-full bg-white/50 backdrop-blur-xl rounded-2xl border border-white/20 shadow-2xl p-8">
+          <div className="text-4xl text-black mb-4">
+            DEBUG: activeRightContent = "{activeRightContent}", isVisible = {isVisible ? "true" : "false"}
           </div>
-        )}
+
+          {activeRightContent === "overview" && (
+            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
+              OVERVIEW PAGE CONTENT
+              <Overview onClose={() => setActiveRightContent(null)} />
+            </div>
+          )}
+          {activeRightContent === "create" && (
+            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
+              CREATE PAGE CONTENT
+              <InlineCreate onClose={() => setActiveRightContent(null)} />
+            </div>
+          )}
+          {activeRightContent === "review" && (
+            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
+              REVIEW PAGE CONTENT
+              <InlineReview onClose={() => setActiveRightContent(null)} />
+            </div>
+          )}
+          {activeRightContent === "taskqueue" && (
+            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
+              TASK QUEUE PAGE CONTENT
+              <TaskQueue onClose={() => setActiveRightContent(null)} />
+            </div>
+          )}
+          {activeRightContent === "settings" && (
+            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
+              SETTINGS PAGE CONTENT
+              <UnifiedSettings
+                selectedCategory={selectedSettingsCategory}
+                onCategorySelect={handleSettingsCategorySelect}
+                onBack={handleSettingsBack}
+              />
+            </div>
+          )}
+          {activeRightContent === "communications" && (
+            <div className="text-2xl text-red-500 bg-yellow-200 p-4">
+              COMMUNICATIONS PAGE CONTENT
+              <CommunicationsPanel onClose={() => setActiveRightContent(null)} />
+            </div>
+          )}
+
+          {!activeRightContent && (
+            <div className="text-2xl text-red-500 bg-red-200 p-4">
+              NO ACTIVE CONTENT SET
+            </div>
+          )}
+        </div>
 
         {/* Subtle ambient elements */}
         {activeRightContent && isVisible && (
