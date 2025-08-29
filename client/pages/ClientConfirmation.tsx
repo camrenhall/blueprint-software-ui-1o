@@ -275,22 +275,6 @@ export default function ClientConfirmation() {
             </div>
           </div>
 
-          {/* Security Notice */}
-          <div className="p-4 bg-gradient-to-r from-green-50/50 to-blue-50/50 rounded-xl border border-green-200/30">
-            <div className="flex items-center space-x-3">
-              <div className="flex-shrink-0">
-                <CheckCircle2 className="w-5 h-5 text-green-600" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-green-800">
-                  Your documents are secure
-                </p>
-                <p className="text-xs text-green-700 mt-1">
-                  All uploads are protected with enterprise-grade encryption and stored securely in compliance with legal industry standards.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </PageContainer>
