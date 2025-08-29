@@ -368,9 +368,12 @@ export default function CaseDetailsNew({
               </div>
 
               {/* Most Recent Activity - Inline */}
-              <div className="flex items-center justify-between text-sm border-t border-[#C1D9F6]/20 pt-2">
-                <span className="text-[#0E315C]/60 font-light">{recentActivity[0]?.message}</span>
-                <span className="text-[#0E315C]/50 font-light text-xs">{recentActivity[0]?.time}</span>
+              <div className="border-t border-[#C1D9F6]/20 pt-2">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-xs text-[#0E315C]/50 font-light">Most Recent Activity:</span>
+                  <span className="text-[#0E315C]/50 font-light text-xs">{recentActivity[0]?.time}</span>
+                </div>
+                <p className="text-sm text-[#0E315C] font-light">{recentActivity[0]?.message}</p>
               </div>
             </div>
 
