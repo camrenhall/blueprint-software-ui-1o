@@ -18,7 +18,7 @@ export default function CaseDetailsNew({
   // Enhanced mock data for documents with more realistic details
   const documents = [
     {
-      name: "Employment_Contract_2024.pdf",
+      name: "2024 Employment Contract",
       type: "Contract",
       size: "2.4 MB",
       uploadDate: "Jun 28, 2025",
@@ -27,7 +27,7 @@ export default function CaseDetailsNew({
       pages: 12,
     },
     {
-      name: "W2_Tax_Form_2024.pdf", 
+      name: "2024 W2",
       type: "Tax Document",
       size: "1.1 MB",
       uploadDate: "Jun 27, 2025",
@@ -36,7 +36,7 @@ export default function CaseDetailsNew({
       pages: 4,
     },
     {
-      name: "Medical_Records_Summary.pdf",
+      name: "Medical Records Summary",
       type: "Medical",
       size: "8.7 MB",
       uploadDate: "Jun 25, 2025",
@@ -45,19 +45,19 @@ export default function CaseDetailsNew({
       pages: 24,
     },
     {
-      name: "Insurance_Policy_Details.pdf",
+      name: "2024 Insurance Policy",
       type: "Insurance",
-      size: "1.8 MB", 
+      size: "1.8 MB",
       uploadDate: "Jun 24, 2025",
-      status: "approved",
+      status: "rejected",
       description: "Health and disability insurance coverage",
       pages: 8,
     },
     {
-      name: "Performance_Review_2024.pdf",
+      name: "2024 Performance Review",
       type: "HR Document",
       size: "0.9 MB",
-      uploadDate: "Jun 23, 2025", 
+      uploadDate: "Jun 23, 2025",
       status: "approved",
       description: "Annual performance evaluation",
       pages: 6,
@@ -141,13 +141,15 @@ export default function CaseDetailsNew({
     switch (status) {
       case "approved":
       case "complete":
-        return "bg-emerald-500/20 text-emerald-700 border-emerald-500/30";
+        return "bg-[#99C0F0]/30 text-[#0E315C] border-[#99C0F0]/40";
+      case "rejected":
+        return "bg-red-500/20 text-red-700 border-red-500/30";
       case "review":
       case "needs review":
         return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
       case "pending":
       case "awaiting documents":
-        return "bg-[#99C0F0]/30 text-[#0E315C] border-[#99C0F0]/40";
+        return "bg-amber-500/20 text-amber-700 border-amber-500/30";
       default:
         return "bg-white/20 text-[#0E315C]/70 border-white/30";
     }
@@ -396,24 +398,19 @@ export default function CaseDetailsNew({
                     <div
                       key={index}
                       onClick={() => setSelectedDocument(doc.name)}
-                      className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md hover:bg-white/20 rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.01] border border-white/20 hover:border-white/30 shadow-sm hover:shadow-lg"
+                      className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md hover:bg-white/20 rounded-2xl cursor-pointer transition-all duration-300 hover:scale-[1.01] border border-white/20 hover:border-white/30 shadow-sm hover:shadow-lg min-w-0"
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20">
+                      <div className="flex items-center space-x-3 min-w-0 flex-1">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20 flex-shrink-0">
                           <FileText className="w-5 h-5 text-[#0E315C]" />
                         </div>
-                        <div>
-                          <div className="font-medium text-[#0E315C] text-sm">{doc.name}</div>
-                          <div className="text-xs text-[#0E315C]/60 font-light">{doc.description}</div>
-                          <div className="flex items-center space-x-3 text-xs text-[#0E315C]/50 font-light mt-1">
-                            <span>{doc.size}</span>
-                            <span>{doc.pages} pages</span>
-                            <span>{doc.uploadDate}</span>
-                          </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="font-medium text-[#0E315C] text-sm truncate">{doc.name}</div>
+                          <div className="text-xs text-[#0E315C]/60 font-light mt-1">{doc.uploadDate}</div>
                         </div>
                       </div>
                       <span className={cn(
-                        "px-2 py-1 rounded-lg text-xs font-medium border capitalize",
+                        "px-2 py-1 rounded-lg text-xs font-medium border capitalize flex-shrink-0",
                         getStatusColor(doc.status)
                       )}>
                         {doc.status}
