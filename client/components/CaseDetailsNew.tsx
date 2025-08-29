@@ -365,6 +365,15 @@ export default function CaseDetailsNew({
                     style={{ width: `${progressPercent}%` }}
                   />
                 </div>
+
+                {/* Most Recent Activity */}
+                <div className="mt-4 pt-3 border-t border-[#C1D9F6]/20">
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-[#0E315C]/60 font-light">Most Recent Activity:</span>
+                    <span className="text-[#0E315C]/50 font-light text-xs">{recentActivity[0]?.time}</span>
+                  </div>
+                  <p className="text-sm text-[#0E315C] font-light mt-1">{recentActivity[0]?.message}</p>
+                </div>
               </div>
             </div>
 
