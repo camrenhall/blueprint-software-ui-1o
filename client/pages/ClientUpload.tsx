@@ -380,7 +380,7 @@ export default function ClientUpload() {
                                 {file.status === 'uploading' && (
                                   <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
                                     <Cloud className="w-3 h-3 mr-1" />
-                                    {file.progress}%
+                                    {Math.round(file.progress)}%
                                   </span>
                                 )}
                               </div>
@@ -436,7 +436,7 @@ export default function ClientUpload() {
                     className={`px-6 py-2 rounded-xl font-medium transition-all duration-300 ${
                       canProceed
                         ? "bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white shadow-lg hover:shadow-xl"
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                        : "bg-gradient-to-r from-gray-300 to-gray-400 text-gray-600 cursor-not-allowed shadow-sm"
                     }`}
                   >
                     Submit Documents
