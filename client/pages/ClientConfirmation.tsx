@@ -100,11 +100,11 @@ export default function ClientConfirmation() {
           {/* Two-column layout for summary and documents */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Left Column - Upload Summary */}
-            <GlassPanel variant="enhanced" radius="lg" className="p-4 sm:p-6">
-              <div className="space-y-4">
+            <GlassPanel variant="enhanced" radius="lg" className="p-3 sm:p-4">
+              <div className="space-y-3">
                 {/* Summary Stats */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="text-center p-3 bg-white/30 rounded-lg border border-white/20">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <div className="text-center p-2 bg-white/30 rounded-lg border border-white/20">
                     <FileText className="w-6 h-6 text-[#99C0F0] mx-auto mb-1" />
                     <div className="text-xl font-semibold text-[#0E315C]">
                       {uploadedFiles.length}
@@ -114,7 +114,7 @@ export default function ClientConfirmation() {
                     </div>
                   </div>
 
-                  <div className="text-center p-3 bg-white/30 rounded-lg border border-white/20">
+                  <div className="text-center p-2 bg-white/30 rounded-lg border border-white/20">
                     <Download className="w-6 h-6 text-[#C5BFEE] mx-auto mb-1" />
                     <div className="text-xl font-semibold text-[#0E315C]">
                       {formatFileSize(totalSize)}
@@ -124,7 +124,7 @@ export default function ClientConfirmation() {
                     </div>
                   </div>
 
-                  <div className="text-center p-3 bg-white/30 rounded-lg border border-white/20">
+                  <div className="text-center p-2 bg-white/30 rounded-lg border border-white/20">
                     <Clock className="w-6 h-6 text-[#C1D9F6] mx-auto mb-1" />
                     <div className="text-base font-semibold text-[#0E315C]">
                       {uploadTime.split(',')[0]}
@@ -136,7 +136,7 @@ export default function ClientConfirmation() {
                 </div>
 
                 {/* Client Info */}
-                <div className="p-3 bg-gradient-to-r from-[#99C0F0]/10 to-[#C5BFEE]/10 rounded-lg border border-white/20">
+                <div className="p-2 bg-gradient-to-r from-[#99C0F0]/10 to-[#C5BFEE]/10 rounded-lg border border-white/20">
                   <div className="flex items-center space-x-3">
                     <div className="flex-shrink-0">
                       <div className="w-8 h-8 bg-[#99C0F0]/20 rounded-full flex items-center justify-center">
@@ -159,18 +159,18 @@ export default function ClientConfirmation() {
             </GlassPanel>
 
             {/* Right Column - File List */}
-            <GlassPanel variant="heavy" radius="lg" className="p-4 sm:p-6">
-              <div className="space-y-3 h-full">
+            <GlassPanel variant="heavy" radius="lg" className="p-3 sm:p-4">
+              <div className="space-y-2 h-full">
                 <h3 className="text-lg font-medium text-[#0E315C] flex items-center space-x-2">
                   <FileText className="w-5 h-5" />
                   <span>Uploaded Documents</span>
                 </h3>
 
-                <div className="bg-white/20 rounded-lg border border-white/30 divide-y divide-white/20 max-h-64 overflow-y-auto document-scroll flex-1">
+                <div className="bg-white/20 rounded-lg border border-white/30 divide-y divide-white/20 max-h-44 overflow-y-auto document-scroll flex-1">
                   {uploadedFiles.map((file, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-3 hover:bg-white/10 transition-colors"
+                      className="flex items-center justify-between p-2.5 hover:bg-white/10 transition-colors"
                     >
                       <div className="flex items-center space-x-3 min-w-0 flex-1">
                         <div className="flex-shrink-0 text-lg">
@@ -179,9 +179,6 @@ export default function ClientConfirmation() {
                         <div className="min-w-0 flex-1">
                           <p className="text-sm font-medium text-[#0E315C] truncate">
                             {file.name}
-                          </p>
-                          <p className="text-xs text-[#0E315C]/50">
-                            {file.type}
                           </p>
                         </div>
                       </div>
