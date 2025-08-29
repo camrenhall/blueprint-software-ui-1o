@@ -18,7 +18,6 @@ import ClientConfirmation from "./pages/ClientConfirmation";
 import CloudBackground from "./components/CloudBackground";
 import TopNavBar from "./components/TopNavBar";
 import { FeedbackButton } from "./components/FeedbackButton";
-import { AIAgentProvider } from "./contexts/AIAgentContext";
 
 // Extend HTMLElement to include our custom property
 declare global {
@@ -48,28 +47,26 @@ const ConditionalTopNavBar = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <AIAgentProvider>
-        <CloudBackground />
-        <BrowserRouter>
-          <ConditionalTopNavBar />
-          <Toaster />
-          <Sonner />
-          <FeedbackButton />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/onboarding" element={<Onboarding />} />
-            <Route path="/menu" element={<Index />} />
-            <Route path="/settings" element={<SettingsOverview />} />
-            <Route path="/settings/:category" element={<SettingsCategory />} />
-            {/* Client upload flow routes */}
-            <Route path="/client/login" element={<ClientLogin />} />
-            <Route path="/client/upload" element={<ClientUpload />} />
-            <Route path="/client/confirmation" element={<ClientConfirmation />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </AIAgentProvider>
+      <CloudBackground />
+      <BrowserRouter>
+        <ConditionalTopNavBar />
+        <Toaster />
+        <Sonner />
+        <FeedbackButton />
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/menu" element={<Index />} />
+          <Route path="/settings" element={<SettingsOverview />} />
+          <Route path="/settings/:category" element={<SettingsCategory />} />
+          {/* Client upload flow routes */}
+          <Route path="/client/login" element={<ClientLogin />} />
+          <Route path="/client/upload" element={<ClientUpload />} />
+          <Route path="/client/confirmation" element={<ClientConfirmation />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
