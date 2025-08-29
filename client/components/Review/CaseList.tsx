@@ -47,8 +47,8 @@ export function CaseList({
       >
         <div
           className={cn(
-            "h-full overflow-y-auto px-6 py-6",
-            isCompact ? "space-y-2" : "space-y-5",
+            "h-full overflow-y-auto px-4 py-4",
+            isCompact ? "space-y-1.5" : "space-y-3",
           )}
         >
           {cases.map((caseItem, index) =>

@@ -26,13 +26,13 @@ export function CaseRow({
         statusColors.border,
         "hover:bg-white/50 hover:shadow-lg",
         statusColors.hover,
-        "hover:border-opacity-80 transition-all duration-500 p-6 rounded-3xl text-left group hover:scale-[1.02] transform",
+        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform",
         className,
       )}
     >
-      <div className="flex items-start space-x-5">
+      <div className="flex items-start space-x-4">
         {/* Avatar */}
-        <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
+        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
           <span className="text-white font-light text-sm">
             {caseItem.avatar}
           </span>
@@ -42,17 +42,17 @@ export function CaseRow({
         <div className="flex-1 min-w-0 relative">
           <div className="flex items-start justify-between">
             <div className="flex-1 min-w-0">
-              <h3 className="text-lg font-light text-[#0E315C] mb-1 truncate pr-24">
+              <h3 className="text-base font-light text-[#0E315C] mb-1 truncate pr-20">
                 {caseItem.name}
               </h3>
-              <p className="text-[#0E315C]/60 text-sm font-light mb-3 pr-24">
+              <p className="text-[#0E315C]/60 text-sm font-light mb-2 pr-20">
                 {caseItem.caseId}
               </p>
             </div>
 
             {/* Compact Right Side Stats */}
             <div className="absolute top-0 right-0 text-right flex-shrink-0">
-              <div className="text-xl font-light text-[#0E315C] mb-1">
+              <div className="text-lg font-light text-[#0E315C] mb-1">
                 {caseItem.progressPercent}%
               </div>
               <div className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">
@@ -62,7 +62,7 @@ export function CaseRow({
           </div>
 
           {/* Extended Progress Bar */}
-          <div className="pr-2 mb-2">
+          <div className="pr-2 mb-1.5">
             <div className="w-full bg-[#C1D9F6]/20 rounded-full h-2 overflow-hidden">
               <div
                 className={cn(
@@ -76,7 +76,7 @@ export function CaseRow({
 
           {/* Extended Statistics Row */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden pr-6">
+            <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden pr-4">
               <div className="flex items-center space-x-1.5 flex-shrink-0">
                 <div
                   className={cn(
