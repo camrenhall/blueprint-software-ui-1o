@@ -340,7 +340,7 @@ export default function CaseDetailsNew({
             <span className="font-light text-sm">Back to Review</span>
           </button>
           <div className="flex items-center space-x-3">
-            <div className="relative">
+            <div className="relative dropdown-container">
               <button
                 onClick={() => hasRejectedDocuments ? setShowPageDownloadDropdown(!showPageDownloadDropdown) : handleDownloadAll(false)}
                 className="flex items-center space-x-2 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
