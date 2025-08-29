@@ -79,23 +79,46 @@ export default function DocumentLibrary({
   };
 
   // Handle conflict resolution actions
-  const handleReplaceSelection = () => {
+  const handleReplaceSelection = async () => {
     if (pendingTemplate) {
-      onLoadTemplate?.(pendingTemplate);
-      setShowConflictResolution(false);
-      setPendingTemplate(null);
+      setIsLoading(true);
+      try {
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 500));
+        onLoadTemplate?.(pendingTemplate);
+        setActionFeedback({ message: `Replaced selection with ${pendingTemplate.name}`, type: 'success' });
+        setShowConflictResolution(false);
+        setPendingTemplate(null);
+        // Clear feedback after 3 seconds
+        setTimeout(() => setActionFeedback(null), 3000);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
-  const handleAddToSelection = () => {
+  const handleAddToSelection = async () => {
     if (pendingTemplate) {
-      pendingTemplate.documents.forEach(docName => {
-        if (!selectedDocuments.find(doc => doc.name === docName)) {
-          onAddDocument(docName);
-        }
-      });
-      setShowConflictResolution(false);
-      setPendingTemplate(null);
+      setIsLoading(true);
+      try {
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 500));
+        const newDocs = pendingTemplate.documents.filter(docName =>
+          !selectedDocuments.find(doc => doc.name === docName)
+        );
+        pendingTemplate.documents.forEach(docName => {
+          if (!selectedDocuments.find(doc => doc.name === docName)) {
+            onAddDocument(docName);
+          }
+        });
+        setActionFeedback({ message: `Added ${newDocs.length} documents from ${pendingTemplate.name}`, type: 'success' });
+        setShowConflictResolution(false);
+        setPendingTemplate(null);
+        // Clear feedback after 3 seconds
+        setTimeout(() => setActionFeedback(null), 3000);
+      } finally {
+        setIsLoading(false);
+      }
     }
   };
 
@@ -116,10 +139,22 @@ export default function DocumentLibrary({
   };
 
   // Save template changes
-  const handleSaveTemplate = () => {
-    // In a real app, this would save to backend
-    console.log('Saving template:', editingTemplate?.name, 'with documents:', editingDocuments);
-    closeTemplateViews();
+  const handleSaveTemplate = async () => {
+    if (editingTemplate) {
+      setIsLoading(true);
+      try {
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 800));
+        // In a real app, this would save to backend
+        console.log('Saving template:', editingTemplate.name, 'with documents:', editingDocuments);
+        setActionFeedback({ message: `Saved changes to ${editingTemplate.name}`, type: 'success' });
+        closeTemplateViews();
+        // Clear feedback after 3 seconds
+        setTimeout(() => setActionFeedback(null), 3000);
+      } finally {
+        setIsLoading(false);
+      }
+    }
   };
 
   // Close template views
