@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { X, ArrowLeft, FileText, Clock, Users, CheckCircle2, AlertCircle, Calendar, Mail, MessageSquare, Download, ExternalLink, ChevronDown, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
 
