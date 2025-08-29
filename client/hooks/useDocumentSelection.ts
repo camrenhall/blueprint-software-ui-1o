@@ -177,20 +177,15 @@ export function useDocumentSelection({
     selectedDocuments,
     availableDocuments,
     savedTemplates,
-    showTemplateConflictModal,
-    pendingTemplate,
-    
+
     // Actions
     handleAddDocument,
     handleRemoveDocument,
     handleToggleOptional,
     handleClearAllDocuments,
     handleLoadTemplate,
-    handleConfirmTemplateReplace,
-    handleConfirmTemplateAdd,
-    handleCancelTemplate,
     handleAddMultipleDocuments,
-    
+
     // Utilities
     getDocumentCounts,
     isDocumentSelected,
