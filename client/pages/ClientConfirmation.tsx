@@ -177,8 +177,8 @@ export default function ClientConfirmation() {
                       className="flex items-center justify-between p-2.5 hover:bg-white/10 transition-colors"
                     >
                       <div className="flex items-center space-x-3 min-w-0 flex-1">
-                        <div className="flex-shrink-0 text-lg">
-                          {getFileTypeIcon(file.name)}
+                        <div className="flex-shrink-0">
+                          {renderFileIcon(file.name)}
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="text-sm text-[#0E315C] truncate">
