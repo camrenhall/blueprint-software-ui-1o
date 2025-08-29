@@ -183,11 +183,11 @@ export default function CaseDetailsNew({
     }
   };
 
-  // Define content sections styling based on inline mode
+  // Define content sections styling based on inline mode - consistent glassmorphism design
   const sectionClasses = cn(
-    "rounded-3xl p-5 transition-all duration-300",
-    inline 
-      ? "bg-white/30 backdrop-blur-md shadow-lg border border-[#C1D9F6]/40 hover:bg-white/40 hover:shadow-xl" 
+    "rounded-2xl p-5 transition-all duration-300",
+    inline
+      ? "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform"
       : "bg-white/20 backdrop-blur-xl shadow-xl border border-white/20 hover:shadow-2xl"
   );
 
@@ -370,15 +370,15 @@ export default function CaseDetailsNew({
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 mt-4">
-                  <div className="text-center p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
-                    <div className="text-lg font-light text-emerald-700 mb-1">{caseStats.approvedDocuments}</div>
-                    <div className="text-xs text-emerald-700/70 font-light">Approved</div>
+                  <div className="text-center p-3 bg-[#99C0F0]/15 backdrop-blur-sm rounded-xl border border-[#99C0F0]/30 hover:bg-[#99C0F0]/25 transition-all duration-300">
+                    <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.approvedDocuments}</div>
+                    <div className="text-xs text-[#0E315C]/70 font-light">Approved</div>
                   </div>
-                  <div className="text-center p-3 bg-purple-500/10 rounded-xl border border-purple-500/20">
-                    <div className="text-lg font-light text-purple-700 mb-1">{caseStats.reviewDocuments}</div>
-                    <div className="text-xs text-purple-700/70 font-light">In Review</div>
+                  <div className="text-center p-3 bg-[#C5BFEE]/15 backdrop-blur-sm rounded-xl border border-[#C5BFEE]/30 hover:bg-[#C5BFEE]/25 transition-all duration-300">
+                    <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.reviewDocuments}</div>
+                    <div className="text-xs text-[#0E315C]/70 font-light">In Review</div>
                   </div>
-                  <div className="text-center p-3 bg-[#99C0F0]/20 rounded-xl border border-[#99C0F0]/30">
+                  <div className="text-center p-3 bg-[#C1D9F6]/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/30 hover:bg-[#C1D9F6]/25 transition-all duration-300">
                     <div className="text-lg font-light text-[#0E315C] mb-1">{caseStats.timeInQueue}</div>
                     <div className="text-xs text-[#0E315C]/70 font-light">Total Time</div>
                   </div>
@@ -400,10 +400,10 @@ export default function CaseDetailsNew({
                     <div
                       key={index}
                       onClick={() => setSelectedDocument(doc.name)}
-                      className="flex items-center justify-between p-3 bg-[#C1D9F6]/10 hover:bg-[#C1D9F6]/20 rounded-xl cursor-pointer transition-all duration-300 hover:scale-105 border border-[#C1D9F6]/20"
+                      className="flex items-center justify-between p-3 bg-white/20 backdrop-blur-sm hover:bg-white/30 rounded-xl cursor-pointer transition-all duration-300 hover:scale-[1.02] border border-[#C1D9F6]/30 hover:border-[#C1D9F6]/50 shadow-sm hover:shadow-md"
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-xl flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/30 rounded-xl flex items-center justify-center shadow-sm">
                           <FileText className="w-5 h-5 text-[#0E315C]" />
                         </div>
                         <div>
@@ -441,13 +441,13 @@ export default function CaseDetailsNew({
                   {recentActivity.map((activity, index) => (
                     <div
                       key={index}
-                      className="flex items-start space-x-3 p-3 bg-[#C5BFEE]/10 rounded-xl border border-[#C5BFEE]/20"
+                      className="flex items-start space-x-3 p-3 bg-white/15 backdrop-blur-sm rounded-xl border border-[#C1D9F6]/25 hover:bg-white/25 transition-all duration-300"
                     >
                       <div className={cn(
-                        "w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0",
-                        activity.importance === "high" 
-                          ? "bg-gradient-to-br from-red-500/20 to-pink-500/20 text-red-600"
-                          : "bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 text-[#0E315C]"
+                        "w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 shadow-sm",
+                        activity.importance === "high"
+                          ? "bg-gradient-to-br from-[#C5BFEE]/40 to-[#C5BFEE]/60 text-[#0E315C]"
+                          : "bg-gradient-to-br from-[#99C0F0]/30 to-[#C1D9F6]/30 text-[#0E315C]"
                       )}>
                         {getActivityIcon(activity.type)}
                       </div>
