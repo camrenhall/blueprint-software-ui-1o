@@ -162,7 +162,7 @@ export function SearchFilterBar({
                       <div
                         key={filterId}
                         className={cn(
-                          "w-2 h-2 rounded-full",
+                          "w-1.5 h-1.5 rounded-full",
                           option.color.dot,
                         )}
                         style={{ zIndex: 10 - index }}
@@ -170,7 +170,7 @@ export function SearchFilterBar({
                     ) : null;
                   })}
                   {activeFilters.length > 3 && (
-                    <div className="w-2 h-2 rounded-full bg-[#0E315C] flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#0E315C] flex items-center justify-center">
                       <span className="text-[6px] text-white font-bold">+</span>
                     </div>
                   )}
@@ -178,7 +178,7 @@ export function SearchFilterBar({
               )}
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-3.5 h-3.5 transition-transform",
                   filterDropdownOpen && "rotate-180",
                 )}
               />
@@ -258,7 +258,7 @@ export function SearchFilterBar({
               )}
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-3.5 h-3.5 transition-transform",
                   sortDropdownOpen && "rotate-180",
                 )}
               />
@@ -323,7 +323,7 @@ export function SearchFilterBar({
               )}
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-3.5 h-3.5 transition-transform",
                   viewDropdownOpen && "rotate-180",
                 )}
               />
