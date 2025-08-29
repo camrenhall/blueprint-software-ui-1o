@@ -324,12 +324,40 @@ export default function CaseDetailsNew({
             <ArrowLeft className="w-5 h-5" />
             <span className="font-light text-sm">Back to Review</span>
           </button>
-          <button
-            onClick={onBack}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/20 transition-all duration-300 hover:scale-110"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center space-x-3">
+            <div className="relative">
+              <button
+                onClick={() => hasRejectedDocuments ? setShowPageDownloadDropdown(!showPageDownloadDropdown) : handleDownloadAll(false)}
+                className="flex items-center space-x-2 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
+              >
+                <Download className="w-4 h-4" />
+                <span className="text-sm font-light">Download All</span>
+                {hasRejectedDocuments && <ChevronDown className="w-3 h-3" />}
+              </button>
+              {showPageDownloadDropdown && (
+                <div className="absolute top-full right-0 mt-2 w-56 bg-white/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 py-2 z-50">
+                  <button
+                    onClick={() => handleDownloadAll(false)}
+                    className="w-full text-left px-4 py-2 text-sm text-[#0E315C] hover:bg-[#99C0F0]/20 transition-colors"
+                  >
+                    Download Approved Only
+                  </button>
+                  <button
+                    onClick={() => handleDownloadAll(true)}
+                    className="w-full text-left px-4 py-2 text-sm text-[#0E315C] hover:bg-[#99C0F0]/20 transition-colors"
+                  >
+                    Download All Documents
+                  </button>
+                </div>
+              )}
+            </div>
+            <button
+              onClick={onBack}
+              className="w-8 h-8 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-white/20 transition-all duration-300 hover:scale-110"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Compact Case Header */}
