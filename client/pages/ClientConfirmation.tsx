@@ -63,6 +63,22 @@ export default function ClientConfirmation() {
     navigate('/client/login');
   };
 
+  const renderFileIcon = (filename: string) => {
+    const iconType = getFileTypeIcon(filename);
+    const iconClass = "w-5 h-5 text-[#C5BFEE]"; // Using purple color from the palette
+
+    switch (iconType) {
+      case 'pdf':
+        return <FileText className={iconClass} />;
+      case 'image':
+        return <Image className={iconClass} />;
+      case 'document':
+        return <FileText className={iconClass} />;
+      default:
+        return <File className={iconClass} />;
+    }
+  };
+
   const totalSize = uploadedFiles.reduce((sum, file) => sum + file.size, 0);
   const uploadTime = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
