@@ -410,7 +410,34 @@ export default function CaseDetailsNew({
                     <FileText className="w-5 h-5 text-[#99C0F0]" />
                     <span>Documents</span>
                   </h3>
-                  <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
+                    <div className="relative">
+                      <button
+                        onClick={() => hasRejectedDocuments ? setShowDocumentDownloadDropdown(!showDocumentDownloadDropdown) : handleDownloadAll(false)}
+                        className="flex items-center space-x-2 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
+                      >
+                        <Download className="w-4 h-4" />
+                        {hasRejectedDocuments && <ChevronDown className="w-3 h-3" />}
+                      </button>
+                      {showDocumentDownloadDropdown && (
+                        <div className="absolute top-full right-0 mt-2 w-56 bg-white/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 py-2 z-50">
+                          <button
+                            onClick={() => handleDownloadAll(false)}
+                            className="w-full text-left px-4 py-2 text-sm text-[#0E315C] hover:bg-[#99C0F0]/20 transition-colors"
+                          >
+                            Download Approved Only
+                          </button>
+                          <button
+                            onClick={() => handleDownloadAll(true)}
+                            className="w-full text-left px-4 py-2 text-sm text-[#0E315C] hover:bg-[#99C0F0]/20 transition-colors"
+                          >
+                            Download All Documents
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="space-y-3 max-h-80 overflow-y-auto">
