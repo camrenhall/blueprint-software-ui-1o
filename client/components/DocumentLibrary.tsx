@@ -615,7 +615,7 @@ export default function DocumentLibrary({
                     <button
                       key={index}
                       onClick={() => onAddDocument(doc)}
-                      className="w-full text-left p-3 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 rounded-lg transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10 hover:scale-[1.01] transform"
+                      className="w-full text-left p-3 bg-white/50 hover:bg-white/70 border border-[#C1D9F6]/30 hover:border-[#99C0F0]/50 rounded-lg transition-all duration-300 group hover:shadow-lg hover:shadow-[#99C0F0]/10 hover:scale-[1.01] active:scale-[0.99] transform focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/30"
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-light text-[#0E315C] group-hover:text-[#0E315C]">
