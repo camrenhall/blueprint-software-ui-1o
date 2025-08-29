@@ -478,7 +478,13 @@ export default function ClientUpload() {
           type="file"
           multiple
           accept={ALLOWED_EXTENSIONS.join(',')}
-          onChange={(e) => e.target.files && handleFileSelect(e.target.files)}
+          onChange={(e) => {
+            if (e.target.files) {
+              handleFileSelect(e.target.files);
+              // Clear the input value to allow re-selecting the same files
+              e.target.value = '';
+            }
+          }}
           className="hidden"
         />
       </div>
