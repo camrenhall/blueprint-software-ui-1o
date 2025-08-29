@@ -355,8 +355,7 @@ export default function CaseDetailsNew({
               </div>
 
               <div className="mb-4">
-                <div className="flex justify-between text-sm text-[#0E315C]/60 mb-3 font-light">
-                  <span>Tasks: {caseStats.tasksComplete} Complete</span>
+                <div className="flex justify-end text-sm text-[#0E315C]/60 mb-3 font-light">
                   <span>Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Approved</span>
                 </div>
                 <div className="w-full h-2 bg-[#C1D9F6]/30 rounded-full overflow-hidden">
@@ -367,7 +366,7 @@ export default function CaseDetailsNew({
                 </div>
 
                 {/* Most Recent Activity */}
-                <div className="mt-4 pt-3 border-t border-[#C1D9F6]/20">
+                <div className="mt-4 pt-3 -mb-2 border-t border-[#C1D9F6]/20">
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-[#0E315C]/60 font-light">Most Recent Activity:</span>
                     <span className="text-[#0E315C]/50 font-light text-xs">{recentActivity[0]?.time}</span>
