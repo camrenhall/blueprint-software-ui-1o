@@ -161,30 +161,7 @@ export default function DocumentLibrary({
 
           {/* Templates Section */}
           {showTemplatesInline && showTemplates && (
-            <div className="border-b border-[#C1D9F6]/20 px-6 py-4 bg-[#C5BFEE]/5 backdrop-blur-sm">
-              <div className="flex items-center justify-between mb-3">
-                <h4 className="text-sm font-medium text-[#0E315C]/80">
-                  Quick Templates
-                </h4>
-                <button
-                  onClick={() => setShowTemplatesInline(false)}
-                  className="text-[#0E315C]/50 hover:text-[#0E315C] transition-colors"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
+            <div className="border-b border-[#C1D9F6]/20 px-6 py-4 bg-[#C5BFEE]/5 backdrop-blur-sm flex-1 overflow-y-auto document-scroll">
               <div className="space-y-1.5">
                 {savedTemplates.map((template, index) => (
                   <button
