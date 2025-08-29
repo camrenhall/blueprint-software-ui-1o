@@ -99,28 +99,28 @@ export default function CaseDetailsNew({
 
   const communications = [
     {
-      type: "email",
       subject: "Case Resolution - Next Steps",
       preview: "Thank you for your patience throughout this process. Your case has been successfully...",
       time: "4 hours ago",
-      status: "sent",
-      recipient: "amanda.johnson@email.com",
+      status: "outgoing",
     },
     {
-      type: "phone",
-      subject: "Document Review Call",
-      preview: "45-minute consultation regarding final document requirements and timeline...",
+      subject: "Document Review Follow-up",
+      preview: "Please let us know if you have any questions about the document requirements we discussed...",
+      time: "1 day ago",
+      status: "queued",
+    },
+    {
+      subject: "Additional Information Request",
+      preview: "I wanted to provide some additional context regarding my employment situation that may be...",
       time: "2 days ago",
-      status: "completed",
-      recipient: "(555) 123-4567",
+      status: "incoming",
     },
     {
-      type: "sms",
       subject: "Document Upload Confirmation",
       preview: "We've received your medical records. Review in progress, expect update within 24hrs.",
       time: "3 days ago",
-      status: "delivered",
-      recipient: "(555) 123-4567",
+      status: "outgoing",
     },
   ];
 
@@ -173,16 +173,29 @@ export default function CaseDetailsNew({
     }
   };
 
-  const getCommunicationIcon = (type: string) => {
-    switch (type) {
-      case "email":
-        return <Mail className="w-4 h-4" />;
-      case "phone":
-        return <MessageSquare className="w-4 h-4" />;
-      case "sms":
-        return <MessageSquare className="w-4 h-4" />;
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "incoming":
+        return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
+      case "outgoing":
+        return "bg-[#99C0F0]/30 text-[#0E315C] border-[#99C0F0]/40";
+      case "queued":
+        return "bg-amber-500/20 text-amber-700 border-amber-500/30";
       default:
-        return <MessageSquare className="w-4 h-4" />;
+        return "bg-white/20 text-[#0E315C]/70 border-white/30";
+    }
+  };
+
+  const getStatusIndicator = (status: string) => {
+    switch (status) {
+      case "incoming":
+        return "↓";
+      case "outgoing":
+        return "↑";
+      case "queued":
+        return "⏸";
+      default:
+        return "";
     }
   };
 
@@ -435,14 +448,19 @@ export default function CaseDetailsNew({
                     >
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-2">
-                          {getCommunicationIcon(comm.type)}
-                          <span className="text-xs font-medium text-[#0E315C] uppercase">{comm.type}</span>
+                          <Mail className="w-4 h-4 text-[#0E315C]" />
+                          <span className={cn(
+                            "px-2 py-1 rounded-lg text-xs font-medium border flex items-center space-x-1",
+                            getStatusColor(comm.status)
+                          )}>
+                            <span>{getStatusIndicator(comm.status)}</span>
+                            <span className="capitalize">{comm.status}</span>
+                          </span>
                         </div>
                         <span className="text-xs text-[#0E315C]/50 font-light">{comm.time}</span>
                       </div>
                       <p className="text-sm font-medium text-[#0E315C] mb-1 truncate">{comm.subject}</p>
                       <p className="text-xs text-[#0E315C]/60 font-light line-clamp-2">{comm.preview}</p>
-                      <p className="text-xs text-[#0E315C]/50 font-light mt-1">{comm.recipient}</p>
                     </div>
                   ))}
                 </div>
