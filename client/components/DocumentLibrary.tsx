@@ -238,61 +238,86 @@ export default function DocumentLibrary({
           <div className="flex-1 overflow-y-auto document-scroll px-6 py-4 rounded-b-3xl">
             {showConflictResolution && pendingTemplate ? (
               // Conflict Resolution UI
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3 mb-6">
+              <div className="space-y-6">
+                {/* Header with back button and warning */}
+                <div className="flex items-start space-x-4">
                   <button
                     onClick={handleCancelConflict}
-                    className="w-8 h-8 rounded-lg flex items-center justify-center bg-white/60 hover:bg-white/80 border border-[#C1D9F6]/30 transition-all duration-200"
+                    className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/80 hover:bg-white border border-[#C1D9F6]/40 hover:border-[#99C0F0]/50 transition-all duration-200 hover:shadow-lg shadow-sm"
                   >
-                    <svg className="w-4 h-4 text-[#0E315C]/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-[#0E315C]/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
-                  <div>
-                    <h3 className="text-lg font-light text-[#0E315C]">Load Template</h3>
-                    <p className="text-sm text-[#0E315C]/60">
-                      You have {selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''} selected
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
+                      <h3 className="text-xl font-medium text-[#0E315C]">Template Conflict</h3>
+                    </div>
+                    <p className="text-[#0E315C]/70 leading-relaxed">
+                      You have <span className="font-semibold text-[#0E315C]">{selectedDocuments.length} document{selectedDocuments.length !== 1 ? 's' : ''}</span> already selected.
+                      Choose how to handle the template documents.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-white/60 border border-[#C1D9F6]/30 rounded-xl p-4 mb-4">
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="font-medium text-[#0E315C]">{pendingTemplate.name}</h4>
-                    <span className="text-xs text-[#0E315C]/60 bg-[#C1D9F6]/20 px-2 py-1 rounded-full">
-                      {pendingTemplate.documents.length} docs
-                    </span>
+                {/* Template preview card */}
+                <div className="bg-gradient-to-br from-white/90 to-white/70 border border-[#C1D9F6]/40 rounded-2xl p-6 shadow-lg shadow-[#C1D9F6]/10">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h4 className="text-lg font-semibold text-[#0E315C] mb-1">{pendingTemplate.name}</h4>
+                      <p className="text-sm text-[#0E315C]/60">Template to be loaded</p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs font-medium text-[#99C0F0] bg-[#99C0F0]/15 px-3 py-1.5 rounded-full border border-[#99C0F0]/20">
+                        {pendingTemplate.documents.length} documents
+                      </span>
+                    </div>
                   </div>
-                  <div className="space-y-2 max-h-32 overflow-y-auto">
-                    {pendingTemplate.documents.map((doc, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-1.5 h-1.5 bg-[#99C0F0] rounded-full flex-shrink-0" />
-                        <span className="text-sm text-[#0E315C]/70">{doc}</span>
-                      </div>
-                    ))}
+                  <div className="bg-white/60 rounded-xl p-4 max-h-36 overflow-y-auto">
+                    <div className="space-y-2.5">
+                      {pendingTemplate.documents.map((doc, index) => (
+                        <div key={index} className="flex items-center space-x-3 group">
+                          <div className="w-2 h-2 bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] rounded-full flex-shrink-0" />
+                          <span className="text-sm text-[#0E315C]/80 group-hover:text-[#0E315C] transition-colors">{doc}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <button
-                    onClick={handleReplaceSelection}
-                    className="w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] text-white px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 font-light"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
-                    <span>Replace Current Selection</span>
-                  </button>
+                {/* Action buttons */}
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 gap-3">
+                    <button
+                      onClick={handleReplaceSelection}
+                      className="group w-full bg-gradient-to-r from-[#99C0F0] to-[#C5BFEE] hover:from-[#8AB5ED] hover:to-[#BFB8EB] text-white px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 hover:scale-[1.02] transform"
+                    >
+                      <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                      <span>Replace Current Selection</span>
+                    </button>
 
-                  <button
-                    onClick={handleAddToSelection}
-                    className="w-full bg-white/60 hover:bg-white/80 text-[#0E315C] px-4 py-3 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 border border-[#C1D9F6]/40 font-light"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                    <span>Add to Current Selection</span>
-                  </button>
+                    <button
+                      onClick={handleAddToSelection}
+                      className="group w-full bg-white/80 hover:bg-white text-[#0E315C] px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-3 border border-[#C1D9F6]/50 hover:border-[#99C0F0]/50 font-medium shadow-md hover:shadow-lg hover:scale-[1.02] transform"
+                    >
+                      <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                      <span>Add to Current Selection</span>
+                    </button>
+                  </div>
+
+                  <div className="text-center">
+                    <button
+                      onClick={handleCancelConflict}
+                      className="text-sm text-[#0E315C]/60 hover:text-[#0E315C] transition-colors font-medium"
+                    >
+                      Cancel and go back
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : editingTemplate ? (
