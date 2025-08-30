@@ -200,6 +200,16 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
     setTimeout(() => setIsVisible(true), 200);
   }, []);
 
+  // Auto-select task when initialTaskId is provided
+  useEffect(() => {
+    if (initialTaskId && tasks.length > 0) {
+      const taskToSelect = tasks.find(task => task.id === initialTaskId);
+      if (taskToSelect) {
+        setSelectedTask(taskToSelect);
+      }
+    }
+  }, [initialTaskId, tasks]);
+
   // Filter and sort tasks
   const filteredAndSortedTasks = useMemo(() => {
     return filterAndSortTasks(searchValue, activeFilters, sortBy);
