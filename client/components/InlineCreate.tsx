@@ -560,48 +560,84 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                     </div>
                 </div>
 
-                {/* Email Preview Section */}
+                {/* Client Email Container */}
                 <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-sm font-medium text-[#0E315C]">Client Email Preview</h3>
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <h3 className="text-sm font-medium text-[#0E315C] mb-1">Client Email</h3>
+                      <p className="text-xs text-[#0E315C]/60">Review and customize the email that will be sent to your client</p>
+                    </div>
                     <button
                       onClick={() => setIsEditingEmail(!isEditingEmail)}
-                      className="text-xs px-3 py-1.5 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] rounded-lg transition-colors duration-200"
+                      className="flex items-center space-x-2 text-xs px-4 py-2 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] rounded-lg transition-colors duration-200 font-medium"
                     >
-                      {isEditingEmail ? 'Preview' : 'Edit'}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {isEditingEmail ? (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        ) : (
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                        )}
+                      </svg>
+                      <span>{isEditingEmail ? 'Preview' : 'Edit'}</span>
                     </button>
                   </div>
 
                   {isEditingEmail ? (
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                       <div>
-                        <label className="block text-xs font-medium text-[#0E315C]/70 mb-1">Subject</label>
+                        <label className="block text-sm font-medium text-[#0E315C] mb-2">Subject Line</label>
                         <input
                           type="text"
                           value={emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`}
                           onChange={(e) => setEmailDraft(prev => ({ ...prev, subject: e.target.value }))}
-                          className="w-full px-3 py-2 text-sm border border-[#C1D9F6]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/20 focus:border-[#99C0F0]"
+                          className="w-full px-4 py-3 text-sm border border-[#C1D9F6]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/20 focus:border-[#99C0F0] bg-white/50"
+                          placeholder="Enter email subject..."
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-[#0E315C]/70 mb-1">Message</label>
+                        <label className="block text-sm font-medium text-[#0E315C] mb-2">Email Message</label>
                         <textarea
                           value={emailDraft.content || getDefaultEmailContent()}
                           onChange={(e) => setEmailDraft(prev => ({ ...prev, content: e.target.value }))}
-                          rows={8}
-                          className="w-full px-3 py-2 text-sm border border-[#C1D9F6]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/20 focus:border-[#99C0F0] resize-none"
+                          rows={12}
+                          className="w-full px-4 py-3 text-sm border border-[#C1D9F6]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/20 focus:border-[#99C0F0] resize-none bg-white/50 font-mono"
+                          placeholder="Enter your message..."
                         />
+                      </div>
+                      <div className="bg-[#99C0F0]/10 rounded-lg p-4 border border-[#99C0F0]/20">
+                        <div className="flex items-start space-x-3">
+                          <svg className="w-4 h-4 text-[#99C0F0] mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <div>
+                            <p className="text-xs font-medium text-[#0E315C] mb-1">Email Preview</p>
+                            <p className="text-xs text-[#0E315C]/70">Click "Preview" to see how this email will appear to your client before sending.</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ) : (
-                    <EmailPreview
-                      subject={emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`}
-                      content={emailDraft.content || getDefaultEmailContent()}
-                      to={[caseInfo.email]}
-                      senderName="Luceron AI"
-                      senderType="firm"
-                      className="border-0 bg-transparent p-0"
-                    />
+                    <div className="space-y-4">
+                      <EmailPreview
+                        subject={emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`}
+                        content={emailDraft.content || getDefaultEmailContent()}
+                        to={[caseInfo.email]}
+                        senderName="Luceron AI"
+                        senderType="firm"
+                        className="border-0 bg-transparent p-0"
+                      />
+                      <div className="bg-green-50/50 rounded-lg p-4 border border-green-200/40">
+                        <div className="flex items-start space-x-3">
+                          <svg className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <div>
+                            <p className="text-xs font-medium text-green-800 mb-1">Ready to Send</p>
+                            <p className="text-xs text-green-700">This email will be sent to {caseInfo.email} when you create the case.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
