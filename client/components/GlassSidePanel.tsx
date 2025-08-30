@@ -70,12 +70,14 @@ export default function GlassSidePanel({
     }
   };
 
-  // Enhanced menu items with icons and descriptions
-  const enhancedItems = items.map((item) => ({
-    ...item,
-    icon: item.icon || getMenuIcon(item.id),
-    description: item.description || getDefaultDescription(item.id),
-  }));
+  // Enhanced menu items with icons and descriptions (excluding settings and logout)
+  const enhancedItems = items
+    .filter((item) => item.id !== "settings" && item.id !== "logout")
+    .map((item) => ({
+      ...item,
+      icon: item.icon || getMenuIcon(item.id),
+      description: item.description || getDefaultDescription(item.id),
+    }));
 
   return (
     <div className={cn("relative h-full", className)}>
@@ -101,7 +103,7 @@ export default function GlassSidePanel({
         </div>
 
         {/* Content container */}
-        <div className="relative h-full flex flex-col p-8">
+        <div className="relative h-full flex flex-col p-8" style={{ marginBottom: "-5px" }}>
           {/* Header section */}
           <div
             className={cn(
