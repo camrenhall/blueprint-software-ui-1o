@@ -19,7 +19,6 @@ import {
   Wifi,
   Activity,
   ChevronDown,
-  Clock,
   ArrowRight,
   Mail,
   FileText,
