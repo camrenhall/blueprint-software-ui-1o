@@ -30,31 +30,10 @@ const filterOptions = [
     },
   },
   {
-    id: "reminder",
-    label: "Reminder Tasks",
+    id: "review",
+    label: "Review Tasks",
     color: {
       dot: "bg-[#C5BFEE]",
-    },
-  },
-  {
-    id: "analysis",
-    label: "Analysis Tasks",
-    color: {
-      dot: "bg-[#99C0F0]",
-    },
-  },
-  {
-    id: "action",
-    label: "Action Tasks",
-    color: {
-      dot: "bg-[#C5BFEE]",
-    },
-  },
-  {
-    id: "follow-up",
-    label: "Follow-up Tasks",
-    color: {
-      dot: "bg-[#99C0F0]",
     },
   },
 ];
