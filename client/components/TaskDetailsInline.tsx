@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Check, X, ArrowLeft, User, Clock, AlertCircle, MessageSquare } from "lucide-react";
+import { Check, X, ArrowLeft, User, AlertCircle, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProposedTask } from "@/hooks/useTaskQueue";
 import { EmailPreview } from "./EmailPreview";
