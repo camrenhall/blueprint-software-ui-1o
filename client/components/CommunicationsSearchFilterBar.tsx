@@ -121,12 +121,6 @@ export function CommunicationsSearchFilterBar({
             />
           </div>
 
-          {/* Results Count */}
-          <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/40 border border-[#C1D9F6]/40">
-            <span className="text-sm text-[#0E315C]/70 font-light">
-              {totalCount} conversation{totalCount !== 1 ? 's' : ''}
-            </span>
-          </div>
 
           {/* Filter Dropdown */}
           <div className="relative" ref={filterDropdownRef}>
