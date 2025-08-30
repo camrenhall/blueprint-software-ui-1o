@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Check, X, ArrowLeft, User, Clock, AlertCircle, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProposedTask } from "@/hooks/useTaskQueue";
+import { EmailPreview } from "./EmailPreview";
 
 interface FeedbackModalProps {
   isOpen: boolean;
@@ -174,17 +175,10 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
             <div className="flex-1">
               <div className="flex items-center space-x-3 mb-1">
                 <h1 className="text-xl font-light text-[#0E315C]">{task.title}</h1>
-                <span className={cn(
-                  "px-2 py-1 rounded-lg text-xs font-light border capitalize",
-                  getPriorityColor(task.priority)
-                )}>
-                  {task.priority}
-                </span>
               </div>
               <div className="flex items-center space-x-4 text-xs text-[#0E315C]/60 font-light">
                 <div className="flex items-center space-x-1">
-                  <Clock className="w-3 h-3" />
-                  <span>Estimated: {task.estimatedTime}</span>
+                  <span className="capitalize">{task.category === "email" ? "Email" : "Review"}</span>
                 </div>
                 {task.targetPerson && (
                   <div className="flex items-center space-x-1">
@@ -222,13 +216,34 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
                 </div>
               </div>
 
-              {/* Row 2: AI Justification and Decision Panel - Two Columns */}
+              {/* Row 2: Email Content (if email task) */}
+              {task.category === "email" && task.emailContent && (
+                <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform rounded-2xl p-5 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
+                      <MessageSquare className="w-5 h-5 text-[#99C0F0]" />
+                      <span>Proposed Email Content</span>
+                    </h3>
+                  </div>
+
+                  <EmailPreview
+                    subject={task.emailContent.subject}
+                    content={task.emailContent.content}
+                    to={task.emailContent.to}
+                    cc={task.emailContent.cc}
+                    senderName="Luceron AI"
+                    senderType="firm"
+                  />
+                </div>
+              )}
+
+              {/* Row 3: AI Justification and Decision Panel - Two Columns */}
               <div className="grid grid-cols-2 gap-6">
                 {/* AI Justification Section */}
                 <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform rounded-2xl p-5 transition-all duration-300">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
-                      <MessageSquare className="w-5 h-5 text-[#99C0F0]" />
+                      <AlertCircle className="w-5 h-5 text-[#99C0F0]" />
                       <span>AI Justification</span>
                     </h3>
                   </div>
