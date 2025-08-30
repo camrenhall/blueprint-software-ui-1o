@@ -456,38 +456,69 @@ export default function CommunicationsPanel({
               <div className="space-y-4 max-h-[calc(100vh-300px)] overflow-y-auto">
                 {/* Conversation header */}
                 <div className="p-5 bg-white/50 backdrop-blur-sm rounded-xl border border-white/50 shadow-lg">
-                  <div className="grid grid-cols-2 gap-6 text-sm">
-                    <div>
-                      <label className="font-semibold text-[#0E315C]">
-                        Client:
-                      </label>
-                      <p className="text-[#0E315C] mt-1">
-                        {selectedConversation.clientEmail}
-                      </p>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-md">
+                        <User className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-[#0E315C] text-lg">
+                          {selectedConversation.clientName}
+                        </h3>
+                        <p className="text-[#0E315C]/70 text-sm">
+                          {selectedConversation.clientEmail}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <label className="font-semibold text-[#0E315C]">
-                        Case:
-                      </label>
-                      <p className="text-[#0E315C] mt-1">
-                        {selectedConversation.caseNumber}
-                      </p>
+                    <Badge
+                      variant="outline"
+                      className={cn(
+                        "border shadow-sm",
+                        selectedConversation.responseReceived
+                          ? "bg-[#C1D9F6]/30 text-[#0E315C] border-[#C1D9F6]/50"
+                          : "bg-orange-100 text-orange-800 border-orange-300",
+                      )}
+                    >
+                      {selectedConversation.responseReceived
+                        ? "Client Responded"
+                        : "Awaiting Response"}
+                    </Badge>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="flex items-center space-x-2 bg-white/30 p-3 rounded-lg border border-white/40">
+                      <Mail className="w-4 h-4 text-[#0E315C]/60" />
+                      <div>
+                        <p className="text-[#0E315C]/70 text-xs uppercase tracking-wide">Total Emails</p>
+                        <p className="text-[#0E315C] font-semibold text-lg">
+                          {selectedConversation.messages.length}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <label className="font-semibold text-[#0E315C]">
-                        Total Emails:
-                      </label>
-                      <p className="text-[#0E315C] mt-1">
-                        {selectedConversation.messages.length}
-                      </p>
+                    <div className="flex items-center space-x-2 bg-white/30 p-3 rounded-lg border border-white/40">
+                      <Calendar className="w-4 h-4 text-[#0E315C]/60" />
+                      <div>
+                        <p className="text-[#0E315C]/70 text-xs uppercase tracking-wide">Last Activity Date</p>
+                        <p className="text-[#0E315C] font-semibold">
+                          {new Date(selectedConversation.lastActivity).toLocaleDateString()}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <label className="font-semibold text-[#0E315C]">
-                        Last Activity:
-                      </label>
-                      <p className="text-[#0E315C] mt-1">
-                        {formatDate(selectedConversation.lastActivity)}
-                      </p>
+                    <div className="flex items-center space-x-2 bg-white/30 p-3 rounded-lg border border-white/40">
+                      <AlertCircle className="w-4 h-4 text-[#0E315C]/60" />
+                      <div>
+                        <p className="text-[#0E315C]/70 text-xs uppercase tracking-wide">Priority</p>
+                        <p className={cn(
+                          "font-semibold capitalize",
+                          selectedConversation.priority === "high"
+                            ? "text-red-600"
+                            : selectedConversation.priority === "medium"
+                            ? "text-yellow-600"
+                            : "text-green-600"
+                        )}>
+                          {selectedConversation.priority}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
