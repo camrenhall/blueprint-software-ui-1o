@@ -185,18 +185,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                             <div className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
                               {task.description}
                             </div>
-                            <div className="flex items-center justify-between mt-2">
-                              <Badge
-                                variant={task.priority === "high" ? "destructive" : "secondary"}
-                                className="text-xs px-2 py-0.5"
-                              >
-                                {task.priority}
-                              </Badge>
-                              <div className="flex items-center text-xs text-[#99C0F0]/70">
-                                <Clock className="w-3 h-3 mr-1" />
-                                {task.estimatedTime}
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </DropdownMenuItem>
