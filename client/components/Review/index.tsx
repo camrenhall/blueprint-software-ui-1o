@@ -184,14 +184,14 @@ export default function Review({ onClose }: ReviewProps) {
           "text-center mb-8 flex-shrink-0 transition-all duration-1000 ease-out delay-300",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
+          <div className="text-center">
+            <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
               Case Management
             </h1>
+            <p className="text-sm text-[#0E315C]/60 font-light">
+              Comprehensive case tracking and management across all status types
+            </p>
           </div>
-          <p className="text-[#0E315C]/70 text-base leading-relaxed">
-            Comprehensive case tracking and management across all status types
-          </p>
         {onClose && (
           <button
             onClick={onClose}
