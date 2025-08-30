@@ -7,9 +7,7 @@ export interface ProposedTask {
   description: string;
   justification: string;
   agent: string;
-  priority: "high" | "medium" | "low";
   category: "email" | "review";
-  estimatedTime: string;
   targetPerson?: string;
   createdAt: Date;
   emailContent?: {
