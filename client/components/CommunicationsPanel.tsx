@@ -146,6 +146,8 @@ const mockConversations: ClientConversation[] = [
         sentAt: "2024-01-12T09:15:00Z",
         status: "opened",
         sender: "firm",
+        to: ["alex.rivera@email.com"],
+        cc: ["paralegal@luceron.com"],
       },
       {
         id: "3b",
@@ -155,6 +157,8 @@ const mockConversations: ClientConversation[] = [
         sentAt: "2024-01-13T09:15:00Z",
         status: "delivered",
         sender: "firm",
+        to: ["alex.rivera@email.com"],
+        cc: ["paralegal@luceron.com"],
       },
       {
         id: "3c",
@@ -164,6 +168,8 @@ const mockConversations: ClientConversation[] = [
         sentAt: "2024-01-13T12:45:00Z",
         status: "sent",
         sender: "firm",
+        to: ["alex.rivera@email.com"],
+        cc: ["paralegal@luceron.com", "manager@luceron.com"],
       },
     ],
   },
