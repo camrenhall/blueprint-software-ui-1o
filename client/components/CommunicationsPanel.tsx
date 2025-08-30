@@ -187,6 +187,12 @@ export default function CommunicationsPanel({
   const [sortBy, setSortBy] =
     useState<CommunicationsSortOption>("lastActivity");
   const [expandedMessage, setExpandedMessage] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    // Fade in animation
+    setTimeout(() => setIsVisible(true), 200);
+  }, []);
 
   // Mark conversation as read
   const markConversationAsRead = (conversationId: string) => {
@@ -350,7 +356,12 @@ export default function CommunicationsPanel({
   return (
     <div className="h-full flex flex-col">
       {/* Header with enhanced glassmorphism */}
-      <div className="flex items-center justify-between mb-6">
+      <div className={cn(
+        "flex items-center justify-between mb-6 transition-all duration-1000",
+        isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4"
+      )}>
         <div className="flex items-center space-x-3">
           <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-lg">
             <Mail className="w-5 h-5 text-white" />
@@ -383,10 +394,20 @@ export default function CommunicationsPanel({
         onClearFilters={clearFilters}
         sortBy={sortBy}
         onSortChange={setSortBy}
-        className="mb-6"
+        className={cn(
+          "mb-6 transition-all duration-1000",
+          isVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-4"
+        )}
       />
 
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className={cn(
+        "flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all duration-1000",
+        isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-4"
+      )}>
         {/* Client Conversations List - Floating Glass Tiles */}
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
