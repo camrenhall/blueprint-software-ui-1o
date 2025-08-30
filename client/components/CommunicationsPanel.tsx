@@ -585,38 +585,23 @@ export default function CommunicationsPanel({
                 </div>
 
                 {/* Action buttons */}
-                <div className="flex items-center justify-between pt-6 border-t border-white/40">
-                  <div className="flex items-center space-x-3">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
-                    >
-                      <Download className="w-4 h-4 mr-2" />
-                      Export Thread
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
-                    >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Schedule Follow-up
-                    </Button>
-                  </div>
-                  <Badge
+                <div className="flex items-center space-x-3 pt-6 border-t border-white/40">
+                  <Button
                     variant="outline"
-                    className={cn(
-                      "border shadow-sm",
-                      selectedConversation.responseReceived
-                        ? "bg-[#C1D9F6]/30 text-[#0E315C] border-[#C1D9F6]/50"
-                        : "bg-orange-100 text-orange-800 border-orange-300",
-                    )}
+                    size="sm"
+                    className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
                   >
-                    {selectedConversation.responseReceived
-                      ? "Client Responded"
-                      : "Awaiting Response"}
-                  </Badge>
+                    <Download className="w-4 h-4 mr-2" />
+                    Export Thread
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
+                  >
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Schedule Follow-up
+                  </Button>
                 </div>
               </div>
             ) : (
