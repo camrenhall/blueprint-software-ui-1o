@@ -599,9 +599,11 @@ export default function CaseDetailsNew({
                         {["Most Recent", "Queued First", "Outbound Only", "Inbound Only"].map((filter) => (
                           <button
                             key={filter}
+                            type="button"
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
+                              e.nativeEvent.stopImmediatePropagation();
                               handleFilterCommunications(filter);
                             }}
                             className={cn(
