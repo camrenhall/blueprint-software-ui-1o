@@ -187,7 +187,7 @@ export function CommunicationsSearchFilterBar({
                       <div className="flex items-center gap-2 flex-1">
                         <div
                           className={cn(
-                            "w-3 h-3 rounded-full",
+                            "w-2.5 h-2.5 rounded-full",
                             option.color.dot,
                           )}
                         />
@@ -196,7 +196,7 @@ export function CommunicationsSearchFilterBar({
                         </span>
                       </div>
                       {isActive && (
-                        <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
+                        <div className="w-1.5 h-1.5 bg-[#99C0F0] rounded-full" />
                       )}
                     </button>
                   );
