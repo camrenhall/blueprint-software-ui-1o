@@ -35,7 +35,10 @@ export default function TopNavBar({ className }: TopNavBarProps) {
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [notifications, setNotifications] = useState(3);
+  const { taskCount, filterAndSortTasks } = useTaskQueue();
+
+  // Get latest 3 tasks for notifications
+  const latestTasks = filterAndSortTasks("", [], "createdAt").slice(0, 3);
 
   useEffect(() => {
     // Fade in animation
