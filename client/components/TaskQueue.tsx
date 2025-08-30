@@ -186,7 +186,7 @@ interface TaskQueueProps {
   initialTaskId?: string | null;
 }
 
-export default function TaskQueue({ onClose }: TaskQueueProps) {
+export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
   const { tasks, removeTask, filterAndSortTasks } = useTaskQueue();
   const [selectedTask, setSelectedTask] = useState<ProposedTask | null>(null);
   const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
