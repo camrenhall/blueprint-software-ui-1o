@@ -10,8 +10,6 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Onboarding from "./pages/Onboarding";
-import SettingsOverview from "./components/SettingsOverview";
-import SettingsCategory from "./components/SettingsCategory";
 import ClientLogin from "./pages/ClientLogin";
 import ClientUpload from "./pages/ClientUpload";
 import ClientConfirmation from "./pages/ClientConfirmation";
