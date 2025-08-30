@@ -43,7 +43,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     setCreateStep(newStep);
   };
 
-  const getDefaultEmailContent = () => {
+  const getDefaultEmailContent = useCallback(() => {
     const requiredDocs = documentSelection.selectedDocuments.filter(doc => !doc.isOptional);
     const optionalDocs = documentSelection.selectedDocuments.filter(doc => doc.isOptional);
 
@@ -68,7 +68,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     content += `Please upload these documents at your earliest convenience. If you have any questions or need assistance, please don't hesitate to contact us.\n\nBest regards,\nLuceron AI Legal Team`;
 
     return content;
-  };
+  }, [caseInfo.firstName, documentSelection.selectedDocuments]);
 
   useEffect(() => {
     // Trigger animation after component mounts
