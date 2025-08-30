@@ -52,6 +52,7 @@ function IndexContent() {
   const handleBackToMenu = () => {
     setActiveRightContent("overview");
     setSelectedSettingsCategory(null);
+    setSelectedTaskId(null);
     // Clear URL parameters when going back to overview
     setSearchParams({});
   };
