@@ -502,18 +502,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         {/* Step 4: Review & Create */}
         {createStep === 4 && (
           <div className="h-full flex flex-col min-h-0">
-            {/* Header */}
-            <div className="mb-6 flex-shrink-0">
-              <h2 className="text-lg font-medium text-[#0E315C] mb-1">
-                Review & Create
-              </h2>
-              <p className="text-[#0E315C]/70 text-sm">
-                Review all details before creating the case
-              </p>
-            </div>
-
             {/* Review Content - Flexible with max height */}
-            <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)] overflow-y-auto">
+            <div className="flex-1 min-h-0 max-h-[calc(100%-4rem)] overflow-y-auto">
               <div className="space-y-6">
                 {/* Case Summary Container - SEPARATE */}
                 <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
@@ -671,13 +661,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   </span>
                 </button>
 
-                {/* Ready Status Indicator - Center */}
-                <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm backdrop-blur-sm">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <div className="w-2 h-2 bg-green-500 rounded-full" />
-                    <span className="text-[#0E315C]/70">Ready to create</span>
-                  </div>
-                </div>
+                {/* Center spacer */}
+                <div></div>
 
                 {/* Create Case Button */}
                 <button
