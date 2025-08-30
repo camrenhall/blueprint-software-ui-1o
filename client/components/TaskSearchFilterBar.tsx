@@ -1,10 +1,4 @@
-import {
-  Search,
-  Filter,
-  SortAsc,
-  X,
-  ChevronDown,
-} from "lucide-react";
+import { Search, Filter, SortAsc, X, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -38,9 +32,21 @@ const filterOptions = [
   },
 ];
 
-const sortOptions: { id: TaskSortOption; label: string; description: string }[] = [
-  { id: "createdAt", label: "Recently Proposed", description: "Newest proposals first" },
-  { id: "alphabetical", label: "Alphabetical", description: "Sort by task title A-Z" },
+const sortOptions: {
+  id: TaskSortOption;
+  label: string;
+  description: string;
+}[] = [
+  {
+    id: "createdAt",
+    label: "Recently Proposed",
+    description: "Newest proposals first",
+  },
+  {
+    id: "alphabetical",
+    label: "Alphabetical",
+    description: "Sort by task title A-Z",
+  },
 ];
 
 export function TaskSearchFilterBar({

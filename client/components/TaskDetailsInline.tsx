@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Check, X, ArrowLeft, User, AlertCircle, MessageSquare } from "lucide-react";
+import {
+  Check,
+  X,
+  ArrowLeft,
+  User,
+  AlertCircle,
+  MessageSquare,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ProposedTask } from "@/hooks/useTaskQueue";
 import { EmailPreview } from "./EmailPreview";
@@ -11,7 +18,12 @@ interface FeedbackModalProps {
   taskTitle: string;
 }
 
-function FeedbackModal({ isOpen, onClose, onSubmit, taskTitle }: FeedbackModalProps) {
+function FeedbackModal({
+  isOpen,
+  onClose,
+  onSubmit,
+  taskTitle,
+}: FeedbackModalProps) {
   const [feedback, setFeedback] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -19,9 +31,9 @@ function FeedbackModal({ isOpen, onClose, onSubmit, taskTitle }: FeedbackModalPr
 
   const handleSubmit = async () => {
     if (!feedback.trim()) return;
-    
+
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 800)); // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate API call
     onSubmit(feedback);
     setIsSubmitting(false);
     setFeedback("");
@@ -51,12 +63,15 @@ function FeedbackModal({ isOpen, onClose, onSubmit, taskTitle }: FeedbackModalPr
             Why was this task denied?
           </h3>
           <p className="text-[#0E315C]/60 text-sm font-light">
-            Your feedback helps our AI learn and improve future task suggestions.
+            Your feedback helps our AI learn and improve future task
+            suggestions.
           </p>
         </div>
 
         <div className="bg-[#C1D9F6]/10 p-4 rounded-2xl mb-6">
-          <h4 className="font-medium text-[#0E315C] mb-1 text-sm">{taskTitle}</h4>
+          <h4 className="font-medium text-[#0E315C] mb-1 text-sm">
+            {taskTitle}
+          </h4>
         </div>
 
         <textarea
@@ -96,7 +111,12 @@ interface TaskDetailsInlineProps {
   onDeny: (taskId: string, feedback?: string) => void;
 }
 
-export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: TaskDetailsInlineProps) {
+export default function TaskDetailsInline({
+  task,
+  onBack,
+  onApprove,
+  onDeny,
+}: TaskDetailsInlineProps) {
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
 
   const handleApprove = () => {
@@ -126,7 +146,6 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
     if (diffHours > 0) return `${diffHours}h ago`;
     return `${diffMinutes}m ago`;
   };
-
 
   return (
     <div className="animate-fadeIn h-full">
@@ -166,11 +185,15 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
             </div>
             <div className="flex-1">
               <div className="flex items-center space-x-3 mb-1">
-                <h1 className="text-xl font-light text-[#0E315C]">{task.title}</h1>
+                <h1 className="text-xl font-light text-[#0E315C]">
+                  {task.title}
+                </h1>
               </div>
               <div className="flex items-center space-x-4 text-xs text-[#0E315C]/60 font-light">
                 <div className="flex items-center space-x-1">
-                  <span className="capitalize">{task.category === "email" ? "Email" : "Review"}</span>
+                  <span className="capitalize">
+                    {task.category === "email" ? "Email" : "Review"}
+                  </span>
                 </div>
                 {task.targetPerson && (
                   <div className="flex items-center space-x-1">
@@ -192,19 +215,31 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center space-x-3">
                     <AlertCircle className="w-5 h-5 text-[#99C0F0]" />
-                    <h3 className="text-lg font-light text-[#0E315C]">Task Overview</h3>
-                    <span className="text-sm text-[#0E315C]/60 font-light">{task.description}</span>
+                    <h3 className="text-lg font-light text-[#0E315C]">
+                      Task Overview
+                    </h3>
+                    <span className="text-sm text-[#0E315C]/60 font-light">
+                      {task.description}
+                    </span>
                   </div>
-                  <span className="text-lg font-light text-[#0E315C]">{task.category}</span>
+                  <span className="text-lg font-light text-[#0E315C]">
+                    {task.category}
+                  </span>
                 </div>
 
                 {/* Most Recent Activity - Inline */}
                 <div className="border-t border-[#C1D9F6]/20 pt-2">
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs text-[#0E315C]/50 font-light">Proposed by:</span>
-                    <span className="text-[#0E315C]/50 font-light text-xs">{timeAgo(task.createdAt)}</span>
+                    <span className="text-xs text-[#0E315C]/50 font-light">
+                      Proposed by:
+                    </span>
+                    <span className="text-[#0E315C]/50 font-light text-xs">
+                      {timeAgo(task.createdAt)}
+                    </span>
                   </div>
-                  <p className="text-sm text-[#0E315C] font-light">AI Agent: {task.agent}</p>
+                  <p className="text-sm text-[#0E315C] font-light">
+                    AI Agent: {task.agent}
+                  </p>
                 </div>
               </div>
 
@@ -242,7 +277,9 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
 
                   <div className="space-y-3 max-h-80 overflow-y-auto">
                     <div className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-sm">
-                      <p className="text-sm text-[#0E315C] leading-relaxed">{task.justification}</p>
+                      <p className="text-sm text-[#0E315C] leading-relaxed">
+                        {task.justification}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -275,7 +312,8 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
 
                     <div className="mt-4 p-3 bg-[#C1D9F6]/10 rounded-2xl">
                       <p className="text-xs text-[#0E315C]/60 text-center">
-                        Your decision will help train our AI to make better task suggestions in the future.
+                        Your decision will help train our AI to make better task
+                        suggestions in the future.
                       </p>
                     </div>
                   </div>

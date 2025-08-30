@@ -32,17 +32,21 @@ export function EmailPreview({
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
-    if (diffDays > 0) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-    if (diffHours > 0) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-    if (diffMinutes > 0) return `${diffMinutes} min${diffMinutes > 1 ? 's' : ''} ago`;
+    if (diffDays > 0) return `${diffDays} day${diffDays > 1 ? "s" : ""} ago`;
+    if (diffHours > 0)
+      return `${diffHours} hour${diffHours > 1 ? "s" : ""} ago`;
+    if (diffMinutes > 0)
+      return `${diffMinutes} min${diffMinutes > 1 ? "s" : ""} ago`;
     return "Just now";
   };
 
   return (
-    <div className={cn(
-      "bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-sm",
-      className
-    )}>
+    <div
+      className={cn(
+        "bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-sm",
+        className,
+      )}
+    >
       <div className="p-4">
         {/* Message header */}
         <div className="flex items-center justify-between mb-4">
@@ -83,17 +87,17 @@ export function EmailPreview({
         {/* Recipients */}
         <div className="space-y-1 text-xs mb-4">
           <div className="flex items-start space-x-2">
-            <span className="text-[#0E315C]/60 font-medium min-w-[20px]">To:</span>
-            <span className="text-[#0E315C]/80">
-              {to.join(", ")}
+            <span className="text-[#0E315C]/60 font-medium min-w-[20px]">
+              To:
             </span>
+            <span className="text-[#0E315C]/80">{to.join(", ")}</span>
           </div>
           {cc && cc.length > 0 && (
             <div className="flex items-start space-x-2">
-              <span className="text-[#0E315C]/60 font-medium min-w-[20px]">CC:</span>
-              <span className="text-[#0E315C]/80">
-                {cc.join(", ")}
+              <span className="text-[#0E315C]/60 font-medium min-w-[20px]">
+                CC:
               </span>
+              <span className="text-[#0E315C]/80">{cc.join(", ")}</span>
             </div>
           )}
         </div>

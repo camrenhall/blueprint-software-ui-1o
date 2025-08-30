@@ -103,7 +103,10 @@ export default function GlassSidePanel({
         </div>
 
         {/* Content container */}
-        <div className="relative h-full flex flex-col p-8" style={{ marginBottom: "-5px" }}>
+        <div
+          className="relative h-full flex flex-col p-8"
+          style={{ marginBottom: "-5px" }}
+        >
           {/* Header section */}
           <div
             className={cn(

@@ -1,14 +1,11 @@
-import {
-  Search,
-  Filter,
-  SortAsc,
-  X,
-  ChevronDown,
-} from "lucide-react";
+import { Search, Filter, SortAsc, X, ChevronDown } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-export type CommunicationsSortOption = "lastActivity" | "clientName" | "emailCount";
+export type CommunicationsSortOption =
+  | "lastActivity"
+  | "clientName"
+  | "emailCount";
 
 interface CommunicationsSearchFilterBarProps {
   searchValue: string;
@@ -38,9 +35,21 @@ const filterOptions = [
   },
 ];
 
-const sortOptions: { id: CommunicationsSortOption; label: string; description: string }[] = [
-  { id: "lastActivity", label: "Recent Activity", description: "Most recent conversations first" },
-  { id: "clientName", label: "Client Name", description: "Sort by client name A-Z" },
+const sortOptions: {
+  id: CommunicationsSortOption;
+  label: string;
+  description: string;
+}[] = [
+  {
+    id: "lastActivity",
+    label: "Recent Activity",
+    description: "Most recent conversations first",
+  },
+  {
+    id: "clientName",
+    label: "Client Name",
+    description: "Sort by client name A-Z",
+  },
   { id: "emailCount", label: "Email Count", description: "Most emails first" },
 ];
 
@@ -118,7 +127,6 @@ export function CommunicationsSearchFilterBar({
               className="w-full px-4 py-2 pl-10 pr-3 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-lg focus:bg-white/50 transition-colors"
             />
           </div>
-
 
           {/* Filter Dropdown */}
           <div className="relative" ref={filterDropdownRef}>

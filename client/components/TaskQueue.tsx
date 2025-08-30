@@ -20,9 +20,9 @@ function FeedbackModal({ task, onClose, onSubmit }: FeedbackModalProps) {
 
   const handleSubmit = async () => {
     if (!feedback.trim()) return;
-    
+
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 800)); // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate API call
     onSubmit(task.id, feedback);
     setIsSubmitting(false);
     onClose();
@@ -50,7 +50,9 @@ function FeedbackModal({ task, onClose, onSubmit }: FeedbackModalProps) {
         </div>
 
         <div className="bg-[#C1D9F6]/10 p-4 rounded-2xl mb-6">
-          <h4 className="font-medium text-[#0E315C] mb-1 text-sm">{task.title}</h4>
+          <h4 className="font-medium text-[#0E315C] mb-1 text-sm">
+            {task.title}
+          </h4>
           <p className="text-[#0E315C]/70 text-xs">{task.description}</p>
         </div>
 
@@ -84,8 +86,6 @@ function FeedbackModal({ task, onClose, onSubmit }: FeedbackModalProps) {
   );
 }
 
-
-
 // Individual task card component
 interface TaskCardProps {
   task: ProposedTask;
@@ -100,11 +100,11 @@ function TaskCard({
   index,
   onAccept,
   onDecline,
-  onTaskClick
+  onTaskClick,
 }: TaskCardProps) {
   const handleCardClick = (e: React.MouseEvent) => {
     // Don't trigger card click if action buttons are clicked
-    if ((e.target as HTMLElement).closest('button[data-action]')) {
+    if ((e.target as HTMLElement).closest("button[data-action]")) {
       return;
     }
     onTaskClick(task);
@@ -116,7 +116,7 @@ function TaskCard({
       className={cn(
         "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40",
         "hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/5 hover:border-[#99C0F0]/60",
-        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform cursor-pointer"
+        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform cursor-pointer",
       )}
     >
       <div className="flex items-start space-x-4">
@@ -189,7 +189,8 @@ interface TaskQueueProps {
 export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
   const { tasks, removeTask, filterAndSortTasks } = useTaskQueue();
   const [selectedTask, setSelectedTask] = useState<ProposedTask | null>(null);
-  const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
+  const [feedbackModalTask, setFeedbackModalTask] =
+    useState<ProposedTask | null>(null);
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<TaskSortOption>("createdAt");
@@ -203,7 +204,7 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
   // Auto-select task when initialTaskId is provided
   useEffect(() => {
     if (initialTaskId && tasks.length > 0) {
-      const taskToSelect = tasks.find(task => task.id === initialTaskId);
+      const taskToSelect = tasks.find((task) => task.id === initialTaskId);
       if (taskToSelect) {
         setSelectedTask(taskToSelect);
       }
@@ -215,12 +216,11 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
     return filterAndSortTasks(searchValue, activeFilters, sortBy);
   }, [filterAndSortTasks, searchValue, activeFilters, sortBy]);
 
-
   const toggleFilter = (filterId: string) => {
-    setActiveFilters(prev =>
+    setActiveFilters((prev) =>
       prev.includes(filterId)
-        ? prev.filter(f => f !== filterId)
-        : [...prev, filterId]
+        ? prev.filter((f) => f !== filterId)
+        : [...prev, filterId],
     );
   };
 
@@ -234,7 +234,7 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
   };
 
   const handleDeclineTask = (taskId: string) => {
-    const task = tasks.find(t => t.id === taskId);
+    const task = tasks.find((t) => t.id === taskId);
     if (task) {
       setFeedbackModalTask(task);
     }
@@ -265,7 +265,9 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
     removeTask(taskId);
     setSelectedTask(null);
     // In real app, would make API call to deny task with feedback
-    console.log(`Task ${taskId} denied${feedback ? ` with feedback: ${feedback}` : ' without feedback'}`);
+    console.log(
+      `Task ${taskId} denied${feedback ? ` with feedback: ${feedback}` : " without feedback"}`,
+    );
   };
 
   return (
@@ -276,16 +278,21 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
       {/* Header - Hide when task details are shown */}
       {!selectedTask && (
         <div className="text-center mb-8 flex-shrink-0">
-          <div className={cn(
-            "transition-all duration-1000",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          )}>
+          <div
+            className={cn(
+              "transition-all duration-1000",
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4",
+            )}
+          >
             <div className="flex items-center justify-center gap-3 mb-4">
               <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
                 Task Queue
               </h1>
               <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30">
-                {filteredAndSortedTasks.length} {filteredAndSortedTasks.length === 1 ? 'Task' : 'Tasks'}
+                {filteredAndSortedTasks.length}{" "}
+                {filteredAndSortedTasks.length === 1 ? "Task" : "Tasks"}
               </div>
             </div>
             <p className="text-[#0E315C]/70 text-base leading-relaxed">
@@ -315,7 +322,7 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
           onSortChange={setSortBy}
           className={cn(
             "mb-6 transition-all duration-1000",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
           )}
         />
       )}
@@ -324,9 +331,11 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
       <div className="flex-1 min-h-0">
         {selectedTask ? (
           /* Task Details View - Inline */
-          <div className={cn(
-            "h-full transition-all duration-500 ease-out animate-fadeIn"
-          )}>
+          <div
+            className={cn(
+              "h-full transition-all duration-500 ease-out animate-fadeIn",
+            )}
+          >
             <TaskDetailsInline
               task={selectedTask}
               onBack={handleBackToList}
@@ -336,9 +345,7 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
           </div>
         ) : (
           /* Task List Content */
-          <div className={cn(
-            "h-full transition-all duration-500 ease-out"
-          )}>
+          <div className={cn("h-full transition-all duration-500 ease-out")}>
             {filteredAndSortedTasks.length === 0 ? (
               <div className="flex-1 flex items-center justify-center h-full">
                 <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center max-w-md mx-4">
@@ -347,22 +354,34 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
                   </div>
                   {tasks.length === 0 ? (
                     <>
-                      <h3 className="text-xl font-light text-[#0E315C] mb-2">All caught up!</h3>
-                      <p className="text-[#0E315C]/60 text-sm font-light">No pending tasks from your agents at the moment.</p>
+                      <h3 className="text-xl font-light text-[#0E315C] mb-2">
+                        All caught up!
+                      </h3>
+                      <p className="text-[#0E315C]/60 text-sm font-light">
+                        No pending tasks from your agents at the moment.
+                      </p>
                     </>
                   ) : (
                     <>
-                      <h3 className="text-xl font-light text-[#0E315C] mb-2">No tasks found</h3>
-                      <p className="text-[#0E315C]/60 text-sm font-light">Try adjusting your search or clearing filters.</p>
+                      <h3 className="text-xl font-light text-[#0E315C] mb-2">
+                        No tasks found
+                      </h3>
+                      <p className="text-[#0E315C]/60 text-sm font-light">
+                        Try adjusting your search or clearing filters.
+                      </p>
                     </>
                   )}
                 </div>
               </div>
             ) : (
-              <div className={cn(
-                "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
+              <div
+                className={cn(
+                  "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000",
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4",
+                )}
+              >
                 <div className="h-full overflow-y-auto document-scroll px-4 py-4 space-y-3">
                   {filteredAndSortedTasks.map((task, index) => (
                     <TaskCard
@@ -387,7 +406,6 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
         onClose={() => setFeedbackModalTask(null)}
         onSubmit={handleFeedbackSubmit}
       />
-
     </div>
   );
 }

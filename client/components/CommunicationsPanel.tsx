@@ -178,7 +178,8 @@ const mockConversations: ClientConversation[] = [
 export default function CommunicationsPanel({
   onClose,
 }: CommunicationsPanelProps) {
-  const [conversations, setConversations] = useState<ClientConversation[]>(mockConversations);
+  const [conversations, setConversations] =
+    useState<ClientConversation[]>(mockConversations);
   const [selectedConversation, setSelectedConversation] =
     useState<ClientConversation | null>(null);
   const [searchValue, setSearchValue] = useState("");
@@ -189,12 +190,10 @@ export default function CommunicationsPanel({
 
   // Mark conversation as read
   const markConversationAsRead = (conversationId: string) => {
-    setConversations(prev =>
-      prev.map(conv =>
-        conv.id === conversationId
-          ? { ...conv, unreadCount: 0 }
-          : conv
-      )
+    setConversations((prev) =>
+      prev.map((conv) =>
+        conv.id === conversationId ? { ...conv, unreadCount: 0 } : conv,
+      ),
     );
   };
 
@@ -210,7 +209,9 @@ export default function CommunicationsPanel({
     setSelectedConversation(conversation);
     // Set the most recent message (last in array) as expanded by default
     if (conversation.messages.length > 0) {
-      setExpandedMessage(conversation.messages[conversation.messages.length - 1].id);
+      setExpandedMessage(
+        conversation.messages[conversation.messages.length - 1].id,
+      );
     }
   };
 
@@ -259,10 +260,10 @@ export default function CommunicationsPanel({
 
   const formatTime = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleTimeString('en-US', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true
+    return date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
     });
   };
 
@@ -413,59 +414,75 @@ export default function CommunicationsPanel({
                     selectedConversation?.id === conversation.id
                       ? "bg-white/70 border-[#99C0F0]/60 shadow-xl scale-[1.02]"
                       : // Unread vs read states (Gmail-like)
-                      conversation.unreadCount > 0
-                      ? "bg-white/70 border-[#99C0F0]/50 shadow-lg hover:bg-white/80 hover:border-[#99C0F0]/60"
-                      : "bg-white/30 border-white/30 shadow-md hover:bg-white/40 hover:border-white/40 opacity-75",
+                        conversation.unreadCount > 0
+                        ? "bg-white/70 border-[#99C0F0]/50 shadow-lg hover:bg-white/80 hover:border-[#99C0F0]/60"
+                        : "bg-white/30 border-white/30 shadow-md hover:bg-white/40 hover:border-white/40 opacity-75",
                     "backdrop-blur-md",
                   )}
                 >
                   {/* Glass effect layers - stronger for unread */}
-                  <div className={cn(
-                    "absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl",
-                    conversation.unreadCount > 0 ? "opacity-100" : "opacity-50"
-                  )} />
-                  <div className={cn(
-                    "absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl",
-                    conversation.unreadCount > 0 ? "opacity-100" : "opacity-30"
-                  )} />
+                  <div
+                    className={cn(
+                      "absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl",
+                      conversation.unreadCount > 0
+                        ? "opacity-100"
+                        : "opacity-50",
+                    )}
+                  />
+                  <div
+                    className={cn(
+                      "absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl",
+                      conversation.unreadCount > 0
+                        ? "opacity-100"
+                        : "opacity-30",
+                    )}
+                  />
 
                   <div className="relative space-y-1">
                     {/* Row 1: Name */}
                     <div className="flex items-center justify-between">
-                      <h4 className={cn(
-                        "text-sm leading-tight",
-                        conversation.unreadCount > 0
-                          ? "font-bold text-[#0E315C]"
-                          : "font-medium text-[#0E315C]/60"
-                      )}>
+                      <h4
+                        className={cn(
+                          "text-sm leading-tight",
+                          conversation.unreadCount > 0
+                            ? "font-bold text-[#0E315C]"
+                            : "font-medium text-[#0E315C]/60",
+                        )}
+                      >
                         {conversation.clientName}
                       </h4>
                     </div>
 
                     {/* Row 2: Email */}
-                    <p className={cn(
-                      "text-xs leading-tight",
-                      conversation.unreadCount > 0
-                        ? "text-[#0E315C]/80 font-medium"
-                        : "text-[#0E315C]/50"
-                    )}>
+                    <p
+                      className={cn(
+                        "text-xs leading-tight",
+                        conversation.unreadCount > 0
+                          ? "text-[#0E315C]/80 font-medium"
+                          : "text-[#0E315C]/50",
+                      )}
+                    >
                       {conversation.clientEmail}
                     </p>
 
                     {/* Row 3: Total emails and last activity */}
                     <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-1">
-                        <Mail className={cn(
-                          "w-3 h-3",
-                          conversation.unreadCount > 0
-                            ? "text-[#0E315C]/70"
-                            : "text-[#0E315C]/40"
-                        )} />
-                        <span className={cn(
-                          conversation.unreadCount > 0
-                            ? "text-[#0E315C] font-semibold"
-                            : "text-[#0E315C]/50 font-medium"
-                        )}>
+                        <Mail
+                          className={cn(
+                            "w-3 h-3",
+                            conversation.unreadCount > 0
+                              ? "text-[#0E315C]/70"
+                              : "text-[#0E315C]/40",
+                          )}
+                        />
+                        <span
+                          className={cn(
+                            conversation.unreadCount > 0
+                              ? "text-[#0E315C] font-semibold"
+                              : "text-[#0E315C]/50 font-medium",
+                          )}
+                        >
                           {conversation.messages.length} emails
                         </span>
                         {conversation.unreadCount > 0 && (
@@ -475,18 +492,26 @@ export default function CommunicationsPanel({
                         )}
                       </div>
                       <div className="flex items-center space-x-1">
-                        <span className={cn(
-                          conversation.unreadCount > 0
-                            ? "text-[#0E315C]/80 font-medium"
-                            : "text-[#0E315C]/50"
-                        )}>
+                        <span
+                          className={cn(
+                            conversation.unreadCount > 0
+                              ? "text-[#0E315C]/80 font-medium"
+                              : "text-[#0E315C]/50",
+                          )}
+                        >
                           {formatDate(conversation.lastActivity)}
                         </span>
-                        <div className={cn(
-                          conversation.unreadCount > 0 ? "opacity-100" : "opacity-50"
-                        )}>
+                        <div
+                          className={cn(
+                            conversation.unreadCount > 0
+                              ? "opacity-100"
+                              : "opacity-50",
+                          )}
+                        >
                           {getStatusIcon(
-                            conversation.messages[conversation.messages.length - 1].status,
+                            conversation.messages[
+                              conversation.messages.length - 1
+                            ].status,
                           )}
                         </div>
                       </div>
@@ -505,137 +530,148 @@ export default function CommunicationsPanel({
           <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/15 via-transparent to-[#C5BFEE]/15 rounded-2xl" />
 
           <div className="relative p-6">
-
             {selectedConversation ? (
               <div className="space-y-4 max-h-[calc(100vh-300px)] overflow-y-auto">
-
                 {/* Email timeline */}
                 <div className="space-y-4">
                   {(() => {
                     // Get the current state version of the selected conversation
-                    const currentConversation = conversations.find(c => c.id === selectedConversation.id) || selectedConversation;
-                    return currentConversation.messages.map((message, index) => {
-                      const isExpanded = expandedMessage === message.id;
-                      return (
-                        <div
-                          key={message.id}
-                          className="w-full"
-                        >
-                          <div
-                            className={cn(
-                              "relative w-full rounded-2xl border transition-all duration-200 shadow-lg cursor-pointer",
-                              message.sender === "firm"
-                                ? "bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/20 border-[#99C0F0]/50 backdrop-blur-md"
-                                : "bg-white/60 border-white/60 backdrop-blur-md",
-                              "hover:shadow-xl transform hover:scale-[1.01]",
-                            )}
-                            onClick={() =>
-                              setExpandedMessage(
-                                expandedMessage === message.id
-                                  ? null
-                                  : message.id,
-                              )
-                            }
-                          >
-                            {/* Timeline connector */}
-                            {index < currentConversation.messages.length - 1 && (
+                    const currentConversation =
+                      conversations.find(
+                        (c) => c.id === selectedConversation.id,
+                      ) || selectedConversation;
+                    return currentConversation.messages.map(
+                      (message, index) => {
+                        const isExpanded = expandedMessage === message.id;
+                        return (
+                          <div key={message.id} className="w-full">
+                            <div
+                              className={cn(
+                                "relative w-full rounded-2xl border transition-all duration-200 shadow-lg cursor-pointer",
+                                message.sender === "firm"
+                                  ? "bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/20 border-[#99C0F0]/50 backdrop-blur-md"
+                                  : "bg-white/60 border-white/60 backdrop-blur-md",
+                                "hover:shadow-xl transform hover:scale-[1.01]",
+                              )}
+                              onClick={() =>
+                                setExpandedMessage(
+                                  expandedMessage === message.id
+                                    ? null
+                                    : message.id,
+                                )
+                              }
+                            >
+                              {/* Timeline connector */}
+                              {index <
+                                currentConversation.messages.length - 1 && (
+                                <div
+                                  className={cn(
+                                    "absolute bottom-0 w-px h-4 bg-gradient-to-b from-[#99C0F0]/50 to-transparent transform translate-y-full",
+                                    message.sender === "firm"
+                                      ? "right-6"
+                                      : "left-6",
+                                  )}
+                                />
+                              )}
+
                               <div
                                 className={cn(
-                                  "absolute bottom-0 w-px h-4 bg-gradient-to-b from-[#99C0F0]/50 to-transparent transform translate-y-full",
-                                  message.sender === "firm" ? "right-6" : "left-6",
+                                  "transition-all duration-200",
+                                  isExpanded ? "p-4" : "p-3",
                                 )}
-                              />
-                            )}
-
-                            <div className={cn("transition-all duration-200", isExpanded ? "p-4" : "p-3")}>
-                              {/* Message header - Always visible */}
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center space-x-3">
-                                  <div
-                                    className={cn(
-                                      "w-7 h-7 rounded-xl flex items-center justify-center shadow-md",
-                                      message.sender === "firm"
-                                        ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE]"
-                                        : "bg-gradient-to-br from-[#C1D9F6] to-white",
-                                    )}
-                                  >
-                                    {message.sender === "firm" ? (
-                                      <Building className="w-4 h-4 text-white" />
-                                    ) : (
-                                      <User className="w-4 h-4 text-[#0E315C]" />
-                                    )}
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="flex items-center space-x-2">
-                                      <span className="text-sm font-semibold text-[#0E315C]">
-                                        {message.sender === "firm"
-                                          ? "Luceron Legal"
-                                          : currentConversation.clientName}
-                                      </span>
-                                      <span className="text-xs text-[#0E315C]/70 font-medium">
-                                        {formatTime(message.sentAt)}
-                                      </span>
+                              >
+                                {/* Message header - Always visible */}
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center space-x-3">
+                                    <div
+                                      className={cn(
+                                        "w-7 h-7 rounded-xl flex items-center justify-center shadow-md",
+                                        message.sender === "firm"
+                                          ? "bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE]"
+                                          : "bg-gradient-to-br from-[#C1D9F6] to-white",
+                                      )}
+                                    >
+                                      {message.sender === "firm" ? (
+                                        <Building className="w-4 h-4 text-white" />
+                                      ) : (
+                                        <User className="w-4 h-4 text-[#0E315C]" />
+                                      )}
                                     </div>
-
-                                    {/* Subject - Always visible */}
-                                    <p className="font-semibold text-sm text-[#0E315C] mt-1">
-                                      {message.subject}
-                                    </p>
-
-                                    {/* Preview when collapsed */}
-                                    {!isExpanded && (
-                                      <p className="text-xs text-[#0E315C]/70 mt-1 line-clamp-1">
-                                        {message.content.substring(0, 80)}...
-                                      </p>
-                                    )}
-                                  </div>
-                                </div>
-                                <div className="flex-shrink-0">
-                                  {isExpanded ? (
-                                    <ChevronDown className="w-4 h-4 text-[#0E315C]/70" />
-                                  ) : (
-                                    <ChevronRight className="w-4 h-4 text-[#0E315C]/70" />
-                                  )}
-                                </div>
-                              </div>
-
-                              {/* Expanded content */}
-                              {isExpanded && (
-                                <div className="mt-4 space-y-3">
-                                  {/* Recipients */}
-                                  <div className="space-y-1 text-xs">
-                                    <div className="flex items-start space-x-2">
-                                      <span className="text-[#0E315C]/60 font-medium min-w-[20px]">To:</span>
-                                      <span className="text-[#0E315C]/80">
-                                        {message.to.join(", ")}
-                                      </span>
-                                    </div>
-                                    {message.cc && message.cc.length > 0 && (
-                                      <div className="flex items-start space-x-2">
-                                        <span className="text-[#0E315C]/60 font-medium min-w-[20px]">CC:</span>
-                                        <span className="text-[#0E315C]/80">
-                                          {message.cc.join(", ")}
+                                    <div className="flex-1">
+                                      <div className="flex items-center space-x-2">
+                                        <span className="text-sm font-semibold text-[#0E315C]">
+                                          {message.sender === "firm"
+                                            ? "Luceron Legal"
+                                            : currentConversation.clientName}
+                                        </span>
+                                        <span className="text-xs text-[#0E315C]/70 font-medium">
+                                          {formatTime(message.sentAt)}
                                         </span>
                                       </div>
+
+                                      {/* Subject - Always visible */}
+                                      <p className="font-semibold text-sm text-[#0E315C] mt-1">
+                                        {message.subject}
+                                      </p>
+
+                                      {/* Preview when collapsed */}
+                                      {!isExpanded && (
+                                        <p className="text-xs text-[#0E315C]/70 mt-1 line-clamp-1">
+                                          {message.content.substring(0, 80)}...
+                                        </p>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <div className="flex-shrink-0">
+                                    {isExpanded ? (
+                                      <ChevronDown className="w-4 h-4 text-[#0E315C]/70" />
+                                    ) : (
+                                      <ChevronRight className="w-4 h-4 text-[#0E315C]/70" />
                                     )}
                                   </div>
-
-                                  <Separator className="bg-[#0E315C]/10" />
-
-                                  {/* Full content */}
-                                  <div className="text-sm leading-relaxed text-[#0E315C]/90">
-                                    {message.content}
-                                  </div>
                                 </div>
-                              )}
+
+                                {/* Expanded content */}
+                                {isExpanded && (
+                                  <div className="mt-4 space-y-3">
+                                    {/* Recipients */}
+                                    <div className="space-y-1 text-xs">
+                                      <div className="flex items-start space-x-2">
+                                        <span className="text-[#0E315C]/60 font-medium min-w-[20px]">
+                                          To:
+                                        </span>
+                                        <span className="text-[#0E315C]/80">
+                                          {message.to.join(", ")}
+                                        </span>
+                                      </div>
+                                      {message.cc && message.cc.length > 0 && (
+                                        <div className="flex items-start space-x-2">
+                                          <span className="text-[#0E315C]/60 font-medium min-w-[20px]">
+                                            CC:
+                                          </span>
+                                          <span className="text-[#0E315C]/80">
+                                            {message.cc.join(", ")}
+                                          </span>
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    <Separator className="bg-[#0E315C]/10" />
+
+                                    {/* Full content */}
+                                    <div className="text-sm leading-relaxed text-[#0E315C]/90">
+                                      {message.content}
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    });
+                        );
+                      },
+                    );
                   })()}
                 </div>
-
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center h-64 text-center">

@@ -170,7 +170,10 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                         className="px-4 py-3 text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20 cursor-pointer border-l-4 border-transparent hover:border-l-[#99C0F0] transition-all"
                         onClick={() => {
                           // Navigate to task queue with specific task selected
-                          navigate(`/menu?view=taskqueue&taskId=${task.id}&t=${Date.now()}`, { replace: true });
+                          navigate(
+                            `/menu?view=taskqueue&taskId=${task.id}&t=${Date.now()}`,
+                            { replace: true },
+                          );
                         }}
                       >
                         <div className="flex items-start space-x-3 w-full">
@@ -199,7 +202,9 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                     className="px-4 py-3 text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20 cursor-pointer font-medium"
                     onClick={() => {
                       // Force navigation to task queue by using replace and adding timestamp
-                      navigate(`/menu?view=taskqueue&t=${Date.now()}`, { replace: true });
+                      navigate(`/menu?view=taskqueue&t=${Date.now()}`, {
+                        replace: true,
+                      });
                     }}
                   >
                     <div className="flex items-center justify-between w-full">
