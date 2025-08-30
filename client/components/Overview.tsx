@@ -1,8 +1,25 @@
 import { useState, useEffect } from "react";
-import { Clock, CheckCircle, FileText, UserPlus } from "lucide-react";
+import { Clock, CheckCircle, FileText, UserPlus, Mail, FolderOpen } from "lucide-react";
+
+type ActivityType = 'document_uploaded' | 'email_received' | 'document_review_needed' | 'case_closed';
+
+interface RecentActivity {
+  id: string;
+  type: ActivityType;
+  title: string;
+  description: string;
+  time: string;
+  clientId: string;
+  clientName: string;
+  caseId: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+}
 
 interface OverviewProps {
   onClose: () => void;
+  onNavigateToReview?: (caseId?: string) => void;
+  onNavigateToCommunications?: (clientId?: string) => void;
 }
 
 export default function Overview({ onClose }: OverviewProps) {
@@ -12,30 +29,54 @@ export default function Overview({ onClose }: OverviewProps) {
     setTimeout(() => setIsVisible(true), 100);
   }, []);
 
-  const recentActivities = [
+  const recentActivities: RecentActivity[] = [
     {
       id: "1",
-      title: "Case Review - Johnson vs. Smith",
-      description: "Updated case status and documents",
+      type: "document_uploaded",
+      title: "Document Uploaded",
+      description: "Claire Rosen uploaded tax documents",
       time: "2 hours ago",
-      icon: FileText,
+      clientId: "client_1",
+      clientName: "Claire Rosen",
+      caseId: "#BTYREV50101",
+      icon: FolderOpen,
       color: "from-[#99C0F0] to-[#C5BFEE]",
     },
     {
       id: "2",
-      title: "Client Meeting - Sarah Wilson",
-      description: "Initial consultation completed",
+      type: "email_received",
+      title: "Email Received",
+      description: "David Chen sent follow-up questions",
       time: "4 hours ago",
-      icon: UserPlus,
+      clientId: "client_2",
+      clientName: "David Chen",
+      caseId: "#CHEN40101",
+      icon: Mail,
       color: "from-[#C5BFEE] to-[#99C0F0]",
     },
     {
       id: "3",
-      title: "Document Review",
-      description: "Contract analysis finished",
+      type: "document_review_needed",
+      title: "Document Review Needed",
+      description: "Kate Morrison case requires document review",
       time: "Yesterday",
-      icon: CheckCircle,
+      clientId: "client_3",
+      clientName: "Kate Morrison",
+      caseId: "#XREMVB32482",
+      icon: FileText,
       color: "from-[#99C0F0] to-[#C1D9F6]",
+    },
+    {
+      id: "4",
+      type: "case_closed",
+      title: "Case Closed",
+      description: "Jackson Fulsom case successfully completed",
+      time: "2 days ago",
+      clientId: "client_4",
+      clientName: "Jackson Fulsom",
+      caseId: "#FULJ30925",
+      icon: CheckCircle,
+      color: "from-[#C5BFEE] to-[#C1D9F6]",
     },
   ];
 
@@ -80,9 +121,25 @@ export default function Overview({ onClose }: OverviewProps) {
           <div className="space-y-3 max-w-2xl mx-auto">
             {recentActivities.map((activity, index) => {
               const IconComponent = activity.icon;
+              const handleActivityClick = () => {
+                switch (activity.type) {
+                  case 'document_uploaded':
+                  case 'document_review_needed':
+                  case 'case_closed':
+                    // Navigate to Case Details page
+                    onNavigateToReview?.(activity.caseId);
+                    break;
+                  case 'email_received':
+                    // Navigate to Communications page
+                    onNavigateToCommunications?.(activity.clientId);
+                    break;
+                }
+              };
+
               return (
                 <div
                   key={activity.id}
+                  onClick={handleActivityClick}
                   className={`group bg-white/25 backdrop-blur-sm border border-[#C1D9F6]/25 rounded-full shadow-sm hover:shadow-lg transition-all duration-500 px-5 py-3 hover:bg-white/35 cursor-pointer transform hover:scale-[1.015] hover:-translate-y-0.5 ${
                     index === 0 ? "animate-fadeInUp" : ""
                   }`}
