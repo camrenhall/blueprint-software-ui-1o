@@ -248,7 +248,7 @@ export default function CommunicationsPanel({
           c.clientName.includes(clientName.split(' ')[1])
         );
         if (matchingConversation) {
-          setSelectedConversation(matchingConversation);
+          handleConversationSelect(matchingConversation);
           setSearchValue(clientName.split(' ')[0]); // Set search to highlight the client
         }
       }
