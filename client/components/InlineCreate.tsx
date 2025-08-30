@@ -115,10 +115,10 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         <div
           className={`transition-all duration-1000 ease-out delay-300 ${isAnimated ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-4"}`}
         >
-          <h1 className="text-4xl font-light text-[#0E315C] mb-4 tracking-wide">
+          <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
             Create New Case
           </h1>
-          <p className="text-[#0E315C]/70 text-base leading-relaxed">
+          <p className="text-sm text-[#0E315C]/60 font-light">
             Build a new case with intelligent document collection
           </p>
         </div>
