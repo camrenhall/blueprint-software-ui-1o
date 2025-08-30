@@ -26,8 +26,8 @@ export default function Review({ onClose }: ReviewProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Fade in animation
-    setTimeout(() => setIsVisible(true), 200);
+    // Trigger cascading animation after component mounts
+    setTimeout(() => setIsVisible(true), 100);
   }, []);
 
   // Mock case data (in real app, this would come from props or API)
@@ -181,11 +181,7 @@ export default function Review({ onClose }: ReviewProps) {
       {/* Header - Hide when case details are shown */}
       {!selectedCase && (
         <div className={cn(
-          "text-center mb-8 flex-shrink-0 transition-all duration-500 ease-out",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}>
-        <div className={cn(
-          "transition-all duration-1000",
+          "text-center mb-8 flex-shrink-0 transition-all duration-1000 ease-out delay-300",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}>
           <div className="flex items-center justify-center gap-3 mb-4">
@@ -199,7 +195,6 @@ export default function Review({ onClose }: ReviewProps) {
           <p className="text-[#0E315C]/70 text-base leading-relaxed">
             Comprehensive case tracking and management across all status types
           </p>
-        </div>
         {onClose && (
           <button
             onClick={onClose}
@@ -224,8 +219,8 @@ export default function Review({ onClose }: ReviewProps) {
           viewMode={viewMode}
           onViewModeChange={handleViewModeChange}
           className={cn(
-            "mb-6 transition-all duration-1000",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            "mb-6 transition-all duration-800 ease-out delay-500",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
           )}
         />
       )}
@@ -250,7 +245,7 @@ export default function Review({ onClose }: ReviewProps) {
                 cases={processedCases}
                 onCaseSelect={handleCaseSelect}
                 className={cn(
-                  "h-full transition-all duration-1000",
+                  "h-full transition-all duration-1000 ease-out delay-700",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               />
@@ -260,7 +255,7 @@ export default function Review({ onClose }: ReviewProps) {
                 onCaseSelect={handleCaseSelect}
                 isCompact={viewMode === "compact"}
                 className={cn(
-                  "h-full transition-all duration-1000",
+                  "h-full transition-all duration-1000 ease-out delay-700",
                   isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 )}
               />
