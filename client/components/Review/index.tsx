@@ -46,14 +46,14 @@ export default function Review({ onClose, initialCaseId, onNavigateToCommunicati
         avatar: "RC",
       }),
       convertLegacyCase({
-        name: "Chen, David",
+        name: "Chen, Mike",
         caseId: "#CHEN40101",
         status: "Needs Review",
         progress: "3/3 Tasks Complete",
         progressPercent: 100,
         lastActivity: "1 Day Ago",
         queueTime: "7 Days",
-        avatar: "CD",
+        avatar: "MC",
       }),
       convertLegacyCase({
         name: "Morrison, Kate",
