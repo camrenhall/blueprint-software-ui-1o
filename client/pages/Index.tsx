@@ -154,7 +154,10 @@ function IndexContent() {
                 <InlineReview onClose={() => setActiveRightContent(null)} />
               )}
               {activeRightContent === "taskqueue" && (
-                <TaskQueue onClose={() => setActiveRightContent(null)} />
+                <TaskQueue
+                  onClose={() => setActiveRightContent(null)}
+                  initialTaskId={selectedTaskId}
+                />
               )}
               {activeRightContent === "settings" && (
                 <UnifiedSettings
