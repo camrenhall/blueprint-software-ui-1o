@@ -105,7 +105,7 @@
   }
 }
 
-/* No focus and no hover utility class */
+/* No focus utility class - allows gentle hover but prevents focus states */
 @layer utilities {
   .no-focus {
     outline: none !important;
@@ -113,7 +113,6 @@
     border: none !important;
   }
 
-  .no-focus:hover,
   .no-focus:focus,
   .no-focus:focus-visible,
   .no-focus:active,
@@ -122,7 +121,6 @@
     outline: none !important;
     box-shadow: none !important;
     border: none !important;
-    background: transparent !important;
   }
 }
 
