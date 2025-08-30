@@ -101,7 +101,7 @@ export function EmailPreview({
         <Separator className="bg-[#0E315C]/10 mb-4" />
 
         {/* Email content */}
-        <div className="text-sm leading-relaxed text-[#0E315C]/90">
+        <div className="text-sm leading-relaxed text-[#0E315C]/90 whitespace-pre-wrap">
           {content}
         </div>
       </div>
