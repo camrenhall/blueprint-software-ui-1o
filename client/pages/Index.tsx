@@ -20,6 +20,7 @@ function IndexContent() {
   const [selectedSettingsCategory, setSelectedSettingsCategory] = useState<
     string | null
   >(null);
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
 
   useEffect(() => {
     // Fade in the menu after a short delay
