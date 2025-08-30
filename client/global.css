@@ -105,7 +105,7 @@
   }
 }
 
-/* No focus utility class */
+/* No focus and no hover utility class */
 @layer utilities {
   .no-focus {
     outline: none !important;
@@ -113,6 +113,7 @@
     border: none !important;
   }
 
+  .no-focus:hover,
   .no-focus:focus,
   .no-focus:focus-visible,
   .no-focus:active,
