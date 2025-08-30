@@ -99,6 +99,8 @@ function IndexContent() {
       title: "Task Queue",
       action: () => {
         setActiveRightContent("taskqueue");
+        setSelectedTaskId(null);
+        setSearchParams({ view: "taskqueue" });
       },
     },
     {
