@@ -43,6 +43,33 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     setCreateStep(newStep);
   };
 
+  const getDefaultEmailContent = () => {
+    const requiredDocs = documentSelection.selectedDocuments.filter(doc => !doc.isOptional);
+    const optionalDocs = documentSelection.selectedDocuments.filter(doc => doc.isOptional);
+
+    let content = `Dear ${caseInfo.firstName},\n\nThank you for choosing our firm for your legal needs. To proceed with your case, we need you to provide the following documents:\n\n`;
+
+    if (requiredDocs.length > 0) {
+      content += "Required Documents:\n";
+      requiredDocs.forEach(doc => {
+        content += `• ${doc.name}\n`;
+      });
+      content += "\n";
+    }
+
+    if (optionalDocs.length > 0) {
+      content += "Optional Documents (if available):\n";
+      optionalDocs.forEach(doc => {
+        content += `• ${doc.name}\n`;
+      });
+      content += "\n";
+    }
+
+    content += `Please upload these documents at your earliest convenience. If you have any questions or need assistance, please don't hesitate to contact us.\n\nBest regards,\nLuceron AI Legal Team`;
+
+    return content;
+  };
+
   useEffect(() => {
     // Trigger animation after component mounts
     setTimeout(() => setIsAnimated(true), 100);
