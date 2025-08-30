@@ -140,17 +140,8 @@ export function useTaskQueue() {
     // Apply sorting
     const sorted = [...filtered].sort((a, b) => {
       switch (sortBy) {
-        case "priority":
-          const priorityOrder = { high: 3, medium: 2, low: 1 };
-          return priorityOrder[b.priority] - priorityOrder[a.priority];
         case "createdAt":
           return b.createdAt.getTime() - a.createdAt.getTime();
-        case "estimatedTime":
-          const getMinutes = (timeStr: string) => {
-            const match = timeStr.match(/(\d+)/);
-            return match ? parseInt(match[1]) : 0;
-          };
-          return getMinutes(a.estimatedTime) - getMinutes(b.estimatedTime);
         case "alphabetical":
           return a.title.localeCompare(b.title);
         default:
