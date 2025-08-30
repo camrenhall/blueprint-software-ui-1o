@@ -7,7 +7,7 @@ export interface ProposedTask {
   description: string;
   agent: string;
   priority: "high" | "medium" | "low";
-  category: "email" | "reminder" | "analysis" | "action" | "follow-up";
+  category: "email" | "review";
   estimatedTime: string;
   targetPerson?: string;
   createdAt: Date;
@@ -17,8 +17,8 @@ export interface ProposedTask {
 const initialTasks: ProposedTask[] = [
   {
     id: "1",
-    title: "Send Reminder Email to David Thompson",
-    description: "Follow up on pending contract review that was due 3 days ago. Include deadline extension options.",
+    title: "Send Email to David Thompson",
+    description: "",
     agent: "EmailBot",
     priority: "high",
     category: "email",
@@ -27,54 +27,58 @@ const initialTasks: ProposedTask[] = [
     createdAt: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
   },
   {
-    id: "2", 
-    title: "Schedule Meeting with Marketing Team",
-    description: "Coordinate availability for Q4 campaign planning session. Include Sarah, Mike, and Lisa.",
-    agent: "SchedulerBot",
+    id: "2",
+    title: "Review Documents for Sarah Miller",
+    description: "",
+    agent: "ReviewBot",
     priority: "medium",
-    category: "action",
+    category: "review",
     estimatedTime: "5 min",
+    targetPerson: "Sarah Miller",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
   },
   {
     id: "3",
-    title: "Analyze Customer Feedback Report",
-    description: "Review and summarize the latest quarterly customer satisfaction survey results.",
-    agent: "AnalyticsBot",
-    priority: "medium", 
-    category: "analysis",
+    title: "Send Email to Jessica Chen",
+    description: "",
+    agent: "EmailBot",
+    priority: "medium",
+    category: "email",
     estimatedTime: "15 min",
+    targetPerson: "Jessica Chen",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 4), // 4 hours ago
   },
   {
     id: "4",
-    title: "Update Project Status Dashboard",
-    description: "Refresh all project timelines and milestone statuses for the executive team.",
-    agent: "ReportBot",
+    title: "Review Documents for Michael Rodriguez",
+    description: "",
+    agent: "ReviewBot",
     priority: "low",
-    category: "action",
+    category: "review",
     estimatedTime: "8 min",
+    targetPerson: "Michael Rodriguez",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 6), // 6 hours ago
   },
   {
     id: "5",
-    title: "Follow up on Invoice #INV-2024-0892",
-    description: "Contact billing department about overdue payment from Acme Corp. Amount: $15,230.",
-    agent: "FinanceBot",
+    title: "Send Email to Emma Davis",
+    description: "",
+    agent: "EmailBot",
     priority: "high",
-    category: "follow-up",
+    category: "email",
     estimatedTime: "3 min",
-    targetPerson: "Acme Corp Finance Dept",
+    targetPerson: "Emma Davis",
     createdAt: new Date(Date.now() - 1000 * 60 * 45), // 45 minutes ago
   },
   {
     id: "6",
-    title: "Send Weekly Performance Summary",
-    description: "Compile and distribute team performance metrics to department heads.",
-    agent: "ReportBot",
+    title: "Review Documents for Alex Johnson",
+    description: "",
+    agent: "ReviewBot",
     priority: "low",
-    category: "email",
+    category: "review",
     estimatedTime: "4 min",
+    targetPerson: "Alex Johnson",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 8), // 8 hours ago
   },
 ];
