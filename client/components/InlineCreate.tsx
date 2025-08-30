@@ -85,7 +85,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
         cc: []
       });
     }
-  }, [createStep, caseInfo.email, caseInfo.firstName, caseInfo.lastName, emailDraft.subject]);
+  }, [createStep, caseInfo.email, caseInfo.firstName, caseInfo.lastName, emailDraft.subject, getDefaultEmailContent]);
 
   const steps = [
     { number: 1, label: "Method" },
