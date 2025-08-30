@@ -105,25 +105,6 @@
   }
 }
 
-/* Remove focus outlines from dropdown triggers */
-@layer base {
-  /* Radix UI DropdownMenuTrigger focus removal */
-  [data-radix-dropdown-trigger] {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  [data-radix-dropdown-trigger]:focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  [data-radix-dropdown-trigger]:focus-visible {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-}
-
 /* Custom scrollbar styles for Document Library and Selected Documents */
 @layer utilities {
   /* Webkit browsers (Chrome, Safari, Edge) */
