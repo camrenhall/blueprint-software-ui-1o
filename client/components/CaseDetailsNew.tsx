@@ -107,8 +107,8 @@ export default function CaseDetailsNew({
 
   const hasRejectedDocuments = documents.some(doc => doc.status === "rejected");
 
-  // Filter and sort communications based on current filter
-  const getFilteredCommunications = () => {
+  // Filter and sort communications based on current filter - memoized to prevent re-renders
+  const filteredCommunications = useMemo(() => {
     let filtered = [...communications];
 
     switch (communicationFilter) {
@@ -132,7 +132,7 @@ export default function CaseDetailsNew({
           return aTime - bTime;
         });
     }
-  };
+  }, [communicationFilter]);
 
   const recentActivity = [
     {
