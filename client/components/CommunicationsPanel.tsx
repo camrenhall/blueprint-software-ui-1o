@@ -282,7 +282,7 @@ export default function CommunicationsPanel({
 
   // Filter and sort conversations
   const filteredAndSortedConversations = useMemo(() => {
-    let filtered = mockConversations;
+    let filtered = conversations;
 
     // Apply search filter
     if (searchValue.trim()) {
