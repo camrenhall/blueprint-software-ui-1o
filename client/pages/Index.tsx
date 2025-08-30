@@ -36,6 +36,12 @@ function IndexContent() {
       setSelectedSettingsCategory(category);
     } else if (view === "taskqueue") {
       setActiveRightContent("taskqueue");
+      // Clear the timestamp parameter to keep URL clean
+      const currentParams = new URLSearchParams(searchParams);
+      if (currentParams.has("t")) {
+        currentParams.delete("t");
+        setSearchParams(currentParams, { replace: true });
+      }
     }
   }, [searchParams]);
 
