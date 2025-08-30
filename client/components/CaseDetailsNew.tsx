@@ -21,14 +21,24 @@ export default function CaseDetailsNew({
 
   // Handler functions
   const handleDownloadAll = (includeRejected: boolean = false) => {
-    console.log(`Downloading ${includeRejected ? 'all' : 'approved only'} documents`);
-    setShowDocumentDownloadDropdown(false);
-    setShowPageDownloadDropdown(false);
+    try {
+      console.log(`Downloading ${includeRejected ? 'all' : 'approved only'} documents`);
+    } catch (error) {
+      console.error('Download error:', error);
+    } finally {
+      setShowDocumentDownloadDropdown(false);
+      setShowPageDownloadDropdown(false);
+    }
   };
 
   const handleFilterCommunications = (filter: string) => {
-    setCommunicationFilter(filter);
-    setShowCommunicationFilter(false);
+    try {
+      setCommunicationFilter(filter);
+    } catch (error) {
+      console.error('Filter error:', error);
+    } finally {
+      setShowCommunicationFilter(false);
+    }
   };
 
   // Click outside to close dropdowns
