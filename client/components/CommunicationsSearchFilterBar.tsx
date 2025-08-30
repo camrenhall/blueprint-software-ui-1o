@@ -226,21 +226,21 @@ export function CommunicationsSearchFilterBar({
             <button
               onClick={handleSortDropdownToggle}
               className={cn(
-                "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
+                "flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 border",
                 sortBy !== "lastActivity"
                   ? "bg-[#C5BFEE]/20 text-[#0E315C] border-[#C5BFEE]/40 shadow-sm"
                   : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#C5BFEE]/40",
                 sortDropdownOpen && "bg-white/80 border-[#C5BFEE]/60 shadow-md",
               )}
             >
-              <SortAsc className="w-4 h-4" />
+              <SortAsc className="w-3.5 h-3.5" />
               <span>Sort</span>
               {sortBy !== "lastActivity" && (
-                <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                <div className="w-1.5 h-1.5 bg-[#C5BFEE] rounded-full" />
               )}
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-3.5 h-3.5 transition-transform",
                   sortDropdownOpen && "rotate-180",
                 )}
               />
