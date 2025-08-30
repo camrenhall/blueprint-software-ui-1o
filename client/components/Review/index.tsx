@@ -31,16 +31,6 @@ export default function Review({ onClose, initialCaseId }: ReviewProps) {
     setTimeout(() => setIsVisible(true), 100);
   }, []);
 
-  // Handle initial case selection
-  useEffect(() => {
-    if (initialCaseId && allCases.length > 0) {
-      const caseToSelect = allCases.find(c => c.caseId === initialCaseId);
-      if (caseToSelect) {
-        setSelectedCase(caseToSelect);
-      }
-    }
-  }, [initialCaseId, allCases]);
-
   // Mock case data (in real app, this would come from props or API)
   const allCases: Case[] = useMemo(
     () => [
@@ -147,6 +137,16 @@ export default function Review({ onClose, initialCaseId }: ReviewProps) {
     ],
     [],
   );
+
+  // Handle initial case selection
+  useEffect(() => {
+    if (initialCaseId && allCases.length > 0) {
+      const caseToSelect = allCases.find((c) => c.caseId === initialCaseId);
+      if (caseToSelect) {
+        setSelectedCase(caseToSelect);
+      }
+    }
+  }, [initialCaseId, allCases]);
 
   // Filter and sort cases
   const processedCases = useMemo(() => {
