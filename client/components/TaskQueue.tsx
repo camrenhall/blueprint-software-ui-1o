@@ -120,9 +120,14 @@ function TaskCard({
           <div className="flex items-start justify-between">
             {/* Left side - Task info */}
             <div className="flex-1 min-w-0">
-              <h3 className="text-base font-medium text-[#0E315C] mb-2">
+              <h3 className="text-base font-medium text-[#0E315C] mb-1">
                 {task.title}
               </h3>
+              {task.description && (
+                <p className="text-[#0E315C]/60 text-sm font-light mb-2 leading-relaxed">
+                  {task.description}
+                </p>
+              )}
               {task.targetPerson && (
                 <div className="flex items-center gap-2 text-[#0E315C]/60 text-sm">
                   <User className="w-4 h-4 text-[#99C0F0]" />
