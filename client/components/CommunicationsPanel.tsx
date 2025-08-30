@@ -358,44 +358,86 @@ export default function CommunicationsPanel({
                   className={cn(
                     "relative p-3 rounded-xl cursor-pointer transition-all duration-300 border",
                     "hover:shadow-xl hover:scale-[1.02] transform",
+                    // Selected state
                     selectedConversation?.id === conversation.id
                       ? "bg-white/70 border-[#99C0F0]/60 shadow-xl scale-[1.02]"
-                      : "bg-white/50 border-white/40 hover:bg-white/60 hover:border-[#99C0F0]/50",
-                    "backdrop-blur-md shadow-lg",
+                      : // Unread vs read states (Gmail-like)
+                      conversation.unreadCount > 0
+                      ? "bg-white/70 border-[#99C0F0]/50 shadow-lg hover:bg-white/80 hover:border-[#99C0F0]/60"
+                      : "bg-white/30 border-white/30 shadow-md hover:bg-white/40 hover:border-white/40 opacity-75",
+                    "backdrop-blur-md",
                   )}
                 >
-                  {/* Glass effect layers */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl" />
-                  <div className="absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl" />
+                  {/* Glass effect layers - stronger for unread */}
+                  <div className={cn(
+                    "absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl",
+                    conversation.unreadCount > 0 ? "opacity-100" : "opacity-50"
+                  )} />
+                  <div className={cn(
+                    "absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl",
+                    conversation.unreadCount > 0 ? "opacity-100" : "opacity-30"
+                  )} />
 
                   <div className="relative space-y-1">
                     {/* Row 1: Name */}
                     <div className="flex items-center justify-between">
-                      <h4 className="font-semibold text-[#0E315C] text-sm leading-tight">
+                      <h4 className={cn(
+                        "text-sm leading-tight",
+                        conversation.unreadCount > 0
+                          ? "font-bold text-[#0E315C]"
+                          : "font-medium text-[#0E315C]/60"
+                      )}>
                         {conversation.clientName}
                       </h4>
                     </div>
 
                     {/* Row 2: Email */}
-                    <p className="text-xs text-[#0E315C]/70 leading-tight">
+                    <p className={cn(
+                      "text-xs leading-tight",
+                      conversation.unreadCount > 0
+                        ? "text-[#0E315C]/80 font-medium"
+                        : "text-[#0E315C]/50"
+                    )}>
                       {conversation.clientEmail}
                     </p>
 
                     {/* Row 3: Total emails and last activity */}
                     <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-1">
-                        <Mail className="w-3 h-3 text-[#0E315C]/60" />
-                        <span className="text-[#0E315C] font-medium">
+                        <Mail className={cn(
+                          "w-3 h-3",
+                          conversation.unreadCount > 0
+                            ? "text-[#0E315C]/70"
+                            : "text-[#0E315C]/40"
+                        )} />
+                        <span className={cn(
+                          conversation.unreadCount > 0
+                            ? "text-[#0E315C] font-semibold"
+                            : "text-[#0E315C]/50 font-medium"
+                        )}>
                           {conversation.messages.length} emails
                         </span>
+                        {conversation.unreadCount > 0 && (
+                          <span className="text-[#99C0F0] font-bold">
+                            ({conversation.unreadCount} new)
+                          </span>
+                        )}
                       </div>
                       <div className="flex items-center space-x-1">
-                        <span className="text-[#0E315C]/70">
+                        <span className={cn(
+                          conversation.unreadCount > 0
+                            ? "text-[#0E315C]/80 font-medium"
+                            : "text-[#0E315C]/50"
+                        )}>
                           {formatDate(conversation.lastActivity)}
                         </span>
-                        {getStatusIcon(
-                          conversation.messages[conversation.messages.length - 1].status,
-                        )}
+                        <div className={cn(
+                          conversation.unreadCount > 0 ? "opacity-100" : "opacity-50"
+                        )}>
+                          {getStatusIcon(
+                            conversation.messages[conversation.messages.length - 1].status,
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
