@@ -31,12 +31,15 @@ function IndexContent() {
   useEffect(() => {
     const view = searchParams.get("view");
     const category = searchParams.get("category");
+    const taskId = searchParams.get("taskId");
 
     if (view === "settings") {
       setActiveRightContent("settings");
       setSelectedSettingsCategory(category);
+      setSelectedTaskId(null);
     } else if (view === "taskqueue") {
       setActiveRightContent("taskqueue");
+      setSelectedTaskId(taskId);
       // Clear the timestamp parameter to keep URL clean
       const currentParams = new URLSearchParams(searchParams);
       if (currentParams.has("t")) {
