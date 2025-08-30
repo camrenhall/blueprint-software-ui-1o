@@ -5,6 +5,7 @@ export interface ProposedTask {
   id: string;
   title: string;
   description: string;
+  justification: string;
   agent: string;
   priority: "high" | "medium" | "low";
   category: "email" | "review";
