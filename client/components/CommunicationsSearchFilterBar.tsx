@@ -271,47 +271,48 @@ export function CommunicationsSearchFilterBar({
 
         </div>
 
-        {/* Active Filters Summary - Always visible */}
-        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-[#0E315C]/60">
-          <div className="flex items-center gap-2">
-            <span>Active:</span>
-            {/* Clear All Button - Inline with Active label */}
-            {hasAnyActive && (
-              <button
-                onClick={clearAllFilters}
-                className="flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-[#0E315C]/70 hover:text-[#0E315C] hover:bg-[#C1D9F6]/20 border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 transition-all duration-200"
-                title="Clear all filters and search"
-              >
-                <X className="w-3 h-3" />
-                <span>Clear All</span>
-              </button>
-            )}
-          </div>
-            {hasActiveSearch && (
-              <span className="px-2 py-1 bg-[#99C0F0]/20 rounded-md">
-                Search: "{searchValue}"
-              </span>
-            )}
-            {activeFilters.map((filterId) => {
-              const option = filterOptions.find((f) => f.id === filterId);
-              return option ? (
-                <span
-                  key={filterId}
-                  className="px-2 py-1 bg-[#99C0F0]/20 rounded-md flex items-center gap-1"
+        {/* Active Filters Summary - Only visible when filters are active */}
+        <div className="mt-3 min-h-[32px] flex items-center justify-center">
+          {hasAnyActive && (
+            <div className="flex items-center gap-2 text-xs text-[#0E315C]/60">
+              <div className="flex items-center gap-2">
+                <span>Active:</span>
+                {/* Clear All Button - Inline with Active label */}
+                <button
+                  onClick={clearAllFilters}
+                  className="flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-[#0E315C]/70 hover:text-[#0E315C] hover:bg-[#C1D9F6]/20 border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 transition-all duration-200"
+                  title="Clear all filters and search"
                 >
-                  <div
-                    className={cn("w-1.5 h-1.5 rounded-full", option.color.dot)}
-                  />
-                  {option.label}
+                  <X className="w-3 h-3" />
+                  <span>Clear All</span>
+                </button>
+              </div>
+              {hasActiveSearch && (
+                <span className="px-2 py-1 bg-[#99C0F0]/20 rounded-md">
+                  Search: "{searchValue}"
                 </span>
-              ) : null;
-            })}
-            {sortBy !== "lastActivity" && (
-              <span className="px-2 py-1 bg-[#C5BFEE]/20 rounded-md">
-                Sort: {sortOptions.find((s) => s.id === sortBy)?.label}
-              </span>
-            )}
-            {/* Reserve space to prevent layout shift */}
+              )}
+              {activeFilters.map((filterId) => {
+                const option = filterOptions.find((f) => f.id === filterId);
+                return option ? (
+                  <span
+                    key={filterId}
+                    className="px-2 py-1 bg-[#99C0F0]/20 rounded-md flex items-center gap-1"
+                  >
+                    <div
+                      className={cn("w-1.5 h-1.5 rounded-full", option.color.dot)}
+                    />
+                    {option.label}
+                  </span>
+                ) : null;
+              })}
+              {sortBy !== "lastActivity" && (
+                <span className="px-2 py-1 bg-[#C5BFEE]/20 rounded-md">
+                  Sort: {sortOptions.find((s) => s.id === sortBy)?.label}
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
