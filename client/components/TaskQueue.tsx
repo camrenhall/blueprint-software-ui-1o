@@ -186,6 +186,7 @@ interface TaskQueueProps {
 }
 
 export default function TaskQueue({ onClose }: TaskQueueProps) {
+  const navigate = useNavigate();
   const { tasks, removeTask, filterAndSortTasks } = useTaskQueue();
   const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
   const [searchValue, setSearchValue] = useState("");
@@ -233,6 +234,10 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
     setFeedbackModalTask(null);
     // In real app, would make API call to decline task with feedback
     console.log(`Task ${taskId} declined with feedback:`, feedback);
+  };
+
+  const handleTaskClick = (taskId: string) => {
+    navigate(`/task/${taskId}`);
   };
 
   return (
@@ -317,6 +322,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
                   index={index}
                   onAccept={handleAcceptTask}
                   onDecline={handleDeclineTask}
+                  onTaskClick={handleTaskClick}
                 />
               ))}
             </div>
