@@ -640,7 +640,7 @@ export default function CaseDetailsNew({
                         const clientName = selectedCase.name;
                         const clientNameMap: Record<string, string> = {
                           'Rosen, Claire': 'client_1',
-                          'Chen, David': 'client_2',
+                          'Chen, Mike': 'client_2',
                           'Morrison, Kate': 'client_3',
                           'Fulsom, Jackson': 'client_4',
                           'Williams, Sarah': 'client_5',
