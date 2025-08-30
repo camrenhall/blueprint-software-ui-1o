@@ -395,7 +395,7 @@ export default function CommunicationsPanel({
               filteredAndSortedConversations.map((conversation) => (
                 <div
                   key={conversation.id}
-                  onClick={() => setSelectedConversation(conversation)}
+                  onClick={() => handleConversationSelect(conversation)}
                   className={cn(
                     "relative p-3 rounded-xl cursor-pointer transition-all duration-300 border",
                     "hover:shadow-xl hover:scale-[1.02] transform",
