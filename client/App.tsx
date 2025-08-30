@@ -58,6 +58,7 @@ const App = () => (
           <Route path="/" element={<Login />} />
           <Route path="/onboarding" element={<Onboarding />} />
           <Route path="/menu" element={<Index />} />
+          <Route path="/task/:taskId" element={<TaskDetails />} />
           <Route path="/settings" element={<SettingsOverview />} />
           <Route path="/settings/:category" element={<SettingsCategory />} />
           {/* Client upload flow routes */}
