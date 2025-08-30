@@ -6,12 +6,14 @@ interface CaseDetailsNewProps {
   selectedCase: any;
   onBack: () => void;
   inline?: boolean;
+  onNavigateToCommunications?: (clientId?: string) => void;
 }
 
 export default function CaseDetailsNew({
   selectedCase,
   onBack,
   inline = false,
+  onNavigateToCommunications,
 }: CaseDetailsNewProps) {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
   const [showDocumentDownloadDropdown, setShowDocumentDownloadDropdown] = useState(false);
