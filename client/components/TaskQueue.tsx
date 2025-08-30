@@ -89,8 +89,6 @@ function FeedbackModal({ task, onClose, onSubmit }: FeedbackModalProps) {
 interface TaskCardProps {
   task: ProposedTask;
   index: number;
-  isSelected: boolean;
-  onToggleSelect: (taskId: string) => void;
   onAccept: (taskId: string) => void;
   onDecline: (taskId: string) => void;
   isExpanded: boolean;
@@ -100,8 +98,6 @@ interface TaskCardProps {
 function TaskCard({
   task,
   index,
-  isSelected,
-  onToggleSelect,
   onAccept,
   onDecline,
   isExpanded,
@@ -122,26 +118,11 @@ function TaskCard({
       className={cn(
         "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40",
         "hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/5 hover:border-[#99C0F0]/60",
-        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform",
-        "",
-        isSelected && "ring-2 ring-[#99C0F0]/60 bg-white/50"
+        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform"
       )}
       style={{}}
     >
       <div className="flex items-start space-x-4">
-        {/* Selection Checkbox */}
-        <button
-          onClick={() => onToggleSelect(task.id)}
-          className={cn(
-            "w-5 h-5 rounded border-2 flex items-center justify-center transition-all duration-300 flex-shrink-0 mt-1",
-            isSelected
-              ? "bg-[#99C0F0] border-[#99C0F0] text-white"
-              : "border-[#C1D9F6]/60 hover:border-[#99C0F0]/80 bg-white/60 backdrop-blur-sm"
-          )}
-        >
-          {isSelected && <Check className="w-3 h-3" />}
-        </button>
-
         {/* Category Icon (Avatar-like) */}
         <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
           <span className="text-white font-light text-sm">
@@ -241,8 +222,7 @@ interface TaskQueueProps {
 }
 
 export default function TaskQueue({ onClose }: TaskQueueProps) {
-  const { tasks, removeTask, removeTasks, filterAndSortTasks } = useTaskQueue();
-  const [selectedTasks, setSelectedTasks] = useState<Set<string>>(new Set());
+  const { tasks, removeTask, filterAndSortTasks } = useTaskQueue();
   const [expandedTasks, setExpandedTasks] = useState<Set<string>>(new Set());
   const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
   const [searchValue, setSearchValue] = useState("");
@@ -260,23 +240,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
     return filterAndSortTasks(searchValue, activeFilters, sortBy);
   }, [filterAndSortTasks, searchValue, activeFilters, sortBy]);
 
-  const handleToggleSelect = (taskId: string) => {
-    const newSelected = new Set(selectedTasks);
-    if (newSelected.has(taskId)) {
-      newSelected.delete(taskId);
-    } else {
-      newSelected.add(taskId);
-    }
-    setSelectedTasks(newSelected);
-  };
-
-  const handleSelectAll = () => {
-    if (selectedTasks.size === filteredAndSortedTasks.length) {
-      setSelectedTasks(new Set());
-    } else {
-      setSelectedTasks(new Set(filteredAndSortedTasks.map(t => t.id)));
-    }
-  };
 
   const toggleFilter = (filterId: string) => {
     setActiveFilters(prev =>
@@ -292,11 +255,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
 
   const handleAcceptTask = (taskId: string) => {
     removeTask(taskId);
-    setSelectedTasks(prev => {
-      const newSet = new Set(prev);
-      newSet.delete(taskId);
-      return newSet;
-    });
     // In real app, would make API call to accept task
   };
 
@@ -309,20 +267,9 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
 
   const handleFeedbackSubmit = (taskId: string, feedback: string) => {
     removeTask(taskId);
-    setSelectedTasks(prev => {
-      const newSet = new Set(prev);
-      newSet.delete(taskId);
-      return newSet;
-    });
     setFeedbackModalTask(null);
     // In real app, would make API call to decline task with feedback
     console.log(`Task ${taskId} declined with feedback:`, feedback);
-  };
-
-  const handleAcceptSelected = () => {
-    removeTasks(Array.from(selectedTasks));
-    setSelectedTasks(new Set());
-    // In real app, would make API call to accept selected tasks
   };
 
   const handleToggleExpand = (taskId: string) => {
@@ -368,7 +315,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         )}
       </div>
 
-      {/* Search, Filter, Sort and Selection Bar */}
+      {/* Search, Filter, Sort Bar */}
       <TaskSearchFilterBar
         searchValue={searchValue}
         onSearchChange={setSearchValue}
@@ -377,10 +324,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
         onClearFilters={clearFilters}
         sortBy={sortBy}
         onSortChange={setSortBy}
-        selectedCount={selectedTasks.size}
-        totalCount={filteredAndSortedTasks.length}
-        onSelectAll={handleSelectAll}
-        onAcceptSelected={handleAcceptSelected}
         className={cn(
           "mb-6 transition-all duration-1000",
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -419,8 +362,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
                   key={task.id}
                   task={task}
                   index={index}
-                  isSelected={selectedTasks.has(task.id)}
-                  onToggleSelect={handleToggleSelect}
                   onAccept={handleAcceptTask}
                   onDecline={handleDeclineTask}
                   isExpanded={expandedTasks.has(task.id)}
