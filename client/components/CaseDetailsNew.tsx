@@ -631,7 +631,7 @@ export default function CaseDetailsNew({
                   </div>
                 </div>
                 <div className="space-y-3 max-h-80 overflow-y-auto">
-                  {getFilteredCommunications().map((comm, index) => (
+                  {filteredCommunications.map((comm, index) => (
                     <div
                       key={index}
                       className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg min-w-0"
