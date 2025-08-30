@@ -183,6 +183,7 @@ function TaskCard({
 // Main TaskQueue component
 interface TaskQueueProps {
   onClose: () => void;
+  initialTaskId?: string | null;
 }
 
 export default function TaskQueue({ onClose }: TaskQueueProps) {
