@@ -391,12 +391,6 @@ export default function CommunicationsPanel({
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-light text-[#0E315C]">Conversations</h2>
-            <Badge
-              variant="secondary"
-              className="bg-white/60 text-[#0E315C] border-white/40 backdrop-blur-sm"
-            >
-              {filteredAndSortedConversations.length}
-            </Badge>
           </div>
 
           <div className="space-y-3 max-h-[calc(100vh-350px)] overflow-y-auto pr-2">
