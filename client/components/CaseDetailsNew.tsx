@@ -633,9 +633,31 @@ export default function CaseDetailsNew({
                   </div>
                 </div>
                 <div className="space-y-3 max-h-80 overflow-y-auto">
-                  {filteredCommunications.map((comm, index) => (
+                  {filteredCommunications.map((comm, index) => {
+                    const handleEmailClick = () => {
+                      if (onNavigateToCommunications && selectedCase) {
+                        // Map case names to client IDs (matching the Overview mapping)
+                        const clientName = selectedCase.name;
+                        const clientNameMap: Record<string, string> = {
+                          'Rosen, Claire': 'client_1',
+                          'Chen, David': 'client_2',
+                          'Morrison, Kate': 'client_3',
+                          'Fulsom, Jackson': 'client_4',
+                          'Williams, Sarah': 'client_5',
+                          'Johnson, Michael': 'client_6'
+                        };
+
+                        const clientId = clientNameMap[clientName];
+                        if (clientId) {
+                          onNavigateToCommunications(clientId);
+                        }
+                      }
+                    };
+
+                    return (
                     <div
                       key={index}
+                      onClick={handleEmailClick}
                       className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg min-w-0"
                     >
                       <div className="flex items-start space-x-3 min-w-0 flex-1 mr-4">
@@ -655,7 +677,8 @@ export default function CaseDetailsNew({
                         {comm.status}
                       </span>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
