@@ -24,6 +24,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     priority: "medium",
     description: "",
   });
+  const [isCaseInfoFormValid, setIsCaseInfoFormValid] = useState(false);
 
   const handleMethodSelect = (method: "ai" | "manual" | "questionnaire") => {
     setCreateMethod(method);
@@ -382,6 +383,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   handleStepTransition(4);
                 }}
                 isSubmitting={false}
+                onFormValidityChange={setIsCaseInfoFormValid}
               />
             </div>
 
@@ -412,11 +414,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                 </button>
 
                 {/* Form Status Indicator - Center */}
-                {!caseInfo.firstName ||
-                !caseInfo.lastName ||
-                !caseInfo.email ||
-                !caseInfo.caseType ||
-                !caseInfo.priority ? (
+                {!isCaseInfoFormValid ? (
                   <p className="text-[#0E315C]/40 text-xs font-light">
                     Fill in required fields to continue
                   </p>
@@ -440,13 +438,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       form.requestSubmit();
                     }
                   }}
-                  disabled={
-                    !caseInfo.firstName ||
-                    !caseInfo.lastName ||
-                    !caseInfo.email ||
-                    !caseInfo.caseType ||
-                    !caseInfo.priority
-                  }
+                  disabled={!isCaseInfoFormValid}
                   className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#99C0F0]/90 to-[#C5BFEE]/90 hover:from-[#99C0F0] hover:to-[#C5BFEE] disabled:from-[#C1D9F6]/40 disabled:to-[#C1D9F6]/40 disabled:cursor-not-allowed text-white rounded-2xl transition-all duration-300 hover:scale-105 transform shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:shadow-[#99C0F0]/30 disabled:shadow-none backdrop-blur-sm"
                 >
                   <span className="font-light group-disabled:text-white/60">
