@@ -41,12 +41,14 @@ interface CaseInfoFormProps {
   initialData?: Partial<CaseInfoFormData>;
   onSubmit: (data: CaseInfoFormData) => void;
   isSubmitting?: boolean;
+  onFormValidityChange?: (isValid: boolean) => void;
 }
 
 export default function CaseInfoForm({
   initialData,
   onSubmit,
   isSubmitting = false,
+  onFormValidityChange,
 }: CaseInfoFormProps) {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [completedFields, setCompletedFields] = useState<Set<string>>(
@@ -129,6 +131,11 @@ export default function CaseInfoForm({
 
   const isFormValid =
     firstName?.trim() && lastName?.trim() && email?.trim() && !emailError;
+
+  // Notify parent component about form validity changes
+  useEffect(() => {
+    onFormValidityChange?.(isFormValid);
+  }, [isFormValid, onFormValidityChange]);
 
   return (
     <div className="max-w-2xl mx-auto">
