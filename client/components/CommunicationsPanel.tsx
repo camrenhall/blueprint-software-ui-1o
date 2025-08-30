@@ -455,16 +455,11 @@ export default function CommunicationsPanel({
                   {selectedConversation.messages.map((message, index) => (
                     <div
                       key={message.id}
-                      className={cn(
-                        "flex w-full",
-                        message.sender === "firm"
-                          ? "justify-end"
-                          : "justify-start",
-                      )}
+                      className="w-full"
                     >
                       <div
                         className={cn(
-                          "relative max-w-[75%] p-4 rounded-2xl border transition-all duration-200 shadow-lg",
+                          "relative w-full p-4 rounded-2xl border transition-all duration-200 shadow-lg",
                           message.sender === "firm"
                             ? "bg-gradient-to-br from-[#99C0F0]/30 to-[#C5BFEE]/20 border-[#99C0F0]/50 backdrop-blur-md"
                             : "bg-white/60 border-white/60 backdrop-blur-md",
