@@ -34,6 +34,8 @@ function IndexContent() {
     if (view === "settings") {
       setActiveRightContent("settings");
       setSelectedSettingsCategory(category);
+    } else if (view === "taskqueue") {
+      setActiveRightContent("taskqueue");
     }
   }, [searchParams]);
 
