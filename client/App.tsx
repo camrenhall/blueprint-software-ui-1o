@@ -15,6 +15,7 @@ import SettingsCategory from "./components/SettingsCategory";
 import ClientLogin from "./pages/ClientLogin";
 import ClientUpload from "./pages/ClientUpload";
 import ClientConfirmation from "./pages/ClientConfirmation";
+import TaskDetails from "./pages/TaskDetails";
 import CloudBackground from "./components/CloudBackground";
 import TopNavBar from "./components/TopNavBar";
 import { FeedbackButton } from "./components/FeedbackButton";
