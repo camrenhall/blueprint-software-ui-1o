@@ -36,6 +36,8 @@ interface EmailMessage {
   sentAt: string;
   status: "sent" | "delivered" | "opened" | "replied";
   sender: "firm" | "client";
+  to: string[];
+  cc?: string[];
 }
 
 interface ClientConversation {
@@ -75,6 +77,8 @@ const mockConversations: ClientConversation[] = [
         sentAt: "2024-01-15T10:30:00Z",
         status: "opened",
         sender: "firm",
+        to: ["sarah.johnson@email.com"],
+        cc: ["paralegal@luceron.com"],
       },
       {
         id: "1b",
@@ -84,6 +88,7 @@ const mockConversations: ClientConversation[] = [
         sentAt: "2024-01-16T09:15:00Z",
         status: "delivered",
         sender: "firm",
+        to: ["sarah.johnson@email.com"],
       },
     ],
   },
