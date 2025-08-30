@@ -279,7 +279,7 @@ export function CommunicationsSearchFilterBar({
             {hasAnyActive && (
               <button
                 onClick={clearAllFilters}
-                className="flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50/80 border border-red-200/60 hover:border-red-300 transition-all duration-200"
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-[#0E315C]/70 hover:text-[#0E315C] hover:bg-[#C1D9F6]/20 border border-[#C1D9F6]/40 hover:border-[#99C0F0]/60 transition-all duration-200"
                 title="Clear all filters and search"
               >
                 <X className="w-3 h-3" />
@@ -311,10 +311,7 @@ export function CommunicationsSearchFilterBar({
                 Sort: {sortOptions.find((s) => s.id === sortBy)?.label}
               </span>
             )}
-            {/* Show placeholder when no filters are active */}
-            {!hasAnyActive && (
-              <span className="text-[#0E315C]/40 italic">No active filters</span>
-            )}
+            {/* Reserve space to prevent layout shift */}
         </div>
       </div>
     </div>
