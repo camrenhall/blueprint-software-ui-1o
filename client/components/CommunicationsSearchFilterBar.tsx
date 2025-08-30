@@ -123,21 +123,21 @@ export function CommunicationsSearchFilterBar({
     <div className={cn("relative z-20 flex-shrink-0", className)}>
       <div className="max-w-4xl mx-auto">
         {/* Main Control Bar */}
-        <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 p-2">
+        <div className="flex items-center gap-2 bg-white/70 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 p-1.5">
           {/* Search Input - Takes up most of the space */}
           <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#0E315C]/40" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#0E315C]/40" />
             <input
               type="text"
               value={searchValue}
               onChange={(e) => onSearchChange(e.target.value)}
               placeholder="Search conversations, clients, or case numbers..."
-              className="w-full px-5 py-3 pl-12 pr-4 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-xl focus:bg-white/50 transition-colors"
+              className="w-full px-4 py-2 pl-10 pr-3 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-lg focus:bg-white/50 transition-colors"
             />
           </div>
 
           {/* Results Count */}
-          <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/40 border border-[#C1D9F6]/40">
+          <div className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/40 border border-[#C1D9F6]/40">
             <span className="text-sm text-[#0E315C]/70 font-light">
               {totalCount} conversation{totalCount !== 1 ? 's' : ''}
             </span>
@@ -148,7 +148,7 @@ export function CommunicationsSearchFilterBar({
             <button
               onClick={handleFilterDropdownToggle}
               className={cn(
-                "flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 border",
+                "flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 border",
                 hasActiveFilters
                   ? "bg-[#99C0F0]/20 text-[#0E315C] border-[#99C0F0]/40 shadow-sm"
                   : "bg-white/40 text-[#0E315C]/70 hover:bg-white/60 border-[#C1D9F6]/40 hover:border-[#99C0F0]/40",
@@ -156,14 +156,14 @@ export function CommunicationsSearchFilterBar({
                   "bg-white/80 border-[#99C0F0]/60 shadow-md",
               )}
             >
-              <Filter className="w-4 h-4" />
+              <Filter className="w-3.5 h-3.5" />
               <span>Filter</span>
               {hasActiveFilters && (
-                <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
+                <div className="w-1.5 h-1.5 bg-[#99C0F0] rounded-full" />
               )}
               <ChevronDown
                 className={cn(
-                  "w-4 h-4 transition-transform",
+                  "w-3.5 h-3.5 transition-transform",
                   filterDropdownOpen && "rotate-180",
                 )}
               />
