@@ -22,7 +22,7 @@ interface OverviewProps {
   onNavigateToCommunications?: (clientId?: string) => void;
 }
 
-export default function Overview({ onClose }: OverviewProps) {
+export default function Overview({ onClose, onNavigateToReview, onNavigateToCommunications }: OverviewProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
