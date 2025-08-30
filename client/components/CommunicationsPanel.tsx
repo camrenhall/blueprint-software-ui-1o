@@ -357,29 +357,24 @@ export default function CommunicationsPanel({
     <div className="h-full flex flex-col">
       {/* Header with enhanced glassmorphism */}
       <div className={cn(
-        "flex items-center justify-between mb-6 transition-all duration-1000 ease-out delay-300",
+        "text-center mb-6 transition-all duration-1000 ease-out delay-300",
         isVisible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4"
       )}>
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-lg">
-            <Mail className="w-5 h-5 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
-              Communications
-            </h1>
-            <p className="text-sm text-[#0E315C]/60 font-light">
-              Track email conversations with clients
-            </p>
-          </div>
+        <div className="text-center">
+          <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
+            Communications
+          </h1>
+          <p className="text-sm text-[#0E315C]/60 font-light">
+            Track email conversations with clients
+          </p>
         </div>
         <Button
           variant="ghost"
           size="sm"
           onClick={onClose}
-          className="text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/20 rounded-full"
+          className="absolute top-0 right-0 text-[#0E315C]/60 hover:text-[#0E315C] hover:bg-white/20 rounded-full"
         >
           <X className="w-4 h-4" />
         </Button>
