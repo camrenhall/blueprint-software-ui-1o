@@ -19,8 +19,8 @@ export default function CaseDetailsNew({
   const [showCommunicationFilter, setShowCommunicationFilter] = useState(false);
   const [communicationFilter, setCommunicationFilter] = useState("Most Recent");
 
-  // Handler functions
-  const handleDownloadAll = (includeRejected: boolean = false) => {
+  // Handler functions with useCallback to prevent re-renders
+  const handleDownloadAll = useCallback((includeRejected: boolean = false) => {
     try {
       console.log(`Downloading ${includeRejected ? 'all' : 'approved only'} documents`);
     } catch (error) {
@@ -29,9 +29,9 @@ export default function CaseDetailsNew({
       setShowDocumentDownloadDropdown(false);
       setShowPageDownloadDropdown(false);
     }
-  };
+  }, []);
 
-  const handleFilterCommunications = (filter: string) => {
+  const handleFilterCommunications = useCallback((filter: string) => {
     try {
       setCommunicationFilter(filter);
     } catch (error) {
@@ -39,7 +39,7 @@ export default function CaseDetailsNew({
     } finally {
       setShowCommunicationFilter(false);
     }
-  };
+  }, []);
 
   // Click outside to close dropdowns
   useEffect(() => {
