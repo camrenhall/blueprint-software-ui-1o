@@ -10,13 +10,14 @@ import CaseDetailsNew from "../CaseDetailsNew";
 
 interface ReviewProps {
   onClose?: () => void;
+  initialCaseId?: string;
 }
 
 export { KanbanView } from "./KanbanView";
 export { KanbanCard } from "./KanbanCard";
 export { KanbanColumn } from "./KanbanColumn";
 
-export default function Review({ onClose }: ReviewProps) {
+export default function Review({ onClose, initialCaseId }: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("priority");
@@ -29,6 +30,16 @@ export default function Review({ onClose }: ReviewProps) {
     // Trigger cascading animation after component mounts
     setTimeout(() => setIsVisible(true), 100);
   }, []);
+
+  // Handle initial case selection
+  useEffect(() => {
+    if (initialCaseId && allCases.length > 0) {
+      const caseToSelect = allCases.find(c => c.caseId === initialCaseId);
+      if (caseToSelect) {
+        setSelectedCase(caseToSelect);
+      }
+    }
+  }, [initialCaseId, allCases]);
 
   // Mock case data (in real app, this would come from props or API)
   const allCases: Case[] = useMemo(
