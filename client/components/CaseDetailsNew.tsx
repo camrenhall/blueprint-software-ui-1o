@@ -570,15 +570,16 @@ export default function CaseDetailsNew({
                   </h3>
                   <div className="relative dropdown-container">
                     <button
+                      type="button"
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
+                        e.nativeEvent.stopImmediatePropagation();
                         setShowCommunicationFilter(!showCommunicationFilter);
                       }}
-                      className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
+                      className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
                     >
                       <Filter className="w-4 h-4" />
-                      <span className="text-sm font-light">{communicationFilter}</span>
                       <ChevronDown className="w-3 h-3" />
                     </button>
                     {showCommunicationFilter && (
