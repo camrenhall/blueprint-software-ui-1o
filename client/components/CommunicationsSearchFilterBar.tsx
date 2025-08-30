@@ -274,7 +274,7 @@ export function CommunicationsSearchFilterBar({
                           </div>
                         </div>
                         {isActive && (
-                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full" />
+                          <div className="w-1.5 h-1.5 bg-[#C5BFEE] rounded-full" />
                         )}
                       </div>
                     </button>
