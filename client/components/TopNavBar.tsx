@@ -187,7 +187,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20"
-                    onClick={() => navigate("/menu?view=settings")}
+                    onClick={() => navigate("/settings")}
                   >
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
