@@ -368,67 +368,36 @@ export default function CommunicationsPanel({
                   <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl" />
                   <div className="absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl" />
 
-                  <div className="relative space-y-2">
-                    {/* Compact header */}
+                  <div className="relative space-y-1">
+                    {/* Row 1: Name with unread indicator */}
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-6 h-6 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-lg flex items-center justify-center shadow-md">
-                          <User className="w-3 h-3 text-white" />
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-[#0E315C] text-sm leading-tight">
-                            {conversation.clientName}
-                          </h4>
-                          <p className="text-xs text-[#0E315C]/70 leading-tight">
-                            {conversation.clientEmail}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        {conversation.unreadCount > 0 && (
-                          <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse shadow-sm" />
-                        )}
-                      </div>
+                      <h4 className="font-semibold text-[#0E315C] text-sm leading-tight">
+                        {conversation.clientName}
+                      </h4>
+                      {conversation.unreadCount > 0 && (
+                        <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse shadow-sm" />
+                      )}
                     </div>
 
-                    {/* Redesigned stats with better labels */}
-                    <div className="grid grid-cols-2 gap-3 text-xs">
+                    {/* Row 2: Email */}
+                    <p className="text-xs text-[#0E315C]/70 leading-tight">
+                      {conversation.clientEmail}
+                    </p>
+
+                    {/* Row 3: Total emails and last activity */}
+                    <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-1">
                         <Mail className="w-3 h-3 text-[#0E315C]/60" />
-                        <span className="text-[#0E315C]/70">Total Emails:</span>
-                        <span className="text-[#0E315C] font-semibold">
-                          {conversation.messages.length}
+                        <span className="text-[#0E315C] font-medium">
+                          {conversation.messages.length} emails
                         </span>
                       </div>
                       <div className="flex items-center space-x-1">
-                        <Clock className="w-3 h-3 text-[#0E315C]/60" />
-                        <span className="text-[#0E315C]/70">Last Activity:</span>
-                      </div>
-                      <div className="col-span-2 flex items-center justify-between">
-                        <span className="text-[#0E315C] font-medium text-xs">
-                          {new Date(conversation.lastActivity).toLocaleDateString()}
+                        <span className="text-[#0E315C]/70">
+                          {formatDate(conversation.lastActivity)}
                         </span>
-                        <div className="flex items-center space-x-2">
-                          {conversation.responseReceived && (
-                            <div className="flex items-center space-x-1">
-                              <div className="w-1.5 h-1.5 bg-[#C1D9F6] rounded-full" />
-                              <span className="text-[#0E315C]/70 text-xs">Responded</span>
-                            </div>
-                          )}
-                          {getStatusIcon(
-                            conversation.messages[conversation.messages.length - 1].status,
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Status indicator */}
-                    <div className="flex items-center justify-end">
-                      <div className="flex items-center space-x-1">
                         {getStatusIcon(
-                          conversation.messages[
-                            conversation.messages.length - 1
-                          ].status,
+                          conversation.messages[conversation.messages.length - 1].status,
                         )}
                       </div>
                     </div>
