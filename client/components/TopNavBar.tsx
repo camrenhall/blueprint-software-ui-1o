@@ -19,7 +19,12 @@ import {
   Wifi,
   Activity,
   ChevronDown,
+  Clock,
+  ArrowRight,
+  Mail,
+  FileText,
 } from "lucide-react";
+import { useTaskQueue } from "@/hooks/useTaskQueue";
 import { cn } from "@/lib/utils";
 
 interface TopNavBarProps {
