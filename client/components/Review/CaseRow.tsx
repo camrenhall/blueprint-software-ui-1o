@@ -84,6 +84,10 @@ export function CaseRow({
               </div>
               <span className="flex-shrink-0">•</span>
               <span className="whitespace-nowrap flex-shrink-0">
+                {caseItem.progress}
+              </span>
+              <span className="flex-shrink-0">•</span>
+              <span className="whitespace-nowrap flex-shrink-0">
                 {caseItem.queueDays} days in queue
               </span>
               <span className="flex-shrink-0">•</span>
