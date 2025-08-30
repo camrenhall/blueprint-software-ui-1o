@@ -559,8 +559,9 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       </span>
                     </div>
                 </div>
+                {/* END Case Summary Container */}
 
-                {/* Client Email Container */}
+                {/* START Client Email Container - Completely Separate */}
                 <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
