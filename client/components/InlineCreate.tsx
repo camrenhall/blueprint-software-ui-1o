@@ -413,19 +413,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   </span>
                 </button>
 
-                {/* Form Status Indicator - Center */}
-                {!isCaseInfoFormValid ? (
-                  <p className="text-[#0E315C]/40 text-xs font-light">
-                    Fill in required fields to continue
-                  </p>
-                ) : (
-                  <div className="bg-white/90 border border-[#C1D9F6]/40 rounded-xl px-4 py-2 shadow-sm backdrop-blur-sm">
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-[#99C0F0] rounded-full" />
-                      <span className="text-[#0E315C]/70">Form completed</span>
-                    </div>
-                  </div>
-                )}
+                {/* Center spacer */}
+                <div></div>
 
                 {/* Next Button */}
                 <button
