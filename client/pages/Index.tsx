@@ -190,7 +190,11 @@ function IndexContent() {
               )}
               {activeRightContent === "communications" && (
                 <CommunicationsPanel
-                  onClose={() => setActiveRightContent(null)}
+                  onClose={() => {
+                    setActiveRightContent(null);
+                    setSelectedClientId(null);
+                  }}
+                  initialClientId={selectedClientId || undefined}
                 />
               )}
             </div>
