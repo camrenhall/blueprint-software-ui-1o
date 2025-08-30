@@ -18,7 +18,7 @@ export { KanbanView } from "./KanbanView";
 export { KanbanCard } from "./KanbanCard";
 export { KanbanColumn } from "./KanbanColumn";
 
-export default function Review({ onClose, initialCaseId }: ReviewProps) {
+export default function Review({ onClose, initialCaseId, onNavigateToCommunications }: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("priority");
@@ -241,7 +241,12 @@ export default function Review({ onClose, initialCaseId }: ReviewProps) {
           <div className={cn(
             "h-full transition-all duration-500 ease-out animate-fadeIn"
           )}>
-            <CaseDetailsNew selectedCase={selectedCase} onBack={closeModal} inline={true} />
+            <CaseDetailsNew
+              selectedCase={selectedCase}
+              onBack={closeModal}
+              inline={true}
+              onNavigateToCommunications={onNavigateToCommunications}
+            />
           </div>
         ) : (
           /* Cases Content */
