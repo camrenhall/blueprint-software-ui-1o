@@ -26,9 +26,7 @@ const initialTasks: ProposedTask[] = [
     description: "Follow up on pending contract review deadline",
     justification: "David Thompson's contract review was due 3 days ago and has not been submitted. This is blocking the Q4 planning process for his department. A follow-up email is necessary to ensure timely completion and maintain project schedules.",
     agent: "EmailBot",
-    priority: "high",
     category: "email",
-    estimatedTime: "2 min",
     targetPerson: "David Thompson",
     createdAt: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
     emailContent: {
@@ -44,9 +42,7 @@ const initialTasks: ProposedTask[] = [
     description: "Quarterly compliance audit materials",
     justification: "Sarah Miller submitted her quarterly compliance documents yesterday. These need to be reviewed for completeness and accuracy before the external audit next week. Early review will prevent any last-minute issues.",
     agent: "ReviewBot",
-    priority: "medium",
     category: "review",
-    estimatedTime: "5 min",
     targetPerson: "Sarah Miller",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
   },
@@ -56,9 +52,7 @@ const initialTasks: ProposedTask[] = [
     description: "Project timeline update and next steps",
     justification: "The Phoenix project timeline has been updated with new milestones. Jessica Chen, as project lead, needs to be informed of the changes and coordinate with her team. This communication will ensure everyone stays aligned with the revised schedule.",
     agent: "EmailBot",
-    priority: "medium",
     category: "email",
-    estimatedTime: "15 min",
     targetPerson: "Jessica Chen",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 4), // 4 hours ago
     emailContent: {
@@ -74,9 +68,7 @@ const initialTasks: ProposedTask[] = [
     description: "Insurance claim documentation check",
     justification: "Michael Rodriguez filed an insurance claim for equipment damage last month. The insurance company has requested additional documentation. This review will ensure all required documents are present and properly formatted before resubmission.",
     agent: "ReviewBot",
-    priority: "low",
     category: "review",
-    estimatedTime: "8 min",
     targetPerson: "Michael Rodriguez",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 6), // 6 hours ago
   },
@@ -86,9 +78,7 @@ const initialTasks: ProposedTask[] = [
     description: "Urgent invoice payment reminder",
     justification: "Invoice #INV-2024-0892 for $15,230 is now 45 days overdue from Emma Davis's company. This represents a significant accounts receivable concern. An urgent reminder is needed to maintain cash flow and client relationships.",
     agent: "EmailBot",
-    priority: "high",
     category: "email",
-    estimatedTime: "3 min",
     targetPerson: "Emma Davis",
     createdAt: new Date(Date.now() - 1000 * 60 * 45), // 45 minutes ago
     emailContent: {
@@ -104,9 +94,7 @@ const initialTasks: ProposedTask[] = [
     description: "Employee onboarding paperwork verification",
     justification: "Alex Johnson starts work next Monday as a new software engineer. HR has submitted his onboarding paperwork for verification. This review ensures all required forms are complete and properly signed before his start date.",
     agent: "ReviewBot",
-    priority: "low",
     category: "review",
-    estimatedTime: "4 min",
     targetPerson: "Alex Johnson",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 8), // 8 hours ago
   },
