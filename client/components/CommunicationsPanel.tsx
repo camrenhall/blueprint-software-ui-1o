@@ -203,7 +203,7 @@ export default function CommunicationsPanel({
       // In a real app, this would match actual client IDs
       const clientNameMap: Record<string, string> = {
         'client_1': 'Claire Rosen',
-        'client_2': 'David Chen',
+        'client_2': 'Mike Chen',
         'client_3': 'Kate Morrison',
         'client_4': 'Jackson Fulsom'
       };
