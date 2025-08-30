@@ -609,27 +609,14 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       </div>
                     </div>
                   ) : (
-                    <div className="space-y-4">
-                      <EmailPreview
-                        subject={emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`}
-                        content={emailDraft.content || getDefaultEmailContent()}
-                        to={[caseInfo.email]}
-                        senderName="Luceron AI"
-                        senderType="firm"
-                        className="border-0 bg-transparent p-0"
-                      />
-                      <div className="bg-green-50/50 rounded-lg p-4 border border-green-200/40">
-                        <div className="flex items-start space-x-3">
-                          <svg className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                          <div>
-                            <p className="text-xs font-medium text-green-800 mb-1">Ready to Send</p>
-                            <p className="text-xs text-green-700">This email will be sent to {caseInfo.email} when you create the case.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <EmailPreview
+                      subject={emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`}
+                      content={emailDraft.content || getDefaultEmailContent()}
+                      to={[caseInfo.email]}
+                      senderName="Luceron AI"
+                      senderType="firm"
+                      className="border-0 bg-transparent p-0"
+                    />
                   )}
                 </div>
               </div>
