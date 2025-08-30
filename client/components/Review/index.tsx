@@ -11,6 +11,7 @@ import CaseDetailsNew from "../CaseDetailsNew";
 interface ReviewProps {
   onClose?: () => void;
   initialCaseId?: string;
+  onNavigateToCommunications?: (clientId?: string) => void;
 }
 
 export { KanbanView } from "./KanbanView";
