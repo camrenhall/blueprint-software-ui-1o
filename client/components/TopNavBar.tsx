@@ -13,7 +13,6 @@ import {
 import { Badge } from "@/components/ui/badge";
 import {
   Bell,
-  Settings,
   User,
   LogOut,
   Wifi,
