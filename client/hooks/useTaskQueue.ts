@@ -144,7 +144,6 @@ export function useTaskQueue() {
     tasks,
     taskCount,
     removeTask,
-    removeTasks,
     filterAndSortTasks,
   };
 }
