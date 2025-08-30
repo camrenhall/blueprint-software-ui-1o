@@ -215,7 +215,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => navigate("/menu?view=settings")}
-                className="p-2 no-focus rounded-full"
+                className="p-2 no-focus rounded-full hover:bg-white/5 transition-all duration-300"
               >
                 <Settings className="w-4 h-4 text-[#0E315C]/70" />
               </Button>
