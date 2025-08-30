@@ -40,23 +40,17 @@ export function CaseRow({
 
         {/* Main Case Information */}
         <div className="flex-1 min-w-0 relative">
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between mb-2">
             <div className="flex-1 min-w-0">
-              <h3 className="text-base font-light text-[#0E315C] mb-1 truncate pr-20">
+              <h3 className="text-base font-light text-[#0E315C] truncate pr-20">
                 {caseItem.name}
               </h3>
-              <p className="text-[#0E315C]/60 text-sm font-light mb-2 pr-20">
-                {caseItem.caseId}
-              </p>
             </div>
 
             {/* Compact Right Side Stats */}
             <div className="absolute top-0 right-0 text-right flex-shrink-0">
-              <div className="text-lg font-light text-[#0E315C] mb-1">
+              <div className="text-lg font-light text-[#0E315C]">
                 {caseItem.progressPercent}%
-              </div>
-              <div className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">
-                {caseItem.progress}
               </div>
             </div>
           </div>
