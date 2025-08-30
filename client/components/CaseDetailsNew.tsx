@@ -369,9 +369,11 @@ export default function CaseDetailsNew({
           <div className="flex items-center space-x-3">
             <div className="relative dropdown-container">
               <button
+                type="button"
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
+                  e.nativeEvent.stopImmediatePropagation();
                   hasRejectedDocuments ? setShowPageDownloadDropdown(!showPageDownloadDropdown) : handleDownloadAll(false);
                 }}
                 className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
@@ -496,9 +498,11 @@ export default function CaseDetailsNew({
                     <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
                     <div className="relative dropdown-container">
                       <button
+                        type="button"
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
+                          e.nativeEvent.stopImmediatePropagation();
                           hasRejectedDocuments ? setShowDocumentDownloadDropdown(!showDocumentDownloadDropdown) : handleDownloadAll(false);
                         }}
                         className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
