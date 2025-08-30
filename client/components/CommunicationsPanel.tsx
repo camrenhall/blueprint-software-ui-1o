@@ -186,6 +186,15 @@ export default function CommunicationsPanel({
     useState<CommunicationsSortOption>("lastActivity");
   const [expandedMessage, setExpandedMessage] = useState<string | null>(null);
 
+  // Auto-expand the most recent message when conversation changes
+  const handleConversationSelect = (conversation: ClientConversation) => {
+    setSelectedConversation(conversation);
+    // Set the most recent message (last in array) as expanded by default
+    if (conversation.messages.length > 0) {
+      setExpandedMessage(conversation.messages[conversation.messages.length - 1].id);
+    }
+  };
+
   const getStatusIcon = (status: EmailMessage["status"]) => {
     switch (status) {
       case "sent":
@@ -227,6 +236,15 @@ export default function CommunicationsPanel({
     if (diffInHours < 24) return `${diffInHours}h ago`;
     if (diffInHours < 48) return "Yesterday";
     return date.toLocaleDateString();
+  };
+
+  const formatTime = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    });
   };
 
   // Filter toggle function
