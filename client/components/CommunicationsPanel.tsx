@@ -579,25 +579,6 @@ export default function CommunicationsPanel({
                   ))}
                 </div>
 
-                {/* Action buttons */}
-                <div className="flex items-center space-x-3 pt-6 border-t border-white/40">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
-                  >
-                    <Download className="w-4 h-4 mr-2" />
-                    Export Thread
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="bg-white/40 border-white/50 text-[#0E315C] hover:bg-white/60 shadow-md backdrop-blur-sm"
-                  >
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Schedule Follow-up
-                  </Button>
-                </div>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center h-64 text-center">
