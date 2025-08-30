@@ -13,6 +13,75 @@ export interface ProposedTask {
   createdAt: Date;
 }
 
+// Sample data - in real app this would come from API
+const initialTasks: ProposedTask[] = [
+  {
+    id: "1",
+    title: "Send Email to David Thompson",
+    description: "Follow up on pending contract review deadline",
+    agent: "EmailBot",
+    priority: "high",
+    category: "email",
+    estimatedTime: "2 min",
+    targetPerson: "David Thompson",
+    createdAt: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
+  },
+  {
+    id: "2",
+    title: "Review Documents for Sarah Miller",
+    description: "Quarterly compliance audit materials",
+    agent: "ReviewBot",
+    priority: "medium",
+    category: "review",
+    estimatedTime: "5 min",
+    targetPerson: "Sarah Miller",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2), // 2 hours ago
+  },
+  {
+    id: "3",
+    title: "Send Email to Jessica Chen",
+    description: "Project timeline update and next steps",
+    agent: "EmailBot",
+    priority: "medium",
+    category: "email",
+    estimatedTime: "15 min",
+    targetPerson: "Jessica Chen",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 4), // 4 hours ago
+  },
+  {
+    id: "4",
+    title: "Review Documents for Michael Rodriguez",
+    description: "Insurance claim documentation check",
+    agent: "ReviewBot",
+    priority: "low",
+    category: "review",
+    estimatedTime: "8 min",
+    targetPerson: "Michael Rodriguez",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 6), // 6 hours ago
+  },
+  {
+    id: "5",
+    title: "Send Email to Emma Davis",
+    description: "Urgent invoice payment reminder",
+    agent: "EmailBot",
+    priority: "high",
+    category: "email",
+    estimatedTime: "3 min",
+    targetPerson: "Emma Davis",
+    createdAt: new Date(Date.now() - 1000 * 60 * 45), // 45 minutes ago
+  },
+  {
+    id: "6",
+    title: "Review Documents for Alex Johnson",
+    description: "Employee onboarding paperwork verification",
+    agent: "ReviewBot",
+    priority: "low",
+    category: "review",
+    estimatedTime: "4 min",
+    targetPerson: "Alex Johnson",
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 8), // 8 hours ago
+  },
+];
 
 export type TaskSortOption = "priority" | "createdAt" | "estimatedTime" | "alphabetical";
 
