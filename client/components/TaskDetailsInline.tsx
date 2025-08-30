@@ -138,113 +138,140 @@ export default function TaskDetailsInline({ task, onBack, onApprove, onDeny }: T
   return (
     <div className="animate-fadeIn h-full">
       <div className="h-full max-h-full flex flex-col overflow-hidden">
-        {/* Header with back button */}
-        <div className="flex items-center gap-4 mb-6 flex-shrink-0">
-          <button
-            onClick={onBack}
-            className="w-10 h-10 rounded-xl flex items-center justify-center bg-white/60 hover:bg-white/80 border border-[#C1D9F6]/40 hover:border-[#99C0F0]/50 transition-all duration-300 hover:shadow-lg shadow-sm"
-            title="Back to task list"
-          >
-            <ArrowLeft className="w-5 h-5 text-[#0E315C]/70" />
-          </button>
-          <div>
-            <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">Task Details</h1>
-            <p className="text-[#0E315C]/60 text-sm">Review and decide on this proposed task</p>
+        {/* Compact Header */}
+        <div className="p-4 flex-shrink-0 mb-4">
+          <div className="flex items-center justify-between mb-3">
+            <button
+              onClick={onBack}
+              className="flex items-center space-x-3 text-[#0E315C]/70 hover:text-[#0E315C] transition-all duration-300 hover:scale-105"
+            >
+              <ArrowLeft className="w-5 h-5" />
+              <span className="font-light text-sm">Back to Queue</span>
+            </button>
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={handleApprove}
+                className="flex items-center space-x-2 bg-[#99C0F0] hover:bg-[#0E315C] text-white px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
+              >
+                <Check className="w-4 h-4" />
+                <span className="text-sm font-light">Approve</span>
+              </button>
+              <button
+                onClick={handleDeny}
+                className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
+              >
+                <X className="w-4 h-4" />
+                <span className="text-sm font-light">Deny</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Compact Task Header */}
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-2xl flex items-center justify-center text-white font-light text-sm shadow-lg shadow-[#99C0F0]/20">
+              {task.category === "email" ? "📧" : "📄"}
+            </div>
+            <div className="flex-1">
+              <div className="flex items-center space-x-3 mb-1">
+                <h1 className="text-xl font-light text-[#0E315C]">{task.title}</h1>
+                <span className={cn(
+                  "px-2 py-1 rounded-lg text-xs font-light border capitalize",
+                  getPriorityColor(task.priority)
+                )}>
+                  {task.priority}
+                </span>
+              </div>
+              <div className="flex items-center space-x-4 text-xs text-[#0E315C]/60 font-light">
+                <div className="flex items-center space-x-1">
+                  <Clock className="w-3 h-3" />
+                  <span>Estimated: {task.estimatedTime}</span>
+                </div>
+                {task.targetPerson && (
+                  <div className="flex items-center space-x-1">
+                    <User className="w-3 h-3" />
+                    <span>Target: {task.targetPerson}</span>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Main content - scrollable */}
-        <div className="flex-1 overflow-y-auto document-scroll pr-2">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Task Information Card */}
-            <div className="lg:col-span-2 space-y-6">
-              <div className="bg-white/40 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-6 shadow-lg">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-xl flex items-center justify-center shadow-lg">
-                    <span className="text-white text-lg">
-                      {task.category === "email" ? "📧" : "📄"}
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <h2 className="text-xl font-medium text-[#0E315C] mb-2">{task.title}</h2>
-                    <p className="text-[#0E315C]/70 leading-relaxed">{task.description}</p>
-                  </div>
-                </div>
-
-                {/* Task metadata */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                  {task.targetPerson && (
-                    <div className="flex items-center gap-3 p-4 bg-white/60 rounded-2xl border border-[#C1D9F6]/30">
-                      <User className="w-5 h-5 text-[#99C0F0]" />
-                      <div>
-                        <div className="text-xs text-[#0E315C]/60 font-medium">Target Person</div>
-                        <div className="text-sm text-[#0E315C] font-medium">{task.targetPerson}</div>
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="flex items-center gap-3 p-4 bg-white/60 rounded-2xl border border-[#C1D9F6]/30">
-                    <Clock className="w-5 h-5 text-[#99C0F0]" />
-                    <div>
-                      <div className="text-xs text-[#0E315C]/60 font-medium">Estimated Time</div>
-                      <div className="text-sm text-[#0E315C] font-medium">{task.estimatedTime}</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 p-4 bg-white/60 rounded-2xl border border-[#C1D9F6]/30">
+        {/* Main Content - Scrollable with proper height containment */}
+        <div className="flex-1 overflow-y-auto min-h-0">
+          <div className="px-6 pt-3 pb-2">
+            <div className="space-y-4">
+              {/* Row 1: Task Progress - Full Width */}
+              <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform rounded-2xl p-4 transition-all duration-300">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center space-x-3">
                     <AlertCircle className="w-5 h-5 text-[#99C0F0]" />
-                    <div>
-                      <div className="text-xs text-[#0E315C]/60 font-medium">Priority</div>
-                      <div className={cn(
-                        "text-sm font-medium px-2 py-1 rounded-lg border inline-block capitalize",
-                        getPriorityColor(task.priority)
-                      )}>
-                        {task.priority}
-                      </div>
+                    <h3 className="text-lg font-light text-[#0E315C]">Task Overview</h3>
+                    <span className="text-sm text-[#0E315C]/60 font-light">{task.description}</span>
+                  </div>
+                  <span className="text-lg font-light text-[#0E315C]">{task.category}</span>
+                </div>
+
+                {/* Most Recent Activity - Inline */}
+                <div className="border-t border-[#C1D9F6]/20 pt-2">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs text-[#0E315C]/50 font-light">Proposed by:</span>
+                    <span className="text-[#0E315C]/50 font-light text-xs">{timeAgo(task.createdAt)}</span>
+                  </div>
+                  <p className="text-sm text-[#0E315C] font-light">AI Agent: {task.agent}</p>
+                </div>
+              </div>
+
+              {/* Row 2: AI Justification and Decision Panel - Two Columns */}
+              <div className="grid grid-cols-2 gap-6">
+                {/* AI Justification Section */}
+                <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform rounded-2xl p-5 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
+                      <MessageSquare className="w-5 h-5 text-[#99C0F0]" />
+                      <span>AI Justification</span>
+                    </h3>
+                  </div>
+
+                  <div className="space-y-3 max-h-80 overflow-y-auto">
+                    <div className="p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-sm">
+                      <p className="text-sm text-[#0E315C] leading-relaxed">{task.justification}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Additional info */}
-                <div className="text-sm text-[#0E315C]/60">
-                  Proposed by <span className="font-medium text-[#0E315C]">{task.agent}</span> • {timeAgo(task.createdAt)}
-                </div>
-              </div>
+                {/* Decision Panel */}
+                <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform rounded-2xl p-5 transition-all duration-300">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-light text-[#0E315C] flex items-center space-x-3">
+                      <Check className="w-5 h-5 text-[#C5BFEE]" />
+                      <span>Decision</span>
+                    </h3>
+                  </div>
 
-              {/* Justification Card */}
-              <div className="bg-white/40 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-6 shadow-lg">
-                <h3 className="text-lg font-medium text-[#0E315C] mb-4">AI Justification</h3>
-                <p className="text-[#0E315C]/70 leading-relaxed">{task.justification}</p>
-              </div>
-            </div>
+                  <div className="space-y-4">
+                    <button
+                      onClick={handleApprove}
+                      className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-[#99C0F0] hover:bg-[#0E315C] text-white rounded-2xl transition-all duration-300 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105"
+                    >
+                      <Check className="w-5 h-5" />
+                      Approve Task
+                    </button>
 
-            {/* Decision Panel */}
-            <div className="lg:col-span-1">
-              <div className="bg-white/40 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-6 shadow-lg sticky top-0">
-                <h3 className="text-lg font-medium text-[#0E315C] mb-6 text-center">Make a Decision</h3>
-                
-                <div className="space-y-4">
-                  <button
-                    onClick={handleApprove}
-                    className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-[#99C0F0] hover:bg-[#0E315C] text-white rounded-2xl transition-all duration-300 font-medium shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105"
-                  >
-                    <Check className="w-5 h-5" />
-                    Approve Task
-                  </button>
-                  
-                  <button
-                    onClick={handleDeny}
-                    className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-2xl hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 font-medium"
-                  >
-                    <X className="w-5 h-5" />
-                    Deny Task
-                  </button>
-                </div>
+                    <button
+                      onClick={handleDeny}
+                      className="w-full flex items-center justify-center gap-3 px-6 py-3 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-2xl hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 font-medium"
+                    >
+                      <X className="w-5 h-5" />
+                      Deny Task
+                    </button>
 
-                <div className="mt-6 p-4 bg-[#C1D9F6]/10 rounded-2xl">
-                  <p className="text-xs text-[#0E315C]/60 text-center">
-                    Your decision will help train our AI to make better task suggestions in the future.
-                  </p>
+                    <div className="mt-4 p-3 bg-[#C1D9F6]/10 rounded-2xl">
+                      <p className="text-xs text-[#0E315C]/60 text-center">
+                        Your decision will help train our AI to make better task suggestions in the future.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
