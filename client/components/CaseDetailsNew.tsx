@@ -385,9 +385,11 @@ export default function CaseDetailsNew({
               {showPageDownloadDropdown && (
                 <div className="absolute top-full right-0 mt-2 w-56 bg-white/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 py-2 z-50">
                   <button
+                    type="button"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
+                      e.nativeEvent.stopImmediatePropagation();
                       handleDownloadAll(false);
                     }}
                     className="w-full text-left px-4 py-2 text-sm text-[#0E315C] hover:bg-[#99C0F0]/20 transition-colors"
@@ -395,9 +397,11 @@ export default function CaseDetailsNew({
                     Download Approved Only
                   </button>
                   <button
+                    type="button"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
+                      e.nativeEvent.stopImmediatePropagation();
                       handleDownloadAll(true);
                     }}
                     className="w-full text-left px-4 py-2 text-sm text-[#0E315C] hover:bg-[#99C0F0]/20 transition-colors"
