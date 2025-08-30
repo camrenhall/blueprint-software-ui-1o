@@ -3,6 +3,7 @@ import DocumentLibrary from "./DocumentLibrary";
 import CaseInfoForm, { CaseInfoFormData } from "./CaseInfoForm";
 import { useDocumentSelection } from "../hooks/useDocumentSelection";
 import { Button } from "@/components/ui/button";
+import { EmailPreview } from "./EmailPreview";
 
 interface InlineCreateProps {
   onClose?: () => void;
@@ -25,6 +26,13 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     description: "",
   });
   const [isCaseInfoFormValid, setIsCaseInfoFormValid] = useState(false);
+  const [emailDraft, setEmailDraft] = useState({
+    subject: "",
+    content: "",
+    to: [] as string[],
+    cc: [] as string[]
+  });
+  const [isEditingEmail, setIsEditingEmail] = useState(false);
 
   const handleMethodSelect = (method: "ai" | "manual" | "questionnaire") => {
     setCreateMethod(method);
@@ -466,8 +474,8 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             </div>
 
             {/* Review Content - Flexible with max height */}
-            <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)]">
-              <div className="space-y-4">
+            <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)] overflow-y-auto">
+              <div className="space-y-6">
                 <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
                   <h3 className="text-sm font-medium text-[#0E315C] mb-3">
                     Case Summary
@@ -495,19 +503,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                         <span className="text-[#0E315C]">{caseInfo.phone}</span>
                       </div>
                     )}
-                    <div className="flex justify-between">
-                      <span className="text-[#0E315C]/70">Case Type:</span>
-                      <span className="text-[#0E315C] capitalize">
-                        {caseInfo.caseType?.replace("_", " ") ||
-                          "Not specified"}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#0E315C]/70">Priority:</span>
-                      <span className="text-[#0E315C] capitalize">
-                        {caseInfo.priority}
-                      </span>
-                    </div>
                     {caseInfo.description && (
                       <div className="flex justify-between">
                         <span className="text-[#0E315C]/70">Description:</span>
@@ -524,9 +519,54 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                         {documentSelection.getDocumentCounts().total} selected
                       </span>
                     </div>
+                </div>
+
+                {/* Email Preview Section */}
+                <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-medium text-[#0E315C]">Client Email Preview</h3>
+                    <button
+                      onClick={() => setIsEditingEmail(!isEditingEmail)}
+                      className="text-xs px-3 py-1.5 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] rounded-lg transition-colors duration-200"
+                    >
+                      {isEditingEmail ? 'Preview' : 'Edit'}
+                    </button>
                   </div>
+
+                  {isEditingEmail ? (
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-medium text-[#0E315C]/70 mb-1">Subject</label>
+                        <input
+                          type="text"
+                          value={emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`}
+                          onChange={(e) => setEmailDraft(prev => ({ ...prev, subject: e.target.value }))}
+                          className="w-full px-3 py-2 text-sm border border-[#C1D9F6]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/20 focus:border-[#99C0F0]"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-medium text-[#0E315C]/70 mb-1">Message</label>
+                        <textarea
+                          value={emailDraft.content || getDefaultEmailContent()}
+                          onChange={(e) => setEmailDraft(prev => ({ ...prev, content: e.target.value }))}
+                          rows={8}
+                          className="w-full px-3 py-2 text-sm border border-[#C1D9F6]/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#99C0F0]/20 focus:border-[#99C0F0] resize-none"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <EmailPreview
+                      subject={emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`}
+                      content={emailDraft.content || getDefaultEmailContent()}
+                      to={[caseInfo.email]}
+                      senderName="Luceron AI"
+                      senderType="firm"
+                      className="border-0 bg-transparent p-0"
+                    />
+                  )}
                 </div>
               </div>
+            </div>
             </div>
 
             {/* Compact Navigation Bar - Fixed at bottom */}
