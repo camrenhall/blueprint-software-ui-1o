@@ -331,7 +331,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
       />
 
       {/* Task list */}
-      <div className="h-full">
+      <div className="flex-1 min-h-0">
         {filteredAndSortedTasks.length === 0 ? (
           <div className="flex-1 flex items-center justify-center h-full">
             <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center max-w-md mx-4">
@@ -356,7 +356,7 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
             "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <div className="h-full overflow-y-auto px-4 py-4 space-y-3">
+            <div className="h-full overflow-y-auto document-scroll px-4 py-4 space-y-3">
               {filteredAndSortedTasks.map((task, index) => (
                 <TaskCard
                   key={task.id}
