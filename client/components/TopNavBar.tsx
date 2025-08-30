@@ -94,9 +94,9 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-sm font-medium text-[#0E315C]/80">
-                    Luceron AI
+                    System Active
                   </div>
-                  <div className="text-xs text-[#99C0F0]/70">v2.1.3</div>
+                  <div className="text-xs text-[#99C0F0]/70">Version 2.1.3</div>
                 </div>
               </div>
 
