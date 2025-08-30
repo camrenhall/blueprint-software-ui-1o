@@ -27,6 +27,7 @@ import {
 
 interface CommunicationsPanelProps {
   onClose: () => void;
+  initialClientId?: string;
 }
 
 interface EmailMessage {
@@ -177,6 +178,7 @@ const mockConversations: ClientConversation[] = [
 
 export default function CommunicationsPanel({
   onClose,
+  initialClientId,
 }: CommunicationsPanelProps) {
   const [conversations, setConversations] =
     useState<ClientConversation[]>(mockConversations);
@@ -193,6 +195,32 @@ export default function CommunicationsPanel({
     // Trigger cascading animation after component mounts
     setTimeout(() => setIsVisible(true), 100);
   }, []);
+
+  // Handle initial client filtering
+  useEffect(() => {
+    if (initialClientId && conversations.length > 0) {
+      // For demo purposes, we'll match client names from the Overview component
+      // In a real app, this would match actual client IDs
+      const clientNameMap: Record<string, string> = {
+        'client_1': 'Claire Rosen',
+        'client_2': 'David Chen',
+        'client_3': 'Kate Morrison',
+        'client_4': 'Jackson Fulsom'
+      };
+
+      const clientName = clientNameMap[initialClientId];
+      if (clientName) {
+        const matchingConversation = conversations.find(c =>
+          c.clientName.includes(clientName.split(' ')[0]) ||
+          c.clientName.includes(clientName.split(' ')[1])
+        );
+        if (matchingConversation) {
+          setSelectedConversation(matchingConversation);
+          setSearchValue(clientName.split(' ')[0]); // Set search to highlight the client
+        }
+      }
+    }
+  }, [initialClientId, conversations]);
 
   // Mark conversation as read
   const markConversationAsRead = (conversationId: string) => {
