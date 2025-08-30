@@ -300,10 +300,6 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
                   </p>
                 </div>
               </div>
-              <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30">
-                {filteredAndSortedTasks.length}{" "}
-                {filteredAndSortedTasks.length === 1 ? "Task" : "Tasks"}
-              </div>
             </div>
           </div>
           {onClose && (
