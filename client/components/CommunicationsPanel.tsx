@@ -369,14 +369,11 @@ export default function CommunicationsPanel({
                   <div className="absolute inset-0 bg-gradient-to-tl from-[#99C0F0]/10 to-transparent rounded-xl" />
 
                   <div className="relative space-y-1">
-                    {/* Row 1: Name with unread indicator */}
+                    {/* Row 1: Name */}
                     <div className="flex items-center justify-between">
                       <h4 className="font-semibold text-[#0E315C] text-sm leading-tight">
                         {conversation.clientName}
                       </h4>
-                      {conversation.unreadCount > 0 && (
-                        <div className="w-2 h-2 bg-[#C5BFEE] rounded-full animate-pulse shadow-sm" />
-                      )}
                     </div>
 
                     {/* Row 2: Email */}
