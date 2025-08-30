@@ -1,9 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import { Check, X, User, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TaskSearchFilterBar, TaskSortOption } from "./TaskSearchFilterBar";
 import { useTaskQueue, ProposedTask } from "@/hooks/useTaskQueue";
+import TaskDetailsInline from "./TaskDetailsInline";
 
 interface FeedbackModalProps {
   task: ProposedTask | null;
@@ -92,7 +92,7 @@ interface TaskCardProps {
   index: number;
   onAccept: (taskId: string) => void;
   onDecline: (taskId: string) => void;
-  onTaskClick: (taskId: string) => void;
+  onTaskClick: (task: ProposedTask) => void;
 }
 
 function TaskCard({
@@ -107,7 +107,7 @@ function TaskCard({
     if ((e.target as HTMLElement).closest('button[data-action]')) {
       return;
     }
-    onTaskClick(task.id);
+    onTaskClick(task);
   };
 
   return (
@@ -186,8 +186,8 @@ interface TaskQueueProps {
 }
 
 export default function TaskQueue({ onClose }: TaskQueueProps) {
-  const navigate = useNavigate();
   const { tasks, removeTask, filterAndSortTasks } = useTaskQueue();
+  const [selectedTask, setSelectedTask] = useState<ProposedTask | null>(null);
   const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
@@ -236,8 +236,25 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
     console.log(`Task ${taskId} declined with feedback:`, feedback);
   };
 
-  const handleTaskClick = (taskId: string) => {
-    navigate(`/task/${taskId}`);
+  const handleTaskClick = (task: ProposedTask) => {
+    setSelectedTask(task);
+  };
+
+  const handleBackToList = () => {
+    setSelectedTask(null);
+  };
+
+  const handleApproveTask = (taskId: string) => {
+    removeTask(taskId);
+    setSelectedTask(null);
+    // In real app, would make API call to approve task
+  };
+
+  const handleDenyTask = (taskId: string, feedback?: string) => {
+    removeTask(taskId);
+    setSelectedTask(null);
+    // In real app, would make API call to deny task with feedback
+    console.log(`Task ${taskId} denied${feedback ? ` with feedback: ${feedback}` : ' without feedback'}`);
   };
 
   return (
@@ -245,87 +262,110 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
       className="absolute inset-0 flex flex-col px-8 py-8 lg:px-6 lg:py-6 md:px-4 md:py-4"
       style={{ transform: "translateZ(0)" }}
     >
-      {/* Header */}
-      <div className="text-center mb-8 flex-shrink-0">
-        <div className={cn(
-          "transition-all duration-1000",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}>
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
-              Task Queue
-            </h1>
-            <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30">
-              {filteredAndSortedTasks.length} {filteredAndSortedTasks.length === 1 ? 'Task' : 'Tasks'}
-            </div>
-          </div>
-          <p className="text-[#0E315C]/70 text-base leading-relaxed">
-            Review and manage proposed actions from your AI agents
-          </p>
-        </div>
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        )}
-      </div>
-
-      {/* Search, Filter, Sort Bar */}
-      <TaskSearchFilterBar
-        searchValue={searchValue}
-        onSearchChange={setSearchValue}
-        activeFilters={activeFilters}
-        onFilterToggle={toggleFilter}
-        onClearFilters={clearFilters}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        className={cn(
-          "mb-6 transition-all duration-1000",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}
-      />
-
-      {/* Task list */}
-      <div className="flex-1 min-h-0">
-        {filteredAndSortedTasks.length === 0 ? (
-          <div className="flex-1 flex items-center justify-center h-full">
-            <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center max-w-md mx-4">
-              <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                <CheckCircle2 className="w-12 h-12 text-[#99C0F0]" />
-              </div>
-              {tasks.length === 0 ? (
-                <>
-                  <h3 className="text-xl font-light text-[#0E315C] mb-2">All caught up!</h3>
-                  <p className="text-[#0E315C]/60 text-sm font-light">No pending tasks from your agents at the moment.</p>
-                </>
-              ) : (
-                <>
-                  <h3 className="text-xl font-light text-[#0E315C] mb-2">No tasks found</h3>
-                  <p className="text-[#0E315C]/60 text-sm font-light">Try adjusting your search or clearing filters.</p>
-                </>
-              )}
-            </div>
-          </div>
-        ) : (
+      {/* Header - Hide when task details are shown */}
+      {!selectedTask && (
+        <div className="text-center mb-8 flex-shrink-0">
           <div className={cn(
-            "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000",
+            "transition-all duration-1000",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <div className="h-full overflow-y-auto document-scroll px-4 py-4 space-y-3">
-              {filteredAndSortedTasks.map((task, index) => (
-                <TaskCard
-                  key={task.id}
-                  task={task}
-                  index={index}
-                  onAccept={handleAcceptTask}
-                  onDecline={handleDeclineTask}
-                  onTaskClick={handleTaskClick}
-                />
-              ))}
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <h1 className="text-4xl lg:text-3xl md:text-2xl font-light text-[#0E315C] tracking-wide">
+                Task Queue
+              </h1>
+              <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30">
+                {filteredAndSortedTasks.length} {filteredAndSortedTasks.length === 1 ? 'Task' : 'Tasks'}
+              </div>
             </div>
+            <p className="text-[#0E315C]/70 text-base leading-relaxed">
+              Review and manage proposed actions from your AI agents
+            </p>
+          </div>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Search, Filter, Sort Bar - Hide when task details are shown */}
+      {!selectedTask && (
+        <TaskSearchFilterBar
+          searchValue={searchValue}
+          onSearchChange={setSearchValue}
+          activeFilters={activeFilters}
+          onFilterToggle={toggleFilter}
+          onClearFilters={clearFilters}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+          className={cn(
+            "mb-6 transition-all duration-1000",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}
+        />
+      )}
+
+      {/* Main Content Area - Either Task List or Task Details */}
+      <div className="flex-1 min-h-0">
+        {selectedTask ? (
+          /* Task Details View - Inline */
+          <div className={cn(
+            "h-full transition-all duration-500 ease-out animate-fadeIn"
+          )}>
+            <TaskDetailsInline
+              task={selectedTask}
+              onBack={handleBackToList}
+              onApprove={handleApproveTask}
+              onDeny={handleDenyTask}
+            />
+          </div>
+        ) : (
+          /* Task List Content */
+          <div className={cn(
+            "h-full transition-all duration-500 ease-out"
+          )}>
+            {filteredAndSortedTasks.length === 0 ? (
+              <div className="flex-1 flex items-center justify-center h-full">
+                <div className="bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 rounded-3xl p-12 text-center max-w-md mx-4">
+                  <div className="w-24 h-24 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="w-12 h-12 text-[#99C0F0]" />
+                  </div>
+                  {tasks.length === 0 ? (
+                    <>
+                      <h3 className="text-xl font-light text-[#0E315C] mb-2">All caught up!</h3>
+                      <p className="text-[#0E315C]/60 text-sm font-light">No pending tasks from your agents at the moment.</p>
+                    </>
+                  ) : (
+                    <>
+                      <h3 className="text-xl font-light text-[#0E315C] mb-2">No tasks found</h3>
+                      <p className="text-[#0E315C]/60 text-sm font-light">Try adjusting your search or clearing filters.</p>
+                    </>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className={cn(
+                "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              )}>
+                <div className="h-full overflow-y-auto document-scroll px-4 py-4 space-y-3">
+                  {filteredAndSortedTasks.map((task, index) => (
+                    <TaskCard
+                      key={task.id}
+                      task={task}
+                      index={index}
+                      onAccept={handleAcceptTask}
+                      onDecline={handleDeclineTask}
+                      onTaskClick={handleTaskClick}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
