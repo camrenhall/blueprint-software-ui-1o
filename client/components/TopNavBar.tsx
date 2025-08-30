@@ -144,7 +144,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => navigate("/menu?view=settings")}
+                onClick={() => navigate("/settings")}
                 className="p-2 hover:bg-white/10 transition-all duration-300 rounded-full"
               >
                 <Settings className="w-4 h-4 text-[#0E315C]/70" />
