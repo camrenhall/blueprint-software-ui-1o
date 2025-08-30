@@ -167,6 +167,33 @@ export default function CaseDetailsNew({
     },
   ];
 
+  // Filter and sort communications based on current filter - memoized to prevent re-renders
+  const filteredCommunications = useMemo(() => {
+    let filtered = [...communications];
+
+    switch (communicationFilter) {
+      case "Queued First":
+        return filtered.sort((a, b) => {
+          if (a.status === "queued" && b.status !== "queued") return -1;
+          if (a.status !== "queued" && b.status === "queued") return 1;
+          return 0;
+        });
+      case "Outbound Only":
+        return filtered.filter(comm => comm.status === "outgoing");
+      case "Inbound Only":
+        return filtered.filter(comm => comm.status === "incoming");
+      case "Most Recent":
+      default:
+        // Sort by most recent (assuming time format allows this simple sort)
+        return filtered.sort((a, b) => {
+          // Simple time comparison - in real app, you'd convert to dates
+          const aTime = a.time.includes("hour") ? 1 : a.time.includes("day") ? parseInt(a.time) : 100;
+          const bTime = b.time.includes("hour") ? 1 : b.time.includes("day") ? parseInt(b.time) : 100;
+          return aTime - bTime;
+        });
+    }
+  }, [communicationFilter]);
+
   const caseStats = {
     timeInQueue: selectedCase.daysInQueue ? `${selectedCase.daysInQueue} Days` : "16 Days",
     avgResponseTime: "2.3 hours",
