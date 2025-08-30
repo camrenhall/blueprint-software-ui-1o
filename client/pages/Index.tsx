@@ -21,6 +21,8 @@ function IndexContent() {
     string | null
   >(null);
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+  const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
+  const [selectedClientId, setSelectedClientId] = useState<string | null>(null);
 
   useEffect(() => {
     // Fade in the menu after a short delay
@@ -53,6 +55,8 @@ function IndexContent() {
     setActiveRightContent("overview");
     setSelectedSettingsCategory(null);
     setSelectedTaskId(null);
+    setSelectedCaseId(null);
+    setSelectedClientId(null);
     // Clear URL parameters when going back to overview
     setSearchParams({});
   };
@@ -150,12 +154,12 @@ function IndexContent() {
                 <Overview
                   onClose={() => setActiveRightContent(null)}
                   onNavigateToReview={(caseId) => {
+                    setSelectedCaseId(caseId);
                     setActiveRightContent("review");
-                    // TODO: Pass caseId to Review component when selected
                   }}
                   onNavigateToCommunications={(clientId) => {
+                    setSelectedClientId(clientId);
                     setActiveRightContent("communications");
-                    // TODO: Pass clientId to Communications component when selected
                   }}
                 />
               )}
@@ -163,7 +167,13 @@ function IndexContent() {
                 <InlineCreate onClose={() => setActiveRightContent(null)} />
               )}
               {activeRightContent === "review" && (
-                <InlineReview onClose={() => setActiveRightContent(null)} />
+                <InlineReview
+                  onClose={() => {
+                    setActiveRightContent(null);
+                    setSelectedCaseId(null);
+                  }}
+                  initialCaseId={selectedCaseId || undefined}
+                />
               )}
               {activeRightContent === "taskqueue" && (
                 <TaskQueue
