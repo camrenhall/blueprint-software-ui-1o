@@ -287,16 +287,18 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
             )}
           >
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-lg">
-                <ClipboardList className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
-                  Task Queue
-                </h1>
-                <p className="text-sm text-[#0E315C]/60 font-light">
-                  Review and manage proposed actions from your AI agents
-                </p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-xl flex items-center justify-center shadow-lg">
+                  <ClipboardList className="w-5 h-5 text-white" />
+                </div>
+                <div className="text-left">
+                  <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
+                    Task Queue
+                  </h1>
+                  <p className="text-sm text-[#0E315C]/60 font-light">
+                    Review and manage proposed actions from your AI agents
+                  </p>
+                </div>
               </div>
               <div className="px-3 py-1 bg-[#C5BFEE]/20 text-[#0E315C] text-xs font-medium rounded-full border border-[#C5BFEE]/30">
                 {filteredAndSortedTasks.length}{" "}
