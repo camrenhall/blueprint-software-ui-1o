@@ -215,7 +215,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => navigate("/menu?view=settings")}
-                className="p-2 outline-none border-none focus:outline-none focus:border-none focus:ring-0 focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 active:outline-none rounded-full"
+                className="p-2 no-focus rounded-full"
               >
                 <Settings className="w-4 h-4 text-[#0E315C]/70" />
               </Button>
