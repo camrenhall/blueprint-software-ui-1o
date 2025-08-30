@@ -365,7 +365,7 @@ export default function CaseDetailsNew({
     <>
       {/* Compact Header */}
       <div className={cn(
-        "p-4 flex-shrink-0 animate-slideInLeft",
+        "p-4 flex-shrink-0",
         inline ? "mb-4" : "bg-white/10 backdrop-blur-xl border-b border-white/20 rounded-t-3xl"
       )}>
         <div className="flex items-center justify-between mb-3">
