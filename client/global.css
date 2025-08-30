@@ -105,6 +105,24 @@
   }
 }
 
+/* Completely disable focus states for top nav buttons */
+@layer base {
+  button:focus,
+  button:focus-visible,
+  button:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  [data-radix-dropdown-trigger] {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
 /* Custom scrollbar styles for Document Library and Selected Documents */
 @layer utilities {
   /* Webkit browsers (Chrome, Safari, Edge) */
