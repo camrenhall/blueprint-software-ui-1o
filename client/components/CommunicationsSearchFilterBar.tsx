@@ -288,10 +288,10 @@ export function CommunicationsSearchFilterBar({
           {hasAnyActive && (
             <button
               onClick={clearAllFilters}
-              className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 border border-red-200 hover:border-red-300 transition-all duration-200"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 border border-red-200 hover:border-red-300 transition-all duration-200"
               title="Clear all filters and search"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Clear All</span>
             </button>
           )}
