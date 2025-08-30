@@ -515,6 +515,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
             {/* Review Content - Flexible with max height */}
             <div className="flex-1 min-h-0 max-h-[calc(100%-6rem)] overflow-y-auto">
               <div className="space-y-6">
+                {/* Case Summary Container - SEPARATE */}
                 <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
                   <h3 className="text-sm font-medium text-[#0E315C] mb-3">
                     Case Summary
@@ -558,10 +559,10 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                         {documentSelection.getDocumentCounts().total} selected
                       </span>
                     </div>
+                  </div>
                 </div>
-                {/* END Case Summary Container */}
 
-                {/* START Client Email Container - Completely Separate */}
+                {/* Client Email Container - COMPLETELY SEPARATE */}
                 <div className="bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 rounded-2xl p-6">
                   <div className="flex items-center justify-between mb-6">
                     <div>
@@ -642,7 +643,6 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                   )}
                 </div>
               </div>
-            </div>
             </div>
 
             {/* Compact Navigation Bar - Fixed at bottom */}
