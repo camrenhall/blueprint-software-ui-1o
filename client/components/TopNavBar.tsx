@@ -139,7 +139,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="relative p-2 no-focus rounded-full"
+                    className="relative p-2 no-focus rounded-full hover:bg-white/5 transition-all duration-300"
                   >
                     <Bell className="w-4 h-4 text-[#0E315C]/70" />
                     {taskCount > 0 && (
