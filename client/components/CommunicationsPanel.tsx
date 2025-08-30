@@ -380,7 +380,7 @@ export default function CommunicationsPanel({
                             {conversation.clientName}
                           </h4>
                           <p className="text-xs text-[#0E315C]/70 leading-tight">
-                            {conversation.caseNumber}
+                            {conversation.clientEmail}
                           </p>
                         </div>
                       </div>
@@ -391,22 +391,35 @@ export default function CommunicationsPanel({
                       </div>
                     </div>
 
-                    {/* Compact stats */}
-                    <div className="flex items-center justify-between text-xs">
-                      <div className="flex items-center space-x-2">
-                        <div className="flex items-center space-x-1">
-                          <Mail className="w-3 h-3 text-[#0E315C]/60" />
-                          <span className="text-[#0E315C]/80 font-medium">
-                            {conversation.messages.length}
-                          </span>
-                        </div>
-                        {conversation.responseReceived && (
-                          <div className="w-1.5 h-1.5 bg-[#C1D9F6] rounded-full" />
-                        )}
+                    {/* Redesigned stats with better labels */}
+                    <div className="grid grid-cols-2 gap-3 text-xs">
+                      <div className="flex items-center space-x-1">
+                        <Mail className="w-3 h-3 text-[#0E315C]/60" />
+                        <span className="text-[#0E315C]/70">Total Emails:</span>
+                        <span className="text-[#0E315C] font-semibold">
+                          {conversation.messages.length}
+                        </span>
                       </div>
-                      <span className="text-[#0E315C]/60">
-                        {formatDate(conversation.lastActivity)}
-                      </span>
+                      <div className="flex items-center space-x-1">
+                        <Clock className="w-3 h-3 text-[#0E315C]/60" />
+                        <span className="text-[#0E315C]/70">Last Activity:</span>
+                      </div>
+                      <div className="col-span-2 flex items-center justify-between">
+                        <span className="text-[#0E315C] font-medium text-xs">
+                          {new Date(conversation.lastActivity).toLocaleDateString()}
+                        </span>
+                        <div className="flex items-center space-x-2">
+                          {conversation.responseReceived && (
+                            <div className="flex items-center space-x-1">
+                              <div className="w-1.5 h-1.5 bg-[#C1D9F6] rounded-full" />
+                              <span className="text-[#0E315C]/70 text-xs">Responded</span>
+                            </div>
+                          )}
+                          {getStatusIcon(
+                            conversation.messages[conversation.messages.length - 1].status,
+                          )}
+                        </div>
+                      </div>
                     </div>
 
                     {/* Status indicator */}
