@@ -135,18 +135,86 @@ export default function TopNavBar({ className }: TopNavBarProps) {
               </div>
 
               {/* Notifications */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="relative p-2 hover:bg-white/10 transition-all duration-300 rounded-full"
-              >
-                <Bell className="w-4 h-4 text-[#0E315C]/70" />
-                {notifications > 0 && (
-                  <Badge className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs bg-[#C5BFEE]/80 text-white border border-white/30 animate-pulse">
-                    {notifications}
-                  </Badge>
-                )}
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="relative p-2 hover:bg-white/10 transition-all duration-300 rounded-full"
+                  >
+                    <Bell className="w-4 h-4 text-[#0E315C]/70" />
+                    {taskCount > 0 && (
+                      <Badge className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center p-0 text-xs bg-[#C5BFEE]/80 text-white border border-white/30 animate-pulse">
+                        {taskCount}
+                      </Badge>
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  className="w-80 bg-white/90 backdrop-blur-xl border border-white/20 shadow-xl"
+                  align="end"
+                  sideOffset={8}
+                >
+                  <DropdownMenuLabel className="text-[#0E315C]/80 px-4 py-3">
+                    Recent Notifications
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-[#99C0F0]/20" />
+
+                  {latestTasks.length === 0 ? (
+                    <div className="px-4 py-6 text-center text-[#0E315C]/50 text-sm">
+                      No notifications at this time
+                    </div>
+                  ) : (
+                    latestTasks.map((task) => (
+                      <DropdownMenuItem
+                        key={task.id}
+                        className="px-4 py-3 text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20 cursor-pointer border-l-4 border-transparent hover:border-l-[#99C0F0] transition-all"
+                      >
+                        <div className="flex items-start space-x-3 w-full">
+                          <div className="flex-shrink-0 mt-1">
+                            {task.category === "email" ? (
+                              <Mail className="w-4 h-4 text-[#99C0F0]" />
+                            ) : (
+                              <FileText className="w-4 h-4 text-[#C5BFEE]" />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="text-sm font-medium text-[#0E315C] truncate">
+                              {task.title}
+                            </div>
+                            <div className="text-xs text-[#0E315C]/60 mt-1 line-clamp-2">
+                              {task.description}
+                            </div>
+                            <div className="flex items-center justify-between mt-2">
+                              <Badge
+                                variant={task.priority === "high" ? "destructive" : "secondary"}
+                                className="text-xs px-2 py-0.5"
+                              >
+                                {task.priority}
+                              </Badge>
+                              <div className="flex items-center text-xs text-[#99C0F0]/70">
+                                <Clock className="w-3 h-3 mr-1" />
+                                {task.estimatedTime}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </DropdownMenuItem>
+                    ))
+                  )}
+
+                  <DropdownMenuSeparator className="bg-[#99C0F0]/20" />
+                  <DropdownMenuItem
+                    className="px-4 py-3 text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20 cursor-pointer font-medium"
+                    onClick={() => navigate("/menu?view=taskqueue")}
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      <span>View all tasks</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               {/* Settings */}
               <Button
