@@ -18,7 +18,6 @@ interface CommunicationsSearchFilterBarProps {
   onClearFilters: () => void;
   sortBy: CommunicationsSortOption;
   onSortChange: (sortBy: CommunicationsSortOption) => void;
-  totalCount: number;
   className?: string;
 }
 
@@ -53,7 +52,6 @@ export function CommunicationsSearchFilterBar({
   onClearFilters,
   sortBy,
   onSortChange,
-  totalCount,
   className,
 }: CommunicationsSearchFilterBarProps) {
   const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
