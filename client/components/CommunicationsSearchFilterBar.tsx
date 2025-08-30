@@ -269,23 +269,24 @@ export function CommunicationsSearchFilterBar({
             )}
           </div>
 
-          {/* Clear All Button - Only show when there are active filters or search */}
-          {hasAnyActive && (
-            <button
-              onClick={clearAllFilters}
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 border border-red-200 hover:border-red-300 transition-all duration-200"
-              title="Clear all filters and search"
-            >
-              <X className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">Clear All</span>
-            </button>
-          )}
         </div>
 
-        {/* Active Filters Summary */}
-        {(hasActiveFilters || hasActiveSearch) && (
-          <div className="mt-3 flex items-center justify-center gap-2 text-xs text-[#0E315C]/60">
+        {/* Active Filters Summary - Always visible */}
+        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-[#0E315C]/60">
+          <div className="flex items-center gap-2">
             <span>Active:</span>
+            {/* Clear All Button - Inline with Active label */}
+            {hasAnyActive && (
+              <button
+                onClick={clearAllFilters}
+                className="flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium text-red-600 hover:text-red-700 hover:bg-red-50/80 border border-red-200/60 hover:border-red-300 transition-all duration-200"
+                title="Clear all filters and search"
+              >
+                <X className="w-3 h-3" />
+                <span>Clear All</span>
+              </button>
+            )}
+          </div>
             {hasActiveSearch && (
               <span className="px-2 py-1 bg-[#99C0F0]/20 rounded-md">
                 Search: "{searchValue}"
@@ -310,8 +311,11 @@ export function CommunicationsSearchFilterBar({
                 Sort: {sortOptions.find((s) => s.id === sortBy)?.label}
               </span>
             )}
-          </div>
-        )}
+            {/* Show placeholder when no filters are active */}
+            {!hasAnyActive && (
+              <span className="text-[#0E315C]/40 italic">No active filters</span>
+            )}
+        </div>
       </div>
     </div>
   );
