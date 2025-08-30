@@ -346,7 +346,7 @@ export default function CommunicationsPanel({
     });
 
     return sorted;
-  }, [searchValue, activeFilters, sortBy]);
+  }, [conversations, searchValue, activeFilters, sortBy]);
 
   return (
     <div className="h-full flex flex-col">
