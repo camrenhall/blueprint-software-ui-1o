@@ -266,8 +266,16 @@ export default function CommunicationsPanel({
       });
     }
 
-    // Apply sorting
+    // Apply sorting - unread conversations always at top
     const sorted = [...filtered].sort((a, b) => {
+      // First priority: unread status (unread conversations first)
+      const aHasUnread = a.unreadCount > 0;
+      const bHasUnread = b.unreadCount > 0;
+
+      if (aHasUnread && !bHasUnread) return -1;
+      if (!aHasUnread && bHasUnread) return 1;
+
+      // Second priority: apply selected sort criteria within each group
       switch (sortBy) {
         case "lastActivity":
           return (
