@@ -338,8 +338,6 @@ export default function CommunicationsPanel({
           return a.clientName.localeCompare(b.clientName);
         case "emailCount":
           return b.messages.length - a.messages.length;
-        case "caseNumber":
-          return a.caseNumber.localeCompare(b.caseNumber);
         default:
           return 0;
       }
