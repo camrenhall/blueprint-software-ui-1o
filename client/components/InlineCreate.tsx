@@ -645,7 +645,19 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                 {/* Create Case Button */}
                 <button
                   onClick={() => {
-                    alert("Case created successfully!");
+                    // Here you would typically send the email via API
+                    const emailPayload = {
+                      to: emailDraft.to.length > 0 ? emailDraft.to : [caseInfo.email],
+                      cc: emailDraft.cc,
+                      subject: emailDraft.subject || `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`,
+                      content: emailDraft.content || getDefaultEmailContent(),
+                      caseInfo,
+                      documents: documentSelection.selectedDocuments
+                    };
+
+                    console.log("Creating case and sending email:", emailPayload);
+                    alert(`Case created successfully! Email sent to ${caseInfo.email}`);
+
                     // Reset form or navigate away
                     setCreateStep(1);
                     setCreateMethod(null);
@@ -659,10 +671,17 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       description: "",
                     });
                     documentSelection.setSelectedDocuments([]);
+                    setEmailDraft({
+                      subject: "",
+                      content: "",
+                      to: [],
+                      cc: []
+                    });
+                    setIsEditingEmail(false);
                   }}
                   className="group flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-[#C5BFEE]/90 to-[#99C0F0]/90 hover:from-[#C5BFEE] hover:to-[#99C0F0] text-white rounded-2xl transition-all duration-300 hover:scale-105 transform shadow-lg shadow-[#C5BFEE]/20 hover:shadow-xl hover:shadow-[#C5BFEE]/30 backdrop-blur-sm"
                 >
-                  <span className="font-light">Create Case</span>
+                  <span className="font-light">Create & Send Email</span>
                   <svg
                     className="w-4 h-4 transition-transform duration-300 group-hover:scale-110"
                     fill="none"
@@ -673,7 +692,7 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M5 13l4 4L19 7"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                     />
                   </svg>
                 </button>
