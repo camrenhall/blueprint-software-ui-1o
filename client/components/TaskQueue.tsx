@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { Check, X, User, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TaskSearchFilterBar, TaskSortOption } from "./TaskSearchFilterBar";
@@ -91,20 +92,31 @@ interface TaskCardProps {
   index: number;
   onAccept: (taskId: string) => void;
   onDecline: (taskId: string) => void;
+  onTaskClick: (taskId: string) => void;
 }
 
 function TaskCard({
   task,
   index,
   onAccept,
-  onDecline
+  onDecline,
+  onTaskClick
 }: TaskCardProps) {
+  const handleCardClick = (e: React.MouseEvent) => {
+    // Don't trigger card click if action buttons are clicked
+    if ((e.target as HTMLElement).closest('button[data-action]')) {
+      return;
+    }
+    onTaskClick(task.id);
+  };
+
   return (
     <div
+      onClick={handleCardClick}
       className={cn(
         "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40",
         "hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/5 hover:border-[#99C0F0]/60",
-        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform"
+        "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform cursor-pointer"
       )}
     >
       <div className="flex items-start space-x-4">
@@ -139,14 +151,22 @@ function TaskCard({
             {/* Right side - Action buttons */}
             <div className="flex gap-2 flex-shrink-0">
               <button
-                onClick={() => onAccept(task.id)}
+                data-action="accept"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onAccept(task.id);
+                }}
                 className="w-8 h-8 bg-[#99C0F0] hover:bg-[#0E315C] text-white rounded-lg transition-all duration-300 shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center justify-center"
                 title="Accept task"
               >
                 <Check className="w-4 h-4" />
               </button>
               <button
-                onClick={() => onDecline(task.id)}
+                data-action="decline"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onDecline(task.id);
+                }}
                 className="w-8 h-8 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-lg hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 flex items-center justify-center"
                 title="Decline task"
               >
