@@ -147,7 +147,17 @@ function IndexContent() {
           <div className="w-full h-full bg-gradient-to-br from-white/40 via-[#C1D9F6]/25 to-white/30 backdrop-blur-xl rounded-2xl border border-white/30 shadow-2xl">
             <div className="w-full h-full p-8 overflow-auto">
               {activeRightContent === "overview" && (
-                <Overview onClose={() => setActiveRightContent(null)} />
+                <Overview
+                  onClose={() => setActiveRightContent(null)}
+                  onNavigateToReview={(caseId) => {
+                    setActiveRightContent("review");
+                    // TODO: Pass caseId to Review component when selected
+                  }}
+                  onNavigateToCommunications={(clientId) => {
+                    setActiveRightContent("communications");
+                    // TODO: Pass clientId to Communications component when selected
+                  }}
+                />
               )}
               {activeRightContent === "create" && (
                 <InlineCreate onClose={() => setActiveRightContent(null)} />
