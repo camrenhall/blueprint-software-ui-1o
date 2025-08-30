@@ -12,6 +12,12 @@ export interface ProposedTask {
   estimatedTime: string;
   targetPerson?: string;
   createdAt: Date;
+  emailContent?: {
+    subject: string;
+    content: string;
+    to: string[];
+    cc?: string[];
+  };
 }
 
 // Sample data - in real app this would come from API
@@ -27,6 +33,12 @@ const initialTasks: ProposedTask[] = [
     estimatedTime: "2 min",
     targetPerson: "David Thompson",
     createdAt: new Date(Date.now() - 1000 * 60 * 30), // 30 minutes ago
+    emailContent: {
+      subject: "Follow-up: Contract Review Due",
+      content: "Dear Mr. Thompson,\n\nI hope this email finds you well. I'm writing to follow up on the contract review that was due on [Date]. As this is a critical component of our Q4 planning process, we need to move forward with the review as soon as possible.\n\nCould you please provide an update on the status of your review? If you need any additional time or have questions about specific sections, please let me know and we can discuss possible accommodations.\n\nThank you for your attention to this matter.\n\nBest regards,\nLuceron Legal Team",
+      to: ["david.thompson@company.com"],
+      cc: ["assistant@luceron.com"]
+    }
   },
   {
     id: "2",
@@ -51,6 +63,12 @@ const initialTasks: ProposedTask[] = [
     estimatedTime: "15 min",
     targetPerson: "Jessica Chen",
     createdAt: new Date(Date.now() - 1000 * 60 * 60 * 4), // 4 hours ago
+    emailContent: {
+      subject: "Project Timeline Update - Phoenix Initiative",
+      content: "Dear Jessica,\n\nI wanted to update you on some important changes to the Phoenix project timeline. After reviewing our current progress and resource allocation, we've adjusted several key milestones.\n\nKey Updates:\n• Phase 1 completion moved to [New Date]\n• Stakeholder review meeting rescheduled\n• Additional development sprint added for Q1\n\nPlease review the attached updated timeline and coordinate with your team to ensure alignment. I'd like to schedule a brief call this week to discuss any concerns and next steps.\n\nLet me know your availability for Thursday or Friday afternoon.\n\nBest regards,\nProject Management Office",
+      to: ["jessica.chen@company.com"],
+      cc: ["pm-team@company.com"]
+    }
   },
   {
     id: "4",
@@ -75,6 +93,12 @@ const initialTasks: ProposedTask[] = [
     estimatedTime: "3 min",
     targetPerson: "Emma Davis",
     createdAt: new Date(Date.now() - 1000 * 60 * 45), // 45 minutes ago
+    emailContent: {
+      subject: "Urgent: Outstanding Invoice Payment - INV-2024-0892",
+      content: "Dear Ms. Davis,\n\nI hope this message finds you well. I'm writing regarding Invoice #INV-2024-0892 in the amount of $15,230.00, which is now 45 days past due.\n\nWe understand that payment processing can sometimes experience delays, and we want to work with you to resolve this matter promptly. Please let us know if there are any issues with the invoice or if you need to discuss payment arrangements.\n\nTo avoid any impact on future services, please remit payment within the next 5 business days. If payment has already been sent, please provide the transaction details so we can update our records.\n\nThank you for your immediate attention to this matter.\n\nSincerely,\nAccounts Receivable Department\nLuceron Legal",
+      to: ["emma.davis@company.com"],
+      cc: ["accounting@luceron.com"]
+    }
   },
   {
     id: "6",
