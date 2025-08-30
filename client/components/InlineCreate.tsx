@@ -75,6 +75,18 @@ export default function InlineCreate({ onClose }: InlineCreateProps) {
     setTimeout(() => setIsAnimated(true), 100);
   }, []);
 
+  // Initialize email draft when entering review step
+  useEffect(() => {
+    if (createStep === 4 && caseInfo.email && !emailDraft.subject) {
+      setEmailDraft({
+        subject: `Document Request - ${caseInfo.firstName} ${caseInfo.lastName}`,
+        content: getDefaultEmailContent(),
+        to: [caseInfo.email],
+        cc: []
+      });
+    }
+  }, [createStep, caseInfo.email, caseInfo.firstName, caseInfo.lastName, emailDraft.subject]);
+
   const steps = [
     { number: 1, label: "Method" },
     { number: 2, label: "Documents" },
