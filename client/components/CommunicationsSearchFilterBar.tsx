@@ -8,7 +8,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-export type CommunicationsSortOption = "lastActivity" | "clientName" | "emailCount" | "caseNumber";
+export type CommunicationsSortOption = "lastActivity" | "clientName" | "emailCount";
 
 interface CommunicationsSearchFilterBarProps {
   searchValue: string;
@@ -31,24 +31,10 @@ const filterOptions = [
     },
   },
   {
-    id: "responded",
-    label: "Client Responded",
-    color: {
-      dot: "bg-[#C1D9F6]",
-    },
-  },
-  {
     id: "pending",
     label: "Awaiting Response",
     color: {
       dot: "bg-[#99C0F0]",
-    },
-  },
-  {
-    id: "failed",
-    label: "Failed Messages",
-    color: {
-      dot: "bg-red-400",
     },
   },
 ];
@@ -57,7 +43,6 @@ const sortOptions: { id: CommunicationsSortOption; label: string; description: s
   { id: "lastActivity", label: "Recent Activity", description: "Most recent conversations first" },
   { id: "clientName", label: "Client Name", description: "Sort by client name A-Z" },
   { id: "emailCount", label: "Email Count", description: "Most emails first" },
-  { id: "caseNumber", label: "Case Number", description: "Sort by case number" },
 ];
 
 export function CommunicationsSearchFilterBar({
