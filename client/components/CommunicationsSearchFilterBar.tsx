@@ -116,7 +116,7 @@ export function CommunicationsSearchFilterBar({
               type="text"
               value={searchValue}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search conversations, clients, or case numbers..."
+              placeholder="Search conversations or clients..."
               className="w-full px-4 py-2 pl-10 pr-3 bg-transparent text-[#0E315C] placeholder-[#0E315C]/50 focus:outline-none text-sm font-light rounded-lg focus:bg-white/50 transition-colors"
             />
           </div>
