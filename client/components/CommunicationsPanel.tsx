@@ -178,6 +178,7 @@ const mockConversations: ClientConversation[] = [
 export default function CommunicationsPanel({
   onClose,
 }: CommunicationsPanelProps) {
+  const [conversations, setConversations] = useState<ClientConversation[]>(mockConversations);
   const [selectedConversation, setSelectedConversation] =
     useState<ClientConversation | null>(null);
   const [searchValue, setSearchValue] = useState("");
@@ -186,8 +187,26 @@ export default function CommunicationsPanel({
     useState<CommunicationsSortOption>("lastActivity");
   const [expandedMessage, setExpandedMessage] = useState<string | null>(null);
 
+  // Mark conversation as read
+  const markConversationAsRead = (conversationId: string) => {
+    setConversations(prev =>
+      prev.map(conv =>
+        conv.id === conversationId
+          ? { ...conv, unreadCount: 0 }
+          : conv
+      )
+    );
+  };
+
   // Auto-expand the most recent message when conversation changes
   const handleConversationSelect = (conversation: ClientConversation) => {
+    // Mark as read if it has unread messages
+    if (conversation.unreadCount > 0) {
+      markConversationAsRead(conversation.id);
+      // Update the local conversation object to reflect the change
+      conversation = { ...conversation, unreadCount: 0 };
+    }
+
     setSelectedConversation(conversation);
     // Set the most recent message (last in array) as expanded by default
     if (conversation.messages.length > 0) {
