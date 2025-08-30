@@ -90,9 +90,6 @@ export function useTaskQueue() {
     setTasks(prev => prev.filter(t => t.id !== taskId));
   };
 
-  const removeTasks = (taskIds: string[]) => {
-    setTasks(prev => prev.filter(t => !taskIds.includes(t.id)));
-  };
 
   const filterAndSortTasks = (
     searchValue: string = "",
