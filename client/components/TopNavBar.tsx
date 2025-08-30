@@ -93,9 +93,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                   <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400/80 rounded-full border-2 border-white/50 animate-pulse" />
                 </div>
                 <div className="hidden sm:block">
-                  <div className="text-sm font-medium text-[#0E315C]/80">
-                    System Active
-                  </div>
                   <div className="text-xs text-[#99C0F0]/70">Version 2.1.3</div>
                 </div>
               </div>
