@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { Check, X, CheckCircle2, Clock, User, MessageSquare, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, X, User, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TaskSearchFilterBar, TaskSortOption } from "./TaskSearchFilterBar";
 import { useTaskQueue, ProposedTask } from "@/hooks/useTaskQueue";
@@ -91,28 +91,14 @@ interface TaskCardProps {
   index: number;
   onAccept: (taskId: string) => void;
   onDecline: (taskId: string) => void;
-  isExpanded: boolean;
-  onToggleExpand: (taskId: string) => void;
 }
 
 function TaskCard({
   task,
   index,
   onAccept,
-  onDecline,
-  isExpanded,
-  onToggleExpand
+  onDecline
 }: TaskCardProps) {
-  const timeAgo = (date: Date) => {
-    const now = new Date();
-    const diffMs = now.getTime() - date.getTime();
-    const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-    const diffMinutes = Math.floor(diffMs / (1000 * 60));
-
-    if (diffHours > 0) return `${diffHours}h ago`;
-    return `${diffMinutes}m ago`;
-  };
-
   return (
     <div
       className={cn(
@@ -120,93 +106,46 @@ function TaskCard({
         "hover:bg-white/50 hover:shadow-lg hover:shadow-[#99C0F0]/5 hover:border-[#99C0F0]/60",
         "hover:border-opacity-80 transition-all duration-500 p-4 rounded-2xl text-left group hover:scale-[1.01] transform"
       )}
-      style={{}}
     >
       <div className="flex items-start space-x-4">
-        {/* Category Icon (Avatar-like) */}
+        {/* Category Icon */}
         <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/80 to-[#C5BFEE]/60 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300 flex-shrink-0 shadow-lg">
           <span className="text-white font-light text-sm">
-            {task.category === "email" ? "📧" : task.category === "reminder" ? "⏰" : task.category === "analysis" ? "📊" : task.category === "action" ? "⚡" : "🔄"}
+            {task.category === "email" ? "📧" : "📄"}
           </span>
         </div>
 
-        {/* Main Task Information */}
-        <div className="flex-1 min-w-0 relative">
+        {/* Main Content */}
+        <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between">
+            {/* Left side - Task info */}
             <div className="flex-1 min-w-0">
-              <h3 className="text-base font-light text-[#0E315C] mb-1 truncate pr-20">
+              <h3 className="text-base font-medium text-[#0E315C] mb-2">
                 {task.title}
               </h3>
               {task.targetPerson && (
-                <p className="text-[#0E315C]/60 text-sm font-light mb-2 pr-20 flex items-center gap-1">
-                  <User className="w-3 h-3 text-[#99C0F0]" />
-                  {task.targetPerson}
-                </p>
-              )}
-              {task.description && (
-                <p className={cn(
-                  "text-[#0E315C]/60 text-sm font-light mb-2 pr-20 leading-relaxed",
-                  !isExpanded && task.description.length > 100 && "line-clamp-2"
-                )}>
-                  {task.description}
-                </p>
-              )}
-              {task.description.length > 100 && (
-                <button
-                  onClick={() => onToggleExpand(task.id)}
-                  className="text-[#99C0F0] hover:text-[#0E315C] text-xs font-medium mb-2 flex items-center gap-1 transition-colors duration-300"
-                >
-                  {isExpanded ? (
-                    <>Show less <ChevronUp className="w-3 h-3" /></>
-                  ) : (
-                    <>Show more <ChevronDown className="w-3 h-3" /></>
-                  )}
-                </button>
+                <div className="flex items-center gap-2 text-[#0E315C]/60 text-sm">
+                  <User className="w-4 h-4 text-[#99C0F0]" />
+                  <span>{task.targetPerson}</span>
+                </div>
               )}
             </div>
 
-            {/* Right Side - Time Estimate */}
-            <div className="absolute top-0 right-0 text-right flex-shrink-0">
-              <div className="text-lg font-light text-[#0E315C] mb-1">
-                {task.estimatedTime}
-              </div>
-              <div className="text-sm text-[#0E315C]/60 font-light whitespace-nowrap">
-                Est. time
-              </div>
-            </div>
-          </div>
-
-          {/* Task Metadata Row */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 text-xs text-[#0E315C]/50 font-light whitespace-nowrap overflow-hidden pr-4">
-              <span className="text-[#0E315C]/70 font-medium flex-shrink-0">
-                {task.agent}
-              </span>
-              <span className="flex-shrink-0">•</span>
-              <span className="whitespace-nowrap flex-shrink-0">
-                Proposed {timeAgo(task.createdAt)}
-              </span>
-              <span className="flex-shrink-0">•</span>
-              <span className="whitespace-nowrap flex-shrink-0 capitalize">
-                {task.category}
-              </span>
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex gap-1.5 flex-shrink-0">
+            {/* Right side - Action buttons */}
+            <div className="flex gap-2 flex-shrink-0">
               <button
                 onClick={() => onAccept(task.id)}
-                className="bg-[#99C0F0] hover:bg-[#0E315C] text-white px-3 py-1.5 rounded-lg transition-all duration-300 font-medium text-sm shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center gap-1"
+                className="w-8 h-8 bg-[#99C0F0] hover:bg-[#0E315C] text-white rounded-lg transition-all duration-300 shadow-lg shadow-[#99C0F0]/20 hover:shadow-xl hover:scale-105 flex items-center justify-center"
+                title="Accept task"
               >
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                Accept
+                <Check className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onDecline(task.id)}
-                className="px-3 py-1.5 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-lg hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 font-medium text-sm flex items-center gap-1"
+                className="w-8 h-8 bg-white/60 backdrop-blur-sm border border-[#C1D9F6]/40 text-[#0E315C] rounded-lg hover:bg-white/80 hover:border-red-300 hover:text-red-600 transition-all duration-300 flex items-center justify-center"
+                title="Decline task"
               >
-                <X className="w-3.5 h-3.5" />
-                Decline
+                <X className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -223,7 +162,6 @@ interface TaskQueueProps {
 
 export default function TaskQueue({ onClose }: TaskQueueProps) {
   const { tasks, removeTask, filterAndSortTasks } = useTaskQueue();
-  const [expandedTasks, setExpandedTasks] = useState<Set<string>>(new Set());
   const [feedbackModalTask, setFeedbackModalTask] = useState<ProposedTask | null>(null);
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
@@ -270,16 +208,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
     setFeedbackModalTask(null);
     // In real app, would make API call to decline task with feedback
     console.log(`Task ${taskId} declined with feedback:`, feedback);
-  };
-
-  const handleToggleExpand = (taskId: string) => {
-    const newExpanded = new Set(expandedTasks);
-    if (newExpanded.has(taskId)) {
-      newExpanded.delete(taskId);
-    } else {
-      newExpanded.add(taskId);
-    }
-    setExpandedTasks(newExpanded);
   };
 
   return (
@@ -364,8 +292,6 @@ export default function TaskQueue({ onClose }: TaskQueueProps) {
                   index={index}
                   onAccept={handleAcceptTask}
                   onDecline={handleDeclineTask}
-                  isExpanded={expandedTasks.has(task.id)}
-                  onToggleExpand={handleToggleExpand}
                 />
               ))}
             </div>
