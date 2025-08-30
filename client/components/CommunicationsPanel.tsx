@@ -248,7 +248,13 @@ export default function CommunicationsPanel({
           c.clientName.includes(clientName.split(' ')[1])
         );
         if (matchingConversation) {
-          handleConversationSelect(matchingConversation);
+          setSelectedConversation(matchingConversation);
+          // Auto-expand the most recent message
+          if (matchingConversation.messages.length > 0) {
+            setExpandedMessage(
+              matchingConversation.messages[matchingConversation.messages.length - 1].id
+            );
+          }
           setSearchValue(clientName.split(' ')[0]); // Set search to highlight the client
         }
       }
