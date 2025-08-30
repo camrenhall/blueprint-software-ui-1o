@@ -382,7 +382,6 @@ export default function CommunicationsPanel({
         onClearFilters={clearFilters}
         sortBy={sortBy}
         onSortChange={setSortBy}
-        totalCount={filteredAndSortedConversations.length}
         className="mb-6"
       />
 
