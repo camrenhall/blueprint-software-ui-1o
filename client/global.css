@@ -105,21 +105,23 @@
   }
 }
 
-/* Completely disable focus states for top nav buttons */
-@layer base {
-  button:focus,
-  button:focus-visible,
-  button:active {
+/* No focus utility class */
+@layer utilities {
+  .no-focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .no-focus:focus,
+  .no-focus:focus-visible,
+  .no-focus:active,
+  .no-focus[data-state="open"],
+  .no-focus[aria-expanded="true"] {
     outline: none !important;
     box-shadow: none !important;
     border: none !important;
     background: transparent !important;
-  }
-
-  [data-radix-dropdown-trigger] {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
   }
 }
 
