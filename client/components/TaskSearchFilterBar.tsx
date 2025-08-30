@@ -8,7 +8,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-export type TaskSortOption = "priority" | "createdAt" | "estimatedTime" | "alphabetical";
+export type TaskSortOption = "createdAt" | "alphabetical";
 
 interface TaskSearchFilterBarProps {
   searchValue: string;
