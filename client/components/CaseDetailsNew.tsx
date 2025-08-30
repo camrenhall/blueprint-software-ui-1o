@@ -26,18 +26,18 @@ export default function CaseDetailsNew({
     } catch (error) {
       console.error('Download error:', error);
     } finally {
-      setShowDocumentDownloadDropdown(false);
-      setShowPageDownloadDropdown(false);
+      setShowDocumentDownloadDropdown(prev => false);
+      setShowPageDownloadDropdown(prev => false);
     }
   }, []);
 
   const handleFilterCommunications = useCallback((filter: string) => {
     try {
-      setCommunicationFilter(filter);
+      setCommunicationFilter(prev => filter);
     } catch (error) {
       console.error('Filter error:', error);
     } finally {
-      setShowCommunicationFilter(false);
+      setShowCommunicationFilter(prev => false);
     }
   }, []);
 
