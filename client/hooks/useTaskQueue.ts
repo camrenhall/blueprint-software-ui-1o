@@ -100,7 +100,7 @@ const initialTasks: ProposedTask[] = [
   },
 ];
 
-export type TaskSortOption = "priority" | "createdAt" | "estimatedTime" | "alphabetical";
+export type TaskSortOption = "createdAt" | "alphabetical";
 
 export function useTaskQueue() {
   const [tasks, setTasks] = useState<ProposedTask[]>(initialTasks);
