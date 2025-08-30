@@ -214,15 +214,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-              {/* Settings */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate("/menu?view=settings")}
-                className="p-2 no-focus rounded-full hover:bg-white/5 transition-all duration-300"
-              >
-                <Settings className="w-4 h-4 text-[#0E315C]/70" />
-              </Button>
 
               {/* Profile dropdown */}
               <DropdownMenu>
@@ -258,13 +249,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                   <DropdownMenuItem className="text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20">
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    className="text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20"
-                    onClick={() => navigate("/menu?view=settings")}
-                  >
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-[#99C0F0]/20" />
                   <DropdownMenuItem className="text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20">
