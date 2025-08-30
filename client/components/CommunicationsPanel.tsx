@@ -190,8 +190,8 @@ export default function CommunicationsPanel({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Fade in animation
-    setTimeout(() => setIsVisible(true), 200);
+    // Trigger cascading animation after component mounts
+    setTimeout(() => setIsVisible(true), 100);
   }, []);
 
   // Mark conversation as read
@@ -357,7 +357,7 @@ export default function CommunicationsPanel({
     <div className="h-full flex flex-col">
       {/* Header with enhanced glassmorphism */}
       <div className={cn(
-        "flex items-center justify-between mb-6 transition-all duration-1000",
+        "flex items-center justify-between mb-6 transition-all duration-1000 ease-out delay-300",
         isVisible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4"
@@ -395,15 +395,15 @@ export default function CommunicationsPanel({
         sortBy={sortBy}
         onSortChange={setSortBy}
         className={cn(
-          "mb-6 transition-all duration-1000",
+          "mb-6 transition-all duration-800 ease-out delay-500",
           isVisible
             ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-4"
+            : "opacity-0 translate-y-3"
         )}
       />
 
       <div className={cn(
-        "flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all duration-1000",
+        "flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all duration-1000 ease-out delay-700",
         isVisible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-4"
