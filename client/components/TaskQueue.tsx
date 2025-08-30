@@ -197,8 +197,8 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Fade in animation
-    setTimeout(() => setIsVisible(true), 200);
+    // Trigger cascading animation after component mounts
+    setTimeout(() => setIsVisible(true), 100);
   }, []);
 
   // Auto-select task when initialTaskId is provided
@@ -280,7 +280,7 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
         <div className="text-center mb-8 flex-shrink-0">
           <div
             className={cn(
-              "transition-all duration-1000",
+              "transition-all duration-1000 ease-out delay-300",
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4",
@@ -321,8 +321,8 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
           sortBy={sortBy}
           onSortChange={setSortBy}
           className={cn(
-            "mb-6 transition-all duration-1000",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+            "mb-6 transition-all duration-800 ease-out delay-500",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
           )}
         />
       )}
@@ -376,7 +376,7 @@ export default function TaskQueue({ onClose, initialTaskId }: TaskQueueProps) {
             ) : (
               <div
                 className={cn(
-                  "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000",
+                  "h-full border border-[#C1D9F6]/50 rounded-2xl mx-2 overflow-hidden transition-all duration-1000 ease-out delay-700",
                   isVisible
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-4",
