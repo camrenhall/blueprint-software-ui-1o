@@ -214,7 +214,7 @@ export default function CaseDetailsNew({
       case "complete":
         return "bg-[#99C0F0]/30 text-[#0E315C] border-[#99C0F0]/40";
       case "rejected":
-        return "bg-amber-500/20 text-amber-700 border-amber-500/30";
+        return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
       case "review":
       case "needs review":
         return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
@@ -250,7 +250,7 @@ export default function CaseDetailsNew({
       case "outgoing":
         return "bg-[#99C0F0]/30 text-[#0E315C] border-[#99C0F0]/40";
       case "queued":
-        return "bg-amber-500/20 text-amber-700 border-amber-500/30";
+        return "bg-[#C5BFEE]/30 text-[#0E315C] border-[#C5BFEE]/40";
       default:
         return "bg-white/20 text-[#0E315C]/70 border-white/30";
     }
