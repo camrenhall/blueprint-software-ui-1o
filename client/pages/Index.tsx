@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import GlassSidePanel from "@/components/GlassSidePanel";
 import InlineCreate from "@/components/InlineCreate";
@@ -11,6 +12,7 @@ import { useTaskQueue } from "@/hooks/useTaskQueue";
 
 function IndexContent() {
   const { taskCount } = useTaskQueue();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isVisible, setIsVisible] = useState(false);
   const [activeRightContent, setActiveRightContent] = useState<string | null>(
     "overview",
@@ -24,17 +26,38 @@ function IndexContent() {
     setTimeout(() => setIsVisible(true), 200);
   }, []);
 
+  // Handle URL parameters for deep linking
+  useEffect(() => {
+    const view = searchParams.get("view");
+    const category = searchParams.get("category");
+
+    if (view === "settings") {
+      setActiveRightContent("settings");
+      setSelectedSettingsCategory(category);
+    }
+  }, [searchParams]);
+
   const handleBackToMenu = () => {
     setActiveRightContent("overview");
     setSelectedSettingsCategory(null);
+    // Clear URL parameters when going back to overview
+    setSearchParams({});
   };
 
-  const handleSettingsCategorySelect = (categoryId: string) => {
+  const handleSettingsCategorySelect = (categoryId: string | null) => {
     setSelectedSettingsCategory(categoryId);
+    // Update URL parameters for deep linking
+    if (categoryId) {
+      setSearchParams({ view: "settings", category: categoryId });
+    } else {
+      setSearchParams({ view: "settings" });
+    }
   };
 
   const handleSettingsBack = () => {
     setSelectedSettingsCategory(null);
+    // Update URL to remove category parameter
+    setSearchParams({ view: "settings" });
   };
   const menuItems = [
     {
@@ -78,6 +101,8 @@ function IndexContent() {
       action: () => {
         setActiveRightContent("settings");
         setSelectedSettingsCategory(null);
+        // Update URL parameters for deep linking
+        setSearchParams({ view: "settings" });
       },
     },
     {
