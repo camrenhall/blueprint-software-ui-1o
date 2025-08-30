@@ -168,6 +168,10 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                       <DropdownMenuItem
                         key={task.id}
                         className="px-4 py-3 text-[#0E315C]/70 hover:bg-[#C1D9F6]/20 focus:bg-[#C1D9F6]/20 cursor-pointer border-l-4 border-transparent hover:border-l-[#99C0F0] transition-all"
+                        onClick={() => {
+                          // Navigate to task queue with specific task selected
+                          navigate(`/menu?view=taskqueue&taskId=${task.id}&t=${Date.now()}`, { replace: true });
+                        }}
                       >
                         <div className="flex items-start space-x-3 w-full">
                           <div className="flex-shrink-0 mt-1">
