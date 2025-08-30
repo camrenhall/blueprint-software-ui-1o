@@ -111,6 +111,8 @@ const mockConversations: ClientConversation[] = [
         sentAt: "2024-01-14T15:45:00Z",
         status: "replied",
         sender: "firm",
+        to: ["mike.chen@email.com"],
+        cc: ["assistant@luceron.com"],
       },
       {
         id: "2b",
@@ -120,6 +122,8 @@ const mockConversations: ClientConversation[] = [
         sentAt: "2024-01-14T18:30:00Z",
         status: "delivered",
         sender: "client",
+        to: ["attorney@luceron.com"],
+        cc: ["assistant@luceron.com"],
       },
     ],
   },
