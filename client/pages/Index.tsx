@@ -173,6 +173,10 @@ function IndexContent() {
                     setSelectedCaseId(null);
                   }}
                   initialCaseId={selectedCaseId || undefined}
+                  onNavigateToCommunications={(clientId) => {
+                    setSelectedClientId(clientId);
+                    setActiveRightContent("communications");
+                  }}
                 />
               )}
               {activeRightContent === "taskqueue" && (
