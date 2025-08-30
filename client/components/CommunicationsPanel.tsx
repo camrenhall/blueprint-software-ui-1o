@@ -446,11 +446,6 @@ export default function CommunicationsPanel({
           <div className="absolute inset-0 bg-gradient-to-br from-[#99C0F0]/15 via-transparent to-[#C5BFEE]/15 rounded-2xl" />
 
           <div className="relative p-6">
-            <h2 className="text-lg font-light text-[#0E315C] mb-4">
-              {selectedConversation
-                ? `Email History - ${selectedConversation.clientName}`
-                : "Select a conversation to view emails"}
-            </h2>
 
             {selectedConversation ? (
               <div className="space-y-4 max-h-[calc(100vh-300px)] overflow-y-auto">
