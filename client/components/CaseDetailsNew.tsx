@@ -342,8 +342,12 @@ export default function CaseDetailsNew({
           <div className="flex items-center space-x-3">
             <div className="relative dropdown-container">
               <button
-                onClick={() => hasRejectedDocuments ? setShowPageDownloadDropdown(!showPageDownloadDropdown) : handleDownloadAll(false)}
-                className="flex items-center space-x-2 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  hasRejectedDocuments ? setShowPageDownloadDropdown(!showPageDownloadDropdown) : handleDownloadAll(false);
+                }}
+                className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
               >
                 <Download className="w-4 h-4" />
                 <span className="text-sm font-light">Download All</span>
@@ -457,8 +461,12 @@ export default function CaseDetailsNew({
                     <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
                     <div className="relative dropdown-container">
                       <button
-                        onClick={() => hasRejectedDocuments ? setShowDocumentDownloadDropdown(!showDocumentDownloadDropdown) : handleDownloadAll(false)}
-                        className="flex items-center space-x-2 bg-[#99C0F0]/20 hover:bg-[#99C0F0]/30 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          hasRejectedDocuments ? setShowDocumentDownloadDropdown(!showDocumentDownloadDropdown) : handleDownloadAll(false);
+                        }}
+                        className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
                       >
                         <Download className="w-4 h-4" />
                         {hasRejectedDocuments && <ChevronDown className="w-3 h-3" />}
@@ -519,8 +527,12 @@ export default function CaseDetailsNew({
                   </h3>
                   <div className="relative dropdown-container">
                     <button
-                      onClick={() => setShowCommunicationFilter(!showCommunicationFilter)}
-                      className="flex items-center space-x-2 bg-[#C5BFEE]/20 hover:bg-[#C5BFEE]/30 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowCommunicationFilter(!showCommunicationFilter);
+                      }}
+                      className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
                     >
                       <Filter className="w-4 h-4" />
                       <span className="text-sm font-light">{communicationFilter}</span>
