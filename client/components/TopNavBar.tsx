@@ -225,7 +225,7 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="flex items-center space-x-2 px-3 py-2 no-focus rounded-full"
+                    className="flex items-center space-x-2 px-3 py-2 no-focus rounded-full hover:bg-white/5 transition-all duration-300"
                   >
                     <Avatar className="w-8 h-8 border-2 border-white/30">
                       <AvatarFallback className="bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] text-white text-sm font-medium flex items-center justify-center">
