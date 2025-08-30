@@ -586,7 +586,11 @@ export default function CaseDetailsNew({
                         {["Most Recent", "Queued First", "Outbound Only", "Inbound Only"].map((filter) => (
                           <button
                             key={filter}
-                            onClick={() => handleFilterCommunications(filter)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              handleFilterCommunications(filter);
+                            }}
                             className={cn(
                               "w-full text-left px-4 py-2 text-sm transition-colors",
                               communicationFilter === filter
