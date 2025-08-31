@@ -1,5 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
-import { Check, X, User, MessageSquare, CheckCircle2, ClipboardList } from "lucide-react";
+import {
+  Check,
+  X,
+  User,
+  MessageSquare,
+  CheckCircle2,
+  ClipboardList,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { TaskSearchFilterBar, TaskSortOption } from "./TaskSearchFilterBar";
 import { useTaskQueue, ProposedTask } from "@/hooks/useTaskQueue";

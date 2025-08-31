@@ -18,7 +18,11 @@ export { KanbanView } from "./KanbanView";
 export { KanbanCard } from "./KanbanCard";
 export { KanbanColumn } from "./KanbanColumn";
 
-export default function Review({ onClose, initialCaseId, onNavigateToCommunications }: ReviewProps) {
+export default function Review({
+  onClose,
+  initialCaseId,
+  onNavigateToCommunications,
+}: ReviewProps) {
   const [searchValue, setSearchValue] = useState("");
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>("priority");
@@ -192,10 +196,12 @@ export default function Review({ onClose, initialCaseId, onNavigateToCommunicati
     >
       {/* Header - Hide when case details are shown */}
       {!selectedCase && (
-        <div className={cn(
-          "text-center mb-8 flex-shrink-0 transition-all duration-1000 ease-out delay-300",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        )}>
+        <div
+          className={cn(
+            "text-center mb-8 flex-shrink-0 transition-all duration-1000 ease-out delay-300",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+          )}
+        >
           <div className="text-center">
             <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
               Case Management
@@ -204,14 +210,14 @@ export default function Review({ onClose, initialCaseId, onNavigateToCommunicati
               Comprehensive case tracking and management across all status types
             </p>
           </div>
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        )}
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="absolute top-0 right-0 w-10 h-10 rounded-full flex items-center justify-center text-[#0E315C]/50 hover:text-[#0E315C] hover:bg-[#C1D9F6]/25 transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
         </div>
       )}
 
@@ -229,7 +235,7 @@ export default function Review({ onClose, initialCaseId, onNavigateToCommunicati
           onViewModeChange={handleViewModeChange}
           className={cn(
             "mb-6 transition-all duration-800 ease-out delay-500",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
           )}
         />
       )}
@@ -238,9 +244,11 @@ export default function Review({ onClose, initialCaseId, onNavigateToCommunicati
       <div className="flex-1 min-h-0">
         {selectedCase ? (
           /* Case Details View - Inline */
-          <div className={cn(
-            "h-full transition-all duration-500 ease-out animate-fadeIn"
-          )}>
+          <div
+            className={cn(
+              "h-full transition-all duration-500 ease-out animate-fadeIn",
+            )}
+          >
             <CaseDetailsNew
               selectedCase={selectedCase}
               onBack={closeModal}
@@ -250,17 +258,21 @@ export default function Review({ onClose, initialCaseId, onNavigateToCommunicati
           </div>
         ) : (
           /* Cases Content */
-          <div className={cn(
-            "h-full transition-all duration-500 ease-out",
-            isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100"
-          )}>
+          <div
+            className={cn(
+              "h-full transition-all duration-500 ease-out",
+              isTransitioning ? "opacity-50 scale-95" : "opacity-100 scale-100",
+            )}
+          >
             {viewMode === "kanban" ? (
               <KanbanView
                 cases={processedCases}
                 onCaseSelect={handleCaseSelect}
                 className={cn(
                   "h-full transition-all duration-1000 ease-out delay-700",
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4",
                 )}
               />
             ) : (
@@ -270,7 +282,9 @@ export default function Review({ onClose, initialCaseId, onNavigateToCommunicati
                 isCompact={viewMode === "compact"}
                 className={cn(
                   "h-full transition-all duration-1000 ease-out delay-700",
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4",
                 )}
               />
             )}

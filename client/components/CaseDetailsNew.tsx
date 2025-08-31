@@ -1,5 +1,26 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { X, ArrowLeft, FileText, Clock, Users, CheckCircle2, AlertCircle, Calendar, Mail, MessageSquare, Download, ExternalLink, ChevronDown, Filter } from "lucide-react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from "react";
+import {
+  X,
+  ArrowLeft,
+  FileText,
+  Clock,
+  Users,
+  CheckCircle2,
+  AlertCircle,
+  Calendar,
+  Mail,
+  MessageSquare,
+  Download,
+  ExternalLink,
+  ChevronDown,
+  Filter,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CaseDetailsNewProps {
@@ -16,30 +37,34 @@ export default function CaseDetailsNew({
   onNavigateToCommunications,
 }: CaseDetailsNewProps) {
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
-  const [showDocumentDownloadDropdown, setShowDocumentDownloadDropdown] = useState(false);
-  const [showPageDownloadDropdown, setShowPageDownloadDropdown] = useState(false);
+  const [showDocumentDownloadDropdown, setShowDocumentDownloadDropdown] =
+    useState(false);
+  const [showPageDownloadDropdown, setShowPageDownloadDropdown] =
+    useState(false);
   const [showCommunicationFilter, setShowCommunicationFilter] = useState(false);
   const [communicationFilter, setCommunicationFilter] = useState("Most Recent");
 
   // Handler functions with useCallback to prevent re-renders
   const handleDownloadAll = useCallback((includeRejected: boolean = false) => {
     try {
-      console.log(`Downloading ${includeRejected ? 'all' : 'approved only'} documents`);
+      console.log(
+        `Downloading ${includeRejected ? "all" : "approved only"} documents`,
+      );
     } catch (error) {
-      console.error('Download error:', error);
+      console.error("Download error:", error);
     } finally {
-      setShowDocumentDownloadDropdown(prev => false);
-      setShowPageDownloadDropdown(prev => false);
+      setShowDocumentDownloadDropdown((prev) => false);
+      setShowPageDownloadDropdown((prev) => false);
     }
   }, []);
 
   const handleFilterCommunications = useCallback((filter: string) => {
     try {
-      setCommunicationFilter(prev => filter);
+      setCommunicationFilter((prev) => filter);
     } catch (error) {
-      console.error('Filter error:', error);
+      console.error("Filter error:", error);
     } finally {
-      setShowCommunicationFilter(prev => false);
+      setShowCommunicationFilter((prev) => false);
     }
   }, []);
 
@@ -47,15 +72,15 @@ export default function CaseDetailsNew({
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      if (!target.closest('.dropdown-container')) {
+      if (!target.closest(".dropdown-container")) {
         setShowDocumentDownloadDropdown(false);
         setShowPageDownloadDropdown(false);
         setShowCommunicationFilter(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Enhanced mock data for documents with more realistic details
@@ -107,7 +132,9 @@ export default function CaseDetailsNew({
     },
   ];
 
-  const hasRejectedDocuments = documents.some(doc => doc.status === "rejected");
+  const hasRejectedDocuments = documents.some(
+    (doc) => doc.status === "rejected",
+  );
 
   const recentActivity = [
     {
@@ -118,8 +145,9 @@ export default function CaseDetailsNew({
     },
     {
       type: "email",
-      message: "Confirmation email sent to client regarding document review completion",
-      time: "4 hours ago", 
+      message:
+        "Confirmation email sent to client regarding document review completion",
+      time: "4 hours ago",
       importance: "medium",
     },
     {
@@ -145,25 +173,29 @@ export default function CaseDetailsNew({
   const communications = [
     {
       subject: "Case Resolution - Next Steps",
-      preview: "Thank you for your patience throughout this process. Your case has been successfully...",
+      preview:
+        "Thank you for your patience throughout this process. Your case has been successfully...",
       time: "4 hours ago",
       status: "outgoing",
     },
     {
       subject: "Document Review Follow-up",
-      preview: "Please let us know if you have any questions about the document requirements we discussed...",
+      preview:
+        "Please let us know if you have any questions about the document requirements we discussed...",
       time: "1 day ago",
       status: "queued",
     },
     {
       subject: "Additional Information Request",
-      preview: "I wanted to provide some additional context regarding my employment situation that may be...",
+      preview:
+        "I wanted to provide some additional context regarding my employment situation that may be...",
       time: "2 days ago",
       status: "incoming",
     },
     {
       subject: "Document Upload Confirmation",
-      preview: "We've received your medical records. Review in progress, expect update within 24hrs.",
+      preview:
+        "We've received your medical records. Review in progress, expect update within 24hrs.",
       time: "3 days ago",
       status: "outgoing",
     },
@@ -181,28 +213,40 @@ export default function CaseDetailsNew({
           return 0;
         });
       case "Outbound Only":
-        return filtered.filter(comm => comm.status === "outgoing");
+        return filtered.filter((comm) => comm.status === "outgoing");
       case "Inbound Only":
-        return filtered.filter(comm => comm.status === "incoming");
+        return filtered.filter((comm) => comm.status === "incoming");
       case "Most Recent":
       default:
         // Sort by most recent (assuming time format allows this simple sort)
         return filtered.sort((a, b) => {
           // Simple time comparison - in real app, you'd convert to dates
-          const aTime = a.time.includes("hour") ? 1 : a.time.includes("day") ? parseInt(a.time) : 100;
-          const bTime = b.time.includes("hour") ? 1 : b.time.includes("day") ? parseInt(b.time) : 100;
+          const aTime = a.time.includes("hour")
+            ? 1
+            : a.time.includes("day")
+              ? parseInt(a.time)
+              : 100;
+          const bTime = b.time.includes("hour")
+            ? 1
+            : b.time.includes("day")
+              ? parseInt(b.time)
+              : 100;
           return aTime - bTime;
         });
     }
   }, [communicationFilter]);
 
   const caseStats = {
-    timeInQueue: selectedCase.daysInQueue ? `${selectedCase.daysInQueue} Days` : "16 Days",
+    timeInQueue: selectedCase.daysInQueue
+      ? `${selectedCase.daysInQueue} Days`
+      : "16 Days",
     avgResponseTime: "2.3 hours",
     totalDocuments: documents.length,
-    approvedDocuments: documents.filter((doc) => doc.status === "approved").length,
+    approvedDocuments: documents.filter((doc) => doc.status === "approved")
+      .length,
     reviewDocuments: documents.filter((doc) => doc.status === "review").length,
-    rejectedDocuments: documents.filter((doc) => doc.status === "rejected").length,
+    rejectedDocuments: documents.filter((doc) => doc.status === "rejected")
+      .length,
     caseType: selectedCase.caseType || "Employment",
     dateCompleted: selectedCase.dateCompleted || "Jun 28, 2025",
     tasksComplete: selectedCase.tasksComplete || "7",
@@ -258,25 +302,28 @@ export default function CaseDetailsNew({
     }
   };
 
-
   // Define content sections styling based on inline mode - consistent glassmorphism design
   const sectionClasses = cn(
     "rounded-2xl p-5 transition-all duration-300",
     inline
       ? "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform"
-      : "bg-white/20 backdrop-blur-xl shadow-xl border border-white/20 hover:shadow-2xl"
+      : "bg-white/20 backdrop-blur-xl shadow-xl border border-white/20 hover:shadow-2xl",
   );
 
   if (selectedDocument) {
-    const doc = documents.find(d => d.name === selectedDocument);
-    
+    const doc = documents.find((d) => d.name === selectedDocument);
+
     const DocumentViewer = () => (
       <>
         {/* Document Header */}
-        <div className={cn(
-          "p-4 flex-shrink-0",
-          inline ? "mb-4" : "bg-white/10 backdrop-blur-xl border-b border-white/20 rounded-t-3xl"
-        )}>
+        <div
+          className={cn(
+            "p-4 flex-shrink-0",
+            inline
+              ? "mb-4"
+              : "bg-white/10 backdrop-blur-xl border-b border-white/20 rounded-t-3xl",
+          )}
+        >
           <div className="flex items-center justify-between">
             <button
               onClick={() => setSelectedDocument(null)}
@@ -300,17 +347,23 @@ export default function CaseDetailsNew({
 
         {/* Document Content */}
         <div className="flex-1 overflow-y-auto min-h-0 p-8 flex items-center justify-center">
-          <div className={cn(
-            "rounded-3xl p-12 text-center max-w-lg",
-            inline 
-              ? "bg-white/40 backdrop-blur-md shadow-lg border border-[#C1D9F6]/40" 
-              : "bg-white/20 backdrop-blur-xl shadow-2xl border border-white/20"
-          )}>
+          <div
+            className={cn(
+              "rounded-3xl p-12 text-center max-w-lg",
+              inline
+                ? "bg-white/40 backdrop-blur-md shadow-lg border border-[#C1D9F6]/40"
+                : "bg-white/20 backdrop-blur-xl shadow-2xl border border-white/20",
+            )}
+          >
             <div className="w-20 h-20 bg-gradient-to-br from-[#99C0F0] to-[#C5BFEE] rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
               <FileText className="w-10 h-10 text-white" />
             </div>
-            <h2 className="text-2xl font-light text-[#0E315C] mb-4">{doc?.name}</h2>
-            <p className="text-[#0E315C]/70 mb-6 font-light">{doc?.description}</p>
+            <h2 className="text-2xl font-light text-[#0E315C] mb-4">
+              {doc?.name}
+            </h2>
+            <p className="text-[#0E315C]/70 mb-6 font-light">
+              {doc?.description}
+            </p>
             <div className="space-y-3 text-sm text-[#0E315C]/60 font-light">
               <div className="flex justify-between">
                 <span>File Size:</span>
@@ -326,10 +379,12 @@ export default function CaseDetailsNew({
               </div>
               <div className="flex justify-between">
                 <span>Status:</span>
-                <span className={cn(
-                  "px-2 py-1 rounded-lg text-xs font-medium border capitalize",
-                  getStatusColor(doc?.status || "")
-                )}>
+                <span
+                  className={cn(
+                    "px-2 py-1 rounded-lg text-xs font-medium border capitalize",
+                    getStatusColor(doc?.status || ""),
+                  )}
+                >
                   {doc?.status}
                 </span>
               </div>
@@ -366,10 +421,14 @@ export default function CaseDetailsNew({
   const CaseDetailsContent = () => (
     <>
       {/* Compact Header */}
-      <div className={cn(
-        "p-4 flex-shrink-0",
-        inline ? "mb-4" : "bg-white/10 backdrop-blur-xl border-b border-white/20 rounded-t-3xl"
-      )}>
+      <div
+        className={cn(
+          "p-4 flex-shrink-0",
+          inline
+            ? "mb-4"
+            : "bg-white/10 backdrop-blur-xl border-b border-white/20 rounded-t-3xl",
+        )}
+      >
         <div className="flex items-center justify-between mb-3">
           <button
             onClick={onBack}
@@ -386,7 +445,9 @@ export default function CaseDetailsNew({
                   e.preventDefault();
                   e.stopPropagation();
                   e.nativeEvent.stopImmediatePropagation();
-                  hasRejectedDocuments ? setShowPageDownloadDropdown(prev => !prev) : handleDownloadAll(false);
+                  hasRejectedDocuments
+                    ? setShowPageDownloadDropdown((prev) => !prev)
+                    : handleDownloadAll(false);
                 }}
                 className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105"
               >
@@ -439,12 +500,18 @@ export default function CaseDetailsNew({
           </div>
           <div className="flex-1">
             <div className="flex items-center space-x-3 mb-1">
-              <h1 className="text-xl font-light text-[#0E315C]">{selectedCase.name}</h1>
-              <span className="text-[#0E315C]/60 font-light font-mono text-xs">{selectedCase.caseId}</span>
-              <span className={cn(
-                "px-2 py-1 rounded-lg text-xs font-light border capitalize",
-                getStatusColor(selectedCase.status?.toLowerCase() || "")
-              )}>
+              <h1 className="text-xl font-light text-[#0E315C]">
+                {selectedCase.name}
+              </h1>
+              <span className="text-[#0E315C]/60 font-light font-mono text-xs">
+                {selectedCase.caseId}
+              </span>
+              <span
+                className={cn(
+                  "px-2 py-1 rounded-lg text-xs font-light border capitalize",
+                  getStatusColor(selectedCase.status?.toLowerCase() || ""),
+                )}
+              >
                 {selectedCase.status}
               </span>
             </div>
@@ -467,19 +534,28 @@ export default function CaseDetailsNew({
         <div className="px-6 pt-3 pb-2">
           <div className="space-y-4">
             {/* Row 1: Case Progress - Full Width */}
-            <div className={cn(
-              "rounded-2xl p-4 transition-all duration-300",
-              inline
-                ? "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform"
-                : "bg-white/20 backdrop-blur-xl shadow-xl border border-white/20 hover:shadow-2xl"
-            )}>
+            <div
+              className={cn(
+                "rounded-2xl p-4 transition-all duration-300",
+                inline
+                  ? "bg-white/30 backdrop-blur-md border border-[#C1D9F6]/40 hover:bg-white/50 hover:shadow-lg hover:scale-[1.01] transform"
+                  : "bg-white/20 backdrop-blur-xl shadow-xl border border-white/20 hover:shadow-2xl",
+              )}
+            >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-3">
                   <CheckCircle2 className="w-5 h-5 text-[#99C0F0]" />
-                  <h3 className="text-lg font-light text-[#0E315C]">Case Progress</h3>
-                  <span className="text-sm text-[#0E315C]/60 font-light">Documents: {caseStats.approvedDocuments}/{caseStats.totalDocuments} Approved</span>
+                  <h3 className="text-lg font-light text-[#0E315C]">
+                    Case Progress
+                  </h3>
+                  <span className="text-sm text-[#0E315C]/60 font-light">
+                    Documents: {caseStats.approvedDocuments}/
+                    {caseStats.totalDocuments} Approved
+                  </span>
                 </div>
-                <span className="text-2xl font-light text-[#0E315C]">{progressPercent}%</span>
+                <span className="text-2xl font-light text-[#0E315C]">
+                  {progressPercent}%
+                </span>
               </div>
 
               <div className="w-full h-2 bg-[#C1D9F6]/20 backdrop-blur-sm rounded-full overflow-hidden mb-3 border border-[#C1D9F6]/30">
@@ -494,10 +570,16 @@ export default function CaseDetailsNew({
               {/* Most Recent Activity - Inline */}
               <div className="border-t border-[#C1D9F6]/20 pt-2">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs text-[#0E315C]/50 font-light">Most Recent Activity:</span>
-                  <span className="text-[#0E315C]/50 font-light text-xs">{recentActivity[0]?.time}</span>
+                  <span className="text-xs text-[#0E315C]/50 font-light">
+                    Most Recent Activity:
+                  </span>
+                  <span className="text-[#0E315C]/50 font-light text-xs">
+                    {recentActivity[0]?.time}
+                  </span>
                 </div>
-                <p className="text-sm text-[#0E315C] font-light">{recentActivity[0]?.message}</p>
+                <p className="text-sm text-[#0E315C] font-light">
+                  {recentActivity[0]?.message}
+                </p>
               </div>
             </div>
 
@@ -511,7 +593,9 @@ export default function CaseDetailsNew({
                     <span>Documents</span>
                   </h3>
                   <div className="flex items-center space-x-3">
-                    <span className="text-sm text-[#0E315C]/60 font-light">{documents.length} files</span>
+                    <span className="text-sm text-[#0E315C]/60 font-light">
+                      {documents.length} files
+                    </span>
                     <div className="relative dropdown-container">
                       <button
                         type="button"
@@ -519,12 +603,16 @@ export default function CaseDetailsNew({
                           e.preventDefault();
                           e.stopPropagation();
                           e.nativeEvent.stopImmediatePropagation();
-                          hasRejectedDocuments ? setShowDocumentDownloadDropdown(prev => !prev) : handleDownloadAll(false);
+                          hasRejectedDocuments
+                            ? setShowDocumentDownloadDropdown((prev) => !prev)
+                            : handleDownloadAll(false);
                         }}
                         className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
                       >
                         <Download className="w-4 h-4" />
-                        {hasRejectedDocuments && <ChevronDown className="w-3 h-3" />}
+                        {hasRejectedDocuments && (
+                          <ChevronDown className="w-3 h-3" />
+                        )}
                       </button>
                       {showDocumentDownloadDropdown && (
                         <div className="absolute top-full right-0 mt-2 w-56 bg-white/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 py-2 z-50">
@@ -570,14 +658,20 @@ export default function CaseDetailsNew({
                           <FileText className="w-5 h-5 text-[#0E315C]" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <div className="font-medium text-[#0E315C] text-sm truncate">{doc.name}</div>
-                          <div className="text-xs text-[#0E315C]/60 font-light mt-1">{doc.uploadDate}</div>
+                          <div className="font-medium text-[#0E315C] text-sm truncate">
+                            {doc.name}
+                          </div>
+                          <div className="text-xs text-[#0E315C]/60 font-light mt-1">
+                            {doc.uploadDate}
+                          </div>
                         </div>
                       </div>
-                      <span className={cn(
-                        "px-2 py-1 rounded-lg text-xs font-medium border capitalize flex-shrink-0",
-                        getStatusColor(doc.status)
-                      )}>
+                      <span
+                        className={cn(
+                          "px-2 py-1 rounded-lg text-xs font-medium border capitalize flex-shrink-0",
+                          getStatusColor(doc.status),
+                        )}
+                      >
                         {doc.status}
                       </span>
                     </div>
@@ -599,7 +693,7 @@ export default function CaseDetailsNew({
                         e.preventDefault();
                         e.stopPropagation();
                         e.nativeEvent.stopImmediatePropagation();
-                        setShowCommunicationFilter(prev => !prev);
+                        setShowCommunicationFilter((prev) => !prev);
                       }}
                       className="flex items-center space-x-2 bg-slate-100/40 hover:bg-slate-200/50 text-[#0E315C] p-2 rounded-xl transition-all duration-300 hover:scale-105"
                     >
@@ -608,7 +702,12 @@ export default function CaseDetailsNew({
                     </button>
                     {showCommunicationFilter && (
                       <div className="absolute top-full right-0 mt-2 w-40 bg-white/90 backdrop-blur-xl rounded-xl shadow-xl border border-white/20 py-2 z-50">
-                        {["Most Recent", "Queued First", "Outbound Only", "Inbound Only"].map((filter) => (
+                        {[
+                          "Most Recent",
+                          "Queued First",
+                          "Outbound Only",
+                          "Inbound Only",
+                        ].map((filter) => (
                           <button
                             key={filter}
                             type="button"
@@ -622,7 +721,7 @@ export default function CaseDetailsNew({
                               "w-full text-left px-4 py-2 text-sm transition-colors",
                               communicationFilter === filter
                                 ? "bg-[#C5BFEE]/30 text-[#0E315C] font-medium"
-                                : "text-[#0E315C] hover:bg-[#C5BFEE]/20"
+                                : "text-[#0E315C] hover:bg-[#C5BFEE]/20",
                             )}
                           >
                             {filter}
@@ -639,12 +738,12 @@ export default function CaseDetailsNew({
                         // Map case names to client IDs (matching the Overview mapping)
                         const clientName = selectedCase.name;
                         const clientNameMap: Record<string, string> = {
-                          'Rosen, Claire': 'client_1',
-                          'Chen, Mike': 'client_2',
-                          'Morrison, Kate': 'client_3',
-                          'Fulsom, Jackson': 'client_4',
-                          'Williams, Sarah': 'client_5',
-                          'Johnson, Michael': 'client_6'
+                          "Rosen, Claire": "client_1",
+                          "Chen, Mike": "client_2",
+                          "Morrison, Kate": "client_3",
+                          "Fulsom, Jackson": "client_4",
+                          "Williams, Sarah": "client_5",
+                          "Johnson, Michael": "client_6",
                         };
 
                         const clientId = clientNameMap[clientName];
@@ -655,34 +754,41 @@ export default function CaseDetailsNew({
                     };
 
                     return (
-                    <div
-                      key={index}
-                      onClick={handleEmailClick}
-                      className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg min-w-0"
-                    >
-                      <div className="flex items-start space-x-3 min-w-0 flex-1 mr-4">
-                        <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20 flex-shrink-0">
-                          <Mail className="w-5 h-5 text-[#0E315C]" />
+                      <div
+                        key={index}
+                        onClick={handleEmailClick}
+                        className="flex items-center justify-between p-3 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer hover:scale-[1.01] transform shadow-sm hover:shadow-lg min-w-0"
+                      >
+                        <div className="flex items-start space-x-3 min-w-0 flex-1 mr-4">
+                          <div className="w-10 h-10 bg-gradient-to-br from-[#99C0F0]/20 to-[#C5BFEE]/20 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-sm border border-white/20 flex-shrink-0">
+                            <Mail className="w-5 h-5 text-[#0E315C]" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-medium text-[#0E315C] mb-1 truncate">
+                              {comm.subject}
+                            </p>
+                            <div className="text-xs text-[#0E315C]/50 font-light mb-1">
+                              {comm.time}
+                            </div>
+                            <p className="text-xs text-[#0E315C]/60 font-light line-clamp-2">
+                              {comm.preview}
+                            </p>
+                          </div>
                         </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="text-sm font-medium text-[#0E315C] mb-1 truncate">{comm.subject}</p>
-                          <div className="text-xs text-[#0E315C]/50 font-light mb-1">{comm.time}</div>
-                          <p className="text-xs text-[#0E315C]/60 font-light line-clamp-2">{comm.preview}</p>
-                        </div>
+                        <span
+                          className={cn(
+                            "px-2 py-1 rounded-lg text-xs font-medium border capitalize flex-shrink-0",
+                            getCommunicationStatusColor(comm.status),
+                          )}
+                        >
+                          {comm.status}
+                        </span>
                       </div>
-                      <span className={cn(
-                        "px-2 py-1 rounded-lg text-xs font-medium border capitalize flex-shrink-0",
-                        getCommunicationStatusColor(comm.status)
-                      )}>
-                        {comm.status}
-                      </span>
-                    </div>
                     );
                   })}
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>

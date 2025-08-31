@@ -6,6 +6,16 @@ interface InlineReviewProps {
   onNavigateToCommunications?: (clientId?: string) => void;
 }
 
-export default function InlineReview({ onClose, initialCaseId, onNavigateToCommunications }: InlineReviewProps) {
-  return <Review onClose={onClose} initialCaseId={initialCaseId} onNavigateToCommunications={onNavigateToCommunications} />;
+export default function InlineReview({
+  onClose,
+  initialCaseId,
+  onNavigateToCommunications,
+}: InlineReviewProps) {
+  return (
+    <Review
+      onClose={onClose}
+      initialCaseId={initialCaseId}
+      onNavigateToCommunications={onNavigateToCommunications}
+    />
+  );
 }

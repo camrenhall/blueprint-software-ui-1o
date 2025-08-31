@@ -214,7 +214,6 @@ export default function TopNavBar({ className }: TopNavBarProps) {
                 </DropdownMenuContent>
               </DropdownMenu>
 
-
               {/* Profile dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

@@ -268,7 +268,6 @@ export function CommunicationsSearchFilterBar({
               </div>
             )}
           </div>
-
         </div>
 
         {/* Active Filters Summary - Only visible when filters are active */}
@@ -300,7 +299,10 @@ export function CommunicationsSearchFilterBar({
                     className="px-2 py-1 bg-[#99C0F0]/20 rounded-md flex items-center gap-1"
                   >
                     <div
-                      className={cn("w-1.5 h-1.5 rounded-full", option.color.dot)}
+                      className={cn(
+                        "w-1.5 h-1.5 rounded-full",
+                        option.color.dot,
+                      )}
                     />
                     {option.label}
                   </span>

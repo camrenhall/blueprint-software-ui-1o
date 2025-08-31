@@ -1,7 +1,18 @@
 import { useState, useEffect } from "react";
-import { Clock, CheckCircle, FileText, UserPlus, Mail, FolderOpen } from "lucide-react";
+import {
+  Clock,
+  CheckCircle,
+  FileText,
+  UserPlus,
+  Mail,
+  FolderOpen,
+} from "lucide-react";
 
-type ActivityType = 'document_uploaded' | 'email_received' | 'document_review_needed' | 'case_closed';
+type ActivityType =
+  | "document_uploaded"
+  | "email_received"
+  | "document_review_needed"
+  | "case_closed";
 
 interface RecentActivity {
   id: string;
@@ -22,7 +33,11 @@ interface OverviewProps {
   onNavigateToCommunications?: (clientId?: string) => void;
 }
 
-export default function Overview({ onClose, onNavigateToReview, onNavigateToCommunications }: OverviewProps) {
+export default function Overview({
+  onClose,
+  onNavigateToReview,
+  onNavigateToCommunications,
+}: OverviewProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -123,13 +138,13 @@ export default function Overview({ onClose, onNavigateToReview, onNavigateToComm
               const IconComponent = activity.icon;
               const handleActivityClick = () => {
                 switch (activity.type) {
-                  case 'document_uploaded':
-                  case 'document_review_needed':
-                  case 'case_closed':
+                  case "document_uploaded":
+                  case "document_review_needed":
+                  case "case_closed":
                     // Navigate to Case Details page
                     onNavigateToReview?.(activity.caseId);
                     break;
-                  case 'email_received':
+                  case "email_received":
                     // Navigate to Communications page
                     onNavigateToCommunications?.(activity.clientId);
                     break;

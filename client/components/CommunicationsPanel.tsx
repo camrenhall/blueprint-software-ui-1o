@@ -495,27 +495,30 @@ export default function CommunicationsPanel({
       // For demo purposes, we'll match client names from the Overview component
       // In a real app, this would match actual client IDs
       const clientNameMap: Record<string, string> = {
-        'client_1': 'Claire Rosen',
-        'client_2': 'Mike Chen',
-        'client_3': 'Kate Morrison',
-        'client_4': 'Jackson Fulsom'
+        client_1: "Claire Rosen",
+        client_2: "Mike Chen",
+        client_3: "Kate Morrison",
+        client_4: "Jackson Fulsom",
       };
 
       const clientName = clientNameMap[initialClientId];
       if (clientName) {
-        const matchingConversation = conversations.find(c =>
-          c.clientName.includes(clientName.split(' ')[0]) ||
-          c.clientName.includes(clientName.split(' ')[1])
+        const matchingConversation = conversations.find(
+          (c) =>
+            c.clientName.includes(clientName.split(" ")[0]) ||
+            c.clientName.includes(clientName.split(" ")[1]),
         );
         if (matchingConversation) {
           setSelectedConversation(matchingConversation);
           // Auto-expand the most recent message
           if (matchingConversation.messages.length > 0) {
             setExpandedMessage(
-              matchingConversation.messages[matchingConversation.messages.length - 1].id
+              matchingConversation.messages[
+                matchingConversation.messages.length - 1
+              ].id,
             );
           }
-          setSearchValue(clientName.split(' ')[0]); // Set search to highlight the client
+          setSearchValue(clientName.split(" ")[0]); // Set search to highlight the client
         }
       }
     }
@@ -683,12 +686,12 @@ export default function CommunicationsPanel({
   return (
     <div className="h-full flex flex-col">
       {/* Header with enhanced glassmorphism */}
-      <div className={cn(
-        "text-center mb-6 transition-all duration-1000 ease-out delay-300",
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4"
-      )}>
+      <div
+        className={cn(
+          "text-center mb-6 transition-all duration-1000 ease-out delay-300",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+        )}
+      >
         <div className="text-center">
           <h1 className="text-2xl font-light text-[#0E315C] tracking-wide">
             Communications
@@ -718,18 +721,16 @@ export default function CommunicationsPanel({
         onSortChange={setSortBy}
         className={cn(
           "mb-6 transition-all duration-800 ease-out delay-500",
-          isVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-3"
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3",
         )}
       />
 
-      <div className={cn(
-        "flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all duration-1000 ease-out delay-700",
-        isVisible
-          ? "opacity-100 translate-y-0"
-          : "opacity-0 translate-y-4"
-      )}>
+      <div
+        className={cn(
+          "flex-1 grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all duration-1000 ease-out delay-700",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+        )}
+      >
         {/* Client Conversations List - Floating Glass Tiles */}
         <div className="space-y-4">
           <div className="flex items-center justify-between mb-2">
